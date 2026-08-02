@@ -1,0 +1,1115 @@
+\chapter{School Culture and Pupil Progress: Evidence from English Secondary Schools}
+\label{ch:paper2}
+\resetcounterformats
+
+\begin{center}
+  \textit{Damian Phelan%
+    \thanks{Department of Economics, University College London.
+      [\textit{INSERT: acknowledgements.}]}}
+\end{center}
+
+\begin{chapterabstract}
+  This chapter estimates whether a school's organisational culture predicts
+  pupil academic progress, using a measurement framework that separately
+  identifies warmth (the relational quality of the school environment) and
+  strictness (its behavioural structure) from researcher visits and headteacher
+  interviews. Enacted culture scores derived from 102 independent school
+  observations are regressed against school-level Progress~8 components and
+  overall Progress~8 for the 2023--24 cohort, conditioning on prior attainment,
+  pupil composition, school type, and pre-COVID Ofsted grade. Both warmth and
+  strictness significantly predict overall Progress~8 ($\hat{\beta}_W = 0.127$,
+  $p = 0.006$; $\hat{\beta}_S = 0.120$, $p = 0.013$), with near-equal
+  magnitudes. Adding directly observed teaching quality does not attenuate
+  either coefficient, suggesting culture and instruction address largely distinct
+  mechanisms. Replacing visit-based scores with headteacher self-reports reduces
+  the warmth coefficient by 63--106~per~cent, validating the observation-based
+  measurement design. School culture is a measurable and independently
+  predictive determinant of pupil progress.
+\end{chapterabstract}
+
+% ---------------------------------------------------------------
+\section{Introduction}
+\label{sec:p2_intro}
+
+The academic progress that pupils make between Key Stage~2 and GCSE varies
+enormously across English secondary schools. Using the official Progress~8
+measure, the gap between the highest- and lowest-performing schools in a
+typical year spans more than four grade-equivalent points across all examined
+subjects---a difference that translates into thousands of pounds of additional
+lifetime earnings per pupil, per grade point \citep{hodge2021}. Understanding
+what drives this variation is one of the central questions in the economics
+of education.
+
+The evidence reviewed in \cref{sec:p2_lit} suggests that neither the level
+of school resources nor the formal type of school can fully account for the
+observed heterogeneity in pupil progress. While teacher quality is a powerful
+determinant of pupil outcomes \citep{rivkin2005, chetty2014}, the observable
+characteristics that predict teacher quality are limited and the scope for
+scaling up improvement through teacher-focused policy is constrained. A
+parallel literature on high-performing charter schools in the United States
+points to specific school-level practices---structured behaviour management,
+high expectations, and intensive pupil support---as the features most strongly
+associated with achievement gains \citep{dobbie2013}. These practices correspond
+closely to what the developmental psychology literature describes as the
+authoritative style: high on both demandingness and responsiveness
+\citep{maccoby1983}. The warmth and strictness dimensions introduced in
+\cref{ch:paper1} operationalise this idea at the level of the school.
+
+This chapter uses the warmth and strictness scores constructed in
+\cref{ch:paper1} to estimate their association with school-level Progress~8
+component scores (English, Maths, EBaC, and Open) and, as secondary outcomes,
+with subject entry rates along the EBaC pathway. The primary sample comprises
+the 102 gold-standard schools for which directly observed, enacted culture
+scores are available from classroom and outside-of-lesson observations. This
+design avoids the well-documented divergence between headteacher self-report
+and independent observation documented in \cref{sec:p1_convergence}: by using
+visit-only predictors, the primary estimates reflect the culture that pupils
+actually experience rather than the culture that headteachers describe. An
+extended specification using the 303 interview schools with espoused culture
+scores is reported as a validation appendix, with estimates expected to be
+attenuated in the direction predicted by the observed espoused--enacted bias.
+The central empirical question is whether schools that score higher on
+warmth, strictness, or both achieve systematically better pupil progress,
+conditional on a rich set of observable school and pupil characteristics drawn
+from the school-level administrative panel.
+
+The identification strategy relies on cross-sectional variation in warmth and
+strictness scores across schools. Because the scores are measured at a point
+in time and the analysis does not exploit within-school changes in culture over
+time, the estimates should be interpreted as partial correlations conditional
+on observables, rather than as causal effects. The principal threats to a
+causal interpretation---omitted variable bias from unobservable pupil
+composition and school-level characteristics, and the non-random selection of
+schools into the interview programme---are discussed in \cref{sec:p2_id}. A
+further concern, arising from headteacher turnover between the time of
+measurement and the outcome period, is addressed in \cref{sec:p2_continuity}.
+
+The main finding is that enacted school culture predicts pupil progress: both
+warmth and strictness are positive, statistically significant, and near-equal
+in magnitude as predictors of overall Progress~8 ($\hat{\beta}_W = 0.127$,
+$\hat{\beta}_S = 0.120$, each $p < 0.015$). At the component level, warmth is
+most strongly associated with English and EBaC progress and strictness with
+EBaC and Maths, consistent with theoretical priors about the relational demands
+of breadth-of-provision and the disciplinary requirements of high-stakes
+sequential subjects. Neither coefficient is attenuated by conditioning on
+directly observed teaching quality, which enters insignificantly once culture is
+controlled, suggesting culture and instruction predict progress through largely
+distinct channels. The findings are robust to dropping the pre-COVID Ofsted
+grade control, using single-year or Attainment~8 outcomes, and adding baseline
+SEMH share as an additional control. A direct enacted--espoused comparison
+shows that headteacher self-reports have 63--106~per~cent less predictive validity
+for warmth than researcher observations, providing an external validation of the
+observation-based measurement design.
+
+The remainder of this chapter is organised as follows. \Cref{sec:p2_lit}
+reviews the related literature. \Cref{sec:p2_id} describes the research question
+and identification strategy. \Cref{sec:p2_outcomes} describes the outcome
+variables. \Cref{sec:p2_controls} describes the control variables.
+\Cref{sec:p2_continuity} addresses headteacher continuity. \Cref{sec:p2_specs}
+sets out the empirical specifications. \Cref{sec:p2_results} presents results,
+and \cref{sec:p2_conclusion} concludes.
+
+% ---------------------------------------------------------------
+\section{Related Literature}
+\label{sec:p2_lit}
+
+This chapter draws on four principal strands of related work: the literature on
+school resources and pupil achievement; research on teacher quality; evidence
+from the charter school and academy programmes on the effect of school type
+and specific practices; and the parenting styles literature as the theoretical
+foundation for the warmth and strictness framework.
+
+\paragraph{School resources and pupil achievement.}
+The relationship between school resources and student achievement was the
+subject of sustained controversy in the latter part of the twentieth century.
+\citet{hanushek1997} reviewed a large body of evidence and concluded there was
+no strong or consistent relationship between per-pupil expenditure and student
+performance once family background was controlled for. This finding was
+challenged, in part, by the class size literature. \citet{angrist1999} use an
+instrumental variables design based on Israeli class size rules and find that
+reducing class size generates significant test score gains for fourth and fifth
+graders. \citet{krueger1999} analyses a randomised experiment in Tennessee in
+which pupils were assigned to small or regular-sized classes from kindergarten
+through to third grade, finding improvements of approximately four percentile
+points in the first year in a small class, increasing by one point per year
+thereafter. \citet{krueger2001} show that these early-years gains persist into
+secondary school.
+
+Evidence on resource effects in English schools is broadly consistent with
+small positive effects, particularly for disadvantaged pupils. \citet{levacic2005}
+find that additional resources improve overall GCSE attainment, with effects
+concentrated in the lower half of the prior attainment distribution.
+\citet{jenkins2006} find modest and subject-specific positive effects of
+additional resources in English secondary schools, with reductions in the
+student--teacher ratio more effective than general expenditure increases.
+\citet{holmlund2010} show that the 40 per cent increase in English school
+spending from 2000 to 2010 had consistently positive effects on primary school
+outcomes, with larger effects for economically disadvantaged pupils.
+\citet{machin2010} evaluate the Excellence in Cities programme and find a
+positive impact on attendance and mathematics performance, concentrated in the
+most disadvantaged schools and in the middle of the ability distribution. The
+overall picture is one of small but positive resource effects that are
+substantially smaller than those attributable to school culture and practice.
+
+\paragraph{Teacher quality.}
+The evidence on teacher quality is unambiguous in one respect: variation in
+teacher effectiveness is large and its consequences for pupil outcomes are
+substantial. \citet{rivkin2005} use matched panel data to show that a one
+standard deviation improvement in teacher quality generates gains comparable
+to or larger than a ten-pupil reduction in class size, with little of this
+variation explained by observable teacher characteristics. \citet{chetty2014}
+find that students assigned to high value-added teachers are more likely to
+attend university, earn higher wages, and are less likely to have children as
+teenagers; replacing a teacher in the bottom five per cent of the quality
+distribution with an average teacher would raise the present value of pupils'
+lifetime earnings by approximately \$250,000 per classroom. In the English
+context, \citet{slater2012} show that being taught by a high-quality teacher
+over a two-year GCSE course adds 0.565 of a GCSE point per subject, and
+\citet{murphy2011} estimate that raising the bottom decile of teachers to
+average quality over ten years would move the United Kingdom from 21st to 3rd
+place in the OECD reading rankings. The teacher quality literature suggests
+that the most effective schools are those that attract and retain high-quality
+teachers, but it leaves open the question of what school-level features
+facilitate this and whether school culture predicts pupil progress
+independently.
+
+\paragraph{School type, autonomy, and specific practices.}
+The introduction of academy schools in England and charter schools in the
+United States has generated a large literature on the effect of school type
+and autonomy on pupil outcomes. In the English context, the evidence is broadly
+positive for the first wave of academies---those introduced under the Labour
+government from 2002, targeting chronically underperforming schools in
+disadvantaged areas. \citet{machin2011} find that academy conversion generates
+significant improvements in both pupil intake quality and performance, with
+stronger effects for schools that gained the most autonomy. \citet{eyles2016}
+find that the first wave boosted GCSE performance and had positive medium-term
+effects on post-compulsory schooling outcomes. The second wave of academies,
+converter schools from 2010 onwards, shows much weaker or null effects
+\citep{eyles2019}, suggesting that autonomy per se is not the operative
+channel. A comprehensive review of the US charter school literature reaches a
+similar conclusion: some charter schools are substantially more effective than
+traditional public schools, but the majority show no average advantage and
+some are inferior \citep{epple2016}.
+
+The most informative strand of this literature focuses not on school type but
+on the specific practices that differentiate effective from ineffective schools.
+\citet{abdulkadiroglu2011} find that effective Boston charters are characterised
+by strict discipline and generate large test score gains; less autonomous pilot
+schools with similar demographics use different practices and do not produce
+comparable gains. \citet{dobbie2013} show that an index of five practices---
+including high expectations, frequent feedback, and intensive tutoring---explains
+approximately half of the cross-school variation in charter school
+effectiveness, while class size and per-pupil expenditure are unrelated to
+effectiveness. \citet{fryer2014} implements this bundle in low-performing
+Houston public schools using a field experiment and finds significant
+mathematics gains. \citet{chabrier2016} find that schools adopting an
+intensive structured approach to behaviour are associated with large academic
+gains, though the relationship is partially explained by the quality of local
+alternative schools. In the English context, \citet{machin2020} show that
+higher exclusion rates in early academies reflect genuine disciplinary rigour
+rather than the strategic off-rolling of weaker pupils. Taken together, this
+literature points to school culture---and in particular the consistent
+enforcement of high behavioural expectations combined with intensive pupil
+support---as the most important distinguishing feature of high-performing
+schools, and directly motivates the warmth and strictness measures introduced
+in \cref{ch:paper1}.
+
+\paragraph{Parenting styles and the authoritative school.}
+The theoretical framework connecting warmth and strictness to pupil outcomes
+draws on the parenting styles typology of \citet{maccoby1983}, which classifies
+parenting on two orthogonal axes of demandingness and responsiveness. The
+authoritative style---high on both---is associated with the most positive
+cognitive and non-cognitive outcomes for children. \citet{majumder2015} finds
+that authoritative parenting raises the probability of completing a bachelor's
+degree by 18.5 percentage points relative to uninvolved parenting.
+\citet{zhang2020} find that high demandingness and high responsiveness each
+have independent positive effects on children's academic outcomes. The
+extension of this framework to schools---with strictness as the school
+analogue of demandingness and warmth as the analogue of responsiveness---is
+developed in \cref{ch:paper1}. This chapter provides the first large-scale
+test of the resulting hypothesis for English secondary schools.
+
+\paragraph{Value-added measurement.}
+The use of school-level value-added measures as outcomes is subject to
+well-documented limitations. \citet{gorard2010} argues that school
+effectiveness estimates derived from value-added models are dominated by
+relative error terms and are not reliable. \citet{gorard2013} show that
+school value-added estimates are highly unstable over time: no school with
+at least 99 per cent of its pupils included in value-added calculations has a
+clearly positive measure for five consecutive years. These findings counsel
+caution in interpreting the Progress~8 scores used in this chapter as precise
+estimates of school effectiveness. Progress~8 is nevertheless used as the
+primary outcome for three reasons: it is the measure used by the Department
+for Education in its secondary school performance tables; it controls for
+pupils' Key Stage~2 prior attainment, which is the most important observable
+predictor of GCSE performance; and it enables comparison with schools outside
+the primary sample through nationally standardised benchmarks.
+
+% ---------------------------------------------------------------
+\section{Research Question and Identification Strategy}
+\label{sec:p2_id}
+
+This chapter examines the association between the school warmth and strictness
+measures constructed in \cref{ch:paper1} and school-level pupil progress across
+four Progress~8 components (English, Maths, EBaC, and Open).
+The central question is whether schools that score higher on warmth, strictness,
+or both achieve systematically better pupil progress, conditional on the full set
+of observable school and pupil characteristics available in the administrative
+panel.
+
+The identification strategy relies on cross-sectional variation in warmth and
+strictness scores across schools. Because scores are measured at a point in time
+rather than across multiple years, the analysis does not exploit within-school
+changes in culture over time, and the estimates should be interpreted as partial
+correlations conditional on observables, rather than as causal effects. Two
+sources of omitted variable bias are of particular concern.
+
+First, schools serving more disadvantaged pupil populations may score
+differently on warmth and strictness for reasons unrelated to genuine cultural
+differences---for example, if headteachers in high-deprivation settings are more
+likely to articulate a strong relational philosophy in interview, which would
+inflate warmth scores, or more likely to have invested in structured behaviour
+management systems, which would inflate strictness scores. The panel controls
+described in \cref{sec:p2_controls} address this in part.
+
+Second, the recruitment of schools for the visit and interview programme was not
+random, which limits external validity to the extent that the sample is
+systematically selected on unobservable characteristics. The degree to which the
+sample resembles the national population on key observables is documented in
+\cref{app:2A:sample} of \cref{ch:paper1}.
+
+A further concern relates to temporal alignment. Because Progress~8 is measured
+in 2023--24 while culture scores are measured at the time of interview or visit ---
+predominantly in 2024--25 --- the cross-sectional design requires that school
+culture is sufficiently stable across adjacent years that a score measured at
+time~$t$ is a reliable proxy for the culture present at time~$t - 1$. This
+assumption is supported empirically. Intra-class correlation (ICC) analysis across
+nine structural panel characteristics --- reported in \cref{app:3A:stability} ---
+shows that in every case between-school differences substantially exceed
+within-school year-to-year fluctuations. The most volatile dimension, per-pupil
+expenditure, has ICC~$= 0.52$; intake characteristics including EAL share, school
+roll, and mean KS2 prior attainment of the entering cohort all exceed
+ICC~$= 0.80$. A school's relative standing on these structural dimensions changes
+little from one year to the next, consistent with the interpretation that culture
+scores measured in 2024--25 are valid proxies for the organisational conditions
+that shaped the 2023--24 cohort's experience of secondary school.
+
+The primary specification uses the 102 gold-standard schools and enacted culture
+scores derived exclusively from the school visit observations ($W_1$, $W_2$ for
+warmth; $S_1$, $S_2$ for strictness; $T_1$ for teaching quality). This design
+avoids conflating enacted culture with the espoused culture captured by headteacher
+interview, whose systematic divergence from independently observed behaviour is
+documented in \cref{sec:p1_convergence}. Interview-derived (espoused) scores are
+then substituted for the visit scores on the same estimation sample as a
+validation check---holding the sample fixed so that the two sets of estimates
+are directly comparable---with the espoused--enacted
+divergence entering as an explicit prediction: estimates from interview-derived
+scores should show upward attenuation for warmth as documented in
+\cref{ch:paper1} (interview over-reports warmth; strictness shows near-zero
+systematic bias), so the interview-based $\hat\beta_1$ should be biased upward
+relative to the primary enacted estimates, with no strong directional prediction
+for $\hat\beta_2$. Correspondence between the two sets of estimates would
+nonetheless strengthen the causal interpretation of the culture--progress association.
+
+% ---------------------------------------------------------------
+\section{Outcome Variables}
+\label{sec:p2_outcomes}
+
+\subsection{Primary outcomes: Progress~8 components}
+\label{sec:p2_primary_outcomes}
+
+The primary outcomes are four school-level Progress~8 component scores, drawn
+from the Department for Education's school performance tables for 2023--24.
+Progress~8 measures average pupil progress between Key Stage~2 (age~11) and
+GCSE (age~16) relative to nationally similar pupils; the composite score is
+normalised to zero at national level with a standard deviation of approximately
+one grade.
+
+The composite score is decomposed into four components: English (two slots,
+double-weighted), Maths (two slots, double-weighted), EBaC (three slots:
+sciences, computer science, history, geography, and modern foreign languages),
+and Open (three slots: any additional approved qualification, including arts and
+vocational subjects). The four components are examined separately rather than
+using the aggregate Progress~8 score because the two pairs differ in how
+school-level choices shape the score. For English and Maths every pupil sits the
+relevant GCSE, so the component directly reflects instructional quality; for
+EBaC and Open, schools influence both which subjects pupils enter and how well
+they progress in those subjects. Unfilled EBaC or Open slots contribute zero
+progress to the school's average, so the EBaC and Open components are partly
+determined by curriculum-pathway decisions as well as teaching quality.
+
+This structure generates a theoretical prediction about warmth and strictness.
+Schools higher on strictness---characterised by structured behaviour management,
+high academic expectations, and intensive pupil steering---are more likely to
+direct pupils into the EBaC pathway, potentially raising the EBaC component
+through both the entry-rate and the conditional-progress channels. Schools higher
+on warmth---characterised by relational support, enrichment breadth, and pupil
+engagement---may generate stronger progress in the more elective Open component.
+If the two culture dimensions operate through distinct curriculum channels, the
+EBaC and Open components would show differential sensitivity to warmth and
+strictness; if both move together, the culture effect is general rather than
+pathway-specific.
+
+The primary outcome is a two-year average of Progress~8 component scores across
+2022--23 and 2023--24. Using both available post-COVID years rather than a single
+year reduces outcome measurement error, smoothing idiosyncratic year-on-year
+variation while preserving all usable variation in cultural predictors.
+Only these two years are suitable: earlier years (2018--19 and prior) are usable
+but introduce larger temporal gaps relative to the 2024--25 culture scores; 2021--22
+outcomes are treated as unreliable due to ongoing grade inflation and
+Covid-disrupted cohorts; 2024--25 KS4 outcomes are unavailable because the cohort
+completing GCSEs that year were in Year~6 in 2019--20, when Key Stage~2
+assessments were suspended due to the Covid-19 pandemic, meaning the Progress~8
+baseline cannot be constructed. Where a school lacks one of the two years (due to
+school type changes or performance table suppression) the available single year is
+used; where neither is available the school is excluded from that outcome's
+regression. The final sample sizes by outcome are reported in
+\cref{tab:outcome_stats}.
+
+The choice of 2022--24 outcomes creates a temporal gap for the majority of schools
+in the primary sample: school visits took place between January~2024 and
+March~2025, with 53 of 103 (51~per~cent) in 2024--25. For most schools, the
+enacted culture score therefore reflects the school approximately one to two
+academic years after the outcome period. This is addressed in two ways. First,
+the estimates are re-run on the subsample for which headteacher continuity
+between the outcome year and the point of measurement can be confirmed
+(\cref{sec:p2_continuity}). Second, the
+validity of using a 2024--25 culture score as a proxy for 2022--24 culture rests
+on an empirical assumption of structural stability: ICC analysis across nine
+structural panel characteristics (\cref{app:3A:stability}) shows that
+between-school differences substantially exceed within-school year-to-year
+variation, consistent with culture scores being stable proxies across adjacent
+years.
+
+\cref{tab:outcome_stats} reports summary statistics for all four primary outcome
+components by data tier.
+
+\input{tables/tab_outcome_stats}
+
+\subsection{Secondary outcomes: subject entry rates}
+\label{sec:p2_secondary_outcomes}
+
+Three secondary outcomes are examined in a separate sub-section of the results:
+the EBaC entry rate (the share of pupils entered for the full EBaC suite of
+subjects), the humanities entry rate (history or geography), and the languages
+entry rate (any modern foreign language). These are derived from pupil count
+columns in the 2023--24 performance tables, divided by the total number of pupils
+at Key Stage~4. The DfE ceased publishing percentage-form EBaC entry columns in
+recent performance releases, so entry rates are computed from the underlying
+counts.
+
+Unlike the Progress~8 components, which measure pupil progress conditional on
+entry, the entry rates capture school-level curriculum-steering decisions directly:
+specifically, the degree to which schools direct pupils toward academically
+intensive subject pathways. Entry rates are expected to be more sensitive to
+strictness and high-expectations culture than to warmth, because the academic
+pathway decisions they reflect are closer to the demandingness dimension of
+school culture. Analysing entry rates alongside Progress~8 components therefore
+helps to disentangle whether any observed culture--progress association operates
+through changed subject-entry patterns, through conditional progress within
+subjects, or both.
+
+Note that entry rates are available only at the subject-group level in the DfE
+performance tables: humanities records history or geography (combined), languages
+records any modern foreign language (combined), and sciences records double-award
+science or higher (combined). Individual-subject data---distinguishing history
+from geography, French from Spanish, or the separate sciences---are published in
+a separate DfE underlying-data file and were not included in this project's data
+collection.
+
+% ---------------------------------------------------------------
+\section{Control Variables}
+\label{sec:p2_controls}
+
+All specifications include the following controls, drawn from the school-level
+administrative panel dataset.
+
+\textit{Pupil composition}: share eligible for the pupil premium (FSM6 measure);
+share with an Education, Health and Care (EHC) plan and share receiving SEN
+support (aggregate measures; the Social, Emotional and Mental Health sub-category
+is not included as a contemporaneous control owing to potential endogeneity with
+school behaviour and exclusion practices, but is added as a baseline measure in
+the robustness specifications described in \cref{sec:p2_specs}); mean
+Key Stage~2 prior attainment; share with English as an Additional Language.
+
+\textit{School characteristics}: school type (entered as a full set of dummies:
+sponsor academy, converter academy, voluntary aided, voluntary controlled,
+foundation, community); phase (11--16 versus 11--18); school size (number of
+pupils on roll); urban/rural classification.
+
+\textit{Performance context}: most recent Ofsted overall effectiveness grade
+(entered as a set of dummies); number of years since the last Ofsted inspection.
+
+\textit{Workforce}: share of teachers with qualified teacher status; average
+teacher salary; leadership team size.
+
+\textit{Financial}: per-pupil total expenditure; share of expenditure on teaching
+staff.
+
+\cref{tab:control_stats} reports summary statistics for all control variables by
+data tier. \cref{tab:score_controls_corr} in \cref{app:3A:tables} reports
+pairwise correlations between the warmth and strictness scores and the main
+control variables.
+
+\input{tables/tab_control_stats}
+
+% ---------------------------------------------------------------
+\section{Headteacher Continuity}
+\label{sec:p2_continuity}
+
+The warmth and strictness scores reflect the philosophy and leadership of the
+headteacher in post at the time of measurement. If the headteacher has changed
+between the time of measurement and the period to which the outcome variable
+relates, the alignment between the score and the outcome is weakened. This
+constitutes a potential source of attenuation bias: a change in headteacher since
+measurement reduces the correlation between the measured score and the current
+culture of the school, biasing estimates of the culture--progress association
+towards zero.
+
+Continuity is measured by comparing the headteacher named in the school's most
+recent Ofsted inspection report against the July~2026 GIAS snapshot. This
+identifies whether leadership changed between the inspection and the present,
+which is the closest available proxy for continuity across the measurement
+window; it is not a direct measure of continuity since the research visit or
+the interview, and no such measure is available at scale. Coverage is the
+binding constraint. Of the 3{,}332 schools in the national frame, headteacher
+names could be recovered from both sources for 1{,}422 (43~per~cent), of which
+636 (45~per~cent) show a change. Within Tier~1, continuity could be determined
+for only 30 of the 102 full-data schools; 7 of those 30 (23~per~cent) changed
+headteacher. Across the 303 interviewed schools, continuity is determined for
+109, of which 40 (37~per~cent) changed.
+
+Because continuity is unobserved for roughly seven in ten Tier~1 schools, a
+continuity indicator cannot be entered as a control without collapsing the
+estimation sample, and it is therefore not included in the main specifications.
+Instead the primary specification is re-estimated on the subsample of schools
+with confirmed continuity, to assess the sensitivity of the estimates to this
+potential source of measurement error (\cref{tab:continuity_robustness}). The
+resulting subsample is small ($n = 23$), and---because it is defined jointly by
+continuity and by data availability---is not a random subset of Tier~1. The
+check is accordingly a weak one, and is reported as such.
+
+% ---------------------------------------------------------------
+\section{Empirical Specifications}
+\label{sec:p2_specs}
+
+The analysis uses a three-stage regression design that separates the total
+culture effect from the component operating via teaching quality. All three stages
+are cross-sectional OLS with HC3 heteroskedasticity-robust standard errors,
+estimated on the 102 gold-standard schools.
+
+\paragraph{Stage 1: Total culture effect.}
+The first stage estimates the joint effect of enacted warmth and strictness,
+excluding teaching quality:
+%
+\begin{equation}
+  \label{eq:stage1}
+  y_s = \alpha + \beta_1 W_s + \beta_2 S_s + \boldsymbol{\beta}' \mathbf{X}_s
+  + \varepsilon_s
+\end{equation}
+%
+where $y_s$ is a Progress~8 component score (English, Maths, EBaC, or Open) for
+school~$s$, $W_s$ is the enacted warmth score, $S_s$ is the enacted strictness
+score, and $\mathbf{X}_s$ is the vector of controls described in
+\cref{sec:p2_controls}. The coefficients $\beta_1$ and $\beta_2$ are the primary
+parameters of interest: $\beta_1 > 0$ implies that, conditional on observables,
+schools scoring higher on warmth achieve better pupil progress; $\beta_2 > 0$
+implies the same for strictness. Excluding teaching quality from Stage~1 avoids
+conditioning on a variable that is partly a consequence of school culture (since
+warmer and more structured school environments tend to produce better teaching
+quality scores), which would otherwise under-estimate the total culture effect.
+
+\paragraph{Stage 2: Teaching quality benchmark.}
+The second stage estimates the total effect of the observed teaching quality
+score~$T_s$ alone:
+%
+\begin{equation}
+  \label{eq:stage2}
+  y_s = \alpha + \gamma T_s + \boldsymbol{\beta}' \mathbf{X}_s + \varepsilon_s
+\end{equation}
+%
+This provides a benchmark for the magnitude of the teaching quality effect and
+allows the culture effect to be evaluated relative to the dimension of school
+practice most directly linked to instructional outcomes.
+
+\paragraph{Stage 3: Direct culture effect net of teaching quality.}
+The third stage includes all three predictors:
+%
+\begin{equation}
+  \label{eq:stage3}
+  y_s = \alpha + \beta_1 W_s + \beta_2 S_s + \gamma T_s
+  + \boldsymbol{\beta}' \mathbf{X}_s + \varepsilon_s
+\end{equation}
+%
+Comparing the culture coefficients across Stages~1 and~3 quantifies
+attenuation: the proportion of the Stage~1 culture effect that is retained in
+Stage~3 measures how much of the culture--progress association is independent of
+the teaching quality channel. If the culture effect operates partly by raising
+teaching quality (culture as an input to instruction), Stage~3 coefficients will
+be attenuated relative to Stage~1. If the culture effect is largely independent
+of teaching quality---operating through, for example, pupil engagement, attendance
+behaviour, or non-cognitive skill formation---the attenuation will be small.
+
+The three-stage design provides a partial mediation framework rather than a causal
+decomposition: because culture, teaching quality, and pupil progress are measured
+cross-sectionally without instrument, the attenuation is informative about the
+\emph{gross} vs \emph{net} culture association rather than a structural parameter.
+Nonetheless, the pattern of attenuation by outcome (EBaC vs Open, English vs
+Maths) is theoretically meaningful.
+
+Robustness specifications are reported in \cref{tab:robustness_overall} and
+\cref{tab:robustness_eng}, and include:
+
+\begin{itemize}
+  \item Replacing enacted visit-only scores with interview-only scores
+  ($W3^*$ for warmth; $\tfrac{1}{2}(S3+S4)$ for strictness) on the same
+  estimation sample ($N=95$), to test the predicted attenuation from
+  espoused--enacted divergence (\cref{tab:enacted_espoused}).
+  \item Replacing main warmth and strictness scores with enriched scores (see
+  \cref{sec:p1_enriched} of \cref{ch:paper1}).
+  \item Restricting to schools where the headteacher is confirmed unchanged
+  since the most recent Ofsted inspection (\cref{sec:p2_continuity}).
+  \item Adding baseline SEMH share (school-level share of pupils with Social,
+  Emotional and Mental Health as primary SEN need, measured in 2015--16) as
+  an additional control variable.
+  \item Including an interaction term $W_s \times S_s$ to test whether the
+  warm-strict combination is associated with better progress than either
+  dimension alone.
+  \item Replacing Progress~8 component scores with overall Progress~8,
+  Attainment~8, or GCSE English/Maths pass rates at grade~4+ and grade~5+.
+\end{itemize}
+
+All specifications are estimated on the sample of schools with non-missing
+warmth, strictness, and outcome data.
+
+% ---------------------------------------------------------------
+\section{Results}
+\label{sec:p2_results}
+
+\Cref{tab:main_results_s1} reports Stage~1 estimates from the primary
+specification, regressing overall Progress~8 and each of the four component
+outcomes on enacted warmth~$W$ and strictness~$S$ plus the full control set,
+for the $n = 95$ schools with non-missing pre-COVID Ofsted grade. Both culture
+dimensions are positively and significantly associated with overall
+Progress~8: $\hat{\beta}_W = 0.127$ ($p = 0.006$, HC3 robust SEs throughout)
+and $\hat{\beta}_S = 0.120$ ($p = 0.013$), with near-equal magnitudes and
+$R^2 = 0.595$.
+
+At the component level, the pattern of significance varies across outcomes
+in ways that partially accord with theory. Warmth is significantly associated
+with English progress ($\hat{\beta}_W = 0.142$, $p = 0.002$), EBaC
+($\hat{\beta}_W = 0.146$, $p = 0.017$), and Open ($\hat{\beta}_W = 0.124$,
+$p = 0.020$), but not with Maths ($\hat{\beta}_W = 0.096$, $p = 0.100$).
+Strictness is significantly associated with EBaC ($\hat{\beta}_S = 0.155$,
+$p = 0.009$), Open ($\hat{\beta}_S = 0.123$, $p = 0.044$), and Maths
+($\hat{\beta}_S = 0.107$, $p = 0.040$), but not with English
+($\hat{\beta}_S = 0.079$, $p = 0.145$). The EBaC component shows the largest
+and most consistent culture effects: both $W$ and $S$ are significant with
+comparable magnitudes ($\hat{\beta}_W \approx \hat{\beta}_S \approx 0.15$).
+Maths and English diverge from each other---strictness is the sole significant
+predictor for Maths; warmth is the sole significant predictor for
+English---consistent with the domain-specific theoretical predictions of
+\cref{sec:p2_outcomes}.
+
+\input{tables/tab_main_results_s1}
+
+Stage~2 (\cref{tab:main_results_s2}) provides a teaching quality benchmark.
+Visit-based teaching quality is positively and significantly associated with
+each outcome ($\hat{\beta}_T$ ranging from 0.180 to 0.247, all $p < 0.01$),
+but achieves a lower $R^2$ than the culture-only specification for overall
+Progress~8 ($0.535$ versus $0.595$), and for each of the four components
+individually. Culture scores thus account for more cross-school variance in
+pupil progress than teaching quality observed during the same visit.
+
+\input{tables/tab_main_results_s2}
+
+Stage~3 (\cref{tab:main_results_s3}) adds teaching quality to the Stage~1
+specification. Teaching quality enters insignificantly in all five outcomes
+($\hat{\beta}_T$ from $-0.027$ to $0.083$; all $p > 0.40$). Warmth and
+strictness coefficients change by less than ten per cent from their Stage~1
+values in four of the five outcomes; the exception is the Open component,
+where warmth falls from $0.124$ to $0.084$ and strictness from $0.123$ to
+$0.103$. Both retain significance for overall Progress~8
+($\hat{\beta}_W = 0.119$, $p = 0.038$; $\hat{\beta}_S = 0.116$, $p = 0.016$).
+At the component level, EBaC is again the clearest case: both culture
+coefficients are unchanged in magnitude ($\hat{\beta}_W = 0.159$,
+$\hat{\beta}_S = 0.161$) and retain significance at the five-per-cent level,
+while $T$ enters with a small negative coefficient ($-0.027$) that is far from
+significant. These findings indicate that culture and directly observed
+instruction are largely orthogonal predictors of Progress~8: conditioning on
+teaching quality does not account for the culture effect.
+
+\input{tables/tab_main_results_s3}
+
+Robustness checks for overall Progress~8 are reported in
+\cref{tab:robustness_overall}; the English component robustness table is
+reported in \cref{tab:robustness_eng}. The primary result is stable across
+the three most consequential alternative specifications. Dropping the pre-COVID
+Ofsted grade control and expanding the sample to $n = 101$ yields
+$\hat{\beta}_W = 0.142$ and $\hat{\beta}_S = 0.099$, both significant.
+Using the single-year 2023--24 outcome rather than the two-year average yields
+$\hat{\beta}_W = 0.138$ and $\hat{\beta}_S = 0.119$. Adding baseline SEMH
+share as an additional control (reducing the sample to $n = 90$) yields
+$\hat{\beta}_W = 0.130$ and $\hat{\beta}_S = 0.114$, both significant at the
+one-per-cent level. The $W \times S$ interaction (column~5) is not
+statistically significant and absorbs the main effects, providing no evidence
+of complementarity or substitution between warmth and strictness in this
+sample. The Attainment~8 specification (column~4) is consistent in direction
+but is not directly comparable to the Progress~8 results due to the different
+outcome scale.
+
+\input{tables/tab_robustness_overall}
+\input{tables/tab_robustness_eng}
+
+The enacted--espoused comparison in \cref{tab:enacted_espoused} substitutes
+interview-reported warmth~($W_3^*$) and strictness~($\bar{S}_{34}$) for the
+visit-based scores. Every espoused coefficient is statistically insignificant
+and substantively small across all four component outcomes. By contrast, the
+enacted specification produces significant culture coefficients in six of
+eight cells. The $R^2$ advantage of the enacted specification is consistent and
+substantial: enacted scores explain 11--17 percentage points more of the
+variance in each component than espoused scores ($0.562$ vs $0.447$ for
+English; $0.506$ vs $0.382$ for Maths; $0.570$ vs $0.402$ for EBaC; $0.516$
+vs $0.377$ for Open). These results confirm that the predictive validity of
+the culture measures derives from the observer-recorded component, not from
+headteacher self-report.
+
+\input{tables/tab_enacted_espoused}
+
+\subsection{National extension}
+\label{sec:p2_national}
+
+A complementary test of the strictness finding uses the Ofsted LLM strictness
+score, an observer-reported measure scored on a 1--5 scale and available for
+$n = 3{,}148$ English secondary schools (\cref{tab:national_strictness}).
+Because the national measure derives from the same Ofsted inspection report
+used to construct the pre-COVID grade control, the Ofsted grade dummy is
+omitted from the headline specification (Panel~A of
+\cref{tab:national_strictness}) to avoid conditioning on a downstream
+confounder. That omission is itself a judgement call rather than the
+conservative choice, so Panel~B reports the same specification with the grade
+restored. No comparable national enacted warmth measure passes
+the validity threshold established in
+\cref{sec:p1_text_valid} of \cref{ch:paper1}, so warmth is omitted.
+
+The Ofsted LLM strictness coefficient for overall Progress~8 is
+$\hat{\beta}_{S}^{\text{nat}} = 0.135$ ($p < 0.001$, $R^2 = 0.506$,
+$n = 3{,}148$), and is significant at the one-per-cent level across all four
+Progress~8 components (English: $0.124$; Maths: $0.117$; EBaC: $0.137$;
+Open: $0.158$). The Ofsted measure is on a 1--5 scale whereas the
+gold-standard visit measure is on a 0--10 scale; doubling to achieve approximate
+comparability yields a scale-adjusted coefficient of $0.270$, somewhat higher
+than the Tier~1 visit estimate of $0.120$, though the two specifications differ
+in sample and warmth control. The concordance in sign
+and significance across two independent measurement approaches, two orders of
+magnitude apart in sample size, substantially strengthens the inference that
+strictness is associated with higher Progress~8.
+
+The most obvious challenge to this result is that the strictness score is read
+from an Ofsted report, so the coefficient might be recording little more than
+Ofsted's overall approval of the school. Panel~B addresses this directly by
+adding the pre-COVID (2019) overall Ofsted grade---the same control already
+used in the primary Tier~1 specification---to the national regression. It is
+estimated on the $n = 2{,}820$ schools with a 2019 grade on record. The
+strictness coefficient is essentially untouched: overall Progress~8 moves from
+$0.135$ to $0.136$, and no component estimate moves by more than $0.005$
+(English: $0.124 \to 0.128$; Maths: $0.117 \to 0.117$; EBaC:
+$0.137 \to 0.138$; Open: $0.158 \to 0.158$). All five remain significant at
+the one-per-cent level. Conditioning on the inspection verdict therefore
+absorbs almost none of the association, which is difficult to reconcile with
+the view that the LLM score is a proxy for the grade: the two carry
+substantially independent information about the school.
+
+\input{tables/tab_national_strictness}
+
+\subsection{Score construction sensitivity}
+\label{sec:p2_sensitivity}
+
+\Cref{tab:score_sensitivity} compares the visit-only primary specification
+against three composite score variants that incorporate interview-round
+sub-scores. The composite 60/40 (current) specification yields
+$\hat{\beta}_W = 0.112$ ($p = 0.048$) and $\hat{\beta}_S = 0.155$
+($p = 0.016$). The composite v1 variant---which applies the iq-weight
+adjustment to all sub-scores rather than only the observer warmth
+component---yields $\hat{\beta}_W = 0.110$ ($p = 0.087$) and
+$\hat{\beta}_S = 0.123$ ($p = 0.071$). The 50/50 variant, which gives
+equal weight to visit and interview rounds, yields $\hat{\beta}_W = 0.094$
+($p = 0.087$) and $\hat{\beta}_S = 0.152$ ($p = 0.023$). All three composite
+variants preserve the signs and qualitative interpretation of the primary
+result; the decline in $R^2$ from $0.595$ to $0.529$--$0.554$ reflects
+the attenuation expected when mixing enacted visit observations with espoused
+interview sub-scores.
+
+\input{tables/tab_score_sensitivity}
+
+\subsection{SEMH mechanism test}
+\label{sec:p2_semh_mechanism}
+
+If strict schools engage in behavioural sorting---excluding or discouraging
+enrolment of pupils with Social, Emotional and Mental Health (SEMH) needs---one
+would expect them to have a lower current SEMH share than their 2015--16
+baseline would predict. \Cref{tab:semh_mechanism} tests this by regressing
+current SEMH prevalence (share of pupils with SEMH as primary SEN need,
+2023--24) on Ofsted LLM strictness---or gold-standard visit strictness where
+available---controlling for the 2015--16 baseline share and the standard
+covariate set. At the national level ($n = 2{,}909$), stricter schools have
+significantly lower current SEMH share conditional on their baseline:
+$\hat{\beta}_{S}^{\text{nat}} = -0.132$ ($p = 0.001$). The direction is the
+same in the Tier~1 subsample ($\hat{\beta}_S = -0.263$), though the estimate
+is imprecise at $n = 94$ ($p = 0.397$). Warmth is not associated with SEMH
+composition change in either sample. These findings are consistent with a
+strictness-driven sorting mechanism, though they cannot rule out that strict
+schools support SEMH pupils to exit the SEN register rather than preventing
+their enrolment. Crucially, the SEMH-controlled robustness specification
+(\cref{tab:robustness_overall}, column~6) adds the 2015--16 baseline SEMH
+share as a covariate to the primary culture regression and finds that
+$\hat{\beta}_S$ attenuates by only five per cent (from $0.120$ to $0.114$,
+both significant at the one-per-cent level), indicating that whatever sorting
+occurs accounts for a negligible fraction of the culture--progress association.
+
+\input{tables/tab_semh_mechanism}
+
+\subsection{Exploratory extensions}
+\label{sec:p2_extensions}
+
+Two further exploratory analyses use national datasets that fall outside the
+gold-standard measurement tier.
+
+\textit{Management discourse.}\ The interview transcript LLM management-discourse
+score ($\tilde{M}$, rated 1--5 by the same LLM that scores warmth and
+strictness in the extended transcript tier) is entered alongside transcript
+warmth and strictness for the $n = 282$ schools with non-missing transcript
+scores and outcome data (\cref{tab:management_discourse}). The management
+coefficient is consistently negative across all five outcome specifications
+($\hat{\beta}_M$ ranging from $-0.039$ to $-0.114$) but is not statistically
+significant in any (all $p > 0.17$). Transcript warmth remains a positive
+predictor ($\hat{\beta}_{\tilde{W}} \approx 0.10$, $p \approx 0.07$ for
+overall Progress~8), consistent with the enacted--espoused results above.
+
+\input{tables/tab_management_discourse}
+
+\textit{Website teaching philosophy.}\ School websites coded by the LLM as
+``traditional'' or ``progressive'' in teaching philosophy are entered as dummies
+against the unmarked baseline in the national sample ($n = 3{,}170$;
+\cref{tab:teaching_philosophy}). The classification uses a stringent v3 rubric
+requiring explicit, unambiguous pedagogical commitment---not incidental word
+choice---classifying 111 schools as traditional and 34 as progressive across the
+full website corpus, of which 101 and 32 respectively survive into the
+estimation sample alongside 3,037 unmarked schools. Traditional schools score
+$0.125$ Progress~8 points
+higher than unmarked schools ($p = 0.006$), a substantially larger and more
+consistent effect than the initial scoring suggested. The association is
+statistically significant across all five outcome components (English: $0.128$,
+$p = 0.008$; Maths: $0.113$, $p = 0.011$; EBaC: $0.146$, $p = 0.005$;
+Open: $0.119$, $p = 0.019$). The progressive category contains only 32 schools
+in the estimation sample, leaving the regression underpowered: the
+overall progressive coefficient of $-0.085$ ($p = 0.233$) is imprecise and
+only the Open component shows a marginal association ($-0.185$, $p = 0.062$).
+These associations are consistent with the strictness findings but should be
+treated with caution: the website LLM classification captures stated pedagogy,
+not observed behaviour, and no gold-standard validation against visit-based
+teaching scores is available at national scale.
+
+
+% ---------------------------------------------------------------
+\input{tables/tab_teaching_philosophy}
+
+\section{Conclusion}
+\label{sec:p2_conclusion}
+
+This chapter set out to answer whether a school's organisational culture---as
+measured through independent observation and structured interview with
+headteachers---predicts the academic progress of its pupils, net of prior
+attainment, intake composition, and school type. Using enacted warmth~$W$ and
+strictness~$S$ scores derived from 102 researcher visits and 303 headteacher
+interviews, the analysis estimated a three-stage OLS model on overall
+Progress~8, its four component scores (English, Maths, EBaC, Open), and
+Attainment~8 components for the 2023--24 cohort.
+
+The Stage~1 regressions regress overall Progress~8 and each of its four
+components on enacted warmth~$W$ and strictness~$S$ plus the full control set,
+on the $n = 95$ schools with non-missing pre-COVID Ofsted grade
+(\cref{tab:main_results_s1}). The headline finding is that both culture dimensions
+significantly predict overall pupil progress: $\hat{\beta}_W = 0.127$
+(95\%~CI [0.037, 0.216], $p = 0.006$) and $\hat{\beta}_S = 0.120$ ([0.027, 0.213],
+$p = 0.013$), with $R^2 = 0.595$. The two coefficients are nearly equal in
+magnitude, consistent with the theoretical prediction that warmth and strictness
+make symmetric contributions to the school culture environment that supports
+learning.
+
+At the component level, warmth is positively and significantly associated with
+English progress ($\hat{\beta}_W = 0.142$, [0.054, 0.229], $p = 0.002$), EBaC
+progress ($\hat{\beta}_W = 0.146$, [0.027, 0.265], $p = 0.017$), and Open
+progress ($\hat{\beta}_W = 0.124$, [0.020, 0.228], $p = 0.020$). Strictness is
+positively and significantly associated with EBaC progress
+($\hat{\beta}_S = 0.155$, [0.040, 0.270], $p = 0.009$), Open progress
+($\hat{\beta}_S = 0.123$, [0.003, 0.242], $p = 0.044$), and Maths
+($\hat{\beta}_S = 0.107$, [0.005, 0.208], $p = 0.040$). The EBaC component
+shows the strongest response to culture, with both $W$ and $S$ significant at
+the 5~per~cent level and comparable magnitude
+($\hat{\beta}_W \approx \hat{\beta}_S \approx 0.15$). The Maths warmth
+coefficient ($\hat{\beta}_W = 0.096$, $p = 0.100$) is the only instance where
+warmth is not significant at conventional levels, consistent with the
+theoretical prediction that structured disciplinary environment matters more for
+the heavily assessed, sequentially cumulative Maths domain.
+
+Stage~2 uses teaching quality~$T$ as the sole culture predictor, benchmarking
+whether the $W + S$ effects could be driven by correlation with observable
+instruction quality (\cref{tab:main_results_s2}). Teaching quality is
+significantly positive for overall P8 ($\hat{\gamma}_T = 0.219$, $p < 0.001$)
+and all four components: English ($\hat{\gamma}_T = 0.191$, $p = 0.001$),
+Maths ($0.180$, $p = 0.005$), EBaC ($0.247$, $p = 0.001$), and
+Open ($0.241$, $p < 0.001$). Stage~2 $R^2$ values (0.46--0.54) are somewhat lower
+than Stage~1 (0.51--0.60), suggesting that the $W + S$ combination provides
+stronger predictive signal for pupil progress than teaching quality alone.
+
+Stage~3 adds teaching quality to the Stage~1 specification (\cref{tab:main_results_s3}).
+The warmth and strictness coefficients are essentially unchanged. For overall P8,
+both remain statistically significant: $\hat{\beta}_W = 0.119$ ($p = 0.038$) and
+$\hat{\beta}_S = 0.116$ ($p = 0.016$), retaining 93~per~cent and 96~per~cent of
+their Stage~1 magnitudes respectively. Across the four components, warmth retains
+68--109~per~cent of its Stage~1 magnitude, and strictness retains 84--104~per~cent.
+By contrast, teaching quality becomes negligible and statistically insignificant in
+all five specifications once warmth and strictness are controlled
+($\hat{\gamma}_T$ ranges from $-0.027$ to $+0.083$; all $p > 0.40$).
+The near-zero attenuation implies that warmth and strictness do not predict pupil
+progress through the teaching quality channel as captured in the current visit
+protocol. An alternative reading---that $T$ is the noisiest of the three visit
+dimensions, so its signal is absorbed into $W$ and $S$ through correlated
+measurement error---cannot be excluded with cross-sectional data.
+
+The validity of the enacted culture measures is further confirmed by comparing
+them with interview-only (espoused) scores on the same 102 schools
+(\cref{tab:enacted_espoused}). Replacing visit-based warmth ($W_{12}$) and
+strictness ($S_{12}$) with their interview-based equivalents ($W_3^*$ and
+$\bar{S}_{34}$) reduces warmth coefficients to near-zero and statistical
+insignificance across all four components: interview-only warmth coefficients
+range from $-0.007$ to $0.054$, compared with $0.096$--$0.146$ for enacted
+warmth---a reduction of 63--106~per~cent, the upper bound reflecting a sign
+reversal in the Open component. Espoused strictness retains somewhat more
+predictive power but is less precisely estimated and insignificant in all
+four components. This pattern is consistent with the systematic over-claiming of
+warmth documented above: interview-based warmth scores are compressed toward the
+ceiling, attenuating the coefficient toward zero. The enacted--espoused gap is
+smallest for strictness, which also shows the smallest visit--interview bias,
+reinforcing the interpretation that norm-governed disciplinary behaviour is more
+faithfully self-reported than relational warmth.
+
+The measurement design reveals a systematic asymmetry in how headteachers
+describe their school's culture. Comparing enacted scores from school visit
+observations to the corresponding interview sub-scores across the 102
+full-data schools, headteachers over-claim warmth by an average of $+0.45$
+score points ($W_{\text{visit}}$ mean~$= 6.62$ versus $W_{\text{interview}}$
+mean~$= 7.06$, $r = 0.22$) and over-claim teaching quality by $+0.71$ points
+($T_{\text{visit}}$ mean~$= 6.74$ versus $T_{\text{interview}}$
+mean~$= 7.44$, $r = 0.20$). By contrast, the strictness gap is negligible
+($\Delta \approx 0.01$, $r = 0.18$), consistent with strictness being a more
+observable and less socially sensitive dimension of school culture that
+headteachers assess accurately without recourse to self-presentation. The
+modest visit--interview correlations (0.18--0.22 across all three dimensions)
+confirm that enacted and espoused culture are related but meaningfully
+distinct constructs: a school's culture as observed and as narrated by its
+leaders are not interchangeable measures.
+
+Three limitations bear on the interpretation of the results. First,
+identification is correlational: the analysis cannot rule out that an
+unmeasured third variable---community character, governing body composition,
+or persistent leadership quality---drives both the culture scores and the
+progress outcomes. The pre-COVID Ofsted grade control provides partial
+protection against time-invariant confounders captured in prior inspection
+judgements, but it is not a causal instrument. Second, for the Tier~2
+(interview-only) and Tier~3 (national) schools, scores capture espoused
+culture more than enacted culture. The systematic biases documented in
+\cref{sec:p1_convergence} of \cref{ch:paper1}---headteachers over-claiming
+warmth relative to independent observation---mean that extended- and
+national-tier estimates are expected to be attenuated toward zero for warmth,
+beyond what LOO-CV noise alone would predict. Researchers and policymakers
+should interpret any tier-2 or tier-3 warmth estimates as lower bounds on the
+true enacted-culture effect. Third, score compression limits statistical
+power. Approximately 68~per cent of English state secondary schools are rated
+Good and 15~per cent Outstanding by Ofsted, reflecting genuine homogeneity
+driven by the shared national curriculum, inspection isomorphism, and common
+training pipelines. The restricted range of the culture scores---itself partly
+a substantive empirical finding rather than purely a measurement artefact---
+implies that the estimated coefficient on a one-unit culture shift maps onto
+a small inter-school contrast. The effect of moving from the 25th to the 75th
+percentile of the warmth or strictness distribution is inherently small in a
+compressed distribution; modest coefficient estimates should be read
+accordingly.
+
+The findings have implications for school improvement policy. If enacted
+warmth and strictness independently predict pupil progress, then school
+culture is a tractable lever for policy, not merely a background condition.
+Professional development programmes that improve relational quality between
+teachers and pupils, and behaviour frameworks that deliver consistent
+structure without crossing into punitive exclusion, may produce progress
+returns that complement curriculum and instruction interventions. The
+stability of the culture effect across Stages~1 and~3---warmth and strictness
+retain near-full coefficient magnitude even after conditioning on teaching
+quality---suggests these dimensions predict progress through channels that
+are largely distinct from instruction quality as measured in the current visit
+protocol, so programmes targeting culture and instruction simultaneously may
+generate complementary rather than overlapping effects.
+
+Several extensions would strengthen the causal architecture of these
+findings. First, exploiting within-school variation in culture over time---
+once a longer series of interview and visit data is available---would remove
+the confounding by fixed school characteristics that cross-sectional OLS
+cannot purge. Second, the gap between espoused and enacted culture identified
+above is itself a measure of cultural coherence: schools where headteacher
+self-assessment closely matches independent observation may achieve more
+consistent implementation of their stated values, generating better outcomes
+through coherence rather than through the level of warmth or strictness per
+se. Third, heterogeneity by school type, intake deprivation, and prior Ofsted
+grade warrants exploration: the theoretical prediction is that warmth effects
+are largest in schools serving high proportions of pupils with Social,
+Emotional and Mental Health needs, where relational pastoral support generates
+the greatest marginal value. Fourth, testing whether strictness scores predict
+changes in school-level SEMH composition over time would provide evidence on
+a sorting mechanism---a school whose behaviour culture is strongly punitive
+would, under selective exclusion, show declining SEMH prevalence as affected
+pupils leave, indicating that culture shapes school composition as well as
+pupil progress within a given composition. Fifth, the enacted--espoused
+divergence documented here and in \cref{ch:paper1} motivates further work
+on the optimal weighting of visit and interview components, and on whether
+the predictive validity of the composite score can be improved by
+down-weighting espoused components for dimensions---particularly warmth---
+where systematic positive bias is largest.
+
+% ===============================================================
+%  APPENDIX 3A
+% ===============================================================
+\bigskip
+\noindent\rule{\linewidth}{0.4pt}
+
+\startchapterappendix{3}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\section{Structural Stability of School Characteristics}
+\label{app:3A:stability}
+
+The intra-class correlation (ICC) decomposes total variance in a panel variable
+into a between-school component and a within-school over-time component. An ICC
+close to one indicates that schools are much more different from each other than
+they are from their own past selves: year-on-year within-school fluctuation is
+small relative to persistent inter-school heterogeneity. ICC is estimated by
+one-way random-effects ANOVA on the school-year panel, retaining only schools
+with at least three years of non-missing data for the variable in question.
+
+\Cref{tab:structural_stability} reports ICC estimates and mean absolute
+year-on-year changes for nine panel variables covering pupil intake composition,
+special educational needs prevalence, prior attainment, pupil progress, and
+per-pupil expenditure. Six of nine variables exceed ICC~$= 0.69$; all
+exceed~$0.49$. Intake characteristics---the share of pupils with English as an
+Additional Language, school roll, and mean KS2 prior attainment of the entering
+cohort---are especially stable, with ICC values between 0.81 and 0.92 and mean
+absolute year-on-year changes of less than four per cent of the variable's mean.
+Special educational needs prevalence (EHC plan share, ICC~$= 0.67$; SEN support
+share, ICC~$= 0.65$) and school-level Progress~8 (ICC~$= 0.73$) show moderate to
+high stability. Per-pupil expenditure, at ICC~$= 0.52$, is the most volatile,
+reflecting sensitivity to national funding policy changes; even so, the majority
+of variation in expenditure is between schools rather than within schools over
+time.
+
+These patterns are consistent with the view that schools occupy relatively
+persistent positions in the distribution of structural characteristics, and
+support the use of culture scores measured in 2024--25 as proxies for the
+organisational conditions present during the 2023--24 outcome period
+(\cref{sec:p2_outcomes}).
+
+\Cref{tab:sen_category_stability} extends the analysis to the thirteen
+primary-need categories within the SEN population. ICC values range from
+0.320 (Severe Learning Difficulty) to 0.643 (Moderate Learning Difficulty);
+the educationally important Social, Emotional and Mental Health (SEMH)
+category has ICC~$= 0.545$. The lower stability of SEMH relative to the
+aggregate SEN support share (ICC~$= 0.65$) is consistent with SEMH composition
+being partly responsive to school behaviour and exclusion practices, rather than
+being determined solely by fixed intake characteristics. Low ICCs for rare
+categories (Severe Learning Difficulty, Multi-Sensory Impairment, Visual
+Impairment) partly reflect small-count measurement noise rather than genuine
+volatility. For the main analysis, aggregate SEN controls are preferred to
+category-level decompositions; the moderate stability of baseline SEMH share
+supports its inclusion as an additional control in the robustness specification
+described in \cref{sec:p2_specs}.
+
+\input{tables/tab_structural_stability}
+
+\input{tables/tab_sen_category_stability}
+
+\Cref{tab:p8_component_stability} reports ICC estimates separately for the four
+Progress~8 components that serve as the primary outcomes of this chapter,
+together with the corresponding Attainment~8 components used in the
+contemporaneous robustness specification. Among the Progress~8 components,
+stability varies from ICC~$= 0.587$ for the Open component to ICC~$= 0.748$
+for EBaC, with English and Maths sitting between these at ICC~$\approx 0.67$.
+The higher stability of EBaC relative to Open reflects the fact that
+curriculum-pathway decisions---which subjects pupils are entered for---are
+governed by stable school policy and change little from year to year, while
+the more eclectic Open bucket (arts, vocational, and additional GCSEs) is
+subject to greater annual variation in subject mix. All four P8 components
+exceed the per-pupil expenditure ICC of~$0.52$, which is the weakest result
+in the main stability table; the cross-sectional design is therefore at least
+as defensible for each component individually as for the structural
+characteristics already discussed.
+
+The theoretical prediction of this chapter is that warmth is most strongly
+associated with the Open component---the dimension most sensitive to breadth
+of provision and pupil engagement---and that strictness is most strongly
+associated with the EBaC component---the dimension most sensitive to academic
+pathway steering. The lower stability of Open P8 relative to EBaC P8
+(ICC~$= 0.587$ versus $0.748$) implies that the warmth coefficient will be
+estimated against a noisier outcome, which may attenuate the estimated effect.
+This is a limitation to acknowledge in interpreting any differential finding
+between components.
+
+Attainment~8 component ICCs substantially exceed their Progress~8 counterparts
+across all four components, ranging from ICC~$= 0.750$ (Open) to
+ICC~$= 0.887$ (EBaC). This pattern is expected: Attainment~8 measures absolute
+performance without subtracting KS2 prior attainment, so the stable intake
+signal---itself at ICC~$= 0.91$ for the KS2 scaled score---is retained in the
+dependent variable and inflates between-school variance relative to
+within-school variance. The higher Attainment~8 ICCs therefore do not indicate
+that value-added is more stable than raw attainment; they reflect the
+composition of the variance rather than the reliability of the school-level
+signal.
+
+\input{tables/tab_p8_component_stability}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\section{Additional Tables}
+\label{app:3A:tables}
+
+\Cref{tab:score_controls_corr} reports pairwise Pearson correlations between
+the three visit-based culture scores ($W_{\text{visit}}$,
+$S_{\text{visit}}$, $T_{\text{visit}}$) and the composite scores
+($W_{\text{comp}}$, $S_{\text{comp}}$) against each control variable,
+estimated on the Tier~1 sample of 102 visited schools. No pairwise
+correlation exceeds $|r| = 0.26$. The largest entries are between
+$T_{\text{visit}}$ and KS2 prior attainment ($r = +0.26$), and between
+$W_{\text{visit}}$ and EAL share ($r = -0.25$) and selective school status
+($r = -0.23$). The absence of high correlations indicates that the culture
+scores are not collinear with the observable school characteristics included
+in the regression, and that selective and grammar schools are modestly but
+not substantially lower-scoring on warmth even after accounting for intake
+characteristics in the main specification.
+
+\input{tables/tab_score_controls_corr}
+
+\Cref{tab:continuity_robustness} reports the primary Stage~1 specification
+side-by-side for the full Tier~1 sample ($n = 95$) and for the subset of
+schools where the headteacher named in the most recent Ofsted inspection report
+is confirmed still in post in the July~2026 GIAS snapshot ($n = 23$). The
+restriction is driven as much by data coverage as by turnover: of the 102
+full-data schools, continuity could be determined for only 30, of which 23 were
+unchanged and 7 had changed. Given the
+small $n$, coefficients in the continuity subsample are imprecisely estimated
+(SEs approximately four times larger than in the full sample), and neither
+warmth nor strictness achieves statistical significance in any component.
+Strictness point estimates are directionally consistent with---and in several
+cases larger than---the full-sample estimates ($\hat{\beta}_S$ ranging from
+0.207 to 0.333), while warmth estimates are noisy and should not be
+interpreted directionally. This check does not provide evidence against the
+primary results; the subsample is insufficiently powered to detect effects of
+the magnitude identified in the full specification.
+
+\input{tables/tab_continuity_robustness}

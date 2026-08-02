@@ -1,0 +1,27 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{SEMH mechanism: culture and current SEMH composition conditional on baseline}
+\label{tab:semh_mechanism}
+\begin{tabular}{l*{3}{c}}
+\toprule
+                    &\multicolumn{1}{c}{Tier 1 (S)}&\multicolumn{1}{c}{Tier 1 (W)}&\multicolumn{1}{c}{National (S)}\\
+\midrule
+Strictness ($S_{\text{visit}}$)&      -0.263         &                     &                     \\
+                    &     (0.309)         &                     &                     \\
+\addlinespace
+SEMH prevalence 2015--16 (\%)&       0.165\sym{**} &       0.179\sym{***}&       0.186\sym{***}\\
+                    &     (0.067)         &     (0.061)         &     (0.022)         \\
+\addlinespace
+Warmth ($W_{\text{visit}}$)&                     &      -0.042         &                     \\
+                    &                     &     (0.215)         &                     \\
+\addlinespace
+Strictness (Ofsted LLM, 1--5)&                     &                     &      -0.132\sym{***}\\
+                    &                     &                     &     (0.041)         \\
+\midrule
+N                   &          94         &          94         &        2909         \\
+r2                  &       0.551         &       0.540         &       0.488         \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{4}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}
+\end{table}

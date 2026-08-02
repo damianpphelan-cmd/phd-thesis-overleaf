@@ -1,0 +1,31 @@
+\begin{table}[htbp]\centering
+\caption{Interview-tier (Model~A) Ridge coefficients}
+\label{tab:interview_model_coefs}
+\begin{tabular}{lcccc}
+\toprule
+                    & \multicolumn{2}{c}{Warmth} & \multicolumn{2}{c}{Strictness} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Predictor           & Std. & Raw & Std. & Raw \\
+\midrule
+Headteacher warmth philosophy ($W3^*$)      &  0.332 &  0.484 & $-0.079$ & $-0.115$ \\
+Systems strictness ($S3$)                   & $-0.015$ & $-0.021$ &  0.244 &  0.331 \\
+Headteacher strictness philosophy ($S4$)    &  0.203 &  0.411 &  0.291 &  0.589 \\
+Interview quality weight ($\omega$)         &  0.257 &  2.019 &  0.075 &  0.592 \\
+Ofsted LLM score (own dimension)            &  0.006 &  0.011 &  0.166 &  0.174 \\
+Behaviour policy LLM score (own dimension)  & $-0.048$ & $-0.077$ &  0.018 &  0.026 \\
+\midrule
+Intercept                                   & \multicolumn{2}{c}{6.807} & \multicolumn{2}{c}{7.114} \\
+$N$ (training schools)                      & \multicolumn{2}{c}{102}   & \multicolumn{2}{c}{102}   \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{\textwidth}\vspace{0.5em}\footnotesize
+\textit{Notes.} Ridge coefficients for the interview-tier calibration model
+(\cref{eq:ridge_interview}), trained on the 102 full-data schools with the
+gold standard composite as the target. Features are standardised before
+fitting; the ``Std.'' columns therefore give the change in the predicted
+score for a one-standard-deviation change in the predictor, and the ``Raw''
+columns rescale these to the predictor's original units. The penalty
+$\lambda$ is selected by leave-one-out generalised cross-validation. Warmth
+and strictness models use the text feature of the corresponding dimension.
+\end{minipage}
+\end{table}

@@ -1,0 +1,24 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Robustness: Overall Progress 8}
+\label{tab:robustness_overall}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l*{6}{c}}
+\toprule
+                    &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}\\
+                    &\multicolumn{1}{c}{Primary}&\multicolumn{1}{c}{No grade}&\multicolumn{1}{c}{2023-24}&\multicolumn{1}{c}{Att8 2425}&\multicolumn{1}{c}{W$\times$S}&\multicolumn{1}{c}{SEMH ctrl}\\
+\midrule
+$W$                 &       0.127\sym{***}&       0.142\sym{***}&       0.138\sym{***}&       0.895\sym{*}  &      -0.106         &       0.130\sym{***}\\
+                    &     (0.045)         &     (0.045)         &     (0.049)         &     (0.502)         &     (0.294)         &     (0.044)         \\
+\addlinespace
+$S$                 &       0.120\sym{**} &       0.099\sym{**} &       0.119\sym{**} &       1.767\sym{***}&      -0.099         &       0.114\sym{***}\\
+                    &     (0.047)         &     (0.044)         &     (0.047)         &     (0.476)         &     (0.270)         &     (0.041)         \\
+\midrule
+N                   &          95         &         101         &          95         &          95         &          95         &          90         \\
+r2                  &       0.595         &       0.568         &       0.601         &       0.883         &       0.599         &       0.638         \\
+\bottomrule
+\multicolumn{7}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{7}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}%
+}
+\end{table}

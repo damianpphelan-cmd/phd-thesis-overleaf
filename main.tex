@@ -1,0 +1,122 @@
+\documentclass[12pt, a4paper]{report}
+\input{preamble}
+
+\begin{document}
+
+%% ============================================================
+%%  TITLE PAGE
+%% ============================================================
+\begin{titlepage}
+  \centering
+  \vspace*{1.5cm}
+  {\LARGE\bfseries Essays in the Economics of Education\par}
+  \vspace{2cm}
+  {\large Damian Phelan\par}
+  \vspace{2cm}
+  {\normalsize
+    A thesis submitted in partial fulfilment of the requirements\\[0.4em]
+    for the degree of Doctor of Philosophy\par
+  }
+  \vspace{1.5cm}
+  {\normalsize Department of Economics\par}
+  \vspace{0.3cm}
+  {\normalsize University College London\par}
+  \vspace{2cm}
+  {\normalsize Primary Supervisor:\enspace Michela Tincani\par}
+  \vspace{0.4cm}
+  {\normalsize Secondary Supervisor:\enspace Lars Nesheim\par}
+  \vspace{2cm}
+  {\normalsize September 2026\par}
+\end{titlepage}
+
+%% ============================================================
+%%  FRONT MATTER  (roman page numbers)
+%% ============================================================
+\pagenumbering{roman}
+
+\chapter*{Declaration}
+\addcontentsline{toc}{chapter}{Declaration}
+
+I, Damian Phelan, confirm that the work presented in this thesis is my own.
+Where information has been derived from other sources, I confirm that this has
+been indicated in the thesis.
+
+\vspace{2.5cm}
+\noindent Signed:\enspace\hrulefill\par
+\vspace{0.6cm}
+\noindent Date:\enspace\hrulefill
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+This thesis asks whether the organisational culture of a school---the relational
+and behavioural environment its pupils experience day to day---can be measured
+credibly at scale, and whether it predicts how much pupils learn.
+
+The first paper develops the measurement framework. Drawing on 304 headteacher
+interviews and 103 structured researcher visits to English secondary schools, it
+separates culture into two dimensions: warmth, the relational quality of the
+school environment, and strictness, its behavioural structure. Gold-standard
+scores are constructed for 102 schools observed directly, and Ridge models
+calibrated on those schools extend measurement first to the interview sample and
+then, using text from Ofsted reports and behaviour policies, to the national
+population of approximately 3,330 schools. The central finding is an asymmetry.
+Strictness is recoverable from public text: LLM-scored Ofsted strictness
+correlates at $r = 0.418$ with directly observed strictness. Warmth is not,
+in any public source---Ofsted reports, behaviour policies or school websites---and
+the null survives a more capable scoring model. What schools say about their
+warmth is systematically unrelated to what an observer sees.
+
+The second paper uses these scores to estimate the association between culture
+and pupil progress. For the 2023--24 cohort, both warmth and strictness predict
+Progress~8 with near-equal magnitude ($\hat{\beta}_W = 0.127$,
+$\hat{\beta}_S = 0.120$), conditioning on prior attainment, pupil composition,
+school type and pre-COVID Ofsted grade. Adding directly observed teaching quality
+leaves both coefficients essentially unchanged, indicating that culture and
+instruction operate through largely distinct mechanisms. Substituting
+headteacher self-reports for observed scores reduces the warmth coefficient by
+63--106~per~cent---the measurement asymmetry of the first paper reappearing as a
+predictive one.
+
+[\textit{INSERT: one to two sentences summarising Paper~3.}]
+
+\chapter*{Impact Statement}
+\addcontentsline{toc}{chapter}{Impact Statement}
+\input{chapters/impact_statement}
+
+\input{chapters/paper_declarations}
+
+\chapter*{Acknowledgements}
+\addcontentsline{toc}{chapter}{Acknowledgements}
+
+[Acknowledgements go here.]
+
+\bigskip
+\noindent\textit{Funding.}\enspace
+[Acknowledge any funding sources here, e.g., ``This work was supported by an
+Economic and Social Research Council (ESRC) studentship [grant number].'']
+
+\input{chapters/dedication}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+%% ============================================================
+%%  MAIN MATTER  (arabic page numbers)
+%% ============================================================
+\pagenumbering{arabic}
+
+\input{chapters/01_introduction}
+\input{chapters/02_paper1}
+\input{chapters/03_paper2}
+\input{chapters/04_paper3}
+\input{chapters/05_conclusion}
+
+%% ============================================================
+%%  BIBLIOGRAPHY
+%% ============================================================
+\bibliographystyle{apalike}
+\bibliography{bibliography}
+
+\end{document}

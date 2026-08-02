@@ -1,0 +1,25 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Headteacher continuity robustness (Full sample vs. unchanged HT)}
+\label{tab:continuity_robustness}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l*{8}{c}}
+\toprule
+                    & \multicolumn{2}{c}{English} & \multicolumn{2}{c}{Maths} & \multicolumn{2}{c}{EBaC} & \multicolumn{2}{c}{Open} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}
+                    &\multicolumn{1}{c}{Full}&\multicolumn{1}{c}{Cont}&\multicolumn{1}{c}{Full}&\multicolumn{1}{c}{Cont}&\multicolumn{1}{c}{Full}&\multicolumn{1}{c}{Cont}&\multicolumn{1}{c}{Full}&\multicolumn{1}{c}{Cont}\\
+\midrule
+Warmth ($W$)        &       0.142\sym{***}&      -0.049         &       0.096         &      -0.055         &       0.146\sym{**} &      -0.048         &       0.124\sym{**} &       0.050         \\
+                    &     (0.044)         &     (0.206)         &     (0.058)         &     (0.168)         &     (0.060)         &     (0.234)         &     (0.052)         &     (0.252)         \\
+\addlinespace
+Strictness ($S$)    &       0.079         &       0.333         &       0.107\sym{**} &       0.207         &       0.155\sym{***}&       0.242         &       0.123\sym{**} &       0.286         \\
+                    &     (0.054)         &     (0.278)         &     (0.051)         &     (0.220)         &     (0.058)         &     (0.324)         &     (0.060)         &     (0.263)         \\
+\midrule
+N                   &          95         &          23         &          95         &          23         &          95         &          23         &          95         &          23         \\
+r2                  &       0.562         &       0.693         &       0.506         &       0.529         &       0.570         &       0.499         &       0.516         &       0.693         \\
+\bottomrule
+\multicolumn{9}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{9}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}%
+}
+\end{table}

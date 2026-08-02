@@ -1,0 +1,30 @@
+\begin{table}[htbp]
+\centering
+\caption{Decomposing the interview-tier model's cross-validated performance.
+Column~(1) is the headline figure: leave-one-out predictions correlated with
+the gold-standard composite, of which the interview sub-scores form
+40~per~cent by construction. Column~(2) correlates those same predictions with
+the visit-only component, which shares no input with the predictors.
+Column~(3) refits the identical feature set directly against the visit-only
+component, with the ridge penalty re-selected by generalised cross-validation
+for that target, giving the best that these features can do against an
+independent target. $N = 101$ full-data schools with complete features.
+Reproduced by \texttt{ridge\_diagnostics.py}.}
+\label{tab:ridge_circularity}
+\small
+\begin{tabular}{lccc}
+\toprule
+ & (1) & (2) & (3) \\
+ & Composite & Predictions vs. & Refit on \\
+Dimension & (headline) & visit-only & visit-only \\
+\midrule
+Warmth     & $0.765$ & $0.267$ & $0.228$ \\
+           & ($p<0.001$) & ($p=0.007$) & ($p=0.022$) \\
+\addlinespace
+Strictness & $0.701$ & $0.276$ & $0.349$ \\
+           & ($p<0.001$) & ($p=0.005$) & ($p<0.001$) \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize Entries are Pearson $r$; leave-one-out
+cross-validated throughout.}\\
+\end{tabular}
+\end{table}

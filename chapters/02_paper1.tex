@@ -1,0 +1,2018 @@
+\chapter{Measuring School Culture: Warmth and Strictness in English Secondary Schools}
+\label{ch:paper1}
+\resetcounterformats
+
+\begin{center}
+  \textit{Damian Phelan%
+    \thanks{Department of Economics, University College London.
+      Primary supervisor: Michela Tincani. Secondary supervisor: Lars Nesheim.
+      [\textit{INSERT: acknowledgements, funding statement.}]}}
+\end{center}
+
+\begin{chapterabstract}
+This chapter develops and validates a two-dimensional measurement framework for
+school culture---warmth and strictness---in English secondary schools. Using
+data from 304 headteacher interviews and 103 structured school visits, I construct
+gold-standard scores for 102 full-data schools and calibrate Ridge regression
+models that extend measurement to 303 interview-tier schools and the full national
+population of approximately 3,330 state secondary schools. The framework rests on a
+three-tier prediction cascade: direct observation provides the benchmark; an
+interview-tier Ridge model combines interview sub-scores with text features from
+Ofsted reports and behaviour policies; and a national-tier model uses text features
+alone. Ofsted-derived strictness is a valid national proxy---it correlates at
+$r = 0.400$ ($p < 0.001$) with directly observed strictness, and the
+national-tier model attains a leave-one-out cross-validated $r = 0.265$. Warmth
+behaves differently. The same public texts do carry a warmth signal, but it
+predicts what a school espouses ($r = 0.312$ against the head's stated
+philosophy) and not what a visit records ($r = 0.116$, $p = 0.25$), whereas
+strictness predicts both about equally well ($r = 0.409$ and $r = 0.400$). This
+asymmetry is a consistent espoused--enacted divergence replicated in Ofsted
+reports, behaviour policies, and school websites. The inter-rater reliability of the observational
+instruments is high, with within-one-point agreement exceeding 90\% for all
+interview items.
+\end{chapterabstract}
+
+% ---------------------------------------------------------------
+\section{Introduction}
+\label{sec:p1_intro}
+
+The academic progress that pupils make in English secondary schools varies
+enormously across institutions that appear, on many observable dimensions, to be
+similar. A growing body of evidence points to school culture---the shared norms,
+expectations, and relational patterns that govern daily life in a school---as an
+important driver of this variation, but systematic measurement of culture has
+remained elusive. Prior attempts to quantify school culture have relied on
+survey-based instruments, administrative proxies such as exclusion rates, or
+inspection judgements: each of these approaches captures some signal about
+culture but is subject to important limitations. Survey responses reflect
+perceptions rather than observed behaviour; administrative records conflate
+culture with pupil composition; and inspection judgements aggregate many
+different features of school quality into a single rating. The absence of a
+reliable, scalable measurement framework has made it difficult to study the
+relationship between school culture and pupil outcomes in a rigorous way.
+
+This chapter develops a two-dimensional measurement framework for school
+culture in English secondary schools, centred on \textit{warmth}---the degree
+to which school staff convey genuine care, positive regard, and a sense of
+belonging to pupils---and \textit{strictness}---the degree to which a school
+holds pupils to high behavioural standards and enforces those standards
+consistently. These two dimensions are conceptually motivated by the authoritative
+schooling tradition in developmental psychology, which draws on the parenting
+styles typology of \citet{maccoby1983}: an authoritative approach combines high
+demandingness with high responsiveness and is consistently associated with the
+most positive outcomes for children. The application of this framework to school
+settings implies that the most effective schools are those that are simultaneously
+high on strictness and warmth, maintaining an orderly and demanding environment
+while expressing genuine care for pupils. The conceptual framework is developed
+in \cref{sec:p1_cf}.
+
+The empirical contribution of this chapter lies in the construction and
+validation of warmth and strictness scores across three tiers of measurement
+intensity, using a prediction cascade calibrated to a gold standard. For
+102 full-data schools, a gold standard score is constructed
+from direct classroom observations, outside-of-lesson observations, and a
+structured headteacher interview. These schools also serve as the training
+dataset for two calibration models. The first---a Ridge regression of gold
+standard scores on interview-derived sub-scores and features extracted from
+publicly available Ofsted inspection reports and behaviour policy
+documents---is applied to generate predicted warmth and strictness scores for
+all 303 schools in the interview tier. The second---a Ridge
+regression of gold standard scores on the text-derived features
+alone---generates predicted scores for the full national population of
+approximately 3,330 open state secondary schools.
+The validity of both models is assessed via leave-one-out cross-validation on
+the 100 full-data schools. The data sources and tier
+structure are described in \cref{sec:p1_data}; the gold standard scoring
+protocol is detailed in \cref{sec:p1_gss}; the interview-tier calibration
+model is described in \cref{sec:p1_enriched}; and the national-tier model is
+described in \cref{sec:p1_text}.
+
+Across Q2--Q12, questioner--observer Pearson correlations range from $r = 0.61$
+to $r = 0.74$ (median $r = 0.70$), with within-one-point agreement exceeding 90\%
+for every item, providing reassurance that interview-derived sub-scores are not
+primarily artefacts of idiosyncratic researcher interpretation. The visit and
+interview components of the gold standard capture empirically distinct aspects of
+school culture: visit-only and interview-only warmth scores correlate at $r = 0.22$
+($p = 0.024$) and the corresponding strictness correlations at $r = 0.18$
+($p = 0.064$), with a systematic bias of $+0.45$ points on warmth in the
+self-report direction but near-zero bias on strictness ($+0.01$ points). At the national scale, text-based
+strictness is a valid proxy ($r = 0.400$, $p < 0.001$, against directly
+observed strictness). Text-based warmth is not: across three independent
+sources---Ofsted, behaviour policies, and school websites---the warmth signal
+predicts what schools espouse and not what a visit records, collectively
+establishing the espoused--enacted gap as a structural feature of the data
+rather than a measurement artefact of any single source.
+
+The remainder of this chapter is organised as follows. \Cref{sec:p1_lit}
+reviews the related literature. \Cref{sec:p1_cf} presents the conceptual
+framework. \Cref{sec:p1_data} describes the data. \Cref{sec:p1_gss} details
+the gold standard score. \Cref{sec:p1_irr} presents inter-rater reliability
+results. \Cref{sec:p1_enriched} describes the main and enriched analyses.
+\Cref{sec:p1_text} describes the text-based scoring. \Cref{sec:p1_results}
+presents findings, and \cref{sec:p1_conclusion} concludes.
+
+% ---------------------------------------------------------------
+\section{Related Literature}
+\label{sec:p1_lit}
+
+This chapter draws on five strands of related work: the measurement of school
+climate and culture; the authoritative schooling tradition; structured classroom
+observation; research on behaviour management practices; and text-based
+measurement in economics.
+
+\paragraph{School climate and culture.}
+The study of school climate has a long history in educational research
+\citep{hoy2001,cohen2009,thapa2013}. The predominant measurement approach relies on survey instruments
+administered to pupils, teachers, and sometimes parents, capturing dimensions
+such as safety, teacher--pupil relationships, academic expectations, and
+institutional support. While this literature has produced consistent findings
+in some areas---school climate is positively associated with pupil wellbeing,
+attendance, and broadly measured achievement---survey measures are subject to
+several limitations: they reflect perceptions rather than observed behaviour;
+they are susceptible to social desirability bias; and they are costly to
+administer systematically at national scale. Administrative records such as
+suspension and exclusion rates have been used as proxies for the strictness of
+a school's disciplinary environment \citep{machin2020}, but these conflate
+genuine culture with pupil composition. Ofsted inspection judgements provide a
+widely used summary of school quality but aggregate many dimensions into a
+single rating and are updated infrequently. The present chapter addresses these
+limitations by combining direct observational data with headteacher self-report
+and, for the national sample, text-based scoring of publicly available documents.
+
+\paragraph{The authoritative school.}
+The conceptual foundation for the warmth and strictness dimensions is the
+parenting styles typology of \citet{maccoby1983}, which classifies parenting
+on two orthogonal axes: demandingness (high expectations, clear rules,
+consistent enforcement) and responsiveness (warmth, sensitivity, emotional
+support). The \textit{authoritative} style---high on both dimensions---is
+consistently associated with the most positive outcomes across a wide range of
+cognitive and non-cognitive domains. \citet{majumder2015} finds that children
+with authoritative parents are significantly more likely to complete higher
+levels of education, with effects substantially larger than those of other
+parenting styles relative to uninvolved parenting. \citet{zhang2020} find that
+both high demandingness and high responsiveness have independent positive effects
+on children's academic outcomes, with high responsiveness additionally promoting
+the formation of cognitive and socio-emotional skills.
+
+The application of this framework to schools is conceptually natural:
+demandingness maps onto the strictness dimension and responsiveness maps onto
+the warmth dimension. The hypothesis that schools combining high levels of both
+dimensions---analogous to authoritative parents---generate the greatest progress
+for their pupils is central to the thesis. \citet{gregory2010} develops the
+authoritative school concept in the educational psychology literature; related
+empirical evidence is reviewed in \citet{gregory2010,gottfredson2005}.
+
+\paragraph{Structured classroom observation.}
+The most closely related methodological precedent for the observation component
+of the gold standard score is the Classroom Assessment Scoring System (CLASS),
+developed by \citet{hamre2007}. The CLASS framework assesses teachers on three
+domains: emotional support (teacher--pupil relationships, positive climate,
+sensitivity), classroom organisation (behaviour management, productivity), and
+instructional support (quality of feedback, concept development). \citet{allen2013}
+find that secondary school teachers with higher CLASS scores generate
+significantly greater pupil achievement gains. \citet{sammons2008} apply the
+framework in English primary schools and find that teaching quality as measured
+by CLASS has positive effects on pupil outcomes in reading and mathematics that
+exceed the influence of family disadvantage as measured by eligibility for Free
+School Meals.
+
+The warmth and strictness observation protocols developed in this chapter draw
+on the emotional support and classroom organisation domains of the CLASS
+framework, adapted to characterise institution-level culture rather than
+individual teacher practice. The key adaptation is that observations across
+multiple classrooms and outside-of-lesson settings are combined to produce a
+single measure of the school-level norm, rather than an assessment of any
+individual teacher.
+
+\paragraph{Behaviour management and school-level practices.}
+Research on high-performing charter schools in the United States has identified
+structured behaviour management as a key distinguishing feature of effective
+schools. \citet{abdulkadiroglu2011} find that effective Boston charter schools
+are more likely to use strict discipline and produce large test score gains for
+middle and high school students. \citet{angrist2010} report substantial
+achievement gains at KIPP Lynn, a school featuring a demanding behavioural code
+and high expectations, with the largest gains for pupils with the lowest baseline
+scores. \citet{dobbie2013} investigate 35 charter schools and find that an
+index of five practices---including high expectations and frequent teacher
+feedback---explains approximately half of the variation in school effectiveness,
+while traditional resource inputs do not. \citet{fryer2014} implements this
+bundle in low-performing traditional schools in Houston using a field experiment
+and finds significant mathematics gains. In the English context,
+\citet{machin2020} show that higher exclusion rates in the first wave of
+academies reflect genuine disciplinary rigour rather than the strategic
+manipulation of test scores. This body of evidence motivates the strictness
+dimension and provides grounds for expecting a positive association between
+strictness and pupil progress.
+
+\paragraph{Text-based measurement.}
+The text-scoring approach in \cref{sec:p1_text} builds on the literature
+treating text as data in economics \citep{gentzkow2019}. A key challenge in
+applying automated text scoring to domain-specific documents is ensuring that
+the method is calibrated to the relevant linguistic context.
+\citet{loughran2011} demonstrate that standard general-purpose sentiment
+dictionaries misclassify a large proportion of words in financial documents.
+\citet{muddiman2019} develop a manually validated domain-specific dictionary
+for political text and show it outperforms standard approaches. The present
+chapter addresses the domain-specificity challenge by using a large language
+model prompted with detailed descriptions of the warmth and strictness
+constructs and calibrated to the vocabulary of English school policy documents
+and Ofsted inspection reports. The text-based scores are validated against the
+direct-observational gold standard for the 102 full-data
+schools.
+
+% ---------------------------------------------------------------
+\section{Conceptual Framework}
+\label{sec:p1_cf}
+
+A school's culture can be characterised along many dimensions. This chapter
+focuses on two: warmth and strictness. Both have antecedents in existing research
+on school effectiveness and school climate, but have not previously been
+operationalised at scale using direct observational data combined with headteacher
+self-report and text-derived indicators.
+
+\textbf{Warmth} is defined here as the degree to which school staff convey
+genuine care, personal interest, and a sense of belonging to students. A warm
+school is one in which teachers know pupils as individuals, communicate positive
+regard consistently, and make pastoral relationships a visible priority. At the
+level of classroom instruction, warmth is reflected in the use of students'
+names, the quality of teacher--pupil interactions, and the frequency and
+genuineness of praise. At the school level, warmth is reflected in the
+headteacher's expressed belief that relationships are foundational to learning,
+in structural commitments to pupil wellbeing, and in the emotional atmosphere
+observed in corridors and common areas.
+
+\textbf{Strictness} is defined here as the degree to which a school holds pupils
+to high behavioural and academic standards and enforces those standards
+consistently. A strict school is one in which expectations for conduct are
+clearly communicated, sanctions are applied in a predictable and graduated
+manner, and there is a low tolerance for disruption in lessons and disorder in
+public spaces. Strictness as used here is distinct from harshness or punitivism:
+it refers to clarity and consistency of expectation, rather than to the severity
+of sanction. A school that deploys a mobile phone ban, line-up systems, and
+centralised detentions applied uniformly by all staff is a strict school in this
+sense, regardless of whether it is also a warm one.
+
+These two dimensions are conceptually orthogonal: they can co-exist
+independently. A school can be simultaneously warm and strict, warm but not
+strict, strict but not warm, or neither. The combination of high warmth and high
+strictness has been described as the \textit{authoritative} model in the school
+culture literature \citep{gregory2010}, drawing on Baumrind's typology of parenting
+styles \citep{baumrind1971}, and is associated with higher pupil engagement and
+attainment in a range of settings \citep{pellerin2005, gregory2011}. A central question addressed
+in \cref{ch:paper2} is whether this association holds for English secondary
+schools, conditional on a rich set of observable school and pupil
+characteristics.
+
+The framework presented in this chapter operationalises both dimensions using
+multiple data sources at different levels of observational proximity. Classroom
+observations provide the most direct evidence on warmth and strictness as
+experienced by pupils during lessons. Outside-of-lesson observations extend this
+to the school environment more broadly. Headteacher interviews capture the
+philosophy and structural systems that the leadership team deploys to
+sustain---or fail to sustain---warmth and strictness as school-wide norms.
+Finally, text from publicly available Ofsted inspection reports and behaviour
+policy documents extends the measurement framework to the full national
+population of English secondary schools.
+
+A third dimension, teaching practice, is also scored and reported throughout
+this chapter. It is not treated as a component of school culture in the same
+sense as warmth and strictness, but as a related construct of independent
+substantive interest. It also serves as an external validity check: if the
+measures proposed here are capturing what they claim to capture, teaching
+practice scores should correlate positively with warmth and strictness scores
+whilst remaining empirically distinguishable from both.
+
+This framework sits within a long tradition of asking whether the school a child
+attends makes a difference beyond what that child brings to it. The tradition
+begins with a negative answer: \citet{coleman1966} found school resources to
+explain little of the variation in attainment once family background was
+accounted for. The effective schools literature that followed argued that this
+was a failure of measurement rather than a fact about schools---that the
+variables surveyed (expenditure, class size, facilities) were simply not the
+variables that mattered \citep{edmonds1979}. \citet{rutter1979}, studying twelve
+inner-London secondary schools, located the difference instead in what they
+termed \textit{ethos}: the aggregate of expectations, incentives, and staff
+practice that a school sustains as a routine. Subsequent syntheses converged on
+a similar list of correlates---purposeful leadership, high expectations
+consistently communicated, an orderly learning environment, and a positive,
+supportive climate \citep{sammons1995, teddlie2000}. Warmth and strictness as
+defined here are an attempt to make two of those correlates measurable at the
+scale of a national population rather than a case-study sample, which is the
+constraint that has kept the ethos strand largely qualitative.
+
+The distinction between school \textit{climate} and school \textit{culture}
+matters for what the measures in this chapter are claiming to capture.
+\citet{vanhoutte2005} argues that the two are routinely conflated: climate
+properly refers to how members of a school \emph{perceive} their environment,
+and is measured by aggregating individual perceptions, whereas culture refers to
+the shared norms and assumptions that govern behaviour, and is a property of the
+organisation rather than of the individuals reporting on it. The measures
+developed here are aimed at culture in that sense. Classroom and
+outside-of-lesson observations record enacted norms directly rather than
+perceptions of them; the headteacher interview elicits the system the leadership
+has put in place rather than any individual's satisfaction with it; and the text
+sources record what the school states institutionally. Where perception data are
+used, as with Parent View in \cref{sec:p1_text_valid}, they are used as an
+external comparison against the culture measures rather than as a component of
+them.
+
+The interview component carries an assumption that deserves stating plainly:
+that the headteacher's account of school-wide expectations is informative about
+the norms actually operating in the school. That assumption is defensible on the
+grounds that behaviour policy in English secondary schools is unusually
+centralised---sanction systems, phone policies, and uniform enforcement are set
+at whole-school level and are the headteacher's direct responsibility---but it
+is not self-evidently true, and headteachers have an obvious incentive to
+describe their school favourably. This chapter does not rely on that assumption
+being true. The three-tier structure exists precisely so that the interview
+account can be checked against something else: for the 102 gold-standard schools
+the interview score can be compared directly with what was observed on the day,
+and \cref{sec:p1_policy_aspiration} reports where the two diverge. The
+espoused--enacted gap
+that emerges from that comparison is treated as a substantive finding rather
+than as measurement error to be minimised.
+
+% ---------------------------------------------------------------
+\section{Data Sources and the Three-Tier Structure}
+\label{sec:p1_data}
+
+The warmth and strictness measures are constructed from three distinct data
+sources, applied in combination to three overlapping sets of schools. The
+three-tier structure reflects the practical constraint that the most
+resource-intensive data collection---direct observation---was feasible for only a
+subset of schools.
+
+\textbf{Tier~1: Full-data schools.} A total of 102 secondary schools in England
+received a full research visit comprising structured classroom observations and
+outside-of-lesson observations, conducted alongside a semi-structured headteacher
+interview. These schools constitute the full-data tier and provide the most
+comprehensive basis for measurement. Scores for full-data schools are denoted
+the \textit{gold standard} and serve as the benchmark against which the validity
+of scores constructed from more limited data is assessed.
+
+\textbf{Tier~2: Interview schools.} An additional 201 schools participated
+in a headteacher interview but did not receive a school visit.\footnote{Interviews were
+conducted with the headteacher---or, where the headteacher was unavailable, the
+most senior member of staff responsible for school culture and behaviour---between
+November~2023 and April~2025, spanning the academic years 2023/24 and 2024/25.
+Just over three-quarters of interviews (77~per cent) were conducted from
+September~2024 onwards. Schools were recruited through direct
+outreach to headteachers, supplemented by referrals from participating
+schools.} All Tier~2 schools also have publicly available Ofsted inspection
+reports and behaviour policy documents. Warmth and strictness scores for Tier~2
+schools are generated by applying the interview-tier calibration model
+(\cref{sec:p1_enriched}), which combines interview-derived sub-scores with the
+text-derived features from those documents.
+
+\textbf{Tier~3: National schools.} All open state secondary schools in
+England---approximately 3,330 schools, including all Tier~1 and
+Tier~2 schools---have publicly available Ofsted inspection reports and behaviour
+policy documents. For the 3,029 schools not in the interview tier,
+warmth and strictness scores are generated by applying the national-tier
+calibration model (\cref{sec:p1_text}), which uses only text-derived features
+from these documents.
+
+The three tiers are nested by data richness: Tier~1 schools have visit,
+interview, and public-data sources; Tier~2 schools have interview and
+public-data sources; Tier~3 schools have public-data sources only.
+\cref{tab:tier_summary} summarises the distribution of schools across tiers,
+together with key observable characteristics. The tiers are closely comparable
+on free school meal eligibility, median size, and inspection grade. They differ
+on one dimension: Tier~1 schools have a mean EAL share of 27.8~per~cent against
+18.2~per~cent nationally, reflecting the London weighting of the visit sample.
+This imbalance is examined in \cref{app:2A:sample} and recurs as an
+interpretive caveat where the interview sample is used. The predictive accuracy of the
+two calibration models is quantified via leave-one-out cross-validation on the
+100 Tier~1 schools for which all three data sources are observed; results are
+reported in \cref{sec:p1_enriched} and \cref{sec:p1_text_valid}.
+
+\input{tables/tab_tier_summary}
+
+In addition to the novel data collected for this study, all schools in Tier~3
+are matched to the Department for Education's school-level administrative panel
+dataset, which provides information on pupil demographics, prior attainment,
+Progress~8 outcomes, workforce characteristics, and financial inputs. This panel
+dataset is used exclusively as a source of control variables in the analysis of
+\cref{ch:paper2}; it does not contribute to the warmth or strictness scores.
+
+\textbf{Selection and representativeness.} Schools were not selected at random
+for the visit or interview programmes. Recruitment relied on direct outreach to
+headteachers via email and phone, supplemented by referrals from participating
+schools; no quota sampling by region, school type, or Ofsted grade was applied.
+\Cref{tab:2A:representativeness} and \cref{fig:2A:representativeness_region} in
+\cref{app:2A:sample} compare key observable characteristics of the visited, interviewed,
+and national populations; a detailed discussion is provided there. Both samples are
+broadly representative on most structural characteristics---school type, phase, gender
+composition, admissions policy, urban--rural classification, size, and deprivation---but
+over-represent London and the South East relative to their national shares, with the
+visited sample particularly concentrated in London (44.6\% of visited schools versus
+15.0\% nationally). Where the samples differ systematically from the national
+population, the estimates presented in \cref{ch:paper2} should be interpreted as
+applying to a population similar in composition to the sample studied, rather
+than to the full population of English state secondary schools.
+
+% ---------------------------------------------------------------
+\section{The Gold Standard Score}
+\label{sec:p1_gss}
+
+The gold standard score is constructed from three classes of evidence:
+structured classroom observations, structured outside-of-lesson observations,
+and headteacher interview responses. Nine sub-scores are computed from these
+three sources and combined into composite warmth, strictness, and teaching
+practice scores. All sub-scores are defined on a $[0, 5]$ scale before
+rescaling to $[0, 10]$ for reporting.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Classroom Observations}
+\label{sec:p1_obs_class}
+
+Classroom observations were conducted using a standardised coding schedule
+applied by trained researchers. Each lesson was observed in its entirety by two
+researchers working independently. Ratings were made on seven items for the
+warmth and strictness dimensions, and nine items for the teaching practice
+dimension. All items were scored on a 1--5 scale unless noted. Where a school
+received multiple lesson observations, item ratings were averaged across lessons
+before computing sub-scores.
+
+\textit{Warmth-relevant items.}
+
+\begin{itemize}
+  \item \textbf{Names}: frequency with which the teacher used students' names
+  during the lesson (1~=~rarely or never; 5~=~consistently throughout).
+  \item \textbf{Praise}: frequency and quality of praise for student effort and
+  progress (1~=~rare or absent; 5~=~frequent and genuine).
+  \item \textbf{Interactions}: quality of interpersonal exchanges between teacher
+  and pupils (1~=~cold or dismissive; 5~=~warm and encouraging).
+\end{itemize}
+
+\textit{Strictness-relevant items.}
+
+\begin{itemize}
+  \item \textbf{Misbehaviour} (reverse scored): level of observed pupil
+  misbehaviour (1~=~persistent and widespread; 5~=~none observed).
+  \item \textbf{Disruption} (reverse scored): degree to which pupil conduct
+  disrupted the flow of the lesson (1~=~severely disruptive; 5~=~fully orderly).
+  \item \textbf{Response}: the teacher's response when misbehaviour or disruption
+  occurred, rated on effectiveness and consistency (1~=~no response or
+  ineffective; 5~=~prompt and consistent).
+  \item \textbf{Respectfully}: degree to which pupils behaved respectfully
+  towards the teacher (1~=~openly disrespectful; 5~=~consistently respectful).
+\end{itemize}
+
+A special case arises for the Response item when no misbehaviour or disruption
+was observed during a lesson (i.e., the raw score was zero, indicating that the
+observer had no occasion to rate a teacher response). A score of zero cannot
+straightforwardly be treated as missing: in a calm lesson, the absence of any
+sanctioning event reflects well on the school's culture, while in a disruptive
+lesson without any teacher response it reflects poorly. The Response score is
+therefore imputed from the Disruption score according to:
+%
+\begin{equation}
+  \label{eq:response_impute}
+  \text{Response} = 6 - \text{Disruption}
+\end{equation}
+%
+such that an orderly lesson (Disruption~=~1) receives an imputed Response of~5,
+and a disruptive lesson in which no response was forthcoming (Disruption~=~5)
+receives an imputed Response of~1. Where the Disruption score is itself missing,
+the Response item is excluded from the sub-score average.
+
+\textit{Teaching practice items} (all scored 1--5): Questioning; Verbal
+feedback; Discussion; Differentiation; Explanation; Outcomes; Methods;
+Structure; Resources. The Discussion item is an exception to the general
+coding convention: a score of zero (no pupil discussion) is treated as a genuine
+negative rather than missing, reflecting the judgement that the complete absence
+of discussion during a lesson is itself an informative observation about teaching
+quality.
+
+\textbf{Sub-score~W1} (teaching warmth) is the unweighted mean of Names,
+Praise, and Interactions. \textbf{Sub-score~S1} (in-lesson strictness) is the
+unweighted mean of Misbehaviour (reverse scored), Disruption (reverse scored),
+Response (with imputation as described above), and Respectfully.
+\textbf{Sub-score~T1} (observed teaching practice) is the unweighted mean of
+the nine teaching items.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Outside-of-Lesson Observations}
+\label{sec:p1_obs_out}
+
+A standardised coding schedule was also applied during observation of
+outside-of-lesson environments, including corridor transitions, the canteen,
+arrival, and recreational spaces. Ratings were made on eight items.
+
+\textit{Strictness-relevant items} (all scored 1--5):
+
+\begin{itemize}
+  \item \textbf{Sanctions}: whether sanctions were observed being applied in
+  out-of-class settings, and with what consistency.
+  \item \textbf{Corridors}: orderliness of pupil movement in corridors.
+  \item \textbf{Arrival}: orderliness and organisation of pupil arrival at the
+  start of the school day.
+  \item \textbf{Canteen}: conduct and atmosphere in the dining area.
+  \item \textbf{Recreational}: conduct and atmosphere in recreational areas during
+  break and lunch.
+\end{itemize}
+
+\textit{Warmth-relevant items} (all scored 1--5):
+
+\begin{itemize}
+  \item \textbf{Transitions}: quality of student conduct and relationships
+  observed during movement between lessons.
+  \item \textbf{Interactions (break)}: quality of observed interactions between
+  staff and students during unstructured time.
+  \item \textbf{Relationships (break)}: overall quality of the relational
+  atmosphere during break time.
+\end{itemize}
+
+\textbf{Sub-score~S2} (out-of-lesson strictness) is the unweighted mean of
+Sanctions, Corridors, Arrival, Canteen, and Recreational. \textbf{Sub-score~W2}
+(school warmth) is the unweighted mean of Transitions, Interactions (break), and
+Relationships (break).
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Headteacher Interview}
+\label{sec:p1_interview}
+
+A semi-structured interview of approximately 60 minutes was conducted with the
+headteacher at each school. The interview schedule comprised 11 substantive
+questions (Q2--Q12) and 10 Likert-scale agreement statements (S1--S10). The full
+interview guide is reproduced in \cref{app:2A:interview_guide}. Responses to
+substantive questions were scored on a 1--5 scale by two researchers present
+during the interview (the questioner and an observer) working independently;
+where the two scores differed, a final reconciled score was agreed. Likert
+statements were completed by the headteacher directly.
+
+A subset of interview responses contributes to the warmth and strictness scores.
+
+\textit{Warmth-relevant items}: Q7, the headteacher's approach to extracurricular
+provision and activities beyond the curriculum (1--5); Q11, the headteacher's
+approach to pupil wellbeing (1--5); S2-stmt, ``Reward and recognition systems are
+applied consistently across the school'' (1--5 agreement); S7, ``Pupils in this
+school feel safe'' (1--5); S8, ``Pupils in this school feel that their teachers
+care about them'' (1--5).
+
+\textit{Strictness-relevant items}: Q5, the headteacher's approach to rewards and
+sanctions (1--5); S1-stmt, ``Sanction systems are applied consistently across the
+school'' (1--5); S5, ``Pupil behaviour in lessons is generally good'' (1--5); S6,
+``Pupil behaviour outside lessons is generally good'' (1--5); S9, ``Teachers feel
+respected by pupils in this school'' (1--5).
+
+\textit{Teaching practice items}: Q6, the headteacher's description of an
+outstanding teacher (1--5); Q8, the headteacher's approach to marking and written
+feedback (1--5); Q12, the headteacher's approach to assessing pupil progress
+(1--5); S3-stmt, ``Teacher turnover at this school is low'' (1--5); S4-stmt,
+``Staff morale at this school is high'' (1--5).\footnote{Throughout this chapter,
+the suffix ``-stmt'' denotes a Likert statement item from the interview schedule:
+S1-stmt (``Sanction systems are applied consistently across the school''),
+S2-stmt (``Reward and recognition systems are applied consistently across the
+school''), S3-stmt (``Teacher turnover at this school is low''), and S4-stmt
+(``Staff morale at this school is high''). These are distinct from the
+observation-derived sub-scores S1 and S2 defined in
+\cref{sec:p1_obs_class,sec:p1_obs_out} and the interview-derived sub-scores S3
+and S4 defined below.}
+
+In addition, binary (Yes/No) questions were asked about eight structural
+behaviour management systems: centralised detentions; an internal exclusion
+room; demerits; line-up systems; silent corridors; after-school revision
+sessions; weekend revision sessions; and a mobile phone ban.
+\textbf{Sub-score~S3} (systems strictness) is the count of systems reported as
+in place, normalised to a $[0, 5]$ scale:
+%
+\begin{equation}
+  \label{eq:s3}
+  S3 = \frac{\text{count of systems in place}}{8} \times 5
+\end{equation}
+%
+such that a school operating all eight systems scores~5 and a school with none
+scores~0.
+
+\textbf{Sub-score~W3} (headteacher warmth philosophy) is the unweighted mean of
+Q7, Q11, S2-stmt, S7, and S8. \textbf{Sub-score~S4} (headteacher strictness
+philosophy) is the unweighted mean of Q5, S1-stmt, S5, S6, and S9.
+\textbf{Sub-score~T2} (interview-derived teaching practice) is the unweighted
+mean of Q6, Q8, Q12, S3-stmt, and S4-stmt.
+
+\textbf{Interview quality adjustment.} The reliability of interview-derived
+sub-scores depends in part on the quality of the interview itself. Three
+meta-ratings were recorded by the observer after each interview: Confidence
+(the researcher's confidence that the headteacher's responses reflected genuine
+practice), Willingness (the headteacher's apparent willingness to answer
+honestly and fully), and Patience (the headteacher's engagement with the full
+duration of the interview). Each is scored on a 1--5 scale. An interview quality
+weight is defined as:
+%
+\begin{equation}
+  \label{eq:iq_weight}
+  \omega = \frac{\mathrm{mean}(\mathrm{Confidence},\, \mathrm{Willingness},\,
+  \mathrm{Patience})}{5}
+\end{equation}
+%
+The quality-adjusted warmth sub-score is defined as $W3^* = W3 \times \omega$;
+the strictness and teaching interview sub-scores $S4$ and $T2$ are used without
+adjustment. Where no meta-ratings were recorded, $\omega$ defaults to 1.0,
+implying no downward adjustment. Empirical calibration on the 102 full-data
+schools showed that the adjustment improves warmth predictive validity ($r$:
+0.156 unadjusted to 0.224 adjusted, against the direct-observation benchmark)
+but reduces it for strictness ($r$: 0.374 to 0.274) and teaching ($r$: 0.196
+to 0.173). The asymmetry reflects the different character of each dimension:
+warmth requires expressive engagement, so a reticent or evasive headteacher
+plausibly undersells the warmth of their school; strictness and teaching are
+conveyed through factual accounts of systems and practices that remain
+informative even in less expressive interviews.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Composite Scores}
+\label{sec:p1_composite}
+
+The nine sub-scores are combined into composite warmth, strictness, and teaching
+practice scores according to the following formulas, which differ depending on
+which data sources are available for a given school.
+
+\textit{Full-data schools} (visit and interview both available):
+%
+\begin{align}
+  \label{eq:warmth_full}
+  \text{Warmth} &= 0.6 \times \tfrac{1}{2}(W1 + W2) + 0.4 \times W3^* \\[4pt]
+  \label{eq:strict_full}
+  \text{Strictness} &= 0.6 \times \tfrac{1}{2}(S1 + S2)
+                    + 0.4 \times \tfrac{1}{2}(S3 + S4) \\[4pt]
+  \label{eq:teach_full}
+  \text{Teaching} &= 0.6 \times T1 + 0.4 \times T2
+\end{align}
+
+The gold standard composite scores are computed on a $[0, 5]$ scale and rescaled
+to $[0, 10]$ by multiplying by two. The weighting of 60\% observational to
+40\% interview-derived reflects the judgement that direct observation provides a
+more objective source of evidence than headteacher self-report, whilst the
+interview captures aspects of school culture---in particular the intentional
+deployment of structural systems and the headteacher's stated
+philosophy---that are not directly observable during a single visit.\footnote{The
+interview components of the two composites are not fully symmetric. The strictness
+interview component draws on two sub-scores of qualitatively different character:
+S3, an objective count of structural behaviour management systems, and $S4$, a
+self-report of the headteacher's strictness philosophy. The
+warmth composite has no equivalent of S3: the interview data include binary
+indicators for two reward structural systems (reward assemblies and merit points),
+but these are reported by 99\% of interviewed schools and therefore carry
+negligible discriminating information. Key phrase codings from the interview
+record whether headteachers spontaneously mentioned warmth-adjacent structural
+provision such as pastoral teams, non-teaching heads of year, and in-school
+counsellors; however, these capture communication emphasis rather than the
+presence or absence of the system, making them conceptually distinct from S3. As
+a result, W3$^*$ relies more fully on headteacher self-report than the strictness
+interview component does. The interview quality weight~$\omega$ partially
+mitigates this asymmetry: $W3^*$ is discounted when the headteacher was
+unresponsive or evasive, since warmth requires expressive engagement to convey
+reliably. No adjustment is applied to $S4$, whose content---descriptions of
+behaviour management systems---is less sensitive to interview style.}
+
+\textit{Interview and national tier scores.} For Tier~2 and Tier~3 schools, the
+sub-scores derived above serve as input features to Ridge regression calibration
+models, rather than being combined using the fixed-weight formula above. The
+interview-tier model takes the sub-scores $W3^*$, $S3$, $S4$, and the
+interview quality weight $\omega$ as predictors, alongside the text-derived
+features described in \cref{sec:p1_text}; it is trained to predict the gold
+standard warmth and strictness scores and applied to all 303 interview schools.
+The national-tier model takes the text-derived features alone as predictors and
+is applied to all schools in the national sample. Both models are described
+fully in \cref{sec:p1_enriched} and \cref{sec:p1_text} respectively.
+
+\cref{tab:score_dist} reports the distribution of all sub-scores and composite
+scores for the 102 full-data schools. \cref{fig:warmth_strict_joint} plots the
+joint distribution of gold standard warmth and strictness scores for these
+schools.
+
+\input{tables/tab_score_dist}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth]{fig_warmth_strict_joint.pdf}
+  \caption{Joint distribution of gold standard warmth and strictness scores for
+    the Tier~1 full-data schools ($n = 101$; one school is omitted for missing
+    sub-scores). Both scores are on the $[0,10]$ scale. Dashed lines mark the
+    sample means, dividing the plane into the four culture quadrants
+    (warm/strict, warm/relaxed, cold/strict, cold/relaxed). The two dimensions
+    are positively but far from perfectly correlated ($r = 0.480$,
+    $p < 0.001$), confirming that warmth and strictness are separable
+    dimensions rather than opposite ends of a single continuum.}
+  \label{fig:warmth_strict_joint}
+\end{figure}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Convergence between visit and interview scores}
+\label{sec:p1_convergence}
+
+An internal validity check on the 102 full-data schools is to compute, for
+each school, a visit-only score---using the same formula applied to
+visit-only Tier~1 schools: $\tfrac{1}{2}(W1+W2)$ for warmth and
+$\tfrac{1}{2}(S1+S2)$ for strictness---alongside an interview-only score
+using the formula applied to Tier~2 schools ($W3^*$ for warmth;
+$\tfrac{1}{2}(S3+S4)$ for strictness), and then correlating the two.
+If the two components are measuring the same latent construct, the correlation
+should be high; if they are capturing substantively distinct facets of school
+culture, it will be low.
+
+The results indicate substantial divergence. Visit-only and interview-only
+warmth scores correlate at $r=0.22$ ($p=0.024$, $n=102$); visit-only and
+interview-only strictness scores correlate at $r=0.18$ ($p=0.064$). Both
+correlations are positive and in the expected direction, but neither approaches
+the level that would justify treating the two sources as alternative measures
+of a single construct. The divergence is directionally asymmetric: headteachers
+rate their schools on average $0.45$ points higher on warmth than independent
+observers record (both on the $[0,10]$ scale), while the corresponding
+strictness gap is near zero ($+0.01$ points). Warmth discrepancies exceeding one
+point in magnitude occur in 51\% of schools; discrepancies exceeding two points
+in 21\%.
+
+These findings carry two implications. First, the low cross-source correlations
+confirm that the visit and interview components of the gold standard composite
+are not redundant: they capture meaningfully different aspects of school
+culture. The interview reflects the headteacher's \textit{espoused} culture---
+their stated philosophy, commitments, and self-assessment---while the visit
+records the \textit{enacted} culture as experienced by an independent observer.
+Combining both in the 60/40 composite produces a richer measure than either
+source alone and provides the principal justification for the weighting
+that prioritises observation. Second, the directional asymmetry is interpretively informative.
+The over-claim is concentrated in warmth: headteachers rate their schools
+$+0.45$ points above what observers record, while strictness self-report
+is essentially unbiased ($+0.01$ points). This asymmetry is consistent with
+the different character of the two dimensions. Strictness is partly captured
+by an objective systems tally ($S3$: count of structural behaviour management
+systems in place), which leaves little scope for motivated misrepresentation;
+headteachers either have centralised detentions or they do not. Warmth, by
+contrast, is assessed entirely through expressed relational philosophy and
+Likert agreement, where social desirability pressures are strongest. This
+suggests that the interview predictors feeding the Ridge calibration models
+capture the espoused dimension of school culture primarily for warmth; for
+strictness, self-report and observation are sufficiently aligned that extended-
+and national-tier scores are not expected to be directionally biased relative
+to enacted strictness. The expected direction of attenuation is therefore
+upward for warmth but near-zero for strictness in tiers relying on indirect
+sources alone.
+
+% ---------------------------------------------------------------
+\section{Inter-rater Reliability}
+\label{sec:p1_irr}
+
+Inter-rater reliability was assessed separately for the headteacher interview
+data and the school visit observation data, using data from sessions where two
+researchers were present simultaneously.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Interview}
+\label{sec:p1_irr_int}
+
+Each interview was attended by a questioner and an observer, who scored
+Q2--Q12 independently on a 1--5 scale during the session. Inter-rater reliability
+is assessed by comparing questioner and observer scores across the full sample of
+interviews with paired ratings.
+
+\cref{tab:irr_interview} in \cref{app:2A:irr} reports, for each of Q2--Q12, the
+number of schools with paired ratings, Pearson~$r$, mean absolute difference, the
+proportion of pairs agreeing exactly, the proportion agreeing within one scale
+point, and weighted Cohen's~$\kappa$.
+
+Overall, Pearson correlations ranged from $r = 0.61$ (Q6: excellent teaching) to
+$r = 0.74$ (Q12: assessing pupil progress), with a median of $r = 0.70$ across
+Q2--Q12. Agreement within one scale point exceeded 90\% for all questions, with
+five questions exceeding 94\%, indicating substantial consistency across raters.
+The items with the weakest inter-rater agreement were Q6 (what excellent teaching
+looks like; $r = 0.61$) and Q7 (co-curricular offer; $r = 0.62$), consistent
+with the greater interpretive latitude and the greater variability in headteacher
+responses these questions permit. Items eliciting more structured responses---Q12
+(pupil progress monitoring; $r = 0.74$) and Q5 (approach to rewards and
+sanctions; $r = 0.73$)---showed the strongest agreement, reflecting that concrete
+policy descriptions are more reliably scored than open-ended reflections on
+teaching philosophy. Weighted Cohen's $\kappa$ ranged from 0.42 to 0.61
+(median~0.53), broadly consistent with the ``moderate to substantial'' range
+in the \citet{landis1977} classification. These results provide reassurance that
+the interview-derived sub-scores are not primarily an artefact of idiosyncratic
+researcher interpretation.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{School Visit Observations}
+\label{sec:p1_irr_obs}
+
+School visits were conducted by teams of two or three researchers who observed
+the same lessons and outside-of-lesson environments simultaneously and
+independently. For schools observed by three researchers, three pairwise
+comparisons are available.
+
+\cref{tab:irr_classroom} and \cref{tab:irr_outside} in \cref{app:2A:irr}
+report pairwise inter-rater reliability statistics for classroom observation
+items and outside-of-lesson items respectively, including pairwise Pearson~$r$,
+exact agreement, agreement within one scale point, and mean absolute difference.
+
+For classroom observations, the items with the strongest inter-rater reliability
+were Disruption ($r = 0.79$) and Discussion ($r = 0.72$), which can be assessed
+from relatively focal observational events: a lesson is either disrupted or not,
+and a class is either engaged in discussion or not. The weakest agreement was
+observed for Resource ($r = 0.53$) and Methods ($r = 0.55$), which require
+integrating multiple simultaneous pedagogical behaviours across the lesson. Across
+all 20 classroom items, within-one-point agreement ranged from 84\% to 94\%.
+
+For outside-of-lesson observations, the strongest items were Reward ($r = 0.81$)
+and Relationships ($r = 0.72$), while the weakest were Arrival ($r = 0.47$) and
+Verbal instruction ($r = 0.49$)---items that require synthesising multiple
+brief interactions across an extended observation window. Within-one-point
+agreement ranged from 85\% to 100\% (Students: 100\%) across the 13 outside
+items. These findings are consistent with expectations: items requiring a global
+assessment of a discrete event are more amenable to consistent coding than items
+requiring the synthesis of many small interactions observed over an extended
+period.
+
+% ---------------------------------------------------------------
+\section{Interview-Tier Calibration Model}
+\label{sec:p1_enriched}
+
+Warmth and strictness scores for the 303 interview schools are generated by a
+Ridge regression calibration model trained on the 100 full-data schools with
+complete predictor data, in
+which the gold standard composite scores are the outcome variables and
+interview-derived sub-scores together with text-derived features from publicly
+available documents are the predictors. This section describes the construction
+of the predictor set, the specification of the model, and its leave-one-out
+cross-validated performance.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Interview Predictor Features}
+\label{sec:p1_enriched_features}
+
+The core interview predictors are the sub-scores derived in
+\cref{sec:p1_interview}: $W3^*$ (headteacher warmth philosophy, quality-adjusted),
+$S3$ (systems strictness), $S4$ (headteacher strictness philosophy,
+unadjusted), and the interview quality weight $\omega$. These four features
+are used in the \textit{main} specification.
+
+In addition to the scored interview responses, thematic codings of interview
+responses were made by the researcher who conducted each interview. The key
+phrases coding sheet records, for each of the 11 substantive questions, which of
+a pre-specified set of themes was mentioned by the headteacher. These codings
+comprise 71 binary (Yes\,/\,No\,/\,Vague) indicators across Q2--Q12, covering
+warmth-related language (relational framing in Q2, Q4, and Q6), strictness-related
+language (escalating sanction frameworks and ``sweating the small stuff'' in Q5;
+strictness language in Q2, Q4, and Q6), and teaching practice themes. Indicators
+are averaged within dimension to give a warmth keyword score, a strictness keyword
+score, and a teaching keyword score, each rescaled to a $[0, 5]$ range. In the
+\textit{enriched} specification, these three keyword scores are included as
+additional predictors alongside the core interview features.
+
+Key phrase codings are absent for 9 of the 303 interviewed schools
+(3.0\%).\footnote{The nine schools with no key phrase codings are: ARK
+Alexandra; E-ACT Crest Academy; Edgbarrow School; Guru Nanak Sikh Academy;
+Isaac Newton Academy; Oasis Academy Hadley; Saint Martin's Catholic Voluntary
+Academy; St John Fisher Catholic Voluntary Academy; and Stoke Newington School.}
+A further two schools have partial codings. Missingness appears to be unrelated
+to observable school characteristics; none of the nine schools is in the
+full-data tier. The main specification covers all 303 interviewed schools; the
+enriched specification is restricted to the 294 schools with complete keyword
+codings.
+
+Text-derived features from Ofsted inspection reports and behaviour policy
+documents are included as predictors in both specifications, as all interview
+schools also have publicly available documents. The text features are the
+holistic LLM scores described in \cref{sec:p1_text_method}: the Ofsted LLM score
+and the behaviour policy LLM score for the target dimension (warmth or strictness),
+giving two text features per dimension. The full predictor set for the main
+interview-tier model therefore comprises the four core interview features---$W3^*$,
+$S3$, $S4$, and the interview quality weight~$\omega$---plus these two text
+features, for six predictors in total. The enriched model additionally includes
+keyword scores.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Calibration Model and Validation}
+\label{sec:p1_enriched_model}
+
+The interview-tier calibration model is estimated separately for warmth and
+strictness. For each dimension, a Ridge regression is fitted on the 100
+full-data schools with a complete predictor vector:
+%
+\begin{equation}
+  \label{eq:ridge_interview}
+  \hat{y}_s = \hat{\alpha} + \hat{\boldsymbol{\beta}}' \mathbf{f}_s
+\end{equation}
+%
+where $\hat{y}_s$ is the predicted gold standard score for school~$s$ and
+$\mathbf{f}_s$ is the vector of predictor features. Ridge regularisation is
+well-suited to the modest sample-to-predictor ratio available here, and the
+leave-one-out cross-validation procedure provides an empirical rather than
+asymptotic assessment of out-of-sample predictive accuracy. The Ridge penalty
+$\lambda$ is selected by leave-one-out cross-validation on the 100 training
+schools. Predicted scores are clipped to the $[0, 10]$ range.
+
+The training sample is 100 rather than the full 102 Tier~1 schools because both
+calibration models take Ofsted inspection text as a predictor, and two Tier~1
+schools have no scored inspection report. They are dropped by listwise deletion
+on the predictor vector rather than imputed, since with two features per
+dimension drawn from that source there is nothing left to impute from. The same
+100 schools train the national-tier model in \cref{sec:p1_text_method}, so the two
+models are estimated and cross-validated on an identical sample and their
+performance is directly comparable.
+
+Leave-one-out cross-validated performance of the main model is reported in
+\cref{tab:interview_model_loo}. The main interview-tier model achieves a
+LOO-CV $R^2$ of $0.588$ for warmth ($r = 0.767$, $\text{RMSE} = 0.573$) and
+$0.489$ for strictness ($r = 0.701$, $\text{RMSE} = 0.492$). Both represent
+substantial improvements over the text-only national-tier model.
+
+These figures must, however, be read with an important qualification, because
+the target is not independent of the predictors. The interview sub-scores
+$W3^*$ and $\bar{S}_{34}$ enter Model~A as features, and they also constitute
+40~per~cent of the gold-standard composite by construction
+(\cref{eq:warmth_full,eq:strict_full}). Part of the apparent predictive skill is
+therefore mechanical: the model is partly recovering the share of the target
+that it was handed as an input. Taken alone, $W3^*$ correlates at $r = 0.758$
+with the composite warmth score but at only $r = 0.224$ with the visit-only
+component; $\bar{S}_{34}$ correlates at $r = 0.678$ with composite strictness
+but $r = 0.184$ ($p = 0.064$) with visit-only strictness.
+
+\Cref{tab:ridge_circularity} separates the two contributions. Correlating the
+model's leave-one-out predictions against the visit-only component---the part
+of the target the model must genuinely infer---performance falls from
+$r = 0.767$ to $r = 0.269$ for warmth and from $r = 0.701$ to $r = 0.276$ for
+strictness. Refitting the identical feature set directly against the visit-only
+component, with the penalty re-selected for that target, gives $r = 0.235$ and
+$r = 0.343$ respectively, so the drop is not an
+artefact of the training target. Roughly a quarter to a third of the headline
+correlation therefore reflects independent predictive content; the remainder is
+the model recovering what it was given.
+
+Two further points follow. First, the modest independent signal that does
+survive for strictness is carried by the text features rather than the
+interview ones: the two text predictors alone recover the visit-only score at
+$r = 0.356$, marginally better than the full six-feature set. Second, the
+asymmetry between dimensions persists here as elsewhere in this chapter---the
+independent warmth signal is the weaker of the two, consistent with the
+convergent-validity results in \cref{sec:p1_convergence}. The interview
+features add real incremental accuracy against the composite, but the claim
+that they add a large signal about \emph{independently observed} culture is
+not supported.
+
+This qualification does not invalidate the prediction exercise. The composite
+is the quantity the thesis defines as the gold standard, and Model~A is the
+best available means of extending it to schools with interview data but no
+visit. It does mean that the interview-tier LOO figures should be read as
+measures of internal consistency in the composite rather than as evidence that
+interviews reveal observed behaviour, and \cref{ch:paper2} accordingly uses
+visit-only scores in its primary specification.
+
+\input{tables/tab_interview_model_loo}
+\input{tables/tab_ridge_circularity}
+
+The main specification is treated as the primary throughout the thesis. Fitted
+coefficients for the main model are reported in \cref{tab:interview_model_coefs}
+in \cref{app:2A:ridge_spec}. For warmth, the two largest standardised predictors are
+the interview quality weight $\omega$ and $W3^*$ (headteacher warmth philosophy),
+consistent with the conjecture that a headteacher's willingness and ability to
+articulate a relational philosophy reflects the warmth of their school's culture.
+For strictness, $S4$ (headteacher strictness philosophy) and $S3$ (systems
+strictness) load most strongly, with the Ofsted strictness score also contributing
+a positive independent signal.
+
+% ---------------------------------------------------------------
+\section{Text-Based Scoring for the National Sample}
+\label{sec:p1_text}
+
+For the 3,029 open state secondary schools not covered
+by the visit or interview programme, warmth and strictness scores are derived
+from two publicly available text sources: Ofsted inspection reports and school
+behaviour policy documents.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Document Collection}
+\label{sec:p1_text_docs}
+
+Ofsted inspection reports were obtained from the Ofsted website and the Ofsted
+Report Card (for inspections published after 2024). The most recent available
+full inspection report was used for each school; monitoring visits, short
+inspections, and academy conversion assessments were excluded. Reports were
+obtained for 3,288 of the 3,312 currently open schools in the national sample
+(99.3\%); the 24 unmatched schools had all opened after 2023 and had not yet
+been inspected at the time of data collection. Inspection dates range from 2012
+to 2026, with the large majority concentrated in 2022--2024 (873 schools in
+2024, 910 in 2023, 695 in 2022), reflecting the resumption of routine
+inspections after the Covid-19 pandemic suspension. The median lag between the
+most recent inspection and the analysis year (2023--24 outcomes) is
+approximately one year.
+
+Behaviour policy documents were collected by a systematic crawl of school
+websites. The crawl retrieved candidate documents and applied a filtering step
+to identify those meeting the criteria for a behaviour policy, as distinct from
+anti-bullying policies, safeguarding documents, or other school
+policies.\footnote{Full details of the crawl methodology, including the
+URL-discovery approach and the document-filtering criteria, are provided in
+\cref{app:2A:crawl}.} A behaviour policy was successfully retrieved for
+3,365 schools (98.2\% of the national sample), with one school permanently
+unresolvable (no publicly available policy) and 117 schools written off as
+outside scope (closed, studio, or UTC schools that were excluded from the spine
+after download). Schools for which
+either source is unavailable---no full Ofsted inspection report on record, or no
+behaviour policy retrieved---are excluded from the public-data analysis. A
+representativeness check comparing excluded and included schools on key observable
+characteristics is reported in \cref{app:2A:sample}.
+
+A systematic quality audit of the retrieved documents identified two categories
+of concern. First, a byte-for-byte comparison of document files revealed that
+351 schools (10.4\%) share an identical document with at least one other school
+in the national sample. In every identifiable case this reflects a
+Multi-Academy Trust or federation-level behaviour policy template distributed
+uniformly across member schools: the largest groups comprise 24 schools sharing
+a single document (Star Academies and associated trusts), 27 schools (Outwood
+Academy, across two overlapping groups), and nine schools (Academy
+Transformation Trust). These schools are retained in the analysis with
+identical document-derived scores. Second, a name-match check---verifying that
+significant words from the school's registered name appear in the opening
+section of each retrieved document---flagged a subset of documents as
+potentially belonging to a different institution. A targeted manual review of
+the highest-risk cases found no confirmed mis-matches among the schools not
+already identified by the duplicate-document check. Both audit outputs are
+recorded in \texttt{behaviour\_policy\_doc\_audit.csv}.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Scoring Methodology}
+\label{sec:p1_text_method}
+
+Warmth and strictness scores are derived from the two document types via a
+two-step pipeline comprising an evidence-extraction step followed by LLM
+scoring. For Ofsted reports the extraction step is programmatic; for behaviour
+policy documents it is itself an LLM call. The approaches differ accordingly,
+reflecting the different structures and purposes of the two source types.
+
+\textit{Ofsted inspection reports.} For each report, the full narrative body of
+the section reporting ``What is it like to attend this school?'' and, where
+present, the section reporting ``What does the school do well?'' is extracted
+programmatically and submitted to \texttt{gpt-5-nano} together with the Ofsted behaviour
+and attitudes sub-judgement (if recorded).\footnote{For all-through schools
+(\textit{n}\,=\,170), Ofsted reports were pre-filtered to remove paragraphs
+containing only primary-stage terminology (e.g.\ Years~1--6, KS1/2, phonics,
+EYFS) with no secondary signal (e.g.\ Years~7--13, KS3/4, GCSE) before
+narrative extraction. Where paragraphs were removed, the model was additionally
+instructed to score secondary provision only. Validation on a random sample of
+20 all-through schools showed minimal impact of the filter (mean absolute score
+change: warmth 0.35 points, strictness 0.20 points), suggesting that Ofsted
+inspectors already focus their behaviour commentary on the secondary phase in
+these reports. The filter is retained for methodological transparency.} The
+extracted narrative is typically 4,000--6,000 characters in length and covers the
+inspector's most characterising language about the school's relational culture and
+behavioural environment. Warmth, strictness, and teaching quality are scored in a
+single unified LLM call using holistic rubrics validated empirically against the
+gold standard. The teaching score did not satisfy the $r > 0.30$ validation gate
+($r = 0.133$, $p = 0.18$, $n = 102$ schools) and is not used as a national
+predictor. To reduce the risk that final scores are driven by a single salient
+passage, the model first scores four subcomponents of each dimension before
+arriving at a holistic score. For strictness the subcomponents are: clarity and
+communication of expectations, consistency of enforcement across staff,
+behavioural outcomes, and the school's response to misbehaviour. For warmth they
+are: quality of staff--pupil relationships, pupils' sense of safety and belonging,
+pastoral support and identification of need, and the overall positivity of the
+relational climate. Each subcomponent is scored on a $1$--$5$ scale; the model
+then derives final warmth and strictness scores using those subcomponent scores as
+the basis, providing a confidence rating and a brief reason for
+each.\footnote{Confidence ratings (high, medium, or low) are recorded for each
+document but play no role in the Ridge calibration models. They are better
+understood as indicators of document quality than of school quality: a low
+confidence rating reflects thin, vague, or contradictory evidence in the text
+rather than anything about the school itself. The distribution of confidence
+ratings across documents is reported in \cref{app:2A:ridge_spec} as a diagnostic.}
+The full prompts are reproduced in \cref{app:2A:prompts}.
+
+\textit{Behaviour policy documents.} Each selected document is processed via a
+two-stage LLM pipeline. In the first stage, an extraction call identifies and
+removes content relating to special educational needs, disability, mental health,
+safeguarding, therapeutic interventions, anti-bullying, uniform, attendance, and
+external agencies---language that reflects statutory obligations or specialist
+provision rather than the school's general relational culture. For all-through
+schools, this extraction step additionally isolates text pertaining to
+secondary-phase provision, applying the same phase-filtering logic used for
+Ofsted reports. Where the extracted excerpt falls below 100 words the full
+document text is used as a fallback. In the second stage, the extracted excerpt
+is submitted to \texttt{gpt-5-nano} for
+scoring using an anchored rubric calibrated iteratively on eight schools with
+known warmth and strictness characteristics. Anchoring---embedding representative
+policy excerpts at key score levels---was adopted because initial calibration
+without anchoring produced severely compressed distributions, with over 60\% of
+policies assigned a single score value. The rubric treats strictness score~3 as
+the explicit default for a policy that describes adequate expectations without
+distinguishing features. The principal discriminating criteria are: score~4
+requires a named tracking or monitoring system in which a pupil's position
+automatically determines the next consequence, eliminating staff discretion at
+the point of sanction; score~5 additionally requires that sanctions are issued
+mandatorily (no discretionary exemptions) together with explicit deportment norms
+such as posture, SLANT protocols, or eye-contact requirements. For warmth,
+score~4 requires both a named reward system \textit{and} explicit operational
+guidance to staff on building or maintaining individual relationships with pupils
+(both criteria are necessary); score~3 is the default for policies expressing a
+caring ethos without specifying relational mechanisms. The model returns a final
+warmth score and a final strictness score with brief rationale. The full prompt
+is reproduced in \cref{app:2A:prompts}.
+
+For both document types, the holistic LLM score enters the Ridge calibration
+models as a single text feature per dimension: one Ofsted score and one
+behaviour-policy score, giving two text features per dimension in total.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{National-Tier Calibration Model and Validation}
+\label{sec:p1_text_valid}
+
+The LLM-derived holistic scores are not used directly as warmth and
+strictness estimates; instead they serve as input features to a Ridge
+regression calibration model trained on the same 100 full-data schools,
+following
+the same approach as the interview-tier model (\cref{sec:p1_enriched_model}).
+The national-tier model is estimated separately for warmth and strictness:
+%
+\begin{equation}
+  \label{eq:ridge_national}
+  \hat{y}_s = \hat{\alpha} + \beta_O x_{O,s} + \beta_P x_{P,s}
+\end{equation}
+%
+where $x_{O,s}$ is the Ofsted LLM score and $x_{P,s}$ is the behaviour-policy
+LLM score for school~$s$, both for the relevant dimension. The Ridge penalty
+$\lambda$ is selected by leave-one-out cross-validation on the 100 full-data
+schools.
+
+Leave-one-out cross-validated performance is reported in
+\cref{tab:national_model_loo}. The national-tier strictness model achieves a
+LOO-CV $r = 0.265$ ($R^2 = 0.067$, $\text{RMSE} = 0.665$), consistent with
+the Ofsted strictness signal being the dominant contributor. The national-tier
+warmth model achieves LOO-CV $r = 0.220$ ($R^2 = 0.044$, $\text{RMSE} = 0.873$):
+weak, but no longer null.
+
+That residual warmth signal is not, however, a signal about observed warmth. The
+Ofsted warmth score correlates at $r = 0.312$ ($p = 0.002$) with the head's
+espoused philosophy $W3^*$ but at only $r = 0.116$ ($p = 0.25$) with the
+visit-only component. Strictness behaves quite differently: it correlates with
+the espoused sub-score at $r = 0.409$ and with the observed component at
+$r = 0.400$---equally well with both. The asymmetry is the espoused--enacted
+distinction appearing within a single instrument. What an inspection report
+records about a school's warmth is what the school says about itself; what it
+records about strictness also tracks what an observer sees. The behaviour policy
+warmth coefficient remains slightly negative---the policy-as-aspiration effect
+in the Ridge itself. Adding interview data in Model~A reduces warmth RMSE from
+$0.873$ to $0.573$ and strictness RMSE from $0.665$ to $0.492$. As
+\cref{tab:ridge_circularity} shows, however, this gain is largely mechanical:
+the interview sub-scores are themselves 40~per~cent of the target, and against
+the independent visit-only component Model~A's predictions recover only
+$r = 0.269$ (warmth) and $r = 0.276$ (strictness). The incremental value of the
+interview component is real but substantially smaller than the RMSE comparison
+implies.
+
+\input{tables/tab_national_model_loo}
+
+A key interpretive consideration is that the two text sources capture the two
+dimensions asymmetrically. Ofsted inspection reports are structured around
+behaviour and attitudes, leadership, and curriculum quality; the language
+inspectors use to describe conduct and expectations maps directly onto the
+strictness dimension. Validation against the gold standard confirms this:
+the LLM-derived Ofsted strictness score correlates at $r = 0.345$ ($p < 0.001$,
+$n = 100$) with the gold standard strictness composite, rising to $r = 0.400$
+against the enacted visit-only measure. The Ofsted warmth score moves the other
+way: it correlates at $r = 0.268$ ($p = 0.007$) with the composite, which
+contains the head's own account of the school, but falls to $r = 0.116$
+($p = 0.25$) against the enacted visit-only measure. Strictness survives the
+move from espoused to enacted criterion; warmth does not. This asymmetry is not
+a failure of the warmth rubric so much as a
+structural feature of what Ofsted inspections report: inspectors focus on
+curriculum quality, behavioural order, and safeguarding, with little systematic
+variation in the language used to describe the relational warmth experienced by
+pupils. Behaviour policy documents, by contrast, contain explicit language about
+the relational philosophy of the school: the vocabulary of pastoral care,
+restorative approaches, praise and recognition, and adult tone provides the
+signal most relevant to the warmth dimension. Both text features enter the national-tier model for both dimensions, but for
+warmth the behaviour-policy coefficient is negative ($\hat{\beta}_P < 0$),
+consistent with the policy-as-aspiration effect. For strictness the Ofsted
+coefficient dominates, with a small positive contribution from the behaviour
+policy score. Fitted coefficients are reported in \cref{tab:national_model_coefs}
+in \cref{app:2A:ridge_spec}.
+
+The fitted values bear this out. Coefficients below are in composite-score
+points per one standard deviation of the feature, so they are directly
+comparable within a model. In the national text model, a standard deviation of
+Ofsted warmth moves predicted warmth by $+0.011$ points---against a composite
+standard deviation of $0.90$, effectively nothing---while the behaviour policy
+warmth coefficient is $-0.084$, small but the wrong sign for a measure that is
+supposed to be reading warmth. The strictness model inverts this: Ofsted
+strictness carries $+0.248$ and the behaviour policy score $+0.040$, so the
+externally authored source does almost all the work and the school-authored one
+adds little. In the interview model, the headteacher's espoused warmth $W3^*$ is
+the dominant warmth predictor at $+0.332$, followed by the interview quality
+weight at $+0.257$ and $S4$ at $+0.203$; for strictness the two interview
+strictness components lead ($S4$ at $+0.291$, $S3$ at $+0.244$) with Ofsted
+strictness retaining $+0.166$. Two features change sign across dimensions---$S3$
+contributes nothing to warmth and $W3^*$ slightly negatively to
+strictness---which is the expected discriminant pattern rather than a
+diagnostic concern. The substantive point is that no text feature approaches the
+magnitude of the interview features in either model, which is the same
+asymmetry visible in the cross-validated performance.
+
+It is worth being precise about the nature of the warmth limitation, because
+the obvious explanation turns out to be the wrong one.
+\Cref{fig:ofsted_distributions} plots the distribution of Ofsted LLM scores
+across the national run alongside interview composite scores for the 303
+interview schools. Ofsted warmth scores have mean $3.51$ and SD $0.60$ on the
+$1$--$5$ scale; Ofsted strictness scores have mean $3.60$ and SD $0.90$. The
+natural reading---that Ofsted warmth fails because it is too compressed to
+carry signal---is not supported. Expressed as a fraction of the available scale
+range, the Ofsted warmth score is the \emph{most} dispersed of the six culture
+measures used in this chapter ($14.9$~per cent of range, against
+$13.4$~per cent for the interview warmth composite and $10.0$~per cent for
+directly observed visit warmth). Range restriction is therefore not the binding
+constraint.
+
+Nor is the variation merely noise. Re-scoring the Tier~1 reports with a
+different and more capable language model reproduces the same school ordering
+($r = 0.631$ between the two models' warmth scores), so the measure is
+\emph{reliable}. What it is not is \emph{valid}: that reliable variation is
+uncorrelated with observed warmth ($r = 0.012$). What the Ofsted warmth score
+appears to track instead is the general favourability of the inspection
+narrative---it correlates with the LLM-derived Ofsted teaching score
+($r = 0.209$), leadership score ($r = 0.220$), and strictness score
+($r = 0.280$)---rather than any distinctively relational quality of the
+school. In the terms of \cref{sec:p1_cf}, inspection reports describe warmth in
+the register of institutional approval rather than of observed interaction, and
+that register varies with how positive the inspection was overall. This is a
+property of the source, not of the rubric or the model, and it is why the
+Ofsted warmth subcomponents are excluded from the Ridge model and why
+national-tier warmth prediction is not attempted.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{fig_A_score_distributions.pdf}
+  \caption{Distribution of warmth and strictness scores: interview composite
+    scores (303 schools, top panels) versus Ofsted LLM scores from the national
+    run ($n = 3{,}330$ schools, bottom panels). Interview scores are reported on
+    a $[0,10]$ scale (warmth mean~$6.62$, SD~$1.34$; strictness mean~$7.21$,
+    SD~$0.80$); Ofsted LLM scores on a $[1,5]$ scale (warmth mean~$3.51$,
+    SD~$0.60$; strictness mean~$3.60$, SD~$0.90$). Dashed vertical
+    lines indicate the sample mean. Relative to the width of its own scale the
+    Ofsted warmth distribution is not unusually compressed; its failure as a
+    warmth measure is one of validity rather than of variance, as discussed in
+    the text.}
+  \label{fig:ofsted_distributions}
+\end{figure}
+
+\Cref{fig:ofsted_validation_scatter} plots the individual-school relationships
+between Ofsted LLM scores and interview composite scores for the 100
+full-data schools with a scored inspection report, separately for warmth (left
+panel) and strictness (right
+panel). The contrast between the two panels illustrates the asymmetric
+predictive validity: the warmth scatter shows Ofsted scores spread across their
+full range but arranged essentially at random with respect to the interview
+composite, while the strictness
+scatter reveals a clear positive association. The stronger relationship for the
+strictness dimension arises because Ofsted inspectors consistently record
+evidence on behavioural order, enforcement of expectations, and response to
+misbehaviour---content that maps directly onto the strictness sub-scores in the
+interview protocol. Warmth, as operationalised here, concerns relational
+qualities that Ofsted reports describe in uniformly positive terms regardless of
+actual school differences.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{fig_B_validation_scatter.pdf}
+  \caption{Ofsted LLM scores versus interview composite scores for warmth (left)
+    and strictness (right). Filled circles show the 101 gold-standard schools
+    with complete data (visit and interview composite); grey points show the
+    197 interview-only schools (interview composite only). Regression lines are
+    fitted to the gold-standard sample only and reported with Pearson
+    correlations. Warmth: $r = +0.012$ ($p = 0.908$, $n = 101$). Strictness:
+    $r = +0.397$ ($p < 0.001$, $n = 101$). Jitter ($\pm 0.08$) is added to
+    Ofsted scores to reduce overplotting of integer-valued LLM scores.}
+  \label{fig:ofsted_validation_scatter}
+\end{figure}
+
+\Cref{tab:ofsted_convergent_discriminant} presents the full convergent and
+discriminant validity matrix. Convergent validity requires that each Ofsted
+score correlates more strongly with the corresponding interview dimension than
+with the other. The evidence is sharply asymmetric across the two dimensions,
+and the asymmetry is the substantive finding of this section.
+
+For strictness, convergent validity holds in every panel. Across the 299
+interview schools with an Ofsted score, Ofsted strictness correlates at
+$r = 0.198$ ($p < 0.001$) with interview strictness, against $r = 0.137$
+($p = 0.017$) with interview warmth. In the gold-standard subsample the
+convergent correlation rises to $r = 0.345$ ($p < 0.001$) against
+$r = 0.332$ for the discriminant cell---a margin too narrow to carry weight on
+its own---and the margin widens decisively only when the Ofsted score is
+validated against the \emph{enacted} visit-only measure rather than the
+composite: $r = 0.400$ ($p < 0.001$) with visit strictness versus
+$r = 0.206$ ($p = 0.040$) with visit warmth. The
+narrower margin in Panel~B reflects the within-sample correlation between the
+gold standard warmth and strictness composites ($r = 0.494$), which means any
+predictor of strictness will mechanically predict warmth to some degree;
+Panel~C, which removes the shared interview component from both sides,
+separates the two dimensions most cleanly.
+
+For warmth, convergent validity fails outright. The Ofsted warmth score is
+uncorrelated with interview warmth in the full sample ($r = 0.017$,
+$p = 0.768$), with the gold standard warmth composite ($r = 0.012$,
+$p = 0.908$), and with directly observed visit warmth ($r = 0.008$,
+$p = 0.939$). In each panel the convergent cell is no larger than---and in
+Panels~B and~C marginally smaller than---the corresponding discriminant cell.
+This is not a marginal or borderline result that additional data might
+resolve: three independent comparisons place the correlation within
+sampling noise of exactly zero. The Ofsted warmth score is therefore not used
+as a warmth measure anywhere in this thesis, and warmth is omitted from the
+national-tier analysis in \cref{ch:paper2} on these grounds.
+
+Sub-score correlations, which map individual Ofsted sub-dimensions to the
+corresponding interview sub-scores, are reported in
+\cref{fig:ofsted_subscore_heatmap} in \cref{app:2A:ridge_spec} and show that
+the Ofsted enforcement consistency sub-dimension is the strongest predictor of
+interview in-lesson and out-of-lesson strictness sub-scores, providing the
+clearest indication of construct-level correspondence.
+
+A natural objection is that the warmth null reflects the capability of the
+scoring model rather than the content of the reports. To test this, the entire
+Tier~1 sample was re-scored with a substantially more capable model
+(\texttt{gpt-5-mini-2025-08-07}) under an identical prompt and rubric. The null
+is unchanged: re-scored Ofsted warmth correlates at $r = 0.055$ ($p = 0.598$,
+$n = 96$) with the gold standard warmth composite and $r = 0.022$
+($p = 0.834$) with visit warmth, while re-scored strictness retains convergent
+validity ($r = 0.374$, $p < 0.001$) without improving on the smaller model
+($r = 0.441$ on the same 96 schools). The two models agree closely with one
+another (warmth $r = 0.631$; strictness $r = 0.792$) and produce near-identical
+dispersion (warmth SD $0.564$ versus $0.580$), indicating that they are reading
+the same underlying text signal. Two scoring models of different sizes, reading
+the same reports, recover the same enacted-warmth null. That null is therefore a
+property of what Ofsted inspection reports record, not an artefact of the
+scoring model.\footnote{This cross-model comparison was run against the earlier
+scoring pass and is reported as it was conducted. It bears on whether the
+enacted-warmth null survives a change of model, which is the question it was
+designed to answer, and both passes agree that it does.}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Convergent and discriminant validity of Ofsted LLM scores against
+    interview composite scores. Convergent correlations (Ofsted warmth versus
+    interview warmth; Ofsted strictness versus interview strictness) are shown
+    in \textbf{bold}. Discriminant validity requires that bold entries exceed
+    the corresponding off-diagonal entries. Stars: $^{*}p < .05$;
+    $^{**}p < .01$; $^{***}p < .001$.}
+  \label{tab:ofsted_convergent_discriminant}
+  \input{tables/tab_ofsted_convergent_discriminant}
+  \medskip
+  \begin{minipage}{\linewidth}
+    \small\textit{Note:} Panel~A uses the interview composite for all schools
+    with a scored Ofsted report; Panel~B uses the full gold standard composite
+    (visit and interview); Panel~C uses the visit-only enacted measure, which
+    shares no component with the interview data. The narrower convergent
+    discriminant margin in Panel~B reflects the within-sample correlation
+    between the gold standard warmth and strictness composites ($r = 0.494$):
+    a predictor of strictness will mechanically predict warmth to some degree.
+    Panel~C removes this shared component and is therefore the decisive test.
+    The two rows separate there and only there. Ofsted warmth meets the
+    discriminant criterion against the espoused criteria of Panels~A and~B
+    ($+0.239$ against $+0.098$; $+0.268$ against $+0.215$) and fails it against
+    the enacted measure of Panel~C, where its convergent correlation
+    ($+0.116$, $p = 0.25$) is less than half its own discriminant cell
+    ($+0.298$). Ofsted strictness shows the reverse profile: the margin is
+    negligible in Panel~A ($+0.197$ against $+0.200$) and narrow in Panel~B
+    ($+0.345$ against $+0.332$), but clean in Panel~C ($+0.400$ against
+    $+0.206$). Read together, the panels say that inspection text tracks
+    warmth as schools describe it and strictness as an observer finds it.
+    Sample sizes are $299$ and $100$ rather than $303$ and $102$ because
+    interview schools lacking a scored Ofsted report are dropped.
+  \end{minipage}
+\end{table}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{School Websites}
+\label{sec:p1_text_web}
+
+A third public-text source---school websites---was collected and scored as an
+independent external validation of the warmth and strictness constructs. School
+website text is substantively distinct from Ofsted inspection reports (produced by
+an external regulator) and behaviour policies (governance documents). Website text
+represents the school's own public-facing self-presentation: mission statements,
+pastoral philosophy pages, and descriptions of community and ethos written for a
+prospective-parent audience.
+
+A national crawl of school website content yielded 3,053 usable text files
+covering 2,962 schools with ``ok'' quality status. Text was scored using a
+four-step pipeline: crawl, extract, clean, and score. The scoring rubric
+(\texttt{website-strictness-warmth-v4}, run on \texttt{gpt-4o-mini}) assessed warmth and
+strictness independently on a 1--5 scale, calibrated to a 10-school anchor set
+with known gold-standard scores.\footnote{The v4 rubric was signed off as
+satisfactory for strictness (anchor rank correlation 10/10) but showed a ceiling
+effect for warmth (anchor agreement 3/10), driven by the tendency of website text
+to use uniformly positive relational language irrespective of enacted warmth.} In
+the national distribution, strictness scores are left-skewed (mean~1.97), with
+most schools showing limited explicit conduct language on their websites; warmth
+scores are more dispersed (mean~3.22) but the W=2 lower boundary is known to be
+weakly discriminating.
+
+Validation against the gold-standard composite scores for the 96 schools in the
+pilot sample reveals that website LLM warmth does not predict enacted warmth
+($r = -0.167$, $p = .09$, $n = 96$) and website strictness shows no predictive
+validity ($r = +0.002$, $p = .99$). Teaching philosophy classification from
+website text---a three-category variable (traditional\,/\,progressive\,/\,
+unmarked) derived from \texttt{website\_identity\_scores.csv}---is separately
+validated in \cref{ch:paper2} as a national predictor and is not discussed
+further here.
+
+Website warmth and strictness scores are interpreted in this chapter as indicators
+of \textit{espoused} rather than enacted culture and are not used as predictors in
+\cref{ch:paper2}; their role in the analysis is to provide a third independent
+replication of the warmth signal failure documented in \cref{sec:p1_policy_aspiration}.
+
+% ---------------------------------------------------------------
+\subsection{The Policy-as-Aspiration Effect}
+\label{sec:p1_policy_aspiration}
+
+A consistent pattern emerges across all three publicly available text sources ---
+Ofsted inspection reports, school behaviour policies, and school websites --- that
+provides a substantive finding in its own right. In each case, the text-based
+warmth signal fails to predict independently observed enacted warmth, and in
+the case of behaviour policy and website text, the direction is counter-intuitive:
+schools whose documents express the strongest warmth intentions tend to receive
+lower warmth scores from independent observers.
+
+This pattern is consistent with Argyris and Sch\"{o}n's distinction between
+\emph{espoused theory} (what people say they believe) and \emph{theory-in-use}
+(what their behaviour implies they believe). Applied to school culture, a
+behaviour policy is an organisational statement of intent --- the warmth that
+leaders aspire to, or present to external audiences --- rather than a record of
+the warmth experienced by pupils day-to-day. Schools that face the greatest
+relational challenges may produce the most aspirational policy documents;
+schools whose warmth is securely embedded in practice may feel less need to
+articulate it. The same logic applies to school websites: the public-facing
+description of the school's relational culture is aspirational communication,
+not an audit of enacted behaviour.
+
+A further line of evidence reinforces this interpretation. The document quality
+audit described in \cref{sec:p1_text_docs} established that approximately one
+in ten schools in the national sample shares an identical behaviour policy
+document with at least one other school, in every identifiable case reflecting
+a Multi-Academy Trust template applied uniformly across member schools. These
+schools have no school-specific behaviour policy at all: their document is an
+institutional governance instrument produced at the trust level and distributed
+without adaptation. That this proportion reaches 10.4~per cent---over 350
+schools---is itself evidence of how far behaviour policies are removed from the
+enacted culture of individual schools. If even the \emph{existence} of a
+school-specific document cannot be taken for granted, the assumption that any
+such document captures the particular norms of a given school is correspondingly
+weakened. The finding is consistent with the broader policy-as-aspiration
+pattern: behaviour policies function as compliance artefacts serving external
+accountability audiences rather than as descriptions of how any particular
+school operates.
+
+The three independent replications of this near-zero or negative warmth signal
+(Ofsted $r = +0.161$, $p = .105$; behaviour policy Ridge model $r \approx +0.18$
+in LOO-CV; school website $r = -0.167$, $p = .09$, $n = 96$) are more
+informative than any individual null result. They provide strong evidence that
+the espoused--enacted gap is a genuine structural feature of school culture, not
+a measurement artefact arising from a single flawed source. Nor is it an
+artefact of the scoring model: re-scoring the entire Tier~1 sample with a
+substantially more capable model leaves the warmth null intact while preserving
+strictness convergence, and the two models agree closely with each other
+(\cref{sec:p1_text_valid}). The remaining explanation is the one the pattern
+points to---these sources do not record warmth. This finding
+strengthens the methodological case for using direct observation as the primary
+culture measure in \cref{ch:paper2}, and motivates the decision to omit
+national-tier warmth prediction from the main analysis.
+
+The website strictness result ($r = +0.002$, $p = .99$, $n = 96$) reinforces
+this interpretation: the explicit conduct language visible on school websites is
+similarly disconnected from the strictness observable inside the school.
+Together, the three independent null or negative warmth signals and the near-zero
+website strictness correlation constitute a consistent pattern across five
+separate measurement attempts using four distinct text sources.
+
+A distinct but related consideration is whether some of the compression visible
+across all score distributions in this project---including the gold-standard
+interview sub-scores themselves---reflects genuine similarities between English
+secondary schools, rather than instrument artefacts alone. Approximately 68~per
+cent of English state secondary schools are rated Good by Ofsted and a further
+15~per cent Outstanding; the system's shared regulatory architecture---a common
+national curriculum, inspection pressure generating isomorphic compliance, shared
+teacher training pipelines---tends to push schools toward a common modal standard.
+The two sources leave different signatures in the score distributions, and the
+gold-standard interview sub-scores can be used to tell them apart. The
+researcher-coded warmth sub-score~$W3$ has a mean of~$4.08$ and a standard
+deviation of~$0.39$ on the 1--5 item scale ($n = 303$): compressed, but smoothly
+so, spanning $2.60$ to $5.00$ with only 12~per cent of schools at the modal
+value. That is the signature of a genuinely narrow but real distribution, and it
+appears in the instrument most sensitive to between-school differences. The LLM
+scores taken from the same interview transcripts behave quite differently: 84~per
+cent of schools receive a warmth score of exactly~4, 85~per cent a management
+score of exactly~4, and 78~per cent a strictness score of exactly~4
+(\cref{sec:p1_leadership}). A distribution with four-fifths of its mass on a
+single integer is not a compressed measurement of a homogeneous population; it is
+a measuring instrument that has stopped discriminating. Score compression
+therefore has two distinct sources: instrument artefacts---the espoused--enacted
+gap documented above, and the modal collapse of the LLM transcript scores---and
+real between-school homogeneity, which is a substantive empirical finding. The
+latter implies that the statistical power available to detect warmth and
+strictness effects on pupil progress in \cref{ch:paper2} may be inherently
+constrained by restricted range, irrespective of instrument quality.
+Separating these two sources is methodologically important: the measurement
+failures documented in this chapter do not invalidate the warmth and strictness
+constructs, but they do suggest that the English school system, as a whole,
+occupies a relatively narrow band on both dimensions.
+
+% ---------------------------------------------------------------
+\subsection{Management and Leadership}
+\label{sec:p1_leadership}
+
+A fourth dimension of school culture---management and leadership---was scored
+from the headteacher interview and from Ofsted inspection reports, extending the
+espoused--enacted comparison to a domain where the aspiration-echo dynamic might
+be expected to operate differently. Where warmth and strictness concern
+pupil-facing relational norms, management and leadership concern how the
+headteacher organises and directs their staff.
+
+From the headteacher interview, Q3 (``How do you communicate your school's
+culture to staff?'') and Q10 (``How do you hold staff to account?'') were scored
+by an LLM (the v6 unified scorer, \texttt{gpt-5-mini-2025-08-07}) on a 1--5 scale of
+management deliberateness and systematicity. The resulting composite---hereafter
+$M_{\mathrm{trx}}$---has $N = 290$ schools, mean~$3.87$, and SD~$0.38$: the
+distribution is extremely compressed, with 85~per cent of schools scoring exactly
+4, suggesting that headteachers in interview settings converge on a common
+language of deliberate, systems-oriented management.
+
+From Ofsted inspection reports, the full 20,000-character narrative body
+(rather than the 4,000--6,000-character summary extract used for warmth and
+strictness) was passed to \texttt{gpt-4o-mini} for a holistic leadership score
+on a 1--5 scale. Ofsted grades are inversely coded (1~=~Outstanding,
+4~=~Inadequate) while the LLM score runs in the conventional direction, so a
+\emph{negative} raw correlation is the one that indicates agreement. Both
+validations are reported below on the raw coding to keep the signs comparable.
+
+A pilot validation against actual Ofsted leadership sub-grades for 30~schools
+yielded $r = -0.739$ on the raw coding---equivalently $r = +0.739$ against the
+reversed grade, the form in which the $r > 0.5$ acceptance threshold was
+specified. The national run covered $N = 3{,}277$ schools (mean~$3.81$,
+SD~$0.76$), and the national-scale LLM leadership score correlates at
+$r = -0.588$ ($n = 3{,}206$) with actual Ofsted leadership grade: the same
+direction, at a somewhat lower magnitude. The attenuation is expected by
+design. The pilot sampled schools stratified by grade, targeting eight schools
+in each of the four grade bands, which spreads the sample across the full range
+of the criterion and inflates the correlation relative to the national
+distribution, where the great majority of schools are graded Good. The pilot
+figure should therefore be read as a check that the scorer discriminates
+between grade bands, not as an estimate of national-scale accuracy; $-0.588$ is
+the figure to carry forward.
+
+The correlation between headteacher interview management score and Ofsted
+LLM leadership score is $r = -0.025$ ($p = .68$, $n = 286$): a precise null
+at the level of the interview sample. This is the leadership analogue of the
+warmth-signal failure: the headteacher's self-reported management deliberateness
+in interview is unrelated to the leadership quality independently assessed from
+inspection report text. Two interpretations are consistent with this null. First,
+a London confound: the interview sample is heavily London-weighted, and London
+schools exhibit a distinct management profile under conditions of intensive
+accountability; if the interview scoring captures a London-specific management
+discourse rather than between-school variation in management quality, the
+cross-source correlation will be attenuated. Second, the aspiration-echo dynamic
+applies in the management domain as readily as in the warmth domain: headteachers
+who most explicitly articulate management systems and accountability structures
+in interview may be precisely those whose schools are under greatest pressure to
+improve---the same schools that Ofsted is most likely to rate below their
+self-reported management standard. On either account, the management
+espoused--enacted gap completes the multi-source argument that public
+self-presentation of school culture diverges systematically from externally
+assessed reality.
+
+% ---------------------------------------------------------------
+\section{Results}
+\label{sec:p1_results}
+
+The 102 gold-standard schools have warmth composite scores ranging from~4.14
+to~8.83 (mean~$6.80$, SD~$0.90$) and strictness composite scores from~4.86
+to~9.21 (mean~$7.09$, SD~$0.72$). The moderate positive correlation between
+warmth and strictness ($r = 0.494$, $p < .001$) is consistent with the
+authoritative-school model, in which high-support and high-demand environments
+co-occur more often than not, but refutes a simple unidimensional hierarchy.
+
+The interview-tier Ridge model (Model~A, $N = 299$ prediction targets) recovers
+a considerably wider distribution than the national text model: predicted warmth
+ranges across SD~$= 0.71$ and predicted strictness across SD~$= 0.42$. Model~B
+(national text only, $N = 3{,}269$ targets) produces severely compressed
+predictions: warmth SD~$= 0.26$ and strictness SD~$= 0.21$, compared to
+SD~$= 0.90$ and $0.72$ respectively in the gold standard. This compression is
+directly explained by the LOO-CV performance of Model~B: with a warmth LOO
+correlation of $r = 0.220$ and a strictness correlation of $r = 0.265$, both
+models perform only modestly and shrink their predictions heavily toward the
+training mean.
+
+Neither model's predictions are used as a regressor in \cref{ch:paper2}. That
+chapter's primary specification uses the directly observed visit scores for the
+gold-standard schools, and its national extension regresses progress on the raw
+Ofsted LLM strictness score rather than on $\widehat{S}$ from either Ridge
+model. The choice is deliberate rather than incidental: a predicted score
+inherits both the sampling error of the training set and the shrinkage
+documented above, and regressing an outcome on a shrunken prediction attenuates
+the coefficient by an amount that is not recoverable without knowing the
+prediction error variance. Using the raw LLM score keeps the right-hand-side
+variable a direct measurement, at the cost of measuring only one dimension in a
+1--5 scale. The Ridge models are therefore best read as a measurement
+contribution of this chapter---an estimate of how much of the observed culture
+signal survives when the visit is removed---rather than as an instrument for
+extending \cref{ch:paper2} to the national population. Model~B in particular is
+a negative result worth reporting: it establishes that publicly available text
+alone cannot rank English secondary schools on warmth, which is itself
+informative about what the text does and does not contain.
+
+\Cref{tab:espoused_enacted_gap} reports the espoused--observed gap across three
+independent sources. A word on the benchmark is needed here. Elsewhere in this
+chapter the enacted measure is the researcher visit, and Ofsted text is treated
+as one of several espoused public sources. These comparisons, however, run at
+national scale, where no visit benchmark exists. Ofsted is used as the observed
+side of the comparison for two reasons: it is the only source in the set not
+authored by the school itself, being written by an external inspector following
+a site visit; and its strictness signal has already been shown to converge with
+directly observed strictness ($r = 0.400$, \cref{sec:p1_text_valid}). That
+warrant is dimension-specific---Ofsted warmth carries no such validity---so the
+comparison is restricted to strictness and leadership. The gaps below should
+accordingly be read as school self-description measured against external
+inspection, not against the researcher visits used in the primary analysis.
+
+The behaviour-policy gap (espoused BP strictness minus
+Ofsted-observed strictness) is close to zero on average ($\Delta = -0.14$,
+SD~$= 1.21$, $N = 3{,}269$), with 40~per cent of schools showing a negative
+gap (espoused lower than enacted) and 29~per cent a positive gap. The website
+gap is considerably larger and more consistent in direction ($\Delta = -1.15$,
+SD~$= 1.25$, $N = 3{,}273$; 70~per cent negative), confirming that school
+websites substantially understate the strictness recorded by inspectors. The
+management gap is near zero on average ($\Delta = +0.02$, SD~$= 0.89$,
+$N = 286$), consistent with the null correlation reported above.
+
+\input{tables/tab_espoused_enacted_gap}
+
+A fourth measurement cell provides further convergent evidence from the
+recipients of school culture rather than its producers. Parent View is the Ofsted
+online survey of parental perceptions; two items---``My child is happy at this
+school'' (Q1) and ``My child feels safe at this school'' (Q2)---capture parental
+perceptions of the relational and emotional environment. A composite of the
+proportion of parents giving positive responses to Q1 and Q2 correlates at
+$r = +0.157$ ($p = .008$, $n = 289$) with gold-standard warmth across the 289
+interview schools with overlapping Parent View data. Among the 93 schools with
+temporally aligned September 2025 release data---where the survey refers to the
+same academic year as the gold-standard observation---the association rises to
+$r = +0.242$ ($p = .020$). No Parent View items isolate strictness from overall
+satisfaction.
+
+These results frame parental perception as a fourth independent data source on
+school culture, distinct from the researcher-observed (enacted), headteacher-reported
+(espoused), and document-derived (aspirational) cells. The moderate positive
+correlation with gold-standard warmth is expected given the source-type mismatch:
+parents perceive culture through a different lens than trained observers, and
+Parent View responses conflate warmth with overall school quality. The stronger
+association in the temporally aligned release underlines that survey timing
+matters; older Parent View releases attenuate the correlation as school culture
+drifts relative to the survey reference period.
+
+% ---------------------------------------------------------------
+\section{Conclusion}
+\label{sec:p1_conclusion}
+
+This chapter has introduced and validated a two-dimensional measurement framework
+for school culture---warmth and strictness---using a three-tier prediction cascade
+calibrated to a gold standard of direct classroom and school observation. Three
+findings warrant emphasis.
+
+First, the gold-standard instrument produces internally coherent and reliable scores.
+Inter-rater reliability for the headteacher interview items is substantial across
+all eleven questions (Pearson $r$ range 0.61--0.74; within-one-point agreement
+exceeding 90\% throughout), and classroom and outside-of-lesson observation items
+show similar levels of pairwise consistency. The visit and interview sub-scores
+capture meaningfully distinct aspects of school culture rather than providing
+redundant measures of a single construct: their within-school correlation is
+moderate at best ($r = 0.22$ for warmth, $r = 0.18$ for strictness), supporting
+the 60/40 composite weighting that privileges the enacted dimension. The resulting
+gold-standard scores predict pupil progress in \cref{ch:paper2}, providing
+external criterion validity for the measurement framework.
+
+Second, and most consequentially, a systematic espoused--enacted divergence
+characterises school culture self-presentation across multiple independent sources.
+Headteachers rate their schools on average $0.45$ points higher on warmth
+than independent observers record---a systematic positive bias---while the
+corresponding strictness gap is near zero ($+0.01$ points), indicating that
+the systems-based strictness self-report is substantially more accurate than
+warmth self-report. The warmth bias is replicated in LLM scores derived from
+behaviour policy documents and school websites. In none of these three public-text sources does
+the warmth signal predict independently observed enacted warmth; in the case of
+behaviour policy and website text, the direction is counter-intuitive---schools
+expressing the strongest warmth aspirations tend to score lower on observed
+warmth. The management dimension exhibits the same pattern: the correlation between
+headteacher interview management scores and Ofsted LLM leadership scores is
+$r = -0.025$ ($p = .68$), a precise null that mirrors the warmth-signal failure
+in a different domain. This convergence across four independent
+source-type comparisons implies that the gap is a genuine structural feature of
+English school culture rather than an artefact of any single measurement
+instrument, and provides direct empirical evidence for Argyris and Sch\"{o}n's
+distinction between espoused theory and theory-in-use at the level of
+institutional culture.
+
+Third, despite the warmth measurement challenge, enacted strictness is recoverable
+at national scale from Ofsted inspection report text ($r = 0.400$, $p < 0.001$,
+$n = 100$, against directly observed strictness), enabling a national-tier
+analysis of strictness effects on pupil
+progress that does not depend on direct observation. The text-based warmth signal
+shows no such validity---and re-scoring the entire Tier~1 sample with a more
+capable language model leaves the null unchanged---so national-tier warmth
+prediction is not attempted in \cref{ch:paper2}.
+
+Two limitations of the design should be noted. The three-tier structure means
+that scores are not fully comparable across tiers: gold-standard scores blend
+enacted and espoused culture in a 60/40 ratio, while interview-tier scores derive
+from self-report calibrated against that standard, and national-tier scores rely
+on text proxies alone. Score compression---a restricted empirical range visible
+across all sources---partly reflects genuine between-school homogeneity in the
+English system (approximately 68\% of state secondary schools rated Good by
+Ofsted, 15\% Outstanding), rather than instrument failure alone; even a perfectly
+specified measure would recover limited between-school variance in a system shaped
+by common regulatory pressures.
+
+The most productive directions for future extension follow directly from these
+limitations. The gap between visit-only and interview-only scores constitutes a
+measure of cultural coherence---whether the headteacher's stated philosophy is
+reflected in the observable environment---that could be studied as an outcome
+predictor in its own right. And the warmth sub-scores most resistant to text-based
+recovery (W1: in-lesson staff--pupil warmth; W2: warmth in transitions and breaks)
+represent the highest-priority targets for future observational data collection at
+scale.
+
+% ===============================================================
+%  APPENDIX 2A
+% ===============================================================
+\bigskip
+\noindent\rule{\linewidth}{0.4pt}
+
+\startchapterappendix{2}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\section{Scoring Guide and Item Definitions}
+\label{app:2A:guide}
+
+This section documents how the individual proforma items combine into the nine
+sub-scores and the three composite scores. The items themselves---question
+wording, response format, and the anchor description attached to each rating
+level---are reproduced in full in \cref{app:2A:interview_guide} for the interview
+and \cref{app:2A:visit_protocol} for the two observation forms.
+
+Every item is recorded on a 1--5 scale. Two observation items admit a zero code
+with a distinct meaning: a zero on \emph{response of pupils to sanctions} records
+that no sanction was issued during the lesson, and a zero on \emph{effectiveness
+of pupil discussion} records that no discussion was initiated. The first is not
+a genuine low score---an orderly lesson requiring no sanction should not be
+counted as one where sanctions were ignored---so it is replaced by
+$6 - \text{disruption}$, which assigns a calm unsanctioned lesson a high value
+and a disrupted unsanctioned lesson a low one. The second is treated as a
+genuine negative, since a lesson containing no discussion did not achieve
+effective discussion.
+
+Observation item scores are averaged across lessons and across researchers to
+give one value per school before the sub-scores are formed.
+\cref{tab:p1_subscore_items} lists the constituent items of each sub-score.
+
+\input{snippets/subscore_items}
+
+Two items on the outside-of-lessons form---consistency of verbal feedback and
+quality of differentiation across lessons---are recorded on the form as
+cross-lesson averages of the corresponding lesson observation items, and so
+enter no sub-score of their own. Of the ten yes/no systems in the interview, S3
+uses the eight that represent behavioural or academic requirements; the two
+reward systems (reward assemblies and reward points) are excluded, as their
+presence indicates a warmer rather than a stricter regime. S3 is the count of
+those eight, rescaled to 0--5. Every other sub-score is the mean of its items,
+computed over the items present so that a missing item reduces the number of
+contributing items rather than the school's score.
+
+Sub-scores combine into composites with a fixed weighting that favours observed
+behaviour over stated philosophy:
+%
+\begin{align*}
+\text{Warmth}     &= 0.6 \times \overline{(W1, W2)} + 0.4 \times W3^* \\
+\text{Strictness} &= 0.6 \times \overline{(S1, S2)} + 0.4 \times \overline{(S3, S4)} \\
+\text{Teaching}   &= 0.6 \times T1 + 0.4 \times T2
+\end{align*}
+%
+where $W3^* = W3 \times \omega$ and $\omega = q/5$ scales the interview quality
+rating $q$---the mean of the three post-interview meta-ratings (confidence,
+willingness to reveal information, and patience) described at the end of
+\cref{app:2A:interview_guide}---onto $(0, 1]$. The adjustment discounts a headteacher's stated
+warmth when the interview itself gave weak grounds for believing it. It is
+applied to $W3$ only: the equivalent adjustment to $S4$ and $T2$ was tested and
+worsened rather than improved agreement with the corresponding observed
+sub-scores, so those enter unadjusted. Both variants are retained in
+\texttt{warm\_strict\_scores\_iq\_all\_adjusted.csv} for comparison.
+
+Schools with only one of the two instruments use the sub-scores that instrument
+supports: warmth is $W3^*$ and strictness $\overline{(S3, S4)}$ for an
+interview without a visit, and $\overline{(W1, W2)}$ and $\overline{(S1, S2)}$
+for a visit without an interview. All composites are finally rescaled from 0--5
+to 0--10.
+
+The mapping in \cref{tab:p1_subscore_items} is generated from
+\texttt{warm\_strict\_scorer.py} by \texttt{thesis/make\_instruments.py}, which
+fails if the scorer uses an item this appendix does not describe.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\section{Inter-rater Reliability Tables}
+\label{app:2A:irr}
+
+\input{tables/tab_irr_interview}
+
+\input{tables/tab_irr_classroom}
+
+\input{tables/tab_irr_outside}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\section{Interview Guide}
+\label{app:2A:interview_guide}
+
+\input{snippets/interview_guide}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\section{School Visit Protocol}
+\label{app:2A:visit_protocol}
+
+\input{snippets/visit_protocol}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\section{LLM Prompt Text}
+\label{app:2A:prompts}
+
+This section reproduces the scoring instruments in full: the system instruction
+and rubric administered to the language model for Ofsted reports and for
+behaviour policy documents. It is generated directly from the two scoring
+scripts by \texttt{thesis/make\_prompts.py}, so the text below is the text that
+was administered rather than a description of it, and a subsequent change to
+either rubric that is not reflected here will fail that script's
+\texttt{-{}-check} mode.
+
+\input{snippets/llm_prompts}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\section{Behaviour Policy Crawl Methodology}
+\label{app:2A:crawl}
+
+Behaviour policies are not held in any central register, so each document had to
+be located on the school's own website. The crawl proceeds in three stages, run
+by \texttt{download\_behaviour\_policies.py} and
+\texttt{select\_behaviour\_policy\_documents.py}.
+
+\paragraph{URL discovery.} Starting from the school website recorded in GIAS,
+the crawler tries a fixed list of conventional policy-page paths
+(\texttt{/policies/}, \texttt{/key-information/policies},
+\texttt{/statutory-information/policies} and around thirty further variants,
+each in both capitalisation conventions), since English school sites cluster
+heavily on a small number of content-management templates. Pages that are found
+are parsed for links to documents with a \texttt{.pdf}, \texttt{.doc} or
+\texttt{.docx} extension. Where the path list fails, the crawler falls back to
+site-scoped web search---Brave Search, with Google Custom Search as a
+secondary---restricted to the school's own domain and querying a set of title
+phrases (``behaviour policy'', ``relationships and behaviour
+policy'', ``positive behaviour policy'', ``behaviour for learning''
+and similar, including the American spelling and the initialisms some trusts
+use). The two spellings matter: a non-trivial number of English schools publish
+under ``behavior''.
+
+\paragraph{Retrieval.} Candidate documents are scored on link text, file name
+and URL path, and the highest-scoring few per school are downloaded rather than
+only the single best, so that the selection stage has something to choose
+between. Requests are rate-limited and identify themselves as
+\texttt{school-policy-downloader/1.0}; each file is stored with its SHA-256
+digest so that repeat runs are idempotent and identical documents shared across
+a multi-academy trust can be detected. The retrieval stage returned 8,277
+candidate documents.
+
+\paragraph{Policy identification.} The selection stage picks one document per
+school and records why. Candidates are scored on weighted regular-expression
+matches against both document metadata and the first portion of extracted text.
+Positive patterns range from an exact ``behaviour policy'' title match
+down to weaker signals such as ``discipline policy'' or ``conduct
+policy''; negative patterns penalise the documents most easily confused with a
+behaviour policy---anti-bullying policies, exclusions procedures, home--school
+agreements, and primary-phase policies published by all-through trusts. The gap
+between the best and second-best candidate determines a confidence label. Of
+3,363 schools with at least one candidate, selection was high-confidence for
+2,755, medium for 387 and low for 79, with a further 142 resolved by hand; 334
+were flagged for manual review, of which the sampled subset is discussed in
+\cref{sec:p1_text_docs}.
+
+The residual risk this procedure cannot eliminate is that a school publishes a
+current policy the crawl never reaches---behind a login, inside a newsletter, or
+as a web page rather than a document. That failure is not random with respect to
+school characteristics, which is why coverage is reported by tier in
+\cref{app:2A:sample} rather than assumed uniform.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\section{Sample Characteristics}
+\label{app:2A:sample}
+
+\input{snippets/representativeness}
+
+\input{tables/tab_representativeness}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{fig_D_regional_representativeness.pdf}
+  \caption{Regional distribution of interviewed and visited schools compared to
+    the national population of open secondary and all-through schools in England.
+    Bars show the percentage of schools in each region for the national population
+    ($n = 3{,}312$), interviewed schools ($n = 300$), and visited schools ($n = 101$).
+    Regions are ordered by national share. Both samples significantly over-represent
+    London and the South East; the visited sample is particularly concentrated in
+    London (44.6\% versus 15.0\% nationally). $\chi^2$ goodness-of-fit tests
+    reject equal regional composition for both samples ($p < .001$).}
+  \label{fig:2A:representativeness_region}
+\end{figure}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\section{Ridge Model Specification Comparison}
+\label{app:2A:ridge_spec}
+
+\Cref{tab:interview_model_coefs} and \cref{tab:national_model_coefs} report the
+fitted coefficient vectors for the interview-tier (Model~A) and national-tier
+(Model~B) calibration models respectively, in both standardised and original
+units.
+
+\input{tables/tab_interview_model_coefs}
+
+\input{tables/tab_national_model_coefs}
+
+\Cref{fig:ofsted_subscore_heatmap} reports pairwise correlations between each
+of the eight Ofsted LLM sub-dimensions (four strictness, four warmth) and each
+of the seven interview sub-scores (S1--S4, W1--W3) for the full sample of 303
+interview schools. The heatmap confirms that the strongest predictive signal
+in Ofsted reports resides in the enforcement consistency sub-dimension, which
+correlates at $r = 0.395$ with in-lesson interview strictness (S1) and
+$r = 0.309$ with out-of-lesson strictness (S2). The behavioural outcomes
+sub-dimension shows near-zero correlation with the interview systems-strictness
+sub-score (S3, $r = 0.015$), consistent with Ofsted inspectors reporting
+outcomes (order and disruption levels) in similarly positive terms across most
+schools rather than recording the specific behaviour management architecture
+that drives S3. Warmth sub-dimensions show uniformly weak correlations with
+interview sub-scores, with the partial exception of safety and belonging and
+pastoral support, which correlate at $r = 0.162$--$0.202$ with the headteacher
+warmth philosophy sub-score (W3)---the interview item most concerned with
+structural pastoral provision rather than directly observed relational behaviour.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{fig_C_subscore_heatmap.pdf}
+  \caption{Sub-score correlation matrix: Ofsted LLM sub-dimensions (rows)
+    versus interview sub-scores (columns), Pearson~$r$ for all 303 interview
+    schools. Interview sub-scores based on visit observations (S1, S2, W1,
+    W2) are available for the 102 full-data schools only ($n = 102$); those
+    derived from the headteacher interview (S3, S4, W3) are available for
+    all 303 ($n = 303$). Cell sample sizes are shown in grey below each
+    correlation. White separating lines divide Ofsted strictness sub-dimensions
+    (top rows) from warmth sub-dimensions (bottom rows), and interview
+    strictness sub-scores (left columns) from warmth sub-scores (right
+    columns). Stars: $^{*}p < .05$; $^{**}p < .01$; $^{***}p < .001$.}
+  \label{fig:ofsted_subscore_heatmap}
+\end{figure}
+
+The national-tier model takes the LLM's holistic score for each document as a
+single number per source. That is a choice, and the obvious alternative is to
+hand the Ridge the disaggregated sub-dimensions instead and let it fit its own
+weights over the facets rather than accepting the LLM's aggregation of them.
+\Cref{tab:ridge_spec_comparison} tests that alternative directly, comparing four
+feature representations under the identical estimation procedure: (A) the two
+holistic scores used throughout the chapter; (B) the four Ofsted sub-dimensions
+in place of the Ofsted holistic score; (C) both together; and (D) the
+keyword-rule scores computed by the deterministic pattern matcher that runs
+alongside the LLM, as a floor against which to judge whether the language model
+contributes anything beyond term counting.
+
+The behaviour-policy holistic score is held fixed across (A)--(C) because the
+behaviour-policy scorer emits only holistic scores; the disaggregation question
+can therefore be asked of the Ofsted source alone. Ofsted sub-dimension scores
+are retained for the Tier~1 schools, which is the estimation sample for this
+model in any case.
+
+\input{tables/tab_ridge_spec_comparison}
+
+Three results follow. First, disaggregation buys very little. For strictness the
+sub-dimension specification edges past the holistic one ($r = 0.290$ against
+$0.265$), but adding the holistic score back alongside the sub-dimensions
+recovers no more ($r = 0.287$), so the whole gain from disaggregation is
+$0.025$ of a correlation for three additional parameters. The LLM's own
+aggregation of its sub-judgements therefore discards little usable information,
+and the chapter's two-feature specification is retained on parsimony grounds
+rather than defended as superior.
+
+Second, what warmth signal the documents carry is carried by the model's
+holistic judgement and nothing else. The holistic specification reaches
+$r = 0.220$ and the combined specification $r = 0.244$, both with positive
+cross-validated $R^2$; the four Ofsted sub-dimensions reach $r = 0.028$ and the
+keyword-rule scores $r = -0.002$, both with negative $R^2$, meaning each
+predicts the gold-standard composite worse than the sample mean does. Splitting
+the judgement into facets or into vocabulary destroys it. This is the opposite
+of the pattern that a feature-representation artefact would produce, and it
+locates the warmth signal in an act of reading rather than in any countable
+property of the text. As \cref{sec:p1_results} shows, that signal is
+nonetheless an espoused one: it tracks what the school says about itself, not
+what the visit recorded.
+
+Third, the language model is doing real work on strictness. The keyword-rule
+specification is shrunk almost entirely to the training mean ($\lambda = 1000$,
+$R^2 = -0.023$); its predictions carry so little variance that a correlation
+with the outcome is not meaningfully defined. Pattern matching on
+strictness-related vocabulary recovers nothing, while the same documents read by
+the LLM recover $r = 0.265$. Whatever the Ofsted strictness score is capturing,
+it is not the frequency of strict-sounding words.

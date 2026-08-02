@@ -1,0 +1,27 @@
+\begin{table}[htbp]\centering
+\caption{National-tier (Model~B) Ridge coefficients}
+\label{tab:national_model_coefs}
+\begin{tabular}{lcccc}
+\toprule
+                    & \multicolumn{2}{c}{Warmth} & \multicolumn{2}{c}{Strictness} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Predictor           & Std. & Raw & Std. & Raw \\
+\midrule
+Ofsted LLM score ($x_O$)            &  0.011 &  0.020 & 0.248 & 0.261 \\
+Behaviour policy LLM score ($x_P$)  & $-0.084$ & $-0.134$ & 0.040 & 0.057 \\
+\midrule
+Intercept                           & \multicolumn{2}{c}{6.807} & \multicolumn{2}{c}{7.114} \\
+$N$ (training schools)              & \multicolumn{2}{c}{102}   & \multicolumn{2}{c}{102}   \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{\textwidth}\vspace{0.5em}\footnotesize
+\textit{Notes.} Ridge coefficients for the national-tier calibration model
+(\cref{eq:ridge_national}), trained on the 102 full-data schools using only
+the two publicly available text features. Features are standardised before
+fitting; the ``Std.'' columns give the change in the predicted score for a
+one-standard-deviation change in the predictor, and the ``Raw'' columns
+rescale these to the predictor's original units. The negative behaviour
+policy coefficient in the warmth model is the policy-as-aspiration effect
+discussed in \cref{sec:p1_text_valid}.
+\end{minipage}
+\end{table}

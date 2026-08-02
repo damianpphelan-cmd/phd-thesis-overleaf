@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\caption{Leave-one-out cross-validated performance of the national-tier Ridge
+calibration model (Model~B) for warmth and strictness. Features: Ofsted LLM
+holistic score and behaviour-policy LLM holistic score (2 features per
+dimension). Training and evaluation sample: $N = 100$. Of the 102 full-data schools, 2 schools lack a scored Ofsted report and are dropped.}
+\label{tab:national_model_loo}
+\small
+\begin{tabular}{lcccr}
+\toprule
+Dimension & LOO-CV $r$ & LOO-CV $R^2$ & RMSE & $\lambda$ \\
+\midrule
+Warmth     & 0.220 & 0.044 & 0.873 & 10 \\
+Strictness & 0.265 & 0.067 & 0.665 & 10 \\
+\bottomrule
+\end{tabular}
+\end{table}

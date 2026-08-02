@@ -1,0 +1,41 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Score construction sensitivity: Overall Progress~8 (Tier 1, $N = 95$)}
+\label{tab:score_sensitivity}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l*{4}{c}}
+\toprule
+                    &\multicolumn{1}{c}{Visit-only}&\multicolumn{1}{c}{Composite 60/40}&\multicolumn{1}{c}{Composite v1}&\multicolumn{1}{c}{Composite 50/50}\\
+\midrule
+Warmth (visit-only, primary)&       0.127\sym{***}&                     &                     &                     \\
+                    &     (0.045)         &                     &                     &                     \\
+\addlinespace
+Strictness (visit-only, primary)&       0.120\sym{**} &                     &                     &                     \\
+                    &     (0.047)         &                     &                     &                     \\
+\addlinespace
+Warmth (composite 60/40, current)&                     &       0.112\sym{**} &                     &                     \\
+                    &                     &     (0.056)         &                     &                     \\
+\addlinespace
+Strictness (composite 60/40, current)&                     &       0.155\sym{**} &                     &                     \\
+                    &                     &     (0.063)         &                     &                     \\
+\addlinespace
+Warmth (composite 60/40, v1)&                     &                     &       0.110\sym{*}  &                     \\
+                    &                     &                     &     (0.064)         &                     \\
+\addlinespace
+Strictness (composite 60/40, v1)&                     &                     &       0.123\sym{*}  &                     \\
+                    &                     &                     &     (0.067)         &                     \\
+\addlinespace
+Warmth (composite 50/50)&                     &                     &                     &       0.094\sym{*}  \\
+                    &                     &                     &                     &     (0.054)         \\
+\addlinespace
+Strictness (composite 50/50)&                     &                     &                     &       0.152\sym{**} \\
+                    &                     &                     &                     &     (0.065)         \\
+\midrule
+N                   &          95         &          95         &          95         &          95         \\
+r2                  &       0.595         &       0.554         &       0.536         &       0.529         \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{5}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}%
+}
+\end{table}
