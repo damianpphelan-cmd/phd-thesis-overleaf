@@ -210,6 +210,32 @@ def build() -> list[Num]:
         add(Num(r["key"], f"{r['value']:.3f}", r["note"],
                 stale=circ_stale.get(r["key"], ())))
 
+    # ── Teaching quality: scored, validated, deliberately not carried forward ─
+    # The chapter used to justify the exclusion with a bright-line "r > 0.30
+    # validation gate" and the figure r = 0.133. Under Ofsted v4 that figure is
+    # 0.292 and the gate stopped doing the work claimed of it: warmth, which IS
+    # carried forward, sits at 0.268 and fails the same threshold. The argument
+    # now rests on the espoused/enacted split, so all three figures below are
+    # load-bearing and are derived here rather than asserted.
+    #
+    # The gate phrasing is itself a stale literal. It is the sentence, not just
+    # the number, that the evidence stopped supporting.
+    def corr(a: str, b: str) -> tuple[float, int]:
+        d = full[[a, b]].apply(pd.to_numeric, errors="coerce").dropna()
+        return float(stats.pearsonr(d[a], d[b])[0]), len(d)
+
+    r_tc, _ = corr("ofsted_LLMTeachingScore", "gs_teaching_composite")
+    r_tv, _ = corr("ofsted_LLMTeachingScore", "gs_teaching_visit")
+    r_tx, _ = corr("trx_LLMTeachingScore", "gs_teaching_composite")
+    add(Num("OfstedTeachingComposite", f"{r_tc:.3f}",
+            "Ofsted teaching vs gold composite, full-data tier",
+            stale=["$r = 0.133$", "$r > 0.30$ validation gate",
+                   "did not satisfy the"]))
+    add(Num("OfstedTeachingVisit", f"{r_tv:.3f}",
+            "Ofsted teaching vs the observed visit component"))
+    add(Num("TrxTeachingComposite", f"{r_tx:.3f}",
+            "interview-transcript teaching vs gold composite"))
+
     # ── Teaching philosophy (v3 classification) ──────────────────────────────
     add(Num("NTraditional", str(ph.get("traditional", 0)),
             "website teaching philosophy v3, full corpus", stale=["472"]))

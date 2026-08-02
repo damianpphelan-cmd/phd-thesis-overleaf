@@ -1056,9 +1056,30 @@ extracted narrative is typically 4,000--6,000 characters in length and covers th
 inspector's most characterising language about the school's relational culture and
 behavioural environment. Warmth, strictness, and teaching quality are scored in a
 single unified LLM call using holistic rubrics validated empirically against the
-gold standard. The teaching score did not satisfy the $r > 0.30$ validation gate
-($r = 0.133$, $p = 0.18$, $n = 102$ schools) and is not used as a national
-predictor. To reduce the risk that final scores are driven by a single salient
+gold standard. Only warmth and strictness are carried forward. Teaching quality
+is not part of the two-dimensional framework this chapter constructs, and the
+validation evidence gives no reason to extend it. The Ofsted teaching score
+reaches $r = 0.292$ ($p = 0.003$, $n = 100$) against the gold standard teaching
+composite---marginally above the warmth score's $r = 0.268$ against its own
+composite, a difference well inside sampling error---but only $r = 0.180$
+($p = 0.073$) against the directly observed lesson component. That is the
+espoused--enacted asymmetry documented for warmth in
+\cref{sec:p1_text_valid}: what an inspection report says about teaching tracks
+what a school says about its teaching rather than what an observer records in
+classrooms. Warmth is retained despite the same asymmetry because it is one of
+the two constructs under study and is triangulated against interview and visit
+measures throughout; a national teaching estimate would have no such
+scaffolding, and would carry a label inviting exactly the reading the evidence
+does not support.
+
+No correlation threshold decides this. A bootstrapped 95~per~cent interval
+around the teaching estimate spans $[0.099, 0.457]$, wider than the spread
+across all three dimensions, so a bright line drawn anywhere in this range
+would sort sampling noise rather than validity. The interview-transcript
+teaching score is weaker still ($r = 0.067$, $p = 0.52$, $n = 96$) and is
+likewise not used.
+
+To reduce the risk that final scores are driven by a single salient
 passage, the model first scores four subcomponents of each dimension before
 arriving at a holistic score. For strictness the subcomponents are: clarity and
 communication of expectations, consistency of enforcement across staff,
