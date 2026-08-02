@@ -227,6 +227,39 @@ def build() -> list[Num]:
     r_tc, _ = corr("ofsted_LLMTeachingScore", "gs_teaching_composite")
     r_tv, _ = corr("ofsted_LLMTeachingScore", "gs_teaching_visit")
     r_tx, _ = corr("trx_LLMTeachingScore", "gs_teaching_composite")
+
+    # ── Espoused vs enacted inside the gold standard itself ──────────────────
+    # The exclusion argument above rests on an espoused/enacted asymmetry that a
+    # sceptic can attribute to the LLM. These three figures close that off: both
+    # sides are the researcher's own scoring, from one instrument.
+    #
+    # The pairing must be LIKE FOR LIKE or the comparison is meaningless. Each
+    # composite weights an interview side against an observation side —
+    #   warmth     0.6*mean(W1,W2) + 0.4*W3_adj
+    #   strictness 0.6*mean(S1,S2) + 0.4*mean(S3,S4)
+    #   teaching   0.6*T1          + 0.4*T2
+    # — so strictness needs mean(S3,S4), NOT a single sub-score. Pairing S4
+    # against S1 alone returns 0.284 and invents a gradient that is not there;
+    # done properly all three land within 0.04 of each other. The gs_*_visit
+    # columns are the observation sides already assembled (scaled by 2, which
+    # leaves a correlation unchanged).
+    espoused = {
+        "Warmth":     pd.to_numeric(full["gs_W3_adj"], errors="coerce"),
+        "Strictness": full[["gs_S3", "gs_S4"]].apply(
+            pd.to_numeric, errors="coerce").mean(axis=1),
+        "Teaching":   pd.to_numeric(full["gs_T2"], errors="coerce"),
+    }
+    for dim, esp in espoused.items():
+        d = pd.concat([esp.rename("e"),
+                       pd.to_numeric(full[f"gs_{dim.lower()}_visit"],
+                                     errors="coerce").rename("o")],
+                      axis=1).dropna()
+        r_ee, p_ee = stats.pearsonr(d["e"], d["o"])
+        add(Num(f"Gold{dim}Split", f"{r_ee:.3f}",
+                f"gold {dim.lower()}: interview side vs observation side, "
+                f"n={len(d)}, p={p_ee:.3f}",
+                expect=[f"$r = {r_ee:.3f}$"]))
+
     add(Num("OfstedTeachingComposite", f"{r_tc:.3f}",
             "Ofsted teaching vs gold composite, full-data tier",
             stale=["$r = 0.133$", "$r > 0.30$ validation gate",
