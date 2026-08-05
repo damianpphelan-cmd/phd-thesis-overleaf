@@ -5,29 +5,29 @@
   \small
   \begin{tabular}{lrrrrrr}
     \toprule
-    & \multicolumn{3}{c}{Tier~1 ($N=102$, visited)} & \multicolumn{3}{c}{Tier~2 ($N=303$, interview)} \\
+    & \multicolumn{3}{c}{Tier~1 ($N=103$, visited)} & \multicolumn{3}{c}{Tier~2 ($N=304$, interview)} \\
     \cmidrule(lr){2-4}\cmidrule(lr){5-7}
     Variable & $N$ & Mean & SD & $N$ & Mean & SD \\
     \midrule
     \multicolumn{7}{l}{\textit{Pupil composition and prior attainment}} \\
-    \quad Mean KS2 score & 102 & 104.917 & 2.909 & 300 & 104.627 & 2.714 \\
-    \quad FSM eligible (\%) & 102 & 29.2 & 15.7 & 303 & 28.0 & 14.7 \\
-    \quad EAL share (\%) & 102 & 27.8 & 26.2 & 300 & 21.3 & 22.2 \\
-    \quad SEN share (\%) & 102 & 15.5 & 7.3 & 300 & 15.6 & 7.3 \\
-    \quad Log school size & 102 & 6.964 & 0.368 & 303 & 6.938 & 0.398 \\
-    \quad Yrs since Ofsted & 101 & 4.797 & 3.891 & 295 & 4.919 & 4.006 \\
+    \quad Mean KS2 score & 103 & 104.909 & 2.895 & 301 & 104.621 & 2.711 \\
+    \quad FSM eligible (\%) & 103 & 29.2 & 15.6 & 304 & 28.0 & 14.6 \\
+    \quad EAL share (\%) & 103 & 27.8 & 26.1 & 301 & 21.2 & 22.1 \\
+    \quad SEN share (\%) & 103 & 15.6 & 7.2 & 301 & 15.6 & 7.3 \\
+    \quad Log school size & 103 & 6.964 & 0.366 & 304 & 6.937 & 0.398 \\
+    \quad Yrs since Ofsted & 102 & 4.834 & 3.890 & 296 & 4.908 & 4.004 \\
     \addlinespace[3pt]
     \multicolumn{7}{l}{\textit{School characteristics (share)}} \\
-    \quad Academy school & 102 & \multicolumn{2}{c}{73.5\%} & 303 & \multicolumn{2}{c}{71.6\%} \\
-    \quad Urban location & 102 & \multicolumn{2}{c}{90.2\%} & 303 & \multicolumn{2}{c}{88.4\%} \\
-    \quad Selective admissions & 102 & \multicolumn{2}{c}{93.1\%} & 303 & \multicolumn{2}{c}{92.4\%} \\
+    \quad Academy school & 103 & \multicolumn{2}{c}{73.8\%} & 304 & \multicolumn{2}{c}{71.7\%} \\
+    \quad Urban location & 103 & \multicolumn{2}{c}{90.3\%} & 304 & \multicolumn{2}{c}{88.5\%} \\
+    \quad Selective admissions & 103 & \multicolumn{2}{c}{4.9\%} & 304 & \multicolumn{2}{c}{5.3\%} \\
     \addlinespace[3pt]
     \multicolumn{7}{l}{\textit{Pre-COVID Ofsted grade (as at 31~August~2019)}} \\
-    \quad Grade~1 (Outstanding) & 25 & \multicolumn{2}{c}{26.3\%} & 63 & \multicolumn{2}{c}{23.6\%} \\
-    \quad Grade~2 (Good) & 59 & \multicolumn{2}{c}{62.1\%} & 170 & \multicolumn{2}{c}{63.7\%} \\
-    \quad Grade~3 (Requires improvement) & 10 & \multicolumn{2}{c}{10.5\%} & 27 & \multicolumn{2}{c}{10.1\%} \\
-    \quad Grade~4 (Inadequate) & 1 & \multicolumn{2}{c}{1.1\%} & 7 & \multicolumn{2}{c}{2.6\%} \\
-    \quad No pre-COVID grade & 7 & & & 36 & & \\
+    \quad Grade~1 (Outstanding) & 25 & \multicolumn{2}{c}{26.0\%} & 63 & \multicolumn{2}{c}{23.6\%} \\
+    \quad Grade~2 (Good) & 60 & \multicolumn{2}{c}{62.5\%} & 170 & \multicolumn{2}{c}{63.7\%} \\
+    \quad Grade~3 (Requires improvement) & 10 & \multicolumn{2}{c}{10.4\%} & 27 & \multicolumn{2}{c}{10.1\%} \\
+    \quad Grade~4 (Inadequate) & 1 & \multicolumn{2}{c}{1.0\%} & 7 & \multicolumn{2}{c}{2.6\%} \\
+    \quad No pre-COVID grade & 7 & & & 37 & & \\
     \bottomrule
   \end{tabular}
   \begin{minipage}{\linewidth}
@@ -35,10 +35,14 @@
     \footnotesize
     \textit{Notes:} KS2 is the mean scaled score of the 2023--24 KS4 cohort at Key Stage~2.
     FSM is the share eligible for the pupil premium (FSM6 definition); EAL and SEN are KS4
-    cohort shares from the 2023--24 performance tables. Pre-COVID Ofsted grade is the overall
-    effectiveness grade from the Ofsted Management Information snapshot as at 31~August~2019,
-    used as the primary endogeneity-safe control; the contemporary 2024 grade enters sensitivity
-    analyses only. Tier~1 (102 schools) have both visit and interview data; Tier~2 (303 schools)
+    cohort shares from the 2023--24 performance tables. Selective admissions is the share of
+    schools recorded as selective in the performance tables. Pre-COVID Ofsted grade is the
+    overall effectiveness grade from the Ofsted Management Information snapshot as at
+    31~August~2019, used as the primary endogeneity-safe control; the contemporary 2024 grade
+    enters sensitivity analyses only. Grade percentages are shares of the graded schools
+    (96 in Tier~1, 267 in Tier~2), not of the tier, which is why the specifications that
+    include the grade dummies estimate on 96 Tier~1 schools rather than 103.
+    Tier~1 (103 schools) have both visit and interview data; Tier~2 (304 schools)
     includes Tier~1.
   \end{minipage}
 \end{table}

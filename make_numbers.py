@@ -195,8 +195,12 @@ def build() -> list[Num]:
     ridge("RidgeAWarmth", "A", "Warmth", "Model A LOO-CV r, warmth",
           stale=["0.765"])
     ridge("RidgeAStrictness", "A", "Strictness", "Model A LOO-CV r, strictness")
+    # Qualified with "r =" for the same reason BetaTraditional carries no stale
+    # literal at all: a bare three-digit decimal collides with unrelated
+    # coefficients. On 5 Aug 2026 the espoused warmth coefficient for the Open
+    # component came out at exactly -0.018 and this check fired on it.
     ridge("RidgeBWarmth", "B", "Warmth", "Model B LOO-CV r, warmth",
-          stale=["-0.018"])
+          stale=["$r = -0.018$"])
     ridge("RidgeBStrictness", "B", "Strictness", "Model B LOO-CV r, strictness",
           stale=["0.329"])
 
@@ -306,22 +310,59 @@ def build() -> list[Num]:
     add(Num("NUnmarked", comma(int(ph.get("unmarked", 0))),
             "website teaching philosophy v3, full corpus", expect=[]))
 
-    # ── Chapter 3 estimates (source: chapter3_analysis.ipynb) ────────────────
-    add(Num("NEstimation", "95", "notebook: Stage 1-3 estimation sample"))
-    add(Num("NNationalStrictness", comma(3148),
-            "notebook: national extension sample", stale=["3{,}194"]))
-    add(Num("BetaWarmth", "0.127", "notebook: Stage 1 overall P8"))
-    add(Num("BetaStrictness", "0.120", "notebook: Stage 1 overall P8"))
-    add(Num("BetaNationalStrictness", "0.135",
-            "notebook: national extension, overall P8"))
+    # ── Chapter 3 estimates ──────────────────────────────────────────────────
+    # These used to be asserted from a Stata log, which is how NEstimation sat at
+    # 95 through a re-run that moved it to 96 and BetaWarmth sat at 0.127 through
+    # one that moved it to 0.150. They are now read from the tidy exports that
+    # thesis/ch3_estimates.do and thesis/a7_national_strictness.do write, so a
+    # re-run propagates here and --check fails until the chapters follow.
+    ch3 = pd.read_csv(THESIS / "tables" / "ch3_estimates.csv")
+
+    def est(spec: str, outcome: str, term: str) -> pd.Series:
+        row = ch3[(ch3.spec == spec) & (ch3.outcome == outcome)
+                  & (ch3.term == term)]
+        if len(row) != 1:
+            raise SystemExit(f"ch3_estimates.csv: expected 1 row for "
+                             f"{spec}/{outcome}/{term}, found {len(row)}")
+        return row.iloc[0]
+
+    s1w = est("stage1", "overall", "gs_warmth_enacted")
+    s1s = est("stage1", "overall", "gs_strictness_enacted")
+    add(Num("NEstimation", str(int(s1w["n"])),
+            "ch3_estimates.csv: Stage 1-3 estimation sample", expect=[]))
+    add(Num("BetaWarmth", f"{s1w['b']:.3f}",
+            "ch3_estimates.csv: Stage 1 overall P8", stale=["0.127"]))
+    add(Num("BetaStrictness", f"{s1s['b']:.3f}",
+            "ch3_estimates.csv: Stage 1 overall P8"))
+
+    # Replacing the enacted scores with the espoused ones on the SAME schools is
+    # the chapter's self-report test; the quoted range is over the four
+    # components, and the top of it exceeds 100 because two of them reverse sign.
+    drops = [100 * (1 - est("espoused_t1", o, "gs_warmth_espoused")["b"]
+                        / est("stage1", o, "gs_warmth_enacted")["b"])
+             for o in ("english", "maths", "ebac", "open")]
+    add(Num("SelfReportReduction",
+            f"{round(min(drops))}--{round(max(drops))}",
+            "ch3_estimates.csv: espoused-for-enacted warmth reduction, per cent",
+            stale=["63--91", "63--106"]))
+
+    a7 = pd.read_csv(THESIS / "tables" / "a7_estimates.csv")
+    a7o = a7[(a7.outcome == "Overall") & (a7.spec == "nograde")].iloc[0]
+    add(Num("NNationalStrictness", comma(int(a7o["n"])),
+            "a7_estimates.csv: national extension sample",
+            stale=["3{,}194", "3{,}148"]))
+    add(Num("BetaNationalStrictness", f"{a7o['b']:.3f}",
+            "a7_estimates.csv: national extension, overall P8"))
+
+    # Still asserted: the teaching-philosophy cell writes only a LaTeX table, so
+    # there is nothing tidy to read. Source is tables/tab_teaching_philosophy.tex,
+    # column "Overall", row "Traditional (vs unmarked)".
+    #
     # No stale literal for this one: the superseded v2 value was 0.039, but a
     # bare three-digit decimal collides with unrelated coefficients elsewhere
     # (e.g. the management-discourse range runs to $-0.039$). The v2/v3 split is
     # caught upstream instead, by NTraditional/NProgressive.
-    add(Num("BetaTraditional", "0.125", "notebook: teaching philosophy v3"))
-    add(Num("SelfReportReduction", "63--106",
-            "notebook: self-report coefficient reduction, per cent",
-            stale=["63--91"]))
+    add(Num("BetaTraditional", "0.124", "notebook: teaching philosophy v3"))
 
     return N
 
