@@ -35,7 +35,7 @@ foreach v of varlist eal sen {
 }
 
 local numvars gs_warmth_visit gs_strictness_visit gs_teaching_visit ///
-    gs_warmth_composite gs_strictness_composite gs_teaching_composite ///
+    gs_warmth_espoused gs_strictness_espoused gs_teaching_espoused ///
     p8mea_avg p8meaeng_avg p8meamat_avg p8meaebac_avg p8meaopen_avg ///
     ks2 fsm log_size academy urban_bin selective ///
     years_since_ofsted ofsted_grade_2019 ///

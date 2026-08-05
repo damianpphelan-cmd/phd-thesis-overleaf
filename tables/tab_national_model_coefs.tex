@@ -7,21 +7,14 @@
 \cmidrule(lr){2-3}\cmidrule(lr){4-5}
 Predictor           & Std. & Raw & Std. & Raw \\
 \midrule
-Ofsted LLM score ($x_O$)            &  0.011 &  0.020 & 0.248 & 0.261 \\
-Behaviour policy LLM score ($x_P$)  & $-0.084$ & $-0.134$ & 0.040 & 0.057 \\
+Ofsted LLM score (own dimension)           & 0.074 & 0.141 & 0.314 & 0.342 \\
+Behaviour policy LLM score (own dimension) & $-0.043$ & $-0.070$ & 0.017 & 0.024 \\
 \midrule
-Intercept                           & \multicolumn{2}{c}{6.807} & \multicolumn{2}{c}{7.114} \\
-$N$ (training schools)              & \multicolumn{2}{c}{102}   & \multicolumn{2}{c}{102}   \\
+Intercept & \multicolumn{2}{c}{6.567} & \multicolumn{2}{c}{7.037} \\
+$N$ (training schools) & \multicolumn{2}{c}{101} & \multicolumn{2}{c}{101} \\
 \bottomrule
 \end{tabular}
 \begin{minipage}{\textwidth}\vspace{0.5em}\footnotesize
-\textit{Notes.} Ridge coefficients for the national-tier calibration model
-(\cref{eq:ridge_national}), trained on the 102 full-data schools using only
-the two publicly available text features. Features are standardised before
-fitting; the ``Std.'' columns give the change in the predicted score for a
-one-standard-deviation change in the predictor, and the ``Raw'' columns
-rescale these to the predictor's original units. The negative behaviour
-policy coefficient in the warmth model is the policy-as-aspiration effect
-discussed in \cref{sec:p1_text_valid}.
+\textit{Notes.} Ridge coefficients for the national-tier calibration model (\cref{eq:ridge_national}), using only the two publicly available text features. The target is the \emph{enacted} score from the school visit; no feature appears in it. Features are standardised before fitting, so the ``Std.'' columns give the change in the predicted score for a one-standard-deviation change in the predictor and the ``Raw'' columns rescale these to the predictor's original units. The penalty $\lambda$ is selected by leave-one-out cross-validation; warmth and strictness models use the text feature of the corresponding dimension.
 \end{minipage}
 \end{table}

@@ -1,12 +1,16 @@
 \begin{table}[htbp]
 \centering
-\caption{Feature-representation comparison for the national-tier Ridge model.
-Each specification is estimated on the Tier~1 gold-standard schools and evaluated
-by leave-one-out cross-validation against the gold-standard composite, using the
-same penalty grid and selection procedure as \cref{tab:national_model_loo}.
-Specification~(A) is the model used throughout the chapter. $k$ is the number of
-predictors. Negative $R^2$ indicates worse out-of-sample prediction than the
-sample mean. Reproduced by \texttt{ridge\_spec\_comparison.py}.}
+\caption{The national-tier Ridge model against a deterministic baseline.
+Specification~(A) uses the language model's holistic score for each document and is
+the model used throughout the chapter; specification~(D) replaces both with the
+keyword-rule scores computed by the pattern matcher that runs alongside the language
+model on the same text. Both are estimated on the Tier~1 gold-standard schools and
+evaluated by leave-one-out cross-validation against the \emph{enacted}
+gold-standard score,
+using the same penalty grid and selection procedure as \cref{tab:national_model_loo}.
+$k$ is the number of predictors. Negative $R^2$ indicates worse out-of-sample
+prediction than the sample mean; a dash indicates predictions too nearly constant
+for a correlation to be defined. Reproduced by \texttt{ridge\_spec\_comparison.py}.}
 \label{tab:ridge_spec_comparison}
 \small
 \begin{tabular}{lccrrrr}
@@ -14,16 +18,12 @@ sample mean. Reproduced by \texttt{ridge\_spec\_comparison.py}.}
 Specification & $N$ & $k$ & LOO $r$ & LOO $R^2$ & RMSE & $\lambda$ \\
 \midrule
 \multicolumn{7}{l}{\textit{Warmth}} \\
-\quad (A) LLM holistic scores & 100 & 2 & 0.220 & 0.044 & 0.873 & 10 \\
-\quad (B) Ofsted sub-dimensions & 101 & 5 & 0.028 & -0.008 & 0.896 & 100 \\
-\quad (C) Combined & 100 & 6 & 0.244 & 0.048 & 0.871 & 10 \\
-\quad (D) Keyword-rule scores & 101 & 2 & -0.002 & -0.010 & 0.897 & 100 \\
+\quad (A) LLM holistic scores & 101 & 2 & -0.028 & -0.015 & 0.965 & 100 \\
+\quad (D) Keyword-rule scores & 101 & 2 & --- & -0.020 & 0.968 & 1000 \\
 \addlinespace
 \multicolumn{7}{l}{\textit{Strictness}} \\
-\quad (A) LLM holistic scores & 100 & 2 & 0.265 & 0.067 & 0.665 & 10 \\
-\quad (B) Ofsted sub-dimensions & 101 & 5 & 0.290 & 0.078 & 0.658 & 10 \\
-\quad (C) Combined & 100 & 6 & 0.287 & 0.082 & 0.659 & 100 \\
-\quad (D) Keyword-rule scores & 101 & 2 & --- & -0.023 & 0.693 & 1000 \\
+\quad (A) LLM holistic scores & 101 & 2 & 0.339 & 0.114 & 0.796 & 10 \\
+\quad (D) Keyword-rule scores & 101 & 2 & 0.094 & 0.008 & 0.842 & 100 \\
 \bottomrule
 \end{tabular}
 \end{table}

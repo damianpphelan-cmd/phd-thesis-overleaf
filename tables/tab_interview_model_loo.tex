@@ -3,15 +3,16 @@
 \caption{Leave-one-out cross-validated performance of the interview-tier Ridge
 calibration model (Model~A) for warmth and strictness. Features: interview
 sub-scores ($W3^*$, $S3$, $S4$, $\omega$) plus Ofsted and behaviour-policy LLM
-holistic scores (6 features per dimension). Training and evaluation sample: $N = 100$. Of the 102 full-data schools, 2 schools lack a scored Ofsted report and are dropped.}
+holistic scores (6 features per dimension). Target: the \emph{enacted} score from
+the school visit, which shares no input with any feature. Training and evaluation sample: $N = 101$. Of the 103 full-data schools, 2 schools lack a scored Ofsted report and are dropped.}
 \label{tab:interview_model_loo}
 \small
 \begin{tabular}{lcccr}
 \toprule
 Dimension & LOO-CV $r$ & LOO-CV $R^2$ & RMSE & $\lambda$ \\
 \midrule
-Warmth     & 0.767 & 0.588 & 0.573 & 10 \\
-Strictness & 0.701 & 0.489 & 0.492 & 1 \\
+Warmth     & 0.297 & 0.087 & 0.915 & 100 \\
+Strictness & 0.348 & 0.115 & 0.796 & 10 \\
 \bottomrule
 \end{tabular}
 \end{table}

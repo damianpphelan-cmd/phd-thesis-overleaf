@@ -10,8 +10,12 @@
   year      = {2001},
 }
 
+% Verified 4 Aug 2026. Second author corrected: was "McCabe, Libby". The
+% publisher of record (SAGE / Teachers College Record, doi:10.1177/016146810911100108)
+% prints "Elizabeth M. McCabe". "Libby" is a familiar form of Elizabeth and is
+% how several citation databases render the initial; the byline is the source.
 @article{cohen2009,
-  author    = {Cohen, Jonathan and McCabe, Libby and Michelli, Nicholas M. and Pickeral, Terry},
+  author    = {Cohen, Jonathan and McCabe, Elizabeth M. and Michelli, Nicholas M. and Pickeral, Terry},
   title     = {School Climate: Research, Policy, Practice, and Teacher Education},
   journal   = {Teachers College Record},
   volume    = {111},
@@ -103,12 +107,19 @@
   year      = {1979},
 }
 
+% Verified 4 Aug 2026 (ERIC ED389826, April 1995). PUBLISHER CORRECTED: was
+% "Office for Standards in Education". The report was published by the Institute
+% of Education, University of London, *for* Ofsted -- Ofsted commissioned it,
+% the Institute published it. First author is "Pam", not "Pamela", on the title
+% page. Note added rather than the entry silently changed, because the Ofsted
+% attribution is a common and understandable rendering of this reference.
 @book{sammons1995,
-  author    = {Sammons, Pamela and Hillman, Josh and Mortimore, Peter},
+  author    = {Sammons, Pam and Hillman, Josh and Mortimore, Peter},
   title     = {Key Characteristics of Effective Schools: A Review of School
                Effectiveness Research},
-  publisher = {Office for Standards in Education},
+  publisher = {Institute of Education, University of London},
   address   = {London},
+  note      = {Report commissioned by the Office for Standards in Education},
   year      = {1995},
 }
 
@@ -175,17 +186,34 @@
 %
 %   1 entry replaced on a judgement call: levacic2005 (see its note).
 %
-% >> STILL TO CHECK: the 4 remaining "% CONFIRM" entries, plus the school-
-% >> climate and parenting literature, which postdates the 2022 upgrade report
-% >> and so could not be verified from it:
-% >>   hoy2001 cohen2009 thapa2013 gregory2010 gregory2011 gottfredson2005
-% >>   landis1977 baumrind1971 coleman1966 rutter1979 edmonds1979 sammons1995
-% >>   teddlie2000 vanhoutte2005 pellerin2005 maccoby1983
+% -----------------------------------------------------------------------------
+% ROUND 2, 4 August 2026. All 20 remaining entries checked against publishers'
+% records rather than against the upgrade report. NOTHING IS NOW UNVERIFIED.
 %
-% Entries marked "% CONFIRM" are ones where the citing sentence did not uniquely
-% identify the work, or where the year in the citation key does not match the
-% publication year given below (harmless to BibTeX, but the printed year will
-% differ from the key, so check it is the intended work).
+%   4 were WRONG and are corrected in place (see the note above each):
+%     majumder2015  author was "Md. Aynul Majumder"    -> Md. Alauddin Majumder
+%     zhang2020     first author was "Zhang, Wei"      -> Zhang, Wenxin
+%                   (the given name had been taken from author 2, Xing Wei)
+%     cohen2009     author 2 was "McCabe, Libby"       -> McCabe, Elizabeth M.
+%     sammons1995   publisher was Ofsted               -> Institute of Education,
+%                   University of London (Ofsted commissioned it); "Pamela" -> "Pam"
+%
+%   2 "% CONFIRM" flags resolved with NO change -- the entries were already right:
+%     gorard2013    the published title really is "How Unstable are..."; the
+%                   upgrade report had dropped the "Un"
+%     hodge2021     "Little, A." is Allan Little; initial now expanded
+%
+%   14 confirmed correct as written: hoy2001 thapa2013 gregory2010 gregory2011
+%     gottfredson2005 landis1977 baumrind1971 coleman1966 rutter1979 edmonds1979
+%     teddlie2000 vanhoutte2005 pellerin2005 maccoby1983
+%
+% Two judgement calls left deliberately alone, both defensible as they stand:
+%   edmonds1979  pages 15--24. Most databases print 15--24 and the ASCD scan of
+%                the October 1979 issue runs to exactly 10 pages, which fits;
+%                one secondary source prints 15--23.
+%   maccoby1983  editor given as Hetherington alone. The fuller convention is
+%                "P. H. Mussen (Series Ed.) & E. M. Hetherington (Vol. Ed.)".
+% -----------------------------------------------------------------------------
 % =============================================================================
 
 % --- Parenting styles and school discipline ---------------------------------
@@ -202,9 +230,13 @@
   year      = {1983},
 }
 
-% CONFIRM -- published 2016; key says 2015.
+% Verified 4 Aug 2026 against Springer (doi:10.1007/s10834-015-9444-5) and the
+% journal record. Author corrected: was "Md. Aynul Majumder", the author is
+% Md. Alauddin Majumder. Title, journal, volume 37, pages 89--98 all confirmed.
+% Published 2016; the key says 2015. Harmless to BibTeX -- the printed year is
+% 2016 -- but the key and the year differ, which is worth knowing when citing.
 @article{majumder2015,
-  author    = {Majumder, Md. Aynul},
+  author    = {Majumder, Md. Alauddin},
   title     = {The Impact of Parenting Style on Children's Educational Outcomes
                in the United States},
   journal   = {Journal of Family and Economic Issues},
@@ -214,10 +246,14 @@
   year      = {2016},
 }
 
-% CONFIRM -- author list, outlet and year are not uniquely fixed by the citing
-% sentence. Check this is the intended demandingness/responsiveness study.
+% Verified 4 Aug 2026 against the published PDF (J Youth Adolescence (2017)
+% 46:1117--1136, doi:10.1007/s10964-017-0664-x). FIRST AUTHOR CORRECTED: the
+% entry read "Zhang, Wei", but the byline is "Wenxin Zhang" -- the given name
+% had been taken from the second author, Xing Wei. Remaining authors, volume,
+% issue, pages and year all confirmed against the byline.
+% Published 2017; the key says 2020. Harmless to BibTeX, but key and year differ.
 @article{zhang2020,
-  author    = {Zhang, Wei and Wei, Xing and Ji, Linqin and Chen, Liang and
+  author    = {Zhang, Wenxin and Wei, Xing and Ji, Linqin and Chen, Liang and
                Deater-Deckard, Kirby},
   title     = {Reconsidering Parenting in Chinese Culture: Subtypes, Stability,
                and Change of Maternal Parenting Style During Early Adolescence},
@@ -538,11 +574,11 @@
   year      = {2010},
 }
 
-% CONFIRM (title only): Upgrade_Report_Damian_Phelan.pdf ref [32] prints "How
-% stable are...". Kept as "Unstable" -- everything else in the entry matches the
-% upgrade report, the paper's argument is that school effects are unstable, and
-% the citing sentence at 03_paper2.tex:236 relies on that reading. Most likely a
-% dropped "Un" in the upgrade report, but worth one look at the published paper.
+% RESOLVED 4 Aug 2026 against the publisher (CCSE, International Education
+% Studies Vol. 6 No. 1, doi:10.5539/ies.v6n1p1). The published title IS "How
+% Unstable are 'School Effects' Assessed by a Value-Added Technique?" -- the
+% upgrade report had dropped the "Un". The entry was right; no change needed.
+% Authors, journal, volume, issue and year all confirmed.
 @article{gorard2013,
   author    = {Gorard, Stephen and Hordosy, Rita and Siddiqui, Nadia},
   title     = {How Unstable Are `School Effects' Assessed by a Value-Added
@@ -554,11 +590,11 @@
   year      = {2013},
 }
 
-% CONFIRM: Upgrade_Report_Damian_Phelan.pdf ref [39] gives "Little, A." -- the
-% previous entry's "Little, Simon" was wrong, but the report only has the
-% initial, so the full first name still needs a source.
+% RESOLVED 4 Aug 2026. The DfE research report (June 2021) names the authors as
+% Louis Hodge, Allan Little and Matthew Weldon, so the upgrade report's
+% "Little, A." is Allan Little and the initial is now expanded.
 @techreport{hodge2021,
-  author    = {Hodge, Louis and Little, A. and Weldon, Matthew},
+  author    = {Hodge, Louis and Little, Allan and Weldon, Matthew},
   title     = {GCSE Attainment and Lifetime Earnings: June 2021},
   institution = {Department for Education},
   address   = {London},

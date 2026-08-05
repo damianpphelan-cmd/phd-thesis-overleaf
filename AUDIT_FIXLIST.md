@@ -15,8 +15,29 @@ layer between the data and the prose, not in the research.
 
 ## Current state — 1 August 2026
 
-**Done:** A1 · A2 · A3 · A4 · A5 · A5b · A6 · **A7** · A8 · A9 · A11 · B1–B9 · **B9c** · C1 · C2 · C3
-**Blocked on you:** A10 (acknowledgements, funding) · C3 residue (Paper 3 sentences)
+**Done:** A1 · A2 · A3 · A4 · A5 · A5b · A6 · **A7** · A8 · A9 · A11 · **A13** · B1–B9 · **B9c** · C1 · C2 · C3
+**Blocked on you:** A10 (acknowledgements, funding) · C3 residue (Paper 3 sentences) · **A14**
+
+### [ ] A14 — Chapter 3 is estimated on 102 schools; there are 103 (opened 5 Aug 2026)
+
+Every regression, descriptive table and figure in Chapter 3 comes from a Stata run that
+predates the URN join. The join added URN 136538 (Trinity CofE), taking the gold standard
+from 102 schools to 103. Checked against `analysis_dataset.csv` on 5 Aug 2026: **all 103
+full-tier schools have non-missing P8, KS2, FSM and enacted scores**, so 102 is not listwise
+deletion — it is one school short.
+
+Chapter 3 says "102" in about ten places (L16, 62, 297, 478, 499, 845, 903, 921, 1133) and
+the Stata-generated tables (`tab_control_stats`, `tab_outcome_stats`, `tab_tier_summary`,
+`tab_main_results*`) all carry $N = 102$. Appendix~3A and `tab_score_controls_corr` were
+regenerated on 5 Aug and now correctly say 103, so **the chapter is currently inconsistent
+with itself**. Leaving the two correct tables in place rather than reverting them to 102: the
+right fix is to re-run, not to re-stale.
+
+Fixing it needs a Stata re-run of `chapter3_analysis.ipynb` end to end, plus
+`make_outcome_stats.py`, `make_tier_summary.py` and whatever regenerates `tab_control_stats`
+(no generator found — it may be hand-maintained, which would make it the fifth). Coefficients
+will move slightly. Not started; needs Damian's go-ahead because it re-writes Chapter 3's
+headline numbers.
 **Needs your decision:** the behaviour-policy scores are **not reproducible** — `temperature: 0` is
 silently dropped by gpt-5-nano, and 3 of 8 anchors moved on an identical re-run. Recommendation is to
 measure and report the reliability (§B9b). File renamed to `…v26_national.csv`; anchor test done.
@@ -237,7 +258,7 @@ counts mislabelled as the analysis sample; 63–91% → 63–106%; p = 0.021 →
 | Where | Was | Now |
 |---|---|---|
 | v6 scorer | `gpt-5-nano` | `gpt-5-mini-2025-08-07` (script default) |
-| Ofsted LLM subcomponents | scores four then holistic | holistic only; subcomponent scoring was removed |
+| Ofsted LLM subcomponents | scores four then holistic | holistic only; subcomponent scoring was removed — **but the chapter text was NOT actually changed until 4 Aug 2026, see A13** |
 | Interview dates | 2022/23 and 2023/24 | Nov 2023 – Apr 2025 |
 | National run | 3,322 schools | 3,333 rows, 3,330 analysed, 3 errors |
 
@@ -615,3 +636,77 @@ decide about:
 `groupby("school").mean()` across observers and across lessons. An earlier draft of the appendix
 said the final score is the agreed value — corrected in both the appendix prose and the generated
 snippet headers.
+
+---
+
+### [x] A13 — Ofsted LLM sub-components removed from the models and the thesis (4 Aug 2026)
+
+Damian's ruling: an older Ofsted rubric scored four sub-components feeding each
+holistic score; given how short inspection narratives are, this was an
+overcomplication and comes out of the models and the thesis entirely.
+
+**Measured before acting, on the 101 Tier 1 schools in
+`scores/ofsted_analysis_goldstandard_v7.csv` — the only file where these columns
+ever varied.** The four facets are not four measurements:
+
+| | strictness | warmth |
+|---|---|---|
+| schools scoring **identically on all four** facets | 34.7% | **77.2%** |
+| mean within-school spread across the four (1–5 scale) | 0.83 | **0.25** |
+| median facet intercorrelation | 0.569 | 0.734 |
+| best facet's r with the holistic score | 0.949 | 0.953 |
+
+**A live thesis claim was an artefact.** Appendix 2A said enforcement consistency
+was "the strongest predictive signal" among the strictness facets. Enforcement
+consistency also had the widest spread of the four (sd 0.93 vs 0.68–0.70). When
+four near-clones compete, the one with the most variance wins by construction.
+That is a property of the noise, not a finding about inspection reports.
+
+**Independent support:** the redesign work measured that bundling constructs into
+one API call roughly doubles their intercorrelation (+0.128 split → +0.300
+bundled on the website corpus). Sub-components asked in the same call as the
+holistic score are the most extreme case of bundling there is.
+
+**Changed:**
+
+| File | Change |
+|---|---|
+| `analyse_ofsted_reports.py` | 8 fields dropped from `LLMScoreResult`, `parse_llm_result`, the output row, and `FIELDS` |
+| `rescore_ofsted_national.py` | same 8 columns dropped from `FIELDS` and the row builder |
+| `ridge_spec_comparison.py` | specifications (B) and (C) removed; now (A) LLM holistic vs (D) keyword-rule only; docstring and table caption rewritten |
+| `chapters/02_paper1.tex` §`sec:p1_text` | four-subcomponent method paragraph replaced with what the instrument actually does, plus a paragraph recording the withdrawal and the numbers above |
+| `chapters/02_paper1.tex` L1276 | "Ofsted warmth subcomponents are excluded from the Ridge model" — clause dropped |
+| `chapters/02_paper1.tex` L1358 | sub-score-correlation cross-reference to the heatmap deleted |
+| `chapters/02_paper1.tex` App 2A | heatmap figure + paragraph deleted; spec-comparison passage rewritten from three results to two |
+
+**(A) and (D) did not move**: warmth 0.220 / −0.002, strictness 0.265 /
+degenerate — identical to the published numbers, because the specifications were
+always estimated independently. All six `--check` scripts pass.
+
+**Two loose ends, both deliberate:**
+
+1. `figures/fig_C_subscore_heatmap.pdf` is now orphaned. Left on disk rather than
+   deleted; nothing references it.
+2. `ridge_spec_comparison.py` still reads `ofsted_analysis_goldstandard_v7.csv`,
+   but **only for the two Ofsted keyword-rule columns now**. Those columns also
+   exist, with variance, in `ofsted_analysis_results_v4_cutoff.csv`, which is
+   reproducible where goldstandard_v7 is not. Removing the sub-components is what
+   unblocked this — the swap was impossible while the script needed sub-scores.
+   It would move specification (D)'s numbers, so it is left as Damian's call.
+
+**Note on A9.** A9 recorded this same subcomponent correction as done. The chapter
+text still described the four-subcomponent design when it was read on 4 Aug 2026,
+so A9's row was aspirational. Marking a text fix complete in the fixlist is not
+evidence the text was edited.
+
+**Superseded in two places, 5 Aug 2026 (the no-blend ruling).** Recorded here rather
+than edited above, because the entry is a record of what was true on 4 August:
+
+1. "(A) and (D) did not move" is no longer the case. The outcome variable changed
+   from `gs_*_composite` to `gs_*_enacted`, so the specification comparison was
+   re-estimated against a different target: warmth is now $-0.028$ / degenerate
+   (was 0.220 / $-0.002$) and strictness 0.339 / 0.094 (was 0.265 / degenerate).
+   The substantive reading changed with it — "the LLM beats term-counting" now
+   holds for strictness only.
+2. `figures/fig_C_subscore_heatmap.pdf` was **deleted**, not left on disk. It was
+   verified unreferenced by any `.tex` first.

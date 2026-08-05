@@ -781,15 +781,31 @@ Two further exploratory analyses use national datasets that fall outside the
 gold-standard measurement tier.
 
 \textit{Management discourse.}\ The interview transcript LLM management-discourse
-score ($\tilde{M}$, rated 1--5 by the same LLM that scores warmth and
-strictness in the extended transcript tier) is entered alongside transcript
+score ($\tilde{M}$, rated 1--5 by a scorer that reads only the segment of the
+interview addressed to staff management) is entered alongside transcript
 warmth and strictness for the $n = 282$ schools with non-missing transcript
 scores and outcome data (\cref{tab:management_discourse}). The management
 coefficient is consistently negative across all five outcome specifications
-($\hat{\beta}_M$ ranging from $-0.039$ to $-0.114$) but is not statistically
-significant in any (all $p > 0.17$). Transcript warmth remains a positive
-predictor ($\hat{\beta}_{\tilde{W}} \approx 0.10$, $p \approx 0.07$ for
-overall Progress~8), consistent with the enacted--espoused results above.
+($\hat{\beta}_M$ ranging from $-0.019$ to $-0.026$) but is not statistically
+significant in any (all $p > 0.15$; $\hat{\beta}_M = -0.023$, $p = 0.25$ for
+overall Progress~8). Transcript warmth is also null here
+($\hat{\beta}_{\tilde{W}} = 0.022$, $p \approx 0.22$ for overall
+Progress~8), which is not a contradiction of the enacted--espoused results
+above: $\tilde{W}$ is an espoused measure read off the headteacher's own
+account, and it is the \emph{enacted} scores that carry the Progress~8
+association in \cref{tab:main_results}.
+
+These estimates replace an earlier version of this table produced by a bundled
+scorer that rated all three constructs in a single call. That scorer had
+collapsed---85 per cent of schools received exactly the same management score,
+standard deviation $0.38$---so it could not have supported a conclusion in
+either direction, and the coefficients it produced are withdrawn rather than
+revised. The segmented scorer used here has usable dispersion (mean $3.12$,
+standard deviation $1.26$, modal band $28$ per cent), which is also why the
+coefficients are numerically smaller: expressed per standard deviation of the
+predictor the two runs are near-identical ($-0.035$ against $-0.029$ for
+overall Progress~8). The null survives the instrument that could actually
+detect a difference, which is the informative version of it.
 
 \input{tables/tab_management_discourse}
 
@@ -975,11 +991,17 @@ a sorting mechanism---a school whose behaviour culture is strongly punitive
 would, under selective exclusion, show declining SEMH prevalence as affected
 pupils leave, indicating that culture shapes school composition as well as
 pupil progress within a given composition. Fifth, the enacted--espoused
-divergence documented here and in \cref{ch:paper1} motivates further work
-on the optimal weighting of visit and interview components, and on whether
-the predictive validity of the composite score can be improved by
-down-weighting espoused components for dimensions---particularly warmth---
-where systematic positive bias is largest.
+divergence documented here and in \cref{ch:paper1} raises a question this
+thesis does not answer: whether the \emph{gap} between the two is itself a
+school-level quantity worth measuring. The argument in \cref{sec:p1_composite}
+is that the two scores should not be averaged, and nothing here revisits that.
+But a school whose headteacher describes a far warmer culture than a visit
+records differs from one where the two agree, and the difference is not
+obviously noise---it may index how much of the stated culture has reached the
+classroom. Testing that would require what this design lacks: repeated visits,
+so that the gap can be separated from single-occasion observer error, which
+\cref{sec:p1_irr} shows is non-trivial at the item level even between two
+raters watching the same lesson.
 
 % ===============================================================
 %  APPENDIX 3A
@@ -1085,18 +1107,22 @@ signal.
 \label{app:3A:tables}
 
 \Cref{tab:score_controls_corr} reports pairwise Pearson correlations between
-the three visit-based culture scores ($W_{\text{visit}}$,
-$S_{\text{visit}}$, $T_{\text{visit}}$) and the composite scores
-($W_{\text{comp}}$, $S_{\text{comp}}$) against each control variable,
-estimated on the Tier~1 sample of 102 visited schools. No pairwise
-correlation exceeds $|r| = 0.26$. The largest entries are between
-$T_{\text{visit}}$ and KS2 prior attainment ($r = +0.26$), and between
-$W_{\text{visit}}$ and EAL share ($r = -0.25$) and selective school status
-($r = -0.23$). The absence of high correlations indicates that the culture
+the three enacted culture scores ($W_{\text{enac}}$,
+$S_{\text{enac}}$, $T_{\text{enac}}$) and the two espoused scores
+($W_{\text{esp}}$, $S_{\text{esp}}$) against each control variable,
+estimated on the Tier~1 sample of \NTierOne{} visited schools. No pairwise
+correlation exceeds $|r| = 0.29$. The largest entries are between
+$W_{\text{enac}}$ and EAL share ($r = -0.29$), between $T_{\text{enac}}$ and
+EAL share ($r = -0.26$) and KS2 prior attainment ($r = +0.24$), and between
+$W_{\text{enac}}$ and selective school status ($r = -0.23$). The absence of
+high correlations indicates that the culture
 scores are not collinear with the observable school characteristics included
 in the regression, and that selective and grammar schools are modestly but
 not substantially lower-scoring on warmth even after accounting for intake
-characteristics in the main specification.
+characteristics in the main specification. Enacted strictness is the score
+least related to intake of any in the table: its largest correlation with any
+control is $|r| = 0.15$, which is one reason it carries the national-tier
+analysis.
 
 \input{tables/tab_score_controls_corr}
 
