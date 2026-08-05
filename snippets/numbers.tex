@@ -17,15 +17,17 @@
 % analysis_dataset.csv rows
 \newcommand{\NSchools}{3{,}332}
 % visit + interview
-\newcommand{\NTierOne}{102}
+\newcommand{\NTierOne}{103}
 % interview only
 \newcommand{\NTierTwo}{201}
 % remaining national
-\newcommand{\NTierThree}{3{,}029}
+\newcommand{\NTierThree}{3{,}028}
 % tiers 1+2
-\newcommand{\NInterviewed}{303}
-% composite W-S correlation, Tier 1
-\newcommand{\CorrWarmthStrictness}{0.494}
+\newcommand{\NInterviewed}{304}
+% observed W-S correlation, Tier 1, n=103; contains halo — cross-observer true-score r is +0.290
+\newcommand{\CorrWarmthStrictnessEnacted}{0.589}
+% interview W-S correlation, all interviewed schools, n=103
+\newcommand{\CorrWarmthStrictnessEspoused}{0.255}
 % LLM leadership vs ofsted_grade (inverse coding)
 \newcommand{\CorrLeadershipNational}{-0.588}
 % schools with leadership score and Ofsted grade
@@ -36,44 +38,44 @@
 \newcommand{\SDWThree}{0.39}
 % per cent of schools with W3 exactly 4
 \newcommand{\PctWThreeModal}{12}
-% per cent of schools with trx_LLMWarmthScore exactly 4
-\newcommand{\PctTrxWarmthModal}{84}
-% per cent of schools with trx_LLMManagementScore exactly 4
-\newcommand{\PctTrxManagementModal}{85}
-% per cent of schools with trx_LLMStrictnessScore exactly 4
-\newcommand{\PctTrxStrictnessModal}{78}
+% per cent of schools with trx_warmth on its modal band (5)
+\newcommand{\PctTrxWarmthModal}{41}
+% per cent of schools with trx_management on its modal band (3)
+\newcommand{\PctTrxManagementModal}{28}
+% per cent of schools with trx_strictness on its modal band (3)
+\newcommand{\PctTrxStrictnessModal}{40}
 % Model A LOO-CV r, warmth
-\newcommand{\RidgeAWarmth}{0.767}
+\newcommand{\RidgeAWarmth}{0.297}
 % Model A LOO-CV r, strictness
-\newcommand{\RidgeAStrictness}{0.701}
+\newcommand{\RidgeAStrictness}{0.348}
 % Model B LOO-CV r, warmth
-\newcommand{\RidgeBWarmth}{0.220}
+\newcommand{\RidgeBWarmth}{-0.028}
 % Model B LOO-CV r, strictness
-\newcommand{\RidgeBStrictness}{0.265}
+\newcommand{\RidgeBStrictness}{0.339}
 % Ridge fitted sample (all four models)
-\newcommand{\RidgeTrainN}{100}
-% Ofsted LLM strictness vs visit-only strictness, Tier 1
-\newcommand{\CorrOfstedStrictness}{0.400}
-% Model A composite-trained LOO predictions vs visit-only warmth
-\newcommand{\CircWarmthVisit}{0.269}
-% Model A composite-trained LOO predictions vs visit-only strictness
-\newcommand{\CircStrictnessVisit}{0.276}
-% Model A refit on visit-only warmth, penalty re-selected
-\newcommand{\RefitWarmthVisit}{0.235}
-% Model A refit on visit-only strictness, penalty re-selected
-\newcommand{\RefitStrictnessVisit}{0.343}
-% gold warmth: interview side vs observation side, n=102, p=0.024
-\newcommand{\GoldWarmthSplit}{0.224}
-% gold strictness: interview side vs observation side, n=102, p=0.064
-\newcommand{\GoldStrictnessSplit}{0.184}
-% gold teaching: interview side vs observation side, n=102, p=0.049
-\newcommand{\GoldTeachingSplit}{0.196}
-% Ofsted teaching vs gold composite, full-data tier
-\newcommand{\OfstedTeachingComposite}{0.292}
-% Ofsted teaching vs the observed visit component
-\newcommand{\OfstedTeachingVisit}{0.180}
-% interview-transcript teaching vs gold composite
-\newcommand{\TrxTeachingComposite}{0.067}
+\newcommand{\RidgeTrainN}{101}
+% Ofsted LLM strictness vs ENACTED strictness, Tier 1
+\newcommand{\CorrOfstedStrictness}{0.407}
+% RETIRED 5 Aug 2026: the target no longer contains interview content, so this equals the headline Model A LOO r
+\newcommand{\CircWarmthVisit}{0.297}
+% RETIRED 5 Aug 2026: the target no longer contains interview content, so this equals the headline Model A LOO r
+\newcommand{\CircStrictnessVisit}{0.348}
+% RETIRED 5 Aug 2026: the target no longer contains interview content, so this equals the headline Model A LOO r
+\newcommand{\RefitWarmthVisit}{0.297}
+% RETIRED 5 Aug 2026: the target no longer contains interview content, so this equals the headline Model A LOO r
+\newcommand{\RefitStrictnessVisit}{0.348}
+% gold warmth: espoused vs enacted, n=103, p=0.013
+\newcommand{\GoldWarmthSplit}{0.243}
+% gold strictness: espoused vs enacted, n=103, p=0.054
+\newcommand{\GoldStrictnessSplit}{0.190}
+% gold teaching: espoused vs enacted, n=103, p=0.062
+\newcommand{\GoldTeachingSplit}{0.184}
+% Ofsted teaching vs ESPOUSED gold teaching, full-data tier
+\newcommand{\OfstedTeachingEspoused}{0.290}
+% Ofsted teaching vs ENACTED gold teaching (the observed lessons)
+\newcommand{\OfstedTeachingEnacted}{0.172}
+% interview-transcript teaching vs ESPOUSED gold teaching
+\newcommand{\TrxTeachingEspoused}{0.106}
 % website teaching philosophy v3, full corpus
 \newcommand{\NTraditional}{111}
 % website teaching philosophy v3, full corpus

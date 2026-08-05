@@ -71,10 +71,16 @@ def build() -> list[Num]:
     tier = d["gs_data_tier"].fillna("national")
     full = d[tier == "full"]
 
-    w = pd.to_numeric(full["gs_warmth_composite"], errors="coerce")
-    s = pd.to_numeric(full["gs_strictness_composite"], errors="coerce")
-    m = w.notna() & s.notna()
-    r_ws = stats.pearsonr(w[m], s[m])[0]
+    # NO BLEND, 5 Aug 2026: gs_*_composite is gone. The warmth-strictness correlation
+    # now has to say WHICH construct it is about, and the two answers differ, so both
+    # are emitted. The enacted one is the thesis's own contrast — warmth and strictness
+    # as observed in the same lessons — and is the one to quote by default.
+    def _r(a: str, b: str) -> tuple[float, int]:
+        x = full[[a, b]].apply(pd.to_numeric, errors="coerce").dropna()
+        return float(stats.pearsonr(x[a], x[b])[0]), len(x)
+
+    r_ws_en, n_ws_en = _r("gs_warmth_enacted", "gs_strictness_enacted")
+    r_ws_es, n_ws_es = _r("gs_warmth_espoused", "gs_strictness_espoused")
 
     lead = d.dropna(subset=["ofsted_LLMLeadershipScore", "ofsted_grade"])
     r_lead = stats.pearsonr(
@@ -108,8 +114,21 @@ def build() -> list[Num]:
             "tiers 1+2"))
 
     # ── Chapter 2 headline measurement figures ───────────────────────────────
-    add(Num("CorrWarmthStrictness", f"{r_ws:.3f}",
-            "composite W-S correlation, Tier 1"))
+    # The old \CorrWarmthStrictness was 0.494 on the abolished composite. Both halves
+    # of that number came partly from the same interview, which is most of why it was
+    # so much higher than either construct measured on its own.
+    # CAVEAT THAT MUST TRAVEL WITH THIS NUMBER: one observer scored warmth and
+    # strictness in the same lesson, so it contains halo. The visit decomposition
+    # (three independent observer blocks, 351 lessons) puts the disattenuated
+    # cross-observer true-score correlation at +0.290. Quote this figure as the
+    # observed school-level association and that one as the trait correlation; do
+    # not present this as evidence that the two constructs are barely separable.
+    add(Num("CorrWarmthStrictnessEnacted", f"{r_ws_en:.3f}",
+            f"observed W-S correlation, Tier 1, n={n_ws_en}; contains halo — "
+            f"cross-observer true-score r is +0.290",
+            stale=["0.494"]))
+    add(Num("CorrWarmthStrictnessEspoused", f"{r_ws_es:.3f}",
+            f"interview W-S correlation, all interviewed schools, n={n_ws_es}"))
     add(Num("CorrLeadershipNational", f"{r_lead:.3f}",
             "LLM leadership vs ofsted_grade (inverse coding)",
             expect=[f"{abs(r_lead):.3f}"]))
@@ -133,14 +152,27 @@ def build() -> list[Num]:
             "per cent of schools with W3 exactly 4",
             expect=[f"{(w3 == 4).mean() * 100:.0f}~per cent of schools at the modal"],
             stale=["84~per cent of interviewed schools scoring"]))
+    # REPOINTED 5 Aug 2026 onto the segmented scorers. These three macros exist to
+    # document a scale collapse -- the share of schools sitting on the single modal
+    # band -- and the collapse belonged to the v6 bundled scorer, which is dead and
+    # no longer written to the dataset. Recomputing the same statistic on the
+    # segmented scorers is the honest move, but it is a DIFFERENT measurement, so
+    # the --check guards below will fail against any chapter text still quoting the
+    # v6 figures. That failure is the point: the prose has to be revisited, not the
+    # macro silently refilled.
     for lab, col, phrase in [
-            ("Warmth", "trx_LLMWarmthScore", "per cent of schools receive a warmth"),
-            ("Management", "trx_LLMManagementScore", "per cent a management"),
-            ("Strictness", "trx_LLMStrictnessScore", "per cent a strictness")]:
+            ("Warmth", "trx_warmth", "per cent of schools receive a warmth"),
+            ("Management", "trx_management", "per cent a management"),
+            ("Strictness", "trx_strictness", "per cent a strictness")]:
         v = pd.to_numeric(d[col], errors="coerce").dropna()
-        pct = f"{(v == 4).mean() * 100:.0f}"
+        # This hard-coded `== 4` until 5 Aug 2026, which was accidentally correct:
+        # band 4 WAS the mode for all three v6 scores. It is not the mode for any of
+        # the segmented ones (warmth peaks at 5, strictness and management at 3), so
+        # a macro called "Modal" would have started reporting a non-modal band.
+        modal = v.mode().iloc[0]
+        pct = f"{(v == modal).mean() * 100:.0f}"
         add(Num(f"PctTrx{lab}Modal", pct,
-                f"per cent of schools with {col} exactly 4",
+                f"per cent of schools with {col} on its modal band ({modal:.0f})",
                 expect=[f"{pct}~{phrase}"]))
 
     # ── Ridge models ─────────────────────────────────────────────────────────
@@ -224,50 +256,45 @@ def build() -> list[Num]:
         d = full[[a, b]].apply(pd.to_numeric, errors="coerce").dropna()
         return float(stats.pearsonr(d[a], d[b])[0]), len(d)
 
-    r_tc, _ = corr("ofsted_LLMTeachingScore", "gs_teaching_composite")
-    r_tv, _ = corr("ofsted_LLMTeachingScore", "gs_teaching_visit")
-    r_tx, _ = corr("trx_LLMTeachingScore", "gs_teaching_composite")
+    r_tc, _ = corr("ofsted_LLMTeachingScore", "gs_teaching_espoused")
+    r_tv, _ = corr("ofsted_LLMTeachingScore", "gs_teaching_enacted")
+    r_tx, _ = corr("trx_teaching", "gs_teaching_espoused")
 
     # ── Espoused vs enacted inside the gold standard itself ──────────────────
     # The exclusion argument above rests on an espoused/enacted asymmetry that a
     # sceptic can attribute to the LLM. These three figures close that off: both
     # sides are the researcher's own scoring, from one instrument.
     #
-    # The pairing must be LIKE FOR LIKE or the comparison is meaningless. Each
-    # composite weights an interview side against an observation side —
-    #   warmth     0.6*mean(W1,W2) + 0.4*W3_adj
-    #   strictness 0.6*mean(S1,S2) + 0.4*mean(S3,S4)
-    #   teaching   0.6*T1          + 0.4*T2
-    # — so strictness needs mean(S3,S4), NOT a single sub-score. Pairing S4
-    # against S1 alone returns 0.284 and invents a gradient that is not there;
-    # done properly all three land within 0.04 of each other. The gs_*_visit
-    # columns are the observation sides already assembled (scaled by 2, which
-    # leaves a correlation unchanged).
-    espoused = {
-        "Warmth":     pd.to_numeric(full["gs_W3_adj"], errors="coerce"),
-        "Strictness": full[["gs_S3", "gs_S4"]].apply(
-            pd.to_numeric, errors="coerce").mean(axis=1),
-        "Teaching":   pd.to_numeric(full["gs_T2"], errors="coerce"),
-    }
-    for dim, esp in espoused.items():
-        d = pd.concat([esp.rename("e"),
-                       pd.to_numeric(full[f"gs_{dim.lower()}_visit"],
-                                     errors="coerce").rename("o")],
-                      axis=1).dropna()
-        r_ee, p_ee = stats.pearsonr(d["e"], d["o"])
+    # These used to be assembled by hand from sub-scores, with a warning that the
+    # pairing had to be LIKE FOR LIKE — strictness needed mean(S3,S4) and not S4
+    # alone, which returned 0.284 and invented a gradient that was not there. Since
+    # 5 Aug 2026 the two sides are named columns, so there is nothing left to pair
+    # up wrongly: gs_*_espoused IS the interview side and gs_*_enacted IS the
+    # observation side. (Both are on the 0-10 scale; a common rescale leaves a
+    # correlation unchanged.)
+    #
+    # These three figures are also the empirical case for abolishing the composite:
+    # a 0.6/0.4 average of two measures agreeing at r = 0.18-0.24 is not a better
+    # measure of either.
+    for dim in ("Warmth", "Strictness", "Teaching"):
+        d = full[[f"gs_{dim.lower()}_espoused", f"gs_{dim.lower()}_enacted"]].apply(
+            pd.to_numeric, errors="coerce").dropna()
+        r_ee, p_ee = stats.pearsonr(d.iloc[:, 0], d.iloc[:, 1])
         add(Num(f"Gold{dim}Split", f"{r_ee:.3f}",
-                f"gold {dim.lower()}: interview side vs observation side, "
+                f"gold {dim.lower()}: espoused vs enacted, "
                 f"n={len(d)}, p={p_ee:.3f}",
                 expect=[f"$r = {r_ee:.3f}$"]))
 
-    add(Num("OfstedTeachingComposite", f"{r_tc:.3f}",
-            "Ofsted teaching vs gold composite, full-data tier",
+    # Renamed 5 Aug 2026 with the composite. Nothing in the chapters referenced the old
+    # macros yet, so this is a free rename; the values move as well as the names.
+    add(Num("OfstedTeachingEspoused", f"{r_tc:.3f}",
+            "Ofsted teaching vs ESPOUSED gold teaching, full-data tier",
             stale=["$r = 0.133$", "$r > 0.30$ validation gate",
                    "did not satisfy the"]))
-    add(Num("OfstedTeachingVisit", f"{r_tv:.3f}",
-            "Ofsted teaching vs the observed visit component"))
-    add(Num("TrxTeachingComposite", f"{r_tx:.3f}",
-            "interview-transcript teaching vs gold composite"))
+    add(Num("OfstedTeachingEnacted", f"{r_tv:.3f}",
+            "Ofsted teaching vs ENACTED gold teaching (the observed lessons)"))
+    add(Num("TrxTeachingEspoused", f"{r_tx:.3f}",
+            "interview-transcript teaching vs ESPOUSED gold teaching"))
 
     # ── Teaching philosophy (v3 classification) ──────────────────────────────
     add(Num("NTraditional", str(ph.get("traditional", 0)),
