@@ -260,9 +260,16 @@ def build() -> list[Num]:
         d = full[[a, b]].apply(pd.to_numeric, errors="coerce").dropna()
         return float(stats.pearsonr(d[a], d[b])[0]), len(d)
 
-    r_tc, _ = corr("ofsted_LLMTeachingScore", "gs_teaching_espoused")
+    # ESPOUSED REBUILT, 6 Aug 2026. `gs_teaching_espoused` is now
+    # `gs_staff_climate_espoused`: with the explanation-quality question scores removed its
+    # items are "Teacher turnover is low" and "Staff morale is good". r_tc and r_tx are
+    # therefore TEACHING-against-STAFF-MORALE, a cross-construct contrast, and must not be
+    # written up as convergent validity for either teaching scorer. The interview has no
+    # espoused teaching measure -- see the `warm_strict_scorer.py` header. r_tv is
+    # unaffected: the visit side is unchanged.
+    r_tc, _ = corr("ofsted_LLMTeachingScore", "gs_staff_climate_espoused")
     r_tv, _ = corr("ofsted_LLMTeachingScore", "gs_teaching_enacted")
-    r_tx, _ = corr("trx_teaching", "gs_teaching_espoused")
+    r_tx, _ = corr("trx_teaching", "gs_staff_climate_espoused")
 
     # ── Espoused vs enacted inside the gold standard itself ──────────────────
     # The exclusion argument above rests on an espoused/enacted asymmetry that a
@@ -277,10 +284,21 @@ def build() -> list[Num]:
     # observation side. (Both are on the 0-10 scale; a common rescale leaves a
     # correlation unchanged.)
     #
-    # These three figures are also the empirical case for abolishing the composite:
-    # a 0.6/0.4 average of two measures agreeing at r = 0.18-0.24 is not a better
-    # measure of either.
-    for dim in ("Warmth", "Strictness", "Teaching"):
+    # These figures are also the empirical case for abolishing the composite: an average
+    # of two measures that disagree this much is not a better measure of either.
+    #
+    # TEACHING LEFT THIS LOOP ON 6 AUG 2026. It has no espoused measure: once the
+    # explanation-quality question scores were removed, the interview's teaching items were
+    # "Teacher turnover is low" and "Staff morale is good". Iterating it here would have
+    # emitted a \GoldTeachingSplit macro asserting an espoused/enacted split for a construct
+    # the interview never measured.
+    #
+    # The warmth and strictness figures MOVED with the rebuild and the old range quoted in
+    # this comment (0.18-0.24) is stale: dropping the question scores and the Y/N systems
+    # count more than doubled strictness. Anything in the chapters quoting the old numbers
+    # is out of date -- these macros are derived, so \GoldWarmthSplit and
+    # \GoldStrictnessSplit update themselves, but surrounding PROSE does not.
+    for dim in ("Warmth", "Strictness"):
         d = full[[f"gs_{dim.lower()}_espoused", f"gs_{dim.lower()}_enacted"]].apply(
             pd.to_numeric, errors="coerce").dropna()
         r_ee, p_ee = stats.pearsonr(d.iloc[:, 0], d.iloc[:, 1])
@@ -289,16 +307,32 @@ def build() -> list[Num]:
                 f"n={len(d)}, p={p_ee:.3f}",
                 expect=[f"$r = {r_ee:.3f}$"]))
 
+    # Named for what it is. NOT a \GoldTeachingSplit: the two sides are different
+    # constructs, so this is a descriptive contrast and not an espoused/enacted split.
+    d = full[["gs_staff_climate_espoused", "gs_teaching_enacted"]].apply(
+        pd.to_numeric, errors="coerce").dropna()
+    r_sc, p_sc = stats.pearsonr(d.iloc[:, 0], d.iloc[:, 1])
+    add(Num("GoldStaffClimateVsTeaching", f"{r_sc:.3f}",
+            f"espoused staff climate (turnover + morale) vs ENACTED teaching, "
+            f"n={len(d)}, p={p_sc:.3f}. CROSS-CONSTRUCT: the interview has no espoused "
+            f"measure of teaching practice"))
+
     # Renamed 5 Aug 2026 with the composite. Nothing in the chapters referenced the old
     # macros yet, so this is a free rename; the values move as well as the names.
-    add(Num("OfstedTeachingEspoused", f"{r_tc:.3f}",
-            "Ofsted teaching vs ESPOUSED gold teaching, full-data tier",
+    # Renamed again 6 Aug 2026. The old macro names claimed these were teaching-vs-teaching
+    # comparisons. They are teaching-vs-staff-climate, so the names now say so: writing
+    # \OfstedTeachingEspoused into a chapter would assert convergent validity that this
+    # number cannot support. There is no espoused teaching measure to put in its place.
+    add(Num("OfstedTeachingVsStaffClimate", f"{r_tc:.3f}",
+            "Ofsted teaching vs espoused STAFF CLIMATE (turnover + morale), full-data "
+            "tier. CROSS-CONSTRUCT: not convergent validity for the teaching scorer",
             stale=["$r = 0.133$", "$r > 0.30$ validation gate",
                    "did not satisfy the"]))
     add(Num("OfstedTeachingEnacted", f"{r_tv:.3f}",
             "Ofsted teaching vs ENACTED gold teaching (the observed lessons)"))
-    add(Num("TrxTeachingEspoused", f"{r_tx:.3f}",
-            "interview-transcript teaching vs ESPOUSED gold teaching"))
+    add(Num("TrxTeachingVsStaffClimate", f"{r_tx:.3f}",
+            "interview-transcript teaching vs espoused STAFF CLIMATE. CROSS-CONSTRUCT: "
+            "the interview has no espoused measure of teaching practice"))
 
     # ── Teaching philosophy (v3 classification) ──────────────────────────────
     add(Num("NTraditional", str(ph.get("traditional", 0)),

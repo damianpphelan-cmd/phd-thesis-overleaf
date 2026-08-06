@@ -19,7 +19,7 @@ OUT = Path(__file__).resolve().parent / "tables" / "tab_score_dist.tex"
 SUBSCORES = [
     ("gs_W1",      r"$W1$",     "In-lesson staff--pupil warmth",        "visit"),
     ("gs_W2",      r"$W2$",     "Warmth in transitions and breaks",     "visit"),
-    ("gs_W3_adj",  r"$W3^*$",   "HT warmth philosophy (quality-adj.)",  "interview"),
+    ("gs_W3",      r"$W3$",     "HT espoused warmth (statements)",      "interview"),
     ("gs_S1",      r"$S1$",     "In-lesson behaviour management",       "visit"),
     ("gs_S2",      r"$S2$",     "Out-of-lesson behaviour management",   "visit"),
     ("gs_S3",      r"$S3$",     "Behaviour management systems (count)", "interview"),
@@ -34,7 +34,7 @@ SCORES = [
     ("gs_teaching_enacted",    "Teaching", "enacted"),
     ("gs_warmth_espoused",     "Warmth", "espoused"),
     ("gs_strictness_espoused", "Strictness", "espoused"),
-    ("gs_teaching_espoused",   "Teaching", "espoused"),
+    ("gs_staff_climate_espoused", "Staff climate", "espoused"),
 ]
 
 
