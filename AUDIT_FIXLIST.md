@@ -17,6 +17,8 @@ layer between the data and the prose, not in the research.
 
 **Done:** A1 · A2 · A3 · A4 · A5 · A5b · A6 · **A7** · A8 · A9 · A11 · **A13** · B1–B9 · **B9c** · C1 · C2 · C3
 **Blocked on you:** A10 (acknowledgements, funding) · C3 residue (Paper 3 sentences) · **A14**
+**Open, added 8 Aug 2026:** **B10** (BP scores are clustered — needs digest-clustered SEs; also
+supplies the reliability figure §B9b was missing, for free) · **B11** (5 wrong documents)
 
 ### [ ] A14 — Chapter 3 is estimated on 102 schools; there are 103 (opened 5 Aug 2026)
 
@@ -509,6 +511,83 @@ human-coded strictness** (stratified on the *human* score, so it cannot hand-pic
 The model's scores are deliberately withheld in a separate file so the labelling stays blind, and
 **no API calls are needed at any stage** — the v26 scores for these schools already exist. The report
 prints the answer-the-mode baseline (~60%); beating *that* is the bar, not beating zero.
+
+---
+
+### [ ] B10 — Behaviour-policy scores are **clustered**, not independent, and the clusters hand us a free reliability estimate **(new, 8 August 2026)**
+
+A corpus-wide duplicate scan (`scratchpad/duplicate_documents.py`, zero API calls) hashed the
+extracted text of all 3,327 national behaviour policies:
+
+```
+3,318 readable · 3,075 distinct documents · 90 shared by 2+ schools · 333 schools (10%)
+group sizes: 48×2 · 10×3 · 10×4 · 7×5 · 8×6 · 4×9 · 1×11 · 1×15 · 1×22
+```
+
+**Almost all of it is trusts, as expected** — every large group is a multi-academy trust
+publishing one policy that each academy links: Outwood 22, Delta 15, Northern Education Trust 11,
+Inspiration 9, David Ross 6, Scholars' Education Trust 6. Only 5 schools of 3,327 hold a document
+that is genuinely wrong for them (§B11).
+
+**The inference consequence.** `bp_LLMStrictnessScore` and `bp_LLMWarmthScore` are **not 3,327
+independent observations**. Every academy in a trust receives a mechanically identical score from
+a mechanically identical document, so the effective N for anything BP-based is nearer **3,075**,
+and the largest trust is one data point entered 22 times. Any regression, correlation or standard
+error using a BP variable needs **standard errors clustered on the document digest** — which
+nothing in the pipeline currently does. This bites hardest in Chapter 3's national tier, where
+`pred_b_strictness` is built partly on BP features.
+
+The digest for every affected school is in `scores/_duplicate_documents.csv`, so this is a join,
+not a re-run: add the digest as a cluster variable (singletons cluster on themselves) and re-fit.
+No API calls.
+
+**The by-product is more valuable than the problem: this is a reliability sample.** The national
+run scored each shared document **once per school**, independently, not knowing the texts were
+identical. So each group is a repeat measurement of one document with **no true-score variation to
+confound it** — a far better test–retest design than the 8-anchor re-run in §B9b, and it costs
+nothing because the runs already happened. Verified before use: all 778 pairs match on
+`BodyChars`/`CompanionChars`/`CompanionCount` (identical prompt input), the school name is not
+injected into the prompt, and pairs where **both** rows were cache hits agree no *more* than the
+rest (86.6% vs 93.3% strictness; 78.4% vs 78.3% warmth) — so no pair is sharing one cached
+response, and every score was a real call.
+
+| scorer | model | documents | repeat pairs | exact | within 1 |
+|---|---|---|---|---|---|
+| **v30 strictness** (current) | gpt-4o-mini | 84 | 778 | **88.2%** | 99.9% |
+| **v31 warmth** (current) | gpt-4o-mini | 84 | 778 | **78.4%** | 97.2% |
+| v26 strictness — **the scores in the thesis** | gpt-5-nano | 90 | 863 | **65.4%** | 97.5% |
+| v26 warmth — **the scores in the thesis** | gpt-5-nano | 90 | 863 | **66.6%** | 99.3% |
+
+**This settles §B9b's open question with a real number instead of eight schools.** The scores
+currently in Chapter 2 and feeding Chapter 3 reproduce on identical input about **two times in
+three**. The 22-academy Outwood group is the cleanest illustration: one document, scored 22 times,
+returns 3 eight times, 4 twelve times and 5 twice. The rebuilt v30/v31 scorers are materially
+better (gpt-4o-mini honours `temperature=0`, which nano silently dropped), and warmth is the
+weaker of the two at 78%.
+
+**Recommended, and cheaper than §B9b option (a):** report this table as the instrument's
+reliability rather than paying ~5 × 3,364 calls for a k-fold re-scoring design. It is a larger
+sample than a bespoke reliability run would buy, and it was collected under live conditions.
+Caveat to state alongside it: the duplicate groups are trust documents, which are longer and more
+formulaic than average, so this is reliability on *that* stratum, not proof of the corpus-wide rate.
+
+### [ ] B11 — Five schools hold the wrong document **(new, 8 August 2026)**
+
+| URN | school | holds |
+|---|---|---|
+| 141105 | Holy Trinity School | Trinity High School's policy (137167) — download row says `no_match`, so the file came from another pass. Unambiguously a pipeline fault |
+| 136579 | The Appleton School | NCEA Duke's Secondary School's policy (135886) |
+| 137612 | Range High School | Meols Cop High School's policy (149828) |
+| 136102 | Co-op Academy Stoke-On-Trent | the **DfE's own statutory guidance**, "Behaviour in Schools: Advice for headteachers and school staff", Feb 2024 |
+| 147177 | Co-op Academy Grange | same DfE guidance |
+
+Appleton's and Range's copies were downloaded **from those schools' own websites**, so the school
+may genuinely have published another school's document — that is a finding about the school, not
+only about the pipeline. Damian is tracking down replacements. 5 of 3,327 does not block anything;
+carry a flag and drop them at analysis time.
+
+Separately resolved and **closed**: 13 schools whose selected document was the *sixth form's own*
+behaviour policy. All 13 replaced on 8 Aug 2026 and the detector now returns zero.
 
 ---
 
