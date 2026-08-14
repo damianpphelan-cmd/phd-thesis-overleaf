@@ -39,7 +39,8 @@ local numvars gs_warmth_visit gs_strictness_visit gs_teaching_visit ///
     p8mea_2324 att8screng_2425 semh_baseline_2016 ///
     trx_warmth trx_strictness trx_management ///
     ks2 fsm log_size academy urban_bin selective ///
-    years_since_ofsted ofsted_grade_2019 size
+    years_since_ofsted ofsted_grade_2019 size ///
+    grade2019_filled late_entry
 destring `numvars', replace force
 
 global ctrl_cont "ks2 fsm eal sen log_size years_since_ofsted"
@@ -168,6 +169,47 @@ foreach outcome in p8mea_avg p8meaeng_avg p8meamat_avg p8meaebac_avg p8meaopen_a
     regress `outcome' trad prog $controls_ngrade, vce(hc3)
     postterms `pf' "teachphil" "`lbl'" "trad prog"
 }
+
+
+* ================================================================
+* THE PRIMARY SPECIFICATION (added 14 Aug 2026, Damian's rulings).
+* Differs from the blocks above in three ways, and they are the reason these
+* are posted as separate rows rather than replacing them:
+*   (i)  schools whose statutory entry age is 13+ are excluded (P8 charges them
+*        for progress from age 11 they cannot have caused);
+*   (ii) the pre-COVID grade control is the predecessor-filled version, which
+*        recovers five visited schools that converted after 2019;
+*   (iii) the trio of outcomes reported in the chapter body.
+* Everything else -- controls, HC3, the enacted culture scores -- is unchanged,
+* so a difference between these rows and the Python estimates in
+* analyse_ch3_batch.py is a specification difference, not a software one.
+* ================================================================
+global ctrl_ofsted_f "2.grade2019_filled 3.grade2019_filled 4.grade2019_filled"
+global controls_primary "$ctrl_cont $ctrl_bin $ctrl_ofsted_f"
+
+preserve
+keep if late_entry != 1
+
+foreach outcome in p8mea_avg p8meaeng_avg p8meamat_avg {
+    local lbl = cond("`outcome'"=="p8mea_avg",    "overall", ///
+                cond("`outcome'"=="p8meaeng_avg", "english", "maths"))
+
+    regress `outcome' $W $S $controls_primary, vce(hc3)
+    postterms `pf' "primary_stage1" "`lbl'" "$W $S"
+
+    regress `outcome' $W $controls_primary, vce(hc3)
+    postterms `pf' "primary_warmthonly" "`lbl'" "$W"
+
+    regress `outcome' $S $controls_primary, vce(hc3)
+    postterms `pf' "primary_strictonly" "`lbl'" "$S"
+
+    regress `outcome' $T $controls_primary, vce(hc3)
+    postterms `pf' "primary_stage2" "`lbl'" "$T"
+
+    regress `outcome' $W $S $T $controls_primary, vce(hc3)
+    postterms `pf' "primary_stage3" "`lbl'" "$W $S $T"
+}
+restore
 
 postclose `pf'
 
