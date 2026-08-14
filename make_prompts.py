@@ -30,6 +30,10 @@ OUT     = PROJECT / 'thesis' / 'snippets' / 'llm_prompts.tex'
 
 OFSTED  = PROJECT / 'analyse_ofsted_reports.py'
 POLICY  = PROJECT / 'analyse_behaviour_policies_v3.py'
+WEB_WARMTH = PROJECT / 'score_website_warmth_v18.py'
+WEB_STRICT = PROJECT / 'score_website_strictness_v13.py'
+IV_STRICT  = PROJECT / 'score_interview_strictness.py'
+IV_TEACH   = PROJECT / 'score_interview_teaching_v3.py'
 
 # Reported so the conversion of straight-quoted phrases can be eyeballed.
 _CONVERTED: list[str] = []
@@ -75,6 +79,7 @@ UNICODE = {
     '‘': '`', '’': "'", '“': '``', '”': "''",
     '≠': r'$\neq$', '£': r'\pounds{}', '°': r'$^{\circ}$', '•': r'\textbullet{}',
     ' ': '~', '×': r'$\times$', '≥': r'$\geq$', '≤': r'$\leq$',
+    '·': r'$\cdot$',
 }
 
 
@@ -134,6 +139,44 @@ def quote_block(s: str) -> list[str]:
     return [r'\begin{quote}\small', paragraphs(s), r'\end{quote}', '']
 
 
+def flag_section(title: str, path: Path, ladder: str | None) -> list[str]:
+    """A decomposed instrument, condensed to its operative content.
+
+    Emits the construct, the flag questions verbatim, and the banding rule:
+    the hand-written `ladder` prose where supplied, otherwise the scorer's own
+    band_labels. Exclusion clauses and hard rules are summarised by count and
+    left to the script, per the concision note in the preamble above.
+    """
+    rub = literal_from(path, 'RUBRIC')
+    ver = literal_from(path, 'PROMPT_VERSION')
+    out = [r'\subsection*{' + tex_escape(title) + r'}', '',
+           r'Prompt version \texttt{' + tex_escape(ver) + r'}. Construct:',
+           tex_escape(rub['construct']), '',
+           r'\paragraph{The questions}', r'\begin{enumerate}\small']
+    for name, q in rub['flags'].items():
+        out.append(r'\item \textit{' + tex_escape(name.replace('_', ' '))
+                   + r'.} ' + tex_escape(q))
+    out += [r'\end{enumerate}', '']
+    out += [r'\paragraph{The banding rule}']
+    if ladder:
+        out += [tex_escape(ladder), '']
+    elif 'band_labels' in rub:
+        out += [r'\begin{description}']
+        for k in sorted(rub['band_labels'], key=str):
+            out.append(r'\item[Band ' + tex_escape(str(k)) + r'] '
+                       + tex_escape(rub['band_labels'][k]))
+        out += [r'\end{description}', '']
+    n_excl = len(rub.get('does_not_count', []) or [])
+    n_hard = len(rub.get('hard_rules', []) or [])
+    out += [tex_escape(
+        f'The instrument additionally carries {n_excl or "its"} exclusion '
+        f'clauses and {n_hard} hard rules, stated in full in '
+        f'{path.name.replace("_", chr(95))}.').replace(
+            tex_escape(path.name), r'\texttt{' + tex_escape(path.name) + r'}'),
+        '']
+    return out
+
+
 # ── Document ─────────────────────────────────────────────────────────────────
 
 def build() -> str:
@@ -176,11 +219,12 @@ def build() -> str:
     ]
     L += quote_block(of_sys)
     L += [
-        r'The payload supplies the URN and school name, inspection date and report',
-        r"type, Ofsted's own behaviour and attitudes judgement (as context only, and",
-        r'explicitly not as a cap on the score), the opening summary, the',
-        r'improvement-areas section, and the substantive inspection narrative with',
-        r'boilerplate, primary-phase and sixth-form passages removed. For an',
+        r'The payload supplies the URN and school name, the inspection date, the',
+        r'report type with any stated grade removed from its wording, and the',
+        r'grade-stripped uniform report body: the substantive inspection narrative',
+        r'with boilerplate, primary-phase and sixth-form-specific passages removed',
+        r'and every stated grade deleted, so that no field available to the model',
+        r'carries the inspection verdict. For an',
         r'all-through school a further note instructs the model to score only the',
         r'secondary provision described in the remaining text. The required output is a',
         r'score, a confidence level and a reason for each of strictness, warmth and',
@@ -215,6 +259,76 @@ def build() -> str:
     L += anchor_block('Strictness scale anchors', bp_rub['strictness'])
     L += anchor_block('Warmth scale anchors', bp_rub['warmth'])
     L += rules_block('Scoring rules', bp_rub['hard_rules'])
+
+    L += [
+        r'A second behaviour-policy instrument (prompt version',
+        r'\texttt{behaviour-policy-strictness-warmth-v28-fulltext}) is used for the',
+        r'robustness columns in \cref{ch:paper2}. It reads the full policy text',
+        r'rather than an extract and carries revised threshold anchors; its rules',
+        r'follow the same form as those above and are in',
+        r'\texttt{analyse\_behaviour\_policies\_v4.py}.',
+        '',
+        r'\subsection*{The decomposed instruments}',
+        '',
+        r'The website and interview instruments do not ask the model for a band.',
+        r'Each asks a fixed set of factual questions about one document; every',
+        r'affirmative answer must be supported by a verbatim quotation, which is',
+        r'checked against the document before it counts; and the band is assigned',
+        r'by a fixed rule in ordinary code. For concision, the question texts and',
+        r'banding rules are reproduced here in their operative form; each',
+        r'instrument also carries exclusion clauses (what does not count) and',
+        r'tie-break rules, which are stated in full in its scoring script in the',
+        r'project repository.',
+        '',
+    ]
+
+    L += flag_section(
+        'Website warmth', WEB_WARMTH,
+        'A site with no verified relational referent is band 1; one or more '
+        'verified referents reach band 2; a claim that recurs or is '
+        'intensified reaches band 3; a described arrangement (a route to a '
+        'named person, a named relational practice, described availability) '
+        'reaches band 4; a narrated instance, pupil voice, or a parent '
+        'witnessed account reaches band 5. The highest finding wins, and a '
+        'site that presents itself principally through results is capped.')
+
+    L += flag_section(
+        'Website strictness', WEB_STRICT,
+        'A site that expresses no expectation of pupils is band 1; a virtue '
+        'without a conduct is band 2; a named conduct is band 3; conduct '
+        'demanded of pupils is band 4. Negative findings (demands attached '
+        'only to virtues, purely academic expectations, conduct words only in '
+        'navigation or a values list) cap the band unless the site has '
+        'specified particulars. A five-band variant used for scale '
+        'consistency adds band 5 where the site both names a small particular '
+        'of conduct and states a consequence; this fires for 25 schools '
+        'nationally.')
+
+    L += flag_section('Interview strictness', IV_STRICT, None)
+    L += flag_section('Interview teaching', IV_TEACH, None)
+
+    L += [
+        r'\subsection*{Interview warmth (counted statements)}',
+        '',
+        r'Prompt version \texttt{interview-warmth-prose-v1-counted-relational-statements}.',
+        r'This instrument gives the model a short written rubric and asks it to',
+        r'count, with verbatim quotations, the relational statements in the',
+        r"headteacher's answers (statements placing staff and pupils in relation)",
+        r'and the subset that name a concrete mechanism. The band the model',
+        r'offers is discarded; the reported band is recomputed in code from the',
+        r'verified counts. The pre-registered rubric is',
+        r'\texttt{RUBRIC\_interview\_warmth\_prose\_v1.md} in the repository.',
+        '',
+        r'\subsection*{Website identity (faith prominence)}',
+        '',
+        r'A three-way classifier (teaching philosophy, religious character,',
+        r'faith prominence) reads the same crawl text and returns categorical',
+        r'judgements; faith prominence is graded none, incidental, present or',
+        r'central. This instrument is retained on the older model it was',
+        r'validated with (\cref{sec:p1_scoring_lessons}); its full rubric is in',
+        r'\texttt{analyse\_website\_scores.py}.',
+        '',
+    ]
 
     return '\n'.join(L).rstrip() + '\n'
 
