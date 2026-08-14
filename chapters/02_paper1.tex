@@ -1294,6 +1294,34 @@ convergence reported here. The methodological lesson is worth stating plainly:
 a dissociation is a claim about a \emph{difference} between two correlations,
 and it can be manufactured entirely by measurement error in one cell.}
 
+One further property of the Ofsted warmth score must be reported here, because
+it constrains how the score may be used anywhere in this thesis. The score is
+produced from report text from which every stated grade has been removed, and
+human raters reading that same grade-stripped text produce warmth labels that
+track the inspection verdict only weakly ($-0.25$, not significant). The
+model's warmth score tracks the verdict at $-0.52$. In other words, the
+scoring model recovers the inspection outcome from prose that never states
+it, and it does so far more strongly than human readers of the same text.
+The size of the resulting distortion is roughly $+0.4$ of a band at
+Outstanding falling to $-0.4$ at Inadequate, and the property is inherited:
+every version of the instrument ever built shows it. The explanation appears
+to be that inspectors write about relationships in a register that moves with
+their overall judgement --- better-judged schools receive more emphatic
+relational prose --- and the model reads that register fluently. There is a
+genuine tension here that cannot be engineered away: the textual features
+that make the score agree better with raters are emphasis and repetition,
+and Ofsted supplies more of both to schools it judges favourably.
+Accordingly, the warmth score is carried in this thesis as a
+characterisation measure only. It is never presented as a clean predictor,
+and wherever a warmth--outcome association involving it is reported, the
+possibility that part of the association is the inspection verdict
+re-expressed is stated alongside it. The same reconstruction test applied to
+strictness gives useful contrast: the strictness score also tracks the
+verdict ($-0.51$), but unlike warmth it also tracks what an independent
+observer records in the school, so its association with outcomes survives
+conditioning on the grade itself (\cref{ch:paper2}), which the warmth score's
+does not.
+
 Adding the four interview features in Model~A moves warmth from
 $\RidgeBWarmth$ to $\RidgeAWarmth$ and leaves strictness essentially unchanged
 ($\RidgeBStrictness$ to $\RidgeAStrictness$). Conducting a headteacher interview
@@ -1922,9 +1950,20 @@ scale.
 %  APPENDIX 2A
 % ===============================================================
 \bigskip
-\noindent\rule{\linewidth}{0.4pt}
-
+\clearpage
 \startchapterappendix{2}
+\begin{center}
+  {\LARGE\bfseries Appendix to Chapter 2}\\[6pt]
+  \rule{0.5\linewidth}{0.4pt}
+\end{center}
+\medskip
+\noindent This appendix collects the supporting material for the measurement
+framework: the scoring guide and item definitions for the visit and interview
+instruments, the inter-rater reliability tables, the interview guide and
+visit protocol, the full text of every LLM scoring rule, the document
+collection methodology, and the model-specification comparisons for the
+calibration models.
+\medskip
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \section{Scoring Guide and Item Definitions}
