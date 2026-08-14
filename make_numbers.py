@@ -33,8 +33,13 @@ from scipy import stats
 ROOT = Path(__file__).resolve().parent.parent
 THESIS = ROOT / "thesis"
 SNIPPETS = THESIS / "snippets" / "numbers.tex"
+# main.tex and the introduction joined the guard 14 Aug 2026, after the thesis
+# abstract was found quoting a superseded 0.418 that the chapter-only guard
+# could not see.
 CHAPTERS = [THESIS / "chapters" / "02_paper1.tex",
-            THESIS / "chapters" / "03_paper2.tex"]
+            THESIS / "chapters" / "03_paper2.tex",
+            THESIS / "chapters" / "01_introduction.tex",
+            THESIS / "main.tex"]
 
 
 class Num:

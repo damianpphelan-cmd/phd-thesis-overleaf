@@ -260,6 +260,11 @@ ITEM_NAMES = {
     'Names_f': "Frequency with which teacher uses pupils' names",
     'Praise_f': 'Frequency of praise',
     'Interact_f': 'Quality of interactions between teachers and pupils',
+    # Added to W1 by the visit-item extension (5 Aug 2026), which bought a
+    # large inter-observer reliability gain at some cost to discriminant
+    # validity; both items are lesson-observation ratings.
+    'StudentPart_f': 'Frequency of student-initiated participation',
+    'Motivation_f': 'Motivation level of students',
     'Misbehav_inv': 'Level of misbehaviour tolerated before a first sanction (reversed)',
     'Disruption_inv': 'Frequency of low-level disruption (reversed)',
     'Response_f': 'Response of pupils to sanctions',
@@ -317,13 +322,13 @@ ITEM_NAMES = {
 SUBSCORES = [
     ('Warmth',   'W1', 'Teaching warmth', 'Lesson observation'),
     ('Warmth',   'W2', 'School warmth', 'Outside-of-lessons observation'),
-    ('Warmth',   'W3', 'Headteacher warmth philosophy', 'Interview'),
+    ('Warmth',   'W3', 'Espoused warmth', 'Interview statements'),
     ('Strictness', 'S1', 'In-lesson strictness', 'Lesson observation'),
     ('Strictness', 'S2', 'Out-of-lesson strictness', 'Outside-of-lessons observation'),
-    ('Strictness', 'S3', 'Systems strictness', 'Interview'),
-    ('Strictness', 'S4', 'Headteacher strictness philosophy', 'Interview'),
+    ('Strictness', 'S3', 'Systems count (not a score component)', 'Interview'),
+    ('Strictness', 'S4', 'Espoused strictness', 'Interview statements'),
     ('Teaching practice', 'T1', 'Teaching practice (observed)', 'Lesson observation'),
-    ('Teaching practice', 'T2', 'Teaching practice (stated)', 'Interview'),
+    ('Teaching practice', 'T2', 'Espoused staff climate (there is no espoused teaching score)', 'Interview statements'),
 ]
 
 SCORER = PROJECT / 'warm_strict_scorer.py'
@@ -357,7 +362,18 @@ def subscore_columns() -> dict:
             if (isinstance(node.value, ast.Call)
                     and getattr(node.value.func, 'id', '') == 'nanmean_cols'
                     and len(node.value.args) == 2):
-                lit = _list_literal(node.value.args[1])
+                arg = node.value.args[1]
+                # W1/S1/T1 select their item set through a conditional on the
+                # LEGACY_ITEMS switch (the pre-5-Aug item sets are retained for
+                # reproduction). The CURRENT set is the `orelse` branch, since
+                # the condition reads `... if LEGACY_ITEMS else ...`. Added
+                # 14 Aug 2026: before this the parser saw an IfExp, returned
+                # nothing for W1, and the whole snippet silently failed to
+                # regenerate, leaving the appendix showing the pre-rebuild
+                # sub-score definitions.
+                if isinstance(arg, ast.IfExp):
+                    arg = arg.orelse
+                lit = _list_literal(arg)
                 if lit is not None:
                     assigned[key] = lit
                 elif isinstance(node.value.args[1], ast.Name):
