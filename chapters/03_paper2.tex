@@ -327,30 +327,18 @@ GCSE (age~16) relative to nationally similar pupils; the composite score is
 normalised to zero at national level with a standard deviation of approximately
 one grade.
 
-The composite score is decomposed into four components: English (two slots,
-double-weighted), Maths (two slots, double-weighted), EBaC (three slots:
-sciences, computer science, history, geography, and modern foreign languages),
-and Open (three slots: any additional approved qualification, including arts and
-vocational subjects). The four components are examined separately rather than
-using the aggregate Progress~8 score because the two pairs differ in how
-school-level choices shape the score. For English and Maths every pupil sits the
-relevant GCSE, so the component directly reflects instructional quality; for
-EBaC and Open, schools influence both which subjects pupils enter and how well
-they progress in those subjects. Unfilled EBaC or Open slots contribute zero
-progress to the school's average, so the EBaC and Open components are partly
-determined by curriculum-pathway decisions as well as teaching quality.
-
-This structure generates a theoretical prediction about warmth and strictness.
-Schools higher on strictness---characterised by structured behaviour management,
-high academic expectations, and intensive pupil steering---are more likely to
-direct pupils into the EBaC pathway, potentially raising the EBaC component
-through both the entry-rate and the conditional-progress channels. Schools higher
-on warmth---characterised by relational support, enrichment breadth, and pupil
-engagement---may generate stronger progress in the more elective Open component.
-If the two culture dimensions operate through distinct curriculum channels, the
-EBaC and Open components would show differential sensitivity to warmth and
-strictness; if both move together, the culture effect is general rather than
-pathway-specific.
+The main body of this chapter reports results for three outcomes: overall
+Progress~8 and its English and Maths components. These two components are the
+cleanest measures of progress the performance tables offer, because every
+pupil sits the relevant GCSE, so the component reflects progress in a subject
+rather than a school's decisions about which subjects pupils enter. The
+remaining two components, EBaC and Open, are partly determined by
+curriculum-pathway decisions as well as by progress within subjects, and for
+that reason they are reported in the appendix, together with a short section
+explaining exactly how each Progress~8 component is calculated and why the
+distinction matters (\cref{app:3A:p8mechanics}). The appendix also examines
+subject entry rates directly, which allows the pathway question to be
+addressed on its own terms rather than inside a progress measure.
 
 The primary outcome is a two-year average of Progress~8 component scores across
 2022--23 and 2023--24. Using both available post-COVID years rather than a single
@@ -588,69 +576,90 @@ warmth, strictness, and outcome data.
 \section{Results}
 \label{sec:p2_results}
 
-\Cref{tab:main_results_s1} reports Stage~1 estimates from the primary
-specification, regressing overall Progress~8 and each of the four component
-outcomes on enacted warmth~$W$ and strictness~$S$ plus the full control set,
-for the $n = 96$ schools with non-missing pre-COVID Ofsted grade. Both culture
-dimensions are positively and significantly associated with overall
-Progress~8: $\hat{\beta}_W = 0.150$ ($p = 0.001$, HC3 robust SEs throughout)
-and $\hat{\beta}_S = 0.130$ ($p = 0.007$), with near-equal magnitudes and
-$R^2 = 0.650$.
+\Cref{tab:spec_ladder} reports the Stage~1 estimates. The primary
+specification regresses overall Progress~8 on enacted warmth~$W$ and
+strictness~$S$ plus the full control set, with the pre-COVID Ofsted grade
+control described in \cref{sec:p2_controls}. Two sampling decisions should be
+restated here. First, the 98 schools whose statutory entry age is 13 or above
+(university technical colleges, studio schools, and similar) are excluded
+from every outcome regression, because Progress~8 attributes to them progress
+over ages 11 to 16 when they enrol their pupils only at 13 or 14; two of the
+visited schools are excluded on this ground. Second, six visited schools
+converted to academies after 2019 and so carry no pre-COVID grade of their
+own; for five of them the predecessor school's 2019 grade is used, recovered
+through the register of predecessor and successor schools, which raises the
+primary estimation sample to $n = 100$. \Cref{tab:spec_ladder} shows the
+estimates across four treatments of the grade control, from requiring an
+original grade ($n = 95$) to dropping the control entirely ($n = 101$).
 
-At the component level, warmth is significantly associated with all four
-components: English ($\hat{\beta}_W = 0.177$, $p < 0.001$), EBaC
-($\hat{\beta}_W = 0.165$, $p = 0.006$), Open ($\hat{\beta}_W = 0.146$,
-$p = 0.015$), and Maths ($\hat{\beta}_W = 0.118$, $p = 0.038$). Strictness is
-significantly associated at the five-per-cent level with EBaC
-($\hat{\beta}_S = 0.169$, $p = 0.005$), Open ($\hat{\beta}_S = 0.135$,
-$p = 0.040$), and Maths ($\hat{\beta}_S = 0.109$, $p = 0.038$), and is
-marginally significant for English ($\hat{\beta}_S = 0.086$, $p = 0.084$).
-The EBaC component shows the largest and most consistent culture effects: both
-$W$ and $S$ are significant with comparable magnitudes
-($\hat{\beta}_W \approx \hat{\beta}_S \approx 0.17$).
+Both culture dimensions are positively and significantly associated with
+overall Progress~8 in every specification. In the primary specification
+$\hat{\beta}_W = 0.132$ ($p = 0.002$, HC3 robust standard errors throughout)
+and $\hat{\beta}_S = 0.117$ ($p = 0.003$), and the coefficients move by less
+than $0.02$ across the four rungs of the ladder. The two dimensions
+contribute with near-equal magnitude, which is consistent with the
+theoretical position set out in \cref{sec:p2_id} that support and
+demandingness make complementary contributions to the environment in which
+pupils learn.
 
-The domain-specific prediction of \cref{sec:p2_outcomes} is only weakly
-supported. That prediction was of a double dissociation---strictness the sole
-significant predictor for Maths, warmth the sole significant predictor for
-English---and it is not what these estimates show. Warmth predicts every
-component, including Maths, so there is no subject in which strictness
-operates alone. What survives is the weaker, ordinal version of the claim:
-strictness is at its strongest in EBaC and weakest in English, and the gap
-between the warmth and strictness coefficients is widest for English, which is
-the direction the theory anticipates. An earlier specification did produce the
-dissociation, but it did so because the selectivity control was miscoded and
-grammar schools were in effect uncontrolled; the pattern did not survive the
-correction, and the ordinal reading is what the corrected estimates support.
+\input{tables/tab_spec_ladder}
 
-\input{tables/tab_main_results_s1}
+It is natural to ask what each dimension predicts on its own, before the
+other is controlled. \Cref{tab:univariate_ws} answers this by estimating
+strictness-only and warmth-only versions of the primary specification
+alongside the joint model. Alone, each dimension carries a coefficient of
+about $0.20$ ($0.206$ for warmth, $0.195$ for strictness on overall
+Progress~8); jointly, each retains roughly 60~per~cent of its solo
+coefficient. The two dimensions therefore share some variance, as their
+correlation of $+0.59$ in the visits would suggest, but each carries
+substantial signal the other does not. This is the pattern that justifies
+treating them as two constructs rather than one.
 
-Stage~2 (\cref{tab:main_results_s2}) provides a teaching quality benchmark.
-Visit-based teaching quality is positively and significantly associated with
-each outcome ($\hat{\beta}_T$ ranging from 0.205 to 0.281, all $p \le 0.001$),
-but achieves a lower $R^2$ than the culture-only specification for overall
-Progress~8 ($0.579$ versus $0.650$), and for each of the four components
-individually. Culture scores thus account for more cross-school variance in
-pupil progress than teaching quality observed during the same visit.
+\input{tables/tab_univariate_ws}
 
-\input{tables/tab_main_results_s2}
+At the component level, warmth is significantly associated with both English
+($\hat{\beta}_W = 0.158$, $p < 0.001$) and Maths ($\hat{\beta}_W = 0.104$,
+$p = 0.038$), while strictness is significant for Maths
+($\hat{\beta}_S = 0.095$, $p = 0.025$) and marginal for English
+($\hat{\beta}_S = 0.077$, $p = 0.065$). English is therefore the more
+warmth-led subject and Maths the more balanced one. The remaining two
+components, EBaC and Open, are reported in \cref{app:3A:tables} together
+with the entry-rate analysis, since both mix progress with the school's
+entry decisions (\cref{app:3A:p8mechanics}); it is worth recording here that
+the domain-specific double dissociation anticipated in
+\cref{sec:p2_outcomes}---strictness alone carrying Maths, warmth alone
+carrying English---is not supported in any component, and only the ordinal
+version of the claim survives.\footnote{An earlier specification did produce
+the dissociation, but it did so because the selectivity control was miscoded
+and grammar schools were in effect uncontrolled; the pattern did not survive
+the correction.}
 
-Stage~3 (\cref{tab:main_results_s3}) adds teaching quality to the Stage~1
-specification. Teaching quality enters insignificantly in all five outcomes
-($\hat{\beta}_T$ from $-0.021$ to $0.086$; all $p > 0.40$). Warmth and
-strictness coefficients change by less than ten per cent from their Stage~1
-values in four of the five outcomes; the exception is the Open component,
-where warmth falls from $0.146$ to $0.102$ and strictness from $0.135$ to
-$0.117$. Both retain significance for overall Progress~8
-($\hat{\beta}_W = 0.141$, $p = 0.029$; $\hat{\beta}_S = 0.126$, $p = 0.009$).
-At the component level, EBaC is again the clearest case: both culture
-coefficients are unchanged in magnitude ($\hat{\beta}_W = 0.175$,
-$\hat{\beta}_S = 0.174$) and retain significance at the five-per-cent level,
-while $T$ enters with a small negative coefficient ($-0.021$) that is far from
-significant. These findings indicate that culture and directly observed
-instruction are largely orthogonal predictors of Progress~8: conditioning on
-teaching quality does not account for the culture effect.
+Stages~2 and~3 are reported in \cref{tab:stages23_trio}, estimated on the
+same primary specification. Stage~2 provides a teaching quality benchmark:
+visit-based teaching quality alone is positively and significantly
+associated with each outcome ($\hat{\beta}_T = 0.202$ for overall
+Progress~8, $p < 0.001$), but achieves a lower $R^2$ than the culture-only
+specification. Culture scores account for more cross-school variance in
+pupil progress than teaching quality observed during the same visits.
 
-\input{tables/tab_main_results_s3}
+Stage~3 adds teaching quality to the warmth-and-strictness model, and the
+result is clear. Teaching quality enters insignificantly in all three
+outcomes ($\hat{\beta}_T$ between $-0.010$ and $0.020$, all $p > 0.75$),
+while the culture coefficients are essentially unchanged from Stage~1
+($\hat{\beta}_W = 0.121$, $\hat{\beta}_S = 0.113$ for overall Progress~8).
+The one component-level movement worth noting is that warmth for Maths slips
+just past the five-per-cent threshold once teaching enters ($p = 0.108$),
+which is unsurprising given how much variance the three visit measures
+share. Taken together, these findings indicate that culture and directly
+observed instruction are largely distinct predictors of Progress~8:
+conditioning on teaching quality does not account for the culture effect. An
+alternative reading, that teaching is the noisiest of the three visit
+dimensions and its signal is absorbed by the other two, cannot be excluded
+with cross-sectional data. The five-outcome versions of all three stages,
+estimated on the previous specification, are reported in
+\cref{app:3A:tables}.
+
+\input{tables/tab_stages23_trio}
 
 Robustness checks for overall Progress~8 are reported in
 \cref{tab:robustness_overall}; the English component robustness table is
@@ -1054,6 +1063,54 @@ subject entry rates are calculated.
 \medskip
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\section{How the Progress 8 Measures Are Calculated}
+\label{app:3A:p8mechanics}
+
+Progress~8 measures the progress a pupil makes between the end of primary
+school and GCSE, relative to pupils nationally who started from the same
+point. Each pupil's GCSE results are counted across eight slots, their
+attainment is compared with the national average attainment of pupils with
+the same Key Stage~2 starting point, and the difference is averaged across
+the school. A school at zero is exactly average; a school at $+0.5$ achieves
+half a grade more per subject per pupil than would be expected from its
+intake.
+
+The eight slots are structured, and the structure is why this thesis treats
+the components differently. English and Maths each fill two slots and are
+double-weighted; every pupil sits both, so these components measure progress
+and nothing else. The EBaC component covers three slots that must be filled
+from a restricted academic list: sciences, computer science, history,
+geography, and modern foreign languages. The Open component covers the final
+three slots, which may be filled by any approved qualification, including
+arts and vocational subjects. For these last six slots the school makes
+entry decisions, and an unfilled slot contributes zero progress to the
+school's average. Consequently, a school's EBaC and Open components mix two
+different things: how much progress pupils make in the subjects they enter,
+and which subjects the school enters them for. A school that enters few
+pupils for languages will carry empty EBaC slots and a depressed EBaC
+component even if the pupils it does enter progress well.
+
+This structure generates a theoretical prediction about warmth and
+strictness. Schools higher on strictness, characterised by structured
+behaviour management, high academic expectations, and intensive pupil
+steering, are more likely to direct pupils into the EBaC pathway, and could
+therefore raise their EBaC component through the entry-rate channel as well
+as through progress itself. Schools higher on warmth might generate stronger
+progress in the more elective Open component. The five-outcome versions of
+the main results tables in this appendix speak to that prediction, and the
+entry-rate analysis below addresses the pathway channel directly.
+
+The entry rates themselves are calculated from the pupil count columns of
+the 2023--24 performance tables, because the Department for Education
+stopped publishing percentage-form entry columns in recent releases: the
+EBaC entry rate is the number of pupils entered for the full EBaC suite
+divided by the number of pupils at the end of Key Stage~4, and the
+humanities and languages rates are constructed in the same way from their
+respective counts. Entry rates are available only at the subject-group
+level; individual subjects within a group cannot be distinguished in the
+data collected for this project.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \section{Structural Stability of School Characteristics}
 \label{app:3A:stability}
 
@@ -1147,6 +1204,26 @@ signal.
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \section{Additional Tables}
 \label{app:3A:tables}
+
+\Cref{tab:main_results_s1,tab:main_results_s2,tab:main_results_s3} report the
+full five-outcome versions of the three main-body stages, including the EBaC
+and Open components. These tables are estimated on the previous specification
+($n = 96$, original pre-COVID grades, no late-entry exclusion); the main-body
+tables carry the primary specification, and no conclusion differs between the
+two. Reading the EBaC and Open columns, warmth and strictness are both
+significant for EBaC with near-equal magnitudes, and warmth is significant
+for Open. As \cref{app:3A:p8mechanics} explains, both components mix progress
+with the school's entry decisions, so the entry-rate analysis in
+\cref{tab:entry_rates} is the cleaner way to read the pathway question: the
+strictness score predicts EBacc, humanities and languages entry nationally
+with the inspection grade held constant, and controlling for EBacc entry
+attenuates the strictness--EBaC association by only 10 to 14~per~cent. Most
+of that association is progress within subjects, not curriculum steering.
+
+\input{tables/tab_main_results_s1}
+\input{tables/tab_main_results_s2}
+\input{tables/tab_main_results_s3}
+\input{tables/tab_entry_rates}
 
 \Cref{tab:score_controls_corr} reports pairwise Pearson correlations between
 the three enacted culture scores ($W_{\text{enac}}$,
