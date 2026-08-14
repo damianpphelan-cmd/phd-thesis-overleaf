@@ -179,7 +179,8 @@ foreach outcome in p8mea_avg p8meaeng_avg p8meamat_avg p8meaebac_avg p8meaopen_a
 *        for progress from age 11 they cannot have caused);
 *   (ii) the pre-COVID grade control is the predecessor-filled version, which
 *        recovers five visited schools that converted after 2019;
-*   (iii) the trio of outcomes reported in the chapter body.
+*   (iii) all five outcomes -- the trio is reported in the chapter body and the
+*        five-outcome versions in the appendix, so both sit on ONE spec.
 * Everything else -- controls, HC3, the enacted culture scores -- is unchanged,
 * so a difference between these rows and the Python estimates in
 * analyse_ch3_batch.py is a specification difference, not a software one.
@@ -190,9 +191,11 @@ global controls_primary "$ctrl_cont $ctrl_bin $ctrl_ofsted_f"
 preserve
 keep if late_entry != 1
 
-foreach outcome in p8mea_avg p8meaeng_avg p8meamat_avg {
-    local lbl = cond("`outcome'"=="p8mea_avg",    "overall", ///
-                cond("`outcome'"=="p8meaeng_avg", "english", "maths"))
+foreach outcome in p8mea_avg p8meaeng_avg p8meamat_avg p8meaebac_avg p8meaopen_avg {
+    local lbl = cond("`outcome'"=="p8mea_avg",     "overall", ///
+                cond("`outcome'"=="p8meaeng_avg",  "english", ///
+                cond("`outcome'"=="p8meamat_avg",  "maths",   ///
+                cond("`outcome'"=="p8meaebac_avg", "ebac",    "open"))))
 
     regress `outcome' $W $S $controls_primary, vce(hc3)
     postterms `pf' "primary_stage1" "`lbl'" "$W $S"
@@ -209,7 +212,38 @@ foreach outcome in p8mea_avg p8meaeng_avg p8meamat_avg {
     regress `outcome' $W $S $T $controls_primary, vce(hc3)
     postterms `pf' "primary_stage3" "`lbl'" "$W $S $T"
 }
+
+* ---- The specification ladder on overall P8 (tab_spec_ladder.tex) ----
+* Four treatments of the pre-COVID inspection grade, everything else held at the
+* primary spec (late-entry excluded throughout -- that is why this sits inside
+* the same preserve block). The rungs differ ONLY in how a school with no 2019
+* grade under its current URN is handled, so the estimation sample is part of
+* the result and is reported alongside each rung.
+*   A  grade as recorded -- schools missing it are dropped by the dummies
+*   B  predecessor-filled grade (the primary specification)
+*   C  filled, with "no pre-COVID grade" kept as its own category rather than
+*      dropped, so no school leaves the sample for want of a grade
+*   D  no grade control at all
+gen byte grade2019_cat = cond(missing(grade2019_filled), 5, grade2019_filled)
+global ctrl_ofsted_c "2.grade2019_cat 3.grade2019_cat 4.grade2019_cat 5.grade2019_cat"
+
+regress p8mea_avg $W $S $ctrl_cont $ctrl_bin $ctrl_ofsted, vce(hc3)
+postterms `pf' "ladder_a" "overall" "$W $S"
+
+regress p8mea_avg $W $S $controls_primary, vce(hc3)
+postterms `pf' "ladder_b" "overall" "$W $S"
+
+regress p8mea_avg $W $S $ctrl_cont $ctrl_bin $ctrl_ofsted_c, vce(hc3)
+postterms `pf' "ladder_c" "overall" "$W $S"
+
+regress p8mea_avg $W $S $controls_ngrade, vce(hc3)
+postterms `pf' "ladder_d" "overall" "$W $S"
 restore
+
+* The primary spec with the late-entry schools PUT BACK. Quoted in the notes to
+* tab_spec_ladder.tex as the reassurance that the exclusion is not doing the work.
+regress p8mea_avg $W $S $controls_primary, vce(hc3)
+postterms `pf' "primary_late" "overall" "$W $S"
 
 postclose `pf'
 
