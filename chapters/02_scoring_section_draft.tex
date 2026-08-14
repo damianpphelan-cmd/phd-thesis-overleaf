@@ -1,0 +1,298 @@
+% ============================================================
+% DRAFT FOR DAMIAN'S REVIEW — the rewritten "Scoring documents at
+% national scale" section for Chapter 2, from the approved skeleton
+% (thesis/ch2_scoring_section_outline.md), in the voice specified by
+% thesis/WRITING_STYLE.md. On approval this replaces the current
+% sec:p1_text_method material; numeric literals then convert to
+% make_numbers macros before integration.
+% ============================================================
+
+\section{Scoring Documents at National Scale}
+\label{sec:p1_scoring}
+
+The gold standard scores described above exist for the 103 schools that
+received a visit. Extending the measurement of school culture to the full
+national population of around 3,330 secondary schools requires instruments
+that can read the public record instead: inspection reports, behaviour policy
+documents, school websites, and the interview transcripts themselves. This
+section describes how those instruments were built, how they were tested, and
+what was learned in the process. There are seven parts. The first explains
+what a scoring instrument is and the two forms it can take. The second
+explains who produced the reference labels the instruments were tuned
+against, which is a point on which this thesis owes the reader complete
+transparency. The third describes how the written scoring rules were
+themselves tested before any scoring took place. The fourth sets out the
+three tests every instrument had to face, and the fifth summarises what
+those tests taught, several findings of which are, to my knowledge, new. The
+sixth part describes the instruments that were finally adopted, and the
+seventh deals with reproducibility. The full scoring rules for every
+instrument are reproduced in \cref{app:2A:prompts}.
+
+% ------------------------------------------------------------
+\subsection{What a scoring instrument is, and the two ways to build one}
+\label{sec:p1_scoring_arch}
+
+Each instrument takes one document about one school and returns a score from
+1 to 5 for a single construct: warmth, strictness, or teaching. All scoring
+is performed by a large language model (LLM), reading the same document a
+human rater would read. There are two quite different ways to set this up,
+and the difference between them turns out to matter a great deal.
+
+The first approach is a \textit{prose rubric}. The model is given a written
+marking scheme of the kind an examiner would use, describing what a document
+at each band looks like, and it is asked to read the document and return a
+band along with its reasoning. The judgement is the model's own. The second
+approach is a \textit{decomposed instrument}. Here the model is never asked
+for a judgement at all. Instead it answers a series of narrow factual
+questions about the document. For example, does the website name a
+consequence for lateness? Can it list the sentences in which an adult and a
+pupil appear together with something passing between them? The answers to
+these questions are then converted into a band by simple arithmetic in
+ordinary code, written and fixed in advance. In the first approach the model
+is the examiner; in the second it is closer to a careful clerk, and the
+examining is done by a formula that anyone can inspect.
+
+It would be natural to assume that one of these designs is simply better
+than the other. That assumption was tested extensively, and the answer is
+that each wins in different places and for identifiable reasons, which are
+set out in \cref{sec:p1_scoring_lessons} below.
+
+% ------------------------------------------------------------
+\subsection{Who produced the labels: model raters and a human anchor}
+\label{sec:p1_scoring_raters}
+
+Tuning an instrument requires reference labels: documents whose correct band
+is already known, so that the instrument's answers can be checked and its
+rules improved. It is important to be clear about where those labels came
+from, because they were not, for the most part, produced by human raters.
+
+The labelling was carried out by three independent instances of a larger
+language model (Anthropic's Claude, Opus class), each given only the written
+scoring rule and the documents. The three raters worked blind: none was told
+that the others existed, none saw my labels or any model score, and each
+received the documents in a different shuffled order. The reference label
+for each document was the majority vote of the three. The scoring model
+throughout, by contrast, was a much smaller and cheaper model (gpt-4o-mini),
+chosen because reading several thousand documents per instrument has to be
+affordable. The tuning exercise should therefore be understood precisely:
+it asked whether a small model could be brought to reproduce a larger
+model's reading of a written rule. Where this chapter reports agreement
+between an instrument and its labels, that is agreement between two
+artificial readers, and the tables say so.
+
+My own role in the labelling was threefold. I wrote the scoring rules and
+revised them; I made the boundary rulings that the raters could not, which
+are recorded in an adjudication log; and I labelled the earlier development
+packs myself, before the model-rater design was adopted. Those earlier
+labels also provide a calibration that is worth stating: when I relabelled
+the same documents two weeks apart, blind to my first pass, I agreed with
+myself at a weighted kappa of $+0.770$. No rater, human or artificial, can
+be expected to agree with me more closely than I agree with myself, so this
+figure sets a ceiling of roughly $0.88$ on any agreement measured against my
+labels, and it is the standard against which the agreement figures below
+should be read.
+
+Two safeguards make this design defensible rather than merely convenient.
+The first is that the ultimate test of every instrument is never its
+agreement with any rater, artificial or human, but its relationship to the
+independently observed visit scores of the gold standard, and to external
+records where these exist. Those criteria share nothing with either model
+family. The second is that the risk of artificial raters drifting away from
+the researcher's own judgement was checked rather than assumed. On the packs
+where both my labels and the model raters' labels exist, agreement was
+substantial; but in one measured incident a model adjudicator, asked to
+resolve a disagreement, sided with the scoring model against me. That
+incident is reported here deliberately. It shows that a rater from the same
+model family as the scorer is not independent human ground truth, and it is
+the reason the criterion tests in \cref{sec:p1_scoring_tests} are given the
+final word throughout this chapter.
+
+% ------------------------------------------------------------
+\subsection{Testing the written rule before spending anything}
+\label{sec:p1_scoring_rules}
+
+A scoring rule that lives only in its author's head is not an instrument.
+Before any model was tuned, each written rule was therefore tested for what
+might be called determinacy: whether three cold readers, given nothing but
+the rule and the documents, arrive at the same answers. Across six rule
+packs the three blind raters agreed with each other at weighted kappas of
+between $+0.77$ and $+0.96$. A rule that transfers this well is doing its
+job; the person who wrote it is no longer needed for it to be applied.
+
+Just as useful as the overall figure is what the disagreements revealed.
+Wherever the three raters split on a document, the rung they split over was
+by definition under-specified, and it was repaired before any scoring money
+was spent. Two examples give the flavour. The rule for teaching quality in
+inspection reports originally awarded its fourth band for a sentence pattern
+("teachers check understanding and address misconceptions") that turned out
+to be standard inspection boilerplate appearing in nearly every post-2022
+report, so the raters were forced to award band 4 almost everywhere; the
+band was re-cut so that the boilerplate sentence no longer reached it. The
+rule for website strictness originally merged into one band the naming of a
+virtue ("we value respect") and the naming of a conduct ("we expect
+punctuality"), which the raters could not apply consistently; the band was
+split along exactly that line. The principle that emerged is worth stating
+plainly: a rule that needs its rater to invent a resolution is
+under-specified, and the agreement it produces is agreement about the
+inventions rather than the rule.
+
+% ------------------------------------------------------------
+\subsection{The three tests}
+\label{sec:p1_scoring_tests}
+
+Every instrument had to pass through three tests, in a fixed order, and the
+order matters because each test can fail for a reason the previous one
+cannot detect.
+
+The first test is \textit{agreement}: does the instrument reproduce the
+reference labels on documents it was not tuned on? The working bar was a
+weighted kappa of at least $+0.70$ together with exact agreement of at least
+55 per cent, with an additional guard against instruments that achieve
+agreement by collapsing onto one or two bands. Tuning always took place on
+one part of a labelled pack with the quoted figure computed on the untouched
+remainder.
+
+The second test is \textit{out-of-sample honesty}. An agreement figure
+measured on the documents an instrument was tuned on always reads high, for
+the same reason that a student who has seen the exam paper scores well.
+Late in the project, every archived version of every instrument --- roughly
+85 versions across eleven instrument families --- was scored once on freshly
+labelled documents that no version had ever been fitted to. Every in-sample
+figure had indeed read high, and several instruments that appeared to have
+improved across their version histories had not improved at all. All
+agreement figures reported in this chapter are from this out-of-sample
+measurement.
+
+The third test is \textit{validity}: does the score track something real
+that is not a language model's opinion? For most constructs the criterion is
+the gold standard itself, the 103 independently observed visits. For one
+construct there is something better. The prominence of religious faith on a
+school's website can be checked against the official register of religious
+character, and the website instrument recovers the register almost
+perfectly, with an area under the curve of 0.960. That result matters
+beyond its own construct: it shows that when the signal is genuinely present
+in the text, this method of reading it works. Where a construct fails
+against its criterion, the failure is therefore informative about the text
+rather than the machinery.
+
+% ------------------------------------------------------------
+\subsection{What the tests taught}
+\label{sec:p1_scoring_lessons}
+
+Five findings from this testing programme deserve to be reported as results
+in their own right, because each one changed how the instruments were built,
+and because I am not aware of prior literature that documents them.
+
+First, and most consequentially, \textbf{agreement and validity are
+different axes, and improving one can spend the other}. The version of the
+Ofsted strictness instrument that agreed best with the reference labels
+tracked the independently observed visit scores at only $+0.07$; the prose
+version, whose label agreement was lower, tracked them at $+0.43$. This
+pattern was not an isolated case: across the eleven families the
+best-agreeing version was usually not the most valid one. The practical
+lesson is that an instrument tuned solely to match labels can quietly become
+an excellent predictor of the labelling process and a poor measure of the
+world. The instruments adopted in this chapter were chosen on all three
+tests together, and this chapter never treats a high kappa as evidence of
+validity.
+
+Second, \textbf{ask the model for facts, not judgements}. Wherever a
+question put to the model required an evaluation ("is behaviour management
+a strength of this school?") the answer tracked the model's own generosity
+more than the document. Wherever the question was factual ("does the policy
+name a tracking system in which a pupil's position determines the next
+sanction?") the answer tracked the document. The one instrument family
+whose version history ran consistently uphill was the one whose decisive
+revision replaced its judgement questions with factual ones.
+
+Third, \textbf{a scoring rule must not rest on the genre's own
+boilerplate}. In the national website corpus, 99.1 per cent of schools use
+a care word somewhere in their text, so a warmth band that fires on caring
+language is a band that contains almost every school in England. The same
+applies to the standard phrases of inspection prose. Several early
+instruments failed exactly this way, and every adopted rule was checked
+against the national base rates of the phrases it relies on.
+
+Fourth, \textbf{an instrument can manufacture statistical independence that
+reality does not have}. In the visits, warmth and strictness correlate at
+$+0.589$: warm schools tend also to be orderly ones. The prose instrument,
+scoring both constructs in one reading of the document, reproduces this
+correlation almost exactly ($+0.578$). The decomposed instruments, scoring
+each construct in a separate call, return correlations between $+0.01$ and
+$+0.16$. A reader of those instruments' output would conclude that warmth
+and strictness are unrelated dimensions, and would be wrong. Any study that
+scores related constructs with separate instruments and then interprets the
+correlation between them should treat this as a warning.
+
+Fifth, \textbf{the model is part of the instrument}. Moving one rubric,
+unchanged, from one scoring model to another collapsed its label agreement
+from $+0.63$ to $+0.12$. A rubric therefore has no performance of its own;
+only a rubric-and-model pair does. This is why every score in this project
+records the exact model version that produced it, and why one instrument
+(faith prominence) is deliberately kept on an older model: its validation
+belongs to that pairing, and re-scoring with a newer model would create a
+new, unvalidated instrument, not an updated one.
+
+% ------------------------------------------------------------
+\subsection{The instruments adopted}
+\label{sec:p1_scoring_adopted}
+
+\Cref{tab:instruments_adopted} summarises the instrument finally adopted for
+each source and construct, with its architecture, its out-of-sample
+agreement, its validity result, and the caveat that must accompany its use.
+Three points from the table should be drawn out.
+
+For the inspection reports, all three constructs are scored by a single
+prose rubric in one reading of a grade-stripped report body. This is the
+only document instrument in the project with demonstrated validity against
+the visits, and the convergence result it supports is reported in
+\cref{sec:p1_text_valid}. For the behaviour policies, a prose rubric is
+likewise used; it is the instrument with the strongest label agreement in
+the project ($+0.757$), and its complete lack of validity against enacted
+culture is not a defect but the chapter's policy-as-aspiration finding.
+For the websites, decomposed instruments are used, and the warmth
+instrument deserves a sentence of history: its floor question ("is there a
+relational statement in this text?") was answered too conservatively by the
+scoring model as a yes/no question, placing 78 per cent of schools in the
+bottom band, and the repair was to ask the model to list and count the
+qualifying sentences instead, with every listed sentence verified verbatim
+against the document before being counted. Models, it turns out, gate
+badly and count well. The final website strictness instrument carries five
+bands for consistency with the other scales; its fifth band is defined by
+two factual criteria and is genuinely rare, firing for 25 schools in
+England, and no labelled pack contains enough such schools to verify the
+band against raters. That caveat travels with any use of it.
+
+One rule governs how these instruments may be used in \cref{ch:paper2} and
+beyond: within any comparison, the two sides must share an architecture.
+A strictness-versus-warmth contrast drawn inside one source must come from
+instruments built the same way, because finding four above shows that
+mixing architectures inside a contrast can manufacture or destroy the very
+relationship being studied.
+
+% ------------------------------------------------------------
+\subsection{Reproducibility}
+\label{sec:p1_scoring_repro}
+
+Nothing in this pipeline is perfectly deterministic, and it is better to
+measure the imperfection than to assert its absence. The scoring model's
+test-retest reliability, measured by re-scoring identical documents, is
+approximately 92 per cent exact agreement per construct. The older model
+retained for the faith prominence instrument is considerably worse, at
+roughly two identical scores in three, which is disclosed wherever that
+instrument's output is used. Every score row in the dataset records the
+prompt version, a digest of the exact rubric text, and the model version
+that produced it, so any figure in this thesis can be traced to the
+instrument that generated it. All printed numbers are generated from the
+dataset by a script that also checks the chapters for superseded values, so
+a stale number cannot silently survive a revision. Finally, one behaviour
+policy document in the national corpus could not be scored at all: its PDF
+carries a broken font encoding that yields unreadable text, and it is
+recorded as unscoreable rather than being approximated.
+
+% ============================================================
+% Integration notes (not for the tex):
+% - tab:instruments_adopted to be built from the OOS table + caveats.
+% - Numeric literals convert to make_numbers macros at integration.
+% - The exact Opus model identifier to be pinned from session records.
+% ============================================================
