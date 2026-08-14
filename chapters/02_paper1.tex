@@ -23,16 +23,15 @@ Ofsted reports and behaviour policies; and a national-tier model uses text featu
 alone. Interview and visit evidence are kept as two scores rather than averaged
 into one: what a headteacher says the school is like and what a visit records
 agree only weakly (warmth $r = \GoldWarmthSplit$, strictness
-$r = \GoldStrictnessSplit$, teaching $r = \GoldTeachingSplit$), which is too
+$r = \GoldStrictnessSplit$), which is too
 little shared variance for a weighted average of the two to estimate anything
-either one measures. Separating them exposes a double dissociation that a
-combined score conceals. On the \RidgeTrainN{} schools that have a visit, an
-interview and a scored Ofsted report, Ofsted-derived strictness predicts what a
-visit records ($r = \CorrOfstedStrictness$, $p < 0.001$) but not what the head
-espouses ($r = 0.087$, $p = 0.39$); Ofsted-derived warmth does the reverse,
-predicting the espoused score ($r = 0.312$, $p < 0.01$) and not the enacted one
-($r = 0.161$, $p = 0.11$). Each public-text score is therefore valid, but for
-different quantities, and only strictness survives to the national tier: the
+either one measures. Separating them shows the two dimensions behave
+differently in public text. Strictness converges across independent kinds of
+observer: Ofsted-derived strictness tracks both what a visit records
+($r = \CorrOfstedStrictness$, $p < 0.001$) and what the head espouses
+($r = \CorrOfstedStrictEspoused$, $p < 0.001$). Warmth is the construct that
+dissociates: no public-text source tracks warmth as enacted. Only strictness
+survives to the national tier: the
 national-tier model attains a leave-one-out cross-validated
 $r = \RidgeBStrictness$ for enacted strictness and
 $r = \RidgeBWarmth$---no better than the sample mean---for enacted warmth. The
@@ -667,8 +666,12 @@ specification has been withdrawn. Its premise is that the two sources are noisy
 readings of one latent quantity, so that averaging them cancels error; the
 convergence evidence in \cref{sec:p1_convergence} shows they are not. On the
 schools where both are observed the two agree at $r = \GoldWarmthSplit$ for
-warmth, $r = \GoldStrictnessSplit$ for strictness and $r = \GoldTeachingSplit$
-for teaching. A weighted average of two measures that share that little variance
+warmth and $r = \GoldStrictnessSplit$ for strictness. (Teaching has no
+espoused--enacted split to report: once the explanation-quality question scores
+were removed from the interview instrument, its remaining ``teaching'' items
+measured staff turnover and morale---a staff-climate construct, not teaching
+practice---so the interview supplies no espoused teaching measure at all.)
+A weighted average of two measures that share that little variance
 does not estimate the quantity either one estimates: it yields enacted culture
 contaminated by self-report, or espoused culture contaminated by observation,
 according to the weight chosen. The weight has no defensible value because there
@@ -677,25 +680,21 @@ is no single target for it to be right about.
 Keeping the two apart also makes the second source do analytic work rather than
 absorb it. The gap between what a headteacher claims and what an observer
 records is itself a finding---it is systematic, dimension-specific, and reported
-below---and averaging is precisely the operation that destroys it.\footnote{The
-two espoused scores are not fully symmetric in composition. Espoused strictness
-draws on two sub-scores of qualitatively different character:
-S3, an objective count of structural behaviour management systems, and $S4$, a
-self-report of the headteacher's strictness philosophy. Espoused
-warmth has no equivalent of S3: the interview data include binary
-indicators for two reward structural systems (reward assemblies and merit points),
-but these are reported by 99\% of interviewed schools and therefore carry
-negligible discriminating information. Key phrase codings from the interview
-record whether headteachers spontaneously mentioned warmth-adjacent structural
-provision such as pastoral teams, non-teaching heads of year, and in-school
-counsellors; however, these capture communication emphasis rather than the
-presence or absence of the system, making them conceptually distinct from S3. As
-a result, W3$^*$ relies more fully on headteacher self-report than the strictness
-espoused strictness score does. The interview quality weight~$\omega$ partially
-mitigates this asymmetry: $W3^*$ is discounted when the headteacher was
-unresponsive or evasive, since warmth requires expressive engagement to convey
-reliably. No adjustment is applied to $S4$, whose content---descriptions of
-behaviour management systems---is less sensitive to interview style.}
+below---and averaging is precisely the operation that destroys it.\footnote{Both
+espoused scores now rest on the statement battery alone, and two earlier
+ingredients were removed deliberately. An earlier espoused strictness score
+averaged in S3, an objective count of structural behaviour-management systems;
+the count was dropped because it carries almost no information about observed
+strictness ($r = +0.084$ against the visit score, versus $+0.413$ for the
+self-report battery it was diluting)---what systems a school \emph{names} is
+not how strictly it runs, and equal-weight averaging with the noisier count was
+halving the construct. An articulacy adjustment~$\omega$, which discounted
+espoused warmth when the head was unresponsive, was likewise removed: it scaled
+a content score by how well the head explained themselves, so score and
+explanation quality shared rater variance by construction. Its removal is
+validated directly: how articulate a head is predicts neither the school's
+observed culture nor its outcomes, and where the old espoused warmth score was
+roughly half articulacy variance, the rebuilt score is essentially none.}
 
 \textit{Interview and national tier scores.} For Tier~2 and Tier~3 schools, the
 sub-scores derived above serve as input features to Ridge regression calibration
@@ -746,14 +745,14 @@ culture, they will not. This is the test on which the decision to report them
 separately rests.
 
 The results indicate substantial divergence. Enacted and espoused warmth
-correlate at $r = \GoldWarmthSplit$ ($p = 0.013$, $n = \NTierOne$); strictness
-at $r = \GoldStrictnessSplit$ ($p = 0.054$); teaching at
-$r = \GoldTeachingSplit$ ($p = 0.062$). All three are positive and in the
-expected direction, but none approaches the level that would justify treating
-the two sources as alternative measures of a single construct. Squared, they
-imply shared variance of six, four and three per cent respectively: on any
-dimension, upwards of ninety per cent of what a visit records is invisible to
-the interview, and conversely. The divergence is directionally asymmetric:
+correlate at $r = \GoldWarmthSplit$ ($p = \GoldWarmthSplitP$, $n = \NTierOne$);
+strictness at $r = \GoldStrictnessSplit$ ($p = \GoldStrictnessSplitP$).
+(Teaching cannot join this comparison: the interview has no espoused teaching
+measure---see \cref{sec:p1_composite}.) Both correlations are positive
+and in the expected direction, but neither approaches the level that would
+justify treating the two sources as alternative measures of a single construct.
+Squared, they imply shared variance below a fifth on either dimension: most of
+what a visit records is invisible to the interview, and conversely. The divergence is directionally asymmetric:
 headteachers rate their schools on average $0.51$ points higher on warmth than
 independent observers record (both on the $[0,10]$ scale; paired
 $p < 0.001$), while the corresponding strictness gap is near zero and not
@@ -1119,35 +1118,36 @@ behavioural environment. Warmth, strictness, and teaching quality are scored in 
 single unified LLM call using holistic rubrics validated empirically against the
 gold standard. Only warmth and strictness are carried forward. Teaching quality
 is not part of the two-dimensional framework this chapter constructs, and the
-validation evidence gives no reason to extend it. The Ofsted teaching score
-reaches $r = \OfstedTeachingEspoused$ ($p = 0.003$, $n = \RidgeTrainN$) against
-espoused teaching---close to the warmth score's $r = 0.312$ against espoused
-warmth, a difference well inside sampling error---but only
-$r = \OfstedTeachingEnacted$ ($p = 0.085$) against teaching as observed in
-lessons. That is the
-espoused--enacted asymmetry documented for warmth in
-\cref{sec:p1_text_valid}: what an inspection report says about teaching tracks
-what a school says about its teaching rather than what an observer records in
-classrooms. That asymmetry is not an artefact of machine scoring. It is present
-in the gold standard itself, where both sides were scored by the researcher from
-a single instrument: the espoused and enacted scores
-correlate at $r = \GoldWarmthSplit$ ($p = 0.013$) for warmth,
-$r = \GoldStrictnessSplit$ ($p = 0.054$) for
-strictness and $r = \GoldTeachingSplit$ ($p = 0.062$) for teaching. These
-comparisons use all \NTierOne{} full-data schools rather than the
-\RidgeTrainN{} above, since neither score depends
-on an inspection report. What a headteacher says about a dimension and what a
-visit records of it are weakly related for every dimension measured here---which
+validation evidence gives no reason to extend it. Against teaching as observed
+in lessons the Ofsted teaching score reaches only
+$r = \OfstedTeachingEnacted$ ($p = 0.085$). Nor can it be triangulated against
+a self-report side the way warmth and strictness are, because the interview
+supplies no espoused teaching measure at all (\cref{sec:p1_composite}). Its
+nearest neighbour in the interview---a staff-climate scale built from the
+turnover and morale statements---is a different construct, and the correlation
+the Ofsted teaching score reaches against it
+($r = \OfstedTeachingVsStaffClimate$) is a cross-construct association that
+cannot stand in for convergent validity.\footnote{An earlier draft quoted that
+association as validation against ``espoused teaching''. The relabelling
+matters: once the explanation-quality question scores were removed from the
+interview instrument, the items remaining under its teaching heading measured
+staff turnover and morale, and a correlation with them validates nothing about
+a teaching scorer.} In the gold standard itself, espoused and enacted scores
+correlate at $r = \GoldWarmthSplit$ ($p = \GoldWarmthSplitP$) for warmth and
+$r = \GoldStrictnessSplit$ ($p = \GoldStrictnessSplitP$) for strictness,
+computed on all \NTierOne{} full-data schools since neither score depends on an
+inspection report. What a headteacher says about a dimension and what a visit
+records of it are related on both dimensions, but weakly---which
 is why the two are reported as separate quantities rather than averaged into one.
-Warmth is retained despite the same asymmetry because it is one of
+Warmth is retained despite its own weak text validity because it is one of
 the two constructs under study and is triangulated against interview and visit
 measures throughout; a national teaching estimate would have no such
 scaffolding, and would carry a label inviting exactly the reading the evidence
 does not support.
 
-No correlation threshold decides this. A bootstrapped 95~per~cent interval
-around the teaching estimate spans $[0.099, 0.457]$, wider than the spread
-across all three dimensions, so a bright line drawn anywhere in this range
+No correlation threshold decides this. At $n = \RidgeTrainN$ the sampling
+interval around a correlation of this size is wide, so a bright line drawn
+anywhere in the plausible range
 would sort sampling noise rather than validity. The interview-transcript
 teaching score is weaker still ($r = 0.067$, $p = 0.52$, $n = 96$) and is
 likewise not used; it was produced by an earlier scoring pass that truncated
@@ -1248,17 +1248,24 @@ Two publicly available text sources contain no recoverable information about the
 warmth an observer records.
 
 The warmth result is not a failure of calibration that a better model might
-repair, because the raw ingredient is absent. The Ofsted warmth score correlates
-at $r = 0.312$ ($p = 0.002$) with the head's espoused philosophy $W3^*$ but at
-only $r = 0.161$ ($p = 0.11$) with enacted warmth---and, more damagingly, at
-$r = 0.303$ ($p = 0.002$) with enacted \emph{strictness}. It predicts the other
-dimension roughly twice as well as its own. Strictness behaves quite
-differently: the Ofsted strictness score reaches $r = \CorrOfstedStrictness$
-against enacted strictness and only $r = 0.087$ ($p = 0.39$) against the
-espoused sub-scores on the same schools. The asymmetry is the espoused--enacted
-distinction appearing inside a single instrument. What an inspection report
-records about a school's warmth is what the school says about itself; what it
-records about strictness tracks what an observer sees.
+repair, because the raw ingredient is absent: in every version of the
+instrument the Ofsted warmth score is null against the warmth an observer
+records, and such signal as it carries attaches to the espoused side and to
+enacted \emph{strictness} rather than to its own construct. Strictness behaves
+quite differently: the Ofsted strictness score reaches
+$r = \CorrOfstedStrictness$ against enacted strictness and
+$r = \CorrOfstedStrictEspoused$ against the espoused statement battery. It
+converges on the construct from both directions---agreement across an external
+inspector, an independent visit and the head's own self-report---while warmth
+fails against every criterion.\footnote{An earlier draft presented this
+contrast as a double dissociation: strictness tracking only what observers
+record, warmth only what schools say of themselves. The strictness half of
+that claim rested on an espoused measure later shown to be broken---it scored
+how articulately heads explained themselves rather than what they
+claimed---and repairing the measure dissolved the dissociation into the
+convergence reported here. The methodological lesson is worth stating plainly:
+a dissociation is a claim about a \emph{difference} between two correlations,
+and it can be manufactured entirely by measurement error in one cell.}
 
 Adding the four interview features in Model~A moves warmth from
 $\RidgeBWarmth$ to $\RidgeAWarmth$ and leaves strictness essentially unchanged
@@ -1278,10 +1285,10 @@ inspectors use to describe conduct and expectations maps directly onto the
 strictness dimension. Validation against the gold standard confirms this: the
 LLM-derived Ofsted strictness score correlates at
 $r = \CorrOfstedStrictness$ ($p < 0.001$, $n = \RidgeTrainN$) with enacted
-strictness. The Ofsted warmth score moves the other way: it reaches
-$r = 0.312$ ($p = 0.002$) against the head's espoused warmth, but only
-$r = 0.161$ ($p = 0.11$) against enacted warmth. Strictness survives the
-move from espoused to enacted criterion; warmth does not. Reporting the two
+strictness, and at $r = \CorrOfstedStrictEspoused$ with espoused strictness.
+The Ofsted warmth score reaches neither criterion: against enacted warmth it
+is null in every version of the instrument. Strictness is recoverable from
+inspection prose; warmth is not. Reporting the two
 criteria separately is what makes this visible---against a blended criterion
 both scores would have shown a moderate correlation and the difference between
 them would have been averaged out of sight. This asymmetry is not
@@ -1416,9 +1423,7 @@ correlating at $r = +0.225$ ($p < 0.001$) with espoused warmth, so it predicts
 the wrong dimension more than twice as well as its own. The two panels use
 different samples, since only \RidgeTrainN{} of the 300 schools were also
 visited; restricting Panel~A to those \RidgeTrainN{} schools so that all four
-cells rest on identical data does not change the pattern (Ofsted warmth
-$r = +0.312$ against espoused warmth, Ofsted strictness $r = +0.087$,
-$p = 0.39$, against espoused strictness).
+cells rest on identical data does not change the pattern.
 
 Against the \emph{enacted} criterion (Panel~B, $n = \RidgeTrainN$) the pattern
 reverses exactly. Ofsted strictness now satisfies the requirement decisively,
@@ -1825,10 +1830,11 @@ show similar levels of pairwise consistency. The visit and interview sub-scores
 capture meaningfully distinct aspects of school culture rather than providing
 redundant measures of a single construct: their within-school correlation is
 weak ($r = \GoldWarmthSplit$ for warmth, $r = \GoldStrictnessSplit$ for
-strictness, $r = \GoldTeachingSplit$ for teaching). Earlier versions of this
+strictness; teaching has no espoused counterpart to compare). Earlier versions
+of this
 framework read that divergence as a reason to combine the two sources in a fixed
-60/40 weighting. It is in fact a reason not to: two measures sharing under six
-per cent of their variance are not fallible readings of one quantity, and their
+60/40 weighting. It is in fact a reason not to: two measures sharing at most a
+sixth of their variance are not fallible readings of one quantity, and their
 weighted average is a third quantity that is neither. The enacted and espoused
 scores are therefore reported separately throughout, and the enacted scores
 predict pupil progress in \cref{ch:paper2}, providing external criterion
@@ -1866,8 +1872,8 @@ capable language model leaves the null unchanged---so national-tier warmth
 prediction is not attempted in \cref{ch:paper2}.
 
 Two limitations of the design should be noted. The three-tier structure means
-that scores are not fully comparable across tiers: gold-standard scores blend
-enacted and espoused culture in a 60/40 ratio, while interview-tier scores derive
+that scores are not fully comparable across tiers: the gold standard carries
+direct observation, interview-tier scores derive
 from self-report calibrated against that standard, and national-tier scores rely
 on text proxies alone. Score compression---a restricted empirical range visible
 across all sources---partly reflects genuine between-school homogeneity in the

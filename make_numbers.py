@@ -246,6 +246,24 @@ def build() -> list[Num]:
         add(Num(r["key"], f"{r['value']:.3f}", r["note"],
                 stale=circ_stale.get(r["key"], ())))
 
+    # ── The dissociation corrected, 14 Aug 2026 ──────────────────────────────
+    # The Ch2 abstract used to claim a double dissociation (strictness tracks
+    # visits not talk; warmth the reverse) quoting r = 0.087 and r = 0.312. The
+    # espoused rebuild showed the 0.087 belonged to a broken measure: fix the
+    # measure and strictness tracks BOTH sides — convergence, not dissociation
+    # (`check_double_dissociation.py` is the file of record). This macro is the
+    # espoused leg of the corrected claim, and the old 2x2's numbers are its
+    # stale literals so they can never quietly return.
+    es = d[["ofsted_LLMStrictnessScore", "gs_strictness_espoused"]].apply(
+        pd.to_numeric, errors="coerce").dropna()
+    r_se = float(stats.pearsonr(es.iloc[:, 0], es.iloc[:, 1])[0])
+    add(Num("CorrOfstedStrictEspoused", f"{r_se:.3f}",
+            f"Ofsted LLM strictness vs espoused strictness (statement battery), "
+            f"n={len(es)}. The espoused leg of the strictness-convergence claim "
+            f"in the Ch2 abstract",
+            expect=[f"$r = {r_se:.3f}$"],
+            stale=["$r = 0.087$", "$r = 0.312$", "$r = 0.161$, $p = 0.11$"]))
+
     # ── Teaching quality: scored, validated, deliberately not carried forward ─
     # The chapter used to justify the exclusion with a bright-line "r > 0.30
     # validation gate" and the figure r = 0.133. Under Ofsted v4 that figure is
@@ -306,6 +324,13 @@ def build() -> list[Num]:
                 f"gold {dim.lower()}: espoused vs enacted, "
                 f"n={len(d)}, p={p_ee:.3f}",
                 expect=[f"$r = {r_ee:.3f}$"]))
+        # The chapters used to hard-code these p-values; they drifted when the
+        # espoused rebuild moved the correlations (a quoted p of 0.054 next to
+        # an r of 0.410 at n=103 is arithmetically impossible). Emitted as
+        # macros so they can never detach from their r again.
+        p_body = "< 0.001" if p_ee < 0.001 else f"{p_ee:.3f}"
+        add(Num(f"Gold{dim}SplitP", p_body,
+                f"p-value belonging to Gold{dim}Split", expect=[]))
 
     # Named for what it is. NOT a \GoldTeachingSplit: the two sides are different
     # constructs, so this is a descriptive contrast and not an espoused/enacted split.
