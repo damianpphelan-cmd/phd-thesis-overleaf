@@ -1,0 +1,56 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\small
+\caption{The authoritative-school typology tested directly. The upper panel gives
+covariate-adjusted mean Progress 8 for the four quadrants formed by median splits on
+warmth and strictness; the lower panel gives the continuous interaction test and the
+contrast of the authoritative (high-warmth, high-strictness) quadrant against all
+others. The first column uses the gold-standard visit scores; the national columns use
+the Ofsted-derived scores without (A) and with (B) the 2019 inspection-grade control.}
+\label{tab:typology}
+\begin{tabular}{lccc}
+\toprule
+ & Gold visits & \multicolumn{2}{c}{National (Ofsted scores)} \\
+\cmidrule(lr){3-4}
+ & & Panel A & Panel B \\
+\midrule
+\multicolumn{4}{l}{\textit{Adjusted quadrant means (mean, SE, $n$)}} \\
+\addlinespace[2pt]
+Authoritative (high $W$, high $S$) & $+$0.520 (0.068) & $+$0.347 (0.032) & $+$0.290 (0.033) \\
+   & $n=32$ & $n=91$ & $n=84$ \\
+Authoritarian (low $W$, high $S$)  & $+$0.226 (0.096) & $+$0.325 (0.023) & $+$0.280 (0.023) \\
+   & $n=18$ & $n=357$ & $n=334$ \\
+Permissive (high $W$, low $S$)     & $+$0.284 (0.105) & $+$0.173 (0.042) & $+$0.180 (0.040) \\
+   & $n=18$ & $n=57$ & $n=54$ \\
+Neglectful (low $W$, low $S$)      & $+$0.038 (0.063) & $-$0.055 (0.007) & $-$0.023 (0.007) \\
+   & $n=32$ & $n=2{,}592$ & $n=2{,}275$ \\
+\midrule
+\multicolumn{4}{l}{\textit{Regression tests}} \\
+\addlinespace[2pt]
+Warmth ($W$)             & 0.136\sym{***} & 0.033\sym{***} & 0.028\sym{***} \\
+                         & (0.041)        & (0.007)        & (0.007)        \\
+Strictness ($S$)         & 0.117\sym{***} & 0.133\sym{***} & 0.112\sym{***} \\
+                         & (0.039)        & (0.009)        & (0.009)        \\
+$W \times S$ interaction & 0.039          & 0.018\sym{***} & 0.006          \\
+                         & (0.031)        & (0.004)        & (0.004)        \\
+Authoritative vs rest    & 0.360\sym{***} & 0.291\sym{***} & 0.200\sym{***} \\
+                         & (0.089)        & (0.033)        & (0.034)        \\
+\midrule
+$N$                      & 100            & 3{,}097        & 2{,}747        \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{\linewidth}
+\smallskip
+\footnotesize\textit{Notes:} Standard errors in parentheses.
+\sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\).
+Quadrant means are covariate-adjusted; quadrants are median splits within each sample.
+The gold interaction is a low-power test at this sample size; the pattern --- interaction
+near zero with the high-both quadrant on top --- reads as additive rather than
+synergistic. In the national columns the warmth--strictness halo in the Ofsted scores
+thins the off-diagonal cells, and the Ofsted scores carry the verdict-reconstruction
+caveat described in the text. An exploratory cross-source combination (website warmth
+$\times$ behaviour-policy strictness, $n=2{,}743$) showed no signal on any test
+(authoritative vs rest $\beta = +0.017$, $p = 0.48$), as expected given both components
+are criterion nulls.
+\end{minipage}
+\end{table}

@@ -1,0 +1,59 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\footnotesize
+\caption{Each visit-sheet item as a predictor of Progress 8, one small model per item.
+Every row regresses average Progress 8 on that item alone plus the full control set with
+the predecessor-filled grade control ($N=100$). Rows are sorted by coefficient size.
+The $q$ column is the Benjamini--Hochberg false-discovery-rate adjusted $p$-value across
+all 33 items; a dagger marks items that survive at $q<0.05$. The final columns give each
+item's inter-rater reliability: the pooled pairwise Pearson correlation between
+independent observers, and the number of observer pairs it rests on.}
+\label{tab:items_fdr}
+\begin{tabular}{llcccccr}
+\toprule
+Item & Setting & Sub-score & $\beta$ & SE & $q$ & IRR $r$ & Pairs \\
+\midrule
+Outcomes        & Classroom & T1 & 0.213\sym{\dagger} & 0.038 & $<$0.001 & 0.466 & 468 \\
+Concentration   & Classroom & S1 & 0.196\sym{\dagger} & 0.036 & $<$0.001 & 0.647 & 467 \\
+Motivation      & Classroom & W1 & 0.183\sym{\dagger} & 0.042 & $<$0.001 & 0.610 & 467 \\
+Explanation     & Classroom & T1 & 0.170\sym{\dagger} & 0.039 & $<$0.001 & 0.532 & 467 \\
+Respectfully    & Classroom & S1 & 0.169\sym{\dagger} & 0.044 & $<$0.001 & 0.654 & 467 \\
+Students        & Outside   & W2 & 0.166\sym{\dagger} & 0.038 & $<$0.001 & 0.705 & 93  \\
+Response        & Classroom & S1 & 0.159\sym{\dagger} & 0.038 & $<$0.001 & 0.668 & 468 \\
+Misbehaviour    & Classroom & S1 & 0.158\sym{\dagger} & 0.035 & $<$0.001 & 0.693 & 469 \\
+Methods         & Classroom & T1 & 0.158\sym{\dagger} & 0.041 & $<$0.001 & 0.572 & 468 \\
+Questioning     & Classroom & T1 & 0.157\sym{\dagger} & 0.045 & 0.001    & 0.585 & 468 \\
+Relationships   & Outside   & W2 & 0.144\sym{\dagger} & 0.035 & $<$0.001 & 0.444 & 93  \\
+Disruption      & Classroom & S1 & 0.142\sym{\dagger} & 0.041 & 0.001    & 0.789 & 468 \\
+Verbal          & Classroom & T1 & 0.140\sym{\dagger} & 0.051 & 0.009    & 0.523 & 468 \\
+Praise          & Classroom & W1 & 0.140\sym{\dagger} & 0.042 & 0.002    & 0.656 & 466 \\
+Structure       & Classroom & T1 & 0.139\sym{\dagger} & 0.038 & $<$0.001 & 0.443 & 468 \\
+Differentiation & Classroom & T1 & 0.137\sym{\dagger} & 0.049 & 0.008    & 0.543 & 468 \\
+Names           & Classroom & W1 & 0.135\sym{\dagger} & 0.037 & $<$0.001 & 0.351 & 466 \\
+Student         & Classroom & W1 & 0.135\sym{\dagger} & 0.047 & 0.006    & 0.591 & 466 \\
+Resource        & Classroom & T1 & 0.132\sym{\dagger} & 0.042 & 0.003    & 0.437 & 468 \\
+Corridors       & Outside   & S2 & 0.130\sym{\dagger} & 0.045 & 0.006    & 0.657 & 93  \\
+Sanction        & Outside   & S2 & 0.128\sym{\dagger} & 0.043 & 0.005    & 0.678 & 93  \\
+Arrival         & Outside   & S2 & 0.122\sym{\dagger} & 0.041 & 0.005    & 0.399 & 93  \\
+Teacher         & Classroom & T1 & 0.122\sym{\dagger} & 0.044 & 0.008    & 0.617 & 468 \\
+Interactions    & Outside   & W2 & 0.120\sym{\dagger} & 0.046 & 0.012    & 0.476 & 93  \\
+Interactions    & Classroom & W1 & 0.118\sym{\dagger} & 0.043 & 0.009    & 0.567 & 467 \\
+Reward          & Outside   & -- & 0.105\sym{\dagger} & 0.040 & 0.011    & 0.738 & 93  \\
+Verbal          & Outside   & -- & 0.096           & 0.051 & 0.068    & 0.398 & 90  \\
+Displays        & Outside   & -- & 0.090\sym{\dagger} & 0.037 & 0.017    & 0.489 & 93  \\
+Recreational    & Outside   & S2 & 0.087\sym{\dagger} & 0.039 & 0.032    & 0.486 & 93  \\
+Differentiation & Outside   & -- & 0.080           & 0.052 & 0.128    & 0.360 & 89  \\
+Canteen         & Outside   & S2 & 0.056           & 0.036 & 0.128    & 0.551 & 93  \\
+Discussion      & Classroom & T1 & 0.053           & 0.045 & 0.247    & 0.765 & 467 \\
+Alignment       & Outside   & -- & 0.042           & 0.041 & 0.307    & 0.320 & 93  \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{\linewidth}
+\smallskip
+\footnotesize\textit{Notes:} \sym{\dagger} survives Benjamini--Hochberg correction at
+$q<0.05$ (28 of 33 items). Items marked ``--'' in the sub-score column are recorded on
+the visit sheet but do not enter any composite. Gold-standard visited tier, late-entry
+schools excluded. The composites remain the headline measures; these per-item models are
+mechanism texture, not competing specifications.
+\end{minipage}
+\end{table}

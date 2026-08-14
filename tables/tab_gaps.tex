@@ -1,0 +1,49 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\small
+\caption{Does the gap between what a school says and what it does predict progress?
+Each row regresses average Progress 8 on the enacted (observed) score, the
+espoused-minus-enacted gap, and the control set. The first column enters the signed gap,
+the second the absolute gap, and the third re-enters the absolute gap alongside
+quadratics in both component scores --- the robustness check that decides whether an
+absolute-gap effect is genuine dissonance or just curvature in the components.}
+\label{tab:gaps}
+\begin{tabular}{lccc}
+\toprule
+ & Signed gap & Absolute gap & \shortstack{Absolute gap\\(+ component quadratics)} \\
+\midrule
+\multicolumn{4}{l}{\textit{Gold tier (visit vs interview, $n=100$)}} \\
+\addlinespace[2pt]
+Warmth              & 0.061           & 0.005           & $-$0.014        \\
+                    & (0.038)         & (0.049)         & (0.054)         \\
+Strictness          & 0.057           & 0.010           & $-$0.009        \\
+                    & (0.044)         & (0.053)         & (0.058)         \\
+\midrule
+\multicolumn{4}{l}{\textit{National (document vs Ofsted, $n=2{,}744$--$2{,}746$)}} \\
+\addlinespace[2pt]
+BP warmth           & $-$0.015\sym{**}  & $-$0.001        & $-$0.002        \\
+                    & (0.007)         & (0.007)         & (0.010)         \\
+BP strictness       & $-$0.003        & 0.016\sym{**}   & 0.000           \\
+                    & (0.006)         & (0.007)         & (0.010)         \\
+Website warmth      & $-$0.010\sym{*} & $-$0.006        & $-$0.003        \\
+                    & (0.006)         & (0.009)         & (0.012)         \\
+Website strictness  & $-$0.000        & 0.010           & $-$0.002        \\
+                    & (0.007)         & (0.008)         & (0.011)         \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{\linewidth}
+\smallskip
+\footnotesize\textit{Notes:} Standard errors in parentheses.
+\sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\).
+Scores are z-standardised within instrument before the gap is formed. In the gold tier
+neither gap adds anything beyond the enacted level, so the coherence hypothesis closes
+there. Nationally, the absolute strictness gap is positive for the behaviour-policy
+source ($p=0.035$) and same-signed for the website source ($p=0.24$), but both die once
+component quadratics enter; the surviving curvature sits on the squared enacted
+(Ofsted) score for both strictness sources ($\beta \approx +0.015$, $p<0.01$), while the
+squared document score is never significant. The absolute-gap effect is therefore
+extremity in the components, not dissonance between them. The signed BP warmth gap is
+the known negative BP-warmth marginal reported in Chapter 2, appearing here in gap form.
+Effects are tiny (0.01--0.02 of a grade per SD) and should be read in that light.
+\end{minipage}
+\end{table}
