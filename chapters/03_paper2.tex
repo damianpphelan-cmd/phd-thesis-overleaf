@@ -18,12 +18,12 @@
   overall Progress~8 for the 2023--24 cohort, conditioning on prior attainment,
   pupil composition, school type, and pre-COVID Ofsted grade. Both warmth and
   strictness significantly predict overall Progress~8, and with near-equal
-  magnitudes: the warmth coefficient is $\hat{\beta}_W = 0.132$ ($p = 0.002$)
-  and the strictness coefficient is $\hat{\beta}_S = 0.117$ ($p = 0.003$) on a
-  sample of $n = 100$ schools. Adding directly observed teaching quality does
+  magnitudes: the warmth coefficient is $\hat{\beta}_W = 0.143$ ($p = 0.002$)
+  and the strictness coefficient is $\hat{\beta}_S = 0.131$ ($p = 0.007$) on a
+  sample of $n = 99$ schools. Adding directly observed teaching quality does
   not attenuate either coefficient, suggesting culture and instruction address
   largely distinct mechanisms. Replacing visit-based scores with headteacher
-  self-reports reduces the warmth coefficient by 74--112~per~cent, validating
+  self-reports reduces the warmth coefficient by 22--103~per~cent, validating
   the observation-based measurement design. The conclusion is that school
   culture is a measurable and independently predictive determinant of pupil
   progress.
@@ -89,9 +89,9 @@ measurement and the outcome period, is addressed in \cref{sec:p2_continuity}.
 The main finding is that enacted school culture predicts pupil progress: both
 warmth and strictness are positive, statistically significant, and near-equal
 in magnitude as predictors of overall Progress~8. The warmth coefficient is
-$\hat{\beta}_W = 0.132$ and the strictness coefficient
-$\hat{\beta}_S = 0.117$, each significant at $p < 0.01$ on the sample of
-$n = 100$ schools. At the component level,
+$\hat{\beta}_W = 0.143$ and the strictness coefficient
+$\hat{\beta}_S = 0.131$, each significant at $p < 0.01$ on the sample of
+$n = 99$ schools. At the component level,
 English is the more warmth-led subject and Maths the more balanced one, and
 the schools that combine high warmth with high strictness outperform the rest
 of the sample by around a third of a grade. Neither culture coefficient is
@@ -101,7 +101,7 @@ controlled, suggesting culture and instruction predict progress through largely
 distinct channels. The findings are robust to dropping the pre-COVID Ofsted
 grade control, using single-year or Attainment~8 outcomes, and adding baseline
 SEMH share as an additional control. A direct enacted--espoused comparison
-shows that headteacher self-reports have 74--112~per~cent less predictive validity
+shows that headteacher self-reports have 22--103~per~cent less predictive validity
 for warmth than researcher observations, providing an external validation of the
 observation-based measurement design.
 
@@ -592,14 +592,14 @@ visited schools are excluded on this ground. Second, six visited schools
 converted to academies after 2019 and so carry no pre-COVID grade of their
 own; for five of them the predecessor school's 2019 grade is used, recovered
 through the register of predecessor and successor schools, which raises the
-primary estimation sample to $n = 100$. \Cref{tab:spec_ladder} shows the
+primary estimation sample to $n = 99$. \Cref{tab:spec_ladder} shows the
 estimates across four treatments of the grade control, from requiring an
-original grade ($n = 95$) to dropping the control entirely ($n = 101$).
+original grade ($n = 95$) to dropping the control entirely ($n = 100$).
 
 Both culture dimensions are positively and significantly associated with
 overall Progress~8 in every specification. In the primary specification
-$\hat{\beta}_W = 0.132$ ($p = 0.002$, HC3 robust standard errors throughout)
-and $\hat{\beta}_S = 0.117$ ($p = 0.003$), and the coefficients move by less
+$\hat{\beta}_W = 0.143$ ($p = 0.002$, HC3 robust standard errors throughout)
+and $\hat{\beta}_S = 0.131$ ($p = 0.007$), and the coefficients move by less
 than $0.02$ across the four rungs of the ladder. The two dimensions
 contribute with near-equal magnitude, which is consistent with the
 theoretical position set out in \cref{sec:p2_id} that support and
@@ -612,7 +612,7 @@ It is natural to ask what each dimension predicts on its own, before the
 other is controlled. \Cref{tab:univariate_ws} answers this by estimating
 strictness-only and warmth-only versions of the primary specification
 alongside the joint model. Alone, each dimension carries a coefficient of
-about $0.20$ ($0.206$ for warmth, $0.195$ for strictness on overall
+about $0.22$ ($0.218$ for warmth, $0.228$ for strictness on overall
 Progress~8); jointly, each retains roughly 60~per~cent of its solo
 coefficient. The two dimensions therefore share some variance, as their
 correlation of $+0.59$ in the visits would suggest, but each carries
@@ -641,10 +641,10 @@ dimensions add; they do not need each other to work.
 \end{figure}
 
 At the component level, warmth is significantly associated with both English
-($\hat{\beta}_W = 0.158$, $p < 0.001$) and Maths ($\hat{\beta}_W = 0.104$,
-$p = 0.038$), while strictness is significant for Maths
-($\hat{\beta}_S = 0.095$, $p = 0.025$) and marginal for English
-($\hat{\beta}_S = 0.077$, $p = 0.065$). English is therefore the more
+($\hat{\beta}_W = 0.167$, $p < 0.001$) and Maths ($\hat{\beta}_W = 0.112$,
+$p = 0.041$), while strictness is significant for Maths
+($\hat{\beta}_S = 0.110$, $p = 0.036$) and marginal for English
+($\hat{\beta}_S = 0.087$, $p = 0.083$). English is therefore the more
 warmth-led subject and Maths the more balanced one. The remaining two
 components, EBaC and Open, are reported in \cref{app:3A:tables} together
 with the entry-rate analysis, since both mix progress with the school's
@@ -660,26 +660,27 @@ the correction.}
 Stages~2 and~3 are reported in \cref{tab:stages23_trio}, estimated on the
 same primary specification. Stage~2 provides a teaching quality benchmark:
 visit-based teaching quality alone is positively and significantly
-associated with each outcome ($\hat{\beta}_T = 0.202$ for overall
+associated with each outcome ($\hat{\beta}_T = 0.245$ for overall
 Progress~8, $p < 0.001$), but achieves a lower $R^2$ than the culture-only
 specification. Culture scores account for more cross-school variance in
 pupil progress than teaching quality observed during the same visits.
 
 Stage~3 adds teaching quality to the warmth-and-strictness model, and the
 result is clear. Teaching quality enters insignificantly in all three
-outcomes ($\hat{\beta}_T$ between $-0.010$ and $0.020$, all $p > 0.75$),
+outcomes ($\hat{\beta}_T$ between $-0.013$ and $0.024$, all $p > 0.75$),
 while the culture coefficients are essentially unchanged from Stage~1
-($\hat{\beta}_W = 0.121$, $\hat{\beta}_S = 0.113$ for overall Progress~8).
-The one component-level movement worth noting is that warmth for Maths slips
-just past the five-per-cent threshold once teaching enters ($p = 0.108$),
-which is unsurprising given how much variance the three visit measures
-share. Taken together, these findings indicate that culture and directly
+($\hat{\beta}_W = 0.131$, $\hat{\beta}_S = 0.126$ for overall Progress~8).
+The component-level movements worth noting are both in Maths, where warmth
+($p = 0.115$) and strictness ($p = 0.063$) each slip past the five-per-cent
+threshold once teaching enters, which is unsurprising given how much variance
+the three visit measures share; the point estimates barely move, and the
+overall Progress~8 result is unaffected. Taken together, these findings indicate that culture and directly
 observed instruction are largely distinct predictors of Progress~8:
 conditioning on teaching quality does not account for the culture effect. An
 alternative reading, that teaching is the noisiest of the three visit
 dimensions and its signal is absorbed by the other two, cannot be excluded
 with cross-sectional data. The five-outcome versions of all three stages,
-estimated on the previous specification, are reported in
+estimated on the same specification, are reported in
 \cref{app:3A:tables}.
 
 \input{tables/tab_stages23_trio}
@@ -815,12 +816,13 @@ schools support SEMH pupils to exit the SEN register rather than preventing
 their enrolment.
 
 The SEMH-controlled robustness specification (\cref{tab:robustness_overall},
-column~6) adds the 2015--16 baseline SEMH share as a covariate to the primary
-culture regression. The strictness coefficient falls from $0.130$ to $0.105$,
+column~6) adds the 2015--16 baseline SEMH share as a covariate to the
+robustness-table culture regression, which uses the as-recorded pre-COVID grade
+and retains the late-entry schools. The strictness coefficient falls from $0.130$ to $0.105$,
 a reduction of nineteen per cent, and remains significant at the one-per-cent
 level. That headline comparison confounds two things, because the SEMH variable
 is missing for five schools and the specification is therefore estimated on 91
-rather than 96. Re-estimating the primary specification on exactly the
+rather than 96. Re-estimating that same specification on exactly the
 91-school SEMH sample separates them: strictness is $0.116$ there, so of the
 nineteen per cent, eleven points are attributable to the change of sample and
 the remaining nine to the SEMH control itself. Warmth moves in the opposite
@@ -910,7 +912,7 @@ The first implication concerns the balance of the current behaviour debate.
 Much of the recent policy conversation has treated behaviour and discipline
 as the active ingredient of school improvement, with relational culture cast
 as either a by-product or a competing priority. The estimates here do not
-support that framing. Warmth predicts pupil progress at least as strongly as
+support that framing. Warmth predicts pupil progress about as strongly as
 strictness in every specification, the two contribute with near-equal
 magnitude when entered together, and the schools that do best are those high
 on both: the warm-strict quadrant outperforms the rest of the sample by
@@ -982,13 +984,13 @@ the pathway components and further outcomes examined in the appendix.
 The headline finding is that both culture dimensions significantly predict
 overall pupil progress. In the primary specification --- the full control
 set, the predecessor-filled pre-COVID grade, and late-entry schools excluded,
-$n = 100$ --- the estimates are $\hat{\beta}_W = 0.132$ ($p = 0.002$) and
-$\hat{\beta}_S = 0.117$ ($p = 0.003$), and \cref{tab:spec_ladder} shows that
+$n = 99$ --- the estimates are $\hat{\beta}_W = 0.143$ ($p = 0.002$) and
+$\hat{\beta}_S = 0.131$ ($p = 0.007$), and \cref{tab:spec_ladder} shows that
 they move by less than $0.02$ across every reasonable treatment of the grade
 control. The two coefficients are nearly equal in magnitude, consistent with
 the theoretical prediction that warmth and strictness make symmetric
 contributions to the school culture environment that supports learning; and
-entered alone, each dimension carries a coefficient of about $0.20$, so each
+entered alone, each dimension carries a coefficient of about $0.22$, so each
 also carries substantial signal the other does not
 (\cref{tab:univariate_ws}). The quadrant analysis sharpens the picture: the
 warm-and-strict schools outperform the rest of the sample by $+0.36$ of a
@@ -1001,7 +1003,7 @@ orderly conduct within them.
 Stage~2 uses teaching quality~$T$ as the sole culture predictor, benchmarking
 whether the $W + S$ effects could be driven by correlation with observable
 instruction quality (\cref{tab:stages23_trio}). Teaching quality is
-significantly positive for each outcome ($\hat{\gamma}_T = 0.202$ for
+significantly positive for each outcome ($\hat{\gamma}_T = 0.245$ for
 overall P8, $p < 0.001$), but its $R^2$ values are consistently lower
 than Stage~1, suggesting that the $W + S$ combination provides
 stronger predictive signal for pupil progress than teaching quality alone.
@@ -1009,11 +1011,12 @@ stronger predictive signal for pupil progress than teaching quality alone.
 Stage~3 adds teaching quality to the Stage~1 specification
 (\cref{tab:stages23_trio}).
 The warmth and strictness coefficients are essentially unchanged: for overall
-P8 both remain statistically significant ($\hat{\beta}_W = 0.121$,
-$p = 0.033$; $\hat{\beta}_S = 0.113$, $p = 0.005$), while teaching quality
+P8 both remain statistically significant ($\hat{\beta}_W = 0.131$,
+$p = 0.037$; $\hat{\beta}_S = 0.126$, $p = 0.009$), while teaching quality
 becomes negligible and statistically insignificant in every outcome once
-warmth and strictness are controlled ($\hat{\gamma}_T$ between $-0.010$ and
-$+0.020$, all $p > 0.75$).
+warmth and strictness are controlled ($\hat{\gamma}_T$ between $-0.013$ and
+$+0.024$ in the three body outcomes, all $p > 0.75$; the EBaC and Open
+estimates in \cref{tab:main_results_s3} are likewise insignificant).
 The near-zero attenuation implies that warmth and strictness do not predict pupil
 progress through the teaching quality channel as captured in the current visit
 protocol. An alternative reading---that $T$ is the noisiest of the three visit
@@ -1287,12 +1290,13 @@ signal.
 
 \Cref{tab:main_results_s1,tab:main_results_s2,tab:main_results_s3} report the
 full five-outcome versions of the three main-body stages, including the EBaC
-and Open components. These tables are estimated on the previous specification
-($n = 96$, original pre-COVID grades, no late-entry exclusion); the main-body
-tables carry the primary specification, and no conclusion differs between the
-two. Reading the EBaC and Open columns, warmth and strictness are both
-significant for EBaC with near-equal magnitudes, and warmth is significant
-for Open. As \cref{app:3A:p8mechanics} explains, both components mix progress
+and Open components. These tables carry the primary specification ($n = 99$,
+predecessor-filled pre-COVID grades, late-entry schools excluded), the same one
+as the main-body tables, so the Overall, English and Maths columns reproduce
+the body exactly and the two extra columns are read on the same footing.
+Reading the EBaC and Open columns, warmth and strictness are both
+significant for EBaC with near-equal magnitudes, and both are significant for
+Open as well, again with near-equal magnitudes. As \cref{app:3A:p8mechanics} explains, both components mix progress
 with the school's entry decisions, so the entry-rate analysis in
 \cref{tab:entry_rates} is the cleaner way to read the pathway question: the
 strictness score predicts EBacc, humanities and languages entry nationally
@@ -1394,7 +1398,7 @@ analysis.
 
 \input{tables/tab_score_controls_corr}
 
-\Cref{tab:continuity_robustness} reports the primary Stage~1 specification
+\Cref{tab:continuity_robustness} reports the Stage~1 specification
 side-by-side for the full Tier~1 sample ($n = 96$) and for the subset of
 schools where the headteacher named in the most recent Ofsted inspection report
 is confirmed still in post in the July~2026 GIAS snapshot ($n = 22$). The
