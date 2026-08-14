@@ -953,58 +953,44 @@ headteachers---predicts the academic progress of its pupils, net of prior
 attainment, intake composition, and school type. Using enacted warmth~$W$ and
 strictness~$S$ scores derived from 103 researcher visits and 304 headteacher
 interviews, the analysis estimated a three-stage OLS model on overall
-Progress~8, its four component scores (English, Maths, EBaC, Open), and
-Attainment~8 components for the 2023--24 cohort.
+Progress~8 and its English and Maths components for the 2023--24 cohort, with
+the pathway components and further outcomes examined in the appendix.
 
-The Stage~1 regressions regress overall Progress~8 and each of its four
-components on enacted warmth~$W$ and strictness~$S$ plus the full control set,
-on the $n = 96$ schools with non-missing pre-COVID Ofsted grade
-(\cref{tab:main_results_s1}). The headline finding is that both culture dimensions
-significantly predict overall pupil progress: $\hat{\beta}_W = 0.150$
-(95\%~CI [0.061, 0.239], $p = 0.001$) and $\hat{\beta}_S = 0.130$ ([0.037, 0.223],
-$p = 0.007$), with $R^2 = 0.650$. The two coefficients are nearly equal in
-magnitude, consistent with the theoretical prediction that warmth and strictness
-make symmetric contributions to the school culture environment that supports
-learning.
-
-At the component level, warmth is positively and significantly associated with
-all four components: English ($\hat{\beta}_W = 0.177$, [0.090, 0.263],
-$p < 0.001$), EBaC ($\hat{\beta}_W = 0.165$, [0.049, 0.280], $p = 0.006$), Open
-($\hat{\beta}_W = 0.146$, [0.029, 0.262], $p = 0.015$), and Maths
-($\hat{\beta}_W = 0.118$, [0.007, 0.228], $p = 0.038$). Strictness is
-positively and significantly associated with EBaC progress
-($\hat{\beta}_S = 0.169$, [0.054, 0.285], $p = 0.005$), Open progress
-($\hat{\beta}_S = 0.135$, [0.006, 0.264], $p = 0.040$), and Maths
-($\hat{\beta}_S = 0.109$, [0.006, 0.213], $p = 0.038$), and is marginally
-significant for English ($\hat{\beta}_S = 0.086$, [$-0.012$, 0.185],
-$p = 0.084$). The EBaC component shows the strongest response to culture, with
-both $W$ and $S$ significant at the 1~per~cent level and comparable magnitude
-($\hat{\beta}_W \approx \hat{\beta}_S \approx 0.17$). The domain-specific
-double dissociation anticipated in \cref{sec:p2_outcomes}---strictness alone
-for Maths, warmth alone for English---is not supported: warmth predicts every
-component, so there is no subject in which strictness operates on its own. Only
-the ordinal version of the claim survives, with strictness strongest in EBaC
-and weakest in English.
+The headline finding is that both culture dimensions significantly predict
+overall pupil progress. In the primary specification --- the full control
+set, the predecessor-filled pre-COVID grade, and late-entry schools excluded,
+$n = 100$ --- the estimates are $\hat{\beta}_W = 0.132$ ($p = 0.002$) and
+$\hat{\beta}_S = 0.117$ ($p = 0.003$), and \cref{tab:spec_ladder} shows that
+they move by less than $0.02$ across every reasonable treatment of the grade
+control. The two coefficients are nearly equal in magnitude, consistent with
+the theoretical prediction that warmth and strictness make symmetric
+contributions to the school culture environment that supports learning; and
+entered alone, each dimension carries a coefficient of about $0.20$, so each
+also carries substantial signal the other does not
+(\cref{tab:univariate_ws}). The quadrant analysis sharpens the picture: the
+warm-and-strict schools outperform the rest of the sample by $+0.36$ of a
+grade, while the formal interaction is null --- the two dimensions add
+rather than amplify each other. At the component level English is the more
+warmth-led subject and Maths the more balanced one, and the decomposition of
+the visit scores locates the association in warmth outside lessons and
+orderly conduct within them.
 
 Stage~2 uses teaching quality~$T$ as the sole culture predictor, benchmarking
 whether the $W + S$ effects could be driven by correlation with observable
-instruction quality (\cref{tab:main_results_s2}). Teaching quality is
-significantly positive for overall P8 ($\hat{\gamma}_T = 0.251$, $p < 0.001$)
-and all four components: English ($\hat{\gamma}_T = 0.232$, $p < 0.001$),
-Maths ($0.205$, $p = 0.001$), EBaC ($0.281$, $p < 0.001$), and
-Open ($0.274$, $p < 0.001$). Stage~2 $R^2$ values (0.49--0.58) are consistently lower
-than Stage~1 (0.54--0.65), suggesting that the $W + S$ combination provides
+instruction quality (\cref{tab:stages23_trio}). Teaching quality is
+significantly positive for each outcome ($\hat{\gamma}_T = 0.202$ for
+overall P8, $p < 0.001$), but its $R^2$ values are consistently lower
+than Stage~1, suggesting that the $W + S$ combination provides
 stronger predictive signal for pupil progress than teaching quality alone.
 
-Stage~3 adds teaching quality to the Stage~1 specification (\cref{tab:main_results_s3}).
-The warmth and strictness coefficients are essentially unchanged. For overall P8,
-both remain statistically significant: $\hat{\beta}_W = 0.141$ ($p = 0.029$) and
-$\hat{\beta}_S = 0.126$ ($p = 0.009$), retaining 94~per~cent and 97~per~cent of
-their Stage~1 magnitudes respectively. Across the four components, warmth retains
-70--107~per~cent of its Stage~1 magnitude, and strictness retains 87--105~per~cent.
-By contrast, teaching quality becomes negligible and statistically insignificant in
-all five specifications once warmth and strictness are controlled
-($\hat{\gamma}_T$ ranges from $-0.021$ to $+0.086$; all $p > 0.40$).
+Stage~3 adds teaching quality to the Stage~1 specification
+(\cref{tab:stages23_trio}).
+The warmth and strictness coefficients are essentially unchanged: for overall
+P8 both remain statistically significant ($\hat{\beta}_W = 0.121$,
+$p = 0.033$; $\hat{\beta}_S = 0.113$, $p = 0.005$), while teaching quality
+becomes negligible and statistically insignificant in every outcome once
+warmth and strictness are controlled ($\hat{\gamma}_T$ between $-0.010$ and
+$+0.020$, all $p > 0.75$).
 The near-zero attenuation implies that warmth and strictness do not predict pupil
 progress through the teaching quality channel as captured in the current visit
 protocol. An alternative reading---that $T$ is the noisiest of the three visit
