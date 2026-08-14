@@ -198,8 +198,11 @@ def stages23_trio(df: pd.DataFrame) -> None:
                     for o in TRIO)
     n = int(get(df, "primary_stage1", "overall", W)["n"])
 
-    write("tab_stages23_trio.tex", rf"""\begin{{table}}[htbp]
-\centering
+    # The \def\sym line is load-bearing: \sym is defined per-file by esttab, and
+    # the hand-written version of this table used it undefined, which halts
+    # pdflatex outright. Do not drop it when reformatting.
+    write("tab_stages23_trio.tex", rf"""\begin{{table}}[htbp]\centering
+\def\sym#1{{\ifmmode^{{#1}}\else\(^{{#1}}\)\fi}}
 \small
 \caption{{Stages 2 and 3 under the primary specification: teaching quality as
 the sole culture predictor (Stage~2), and teaching quality added to the
