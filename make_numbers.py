@@ -257,6 +257,26 @@ def build() -> list[Num]:
     es = d[["ofsted_LLMStrictnessScore", "gs_strictness_espoused"]].apply(
         pd.to_numeric, errors="coerce").dropna()
     r_se = float(stats.pearsonr(es.iloc[:, 0], es.iloc[:, 1])[0])
+    # ── The 14-Aug primary-specification headline (guarded, not derived) ─────
+    # These figures come from analyse_ch3_batch.py (canonical spec: full
+    # controls, predecessor-filled 2019 grade, late-entry excluded, n=100,
+    # HC3) and are hard-coded in the chapters pending full macro conversion.
+    # The expects make --check fail if the prose and the record ever detach;
+    # the stale literals are the OLD headline (0.150/0.130) in coefficient
+    # form, guarded narrowly so the SEMH passage's unrelated 0.150 -> 0.165
+    # comparison does not false-positive.
+    add(Num("PrimarySpecW", "0.132",
+            "primary-spec warmth coefficient, analyse_ch3_batch 14 Aug",
+            expect=["\\hat{\\beta}_W = 0.132"],
+            stale=["\\hat{\\beta}_W = 0.150"]))
+    add(Num("PrimarySpecS", "0.117",
+            "primary-spec strictness coefficient, analyse_ch3_batch 14 Aug",
+            expect=["\\hat{\\beta}_S = 0.117"],
+            stale=["\\hat{\\beta}_S = 0.130"]))
+    add(Num("PrimarySpecN", "100",
+            "primary estimation sample: 103 - 2 late-entry - 1 unfillable grade",
+            expect=["$n = 100$"]))
+
     add(Num("CorrOfstedStrictEspoused", f"{r_se:.3f}",
             f"Ofsted LLM strictness vs espoused strictness (statement battery), "
             f"n={len(es)}. The espoused leg of the strictness-convergence claim "

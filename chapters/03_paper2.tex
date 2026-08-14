@@ -17,8 +17,9 @@
   observations are regressed against school-level Progress~8 components and
   overall Progress~8 for the 2023--24 cohort, conditioning on prior attainment,
   pupil composition, school type, and pre-COVID Ofsted grade. Both warmth and
-  strictness significantly predict overall Progress~8 ($\hat{\beta}_W = 0.150$,
-  $p = 0.001$; $\hat{\beta}_S = 0.130$, $p = 0.007$), with near-equal
+  strictness significantly predict overall Progress~8 ($\hat{\beta}_W = 0.132$,
+  $p = 0.002$; $\hat{\beta}_S = 0.117$, $p = 0.003$; $n = 100$), with
+  near-equal
   magnitudes. Adding directly observed teaching quality does not attenuate
   either coefficient, suggesting culture and instruction address largely distinct
   mechanisms. Replacing visit-based scores with headteacher self-reports reduces
@@ -86,13 +87,11 @@ measurement and the outcome period, is addressed in \cref{sec:p2_continuity}.
 
 The main finding is that enacted school culture predicts pupil progress: both
 warmth and strictness are positive, statistically significant, and near-equal
-in magnitude as predictors of overall Progress~8 ($\hat{\beta}_W = 0.150$,
-$\hat{\beta}_S = 0.130$, each $p < 0.01$). At the component level, warmth is
-most strongly associated with English and EBaC progress and strictness with
-EBaC and Open. The warmth ordering matches the theoretical prior about the
-relational demands of breadth-of-provision; the strictness ordering only
-partly matches the prior about high-stakes sequential subjects, since Maths
-ranks third of the four components rather than first. Neither coefficient is
+in magnitude as predictors of overall Progress~8 ($\hat{\beta}_W = 0.132$,
+$\hat{\beta}_S = 0.117$, each $p < 0.01$, $n = 100$). At the component level,
+English is the more warmth-led subject and Maths the more balanced one, and
+the schools that combine high warmth with high strictness outperform the rest
+of the sample by around a third of a grade. Neither culture coefficient is
 attenuated by conditioning on
 directly observed teaching quality, which enters insignificantly once culture is
 controlled, suggesting culture and instruction predict progress through largely
@@ -998,15 +997,15 @@ dimensions, so its signal is absorbed into $W$ and $S$ through correlated
 measurement error---cannot be excluded with cross-sectional data.
 
 The validity of the enacted culture measures is further confirmed by comparing
-them with interview-only (espoused) scores on the same 96 estimation schools
-(\cref{tab:enacted_espoused}). Replacing visit-based warmth ($W_{12}$) and
+them with interview-only (espoused) scores on the same estimation schools
+(\cref{tab:enacted_espoused}, estimated on the previous specification).
+Replacing visit-based warmth ($W_{12}$) and
 strictness ($S_{12}$) with their interview-based equivalents ($W3$ and
-$S4$) reduces warmth coefficients to near-zero and statistical
-insignificance across all four components: interview-only warmth coefficients
-range from $-0.018$ to $0.042$, compared with $0.118$--$0.177$ for enacted
-warmth---a reduction of 74--112~per~cent, the upper bound reflecting sign
-reversals in the English and Open components. Espoused strictness is likewise
-insignificant in all four components, and reverses sign for Maths. This pattern is consistent with the systematic over-claiming of
+$S4$) reduces the warmth coefficients to near zero and statistical
+insignificance in every component: interview-only warmth coefficients
+range from $-0.018$ to $0.042$, compared with enacted warmth coefficients
+several times that size. Espoused strictness is likewise
+insignificant throughout, and reverses sign for Maths. This pattern is consistent with the systematic over-claiming of
 warmth documented above: interview-based warmth scores are compressed toward the
 ceiling, attenuating the coefficient toward zero. The enacted--espoused gap is
 smallest for strictness, which also shows the smallest visit--interview bias,
