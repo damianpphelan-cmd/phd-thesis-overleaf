@@ -1,91 +1,82 @@
-# The thesis voice — style guide from Damian's own writing
+# The thesis voice — a published economics paper
 
-Derived 14 Aug 2026 from the three documents in `Writing training documents/`
-(2020 and 2021 dissertations, PhD upgrade report) on his instruction: "I would
-like the thesis to match the style used in those documents." Every rewrite in
-the writing pass follows this; where current draft prose conflicts with it, the
-draft moves toward this, not the reverse.
+Replaced 16 Aug 2026 on the supervisor's feedback. The previous guide, derived
+from Damian's earlier dissertations, optimised for a patient expository
+register with generous signposting. That register is his, and it is right for
+a document read in isolation; it is not the register of a published economics
+paper, and the supervisor's instruction is explicit: *"you must follow the
+style of any published economics paper."* The model is now an applied paper
+in the Journal of Public Economics or Economics of Education Review.
 
-## The register, in one paragraph
+## The rules, each tied to something the supervisor named
 
-Patient, plain, expository academic prose. The reader is walked through the
-material step by step, with the reasoning visible and nothing compressed for
-effect. Sentences are medium-length and syntactically simple — coordination
-("and", "but", "so") over nested subordination. The vocabulary is everyday
-academic English: things are "quite small", "very targeted", there is "a good
-deal of discussion", "the key thing is what schools do with this autonomy".
-The register is confident but unshowy; it explains rather than performs.
+1. **Structure is the argument.** Five sections — Introduction, Data,
+   Measurement (or Empirical Specification), Results, Conclusion — and few
+   subsections. If a sentence needs to point to another section, the material
+   is in the wrong place: move it or cut it. **Target: zero `\cref` to
+   sections; `\cref` only to tables, figures, equations and appendix
+   sections.** Signposting ("this section describes … there are seven parts")
+   is a symptom of non-linear organisation, not a cure.
 
-## Concrete habits to follow
+2. **State each thing once.** An important concept appears at most three
+   times: previewed in the introduction, established in the body, restated
+   in the conclusion. Everything else appears once. If a paragraph restates
+   what an earlier paragraph established, cut it.
 
-1. **Signpost explicitly and often.** "There are four preliminary stages to
-   this study that will be described below." / "The first is... the second
-   is... the final stage is..." / "the reason why is explained below" /
-   "I will give a brief summary of relevant history here." Forward and
-   backward references are spelled out, enumerations are walked through in
-   prose, and each section opens by saying what it will do.
-2. **First person is allowed and natural, used sparingly.** "I will discuss
-   some of the most important research findings"; more often the agent is
-   "this study" / "this paper" ("this study hypothesises that...").
-3. **Sentence-initial connectives carry the argument**: "However,",
-   "Therefore,", "For example,", "Consequently,", "Also,", "Clearly,",
-   "In this way it can be seen that...". Occasional stressed asides:
-   "It should be stressed that...".
-4. **Report numbers inside plain sentences, with ranges and real-world
-   magnitudes.** "a reduction of between 8.5% and 30.2% in the average rate"
-   / "an increase of £8,500 in the present value of lifetime earnings".
-   Statistics support a sentence that reads as English; avoid dense
-   parenthetical stat-dumps as the main vehicle. (Regression tables still
-   carry full detail; the prose quotes the figures that matter.)
-5. **Give generous narrative background.** Policy history, institutional
-   context and definitions get full patient paragraphs (the academies
-   history; the six school types "listed here in order of decreasing
-   autonomy"). Do not assume the reader knows the landscape.
-6. **Interpret results plainly and honestly, with modest hedges.** "This is
-   not surprising as..." / "which probably explains this result" / "It is
-   unclear what the overall effect is, but for the scenarios considered
-   here...". A mild rhetorical question is permitted to set up a turn: "If
-   increasing resources is costly, and improving teacher quality is hard,
-   then what about giving schools more freedom to manage themselves."
-7. **British English throughout** (behaviour, labour, analysing, programme);
-   "%" inline is fine; "percentage points" written out.
-8. **Citations ride inside the sentence**: "Barrage (2020) uses...",
-   "Hodge et al (2021) find that...". The literature is narrated, one study
-   at a time, with its finding stated in a full sentence.
+3. **No history, no diary.** What was done, and why. Never what was tried
+   and dropped, what an earlier draft said, what was withdrawn, or what will
+   come later. If a decision needs a rationale, give the rationale; the
+   biography of the analysis belongs in the replication log. Banned
+   constructions: "an earlier version", "previously", "was withdrawn",
+   "superseded", "is not yet", "will be", "as we shall see", "documented
+   below/above".
 
-## What to move AWAY from (present in current drafts, not in his voice)
+4. **Technical words keep their technical meaning.** *Convergence* means
+   convergence in econometrics and numerical methods; for two measures
+   agreeing, write "correlation", "agreement", or "association". The same
+   discipline for *validate* (say what was tested against what), *robust*
+   (to what), *significant* (at what level), *identify* (an effect, not a
+   pattern), *predict* (a model predicts; a correlation does not).
 
-- **Aphoristic compression**: sentences built as punchlines ("What looked
-  like four judgements was one judgement recorded four times", "modest
-  figures, and they are the honest ones"). Keep the *content*; recast as
-  patient explanation: state the fact, then explain what it shows and why.
-- **Heavy em-dash interruption.** His prose uses dashes rarely; prefer a new
-  sentence or a comma.
-- **Dense parenthetical qualification** ("($r = x$, $p = y$, $n = z$; but see
-  ...)") as a stylistic default. Unpack into sentences.
-- **The staccato topic-sentence-as-verdict** opening. His paragraphs open by
-  orienting ("Focusing on the UK context, ..."), not by ruling.
-- Ornate or self-conscious diction ("scaffolding", "warrant", "carries the
-  chapter") where a plain word exists.
+5. **Register.** Declarative and compact. Third person, or authorial "I"
+   used sparingly and consistently. Tables carry the detail, prose carries
+   the argument. A paragraph makes one point and its first sentence states
+   it. No rhetorical questions, no aphorisms, no italicised emphasis for
+   effect, no dashes as a habit. Numbers in prose only when they carry the
+   argument; the rest live in tables.
 
-## What to KEEP regardless of style
+6. **Length is a constraint.** 35 pages per chapter including tables and
+   figures in the body, appendix not bloated to compensate. Every cut is a
+   real cut.
 
-Precision and honesty are not style: every number stays derived (macros),
-every limitation stays stated, the transparency rulings (model raters,
-gpt-4o-mini tuning target) stay explicit. The style guide governs HOW things
-are said, never WHETHER they are said.
+7. **The linear story the supervisor asked for**, and every section serves
+   it: detailed data on a subset of schools → a gold-standard measure built
+   from it → for schools without the detailed data, a prediction model from
+   what is observable → evidence that the prediction reproduces the gold
+   standard where both exist → facts about the measures.
 
-## Calibration examples (rewrite direction)
+## Kept from before
 
-Current draft: "Two publicly available text sources contain no recoverable
-information about the warmth an observer records."
-His voice: "Neither of the two publicly available text sources provides any
-usable information about the level of warmth that an observer records when
-visiting a school. This is worth dwelling on, because the reason turns out to
-be informative rather than a matter of instrument quality."
+Precision and honesty are content, not style: every number derived by macro,
+every limitation stated, the model-rater transparency stated plainly and once.
+British English. The rules govern how things are said, never whether.
 
-Current draft: "No correlation threshold decides this."
-His voice: "It is worth being clear that this decision does not rest on any
-particular correlation threshold. At this sample size the confidence interval
-around a correlation of this size is wide, so any bright line drawn in this
-range would be sorting sampling noise rather than measuring validity."
+## Calibration
+
+Old: "This section describes how those instruments were built, how they were
+tested, and what was learned in the process. There are seven parts. The first
+explains…"
+New: [delete; the section's structure is visible from its subsections, and
+its first substantive sentence begins the argument.]
+
+Old: "The most plausible reading is that a school's website is simply not
+written about the thing that parents experience."
+New: "Website warmth is uncorrelated with the parent measure (r = 0.02)."
+
+Old: "strictness converges across three independent sources"
+New: "the strictness score is correlated with both the observed and the
+espoused measure (r = 0.40 and 0.38)."
+
+Old: "An earlier specification did produce the dissociation, but it did so
+because the selectivity control was miscoded…"
+New: [delete.]

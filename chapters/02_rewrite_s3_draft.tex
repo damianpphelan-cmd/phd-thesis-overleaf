@@ -1,0 +1,168 @@
+% ============================================================
+% REWRITE DRAFT — Chapter 2, section 3 (Measurement). Economics-paper
+% register. Absorbs the old sections 2.5-2.8 at roughly a third of their
+% length. Numbers are macros where one exists.
+% ============================================================
+
+\section{Measurement}
+\label{sec:p1_measurement}
+
+This section builds the measures in the order the design requires. It first
+constructs the gold-standard scores from the visits and interviews and reports
+their reliability. It then sets out how the public text is scored by
+language-model instruments and how those instruments were tested. It ends
+with the prediction models that carry the gold standard to schools that were
+not visited, and the evidence on how well they do so.
+
+\subsection{The gold standard}
+
+Every observation item and interview statement is rated 1 to 5. Sub-scores
+are item means; the dimension scores are sub-score means, rescaled to 0--10.
+Two sets are constructed and kept apart. The \emph{enacted} scores use the
+observations alone: enacted warmth averages in-lesson warmth (names, praise,
+quality of interaction) and out-of-lesson warmth (interactions during
+transitions and breaks); enacted strictness averages in-lesson strictness
+(misbehaviour tolerated, disruption, response to sanction, respect) and
+out-of-lesson strictness (sanction use, corridors, arrival, dining hall,
+recreational space); enacted teaching averages the nine lesson items on
+practice. The \emph{espoused} scores use the headteacher's statement ratings
+alone: espoused warmth averages the three warmth statements (rewards applied
+consistently; pupils feel safe; pupils feel their teachers care), espoused
+strictness the four strictness statements (sanctions applied consistently;
+behaviour in lessons; behaviour outside lessons; teachers feel respected). The
+two remaining statements, on staff turnover and morale, form a staff-climate
+score; the interview yields no espoused measure of teaching. Item definitions
+and the mapping to sub-scores are in Appendix~2A.
+
+Two components of the interview are recorded but excluded from the scores. The
+question-level ratings of how fully the headteacher answered each open
+question measure articulacy rather than culture: they load on one general
+factor that tracks the interviewer's rating of the head's confidence
+($r = 0.34$ to $0.47$) and correlate with the observed scores at zero. A count
+of eight named behaviour systems correlates with observed strictness at
+$0.08$, against $0.41$ for the statement battery, and is likewise excluded.
+Both are retained in the data as variables in their own right.
+
+Inter-rater agreement is high. Two researchers rated every lesson and every
+out-of-lesson period independently; pairwise Pearson correlations across the
+observation items range from $0.61$ to $0.74$, and within-one-point agreement
+exceeds 90 per cent on every item (\cref{tab:irr_classroom,tab:irr_outside}).
+The interview items were rated by the interviewer and an observer with the
+same result (\cref{tab:irr_interview}). Enacted warmth and strictness are
+correlated at $r = 0.59$ across the \NTierOne{} visited schools, and the
+espoused pair at $0.19$ across the interviewed schools.
+
+The gold standard is two measures rather than one because the interview and
+the visit disagree about the same school. Enacted and espoused warmth are
+correlated at $r = \GoldWarmthSplit$ ($p = \GoldWarmthSplitP$) and enacted and
+espoused strictness at $\GoldStrictnessSplit$ ($p = \GoldStrictnessSplitP$),
+on the \NTierOne{} schools with both. Two measures sharing at most a sixth of
+their variance are not fallible readings of one quantity, and a weighted
+average of them estimates neither; the two are therefore carried separately
+throughout, and their divergence is itself a result reported in Section~4.
+Both are also correlated with an external administrative record where one
+exists: the espoused staff-climate score is correlated with the school's
+recorded teacher turnover at $r = -0.52$, and at $-0.48$ conditional on the
+full control set.
+
+\subsection{Scoring the public text}
+
+For schools without a visit the gold standard must be predicted from what is
+observable, and the richest observable is text. Each of the three corpora is
+scored by a language-model instrument that reads one document about one
+school and returns a 1--5 score for warmth and for strictness (and, for
+inspection reports, teaching). All scoring uses gpt-4o-mini at zero
+sampling temperature; every score records the prompt version, a hash of the
+rubric text and the model version, and identical inputs are served from
+cache.
+
+Two architectures are used and the choice between them is empirical.
+\emph{Prose} instruments give the model a written marking scheme and take its
+band; the inspection-report and behaviour-policy instruments are of this
+kind, and each scores its constructs in a single call on the full document.
+\emph{Decomposed} instruments never ask for a band: the model answers a fixed
+set of factual questions, each answer supported by a verbatim quotation
+verified against the document, and the band is assigned by a fixed rule in
+code. The website and interview-transcript instruments are of this kind. The
+operative rubric and question set of every instrument is reproduced in
+Appendix~2A.
+
+Instruments were tuned against reference labels and then tested three ways.
+The reference labels were produced by three independent instances of a
+larger language model (Claude, Opus class), each given only the written rule
+and the documents, blind to one another and to every model score, with the
+majority label as the target; I wrote and revised the rules, ruled on the
+boundary cases the raters could not, and labelled the development packs
+myself. Agreement figures below are therefore model--model agreement, and the
+final arbiter of every instrument is not agreement but the gold standard. My
+own agreement with my labels of the same documents two weeks apart is
+$\kappa_w = 0.77$, which bounds what any rater can achieve against them at
+about $0.88$.
+
+The first test is agreement out of sample: weighted kappa against the
+reference labels on documents no version of the instrument was tuned on.
+Roughly 85 archived versions across eleven instrument families were each
+scored once on such documents; every in-sample figure had read high, and
+\cref{tab:instruments_adopted} reports the out-of-sample figures for the
+instruments retained. The second is validity: correlation with the enacted
+gold standard on the visited schools, and, for one construct, with an
+external register. The website instrument for the prominence of religious
+faith recovers the official register of religious character with an area
+under the ROC curve of 0.960, which establishes that the method reads what is
+in the text; where a construct fails against its criterion, the failure is a
+property of the text. The third is a check that no field available to the
+model carries the inspection verdict: report bodies are stripped of every
+stated grade before scoring.
+
+\input{tables/tab_instruments_adopted}
+
+The testing produced four results that governed which instruments were kept,
+summarised in \cref{tab:instrument_findings}. Agreement with labels and
+correlation with the gold standard are unrelated across versions, and the
+best-agreeing version was usually the worse measure: the inspection-report
+strictness instrument that agreed best with labels correlated with observed
+strictness at $0.07$, the prose version at $0.43$. Instruments that ask the
+model for facts outperform those that ask for judgements. Scoring related
+constructs in separate calls can produce a correlation between them that the
+gold standard does not show: enacted warmth and strictness are correlated at
+$0.59$; the single-call prose instrument reproduces this ($0.58$); the
+separate-call instruments return $0.01$ to $0.16$. And the model is part of
+the instrument: an unchanged rubric moved between models fell from
+$\kappa_w = 0.63$ to $0.12$, so instruments are pinned to the model they were
+tested with. Two limitations of the retained instruments are stated once here
+and apply wherever their scores are used. The inspection-report warmth score
+tracks the inspection grade at $-0.52$ from text that never states it, where
+human raters of the same text track it at $-0.25$; it is carried as a
+descriptive measure and never as a clean predictor. The website warmth
+instrument leaves its bottom two bands nearly indistinguishable at the model's
+limit.
+
+\input{tables/tab_instrument_findings}
+
+\subsection{Predicting the gold standard}
+
+For interviewed schools without a visit (Model~A) and for the national
+population (Model~B), the enacted score of each dimension is predicted by
+ridge regression fitted on the \RidgeTrainN{} visited schools with complete
+predictors. Model~A's predictors are the espoused sub-scores, the systems
+count and the two text scores for the dimension; Model~B's are the two text
+scores alone. Predictions are evaluated by leave-one-out cross-validation on
+the same schools (\cref{tab:interview_model_loo,tab:national_model_loo}).
+
+Strictness is predictable and warmth is not. Model~A predicts enacted
+strictness at a leave-one-out $r = \RidgeAStrictness$ and Model~B, from text
+alone, at $\RidgeBStrictness$. For warmth Model~A reaches $\RidgeAWarmth$ and
+Model~B has no out-of-sample skill: its leave-one-out $R^2$ is $-0.02$, no
+better than assigning every school the sample mean, and its predictions
+collapse toward a constant with a standard deviation under a tenth of the
+gold standard's. Among the predictors, the espoused strictness score and the
+inspection-report strictness score do roughly equal work ($0.24$ and $0.23$
+per standard deviation); the systems count contributes nothing.
+
+Because Model~B's warmth predictions carry no signal and Model~A's carry
+little, neither model's predictions are used as regressors in the following
+chapter. That chapter uses the enacted scores directly for the visited
+schools and the raw inspection-report strictness score for the national
+extension. The prediction models are best read as the measurement result they
+are: publicly available text can rank English secondary schools on strictness
+and cannot rank them on warmth.

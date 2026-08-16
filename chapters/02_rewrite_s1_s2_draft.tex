@@ -1,0 +1,134 @@
+% ============================================================
+% REWRITE DRAFT — Chapter 2, sections 1 and 2, in the economics-paper
+% register (thesis/WRITING_STYLE.md, 16 Aug 2026). For Damian's check of
+% direction before sections 3-5 are written. Numbers are macros where a
+% macro exists; the rest convert at integration.
+% ============================================================
+
+\section{Introduction}
+\label{sec:p1_intro}
+
+School culture is widely held to matter for what pupils learn, but it is
+rarely measured. This paper constructs measures of two dimensions of the
+culture of English secondary schools, warmth and strictness, for the full
+population of around 3,330 state secondary schools, and asks how far each
+dimension can be recovered from data that exist for every school.
+
+Warmth is the relational quality of a school: whether pupils are known,
+cared for and supported by the adults around them. Strictness is its
+behavioural structure: whether expectations of conduct are clear, enforced
+and met. The two are the axes of the authoritative-parenting framework
+transposed to institutions, and both are plausibly inputs to learning. The
+difficulty is that neither is recorded in any administrative dataset. What is
+recorded, for every school, is text: an inspection report written by an
+external observer, a behaviour policy written by the school, and a website
+written by the school for parents. What is recorded for a smaller set of
+schools, because I collected it, is direct observation and a structured
+interview with the headteacher.
+
+The design follows from that asymmetry. For \NTierOne{} schools I have a
+research visit, comprising structured lesson and out-of-lesson observations,
+and a headteacher interview; from these I construct a gold-standard measure of
+each dimension. Because the interview and the visit disagree substantially
+about the same school, the gold standard is two measures, not one: an
+\emph{enacted} score, from what an observer recorded, and an \emph{espoused}
+score, from what the headteacher reported. For a further 201 schools I have
+the interview alone, and for the remaining national population I have only
+the public text. For those schools I estimate the gold standard from what is
+observable, using prediction models fitted on the schools where both the
+predictors and the gold standard exist, and I report how well the predictions
+reproduce the gold standard out of sample.
+
+Three findings follow. First, the two dimensions are recoverable to very
+different degrees. Strictness scored from inspection-report text is
+correlated with observed strictness at $r = \CorrOfstedStrictness$, and a
+text-only prediction model retains a leave-one-out correlation of
+$\RidgeBStrictness$ with the gold standard. Warmth is not recoverable from
+any public source: no text-derived warmth score is correlated with observed
+warmth, and the text-only model's leave-one-out correlation is
+$\RidgeBWarmth$. Second, the enacted and espoused measures diverge in a
+systematic and dimension-specific way. Headteachers rate their schools half a
+point warmer than observers record and about as strict; the interview and
+the visit are correlated at $\GoldWarmthSplit$ for warmth and
+$\GoldStrictnessSplit$ for strictness. Every public source, including a
+survey of parents, tracks the espoused warmth measure and not the enacted one.
+Third, the language-model instruments used to score the text carry a
+measurement result of their own: an instrument's agreement with its reference
+labels and its correlation with the observed measure are unrelated, and the
+best-agreeing version of an instrument was usually the worse measure.
+
+The paper contributes a measurement framework and a set of school-level
+scores, a national-scale demonstration of what school culture is and is not
+legible from public text, and a set of findings about language-model
+measurement that apply beyond this setting. The scores are the explanatory
+variables of the following chapter.
+
+The paper proceeds as follows. Section~2 describes the data. Section~3
+constructs the gold standard, the text-based instruments and the prediction
+models, and reports how well the predictions reproduce the gold standard.
+Section~4 reports what the measures show. Section~5 concludes.
+
+% ============================================================
+\section{Data}
+\label{sec:p1_data}
+
+The paper uses three kinds of data on English state secondary schools: a
+research visit and a headteacher interview conducted for this study, three
+corpora of public text, and the Department for Education's school-level
+administrative panel. \Cref{tab:tier_summary} sets out coverage.
+
+\textbf{Visits and interviews.} Between November 2023 and April 2025 I
+interviewed the headteacher, or where unavailable the senior leader
+responsible for behaviour and culture, at 304 schools, and visited
+\NTierOne{} of them. Schools were recruited by direct approach and by
+referral from participating schools; no quota was applied. Three-quarters of
+interviews and half of visits took place in the 2024/25 academic year.
+
+A visit comprised structured observation of lessons and of unstructured time,
+each by two researchers rating independently on a fixed schedule. The lesson
+schedule has seven items bearing on warmth and strictness (for example the
+frequency with which the teacher uses pupils' names; the level of misbehaviour
+tolerated before a first sanction) and nine on teaching practice; the
+out-of-lesson schedule has eight items covering transitions, breaks, corridors
+and the dining hall. All items are rated 1 to 5 and averaged across
+observations. The interview followed a fixed schedule of eleven questions and
+nine statements on which the headteacher rated their own school on a five-point
+agreement scale (for example ``Sanction systems are applied consistently across
+the school''; ``Pupils in this school feel that their teachers care about
+them''), and recorded whether eight named behaviour systems were in place. The
+full schedules are reproduced in Appendix~2A. Inter-rater agreement on the
+observation items is reported with the measures in Section~3.
+
+\textbf{Public text.} Three corpora cover the national population. Ofsted
+inspection reports were obtained for 3,288 of the 3,312 open schools
+(99.3 per cent); the remainder opened after 2023 and had not been inspected.
+Behaviour policy documents were obtained for 3,365 schools (98.2 per cent),
+one document per school, selected by a rule that prefers the current
+whole-school behaviour policy over annexes and predecessor versions. School
+websites were crawled once for 3,053 schools, taking the home, values and
+welcome pages; 3,370 crawl files exist including partial ones. Where a crawl
+returned no prose, the school is flagged rather than dropped.
+
+\textbf{Administrative data.} All schools are matched on their unique
+reference number to a school-year panel built from the Department for
+Education's published tables for 2015/16 to 2024/25, carrying pupil
+composition, prior attainment, Progress~8 and its components, workforce and
+finance. This paper uses the panel only to describe the samples; the
+following chapter uses it for outcomes and controls.
+
+\textbf{Representativeness.} \Cref{tab:2A:representativeness} compares the
+visited and interviewed schools with the national population. Both samples
+resemble the population on school type, phase, admissions, size, deprivation
+and urban location, and both over-represent London (45 per cent of visited
+schools against 15 per cent nationally). Both also lean toward stronger
+schools: 25 per cent of visited schools held an Outstanding inspection grade
+as at August 2024 against 15 per cent nationally, and their mean Progress~8
+in 2018/19 was $+0.17$ against $+0.04$. Estimates from the visited sample
+therefore apply most directly to a population somewhat stronger than the
+national average, and the restricted range of both culture and outcomes in
+that sample works against finding associations rather than for it.
+
+\Cref{tab:score_dist} reports descriptive statistics for the measures
+constructed in Section~3, by sample.
+
+\input{tables/tab_tier_summary}
