@@ -1,0 +1,145 @@
+% ============================================================
+% REWRITE DRAFT — Chapter 2, sections 4 (Results) and 5 (Conclusion).
+% Economics-paper register. Facts about the measures only; no method.
+% NOTE the espoused-enacted gap figures are RECOMPUTED on the rebuilt
+% espoused scores (+1.84 warmth, +0.88 strictness); the old +0.51 / +0.07
+% predate the rebuild and are retired.
+% ============================================================
+
+\section{Results}
+\label{sec:p1_results}
+
+This section reports what the measures show. Three results stand out: the
+enacted and espoused measures diverge, and they diverge more for warmth than
+for strictness; every public source of text tracks the espoused warmth measure
+and none tracks the enacted one; and behaviour policy text is, if anything,
+inversely related to observed practice.
+
+\textbf{Distributions.} \Cref{tab:score_dist} reports the measures by sample
+and \cref{fig:score_distributions} their distributions. Enacted warmth across
+the \NTierOne{} visited schools has mean 6.6 and standard deviation 1.0 on the
+0--10 scale; enacted strictness has mean 7.0 and standard deviation 0.9.
+Espoused scores across the interviewed schools are wider on warmth (SD 1.5)
+and comparable on strictness (SD 0.9). The two enacted dimensions are
+correlated at $r = 0.59$: warm schools tend also to be orderly ones, which is
+consistent with the authoritative-school framework and inconsistent with a
+single warm-to-strict axis. Between-school variation is genuinely narrow in
+the English system, and score compression partly reflects that: about
+two-thirds of secondary schools are graded Good and a further sixth
+Outstanding, and common inspection, curriculum and training pressures
+compress the distribution of any culture measure.
+
+\textbf{Enacted and espoused culture diverge.} On the \NTierOne{} schools
+with both, headteachers rate their schools warmer than observers record by
+$1.8$ points on the 0--10 scale and stricter by $0.9$ (paired
+$p < 0.001$ for both). The two sources are correlated at $\GoldWarmthSplit$
+for warmth and $\GoldStrictnessSplit$ for strictness. The gap is therefore
+larger, and the agreement lower, for warmth: what a headteacher says about
+relationships is a poorer guide to what a visitor finds than what they say
+about behaviour. Within the interview, the items on which heads report
+reliably are those about the consistency of practice (sanctions applied
+consistently, $r = 0.39$ with observed strictness; rewards applied
+consistently, $0.29$), not those about how people feel (pupils feel safe,
+$0.16$; teachers care, $0.11$, neither significant). Headteachers report
+accurately on whether their systems are applied and inaccurately on
+relational climate.
+
+\textbf{Public text tracks talk, not practice.} \Cref{tab:source_criterion}
+sets each source's warmth and strictness score against the enacted and the
+espoused criterion. The pattern is uniform. For strictness, the
+inspection-report score is correlated with the observed measure at
+$\CorrOfstedStrictness$ and with the espoused measure at
+$\CorrOfstedStrictEspoused$; behaviour policies and websites carry no
+strictness signal against either. For warmth, no source is correlated with
+the observed measure, and the inspection report and the parent survey are
+correlated with the espoused one ($0.29$ and $0.31$). The parent survey is
+the fourth independent respondent group and shows the same crossover: parents'
+reports of their children being happy and safe track what heads say about
+warmth ($0.31$) more than what observers record ($0.16$), and track observed
+strictness ($0.28$) better than observed warmth. \Cref{fig:crossover_warmth}
+draws the warmth half of the table. What is written and reported about a
+school's warmth, by inspectors, by parents and by the school itself, tracks
+the school's account of itself and not the classroom.
+
+\input{tables/tab_source_criterion}
+
+\textbf{Behaviour policies describe aspiration.} The behaviour-policy warmth
+score is uncorrelated with observed warmth ($-0.08$) and negatively
+correlated with the parent measure ($-0.04$, $p = 0.03$); the strictness score
+is uncorrelated with observed strictness ($0.01$). One school in ten publishes
+a policy authored by its trust rather than by the school. Written behaviour
+policies are governance documents that state intent, and schools that state
+the warmest intent are not, on these measures, the warmest schools. The same
+result appears in the following chapter as a small negative association
+between behaviour-policy warmth and pupil progress.
+
+\textbf{What the text does and does not contain.} Two further results
+qualify the inspection-report scores. The warmth score tracks the inspection
+grade at $-0.52$ from report text stripped of every stated grade, where human
+raters of the same text track it at $-0.25$: inspectors write about
+relationships in a register that moves with their overall verdict, and the
+model reads that register. The score is therefore a characterisation of the
+report rather than a clean measure of the school. The strictness score also
+tracks the verdict ($-0.51$) but, unlike warmth, it tracks observed practice
+as well, and in the following chapter its association with pupil progress
+survives conditioning on the grade. Finally, the one website construct with an
+external criterion, the prominence of religious faith, is recovered from
+website text with an area under the ROC curve of 0.960: the method reads what
+is there, and warmth is not.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig_crossover_warmth.pdf}
+  \caption{Each source's warmth score correlated with the espoused criterion
+  (filled) and the enacted criterion (open). Every source tracks what
+  headteachers report better than what observers record.}
+  \label{fig:crossover_warmth}
+\end{figure}
+
+% ============================================================
+\section{Conclusion}
+\label{sec:p1_conclusion}
+
+This paper constructs measures of warmth and strictness for English secondary
+schools from direct observation, headteacher interview and public text, and
+asks how far each dimension can be recovered from data that exist for every
+school. Three findings summarise it.
+
+Strictness is legible in public text and warmth is not. An inspection
+report's strictness score is correlated with observed strictness at
+$\CorrOfstedStrictness$, and a text-only model predicts it out of sample at
+$\RidgeBStrictness$; no text source is correlated with observed warmth, and
+the text-only warmth model has no out-of-sample skill. The asymmetry is a
+fact about the sources, not the instruments: inspectors record conduct and
+enforcement in detail and describe relationships in a uniform positive
+register, schools' own documents describe intent, and websites are not written
+about the thing observers see.
+
+Espoused and enacted culture diverge, and more for warmth. Headteachers
+over-state warmth relative to observation by nearly two points and agree with
+observers only weakly on it, while their reports of behaviour systems being
+applied consistently track observed strictness. Every public source, including
+a survey of parents, tracks the espoused warmth measure and not the enacted
+one. The gap is dimension-specific and appears in four independent kinds of
+evidence, which suggests it is a feature of how schools present themselves
+rather than an artefact of any one instrument.
+
+The instruments carry a measurement result of their own. Across roughly
+85 versions of eleven language-model instruments, agreement with reference
+labels was unrelated to correlation with the observed measure, and the
+best-agreeing version was usually the worse measure; instruments that ask for
+facts outperformed those that ask for judgements; scoring related constructs
+in separate calls produced correlations between them that the observations
+do not show; and an unchanged rubric moved between models lost most of its
+agreement. These results apply to any study that scores text with a language
+model against human labels.
+
+The measures have limits that the following chapter inherits. The visited
+sample is 103 schools, weighted toward London and toward stronger schools; the
+enacted scores come from one visit each; the inspection-report scores are read
+from prose that carries the inspection verdict; and the reference labels for
+the text instruments were produced by a language model rather than by human
+raters, with the observed measures as the final check. Within those limits,
+the enacted scores are a reliable, two-dimensional measure of school culture
+for the visited schools, and the inspection-report strictness score extends
+one of the two dimensions to the national population.

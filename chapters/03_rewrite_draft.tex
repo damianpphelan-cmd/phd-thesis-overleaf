@@ -1,0 +1,285 @@
+% ============================================================
+% REWRITE DRAFT — Chapter 3 in full, economics-paper register. Five sections.
+% Every estimate is from thesis/tables/ch3_estimates.csv (Stata, HC3, the
+% documented control set incl. years_since_ofsted, primary spec n=99). The
+% five-outcome tables, entry rates, gaps, typology detail, pseudo-P8 check
+% and stability evidence stay in Appendix 3A. Numbers convert to macros at
+% integration.
+% ============================================================
+
+\section{Introduction}
+\label{sec:p2_intro}
+
+Does the culture of a school affect how much its pupils learn? This paper
+estimates the association between the warmth and strictness of English
+secondary schools, measured by direct observation, and the progress their
+pupils make between the end of primary school and GCSE. It uses the enacted
+culture scores constructed in the previous chapter for \NTierOne{} visited
+schools, and the Progress~8 measure published by the Department for
+Education, which records each school's average pupil progress relative to
+pupils nationally with the same prior attainment.
+
+The design is an association with several features that strengthen it short
+of identification. The outcome is value-added, so it already conditions on
+where pupils started; the culture measures come from documents and visits that
+mostly predate or coincide with the outcome cohort; the regressions condition
+on intake composition, prior attainment, school type, size, location and the
+school's pre-pandemic inspection grade; and the sample excludes schools that
+admit pupils only at 13 or 14, whose Progress~8 attributes to them progress
+they cannot have caused. What the design cannot do is rule out that some
+persistent characteristic of a school produces both its culture and its
+results, and the estimates are presented as associations throughout.
+
+Three results follow. First, both dimensions predict progress, with about
+equal weight: a one standard deviation increase in observed warmth is
+associated with $0.14$ of a grade higher Progress~8, and in observed
+strictness with $0.13$, both significant at the one per cent level, and both
+stable across every treatment of the inspection-grade control. Entered alone
+each dimension carries a coefficient of about $0.22$, so the two share some
+variance but each carries independent signal. Second, the association does not
+run through observed teaching quality: adding the visit's teaching score
+leaves both culture coefficients unchanged and the teaching coefficient
+itself is close to zero. Third, the schools that combine high warmth with high
+strictness outperform the rest by a third of a grade, while the interaction
+between the two dimensions is null; the dimensions add rather than amplify
+one another. Substituting the headteacher's own account of the school for the
+observed scores removes the warmth association entirely, and the strictness
+score read from inspection reports reproduces the strictness result across
+the national population with the inspection grade held constant.
+
+The paper proceeds as follows. Section~2 describes the outcome, the culture
+measures, the controls and the sample. Section~3 sets out the specification.
+Section~4 reports the results and their robustness. Section~5 concludes.
+
+% ============================================================
+\section{Data}
+\label{sec:p2_data}
+
+\textbf{Outcomes.} The outcome is Progress~8, the Department for Education's
+school-level value-added measure: each pupil's attainment across eight GCSE
+slots is compared with the national average for pupils with the same Key
+Stage~2 starting point, and the differences are averaged across the school. A
+school at zero is exactly average; $+0.5$ means half a grade more per subject
+than its intake would predict. The paper reports overall Progress~8 and its
+English and Maths components, which are the cleanest measures the tables offer
+because every pupil sits both examinations. The remaining components, EBaC and
+Open, are partly determined by which subjects a school enters pupils for, and
+are reported in Appendix~3A together with a direct analysis of subject entry
+rates and a note on how the components are constructed. The primary outcome is
+the two-year average of the 2022/23 and 2023/24 cohorts, the two post-pandemic
+years for which a Key Stage~2 baseline exists; the 2024/25 cohort has no
+baseline, and Appendix~3A reports a validated pseudo-progress measure for it.
+
+\textbf{Culture measures.} The explanatory variables are the enacted warmth
+and strictness scores of the previous chapter: the visit-based measures, on a
+0--10 scale, for the \NTierOne{} visited schools, entered per standard
+deviation. The visit's teaching-practice score enters as a benchmark. The
+espoused scores enter one robustness specification and the inspection-report
+strictness score the national extension.
+
+\textbf{Controls.} All specifications condition on prior attainment (mean Key
+Stage~2 score of the cohort), the shares of pupils eligible for free school
+meals, with English as an additional language and with special educational
+needs, log school size, academy status, urban location, selective admissions,
+years since the last inspection, and the school's overall inspection grade as
+at August 2019, entered as dummies. The 2019 grade is used rather than the
+current one because a contemporaneous grade is partly an outcome of the
+culture being measured. Six visited schools converted to academies after 2019
+and carry no grade of their own; for five, the predecessor school's 2019 grade
+is used, and the sixth is dropped where the control is required.
+
+\textbf{Sample.} Two exclusions apply. Schools whose statutory entry age is 13
+or above (university technical colleges, studio schools and similar; 98
+schools nationally, two among those visited) are excluded from every outcome
+regression: Progress~8 measures progress from age 11, and these schools enrol
+their pupils at 13 or 14. One visited school lacks the years-since-inspection
+control. The primary estimation sample is therefore $n = 99$.
+\Cref{tab:outcome_stats} and \cref{tab:control_stats} report descriptive
+statistics for outcomes and controls; the correlations between the culture
+scores and the controls are all below $|0.3|$ (\cref{tab:score_controls_corr}).
+
+The visited schools lean toward stronger schools than the national
+population, as the previous chapter records, so the estimates apply most
+directly to a population somewhat above the national average, and the
+restricted range of both culture and outcomes works against finding
+associations.
+
+% ============================================================
+\section{Empirical Specification}
+\label{sec:p2_spec}
+
+The primary specification is
+%
+\begin{equation}
+  \label{eq:main}
+  Y_s = \alpha + \beta_W W_s + \beta_S S_s + \mathbf{X}_s'\gamma
+        + \sum_g \delta_g \,\mathbb{1}[G_s = g] + \varepsilon_s ,
+\end{equation}
+%
+where $Y_s$ is the two-year average Progress~8 (overall, English or Maths) of
+school $s$, $W_s$ and $S_s$ are its enacted warmth and strictness scores in
+standard-deviation units, $\mathbf{X}_s$ the controls listed above and $G_s$
+its 2019 inspection grade. Standard errors are heteroskedasticity-consistent
+(HC3). Three stages are estimated: equation~(\ref{eq:main}); the same
+equation with the teaching-practice score $T_s$ in place of $W_s$ and $S_s$;
+and the equation with all three. Each dimension is also entered alone. The
+national extension replaces $W_s$ and $S_s$ with the inspection-report
+strictness score, standardised, on all schools with an outcome, and is
+estimated with and without the grade dummies.
+
+% ============================================================
+\section{Results}
+\label{sec:p2_results}
+
+\textbf{Culture predicts progress.} \Cref{tab:spec_ladder} reports the
+primary estimates. In the primary specification observed warmth carries a
+coefficient of $0.143$ ($p = 0.002$) and observed strictness $0.131$
+($p = 0.007$) on overall Progress~8, with $R^2 = 0.62$. The table shows the
+same equation under four treatments of the grade control, from requiring an
+original 2019 grade ($n = 95$) to dropping the control ($n = 100$); the
+coefficients move by less than $0.02$ across the four. The two dimensions
+contribute with near-equal weight, as the authoritative-school framework
+predicts.
+
+\input{tables/tab_spec_ladder}
+
+Entered alone, each dimension carries a coefficient of about $0.22$
+(\cref{tab:univariate_ws}): $0.218$ for warmth and $0.228$ for strictness.
+Jointly each retains roughly 60 per cent of its solo coefficient. The two
+dimensions therefore share variance, as their correlation of $0.59$ implies,
+but each carries substantial signal the other does not, which is the
+empirical basis for treating them as two constructs.
+
+\input{tables/tab_univariate_ws}
+
+At the component level English is warmth-led (warmth $0.167$, $p < 0.001$;
+strictness $0.087$, $p = 0.083$) and Maths balanced (warmth $0.112$,
+$p = 0.041$; strictness $0.110$, $p = 0.036$). The five-outcome tables in
+Appendix~3A show both dimensions significant for the EBaC component and
+warmth for the Open component; the appendix also shows that the strictness
+score predicts entry to the EBacc pathway nationally with the grade held
+constant, but that controlling for entry attenuates the strictness--EBaC
+association by only 10 to 14 per cent. Most of the association is progress
+within subjects rather than curriculum steering.
+
+\textbf{Teaching quality does not account for it.} \Cref{tab:stages23_trio}
+reports the second and third stages. The visit's teaching-practice score alone
+predicts overall Progress~8 at $0.245$ ($p < 0.001$) but with a lower $R^2$
+($0.56$) than the two culture scores. Added to the primary specification it
+enters at $0.024$ ($p = 0.76$), and the culture coefficients are unchanged
+($0.131$ and $0.126$). Warmth for Maths slips past the five per cent threshold
+once teaching enters ($p = 0.115$), which is unsurprising given how much
+variance the three visit scores share. Culture and observed instruction are
+largely distinct predictors of progress; conditioning on teaching quality does
+not account for the culture association, though with cross-sectional data the
+alternative reading, that teaching is the noisiest of the three visit scores
+and its signal is absorbed by the other two, cannot be excluded.
+
+\input{tables/tab_stages23_trio}
+
+\textbf{The dimensions add.} \Cref{fig:quadrant_ws} plots the visited schools
+by their two culture scores, shaded by progress. Schools in the warm and
+strict quadrant are predominantly above-average performers. Formally, the
+warm-and-strict quadrant sits $0.36$ of a grade above the rest of the sample
+after controls ($p < 0.001$), while the interaction between the two dimensions
+is null ($0.039$, $p = 0.20$; \cref{tab:typology}). Warmth and strictness add
+rather than amplify one another; the best schools have both because both help,
+not because of a combination effect. Decomposing the visit scores into their
+five observational blocks (\cref{tab:subscores}), the association runs
+through warmth outside lessons and orderly conduct within them: out-of-lesson
+warmth ($0.107$, $p = 0.017$) and in-lesson strictness ($0.118$, $p = 0.006$)
+survive joint entry, and their counterparts do not.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig_quadrant_ws.pdf}
+  \caption{Enacted warmth and strictness for the visited schools, shaded by
+  Progress~8 (two-year average). Dashed lines mark sample medians. The
+  adjusted quadrant comparison is in \cref{tab:typology}.}
+  \label{fig:quadrant_ws}
+\end{figure}
+
+\textbf{Espoused culture does not predict progress.} Substituting the
+headteacher's espoused scores for the observed ones on the same schools
+reduces the warmth coefficient to $0.036$ ($p = 0.47$); espoused strictness
+retains a smaller association ($0.113$, $p = 0.019$). The measurement
+asymmetry of the previous chapter reappears as a predictive one: what a
+headteacher says about warmth carries no information about progress, and what
+they say about behaviour systems carries some. Two related results are in
+Appendix~3A. The gap between a school's espoused and enacted scores predicts
+nothing beyond the enacted level; and the association is not confined to the
+visited schools' own report on themselves, since parents' survey responses on
+their children's happiness and safety are positively associated with progress
+($0.14$ per standard deviation) with the caveat that satisfaction and results
+are jointly determined.
+
+\textbf{National extension.} The inspection-report strictness score, which
+the previous chapter showed to track observed strictness at $0.40$, is
+available for 3,147 schools with an outcome. On the full control set without
+the grade it carries $0.166$ ($p < 0.001$, $R^2 = 0.52$;
+\cref{tab:national_strictness}); with the 2019 grade added ($n = 2{,}823$) it
+carries $0.167$, and no component estimate moves by more than $0.005$. A score
+read from an inspection report might be thought to proxy for the inspectorate's
+overall approval; that the coefficient is untouched by conditioning on the
+grade itself is difficult to reconcile with that reading. Two further
+text-derived results are consistent with the previous chapter's measurement
+findings and are reported in \cref{tab:llm_p8_matrix}: the behaviour-policy
+warmth score is significantly \emph{negatively} associated with progress, and
+the website warmth and strictness scores are not associated with it at all.
+
+\textbf{Robustness.} \Cref{tab:robustness_overall} reports the primary
+estimate under alternative specifications. Dropping the grade control
+($0.130$, $0.125$; $n = 102$), using the single 2023/24 outcome year ($0.165$,
+$0.125$), adding the 2015/16 baseline share of pupils with social, emotional
+and mental-health needs ($0.163$, $0.105$; $n = 91$), and restricting to
+schools whose headteacher is confirmed unchanged since the last inspection all
+leave both coefficients significant at the five per cent level or better. On
+Attainment~8 rather than Progress~8 the coefficients are larger ($0.337$,
+$0.218$), as expected for a measure that does not condition on intake. The
+sorting concern, that strict schools have fewer pupils with social, emotional
+and mental-health needs, accounts for about a tenth of the strictness
+association (Appendix~3A). Within-school Progress~8 is stable across years
+(mean within-school standard deviation $0.20$), which supports using culture
+measured after the outcome window as a proxy for culture during it; the
+appendix also shows that the 2024/25 pseudo-progress measure, the one cohort
+measured contemporaneously with the fieldwork, gives coefficients within
+$0.04$ of the primary ones.
+
+\textbf{Implications.} Two implications bear on current policy debate and
+follow from the pattern of results rather than any single coefficient. The
+behaviour debate treats discipline as the active ingredient of school
+improvement and relational culture as secondary; these estimates give the two
+equal weight, show no trade-off between them, and place the warm-and-strict
+schools a third of a grade ahead. And the association runs through relational
+quality outside lessons and orderly conduct within them, which locates the
+relational work that matters outside the classroom, where observation and
+training effort are least concentrated. Both implications are conditional on
+an association being at least partly causal, which the design supports but
+does not establish.
+
+% ============================================================
+\section{Conclusion}
+\label{sec:p2_conclusion}
+
+Observed school culture predicts pupil progress. Across \NTierOne{} visited
+English secondary schools, a standard deviation of observed warmth is
+associated with $0.14$ of a grade higher Progress~8 and a standard deviation
+of observed strictness with $0.13$, both significant at the one per cent
+level and both stable across every reasonable specification. The two
+dimensions contribute equally and additively; the schools that combine them
+outperform the rest by a third of a grade. Observed teaching quality does not
+account for the association. The headteacher's own account of the school
+predicts nothing on warmth, and the strictness score read from inspection
+reports reproduces the strictness result nationally with the inspection grade
+held constant.
+
+The estimates are associations, strengthened by a value-added outcome,
+temporal ordering, a rich control set and stability across specifications, but
+not identified: a persistent characteristic that produces both a school's
+culture and its results cannot be excluded with cross-sectional data. The
+visited sample is small and leans toward stronger schools; culture was
+measured after the outcome window for most schools; and one visit is a noisy
+reading of a school. Within those limits, the results locate the relational
+and disciplinary features of a school that travel with its pupils' progress,
+and they show that one of the two, strictness, is legible at national scale
+in the public record.
