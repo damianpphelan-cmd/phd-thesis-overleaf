@@ -71,10 +71,11 @@ Score & Description & $N$ & Mean & SD & Min & Median & Max \\
 \bottomrule
 \end{{tabular}}
 \begin{{minipage}}{{\textwidth}}\vspace{{0.5em}}\footnotesize
-\textit{{Notes.}} The enacted score is built from the visit sub-scores
-($W1$, $W2$, $S1$, $S2$, $T1$) and the espoused score from the interview
-sub-scores ($W3^*$, $S3$, $S4$, $T2$), as set out in
-\cref{{eq:enacted,eq:espoused}}. No school contributes a sub-score to both.
+\textit{{Notes.}} The enacted scores are built from the visit sub-scores
+($W1$, $W2$, $S1$, $S2$, $T1$) and the espoused scores from the interview
+statement sub-scores ($W3$, $S4$; $T2$ forms the staff-climate score), as set
+out in \cref{{eq:enacted,eq:espoused}}. The systems count $S3$ enters no
+score. No school contributes a sub-score to both sets.
 \end{{minipage}}
 \end{{table}}
 """, encoding="utf-8")

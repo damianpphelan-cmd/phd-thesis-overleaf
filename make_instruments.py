@@ -210,10 +210,10 @@ def build_interview() -> str:
          r'The schedule below is the instrument as administered. Each open-ended',
          r'question was scored 1--5 against the anchor descriptions shown. Where an',
          r'observer attended alongside the questioner, both scored independently and',
-         r'\cref{sec:p1_irr_int} reports agreement between them; the analysis uses the',
+         r'\cref{tab:irr_interview} reports agreement between them; the analysis uses the',
          r'final recorded score for each question. The key-word and key-phrase',
          r'checklists beneath each question were completed at the same time and are used',
-         r'only in the enriched specification reported in \cref{sec:p1_enriched}.',
+         r'in no score reported in the chapter.',
          r'Item-to-sub-score mapping is given in \cref{app:2A:guide}.',
          '']
     return '\n'.join(L + parse_items(body, headings)).rstrip() + '\n'
@@ -230,7 +230,7 @@ def build_visit() -> str:
          r'values used for intermediate judgements. Visits were made by teams of two or',
          r'three researchers, who completed the forms independently; item scores are',
          r'averaged across researchers and across lessons to give one value per school,',
-         r'and \cref{sec:p1_irr_obs} reports agreement between observers.',
+         r'and \cref{tab:irr_classroom,tab:irr_outside} report agreement between observers.',
          '',
          r'\subsection*{Lesson observation}',
          '']

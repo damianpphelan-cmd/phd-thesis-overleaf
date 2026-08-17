@@ -207,7 +207,7 @@ def build() -> str:
         r'asymmetric exception in both is that a score below the midpoint requires',
         r'positive evidence of a deficiency --- silence on behaviour, or on',
         r'relationships, is scored as unremarkable rather than as poor. This matters',
-        r'for interpreting the warmth null in \cref{sec:p1_text_valid}: the rubrics are',
+        r'for interpreting the warmth null in \cref{tab:source_criterion}: the rubrics are',
         r'constructed so that a document which simply does not discuss warmth cannot',
         r'produce a low warmth score, and the observed compression at the midpoint is',
         r'therefore the designed response to silence, not a scoring failure.',
@@ -325,7 +325,7 @@ def build() -> str:
         r'faith prominence) reads the same crawl text and returns categorical',
         r'judgements; faith prominence is graded none, incidental, present or',
         r'central. This instrument is retained on the older model it was',
-        r'validated with (\cref{sec:p1_scoring_lessons}); its full rubric is in',
+        r'validated with (\cref{tab:instrument_findings}); its full rubric is in',
         r'\texttt{analyse\_website\_scores.py}.',
         '',
     ]
