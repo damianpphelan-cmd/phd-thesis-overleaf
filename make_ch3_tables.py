@@ -304,12 +304,76 @@ $R^2$               &{r2}\\
 """)
 
 
+# ── tab_robustness_overall ───────────────────────────────────────────────────
+def robustness_overall(df: pd.DataFrame) -> None:
+    """Regenerated 17 Aug 2026 from the primary-spec rob_* rows.
+
+    The previous version was built from the notebook under the OLD spec (n=96,
+    original grades, no late-entry exclusion), and its 'Att8 2425' column was
+    the SUM of the four Attainment-8 buckets while the do-file's 'att8' row was
+    the English bucket alone -- the source of a factor-of-four disagreement.
+    Both outcomes are now named explicitly and estimated on one specification.
+    """
+    cols = [("primary_stage1", "Primary", "p8mea_avg"),
+            ("rob_nograde", "No grade", "p8mea_avg"),
+            ("rob_singleyear", "2023--24 only", "p8mea_2324"),
+            ("rob_semh", "SEMH ctrl", "p8mea_avg"),
+            ("rob_wxs", "W$\times$S", "p8mea_avg"),
+            ("rob_att8total", "Att8 total 24/25", "att8_total_2425"),
+            ("rob_att8eng", "Att8 English 24/25", "att8screng_2425")]
+    W, S = "gs_warmth_enacted", "gs_strictness_enacted"
+    def row(term, label):
+        cells, ses = [], []
+        for spec, _, _ in cols:
+            r = get(df, spec, "overall", term)
+            cells.append(f"{num(r.b)}{stars_001(r.pval)}")
+            ses.append(f"({r.se:.3f})")
+        return (f"{label:<20}& " + " & ".join(f"{c:>18}" for c in cells) + r" \\" + "\n"
+                f"{'':<20}& " + " & ".join(f"{s:>18}" for s in ses) + r" \\" + "\n")
+    ns = [f"{int(get(df, s, 'overall', W).n):>18}" for s, _, _ in cols]
+    r2 = [f"{get(df, s, 'overall', W).r2:>18.3f}" for s, _, _ in cols]
+    heads = " & ".join(rf"\multicolumn{{1}}{{c}}{{{h}}}" for _, h, _ in cols)
+    body = "\n".join([
+        r"\begin{table}[htbp]\centering",
+        r"\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}",
+        r"\small",
+        r"\caption{Robustness of the primary estimate (overall Progress~8 unless "
+        r"stated). All columns use the primary specification: full controls, "
+        r"predecessor-filled 2019 grade, late-entry schools excluded. The two "
+        r"Attainment~8 columns use the 2024/25 cohort, which has no Progress~8; "
+        r"the first is the sum of the four Attainment~8 buckets and the second "
+        r"the English bucket alone, so their coefficients are in points rather "
+        r"than grades.}",
+        r"\label{tab:robustness_overall}",
+        r"\resizebox{\linewidth}{!}{%",
+        r"\begin{tabular}{l*{7}{c}}",
+        r"\toprule",
+        f"                    & {heads} \\\\",
+        r"\midrule",
+        row(W, "$W$") + r"\addlinespace" + "\n" + row(S, "$S$"),
+        r"\midrule",
+        f"{'N':<20}& " + " & ".join(ns) + r" \\",
+        f"{'$R^2$':<20}& " + " & ".join(r2) + r" \\",
+        r"\bottomrule",
+        r"\end{tabular}}",
+        r"\begin{minipage}{\linewidth}\vspace{4pt}\scriptsize",
+        r"\textit{Notes}: HC3 standard errors in parentheses. \sym{*} $p<0.05$, "
+        r"\sym{**} $p<0.01$, \sym{***} $p<0.001$. The W$\times$S column adds the "
+        r"interaction of the two standardised scores; its main effects are not "
+        r"interpretable alone.",
+        r"\end{minipage}",
+        r"\end{table}",
+        ""])
+    write("tab_robustness_overall.tex", body)
+
+
 def main() -> int:
     df = load()
     spec_ladder(df)
     univariate_ws(df)
     stages23_trio(df)
     main_results(df)
+    robustness_overall(df)
     return 0
 
 

@@ -1,24 +1,25 @@
 \begin{table}[htbp]\centering
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
-\caption{Robustness: Overall Progress 8}
+\small
+\caption{Robustness of the primary estimate (overall Progress~8 unless stated). All columns use the primary specification: full controls, predecessor-filled 2019 grade, late-entry schools excluded. The two Attainment~8 columns use the 2024/25 cohort, which has no Progress~8; the first is the sum of the four Attainment~8 buckets and the second the English bucket alone, so their coefficients are in points rather than grades.}
 \label{tab:robustness_overall}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{l*{6}{c}}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{l*{7}{c}}
 \toprule
-                    &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}\\
-                    &\multicolumn{1}{c}{Primary}&\multicolumn{1}{c}{No grade}&\multicolumn{1}{c}{2023-24}&\multicolumn{1}{c}{Att8 2425}&\multicolumn{1}{c}{W$\times$S}&\multicolumn{1}{c}{SEMH ctrl}\\
+                    & \multicolumn{1}{c}{Primary} & \multicolumn{1}{c}{No grade} & \multicolumn{1}{c}{2023--24 only} & \multicolumn{1}{c}{SEMH ctrl} & \multicolumn{1}{c}{W$	imes$S} & \multicolumn{1}{c}{Att8 total 24/25} & \multicolumn{1}{c}{Att8 English 24/25} \\
 \midrule
-$W$                 &       0.150\sym{***}&       0.130\sym{***}&       0.165\sym{***}&       1.273\sym{**} &      -0.123         &       0.163\sym{***}\\
-                    &     (0.045)         &     (0.047)         &     (0.046)         &     (0.517)         &     (0.254)         &     (0.044)         \\
+$W$                 &      0.143\sym{**} &      0.140\sym{**} &     0.158\sym{***} &     0.156\sym{***} &             -0.167 &       1.174\sym{*} &      0.307\sym{**} \\
+                    &            (0.045) &            (0.046) &            (0.046) &            (0.044) &            (0.266) &            (0.523) &            (0.103) \\
 \addlinespace
-$S$                 &       0.130\sym{***}&       0.125\sym{***}&       0.125\sym{***}&       1.691\sym{***}&      -0.130         &       0.105\sym{**} \\
-                    &     (0.047)         &     (0.047)         &     (0.045)         &     (0.501)         &     (0.232)         &     (0.040)         \\
+$S$                 &      0.131\sym{**} &      0.127\sym{**} &      0.126\sym{**} &       0.105\sym{*} &             -0.161 &     1.732\sym{***} &       0.224\sym{*} \\
+                    &            (0.047) &            (0.046) &            (0.045) &            (0.041) &            (0.245) &            (0.503) &            (0.106) \\
+
 \midrule
-N                   &          96         &         102         &          96         &          96         &          96         &          91         \\
-r2                  &       0.650         &       0.576         &       0.651         &       0.876         &       0.656         &       0.659         \\
+N                   &                 99 &                100 &                 99 &                 94 &                 99 &                 99 &                 99 \\
+$R^2$               &              0.624 &              0.603 &              0.640 &              0.624 &              0.631 &              0.874 &              0.827 \\
 \bottomrule
-\multicolumn{7}{l}{\footnotesize Standard errors in parentheses}\\
-\multicolumn{7}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
-\end{tabular}%
-}
+\end{tabular}}
+\begin{minipage}{\linewidth}\vspace{4pt}\scriptsize
+\textit{Notes}: HC3 standard errors in parentheses. \sym{*} $p<0.05$, \sym{**} $p<0.01$, \sym{***} $p<0.001$. The W$\times$S column adds the interaction of the two standardised scores; its main effects are not interpretable alone.
+\end{minipage}
 \end{table}

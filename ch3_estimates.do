@@ -36,7 +36,8 @@ local numvars gs_warmth_visit gs_strictness_visit gs_teaching_visit ///
     gs_warmth_espoused gs_strictness_espoused gs_teaching_espoused ///
     gs_warmth_enacted gs_strictness_enacted gs_teaching_enacted ///
     p8mea_avg p8meaeng_avg p8meamat_avg p8meaebac_avg p8meaopen_avg ///
-    p8mea_2324 att8screng_2425 semh_baseline_2016 ///
+    p8mea_2324 att8screng_2425 att8scrmat_2425 att8screbac_2425 att8scropen_2425 ///
+    semh_baseline_2016 ///
     trx_warmth trx_strictness trx_management ///
     ks2 fsm log_size academy urban_bin selective ///
     years_since_ofsted ofsted_grade_2019 size ///
@@ -238,6 +239,43 @@ postterms `pf' "ladder_c" "overall" "$W $S"
 
 regress p8mea_avg $W $S $controls_ngrade, vce(hc3)
 postterms `pf' "ladder_d" "overall" "$W $S"
+restore
+
+* ================================================================
+* ROBUSTNESS UNDER THE PRIMARY SPECIFICATION (added 17 Aug 2026).
+* tab_robustness_overall.tex used to be built from the notebook under the OLD
+* specification (original grades, no late-entry exclusion, n=96) and its Att8
+* column regressed on the SUM of the four Attainment-8 buckets, while the
+* 'att8' row above regresses on the English bucket alone -- which is why the
+* two disagreed by a factor of ~4 (1.273 vs 0.337). Both were correct answers
+* to different questions. From here the table is regenerated from THESE rows,
+* all on the primary spec, and the Att8 outcome is named explicitly.
+* ================================================================
+preserve
+keep if late_entry != 1
+gen att8_total_2425 = att8screng_2425 + att8scrmat_2425 + att8screbac_2425 + att8scropen_2425
+
+regress p8mea_avg $W $S $ctrl_cont $ctrl_bin, vce(hc3)
+postterms `pf' "rob_nograde" "overall" "$W $S"
+
+regress p8mea_2324 $W $S $controls_primary, vce(hc3)
+postterms `pf' "rob_singleyear" "overall" "$W $S"
+
+regress att8_total_2425 $W $S $controls_primary, vce(hc3)
+postterms `pf' "rob_att8total" "overall" "$W $S"
+
+regress att8screng_2425 $W $S $controls_primary, vce(hc3)
+postterms `pf' "rob_att8eng" "overall" "$W $S"
+
+gen wxs_p = $W * $S
+regress p8mea_avg $W $S wxs_p $controls_primary, vce(hc3)
+postterms `pf' "rob_wxs" "overall" "$W $S wxs_p"
+
+capture confirm variable semh_baseline_2016
+if !_rc {
+    regress p8mea_avg $W $S semh_baseline_2016 $controls_primary, vce(hc3)
+    postterms `pf' "rob_semh" "overall" "$W $S semh_baseline_2016"
+}
 restore
 
 * The primary spec with the late-entry schools PUT BACK. Quoted in the notes to
