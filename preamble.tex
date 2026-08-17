@@ -30,6 +30,27 @@
 % Colour (for tables etc.)
 \usepackage[table]{xcolor}
 
+% Width safety net for every tabular: shrink to the line width only when it
+% would otherwise overflow (Damian, 17 Aug 2026: Table 2.2 ran off the page).
+% Tables that would be shrunk more than a little are also set at a smaller
+% font in their own files, so that the shrink is cosmetic rather than a
+% legibility hit. Nested/boxed tabulars are unaffected (max width only binds
+% when exceeded).
+\usepackage{adjustbox}
+\usepackage{etoolbox}
+\BeforeBeginEnvironment{tabular}{\begin{adjustbox}{max width=\linewidth}}
+\AfterEndEnvironment{tabular}{\end{adjustbox}}
+
+% Lists of tables and figures: appendix numbers such as "3A.12" overflow the
+% default 2.3em number box and run into the caption. Widen the box for tables,
+% figures and sections (and shift subsections to match).
+\makeatletter
+\renewcommand*\l@figure{\@dottedtocline{1}{1.5em}{3.6em}}
+\renewcommand*\l@table{\@dottedtocline{1}{1.5em}{3.6em}}
+\renewcommand*\l@section{\@dottedtocline{1}{1.5em}{3.4em}}
+\renewcommand*\l@subsection{\@dottedtocline{2}{4.9em}{3.6em}}
+\makeatother
+
 % Bibliography
 \usepackage{natbib}
 

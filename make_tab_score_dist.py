@@ -23,9 +23,9 @@ SUBSCORES = [
     ("gs_S1",      r"$S1$",     "In-lesson behaviour management",       "visit"),
     ("gs_S2",      r"$S2$",     "Out-of-lesson behaviour management",   "visit"),
     ("gs_S3",      r"$S3$",     "Behaviour management systems (count)", "interview"),
-    ("gs_S4",      r"$S4$",     "HT strictness philosophy",             "interview"),
+    ("gs_S4",      r"$S4$",     "HT espoused strictness (statements)",  "interview"),
     ("gs_T1",      r"$T1$",     "In-lesson teaching quality",           "visit"),
-    ("gs_T2",      r"$T2$",     "HT teaching philosophy",               "interview"),
+    ("gs_T2",      r"$SC$",     "HT espoused staff climate (statements)", "interview"),
 ]
 
 SCORES = [
@@ -62,7 +62,7 @@ def main():
 Tier~1 full-data schools ($n = {n}$).
 Sub-scores are on a $[0,5]$ scale; the enacted and espoused scores on a $[0,10]$ scale.}}
 \label{{tab:score_dist}}
-\small
+\footnotesize\setlength{{\tabcolsep}}{{4pt}}
 \begin{{tabular}}{{llcccccc}}
 \toprule
 Score & Description & $N$ & Mean & SD & Min & Median & Max \\
@@ -73,7 +73,7 @@ Score & Description & $N$ & Mean & SD & Min & Median & Max \\
 \begin{{minipage}}{{\textwidth}}\vspace{{0.5em}}\footnotesize
 \textit{{Notes.}} The enacted scores are built from the visit sub-scores
 ($W1$, $W2$, $S1$, $S2$, $T1$) and the espoused scores from the interview
-statement sub-scores ($W3$, $S4$; $T2$ forms the staff-climate score), as set
+statement sub-scores ($W3$, $S4$; $SC$ is the staff-climate score), as set
 out in \cref{{eq:enacted,eq:espoused}}. The systems count $S3$ enters no
 score. No school contributes a sub-score to both sets.
 \end{{minipage}}

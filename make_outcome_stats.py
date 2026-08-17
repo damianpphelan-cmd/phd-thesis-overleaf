@@ -61,9 +61,9 @@ def build(OUTCOMES=OUTCOMES_BODY, full=False) -> str:
     tier = d["gs_data_tier"].fillna("national")
 
     tiers = [
-        (r"Tier~1: Visited (enacted)", tier == "full"),
-        (r"Tier~2: Interview (303)",   tier.isin(["full", "interview_only"])),
-        (r"National",                  pd.Series(True, index=d.index)),
+        (r"Visited (Tier~1)",     tier == "full"),
+        (r"Interviewed (Tier~2)", tier.isin(["full", "interview_only"])),
+        (r"National",             pd.Series(True, index=d.index)),
     ]
 
     blocks = []
@@ -84,7 +84,7 @@ def build(OUTCOMES=OUTCOMES_BODY, full=False) -> str:
   \centering
   \caption{Summary statistics: Progress~8 @WHICH@outcomes by data tier}
   \label{tab:outcome_stats@LABTAIL@}
-  \small
+  \footnotesize\setlength{\tabcolsep}{4pt}
   \begin{tabular}{llrrrrr}
     \toprule
     Outcome & Tier & $N$ & Mean & SD & Min & Max \\

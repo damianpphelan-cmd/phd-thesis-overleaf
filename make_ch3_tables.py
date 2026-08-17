@@ -345,6 +345,7 @@ def robustness_overall(df: pd.DataFrame) -> None:
         r"the English bucket alone, so their coefficients are in points rather "
         r"than grades.}",
         r"\label{tab:robustness_overall}",
+        r"\footnotesize\setlength{\tabcolsep}{4pt}",
         r"\resizebox{\linewidth}{!}{%",
         r"\begin{tabular}{l*{7}{c}}",
         r"\toprule",
