@@ -53,33 +53,36 @@ This thesis asks whether the organisational culture of a school---the relational
 and behavioural environment its pupils experience day to day---can be measured
 credibly at scale, and whether it predicts how much pupils learn.
 
-The first paper develops the measurement framework. Drawing on 304 headteacher
-interviews and 103 structured researcher visits to English secondary schools, it
-separates culture into two dimensions: warmth, the relational quality of the
-school environment, and strictness, its behavioural structure. Gold-standard
-scores are constructed for 103 schools observed directly, and Ridge models
-calibrated on those schools extend measurement first to the interview sample and
-then, using text from Ofsted reports and behaviour policies, to the national
-population of approximately 3,330 schools. The central finding is an asymmetry.
-Strictness is recoverable from public text: LLM-scored Ofsted strictness
-correlates at $r = \CorrOfstedStrictness$ with directly observed strictness. Warmth is not,
-in any public source---Ofsted reports, behaviour policies or school websites---and
-the null survives a more capable scoring model. What schools say about their
-warmth is systematically unrelated to what an observer sees.
+The first paper constructs the measures. For \NTierOne{} English secondary
+schools a research visit and a headteacher interview yield a gold standard in
+two parts, an enacted score from what an observer recorded and an espoused
+score from what the head reported, for each of two dimensions: warmth, the
+relational quality of the school, and strictness, its behavioural structure.
+Inspection reports, behaviour policies and school websites are scored for the
+national population of around 3,330 schools by language-model instruments, and
+prediction models fitted where both exist carry the gold standard to the rest.
+Strictness is legible in public text and warmth is not: inspection-report
+strictness is correlated with observed strictness at $r = \CorrOfstedStrictness$
+and a text-only model predicts it out of sample at $\RidgeBStrictness$, while
+no text source is correlated with observed warmth. Espoused and enacted
+culture diverge, and more for warmth: headteachers rate their schools
+\GapWarmth{} points warmer on a ten-point scale than observers record and
+\GapStrictness{} points stricter, and every public source tracks the espoused
+warmth measure rather than the enacted one.
 
-The second paper uses these scores to estimate the association between culture
-and pupil progress. For the 2023--24 cohort, both warmth and strictness predict
-Progress~8 with near-equal magnitude ($\hat{\beta}_W = 0.143$,
-$\hat{\beta}_S = 0.131$, $n = 99$), conditioning on prior attainment, pupil
-composition,
-school type and pre-COVID Ofsted grade, and the schools that combine high
-warmth with high strictness outperform the rest by around a third of a grade.
-Adding directly observed teaching quality
-leaves both coefficients essentially unchanged, indicating that culture and
-instruction operate through largely distinct mechanisms. Substituting
-headteacher self-reports for observed scores reduces the warmth coefficient
-to near zero---the measurement asymmetry of the first paper reappearing as a
-predictive one.
+The second paper estimates the association between observed culture and pupil
+progress. Across the visited schools, a standard deviation of observed warmth
+is associated with $\hat{\beta}_W = \PrimarySpecW$ of a grade higher
+Progress~8 and a standard deviation of observed strictness with
+$\hat{\beta}_S = \PrimarySpecS$ ($n = \PrimarySpecN$), conditioning on prior
+attainment, intake composition, school type and the pre-pandemic inspection
+grade; both are significant at the one per cent level, and the schools that
+combine high warmth with high strictness outperform the rest by a third of a
+grade. Observed teaching quality does not account for the association.
+Substituting the headteacher's own account for the observed scores removes
+the warmth association, and the strictness score read from inspection reports
+reproduces the strictness result across \NNationalStrictness{} schools with
+the inspection grade held constant.
 
 [\textit{INSERT: one to two sentences summarising Paper~3.}]
 

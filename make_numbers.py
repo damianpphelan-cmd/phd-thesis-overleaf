@@ -133,7 +133,7 @@ def build() -> list[Num]:
             f"cross-observer true-score r is +0.290",
             stale=["0.494"]))
     add(Num("CorrWarmthStrictnessEspoused", f"{r_ws_es:.3f}",
-            f"interview W-S correlation, all interviewed schools, n={n_ws_es}"))
+            f"interview W-S correlation, Tier 1 (visited) schools, n={n_ws_es}"))
     add(Num("CorrLeadershipNational", f"{r_lead:.3f}",
             "LLM leadership vs ofsted_grade (inverse coding)",
             expect=[f"{abs(r_lead):.3f}"]))
@@ -363,6 +363,24 @@ def build() -> list[Num]:
         add(Num(f"Gold{dim}SplitP", p_body,
                 f"p-value belonging to Gold{dim}Split", expect=[]))
 
+    # ── The espoused-enacted GAP, recomputed on the rebuilt espoused scores ──
+    # 17 Aug 2026. The chapters used to say heads over-claim warmth by +0.51
+    # points and that the strictness gap was near zero (+0.07, p = 0.53). Both
+    # predate the espoused rebuild; on the statement-battery scores the gaps
+    # are +1.84 warmth and +0.88 strictness (paired t, p < 0.001 for both), so
+    # the old figures are stale literals. Quoted in prose to one decimal.
+    for dim, stale in (("Warmth", ["$0.51$ points higher", "$+0.51$ points",
+                                   "average of $+0.51$", "0.51 points"]),
+                       ("Strictness", ["$+0.07$ points", "\\Delta = +0.07",
+                                       "+0.07 points"])):
+        g = full[[f"gs_{dim.lower()}_espoused", f"gs_{dim.lower()}_enacted"]].apply(
+            pd.to_numeric, errors="coerce").dropna()
+        gap = float((g.iloc[:, 0] - g.iloc[:, 1]).mean())
+        add(Num(f"Gap{dim}", f"{gap:.1f}",
+                f"mean espoused minus enacted {dim.lower()}, Tier 1, n={len(g)}, "
+                f"0-10 scale, {gap:+.2f} unrounded",
+                expect=[f"${gap:.1f}$"], stale=stale))
+
     # Named for what it is. NOT a \GoldTeachingSplit: the two sides are different
     # constructs, so this is a descriptive contrast and not an espoused/enacted split.
     d = full[["gs_staff_climate_espoused", "gs_teaching_enacted"]].apply(
@@ -502,7 +520,10 @@ def check(nums: list[Num]) -> int:
                 problems += 1
                 print(f"STALE  \\{n.key}: superseded value {bad!r} still in "
                       f"{', '.join(hits)} (current: {n.value})")
-        if n.expect and not any(flat(e) in joined for e in n.expect):
+        # A chapter that carries the figure as \Key rather than as a literal
+        # (the August rewrite converted most of them) also satisfies the check.
+        if n.expect and not any(flat(e) in joined for e in n.expect) \
+                and f"\\{n.key}" not in joined:
             print(f"absent \\{n.key}: {n.expect[0]!r} appears in no chapter "
                   f"-- {n.note}")
 
