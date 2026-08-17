@@ -30,9 +30,20 @@ import pandas as pd
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "thesis" / "tables" / "tab_outcome_stats.tex"
+OUT_FULL = ROOT / "thesis" / "tables" / "tab_outcome_stats_full.tex"
 
-# (row label, column in analysis_dataset.csv)
-OUTCOMES = [
+# (row label, column in analysis_dataset.csv). The body table carries the
+# outcomes the chapter reports (overall, English, Maths); the appendix version
+# adds EBacc and Open (Damian, 17 Aug 2026).
+OUTCOMES_BODY = [
+    ("P8 Overall (2-yr avg)",   "p8mea_avg"),
+    ("P8 English (2-yr avg)",   "p8meaeng_avg"),
+    ("P8 Maths (2-yr avg)",     "p8meamat_avg"),
+    ("Att8 English (2024--25)", "att8screng_2425"),
+    ("Att8 Maths (2024--25)",   "att8scrmat_2425"),
+]
+OUTCOMES_FULL = [
+    ("P8 Overall (2-yr avg)",   "p8mea_avg"),
     ("P8 English (2-yr avg)",   "p8meaeng_avg"),
     ("P8 Maths (2-yr avg)",     "p8meamat_avg"),
     ("P8 EBacc (2-yr avg)",     "p8meaebac_avg"),
@@ -44,7 +55,7 @@ OUTCOMES = [
 ]
 
 
-def build() -> str:
+def build(OUTCOMES=OUTCOMES_BODY, full=False) -> str:
     d = pd.read_csv(ROOT / "analysis_dataset.csv", encoding="utf-8-sig",
                     low_memory=False)
     tier = d["gs_data_tier"].fillna("national")
@@ -71,8 +82,8 @@ def build() -> str:
 
     return r"""\begin{table}[htbp]
   \centering
-  \caption{Summary statistics: Progress~8 component outcomes by data tier}
-  \label{tab:outcome_stats}
+  \caption{Summary statistics: Progress~8 @WHICH@outcomes by data tier}
+  \label{tab:outcome_stats@LABTAIL@}
   \small
   \begin{tabular}{llrrrrr}
     \toprule
@@ -92,7 +103,9 @@ def build() -> str:
     $N$ values across tiers.
   \end{minipage}
 \end{table}
-""".replace("@BODY@", body)
+""".replace("@BODY@", body) \
+   .replace("@WHICH@", "and Attainment~8 outcomes, all components, " if full else "") \
+   .replace("@LABTAIL@", "_full" if full else "")
 
 
 def audit(text: str) -> list[str]:
@@ -116,7 +129,8 @@ def main() -> int:
     args = ap.parse_args()
 
     tex = build()
-    problems = audit(tex)
+    tex_full = build(OUTCOMES_FULL, full=True)
+    problems = audit(tex) + audit(tex_full)
     if problems:
         print("refusing to write -- generated table is malformed:")
         for p in problems:
@@ -125,21 +139,23 @@ def main() -> int:
 
     if args.check:
         current = OUT.read_text(encoding="utf-8") if OUT.exists() else ""
-        stale = audit(current)
+        current_full = OUT_FULL.read_text(encoding="utf-8") if OUT_FULL.exists() else ""
+        stale = audit(current) + audit(current_full)
         if stale:
-            print(f"{OUT.name} is corrupt on disk:")
+            print(f"{OUT.name}/{OUT_FULL.name} corrupt on disk:")
             for p in stale:
                 print("  " + p)
             return 1
-        if current != tex:
-            print(f"{OUT.name} differs from what the data produces "
+        if current != tex or current_full != tex_full:
+            print(f"{OUT.name}/{OUT_FULL.name} differ from what the data produces "
                   f"-- run: python thesis/make_outcome_stats.py")
             return 1
-        print(f"{OUT.name} matches analysis_dataset.csv")
+        print(f"{OUT.name} and {OUT_FULL.name} match analysis_dataset.csv")
         return 0
 
     OUT.write_text(tex, encoding="utf-8")
-    print(f"wrote {OUT.relative_to(ROOT)}")
+    OUT_FULL.write_text(tex_full, encoding="utf-8")
+    print(f"wrote {OUT.relative_to(ROOT)} and {OUT_FULL.relative_to(ROOT)}")
     return 0
 
 

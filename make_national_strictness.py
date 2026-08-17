@@ -32,8 +32,12 @@ import pandas as pd
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 EST = ROOT / "thesis" / "tables" / "a7_estimates.csv"
 OUT = ROOT / "thesis" / "tables" / "tab_national_strictness.tex"
+OUT_FULL = ROOT / "thesis" / "tables" / "tab_national_strictness_full.tex"
 
-COLS = ["Overall", "English", "Maths", "EBaC", "Open"]
+# The body table carries the three outcomes the chapter reports; the appendix
+# version carries all five (Damian, 17 Aug 2026: EBaC and Open to the appendix).
+COLS_BODY = ["Overall", "English", "Maths"]
+COLS_FULL = ["Overall", "English", "Maths", "EBaC", "Open"]
 
 PANELS = [
     ("nograde", r"Panel A: published specification (Ofsted grade omitted)"),
@@ -54,7 +58,7 @@ def stars(p: float) -> str:
     return ""
 
 
-def build() -> str:
+def build(COLS=COLS_BODY, full=False) -> str:
     est = pd.read_csv(EST)
     est = est.set_index(["spec", "outcome"])
 
@@ -68,7 +72,7 @@ def build() -> str:
         rows = est.loc[spec]
         if i:
             body.append(r"\addlinespace[6pt]")
-        body.append(r"\multicolumn{6}{l}{\textit{%s}} \\" % title)
+        body.append(r"\multicolumn{%d}{l}{\textit{%s}} \\" % (len(COLS) + 1, title))
         body.append(
             r"%s & %s \\" % (ROW_LABEL, " & ".join(
                 r"%.3f%s" % (rows.loc[c, "b"], stars(rows.loc[c, "pval"]))
@@ -94,12 +98,12 @@ def build() -> str:
 
     return r"""\begin{table}[htbp]\centering
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
-\caption{National extension: Ofsted LLM strictness and Progress~8}
-\label{tab:national_strictness}
+\caption{National extension: Ofsted LLM strictness and Progress~8@CAPTAIL@}
+\label{tab:national_strictness@LABTAIL@}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{l*{5}{c}}
+\begin{tabular}{l*{@NCOL@}{c}}
 \toprule
- & Overall & English & Maths & EBaC & Open \\
+ & @HEAD@ \\
 \midrule
 @BODY@
 \bottomrule
@@ -125,7 +129,11 @@ def build() -> str:
 """.replace("@BODY@", "\n".join(body)) \
    .replace("@NA@", r"{:,}".format(n_a).replace(",", r"{,}")) \
    .replace("@NB@", r"{:,}".format(n_b).replace(",", r"{,}")) \
-   .replace("@DROPPED@", str(dropped))
+   .replace("@DROPPED@", str(dropped)) \
+   .replace("@NCOL@", str(len(COLS))) \
+   .replace("@HEAD@", " & ".join(COLS)) \
+   .replace("@CAPTAIL@", " (all five outcomes)" if full else "") \
+   .replace("@LABTAIL@", "_full" if full else "")
 
 
 def audit(text: str) -> list[str]:
@@ -150,7 +158,8 @@ def main() -> int:
     args = ap.parse_args()
 
     tex = build()
-    problems = audit(tex)
+    tex_full = build(COLS_FULL, full=True)
+    problems = audit(tex) + audit(tex_full)
     if problems:
         print("refusing to write -- generated table is malformed:")
         for p in problems:
@@ -165,15 +174,17 @@ def main() -> int:
             for p in stale:
                 print("  " + p)
             return 1
-        if current != tex:
-            print(f"{OUT.name} differs from the Stata estimates "
+        current_full = OUT_FULL.read_text(encoding="utf-8") if OUT_FULL.exists() else ""
+        if current != tex or current_full != tex_full:
+            print(f"{OUT.name}/{OUT_FULL.name} differ from the Stata estimates "
                   f"-- run: python thesis/make_national_strictness.py")
             return 1
-        print(f"{OUT.name} matches {EST.name}")
+        print(f"{OUT.name} and {OUT_FULL.name} match {EST.name}")
         return 0
 
     OUT.write_text(tex, encoding="utf-8")
-    print(f"wrote {OUT.relative_to(ROOT)}")
+    OUT_FULL.write_text(tex_full, encoding="utf-8")
+    print(f"wrote {OUT.relative_to(ROOT)} and {OUT_FULL.relative_to(ROOT)}")
     return 0
 
 
