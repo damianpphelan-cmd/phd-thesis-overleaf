@@ -212,8 +212,7 @@ empirical basis for treating them as two constructs.
 At the component level English is warmth-led (warmth $0.167$, $p < 0.001$;
 strictness $0.087$, $p = 0.083$) and Maths balanced (warmth $0.112$,
 $p = 0.041$; strictness $0.110$, $p = 0.036$). The five-outcome tables in
-\cref{app:3A:tables} show both dimensions significant for the EBaC component and
-warmth for the Open component; the appendix also shows that the strictness
+\cref{app:3A:tables} show both dimensions significant for the EBaC and Open components; the appendix also shows that the strictness
 score predicts entry to the EBacc pathway nationally with the grade held
 constant, but that controlling for entry attenuates the strictness--EBaC
 association by only 10 to 14 per cent. Most of the association is progress
@@ -222,7 +221,7 @@ within subjects rather than curriculum steering.
 \textbf{Teaching quality does not account for it.} \Cref{tab:stages23_trio}
 reports the second and third stages. The visit's teaching-practice score alone
 predicts overall Progress~8 at $0.245$ ($p < 0.001$) but with a lower $R^2$
-($0.56$) than the two culture scores. Added to the primary specification it
+($0.55$) than the two culture scores. Added to the primary specification it
 enters at $0.024$ ($p = 0.76$), and the culture coefficients are unchanged
 ($0.131$ and $0.126$). Warmth for Maths slips past the five per cent threshold
 once teaching enters ($p = 0.115$), which is unsurprising given how much
@@ -238,14 +237,19 @@ and its signal is absorbed by the other two, cannot be excluded.
 by their two culture scores, shaded by progress. Schools in the warm and
 strict quadrant are predominantly above-average performers. Formally, the
 warm-and-strict quadrant sits $0.36$ of a grade above the rest of the sample
-after controls ($p < 0.001$), while the interaction between the two dimensions
-is null ($0.039$, $p = 0.20$; \cref{tab:typology}). Warmth and strictness add
+after controls ($p < 0.001$), while the interaction between the two
+standardised scores is null ($0.045$, $p = 0.25$;
+\cref{tab:robustness_overall}). Warmth and strictness add
 rather than amplify one another; the best schools have both because both help,
 not because of a combination effect. Decomposing the visit scores into their
 five observational blocks (\cref{tab:subscores}), the association runs
 through warmth outside lessons and orderly conduct within them: out-of-lesson
 warmth ($0.107$, $p = 0.017$) and in-lesson strictness ($0.118$, $p = 0.006$)
-survive joint entry, and their counterparts do not.
+survive joint entry, and their counterparts do not.\footnote{The quadrant
+contrast and the sub-score decomposition are estimated on the primary control
+set without the years-since-inspection term ($n = 100$); the interaction is
+from the primary specification. None of the three conclusions depends on the
+difference.}
 
 \begin{figure}[htbp]
   \centering
@@ -302,14 +306,14 @@ strictness point estimates at or above the full-sample values and the warmth
 estimates imprecise; the subsample is too small to be informative
 (\cref{tab:continuity_robustness}). The
 sorting concern, that strict schools have fewer pupils with social, emotional
-and mental-health needs, accounts for about a tenth of the strictness
+and mental-health needs, accounts for under a tenth of the strictness
 association (\cref{tab:semh_mechanism}). Within-school Progress~8 is stable
 across years
 (mean within-school standard deviation $0.20$), which supports using culture
 measured after the outcome window as a proxy for culture during it
 (\cref{tab:stability_p8}); the 2024/25 pseudo-progress measure, the one cohort
 measured contemporaneously with the fieldwork, gives coefficients within
-$0.04$ of the primary ones (\cref{tab:p8_proxy}).
+$0.04$ of their real-Progress~8 counterparts (\cref{tab:p8_proxy}).
 
 \input{tables/tab_robustness_overall}
 
@@ -438,7 +442,7 @@ per-pupil expenditure. Six of nine variables exceed ICC~$= 0.69$; all
 exceed~$0.49$. Intake characteristics---the share of pupils with English as an
 Additional Language, school roll, and mean KS2 prior attainment of the entering
 cohort---are especially stable, with ICC values between 0.81 and 0.92 and mean
-absolute year-on-year changes of less than four per cent of the variable's mean.
+small mean absolute year-on-year changes relative to their between-school spread.
 Special educational needs prevalence (EHC plan share, ICC~$= 0.67$; SEN support
 share, ICC~$= 0.65$) and school-level Progress~8 (ICC~$= 0.73$) show moderate to
 high stability. Per-pupil expenditure, at ICC~$= 0.52$, is the most volatile,
@@ -597,11 +601,11 @@ same in the visited sample but imprecise ($-0.291$, $p = 0.37$, $n = 95$), and
 warmth is unrelated to the change in either sample. The pattern is consistent
 with sorting, though it cannot distinguish selective admission from schools
 supporting pupils to leave the register. Adding the baseline share to the
-primary specification (\cref{tab:robustness_overall}, column~6) moves the
-strictness coefficient from $0.130$ to $0.105$; re-estimating on the same 91
-schools without the control gives $0.116$, so about a tenth of the strictness
-association is attributable to the control itself and the rest of the movement
-to the change of sample.
+primary specification (\cref{tab:robustness_overall}) moves the
+strictness coefficient from $0.131$ to $0.105$; re-estimating on the same 94
+schools without the control gives $0.114$, so about eight per cent of the
+strictness association is attributable to the control itself and the rest of
+the movement to the change of sample.
 
 \input{tables/tab_semh_mechanism}
 
@@ -627,15 +631,12 @@ estimated on the Tier~1 sample of \NTierOne{} visited schools. No pairwise
 correlation exceeds $|r| = 0.29$. The largest entries are between
 $W_{\text{enac}}$ and EAL share ($r = -0.29$), between $T_{\text{enac}}$ and
 EAL share ($r = -0.26$) and KS2 prior attainment ($r = +0.24$), and between
-$W_{\text{enac}}$ and selective school status ($r = -0.23$). The absence of
+$W_{\text{enac}}$ and selective school status ($r = +0.20$). The absence of
 high correlations indicates that the culture
 scores are not collinear with the observable school characteristics included
-in the regression, and that selective and grammar schools are modestly but
-not substantially lower-scoring on warmth even after accounting for intake
-characteristics in the main specification. Enacted strictness is the score
-least related to intake of any in the table: its largest correlation with any
-control is $|r| = 0.15$, which is one reason it carries the national-tier
-analysis.
+in the regression; selective schools score modestly higher on both culture
+dimensions ($r = +0.20$ warmth, $+0.22$ strictness), which the selective
+control absorbs in every specification.
 
 \input{tables/tab_score_controls_corr}
 

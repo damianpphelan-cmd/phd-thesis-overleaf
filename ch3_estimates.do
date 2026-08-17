@@ -68,7 +68,7 @@ global T  gs_teaching_enacted
 * printing correctly above it, so the failure is easy to miss.
 capture postclose ch3pf
 local pf ch3pf
-postfile `pf' str14 spec str14 outcome str24 term ///
+postfile `pf' str24 spec str14 outcome str24 term ///
     double(b se pval lo hi n r2) ///
     using "`ROOT'/thesis/tables/ch3_estimates.dta", replace
 
@@ -275,6 +275,11 @@ capture confirm variable semh_baseline_2016
 if !_rc {
     regress p8mea_avg $W $S semh_baseline_2016 $controls_primary, vce(hc3)
     postterms `pf' "rob_semh" "overall" "$W $S semh_baseline_2016"
+    * The SEMH control costs schools. Re-estimate the primary spec on exactly
+    * the schools the SEMH row uses, so attenuation from the CONTROL is
+    * separable from attenuation from the SAMPLE.
+    regress p8mea_avg $W $S $controls_primary if !missing(semh_baseline_2016), vce(hc3)
+    postterms `pf' "rob_semh_sample" "overall" "$W $S"
 }
 restore
 

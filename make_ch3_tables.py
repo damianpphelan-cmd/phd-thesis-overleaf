@@ -146,8 +146,8 @@ def univariate_ws(df: pd.DataFrame) -> None:
 
     n = int(get(df, "primary_stage1", "overall", W)["n"])
     body = "\n\\addlinespace\n".join([
-        line("$S$ only", "Strictness ($S$)", "primary_strict", S),
-        line("$W$ only", "Warmth ($W$)", "primary_warmth", W)])
+        line("$S$ only", "Strictness ($S$)", "primary_strictonly", S),
+        line("$W$ only", "Warmth ($W$)", "primary_warmthonly", W)])
     joint = "\n\\addlinespace\n".join([
         line("Joint", "Warmth ($W$)", "primary_stage1", W),
         line("Joint", "Strictness ($S$)", "primary_stage1", S)])
