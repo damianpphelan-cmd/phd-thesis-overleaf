@@ -434,14 +434,21 @@ def build() -> list[Num]:
                              f"{spec}/{outcome}/{term}, found {len(row)}")
         return row.iloc[0]
 
-    s1w = est("stage1", "overall", "gs_warmth_enacted")
-    s1s = est("stage1", "overall", "gs_strictness_enacted")
+    # REPOINTED 17 Aug 2026 from the "stage1" rows (the pre-primary spec, n=96,
+    # kept in the CSV for the archive) to "primary_stage1", which is what the
+    # chapter quotes. The old stale=["0.127"] guard was written when 0.127 was a
+    # retired warmth headline; it collided with the primary-spec no-grade
+    # strictness coefficient (0.127) the moment that entered the prose. A stale
+    # literal must be unambiguous, so it is dropped here: PrimarySpecW/S carry
+    # the headline guards with their own stale lists.
+    s1w = est("primary_stage1", "overall", "gs_warmth_enacted")
+    s1s = est("primary_stage1", "overall", "gs_strictness_enacted")
     add(Num("NEstimation", str(int(s1w["n"])),
-            "ch3_estimates.csv: Stage 1-3 estimation sample", expect=[]))
+            "ch3_estimates.csv: primary Stage 1-3 estimation sample", expect=[]))
     add(Num("BetaWarmth", f"{s1w['b']:.3f}",
-            "ch3_estimates.csv: Stage 1 overall P8", stale=["0.127"]))
+            "ch3_estimates.csv: primary Stage 1 overall P8"))
     add(Num("BetaStrictness", f"{s1s['b']:.3f}",
-            "ch3_estimates.csv: Stage 1 overall P8"))
+            "ch3_estimates.csv: primary Stage 1 overall P8"))
 
     # Replacing the enacted scores with the espoused ones on the SAME schools is
     # the chapter's self-report test; the quoted range is over the four
