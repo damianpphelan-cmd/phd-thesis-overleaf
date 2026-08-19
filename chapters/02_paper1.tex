@@ -16,14 +16,13 @@ measured in any dataset that covers every school. In this paper I construct
 measures of these two dimensions of school culture for English secondary
 schools and ask how well each can be recovered from data that exist for all
 of them. I collected data for a gold-standard measure in \NTierOne{}
-schools, through a day of structured observation in each school and an
-interview with its headteacher. The observations give an ``enacted'' score,
-which records what the school does, and the interview an ``espoused'' score,
-which records what the headteacher says it does. For every school in England
-I then scored the inspection report, the behaviour policy and the website
-using a large language model reading each document against a written
-marking scheme, and I tested how well those scores predict the observed
-measures. There are two main findings. Strictness can be predicted to a
+schools, through a day of structured observation in each school (an
+``enacted'' score, recording what the school does) and an interview with its
+headteacher (an ``espoused'' score, recording what the head says it does).
+For every school in England I then scored the inspection report, the
+behaviour policy and the website using a large language model reading each
+document against a written marking scheme, and tested how well those scores
+predict the observed measures. There are two main findings. Strictness can be predicted to a
 modest but useful degree from public text (the inspection-report score is
 correlated with observed strictness at $\CorrOfstedStrictness$, and a
 text-only model predicts it for schools it was not fitted on at
@@ -32,9 +31,8 @@ their school's warmth bears little relation to what observers record: of the
 \TopQN{} schools whose heads rated them in the top quarter for warmth, only
 \TopQWMatch{} were there as observed, and \TopQWBelowMedian{} were below the
 median. The paper also reports what I learned about scoring text with a
-language model, chiefly that a scoring rule's agreement with the labels it
-was developed against says nothing about whether its scores reflect what
-happens in the school.
+language model: chiefly, that a scoring rule's agreement with its labels
+says nothing about whether its scores reflect what happens in the school.
 \end{chapterabstract}
 
 % ---------------------------------------------------------------
