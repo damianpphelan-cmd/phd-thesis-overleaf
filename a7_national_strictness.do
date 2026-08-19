@@ -39,13 +39,20 @@ local numvars gs_warmth_visit gs_strictness_visit gs_teaching_visit ///
     p8mea_avg p8meaeng_avg p8meamat_avg p8meaebac_avg p8meaopen_avg ///
     ks2 fsm log_size academy urban_bin selective ///
     years_since_ofsted ofsted_grade_2019 ///
-    ofsted_llmstrictnessscore size
+    ofsted_llmstrictnessscore size late_entry grade2019_filled
 destring `numvars', replace force
+
+* 19 Aug 2026 (verification finding C3-2): the national extension now follows the
+* same sample rules as every other outcome regression in the chapter -- schools
+* whose statutory entry age is 13+ are excluded, and the pre-COVID grade control
+* is the predecessor-filled version. Before this the 3,147 included 95 late-entry
+* schools and Panel B used the unfilled grade.
+keep if late_entry != 1
 
 * ---- Macros (identical to cell 2) ----
 global ctrl_cont "ks2 fsm eal sen log_size years_since_ofsted"
 global ctrl_bin  "academy urban_bin selective"
-global ctrl_ofsted "2.ofsted_grade_2019 3.ofsted_grade_2019 4.ofsted_grade_2019"
+global ctrl_ofsted "2.grade2019_filled 3.grade2019_filled 4.grade2019_filled"
 global controls        "$ctrl_cont $ctrl_bin $ctrl_ofsted"
 global controls_ngrade "$ctrl_cont $ctrl_bin"
 

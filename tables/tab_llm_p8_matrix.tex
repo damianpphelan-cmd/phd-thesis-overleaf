@@ -2,47 +2,48 @@
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
 \caption{Every LLM-derived culture score against every Progress 8 outcome. Each cell is
 the coefficient from one regression of the outcome on the (standardised) predictor plus
-the national control set, including the 2019 inspection-grade control. Because the sweep runs 150 such
-tests (75 per grade panel), significance is marked only after Benjamini--Hochberg
-correction across the whole matrix. The Ofsted-derived scores carry the grade-reconstruction
-caution described in the text; behaviour-policy rows use standard errors clustered on
-the shared document digest.}
+the national control set, including the predecessor-filled 2019 inspection-grade control;
+late-entry schools excluded. Because the sweep runs 150 such tests (75 per grade
+panel), significance is marked only after Benjamini--Hochberg correction across the whole
+matrix. The Ofsted-derived scores carry the grade-reconstruction caution described in the
+text; behaviour-policy rows use standard errors clustered on the shared document digest.}
 \label{tab:llm_p8_matrix}
+\footnotesize\setlength{\tabcolsep}{4pt}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{lrccccc}
 \toprule
 Predictor & $N$ & Overall & English & Maths & EBacc & Open \\
 \midrule
-Ofsted strictness          & 2{,}823 & 0.122\sym{\dagger} & 0.110\sym{\dagger} & 0.109\sym{\dagger} & 0.125\sym{\dagger} & 0.141\sym{\dagger} \\
-                           &         & (0.007) & (0.008) & (0.008) & (0.009) & (0.008) \\
-Ofsted warmth              & 2{,}823 & 0.073\sym{\dagger} & 0.062\sym{\dagger} & 0.055\sym{\dagger} & 0.073\sym{\dagger} & 0.093\sym{\dagger} \\
-                           &         & (0.006) & (0.007) & (0.006) & (0.007) & (0.008) \\
-Ofsted teaching            & 2{,}823 & 0.118\sym{\dagger} & 0.109\sym{\dagger} & 0.103\sym{\dagger} & 0.123\sym{\dagger} & 0.131\sym{\dagger} \\
-                           &         & (0.007) & (0.008) & (0.007) & (0.009) & (0.009) \\
-BP strictness (v4)         & 2{,}822 & $-$0.003 & $-$0.001 & 0.001 & $-$0.005 & $-$0.005 \\
-                           &         & (0.007) & (0.007) & (0.007) & (0.008) & (0.008) \\
-BP warmth (v4)             & 2{,}822 & $-$0.016\sym{\dagger} & $-$0.009 & $-$0.011 & $-$0.014 & $-$0.026\sym{\dagger} \\
-                           &         & (0.007) & (0.007) & (0.007) & (0.008) & (0.008) \\
-Website warmth (v13)       & 2{,}832 & $-$0.001 & 0.001 & $-$0.005 & 0.002 & $-$0.003 \\
-                           &         & (0.006) & (0.007) & (0.006) & (0.007) & (0.007) \\
-Website strictness (v13)   & 2{,}832 & 0.003 & $-$0.000 & 0.010 & 0.002 & 0.002 \\
-                           &         & (0.007) & (0.007) & (0.007) & (0.008) & (0.009) \\
-Website strictness (v15)   & 2{,}832 & 0.003 & $-$0.000 & 0.009 & 0.001 & 0.002 \\
-                           &         & (0.007) & (0.007) & (0.007) & (0.008) & (0.009) \\
-Traditional ethos (v2)     & 2{,}832 & 0.028\sym{\dagger} & 0.022\sym{\dagger} & 0.032\sym{\dagger} & 0.029\sym{\dagger} & 0.029\sym{\dagger} \\
-                           &         & (0.007) & (0.008) & (0.008) & (0.009) & (0.008) \\
-Traditional pedagogy (v1b) & 2{,}832 & 0.028\sym{\dagger} & 0.028\sym{\dagger} & 0.025\sym{\dagger} & 0.036\sym{\dagger} & 0.025\sym{\dagger} \\
-                           &         & (0.009) & (0.009) & (0.009) & (0.010) & (0.009) \\
-Faith prominence (0--3)    & 2{,}832 & 0.027\sym{\dagger} & 0.029\sym{\dagger} & $-$0.004 & 0.014 & 0.063\sym{\dagger} \\
+Ofsted strictness          & 2{,}746 & 0.136\sym{\dagger} & 0.122\sym{\dagger} & 0.119\sym{\dagger} & 0.142\sym{\dagger} & 0.153\sym{\dagger} \\
+                           &         & (0.007) & (0.008) & (0.008) & (0.009) & (0.009) \\
+Ofsted warmth              & 2{,}746 & 0.077\sym{\dagger} & 0.066\sym{\dagger} & 0.058\sym{\dagger} & 0.080\sym{\dagger} & 0.095\sym{\dagger} \\
+                           &         & (0.006) & (0.007) & (0.007) & (0.007) & (0.008) \\
+Ofsted teaching            & 2{,}746 & 0.130\sym{\dagger} & 0.120\sym{\dagger} & 0.114\sym{\dagger} & 0.140\sym{\dagger} & 0.140\sym{\dagger} \\
                            &         & (0.007) & (0.008) & (0.007) & (0.008) & (0.009) \\
-Interview strictness (v13) & 254     & 0.003 & 0.001 & $-$0.002 & 0.021 & $-$0.009 \\
-                           &         & (0.026) & (0.026) & (0.027) & (0.030) & (0.029) \\
-Interview teaching (v3)    & 254     & 0.019 & 0.005 & 0.030 & 0.040 & $-$0.002 \\
-                           &         & (0.026) & (0.026) & (0.026) & (0.029) & (0.035) \\
-Interview warmth (v15)     & 254     & 0.027 & 0.027 & 0.010 & 0.044 & 0.020 \\
-                           &         & (0.024) & (0.024) & (0.026) & (0.029) & (0.029) \\
-Interview warmth (counts)  & 254     & 0.041 & 0.044 & $-$0.005 & 0.040 & 0.071\sym{\dagger} \\
-                           &         & (0.022) & (0.023) & (0.025) & (0.025) & (0.030) \\
+BP strictness (v4)         & 2{,}745 & $-$0.007 & $-$0.004 & $-$0.001 & $-$0.009 & $-$0.011 \\
+                           &         & (0.007) & (0.008) & (0.008) & (0.008) & (0.009) \\
+BP warmth (v4)             & 2{,}745 & $-$0.015 & $-$0.009 & $-$0.011 & $-$0.015 & $-$0.022\sym{\dagger} \\
+                           &         & (0.007) & (0.008) & (0.007) & (0.008) & (0.009) \\
+Website warmth (v13)       & 2{,}755 & $-$0.004 & $-$0.001 & $-$0.005 & $-$0.002 & $-$0.007 \\
+                           &         & (0.006) & (0.007) & (0.006) & (0.007) & (0.008) \\
+Website strictness (v13)   & 2{,}755 & 0.005 & 0.001 & 0.011 & 0.004 & 0.004 \\
+                           &         & (0.007) & (0.007) & (0.007) & (0.008) & (0.008) \\
+Website strictness (v15)   & 2{,}755 & 0.004 & 0.001 & 0.010 & 0.003 & 0.004 \\
+                           &         & (0.007) & (0.007) & (0.007) & (0.008) & (0.008) \\
+Traditional ethos (v2)     & 2{,}755 & 0.027\sym{\dagger} & 0.021\sym{\dagger} & 0.033\sym{\dagger} & 0.027\sym{\dagger} & 0.027\sym{\dagger} \\
+                           &         & (0.008) & (0.008) & (0.008) & (0.009) & (0.009) \\
+Traditional pedagogy (v1b) & 2{,}755 & 0.023\sym{\dagger} & 0.022 & 0.021 & 0.030\sym{\dagger} & 0.018 \\
+                           &         & (0.009) & (0.010) & (0.009) & (0.010) & (0.009) \\
+Faith prominence (0--3)    & 2{,}755 & 0.021\sym{\dagger} & 0.021\sym{\dagger} & $-$0.007 & 0.004 & 0.057\sym{\dagger} \\
+                           &         & (0.007) & (0.008) & (0.007) & (0.009) & (0.009) \\
+Interview strictness (v13) & 251     & $-$0.009 & $-$0.007 & $-$0.005 & 0.009 & $-$0.032 \\
+                           &         & (0.026) & (0.027) & (0.027) & (0.031) & (0.029) \\
+Interview teaching (v3)    & 251     & 0.019 & 0.013 & 0.027 & 0.036 & $-$0.001 \\
+                           &         & (0.025) & (0.026) & (0.025) & (0.028) & (0.030) \\
+Interview warmth (v15)     & 251     & 0.018 & 0.016 & 0.006 & 0.034 & 0.011 \\
+                           &         & (0.025) & (0.025) & (0.027) & (0.029) & (0.028) \\
+Interview warmth (counts)  & 251     & 0.034 & 0.039 & $-$0.002 & 0.035 & 0.052 \\
+                           &         & (0.022) & (0.023) & (0.026) & (0.026) & (0.025) \\
 \bottomrule
 \end{tabular}%
 }

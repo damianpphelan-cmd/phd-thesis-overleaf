@@ -24,3 +24,8 @@ __pycache__/
 
 # Stata binary intermediate; tables/a7_estimates.csv is the tracked interface
 tables/*.dta
+
+# per-school derived input to ch3_appendix.do (carries gold-standard scores; the
+# dataset it derives from is deliberately untracked) -- regenerate with
+# build_ch3_appendix_input.py
+tables/ch3_appendix_input.csv

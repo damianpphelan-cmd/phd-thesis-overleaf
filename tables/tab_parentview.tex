@@ -4,41 +4,44 @@
 \caption{Parent View as a soft national criterion for the warmth instruments. The parent
 composite is the mean of the ``my child is happy at this school'' and ``my child feels
 safe at this school'' positive-response rates. The upper panel correlates each warmth
-instrument with the composite and then regresses the composite on the instrument plus
-the control set; the lower panel reports the composite's own association with Progress 8,
-which is descriptive only because parents observe outcomes.}
+instrument with the composite and then regresses the composite on the instrument
+(standardised) plus the national control set; the lower panel reports the composite's own
+association with Progress 8 on the primary specification, which is descriptive only
+because parents observe outcomes.}
 \label{tab:parentview}
-\footnotesize\setlength{\tabcolsep}{4pt}% width fix 17 Aug 2026
+\footnotesize\setlength{\tabcolsep}{4pt}
 \begin{tabular}{lccccc}
 \toprule
 \multicolumn{6}{l}{\textit{Panel A: warmth instruments against the parent composite}} \\
 \addlinespace[2pt]
 Instrument & $r$ & $\rho$ & $n$ & Controlled $\beta$ & $p$ \\
 \midrule
-Website warmth (v18)          & $+$0.024 & $+$0.024 & 3{,}235 & $+$0.001 (0.003) & 0.71 \\
-Website warmth (v13)          & $+$0.024 & $+$0.021 & 3{,}235 & $+$0.001 (0.003) & 0.78 \\
-Behaviour-policy warmth (v4)  & $-$0.038 & $-$0.041 & 3{,}225 & $-$0.005 (0.003) & 0.07 \\
-Ofsted warmth                 & $+$0.401 & $+$0.395 & 3{,}212 & $+$0.052 (0.003) & $<$0.001 \\
+Website warmth (v18)          & $+$0.035 & $+$0.035 & 3{,}053 & $+$0.002 (0.003) & 0.56 \\
+Website warmth (v13)          & $+$0.032 & $+$0.026 & 3{,}053 & $+$0.001 (0.003) & 0.75 \\
+Behaviour-policy warmth (v4)  & $-$0.037 & $-$0.040 & 3{,}043 & $-$0.005 (0.003) & 0.06 \\
+Ofsted warmth                 & $+$0.393 & $+$0.387 & 3{,}034 & $+$0.050 (0.003) & $<$0.001 \\
 \midrule
 \multicolumn{6}{l}{\textit{Panel B: parent composite as a Progress 8 predictor (descriptive)}} \\
 \addlinespace[2pt]
 Outcome & \multicolumn{2}{c}{$\beta$} & SE & $n$ & $p$ \\
 \midrule
-P8 overall  & \multicolumn{2}{c}{$+$0.137} & 0.008 & 2{,}750 & $<$0.001 \\
-P8 English  & \multicolumn{2}{c}{$+$0.109} & 0.009 & 2{,}750 & $<$0.001 \\
-P8 Maths    & \multicolumn{2}{c}{$+$0.114} & 0.008 & 2{,}750 & $<$0.001 \\
+P8 overall  & \multicolumn{2}{c}{$+$0.146} & 0.008 & 2{,}749 & $<$0.001 \\
+P8 English  & \multicolumn{2}{c}{$+$0.118} & 0.009 & 2{,}749 & $<$0.001 \\
+P8 Maths    & \multicolumn{2}{c}{$+$0.122} & 0.009 & 2{,}749 & $<$0.001 \\
 \bottomrule
 \end{tabular}
 \begin{minipage}{\linewidth}
 \smallskip
-\footnotesize\textit{Notes:} Standard errors in parentheses. Panel A regressions control
-for the full national control set. Parent View is a soft criterion: it conflates school
-culture with parent satisfaction, each school contributes its single most recent survey
-release (releases span September 2022 to September 2025), and responses are not
-temporally aligned with the instrument sources. The document-based instruments
-(website, behaviour policy) do not track parents' experienced climate; the Ofsted-derived
-score does, consistent with both drawing on visits to the school. Panel B is endogenous
---- parents plausibly respond to results as well as climate --- so it is reported as a
-description, never as a causal predictor.
+\footnotesize\textit{Notes:} Standard errors in parentheses (HC3; the behaviour-policy row
+clustered on the shared document digest). Panel A regressions control for the national
+control set without the grade; Panel B adds the predecessor-filled 2019 grade. Late-entry
+schools excluded. Parent View is a soft criterion: it conflates school culture with parent
+satisfaction, each school contributes its single most recent survey release (releases span
+September 2022 to September 2025), and responses are not temporally aligned with the
+instrument sources. The document-based instruments (website, behaviour policy) do not
+track parents' experienced climate; the Ofsted-derived score does, consistent with both
+drawing on visits to the school. Panel B is endogenous --- parents plausibly respond to
+results as well as climate --- so it is reported as a description, never as a causal
+predictor.
 \end{minipage}
 \end{table}

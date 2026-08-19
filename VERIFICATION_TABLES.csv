@@ -1,0 +1,42 @@
+﻿chapter,table,producer,verdict
+2_paper1,tab_tier_summary,thesis/make_tier_summary.py,reproduces
+2_paper1,tab_score_dist,thesis/make_tab_score_dist.py,reproduces; labels S4/SC fixed 17 Aug
+2_paper1,tab_instruments_adopted,hand,"cells recomputed: two validity cells stale -> fixed (+0.40, +0.06); kappas traced to RUN_RESULTS_2.md"
+2_paper1,tab_instrument_findings,hand,"recomputed; 0.43->0.42, 0.22->0.18 fixed"
+2_paper1,tab_interview_model_loo,build_ridge_models.py,reproduces
+2_paper1,tab_national_model_loo,build_ridge_models.py,reproduces
+2_paper1,tab_source_criterion,hand,all 16 cells recomputed OK
+2_paper1,tab_irr_interview,hand (recomputed: verify/recompute_interview_items.py),all 66 cells reproduce incl. kappa
+2_paper1,tab_irr_classroom,thesis/make_irr_tables.py (NEW),N/r/MAD/Exact/W1 reproduced exactly; kappa_w recomputed with a stated method (regenerated)
+2_paper1,tab_irr_outside,thesis/make_irr_tables.py (NEW),as classroom
+2_paper1,tab_representativeness,generate_representativeness_outputs.py (REBUILT on gs_data_tier),structural rows on 102 visited / 300 interviewed matched to the panel (header now says so); grade and prior-P8 rows computed in the generator
+2_paper1,tab_interview_model_coefs,build_ridge_models.py,reproduces
+2_paper1,tab_national_model_coefs,build_ridge_models.py,reproduces
+2_paper1,tab_ridge_spec_comparison,ridge_spec_comparison.py,"was STALE (0.114->0.107, -0.015->-0.020); regenerated"
+3_paper2,tab_outcome_stats,thesis/make_outcome_stats.py,reproduces
+3_paper2,tab_control_stats,thesis/make_control_stats.py,reproduces
+3_paper2,tab_spec_ladder,thesis/make_ch3_tables.py <- ch3_estimates.do,reproduces (Stata rerun identical)
+3_paper2,tab_univariate_ws,thesis/make_ch3_tables.py,reproduces
+3_paper2,tab_stages23_trio,thesis/make_ch3_tables.py,reproduces
+3_paper2,tab_national_strictness,thesis/make_national_strictness.py <- a7_national_strictness.do,"was STALE (pre-14 Aug Ofsted column; late-entry not excluded; unfilled grade); regenerated on primary rules: 0.201/0.203, n 3,052/2,746"
+3_paper2,tab_robustness_overall,thesis/make_ch3_tables.py,reproduces
+3_paper2,tab_structural_stability,generate_structural_stability.py,reproduces
+3_paper2,tab_sen_category_stability,hand (stability-script variant),ICCs traced to the table; producer variant not re-run -- NOT VERIFIED BY RERUN
+3_paper2,tab_p8_component_stability,hand (stability-script variant),as above -- NOT VERIFIED BY RERUN
+3_paper2,tab_main_results_s1,thesis/make_ch3_tables.py,reproduces
+3_paper2,tab_main_results_s2,thesis/make_ch3_tables.py,reproduces
+3_paper2,tab_main_results_s3,thesis/make_ch3_tables.py,reproduces
+3_paper2,tab_entry_rates,thesis/make_ch3_appendix_tables.py <- ch3_appendix.do (NEW),re-estimated on the primary spec
+3_paper2,tab_outcome_stats_full,thesis/make_outcome_stats.py,reproduces
+3_paper2,tab_national_strictness_full,thesis/make_national_strictness.py,regenerated (see national_strictness)
+3_paper2,tab_subscores,make_ch3_appendix_tables.py (NEW),re-estimated n=99 (was n=100)
+3_paper2,tab_items_fdr,make_ch3_appendix_tables.py (NEW),re-estimated n=99; IRR column now matches tab_irr_*
+3_paper2,tab_typology,make_ch3_appendix_tables.py (NEW),"re-estimated; authoritative-vs-rest 0.370 (was 0.360); national n 3,052/2,746"
+3_paper2,tab_gaps,make_ch3_appendix_tables.py (NEW),re-estimated; BP rows clustered on the REAL digest (333 schools / 90 groups; the old run clustered on a per-school key)
+3_paper2,tab_llm_p8_matrix,make_ch3_appendix_tables.py (NEW),re-estimated; BP warmth on overall P8 no longer survives BH (Open does)
+3_paper2,tab_parentview,make_ch3_appendix_tables.py (NEW),re-estimated; Panel B 0.146
+3_paper2,tab_p8_proxy,make_ch3_appendix_tables.py (NEW),re-estimated on the primary spec (was n=103/96 on its own control set)
+3_paper2,tab_stability_p8,make_ch3_appendix_tables.py (NEW) <- build_ch3_appendix_input.py,reproduces the batch numbers
+3_paper2,tab_semh_mechanism,make_ch3_appendix_tables.py (NEW),"re-estimated as SHARES of roll on the primary spec; national -0.108 per SD p=.013 n=2,594 (was -0.166, n=2,909)"
+3_paper2,tab_score_controls_corr,thesis/make_tab_score_controls_corr.py,reproduces
+3_paper2,tab_continuity_robustness,make_ch3_appendix_tables.py (NEW),"re-estimated on the primary spec (full n=99, unchanged n=22)"

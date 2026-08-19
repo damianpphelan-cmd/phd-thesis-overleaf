@@ -4,45 +4,41 @@
 \caption{Culture coefficients on the pseudo 2024/25 progress measure beside their
 real-Progress 8 twins. The pseudo measure residualises 2024/25 Attainment 8 on a
 multi-year z-averaged KS2 intake proxy, giving a progress-like score for the cohort
-measured contemporaneously with the fieldwork. Each cell is the culture coefficient
-from the same specification run on the pseudo outcome and on real (2022--24 average)
-Progress 8, without (A) and with (B) the 2019 inspection-grade control.}
+measured contemporaneously with the fieldwork. Each cell is the (standardised) culture
+coefficient from the same specification run on the pseudo outcome and on real (2022--24
+average) Progress 8 for the same schools, without (A) and with (B) the predecessor-filled
+2019 inspection-grade control; late-entry schools excluded.}
 \label{tab:p8_proxy}
-\footnotesize\setlength{\tabcolsep}{4pt}% width fix 17 Aug 2026
+\footnotesize\setlength{\tabcolsep}{4pt}
 \begin{tabular}{llccccc}
 \toprule
  & Predictor & $N$ & \shortstack{Pseudo\\overall} & \shortstack{Pseudo\\English} & \shortstack{Pseudo\\Maths} & \shortstack{Real P8\\overall} \\
 \midrule
-A & Gold warmth ($W$)      & 103     & 0.209\sym{***} & 0.202\sym{***} & 0.172\sym{***} & 0.193\sym{***} \\
-  &                        &         & (0.042) & (0.040) & (0.049) & (0.038) \\
-A & Gold strictness ($S$)  & 103     & 0.224\sym{***} & 0.190\sym{***} & 0.220\sym{***} & 0.182\sym{***} \\
-  &                        &         & (0.039) & (0.037) & (0.044) & (0.034) \\
-A & Ofsted strictness      & 3{,}219 & 0.134\sym{***} & 0.122\sym{***} & 0.114\sym{***} & 0.138\sym{***} \\
+A & Gold warmth ($W$)      & 100     & 0.127\sym{**} & 0.151\sym{***} & 0.066 & 0.139\sym{***} \\
+  &                        &         & (0.052) & (0.052) & (0.063) & (0.046) \\
+A & Gold strictness ($S$)  & 100     & 0.161\sym{***} & 0.116\sym{**} & 0.188\sym{***} & 0.111\sym{***} \\
+  &                        &         & (0.048) & (0.049) & (0.054) & (0.041) \\
+A & Ofsted strictness      & 3{,}076 & 0.154\sym{***} & 0.134\sym{***} & 0.136\sym{***} & 0.137\sym{***} \\
   &                        &         & (0.009) & (0.009) & (0.009) & (0.007) \\
 \addlinespace
-B & Gold warmth ($W$)      & 96      & 0.242\sym{***} & 0.243\sym{***} & 0.191\sym{***} & 0.219\sym{***} \\
-  &                        &         & (0.044) & (0.040) & (0.056) & (0.035) \\
-B & Gold strictness ($S$)  & 96      & 0.237\sym{***} & 0.203\sym{***} & 0.226\sym{***} & 0.199\sym{***} \\
-  &                        &         & (0.042) & (0.038) & (0.048) & (0.034) \\
-B & Ofsted strictness      & 2{,}830 & 0.124\sym{***} & 0.113\sym{***} & 0.110\sym{***} & 0.122\sym{***} \\
-  &                        &         & (0.009) & (0.009) & (0.010) & (0.007) \\
+B & Gold warmth ($W$)      & 99      & 0.138\sym{**} & 0.170\sym{***} & 0.072 & 0.141\sym{***} \\
+  &                        &         & (0.055) & (0.054) & (0.067) & (0.045) \\
+B & Gold strictness ($S$)  & 99      & 0.157\sym{***} & 0.102\sym{**} & 0.187\sym{***} & 0.115\sym{***} \\
+  &                        &         & (0.051) & (0.051) & (0.058) & (0.042) \\
+B & Ofsted strictness      & 2{,}753 & 0.153\sym{***} & 0.136\sym{***} & 0.136\sym{***} & 0.136\sym{***} \\
+  &                        &         & (0.009) & (0.010) & (0.010) & (0.007) \\
 \bottomrule
 \end{tabular}
 \begin{minipage}{\linewidth}
 \smallskip
-\footnotesize\textit{Notes:} Standard errors in parentheses.
+\footnotesize\textit{Notes:} Standard errors (HC3) in parentheses.
 \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\).
-Real-P8 $N$ is slightly smaller for the national Ofsted rows (3,192 and 2,823).
-Validation: rebuilt one year back, the pseudo measure correlates with the real
-published Progress 8 at $r = +0.813$ (Spearman $+0.801$, $n = 3{,}242$), and the
-imputed KS2 intake proxy correlates with the true KS2 baseline at $r = +0.945$.
-Coverage is 3,263 of the 3,273 spine schools; 14.7\% of schools are flagged as
-intake-unstable (proxy-to-cohort gap above threshold), and the validation holds when
-they are excluded. The pseudo measure is school-level, not pupil-matched, so it is a
-robustness check, never a primary outcome. The gold coefficients here (0.18--0.24) sit above the chapter's
-headline 0.13/0.12 because this run uses the full visited tier ($n = 103$, falling to 96
-under the grade control) with its own control set, rather than the headline
-specification; the point of the table is the twin comparison within each row, which is
-near-identical throughout (national strictness 0.134 pseudo vs 0.138 real).
+Across the national panel the pseudo measure correlates with real average Progress 8 at
+$r = +0.719$ ($n = 3{,}140$). Validation of the construction one year back (the
+pseudo measure rebuilt from 2021--22 and 2022--23 baselines against the real 2023--24
+Progress 8) is reported in the text. On the raw 0--10 scale of the body, the gold
+coefficients on the pseudo outcome sit within $0.05$ of their real-Progress 8 twins
+(pseudo 0.139/0.178 against real 0.143/0.131). The pseudo measure is
+school-level, not pupil-matched, so it is a robustness check, never a primary outcome.
 \end{minipage}
 \end{table}

@@ -1,24 +1,25 @@
 \begin{table}[htbp]\centering
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
-\caption{Headteacher continuity robustness (Full sample vs. unchanged HT)}
+\caption{Headteacher continuity robustness (full primary sample vs.\ schools whose headteacher is confirmed unchanged since the last inspection)}
 \label{tab:continuity_robustness}
+\footnotesize\setlength{\tabcolsep}{4pt}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{l*{8}{c}}
 \toprule
-                    &\multicolumn{2}{c}{English}         &                     &\multicolumn{2}{c}{Maths}         &                     &\multicolumn{2}{c}{EBaC}         &                     &\multicolumn{2}{c}{Open}         &                     \\
-                    &\multicolumn{1}{c}{Full}&\multicolumn{1}{c}{Cont}&\multicolumn{1}{c}{Full}&\multicolumn{1}{c}{Cont}&\multicolumn{1}{c}{Full}&\multicolumn{1}{c}{Cont}&\multicolumn{1}{c}{Full}&\multicolumn{1}{c}{Cont}\\
+ & \multicolumn{2}{c}{English} & \multicolumn{2}{c}{Maths} & \multicolumn{2}{c}{EBaC} & \multicolumn{2}{c}{Open} \\
+ & \multicolumn{1}{c}{Full}&\multicolumn{1}{c}{Cont} & \multicolumn{1}{c}{Full}&\multicolumn{1}{c}{Cont} & \multicolumn{1}{c}{Full}&\multicolumn{1}{c}{Cont} & \multicolumn{1}{c}{Full}&\multicolumn{1}{c}{Cont} \\
 \midrule
-Warmth ($W$)        &       0.177\sym{***}&       0.042         &       0.118\sym{**} &       0.010         &       0.165\sym{***}&      -0.015         &       0.146\sym{**} &      -0.027         \\
-                    &     (0.043)         &     (0.236)         &     (0.056)         &     (0.226)         &     (0.058)         &     (0.264)         &     (0.059)         &     (0.226)         \\
+Warmth ($W$)         & 0.167\sym{***} & $-$0.018 & 0.112\sym{**} & $-$0.048 & 0.160\sym{***} & $-$0.091 & 0.136\sym{**} & $-$0.086 \\
+                     & (0.043) & (0.181) & (0.054) & (0.195) & (0.057) & (0.260) & (0.061) & (0.228) \\
 \addlinespace
-Strictness ($S$)    &       0.086\sym{*}  &       0.232         &       0.109\sym{**} &       0.140         &       0.169\sym{***}&       0.190         &       0.135\sym{**} &       0.289         \\
-                    &     (0.049)         &     (0.187)         &     (0.052)         &     (0.193)         &     (0.058)         &     (0.282)         &     (0.065)         &     (0.272)         \\
+Strictness ($S$)     & 0.087\sym{*} & 0.421 & 0.110\sym{**} & 0.323 & 0.169\sym{***} & 0.430 & 0.139\sym{**} & 0.475 \\
+                     & (0.049) & (0.278) & (0.051) & (0.289) & (0.058) & (0.381) & (0.066) & (0.368) \\
 \midrule
-N                   &          96         &          22         &          96         &          22         &          96         &          22         &          96         &          22         \\
-r2                  &       0.638         &       0.758         &       0.538         &       0.530         &       0.612         &       0.519         &       0.565         &       0.706         \\
+N & 99 & 22 & 99 & 22 & 99 & 22 & 99 & 22 \\
+r2 & 0.621 & 0.806 & 0.527 & 0.616 & 0.596 & 0.614 & 0.518 & 0.749 \\
 \bottomrule
-\multicolumn{9}{l}{\footnotesize Standard errors in parentheses}\\
-\multicolumn{9}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\multicolumn{9}{l}{\footnotesize Standard errors (HC3) in parentheses; coefficients per point of the 0--10 enacted scale, as in the body tables.}\\
+\multicolumn{9}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\). Continuity determinable for 29 of the visited schools: 22 unchanged, 7 changed.}\\
 \end{tabular}%
 }
 \end{table}
