@@ -260,6 +260,8 @@ ITEM_NAMES = {
     # validity; both items are lesson-observation ratings.
     'StudentPart_f': 'Frequency of student-initiated participation',
     'Motivation_f': 'Motivation level of students',
+    'Concentration_f': 'Concentration level of students',
+    'TeacherPart_f': 'Frequency of teacher-initiated participation',
     'Misbehav_inv': 'Level of misbehaviour tolerated before a first sanction (reversed)',
     'Disruption_inv': 'Frequency of low-level disruption (reversed)',
     'Response_f': 'Response of pupils to sanctions',
@@ -374,6 +376,42 @@ def subscore_columns() -> dict:
                     assigned[key] = lit
                 elif isinstance(node.value.args[1], ast.Name):
                     assigned[key] = named.get(node.value.args[1].id)
+
+    # Items appended to a named list under `if not LEGACY_ITEMS:` are part of
+    # the CURRENT set (Concentration -> S1, TeacherPart -> T1, 5 Aug 2026).
+    # Added 19 Aug 2026: the parser read only the list literal, so the appendix
+    # showed S1 with four items and T1 with nine while the scorer used five and
+    # ten. `.append` under `if USE_KEY_PHRASES:` is the enriched mode and is
+    # deliberately NOT read.
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.If):
+            continue
+        test = node.test
+        if not (isinstance(test, ast.UnaryOp) and isinstance(test.op, ast.Not)
+                and isinstance(test.operand, ast.Name)
+                and test.operand.id == 'LEGACY_ITEMS'):
+            continue
+        for stmt in node.body:
+            call = getattr(stmt, 'value', None)
+            if (isinstance(stmt, ast.Expr) and isinstance(call, ast.Call)
+                    and isinstance(call.func, ast.Attribute)
+                    and call.func.attr == 'append'
+                    and isinstance(call.func.value, ast.Name)
+                    and call.func.value.id in named
+                    and len(call.args) == 1
+                    and isinstance(call.args[0], ast.Constant)):
+                named[call.func.value.id] = named[call.func.value.id] + [call.args[0].value]
+    # re-resolve sub-scores that point at a named list, so the appends land
+    for node in ast.walk(tree):
+        if (isinstance(node, ast.Assign) and len(node.targets) == 1
+                and isinstance(node.targets[0], ast.Subscript)
+                and isinstance(node.targets[0].slice, ast.Constant)
+                and isinstance(node.value, ast.Call)
+                and getattr(node.value.func, 'id', '') == 'nanmean_cols'
+                and len(node.value.args) == 2
+                and isinstance(node.value.args[1], ast.Name)
+                and node.value.args[1].id in named):
+            assigned[node.targets[0].slice.value] = named[node.value.args[1].id]
 
     out = dict(assigned)
     out['S3'] = named['yn_cols']  # summed and rescaled rather than averaged
