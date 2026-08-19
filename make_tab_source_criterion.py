@@ -58,8 +58,7 @@ composite is also shown against enacted strictness.}}
 \begin{{minipage}}{{0.86\linewidth}}
 \vspace{{4pt}}\scriptsize
 \textit{{Notes}}: Pearson correlations. Text scores are the instruments of
-record (inspection-report prose instrument; behaviour-policy instrument v4;
-website warmth v18 and strictness v15). Correlations of $|r| \geq 0.20$ are
+record listed in \cref{{tab:instruments_adopted}}. Correlations of $|r| \geq 0.20$ are
 significant at the five per cent level at these sample sizes.
 \end{{minipage}}
 \end{{table}}

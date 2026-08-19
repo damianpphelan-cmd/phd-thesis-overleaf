@@ -57,6 +57,12 @@
 % Cross-referencing — load last
 \usepackage[hidelinks]{hyperref}
 \usepackage{cleveref}
+% "Figure 2.1" and "Table 2.2" in full wherever \cref is used (never "fig." / "tab.")
+\crefname{figure}{Figure}{Figures}
+\crefname{table}{Table}{Tables}
+\crefname{section}{Section}{Sections}
+\crefname{appendix}{Appendix}{Appendices}
+\crefname{equation}{Equation}{Equations}
 
 % Per-chapter figure / table / equation numbering (e.g. Figure 2.1, Table 3.2)
 \numberwithin{figure}{chapter}
