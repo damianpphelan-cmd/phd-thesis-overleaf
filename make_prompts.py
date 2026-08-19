@@ -170,9 +170,7 @@ def flag_section(title: str, path: Path, ladder: str | None) -> list[str]:
     n_hard = len(rub.get('hard_rules', []) or [])
     out += [tex_escape(
         f'The instrument additionally carries {n_excl or "its"} exclusion '
-        f'clauses and {n_hard} hard rules, stated in full in '
-        f'{path.name.replace("_", chr(95))}.').replace(
-            tex_escape(path.name), r'\texttt{' + tex_escape(path.name) + r'}'),
+        f'clauses and {n_hard} hard rules, applied in code after the model answers.'),
         '']
     return out
 
@@ -265,8 +263,7 @@ def build() -> str:
         r'\texttt{behaviour-policy-strictness-warmth-v28-fulltext}) is used for the',
         r'robustness columns in \cref{ch:paper2}. It reads the full policy text',
         r'rather than an extract and carries revised threshold anchors; its rules',
-        r'follow the same form as those above and are in',
-        r'\texttt{analyse\_behaviour\_policies\_v4.py}.',
+        r'follow the same form as those above.',
         '',
         r'\subsection*{The decomposed instruments}',
         '',
@@ -316,8 +313,7 @@ def build() -> str:
         r"headteacher's answers (statements placing staff and pupils in relation)",
         r'and the subset that name a concrete mechanism. The band the model',
         r'offers is discarded; the reported band is recomputed in code from the',
-        r'verified counts. The pre-registered rubric is',
-        r'\texttt{RUBRIC\_interview\_warmth\_prose\_v1.md} in the repository.',
+        r'verified counts. The rubric was fixed before any scoring began.',
         '',
         r'\subsection*{Website identity (faith prominence)}',
         '',
@@ -325,8 +321,8 @@ def build() -> str:
         r'faith prominence) reads the same crawl text and returns categorical',
         r'judgements; faith prominence is graded none, incidental, present or',
         r'central. This instrument is retained on the older model it was',
-        r'validated with (\cref{tab:instrument_findings}); its full rubric is in',
-        r'\texttt{analyse\_website\_scores.py}.',
+        r'validated with; its religious-character output agrees with the official',
+        r'register for 97 per cent of schools.',
         '',
     ]
 

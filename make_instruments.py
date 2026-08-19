@@ -116,12 +116,8 @@ def render_item(stem: str, poles: str | None, rows: list) -> list:
         out += [r'\end{description}', '']
     for n in notes:
         out += [tex_escape(n) + '.' if not n.endswith('.') else tex_escape(n), '']
-    if checklist:
-        out.append('Key words and phrases recorded as present or absent:')
-        out.append(r'\begin{itemize}')
-        for c in checklist:
-            out.append(r'\item ' + tex_escape(c))
-        out += [r'\end{itemize}', '']
+    # 19 Aug 2026 (Damian): the key-word checklists are omitted from the thesis
+    # appendix -- they enter no score. Only the question and its anchors remain.
     return out
 
 
@@ -208,12 +204,11 @@ def build_interview() -> str:
          r'% Source: Novel Data/Headteacher Interview.docx',
          '',
          r'The schedule below is the instrument as administered. Each open-ended',
-         r'question was scored 1--5 against the anchor descriptions shown. Where an',
-         r'observer attended alongside the questioner, both scored independently and',
-         r'\cref{tab:irr_interview} reports agreement between them; the analysis uses the',
-         r'final recorded score for each question. The key-word and key-phrase',
-         r'checklists beneath each question were completed at the same time and are used',
-         r'in no score reported in the chapter.',
+         r'question was scored 1--5 against the anchor descriptions shown. Each',
+         r'question was asked by one researcher and scored by both; \cref{tab:irr_interview}',
+         r'reports agreement between them, and the analysis uses the final recorded score',
+         r'for each question. A checklist of key words and phrases was also completed for',
+         r'each question; it enters no score reported in the chapter and is omitted here.',
          r'Item-to-sub-score mapping is given in \cref{app:2A:guide}.',
          '']
     return '\n'.join(L + parse_items(body, headings)).rstrip() + '\n'
@@ -284,6 +279,7 @@ ITEM_NAMES = {
                      'and pupils at break',
     'RelBrk_f': 'Quality of relationships between pupils at break',
     'Sanction_f': 'Consistency of use of sanction system',
+    'Reward_f': 'Consistency of use of reward system',
     'Corridors_f': 'Calmness of corridors',
     'Arrival_f': 'Arrival time to next lesson',
     'Canteen_f': 'Organisation of canteen/dining hall',

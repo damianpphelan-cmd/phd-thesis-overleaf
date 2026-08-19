@@ -101,7 +101,7 @@ def corr(a, b, frame):
 pv_col = "pv_warmth" if "pv_warmth" in d.columns else None
 sources = [
     ("Ofsted report", "ofsted_LLMWarmthScore"),
-    ("Behaviour policy", "bp_LLMWarmthScore"),
+    ("Behaviour policy", "bp_LLMWarmthScore_v4"),
     ("School website", "web_LLMWarmthScore_v18"),
 ]
 if pv_col:
@@ -129,7 +129,11 @@ ax.axvline(0, color="0.6", lw=0.8)
 ax.set_yticks(ys)
 ax.set_yticklabels([r[0] for r in rows])
 ax.set_xlabel("Correlation with the warmth criterion")
-ax.legend(frameon=False, fontsize=8, loc="lower right")
+ax.set_xlim(left=min(-0.15, min(min(r[1], r[2]) for r in rows) - 0.05),
+            right=max(r[1] for r in rows) + 0.05)
+ax.set_ylim(-1.4, len(rows) - 0.5)   # room below the lowest row for the key
+ax.legend(frameon=False, fontsize=8, loc="lower left", ncol=1,
+          bbox_to_anchor=(0.0, -0.02))
 fig.tight_layout()
 fig.savefig(FIGS / "fig_crossover_warmth.pdf")
 plt.close(fig)

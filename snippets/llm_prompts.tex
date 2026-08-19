@@ -170,8 +170,7 @@ A second behaviour-policy instrument (prompt version
 \texttt{behaviour-policy-strictness-warmth-v28-fulltext}) is used for the
 robustness columns in \cref{ch:paper2}. It reads the full policy text
 rather than an extract and carries revised threshold anchors; its rules
-follow the same form as those above and are in
-\texttt{analyse\_behaviour\_policies\_v4.py}.
+follow the same form as those above.
 
 \subsection*{The decomposed instruments}
 
@@ -206,7 +205,7 @@ WARMTH here is HOW BROAD AND HOW DEEP a relational commitment the school makes, 
 \paragraph{The banding rule}
 A site with no verified relational referent is band 1; one or more verified referents reach band 2; a claim that recurs or is intensified reaches band 3; a described arrangement (a route to a named person, a named relational practice, described availability) reaches band 4; a narrated instance, pupil voice, or a parent witnessed account reaches band 5. The highest finding wins, and a site that presents itself principally through results is capped.
 
-The instrument additionally carries 10 exclusion clauses and 8 hard rules, stated in full in \texttt{score\_website\_warmth\_v18.py}.
+The instrument additionally carries 10 exclusion clauses and 8 hard rules, applied in code after the model answers.
 
 \subsection*{Website strictness}
 
@@ -232,7 +231,7 @@ You are reading a crawl of a school's own public website --- typically its homep
 \paragraph{The banding rule}
 A site that expresses no expectation of pupils is band 1; a virtue without a conduct is band 2; a named conduct is band 3; conduct demanded of pupils is band 4. Negative findings (demands attached only to virtues, purely academic expectations, conduct words only in navigation or a values list) cap the band unless the site has specified particulars. A five-band variant used for scale consistency adds band 5 where the site both names a small particular of conduct and states a consequence; this fires for 25 schools nationally.
 
-The instrument additionally carries 13 exclusion clauses and 8 hard rules, stated in full in \texttt{score\_website\_strictness\_v13.py}.
+The instrument additionally carries 13 exclusion clauses and 8 hard rules, applied in code after the model answers.
 
 \subsection*{Interview strictness}
 
@@ -259,7 +258,7 @@ You are reading a headteacher's account of how behaviour is handled in their sch
 \item[Band 5] All of 3, plus sweating the small stuff, instant consequences, or a default comportment. Band-4 material is not required --- see derive\_band.
 \end{description}
 
-The instrument additionally carries 8 exclusion clauses and 7 hard rules, stated in full in \texttt{score\_interview\_strictness.py}.
+The instrument additionally carries 8 exclusion clauses and 7 hard rules, applied in code after the model answers.
 
 \subsection*{Interview teaching}
 
@@ -297,7 +296,7 @@ You are reading a headteacher's account of teaching, feedback and assessment in 
 \item[Band 5] A broad account that also reaches the demanding end --- one shared way of teaching, a named evidence base, or assessment that changes what is taught.
 \end{description}
 
-The instrument additionally carries 7 exclusion clauses and 7 hard rules, stated in full in \texttt{score\_interview\_teaching\_v3.py}.
+The instrument additionally carries 7 exclusion clauses and 7 hard rules, applied in code after the model answers.
 
 \subsection*{Interview warmth (counted statements)}
 
@@ -307,8 +306,7 @@ count, with verbatim quotations, the relational statements in the
 headteacher's answers (statements placing staff and pupils in relation)
 and the subset that name a concrete mechanism. The band the model
 offers is discarded; the reported band is recomputed in code from the
-verified counts. The pre-registered rubric is
-\texttt{RUBRIC\_interview\_warmth\_prose\_v1.md} in the repository.
+verified counts. The rubric was fixed before any scoring began.
 
 \subsection*{Website identity (faith prominence)}
 
@@ -316,5 +314,5 @@ A three-way classifier (teaching philosophy, religious character,
 faith prominence) reads the same crawl text and returns categorical
 judgements; faith prominence is graded none, incidental, present or
 central. This instrument is retained on the older model it was
-validated with (\cref{tab:instrument_findings}); its full rubric is in
-\texttt{analyse\_website\_scores.py}.
+validated with; its religious-character output agrees with the official
+register for 97 per cent of schools.

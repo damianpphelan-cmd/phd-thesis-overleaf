@@ -40,34 +40,52 @@ def rp(x, y):
 
 # ── Figure A: score distributions ────────────────────────────────────────────
 
-fig, axes = plt.subplots(2, 2, figsize=(9.5, 6.4))
-panels = [
-    (axes[0, 0], "gs_warmth_espoused",        "Espoused warmth  [0--10]",   BLUE),
-    (axes[0, 1], "gs_strictness_espoused",    "Espoused strictness  [0--10]", BLUE),
-    (axes[1, 0], "ofsted_LLMWarmthScore",     "Ofsted LLM warmth  [1--5]",  RED),
-    (axes[1, 1], "ofsted_LLMStrictnessScore", "Ofsted LLM strictness  [1--5]", RED),
-]
+# 19 Aug 2026 (Damian): Figure A now compares like with like -- the enacted
+# (visit) and espoused (interview) scores on the SAME visited schools, warmth
+# and strictness side by side, on one 0-10 axis. The national inspection-report
+# distributions move to their own figure (fig_A2) for the appendix.
+vis = df[df["gs_warmth_enacted"].notna() & df["gs_warmth_espoused"].notna()]
+fig, axes = plt.subplots(1, 2, figsize=(9.5, 3.8), sharey=True)
 stats_a = {}
-for ax, col, lab, colour in panels:
-    v = df[col].dropna()
-    stats_a[col] = (len(v), v.mean(), v.std())
-    ax.hist(v, bins=24, color=colour, alpha=0.8, edgecolor="white", linewidth=0.5)
-    ax.axvline(v.mean(), ls="--", lw=1.1, color="#333333")
-    ax.set_xlabel(lab, fontsize=9)
+for ax, dim, lab in [(axes[0], "warmth", "Warmth"), (axes[1], "strictness", "Strictness")]:
+    en = vis[f"gs_{dim}_enacted"].dropna(); es = vis[f"gs_{dim}_espoused"].dropna()
+    stats_a[dim] = (len(en), en.mean(), en.std(), es.mean(), es.std())
+    bins = np.arange(3.0, 10.51, 0.5)
+    ax.hist(en, bins=bins, color=RED, alpha=0.75, edgecolor="white", linewidth=0.5,
+            label=f"Enacted (visit): mean {en.mean():.1f}, SD {en.std():.1f}")
+    ax.hist(es, bins=bins, color=BLUE, alpha=0.55, edgecolor="white", linewidth=0.5,
+            label=f"Espoused (interview): mean {es.mean():.1f}, SD {es.std():.1f}")
+    ax.axvline(en.mean(), ls="--", lw=1.1, color=RED)
+    ax.axvline(es.mean(), ls="--", lw=1.1, color=BLUE)
+    ax.set_xlabel(f"{lab} score (0--10), the {len(en)} visited schools", fontsize=9)
     ax.set_ylabel("Schools", fontsize=9)
-    ax.text(0.97, 0.93, f"$n = {len(v):,}$\nmean {v.mean():.2f}\nSD {v.std():.2f}",
-            transform=ax.transAxes, ha="right", va="top", fontsize=8.5)
-    for s in ("top", "right"):
-        ax.spines[s].set_visible(False)
+    ax.legend(frameon=False, fontsize=8, loc="upper left")
+    for sp in ("top", "right"):
+        ax.spines[sp].set_visible(False)
     ax.tick_params(labelsize=8)
-
 fig.tight_layout()
 fig.savefig(FIGS / "fig_A_score_distributions.pdf")
 plt.close(fig)
 
-print("fig_A_score_distributions.pdf")
-for col, (n, m, sd) in stats_a.items():
-    print(f"   {col:<28} n={n:5d}  mean={m:.2f}  SD={sd:.2f}")
+# Figure A2: the national inspection-report distributions (appendix)
+fig, axes = plt.subplots(1, 2, figsize=(9.5, 3.6))
+for ax, col, lab in [(axes[0], "ofsted_LLMWarmthScore", "Inspection-report warmth  [1--5]"),
+                     (axes[1], "ofsted_LLMStrictnessScore", "Inspection-report strictness  [1--5]")]:
+    v = df[col].dropna()
+    ax.hist(v, bins=np.arange(0.75, 5.5, 0.5), color=RED, alpha=0.8, edgecolor="white", linewidth=0.5)
+    ax.axvline(v.mean(), ls="--", lw=1.1, color="#333333")
+    ax.set_xlabel(lab, fontsize=9); ax.set_ylabel("Schools", fontsize=9)
+    ax.text(0.03, 0.93, f"$n = {len(v):,}$" + chr(10) + f"mean {v.mean():.2f}" + chr(10) + f"SD {v.std():.2f}",
+            transform=ax.transAxes, ha="left", va="top", fontsize=8.5)
+    for sp in ("top", "right"):
+        ax.spines[sp].set_visible(False)
+    ax.tick_params(labelsize=8)
+fig.tight_layout()
+fig.savefig(FIGS / "fig_A2_ofsted_distributions.pdf")
+plt.close(fig)
+
+for dim, (n, m, sd, m2, sd2) in stats_a.items():
+    print(f"   {dim:<12} n={n}  enacted {m:.2f} ({sd:.2f})  espoused {m2:.2f} ({sd2:.2f})")
 
 
 # ── Figure B: validation scatter against the ENACTED criterion ───────────────
