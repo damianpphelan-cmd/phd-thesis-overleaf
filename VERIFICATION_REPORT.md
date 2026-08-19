@@ -35,6 +35,8 @@ producer in `--check` mode and asserts the Stata CSVs are no older than the data
 
 ## 2. Held for Damian — the numbers are right, the decision is yours
 
+> **Update, same day: Damian chose (b) for H1/H2.** All three do-files now standardise (the enacted and espoused scores over the late-entry-excluded visited/interviewed schools; the national score over its estimation sample), every body table and macro is regenerated, and the body prose is requoted per SD (W 0.142, S 0.114; national 0.138/0.140). H3 remains held.
+
 ### H1. Chapter 3 coefficients are per POINT of the 0–10 scale, not per standard deviation (C3-1)
 `ch3_estimates.do` regresses Progress 8 on the raw enacted scores; nothing in it standardises.
 The chapter says "per standard deviation" in the abstract, Data ("entered per standard

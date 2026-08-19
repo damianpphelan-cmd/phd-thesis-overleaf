@@ -33,6 +33,13 @@ global ctrlg "$ctrl $gradef"
 keep if late_entry != 1
 gen byte gold = gs_data_tier == "full"
 
+* One scale for the gold scores across body and appendix (decision (b)): z over
+* the late-entry-excluded visited schools, exactly as ch3_estimates.do does.
+foreach v in gs_warmth_enacted gs_strictness_enacted gs_teaching_enacted gs_warmth_espoused gs_strictness_espoused {
+    quietly summarize `v'
+    gen double g_`v' = (`v' - r(mean)) / r(sd)
+}
+
 capture postclose apf
 postfile apf str24 table str24 panel str30 model str20 outcome str40 term ///
     double(b se pval n r2) str8 vce using "`ROOT'/thesis/tables/ch3_appendix_estimates.dta", replace
@@ -311,11 +318,11 @@ foreach panel in A B {
     drop smp z_ofsted_llmstrictnessscore
 }
 * raw-scale twin for the body's 'within 0.04' sentence
-regress pseudo_p8_2425 gs_warmth_enacted gs_strictness_enacted $ctrlg if gold, vce(hc3)
+regress pseudo_p8_2425 g_gs_warmth_enacted g_gs_strictness_enacted $ctrlg if gold, vce(hc3)
 gen byte smp = e(sample)
-postapp "p8proxy" "raw" "gold_pseudo" "overall" "gs_warmth_enacted gs_strictness_enacted" "hc3"
-regress p8mea_avg gs_warmth_enacted gs_strictness_enacted $ctrlg if smp, vce(hc3)
-postapp "p8proxy" "raw" "gold_real" "overall" "gs_warmth_enacted gs_strictness_enacted" "hc3"
+postapp "p8proxy" "z" "gold_pseudo" "overall" "g_gs_warmth_enacted g_gs_strictness_enacted" "hc3"
+regress p8mea_avg g_gs_warmth_enacted g_gs_strictness_enacted $ctrlg if smp, vce(hc3)
+postapp "p8proxy" "z" "gold_real" "overall" "g_gs_warmth_enacted g_gs_strictness_enacted" "hc3"
 drop smp
 quietly correlate pseudo_p8_2425 p8mea_avg if !missing(pseudo_p8_2425, p8mea_avg)
 post apf ("p8proxy") ("") ("corr_pseudo_vs_real_p8avg") ("overall") ("pearson") (r(rho)) (.) (.) (r(N)) (.) ("")
@@ -343,10 +350,10 @@ foreach spec in tier1_S tier1_W national_S {
 foreach y in p8mea_avg p8meaeng_avg p8meamat_avg p8meaebac_avg p8meaopen_avg {
     local lbl = cond("`y'"=="p8mea_avg","overall",cond("`y'"=="p8meaeng_avg","english", ///
                 cond("`y'"=="p8meamat_avg","maths",cond("`y'"=="p8meaebac_avg","ebac","open"))))
-    regress `y' gs_warmth_enacted gs_strictness_enacted $ctrlg if gold, vce(hc3)
-    postapp "continuity" "all" "raw" "`lbl'" "gs_warmth_enacted gs_strictness_enacted" "hc3"
-    regress `y' gs_warmth_enacted gs_strictness_enacted $ctrlg if gold & ofsted_headteacherchanged == 0, vce(hc3)
-    postapp "continuity" "unchanged" "raw" "`lbl'" "gs_warmth_enacted gs_strictness_enacted" "hc3"
+    regress `y' g_gs_warmth_enacted g_gs_strictness_enacted $ctrlg if gold, vce(hc3)
+    postapp "continuity" "all" "z" "`lbl'" "g_gs_warmth_enacted g_gs_strictness_enacted" "hc3"
+    regress `y' g_gs_warmth_enacted g_gs_strictness_enacted $ctrlg if gold & ofsted_headteacherchanged == 0, vce(hc3)
+    postapp "continuity" "unchanged" "z" "`lbl'" "g_gs_warmth_enacted g_gs_strictness_enacted" "hc3"
 }
 quietly count if gold & ofsted_headteacherchanged == 0
 post apf ("continuity") ("count") ("unchanged") ("") ("n") (r(N)) (.) (.) (.) (.) ("")
@@ -360,8 +367,8 @@ post apf ("continuity") ("count") ("determined") ("") ("n") (r(N)) (.) (.) (.) (
 * ---------------------------------------------------------------
 foreach y in p8mea_avg p8meaeng_avg p8meamat_avg {
     local lbl = cond("`y'"=="p8mea_avg","overall",cond("`y'"=="p8meaeng_avg","english","maths"))
-    regress `y' gs_warmth_espoused gs_strictness_espoused $ctrlg if gold, vce(hc3)
-    postapp "espoused_primary" "" "raw" "`lbl'" "gs_warmth_espoused gs_strictness_espoused" "hc3"
+    regress `y' g_gs_warmth_espoused g_gs_strictness_espoused $ctrlg if gold, vce(hc3)
+    postapp "espoused_primary" "" "z" "`lbl'" "g_gs_warmth_espoused g_gs_strictness_espoused" "hc3"
 }
 
 * ---------------------------------------------------------------

@@ -482,8 +482,8 @@ def t_p8proxy():
             lines.append(f"  & {'':<22} & {'':<7} & " + " & ".join(f"({c.se:.3f})" for c in cs) + r" \\")
         if panel == "A": lines.append(r"\addlinespace")
     corr = row("p8proxy", "", "corr_pseudo_vs_real_p8avg", "overall", "pearson")
-    rawp = row("p8proxy", "raw", "gold_pseudo", "overall", "gs_warmth_enacted"); rawr = row("p8proxy", "raw", "gold_real", "overall", "gs_warmth_enacted")
-    rawps = row("p8proxy", "raw", "gold_pseudo", "overall", "gs_strictness_enacted"); rawrs = row("p8proxy", "raw", "gold_real", "overall", "gs_strictness_enacted")
+    rawp = row("p8proxy", "z", "gold_pseudo", "overall", "g_gs_warmth_enacted"); rawr = row("p8proxy", "z", "gold_real", "overall", "g_gs_warmth_enacted")
+    rawps = row("p8proxy", "z", "gold_pseudo", "overall", "g_gs_strictness_enacted"); rawrs = row("p8proxy", "z", "gold_real", "overall", "g_gs_strictness_enacted")
     maxdiff = max(abs(rawp.b - rawr.b), abs(rawps.b - rawrs.b))
     valtxt = ""
     if VAL is not None:
@@ -518,7 +518,7 @@ average) Progress 8 for the same schools, without (A) and with (B) the predecess
 Across the national panel the pseudo measure correlates with real average Progress 8 at
 $r = {corr.b:+.3f}$ ($n = {nfmt(corr.n)}$). Validation of the construction one year back (the
 pseudo measure rebuilt from 2021--22 and 2022--23 baselines against the real 2023--24
-Progress 8) is reported in the text. On the raw 0--10 scale of the body, the gold
+Progress 8) is reported in the text. On the body's per-standard-deviation scale, the gold
 coefficients on the pseudo outcome sit within ${maxdiff:.2f}$ of their real-Progress 8 twins
 (pseudo {rawp.b:.3f}/{rawps.b:.3f} against real {rawr.b:.3f}/{rawrs.b:.3f}). The pseudo measure is
 school-level, not pupil-matched, so it is a robustness check, never a primary outcome.
@@ -627,7 +627,7 @@ zero and drift slightly upward.
 # ---------------------------------------------------------------- continuity
 def t_continuity():
     ocs = [("english", "English"), ("maths", "Maths"), ("ebac", "EBaC"), ("open", "Open")]
-    def c(panel, oc, term): return row("continuity", panel, "raw", oc, term)
+    def c(panel, oc, term): return row("continuity", panel, "z", oc, term)
     head1 = " & ".join(rf"\multicolumn{{2}}{{c}}{{{lab}}}" for _, lab in ocs)
     head2 = " & ".join(r"\multicolumn{1}{c}{Full}&\multicolumn{1}{c}{Cont}" for _ in ocs)
     def line(term, lab):
@@ -636,8 +636,8 @@ def t_continuity():
             for p in ["all", "unchanged"]:
                 r = c(p, oc, term); cells.append(f3(r.b) + stars(r.pval)); ses.append(f"({r.se:.3f})")
         return f"{lab:<20} & " + " & ".join(cells) + r" \\" + "\n" + f"{'':<20} & " + " & ".join(ses) + r" \\"
-    ns = " & ".join(str(int(c(p, oc, "gs_warmth_enacted").n)) for oc, _ in ocs for p in ["all", "unchanged"])
-    r2 = " & ".join(f"{c(p, oc, 'gs_warmth_enacted').r2:.3f}" for oc, _ in ocs for p in ["all", "unchanged"])
+    ns = " & ".join(str(int(c(p, oc, "g_gs_warmth_enacted").n)) for oc, _ in ocs for p in ["all", "unchanged"])
+    r2 = " & ".join(f"{c(p, oc, 'g_gs_warmth_enacted').r2:.3f}" for oc, _ in ocs for p in ["all", "unchanged"])
     nun = int(row("continuity", "count", "unchanged", "", "n").b); nch = int(row("continuity", "count", "changed", "", "n").b); ndet = int(row("continuity", "count", "determined", "", "n").b)
     return rf"""\begin{{table}}[htbp]\centering
 {SYM}
@@ -650,14 +650,14 @@ def t_continuity():
  & {head1} \\
  & {head2} \\
 \midrule
-{line("gs_warmth_enacted", "Warmth ($W$)")}
+{line("g_gs_warmth_enacted", "Warmth ($W$)")}
 \addlinespace
-{line("gs_strictness_enacted", "Strictness ($S$)")}
+{line("g_gs_strictness_enacted", "Strictness ($S$)")}
 \midrule
 N & {ns} \\
 r2 & {r2} \\
 \bottomrule
-\multicolumn{{9}}{{l}}{{\footnotesize Standard errors (HC3) in parentheses; coefficients per point of the 0--10 enacted scale, as in the body tables.}}\\
+\multicolumn{{9}}{{l}}{{\footnotesize Standard errors (HC3) in parentheses; coefficients per standard deviation of the enacted scores, as in the body tables.}}\\
 \multicolumn{{9}}{{l}}{{\footnotesize {NOTES_STARS} Continuity determinable for {ndet} of the visited schools: {nun} unchanged, {nch} changed.}}\\
 \end{{tabular}}%
 }}

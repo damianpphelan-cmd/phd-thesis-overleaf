@@ -58,9 +58,26 @@ gen byte trad = (web_id_llmteachingphilosophy == "traditional") ///
 gen byte prog = (web_id_llmteachingphilosophy == "progressive") ///
     if !missing(web_id_llmteachingphilosophy)
 
-global W  gs_warmth_enacted
-global S  gs_strictness_enacted
-global T  gs_teaching_enacted
+* ---- Standardisation (19 Aug 2026, Damian's decision (b) after the number
+* verification). The chapter reports coefficients per STANDARD DEVIATION; until
+* this date the do-file regressed on the raw 0-10 scores, which mattered for
+* strictness (SD 0.88). The enacted scores are z-standardised ONCE over the
+* visited schools that enter any primary-specification regression (late-entry
+* excluded, score non-missing), so every row of every table shares one scale;
+* the espoused scores likewise over the interviewed, late-entry-excluded schools.
+foreach v in gs_warmth_enacted gs_strictness_enacted gs_teaching_enacted {
+    quietly summarize `v' if late_entry != 1
+    gen double z_`v' = (`v' - r(mean)) / r(sd)
+}
+foreach v in gs_warmth_espoused gs_strictness_espoused {
+    quietly summarize `v' if late_entry != 1
+    gen double z_`v' = (`v' - r(mean)) / r(sd)
+}
+global W  z_gs_warmth_enacted
+global S  z_gs_strictness_enacted
+global T  z_gs_teaching_enacted
+global WE z_gs_warmth_espoused
+global SE z_gs_strictness_espoused
 
 * A named handle, not `tempname'. A tempname is scoped to the do-file that
 * created it, and when this is run through nbstata the scope does not survive to
@@ -145,11 +162,11 @@ foreach outcome in p8mea_avg p8meaeng_avg p8meamat_avg p8meaebac_avg p8meaopen_a
                 cond("`outcome'"=="p8meaeng_avg",  "english", ///
                 cond("`outcome'"=="p8meamat_avg",  "maths",   ///
                 cond("`outcome'"=="p8meaebac_avg", "ebac",    "open"))))
-    regress `outcome' gs_warmth_espoused gs_strictness_espoused $controls, vce(hc3)
-    postterms `pf' "espoused" "`lbl'" "gs_warmth_espoused gs_strictness_espoused"
+    regress `outcome' $WE $SE $controls, vce(hc3)
+    postterms `pf' "espoused" "`lbl'" "$WE $SE"
 
-    regress `outcome' gs_warmth_espoused gs_strictness_espoused $controls if tier1, vce(hc3)
-    postterms `pf' "espoused_t1" "`lbl'" "gs_warmth_espoused gs_strictness_espoused"
+    regress `outcome' $WE $SE $controls if tier1, vce(hc3)
+    postterms `pf' "espoused_t1" "`lbl'" "$WE $SE"
 }
 
 * ---- Exploratory extensions, whose p-values the prose also quotes ----
@@ -239,6 +256,14 @@ postterms `pf' "ladder_c" "overall" "$W $S"
 
 regress p8mea_avg $W $S $controls_ngrade, vce(hc3)
 postterms `pf' "ladder_d" "overall" "$W $S"
+
+* Espoused scores substituted for the enacted ones on the same schools, primary
+* spec (quoted in Results; the old 'espoused_t1' rows were the pre-primary spec).
+foreach outcome in p8mea_avg p8meaeng_avg p8meamat_avg {
+    local lbl = cond("`outcome'"=="p8mea_avg","overall",cond("`outcome'"=="p8meaeng_avg","english","maths"))
+    regress `outcome' $WE $SE $controls_primary if !missing($W), vce(hc3)
+    postterms `pf' "primary_espoused" "`lbl'" "$WE $SE"
+}
 restore
 
 * ================================================================

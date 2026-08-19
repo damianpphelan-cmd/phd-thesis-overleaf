@@ -44,7 +44,7 @@ PANELS = [
     ("grade19", r"Panel B: adding the pre-COVID (2019) Ofsted grade"),
 ]
 
-ROW_LABEL = r"Strictness (Ofsted LLM, 1--5 scale)"
+ROW_LABEL = r"Strictness (Ofsted LLM, per SD)"
 
 
 def stars(p: float) -> str:
@@ -114,11 +114,13 @@ def build(COLS=COLS_BODY, full=False) -> str:
   \footnotesize
   \textit{Notes:} Heteroskedasticity-robust (HC3) standard errors in
   parentheses. \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\).
-  All specifications control for prior attainment (KS2), FSM, EAL, SEN, log
+  The strictness score is standardised over the estimation sample, so
+  coefficients are per standard deviation of the score; late-entry schools are
+  excluded. All specifications control for prior attainment (KS2), FSM, EAL, SEN, log
   cohort size, years since inspection, academy status, urban location and
   selective status. Panel~A is the specification reported in the text, which
   omits the Ofsted grade because the strictness score is read from the same
-  inspection report. Panel~A includes @NA@ schools. Panel~B adds the pre-COVID
+  inspection report. Panel~A includes @NA@ schools. Panel~B adds the predecessor-filled pre-COVID
   (2019) overall Ofsted grade as a set of dummies---the same control used in
   the primary Tier~1 specification---and is estimated on the @NB@ schools with
   a 2019 grade on record, @DROPPED@ fewer than Panel~A. The strictness

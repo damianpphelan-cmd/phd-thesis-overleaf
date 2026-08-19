@@ -34,9 +34,9 @@ ROOT = Path(__file__).resolve().parent.parent
 TABLES = ROOT / "thesis" / "tables"
 CSV = TABLES / "ch3_estimates.csv"
 
-W = "gs_warmth_enacted"
-S = "gs_strictness_enacted"
-T = "gs_teaching_enacted"
+W = "z_gs_warmth_enacted"
+S = "z_gs_strictness_enacted"
+T = "z_gs_teaching_enacted"
 
 FIVE = ["overall", "english", "maths", "ebac", "open"]
 TRIO = ["overall", "english", "maths"]
@@ -109,7 +109,8 @@ def spec_ladder(df: pd.DataFrame) -> None:
 \small
 \caption{{The headline gold-standard model under four treatments of the pre-COVID
 inspection-grade control. Each row is the same regression of average Progress 8 on
-enacted warmth ($W$) and enacted strictness ($S$) with the full control set; the rows
+enacted warmth ($W$) and enacted strictness ($S$), each per standard deviation, with the
+full control set; the rows
 differ only in how schools with a missing 2019 grade are handled. Schools with a
 statutory admission age of 13 or above are excluded throughout.}}
 \label{{tab:spec_ladder}}
@@ -157,7 +158,8 @@ def univariate_ws(df: pd.DataFrame) -> None:
 \small
 \caption{{Warmth and strictness entered alone and together. Each column is a Progress 8
 outcome; the first two rows enter one culture dimension at a time and the final two
-rows enter both jointly, always with the full control set and the predecessor-filled
+rows enter both jointly (coefficients per standard deviation), always with the full
+control set and the predecessor-filled
 grade control. The drop from the univariate to the joint coefficients shows the two
 dimensions share some variance, but each keeps an independent association when the
 other is held fixed.}}
@@ -321,7 +323,7 @@ def robustness_overall(df: pd.DataFrame) -> None:
             ("rob_wxs", "W$\times$S", "p8mea_avg"),
             ("rob_att8total", "Att8 total 24/25", "att8_total_2425"),
             ("rob_att8eng", "Att8 English 24/25", "att8screng_2425")]
-    W, S = "gs_warmth_enacted", "gs_strictness_enacted"
+    W, S = "z_gs_warmth_enacted", "z_gs_strictness_enacted"
     def row(term, label):
         cells, ses = [], []
         for spec, _, _ in cols:

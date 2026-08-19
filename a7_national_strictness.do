@@ -48,6 +48,12 @@ destring `numvars', replace force
 * is the predecessor-filled version. Before this the 3,147 included 95 late-entry
 * schools and Panel B used the unfilled grade.
 keep if late_entry != 1
+* Standardised over the estimation sample (schools with an outcome), so the
+* coefficient is per standard deviation of the score, as the chapter states
+* (decision (b), 19 Aug 2026). The raw score is on a 1-5 scale with SD ~0.69.
+quietly summarize ofsted_llmstrictnessscore if !missing(p8mea_avg)
+scalar sd_ofs = r(sd)
+replace ofsted_llmstrictnessscore = (ofsted_llmstrictnessscore - r(mean)) / r(sd)
 
 * ---- Macros (identical to cell 2) ----
 global ctrl_cont "ks2 fsm eal sen log_size years_since_ofsted"

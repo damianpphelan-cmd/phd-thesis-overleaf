@@ -8,14 +8,14 @@
  & Overall & English & Maths \\
 \midrule
 \multicolumn{4}{l}{\textit{Panel A: published specification (Ofsted grade omitted)}} \\
-Strictness (Ofsted LLM, 1--5 scale) & 0.201\sym{***} & 0.177\sym{***} & 0.175\sym{***} \\
- & (0.011) & (0.012) & (0.011) \\
+Strictness (Ofsted LLM, per SD) & 0.138\sym{***} & 0.122\sym{***} & 0.121\sym{***} \\
+ & (0.007) & (0.008) & (0.008) \\
 $N$ & 3{,}052 & 3{,}052 & 3{,}052 \\
 $R^2$ & 0.518 & 0.449 & 0.466 \\
 \addlinespace[6pt]
 \multicolumn{4}{l}{\textit{Panel B: adding the pre-COVID (2019) Ofsted grade}} \\
-Strictness (Ofsted LLM, 1--5 scale) & 0.203\sym{***} & 0.183\sym{***} & 0.178\sym{***} \\
- & (0.011) & (0.012) & (0.012) \\
+Strictness (Ofsted LLM, per SD) & 0.140\sym{***} & 0.126\sym{***} & 0.123\sym{***} \\
+ & (0.008) & (0.008) & (0.008) \\
 $N$ & 2{,}746 & 2{,}746 & 2{,}746 \\
 $R^2$ & 0.529 & 0.456 & 0.471 \\
 \bottomrule
@@ -26,11 +26,13 @@ $R^2$ & 0.529 & 0.456 & 0.471 \\
   \footnotesize
   \textit{Notes:} Heteroskedasticity-robust (HC3) standard errors in
   parentheses. \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\).
-  All specifications control for prior attainment (KS2), FSM, EAL, SEN, log
+  The strictness score is standardised over the estimation sample, so
+  coefficients are per standard deviation of the score; late-entry schools are
+  excluded. All specifications control for prior attainment (KS2), FSM, EAL, SEN, log
   cohort size, years since inspection, academy status, urban location and
   selective status. Panel~A is the specification reported in the text, which
   omits the Ofsted grade because the strictness score is read from the same
-  inspection report. Panel~A includes 3{,}052 schools. Panel~B adds the pre-COVID
+  inspection report. Panel~A includes 3{,}052 schools. Panel~B adds the predecessor-filled pre-COVID
   (2019) overall Ofsted grade as a set of dummies---the same control used in
   the primary Tier~1 specification---and is estimated on the 2{,}746 schools with
   a 2019 grade on record, 306 fewer than Panel~A. The strictness

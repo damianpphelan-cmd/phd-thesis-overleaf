@@ -275,14 +275,20 @@ def build() -> list[Num]:
     # The older 0.150/0.130 headline stays on the stale list too: the guards are
     # narrow (coefficient form only) so the SEMH passage's unrelated
     # 0.150 -> 0.165 comparison does not false-positive.
-    add(Num("PrimarySpecW", "0.143",
-            "primary-spec warmth coefficient, ch3_estimates.do (Stata)",
-            expect=["\\hat{\\beta}_W = 0.143"],
-            stale=["\\hat{\\beta}_W = 0.150", "\\hat{\\beta}_W = 0.132"]))
-    add(Num("PrimarySpecS", "0.131",
-            "primary-spec strictness coefficient, ch3_estimates.do (Stata)",
-            expect=["\\hat{\\beta}_S = 0.131"],
-            stale=["\\hat{\\beta}_S = 0.130", "\\hat{\\beta}_S = 0.117"]))
+    # Read from the Stata export (19 Aug 2026): these were typed literals until
+    # the number verification found the do-file had changed scale under them.
+    _e = pd.read_csv(THESIS / "tables" / "ch3_estimates.csv")
+    _p = _e[(_e.spec == "primary_stage1") & (_e.outcome == "overall")].set_index("term")
+    _pw = f"{_p.loc['z_gs_warmth_enacted', 'b']:.3f}"
+    _ps = f"{_p.loc['z_gs_strictness_enacted', 'b']:.3f}"
+    add(Num("PrimarySpecW", _pw,
+            "primary-spec warmth coefficient per SD, ch3_estimates.do (Stata)",
+            expect=[r"\hat{\beta}_W = " + _pw],
+            stale=[r"\hat{\beta}_W = 0.150", r"\hat{\beta}_W = 0.132", r"\hat{\beta}_W = 0.143"]))
+    add(Num("PrimarySpecS", _ps,
+            "primary-spec strictness coefficient per SD, ch3_estimates.do (Stata)",
+            expect=[r"\hat{\beta}_S = " + _ps],
+            stale=[r"\hat{\beta}_S = 0.130", r"\hat{\beta}_S = 0.117", r"\hat{\beta}_S = 0.131"]))
     add(Num("PrimarySpecN", "99",
             "primary estimation sample: 103 - 2 late-entry - 1 unfillable "
             "grade - 1 missing years_since_ofsted",
@@ -441,8 +447,8 @@ def build() -> list[Num]:
     # strictness coefficient (0.127) the moment that entered the prose. A stale
     # literal must be unambiguous, so it is dropped here: PrimarySpecW/S carry
     # the headline guards with their own stale lists.
-    s1w = est("primary_stage1", "overall", "gs_warmth_enacted")
-    s1s = est("primary_stage1", "overall", "gs_strictness_enacted")
+    s1w = est("primary_stage1", "overall", "z_gs_warmth_enacted")
+    s1s = est("primary_stage1", "overall", "z_gs_strictness_enacted")
     add(Num("NEstimation", str(int(s1w["n"])),
             "ch3_estimates.csv: primary Stage 1-3 estimation sample", expect=[]))
     add(Num("BetaWarmth", f"{s1w['b']:.3f}",
@@ -453,8 +459,8 @@ def build() -> list[Num]:
     # Replacing the enacted scores with the espoused ones on the SAME schools is
     # the chapter's self-report test; the quoted range is over the four
     # components, and the top of it exceeds 100 because two of them reverse sign.
-    drops = [100 * (1 - est("espoused_t1", o, "gs_warmth_espoused")["b"]
-                        / est("stage1", o, "gs_warmth_enacted")["b"])
+    drops = [100 * (1 - est("espoused_t1", o, "z_gs_warmth_espoused")["b"]
+                        / est("stage1", o, "z_gs_warmth_enacted")["b"])
              for o in ("english", "maths", "ebac", "open")]
     add(Num("SelfReportReduction",
             f"{round(min(drops))}--{round(max(drops))}",
