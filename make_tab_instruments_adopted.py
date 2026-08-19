@@ -4,7 +4,11 @@ analysis_dataset.csv against BOTH halves of the gold standard (enacted on the
 visited schools, espoused on the interviewed schools), on Damian's ruling that
 a source written by the school should be checked against what the school says
 as well as what it does. The kappas are out-of-sample agreement figures traced
-to the labelling packs (VERIFICATION_LEDGER.csv) and are carried as constants.
+to the labelling packs (VERIFICATION_LEDGER.csv; RUN_RESULTS_2.md prose-vs-ladder
+table for the Ofsted prose rubric: kappa 0.489/0.182/0.537, rho 0.559/0.309/0.585;
+interview warmth v15 OOS +0.412) and are carried as constants. 20 Aug 2026: the
+Ofsted kappas had been the FLAG scorers' (0.64/0.45/0.75) beside the PROSE
+instrument's validity; corrected on Damian's ruling.
 Run with --check to compare without writing."""
 import argparse, os, sys
 import pandas as pd
@@ -22,9 +26,9 @@ def f(v):
 
 # (source, construct, architecture, score column, enacted criterion, espoused criterion, kappa)
 rows = [
-    ("Inspection report", "Strictness", "Prose", "ofsted_LLMStrictnessScore", "gs_strictness_enacted", "gs_strictness_espoused", "0.64"),
-    ("Inspection report", "Warmth", "Prose", "ofsted_LLMWarmthScore", "gs_warmth_enacted", "gs_warmth_espoused", "0.45"),
-    ("Inspection report", "Teaching", "Prose", "ofsted_LLMTeachingScore", "gs_teaching_enacted", None, "0.75"),
+    ("Inspection report", "Strictness", "Prose", "ofsted_LLMStrictnessScore", "gs_strictness_enacted", "gs_strictness_espoused", "0.49"),
+    ("Inspection report", "Warmth", "Prose", "ofsted_LLMWarmthScore", "gs_warmth_enacted", "gs_warmth_espoused", "0.18"),
+    ("Inspection report", "Teaching", "Prose", "ofsted_LLMTeachingScore", "gs_teaching_enacted", None, "0.54"),
     None,
     ("Behaviour policy", "Strictness", "Prose$^{a}$", "bp_LLMStrictnessScore_v4", "gs_strictness_enacted", "gs_strictness_espoused", "0.76"),
     ("Behaviour policy", "Warmth", "Prose$^{a}$", "bp_LLMWarmthScore_v4", "gs_warmth_enacted", "gs_warmth_espoused", "0.76"),
@@ -43,7 +47,7 @@ for row in rows:
 lines.append(r"Website & Religious character & Prose classifier & \multicolumn{2}{c}{register, 97\% agree} & --- \\")
 lines.append(r"\addlinespace[3pt]")
 lines.append(r"Interview transcript & Strictness & Decomposed & --- & --- & 0.63 \\")
-lines.append(r"Interview transcript & Warmth & Decomposed & --- & --- & 0.56 \\")
+lines.append(r"Interview transcript & Warmth & Decomposed & --- & --- & 0.41 \\")
 
 tex = r"""\begin{table}[htbp]
 \centering
@@ -73,8 +77,13 @@ returns a band in one call. ``Decomposed'': the model answers factual
 questions with verified quotations and the band is assigned by a rule in
 code; $^{a}$the behaviour-policy instrument reads the whole policy against a
 written decision procedure in one call and answers its steps, and the band is
-computed from the answers rather than returned by the model. Kappas are model--model agreement against the majority label of three
-blind model raters. The inspection-report warmth score also tracks the
+computed from the answers rather than returned by the model. Kappas are
+out-of-sample figures for the instrument in each row. The inspection-report
+rubric was calibrated to a different labelling scale from the reference
+labels, so its kappas carry a systematic offset and understate its agreement
+on ordering (rank correlations with the reference labels: $0.56$, $0.31$ and
+$0.59$ for strictness, warmth and teaching). All are model--model agreement
+against the majority label of three blind model raters. The inspection-report warmth score also tracks the
 inspection grade ($r = -0.40$) from grade-stripped text, and is used as a
 description of the report rather than a predictor. The website warmth
 instrument does not separate its two lowest bands reliably. The interview
