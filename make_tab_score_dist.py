@@ -75,7 +75,7 @@ Score & Description & $N$ & Mean & SD & Min & Median & Max \\
 ($W1$, $W2$, $S1$, $S2$, $T1$) and the espoused scores from the interview
 statement sub-scores ($W3$, $S4$; $SC$ is the staff-climate score), as set
 out in \cref{{eq:enacted,eq:espoused}}. The systems count $S3$ enters no
-score. No school contributes a sub-score to both sets.
+score. No sub-score enters both sets.
 \end{{minipage}}
 \end{{table}}
 """, encoding="utf-8")
