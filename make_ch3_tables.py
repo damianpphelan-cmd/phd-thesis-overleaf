@@ -320,9 +320,11 @@ def robustness_overall(df: pd.DataFrame) -> None:
             ("rob_nograde", "No grade", "p8mea_avg"),
             ("rob_singleyear", "2023--24 only", "p8mea_2324"),
             ("rob_semh", "SEMH ctrl", "p8mea_avg"),
-            ("rob_wxs", "W$\times$S", "p8mea_avg"),
+            ("rob_wxs", r"W$\times$S", "p8mea_avg"),
             ("rob_att8total", "Att8 total 24/25", "att8_total_2425"),
-            ("rob_att8eng", "Att8 English 24/25", "att8screng_2425")]
+            ("rob_att8eng", "Att8 English 24/25", "att8screng_2425"),
+            ("rob_singlerater_ctrl", "Single-rater ctrl", "p8mea_avg"),
+            ("rob_doublerated", "Double-rated only", "p8mea_avg")]
     W, S = "z_gs_warmth_enacted", "z_gs_strictness_enacted"
     def row(term, label):
         cells, ses = [], []
@@ -349,7 +351,7 @@ def robustness_overall(df: pd.DataFrame) -> None:
         r"\label{tab:robustness_overall}",
         r"\footnotesize\setlength{\tabcolsep}{4pt}",
         r"\resizebox{\linewidth}{!}{%",
-        r"\begin{tabular}{l*{7}{c}}",
+        r"\begin{tabular}{l*{9}{c}}",
         r"\toprule",
         f"                    & {heads} \\\\",
         r"\midrule",
@@ -363,7 +365,10 @@ def robustness_overall(df: pd.DataFrame) -> None:
         r"\textit{Notes}: HC3 standard errors in parentheses. \sym{*} $p<0.05$, "
         r"\sym{**} $p<0.01$, \sym{***} $p<0.001$. The W$\times$S column adds the "
         r"interaction of the two standardised scores; its main effects are not "
-        r"interpretable alone.",
+        r"interpretable alone. The single-rater column adds the share of a "
+        r"school's observed lessons that were rated by one researcher rather "
+        r"than two; the double-rated column keeps only schools in which every "
+        r"lesson was rated by at least two.",
         r"\end{minipage}",
         r"\end{table}",
         ""])

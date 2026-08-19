@@ -27,6 +27,15 @@ local ROOT "C:/Users/damia/OneDrive/Documents/Schools Project"
 
 import delimited "`ROOT'/analysis_dataset.csv", clear stringcols(_all) case(lower)
 
+* share of a school's observed lessons rated by one researcher (written by
+* thesis/make_reliability_and_age.py); merged here so the robustness rows can use it
+preserve
+import delimited "`ROOT'/scores/visit_single_rated_share.csv", clear stringcols(1) case(lower)
+tempfile srs
+save `srs'
+restore
+merge 1:1 urn using `srs', keep(master match) nogenerate
+
 foreach v of varlist eal sen {
     replace `v' = subinstr(`v', "%", "", .)
     destring `v', replace
@@ -295,6 +304,19 @@ postterms `pf' "rob_att8eng" "overall" "$W $S"
 gen wxs_p = $W * $S
 regress p8mea_avg $W $S wxs_p $controls_primary, vce(hc3)
 postterms `pf' "rob_wxs" "overall" "$W $S wxs_p"
+
+* Single-rated lessons (20 Aug 2026, Chapter 2 referee round three). About a
+* third of observed lessons were rated by one researcher, those lessons score
+* a little lower, and the share of such lessons correlates -0.25 with a
+* school's in-lesson warmth. Two checks: the share as a control, and the
+* primary spec on schools with no single-rated lesson.
+capture confirm variable share_single_rated
+if !_rc {
+    regress p8mea_avg $W $S share_single_rated $controls_primary, vce(hc3)
+    postterms `pf' "rob_singlerater_ctrl" "overall" "$W $S share_single_rated"
+    regress p8mea_avg $W $S $controls_primary if share_single_rated == 0, vce(hc3)
+    postterms `pf' "rob_doublerated" "overall" "$W $S"
+}
 
 capture confirm variable semh_baseline_2016
 if !_rc {
