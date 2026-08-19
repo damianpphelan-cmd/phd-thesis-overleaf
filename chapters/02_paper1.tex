@@ -101,11 +101,13 @@ the interview and the visit disagree substantially about the same school, the
 gold standard is two measures, not one: an \emph{enacted} score, from what an
 observer recorded, and an \emph{espoused} score, from what the headteacher
 reported. For a further \NTierTwo{} schools there is the interview alone, and
-for the remaining national population only the public text. For those schools
-the gold standard is estimated from what is observable, using prediction
-models fitted on the schools where both the predictors and the gold standard
-exist, and the paper reports how well the predictions reproduce the gold
-standard out of sample.
+for the remaining national population only the public text. The question the
+paper puts to that text is whether the gold standard can be recovered from
+it: prediction models are fitted on the schools where both the text scores
+and the gold standard exist, each school is held out in turn, and how well
+the predictions reproduce the gold standard is the measure of what the
+public record contains. The answer decides what can be carried to the
+national population, and it turns out to be one source and one dimension.
 
 Three findings follow. First, the two dimensions are recoverable to very
 different degrees. Strictness scored from inspection-report text is
@@ -303,8 +305,9 @@ have no grade and are missing on that variable.
 
 \textbf{Representativeness.} \Cref{tab:2A:representativeness} compares the
 visited and interviewed schools with the national population. Both samples
-resemble the population on school type, phase, admissions, size, deprivation
-and urban location, and both over-represent London (45 per cent of visited
+resemble the population on school type, phase, admissions, size and urban
+location, differ from it on deprivation by at most two percentage points,
+and both over-represent London (45 per cent of visited
 schools against 15 per cent nationally), which shows in a higher share of
 pupils with English as an additional language. Both also lean toward stronger
 schools: 25 per cent of visited schools held an Outstanding inspection grade
@@ -314,8 +317,8 @@ recruiting through headteachers, since confident schools say yes, and it has
 two consequences. Estimates from the visited sample apply most directly to a
 population somewhat stronger than the national average; and because the
 sample under-represents the weakest schools, the range of both culture and
-outcomes is restricted, which works against finding associations rather than
-for them.
+outcomes is restricted, which in the following chapter works against finding
+associations rather than for them.
 
 \input{tables/tab_tier_summary}
 
@@ -643,11 +646,14 @@ anywhere in what follows.
 
 \subsection{Predicting the gold standard}
 
-For interviewed schools without a visit (Model~A) and for the national
-population (Model~B), the enacted score of each dimension is predicted by
-ridge regression fitted on the \RidgeTrainN{} visited schools with complete
-predictors; the two visited schools missing are those without a scored
-inspection report. Model~A's predictors are the espoused sub-scores, the
+Two prediction models test how far the enacted scores can be recovered
+without a visit. Model~A uses what is available for an interviewed school
+and Model~B what is available for every school; the comparison between them
+asks whether the interview adds anything to the public text. Each predicts
+the enacted score of a dimension by ridge regression fitted on the
+\RidgeTrainN{} visited schools with complete predictors; the two visited
+schools missing
+are those without a scored inspection report. Model~A's predictors are the espoused sub-scores, the
 systems count and the three text scores for the dimension; Model~B's are the
 three text scores alone. There are three text scores because there are three
 corpora: the inspection report, the behaviour policy and the website each
@@ -723,10 +729,11 @@ warmer and stricter than the median school and 34 are neither, but 17 are
 warm without being strict and 17 strict without being warm: the four
 quadrants of the joint distribution are all populated, and a third of the
 visited schools sit off the diagonal. Between-school variation is
-genuinely narrow in the English system, and score compression partly
+probably narrow in the English system, and score compression partly
 reflects that: about two-thirds of secondary schools are graded Good and a
-further sixth Outstanding, and common inspection, curriculum and training
-pressures compress the distribution of any culture measure. A standard
+further sixth Outstanding, and a common inspection framework, curriculum and
+training regime would be expected to compress the distribution of any
+culture measure. A standard
 deviation of enacted warmth is therefore about one point on the ten-point
 scale, which is the unit in which the gaps below should be read.
 
@@ -1002,10 +1009,9 @@ There is no espoused teaching score: the two interview statements under the
 teaching heading concern staff turnover and morale, and they form the staff
 climate score SC instead. The systems count $S3$ enters no espoused score.
 
-Schools with only one of the two instruments carry only the corresponding score
-set: an interview without a visit yields espoused scores alone, a visit without
-an interview yields enacted scores alone. No imputation is attempted across the
-two, since the espoused and enacted scores are correlated at only
+Schools with an interview but no visit carry the espoused score set alone
+(every visited school was also interviewed). No imputation is attempted
+across the two, since the espoused and enacted scores are correlated at only
 $r = \GoldWarmthSplit$ (warmth) and $\GoldStrictnessSplit$ (strictness), too
 little for either to stand in for the other. All scores are finally rescaled
 from 0--5 to 0--10.
@@ -1055,7 +1061,7 @@ itself, so it cannot drift from what the scorer does.
     Bars show the percentage of schools in each region for the national population
     ($n = 3{,}312$), interviewed schools ($n = 300$), and visited schools ($n = 102$),
     the tier members matched to the school panel. Regions are ordered by national
-    share. Both samples significantly over-represent London and the South East; the
+    share. Both samples over-represent London, and the interviewed sample the South East; the
     visited sample is particularly concentrated in London (45.1\% versus 15.0\%
     nationally). $\chi^2$ goodness-of-fit tests reject equal regional composition
     for both samples ($p < .001$).}

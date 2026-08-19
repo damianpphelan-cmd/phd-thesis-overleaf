@@ -75,20 +75,21 @@ enacted & espoused & $\kappa_w$ \\
 \textit{Notes}: ``Prose'': the model reads a written marking scheme and
 returns a band in one call. ``Decomposed'': the model answers factual
 questions with verified quotations and the band is assigned by a rule in
-code; $^{a}$the behaviour-policy instrument reads the whole policy against a
+code. $^{a}$The behaviour-policy instrument reads the whole policy against a
 written decision procedure in one call and answers its steps, and the band is
 computed from the answers rather than returned by the model. Kappas are
-out-of-sample figures for the instrument in each row. The inspection-report
-rubric was calibrated to a different labelling scale from the reference
-labels, so its kappas carry a systematic offset and understate its agreement
-on ordering (rank correlations with the reference labels: $0.56$, $0.31$ and
-$0.59$ for strictness, warmth and teaching). All are model--model agreement
-against the majority label of three blind model raters. The inspection-report warmth score also tracks the
-inspection grade ($r = -0.40$) from grade-stripped text, and is used as a
-description of the report rather than a predictor. The website warmth
-instrument does not separate its two lowest bands reliably. The interview
-transcript instruments are methodological comparisons only; the espoused
-scores of record come from the statement battery, not the transcripts.
+out-of-sample figures for the instrument in each row, measuring model--model
+agreement against the majority label of three blind model raters. The
+inspection-report rubric was calibrated to a different labelling scale from
+the reference labels, so its kappas carry a systematic offset and understate
+its agreement on ordering (rank correlations with the reference labels:
+$0.56$, $0.31$ and $0.59$ for strictness, warmth and teaching). The
+inspection-report warmth score also tracks the inspection grade ($r =
+-0.40$) from grade-stripped text, and is used as a description of the report
+rather than a predictor. The website warmth instrument does not separate its
+two lowest bands reliably. The interview transcript instruments are
+methodological comparisons only; the espoused scores of record come from the
+statement battery, not the transcripts.
 \end{minipage}
 \end{table}
 """
