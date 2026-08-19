@@ -452,7 +452,9 @@ def build_scoring_guide() -> str:
             L.append(r'\multicolumn{3}{@{}l}{\textbf{' + construct + r'}} \\')
             group = construct
         items = '; '.join(ITEM_NAMES[c] for c in cols[key] if not c.endswith('_kw'))
-        L.append(f'{key} & {label} & ' + r'\textit{' + source + r'.} '
+        # the scorer's T2 is reported as SC (staff climate) everywhere in the chapter
+        shown = {'T2': 'SC'}.get(key, key)
+        L.append(f'{shown} & {label} & ' + r'\textit{' + source + r'.} '
                  + tex_escape(items) + r' \\')
     L += [r'\end{longtable}', '']
     return '\n'.join(L)
