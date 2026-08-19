@@ -31,8 +31,11 @@ more for warmth: headteachers rate their schools \GapWarmth{} points warmer on
 a ten-point scale than observers record and \GapStrictness{} points stricter,
 and the two outside sources that carry any warmth signal at all, the
 inspection report and a survey of parents, track what heads say about warmth
-rather than what observers see. The measures are carried into the following
-chapter, which asks what they predict.
+rather than what observers see. The paper also reports what was learned
+about scoring text with language models, chiefly that how closely a scorer
+agrees with the labels it was tuned on says nothing about whether its scores
+track the school. The measures are carried into the following chapter, which
+asks what they predict.
 \end{chapterabstract}
 
 % ---------------------------------------------------------------
@@ -558,9 +561,19 @@ correlated at $0.42$ on the same grade-stripped text and the same schools
 of \cref{tab:instruments_adopted}). The reason is that a rubric can be tuned toward what labellers reliably
 notice in a document, and what labellers reliably notice is not always what
 a school does. Agreement measures the first; only the visits measure the
-second. Every instrument here was therefore selected on its correlation with
-the observed measure, with agreement treated as a floor and never as the
-objective.
+second. The instruments were therefore chosen by a rule that treats
+agreement as a floor and never as the objective. The inspection-report and
+behaviour-policy instruments are the prose rubrics the project began with;
+decomposed versions of each were built to raise agreement, and a rebuild
+replaced the original only if it agreed at least as well with the labels and
+did no worse against the gold standard on the visited schools. For reports
+and policies no rebuild met that test and the prose rubrics were kept; for
+websites the decomposed rebuild did, and was kept; the interview-transcript
+instruments were decomposed from the start. Because the comparison that decided retention was made against the
+visited schools, the validity figures in \cref{tab:instruments_adopted} are
+for instruments chosen with those schools in view, and are to that extent
+optimistic; the prediction models below are evaluated with each school held
+out, but the choice of instrument was not.
 
 Second, asking the model for facts works better than asking it for
 judgements. A fact can be checked: does the page name a consequence? does the
@@ -609,7 +622,21 @@ therefore treated as a description of the report, never as a clean predictor
 of anything. The website warmth instrument cannot tell its two lowest bands
 apart reliably: the model reads the least warm websites as much the same,
 so the score carries less information at the bottom of its scale than at
-the top. The inspection-report teaching score, listed in
+the top.
+
+A reader will notice that the inspection-report warmth instrument is also the
+weakest of the retained instruments on agreement ($\kappa_w = 0.18$), and
+will ask whether the warmth null reported below is a failure of the
+instrument rather than of the text. Two facts argue that it is the text. The
+best-agreeing of the eleven warmth versions tried, which reaches
+$\kappa_w = 0.45$ against the same labels, correlates with observed warmth
+at $0.04$, no better than the instrument kept. And the retained instrument
+does read something in the report, since its scores track the espoused
+warmth measure ($0.29$) and the inspection grade ($-0.40$); what it reads is
+what inspectors write about relationships, and that does not track what
+observers see. The direct check, a human reading of the visited schools'
+reports set against the visits, is not available: the labelled packs were
+drawn from schools outside the visited sample. The inspection-report teaching score, listed in
 \cref{tab:instruments_adopted} because the rubric returns it alongside the
 other two, does not track observed teaching practice ($0.06$) and is not used
 anywhere in what follows.
@@ -819,8 +846,12 @@ Strictness is legible in public text and warmth is not. An inspection
 report's strictness score is correlated with observed strictness at
 $\CorrOfstedStrictness$, and a text-only model predicts it out of sample at
 $\RidgeBStrictness$; no text source is correlated with observed warmth, and
-the text-only warmth model has no out-of-sample skill. The asymmetry is a
-fact about the sources, not the instruments. Inspectors record conduct and
+the text-only warmth model has no out-of-sample skill. The asymmetry
+appears to lie in the sources rather than the instruments: the warmth
+instruments that agree best with their labels do no better against
+observation than those that agree worst, and the report's warmth score
+tracks what heads say and what inspectors conclude, so the instrument reads
+something, just not what observers see. Inspectors record conduct and
 enforcement in detail but describe relationships in a uniformly positive
 register. Schools' own documents describe intent, and websites are not
 written about the thing observers see. For the school-climate literature the result
