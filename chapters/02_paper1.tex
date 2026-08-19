@@ -456,8 +456,13 @@ is presented to the model with the instrument's rubric, and the model's answer
 is converted to a band. Two architectures are used at that last step. Which
 is better for a given source was not assumed; it was decided by the tests
 described below. \emph{Prose} instruments give the model a written marking
-scheme and take its band; the inspection-report instrument is of this kind,
-and scores its three constructs in a single call on the full report.
+scheme and have it read the whole document against it in one call. The
+inspection-report instrument is of this kind and returns a band for each of
+its three constructs. The behaviour-policy instrument is a variant: it gives
+the model the marking scheme as a written decision procedure, has it read
+the whole policy once and answer the procedure's steps, two of them with a
+quotation that is checked against the policy, and the band is then computed
+from the answers rather than returned by the model.
 \emph{Decomposed} instruments never ask for a band: the model answers a fixed
 set of factual questions, each answer supported by a verbatim quotation
 verified against the document, and the band is assigned by a fixed rule in
@@ -467,11 +472,9 @@ whether it describes a rule at the level of a particular (a phone, a
 corridor, a uniform item), whether it uses the vocabulary of expectation, and
 so on; each answer must be backed by a quotation that appears in the page,
 unbacked answers are discarded, and the band is assigned by a fixed ladder
-over the answers that survive. The behaviour-policy, website and
-interview-transcript instruments are of this kind; the behaviour-policy
-instrument differs from the others only in answering its questions for both
-constructs in one reading of the whole policy. The operative rubric and
-question set of every instrument is reproduced in \cref{app:2A:prompts}.
+over the answers that survive. The website and interview-transcript
+instruments are of this kind. The operative rubric and question set of every
+instrument is reproduced in \cref{app:2A:prompts}.
 
 Instruments were tuned against reference labels and then tested three ways.
 The reference labels were produced by three independent instances of a
@@ -558,23 +561,21 @@ The decomposed instruments therefore ask only for facts, count the verified
 answers in code, and assign the band by a written rule. The judgement is
 taken out of the model and put into a rule that anyone can read.
 
-Third, how an instrument is built changes how the two dimensions relate to
-each other in its scores. In the visited schools, warmth and strictness go
-together: the enacted scores are correlated at
-$\CorrWarmthStrictnessEnacted$. The prose instrument, which reads a report
-once and returns both scores from one reading, reproduces that: its two
-scores are correlated at $0.54$. Instruments that read for warmth in one call
-and for strictness in a separate call return scores correlated at only
-$0.08$ to $0.18$, and the behaviour-policy instrument, which reads once but
-answers isolated factual questions rather than forming a view of the
-document, sits at $0.22$. A scorer that answers a question about one passage
-at a time has no sense of the school as a whole; it returns readings of
-passages rather than a reading of a school, and so shows an independence
-between the dimensions that the schools do not show. This is not itself a
-flaw: a decomposed instrument measures what it is asked to measure, and
-whether the two dimensions should co-vary in text scores is a question the
-gold standard answers. But it means that a correlation between two text
-scores is partly a property of how they were scored.
+Third, the correlation between two text scores depends on how they were
+produced, and cannot be read as a fact about schools. In the visited schools,
+warmth and strictness go together: the enacted scores are correlated at
+$\CorrWarmthStrictnessEnacted$. The inspection-report instrument, which reads
+a report once and returns both scores from one reading, gives $0.54$; the
+behaviour-policy instrument, which also reads once but computes its bands
+from answers to a decision procedure, gives $0.22$; and the website and
+interview instruments, which score warmth in one call and strictness in a
+separate call from separately verified facts, give $0.08$ to $0.18$. Part of
+that range is the sources: an inspector describes conduct and relationships
+in one account, and a website need not. But part is the instrument. A scorer
+that answers a question about one passage at a time has no sense of the
+school as a whole, and returns readings of passages rather than a reading of
+a school. The practical consequence is that whether the two dimensions
+co-vary is a question for the gold standard, not for the text scores.
 
 Fourth, the model is part of the instrument. An unchanged rubric moved
 between models fell from $\kappa_w = 0.63$ to $0.12$, from substantial
@@ -825,9 +826,9 @@ scorer agrees with the labels it was tuned on says nothing about whether its
 scores track what happens in the school: across every version tested the two
 were unrelated, and the best-agreeing version was usually the worse measure.
 Instruments that ask for facts outperformed those that ask for judgements.
-Instruments that score passage by passage, in separate calls or through
-isolated factual questions, made the two dimensions look independent when
-observation shows they are not. An unchanged rubric moved between models
+How strongly two text scores correlate with each other depends on how they
+were produced, so the relation between the dimensions has to be read from
+observation, not from the text scores. An unchanged rubric moved between models
 lost most of its agreement. These results apply to any study that
 scores text with a language model against a set of labels, and they argue for
 testing every such instrument against something outside the labels rather
@@ -1072,8 +1073,8 @@ a cross-validated $R^2$ of $0.107$; the keyword baseline on the same documents
 reaches $r = 0.094$ and an $R^2$ of $0.008$, barely distinguishable from
 predicting the sample mean. Whatever the strictness score captures, it is not
 the frequency of particular words. It is located in an act of reading rather
-than in any countable property of the text, which is the opposite of the pattern
-a feature-representation artefact would produce.
+than in any countable property of the text, which is the opposite of what one
+would see if the score were merely picking up word frequencies.
 
 On warmth, neither specification recovers anything. Both select a penalty at or
 near the top of the grid and shrink almost entirely to the training mean, and
