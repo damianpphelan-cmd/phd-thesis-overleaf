@@ -117,7 +117,7 @@ answer it I fit prediction models on the schools where both the text scores
 and the gold standard exist, hold each school out in turn, and ask how well
 the predictions reproduce the gold standard. This is the measure of what the
 public record contains, and the answer decides what can be carried to the
-national population. As it turns out, that is one source and one dimension.
+national population. In the event, that is one source and one dimension.
 
 There are two main findings, and a third result about the scoring method.
 The first finding is that the two dimensions can be recovered to very
@@ -348,7 +348,7 @@ August 2024 against 15 per cent nationally, and their mean Progress~8 in
 recruiting through headteachers, since confident schools are the ones most
 likely to say yes, and it has two consequences. Estimates from the visited
 sample apply most directly to a population that is somewhat stronger than
-the national average. And because the sample under-represents the weakest
+the national average. Secondly, because the sample under-represents the weakest
 schools, the range of both culture and outcomes is restricted, which in the
 following chapter works against finding associations rather than for them.
 
@@ -612,7 +612,7 @@ The marking scheme and question set of every instrument is reproduced in
 
 Each instrument was developed, tested and selected using the same
 procedure. I set it out here step by step, because the order in which the
-steps were carried out is what keeps the tests honest.
+steps were carried out is what allows the tests to be trusted.
 \begin{enumerate}
 \item I wrote the marking scheme for each source, and labelled a
   \emph{development pack} of documents myself: 30 inspection reports, 25
@@ -774,8 +774,8 @@ model and put into a rule that anyone can read.
 
 The third is that the correlation between two text scores depends on how
 they were produced, and cannot be read as a fact about schools. In the
-visited schools, warmth and strictness go together: the enacted scores are
-correlated at $\CorrWarmthStrictnessEnacted$. The inspection-report
+visited schools, warmth and strictness go together, and the enacted scores
+are correlated at $\CorrWarmthStrictnessEnacted$. The inspection-report
 instrument, which reads a report once and returns both scores from one
 reading, gives $0.54$. The behaviour-policy instrument, which also reads
 once but computes its bands from answers to a decision procedure, gives
@@ -783,7 +783,7 @@ $0.22$. The website and interview instruments, which score warmth in one
 call and strictness in a separate call from separately verified facts, give
 $0.08$ to $0.18$. Part of that range is down to the sources, since an
 inspector describes conduct and relationships in one account and a website
-need not. But part of it is down to the instrument. A scorer that answers a
+need not. However, part of it is down to the instrument. A scorer that answers a
 question about one passage at a time has no sense of the school as a whole,
 and it returns readings of passages rather than a reading of a school. The
 practical consequence is that whether the two dimensions go together is a
@@ -815,7 +815,7 @@ and will ask whether the warmth null reported below is a failure of the
 instrument rather than of the text. Two facts suggest that it is the text.
 The best-agreeing of the eleven warmth versions I tried, which reaches
 $\kappa_w = 0.45$ against the same labels, correlates with observed warmth
-at $0.04$, which is no better than the instrument I kept. And the retained
+at $0.04$, which is no better than the instrument I kept. Secondly, the retained
 instrument does read something in the report, since its scores track the
 espoused warmth measure ($0.29$) and the inspection grade ($-0.40$). What it
 reads is what inspectors write about relationships, and that does not track
@@ -848,7 +848,7 @@ a small penalty on the coefficients trades a little bias for a useful
 reduction in variance. The penalty is chosen by leave-one-out
 cross-validation, and predictions are clipped to the 0--10 scale.
 Predictions are evaluated by leave-one-out cross-validation on the same
-schools. This is the honest metric here, because each school's prediction
+schools. This is the right metric here, because each school's prediction
 comes from a model that never saw it, so the reported correlation is what
 the model would achieve on a new school
 (\cref{tab:interview_model_loo,tab:national_model_loo}). The fitted
@@ -885,7 +885,7 @@ carry little, neither model's predictions are used as regressors in the
 following chapter. That chapter uses the enacted scores directly for the
 visited schools, and the inspection-report strictness score for the national
 extension. Since the other two sources add nothing, the text-only strictness
-prediction is in effect that score rescaled. What the prediction models
+prediction is essentially that score rescaled. What the prediction models
 establish is a fact about the public record: it can rank English secondary
 schools on strictness, and it cannot rank them on warmth.
 
@@ -897,7 +897,7 @@ This section reports what the measures show. Three results stand out. The
 enacted and espoused measures diverge, and they diverge more for warmth than
 for strictness. No source outside the visit tracks observed warmth, and the
 two sources that contain any information about warmth, the inspection report
-and the parent survey, track what heads say instead. And the text of
+and the parent survey, track what heads say instead. Finally, the text of
 behaviour policies is unrelated to observed practice.
 
 \textbf{Distributions.} \Cref{tab:score_dist} reported the measures for the
@@ -1027,7 +1027,7 @@ these measures, the warmest schools. The same result appears in the
 following chapter, where the behaviour-policy warmth score is, if anything,
 negatively associated with pupil progress.
 
-\textbf{What the text does and does not contain.} Two further results
+\textbf{What the inspection-report text does and does not contain.} Two further results
 qualify the inspection-report scores. The warmth score moves with the
 inspection grade ($r = -0.40$; a lower grade is a better school) even though
 every grade has been stripped from the text it reads, and it does so more
@@ -1104,7 +1104,7 @@ agree with the headteacher instead. The gap between what is said about a
 school and what is seen in it is specific to warmth, and it shows up in three
 independent accounts of the school, the headteacher's, the inspector's and
 the parents', which suggests that it is a feature of how schools present
-themselves rather than a quirk of any one measure. For the
+themselves rather than a peculiarity of any one measure. For the
 school-effectiveness tradition, which has measured ethos largely through
 leaders' and teachers' accounts, the result says which parts of those
 accounts can be trusted: the parts about whether systems are applied, and not
@@ -1118,7 +1118,7 @@ was usually the worse measure. Rules that ask the model for facts worked
 better than rules that ask it for judgements. How strongly two text scores
 correlate with each other depends on how they were produced, so the relation
 between the two dimensions has to be read from observation and not from the
-text scores. And the same rule moved to a different model lost most of its
+text scores. Finally, the same rule moved to a different model lost most of its
 agreement. These results apply to any study that scores text with a language
 model against a set of labels, and they argue for testing every such scoring
 rule against something outside the labels rather than against agreement
