@@ -610,36 +610,76 @@ survive. The website and interview-transcript instruments are of this kind.
 The marking scheme and question set of every instrument is reproduced in
 \cref{app:2A:prompts}.
 
-The instruments were tuned against reference labels and then tested in three
-ways. The reference labels were produced by three independent instances of
-a larger language model (Claude, of the Opus class). Each instance was given
-only the written rule and the documents, and was blind to the other two and
-to every model score, and the majority label was taken as the target. I
-drafted and revised the written rules, ruled on the boundary cases that the
-raters could not settle, and labelled the development packs myself. The
-agreement figures reported below are therefore model-to-model agreement, and
-the final arbiter of every instrument is not agreement but the gold
-standard. Agreement is measured by weighted kappa ($\kappa_w$), which is the
-standard statistic for agreement on an ordered scale. A value of 0 means
-agreement no better than chance and a value of 1 means perfect agreement,
-and a rating that is one band off is counted as a near miss rather than as a
-full disagreement. No instrument can be expected to reach 1. I applied the
+Each instrument was developed, tested and selected by the same procedure,
+which I set out here as a sequence because the order is what makes the tests
+mean something.
+\begin{enumerate}
+\item I wrote the marking scheme for each source, and labelled a
+  \emph{development pack} of documents myself: 30 inspection reports, 25
+  behaviour policies and 50 websites. The marking schemes were revised
+  against these packs, so every figure computed on them is a development
+  figure.
+\item Every version of every instrument was archived as it was written, so
+  that no version could be quietly replaced after the fact.
+\item A \emph{fresh pack} was then drawn for each source (60 inspection
+  reports, 50 behaviour policies, 60 websites, and 100 interview
+  transcripts) from schools outside the development pack, and labelled by
+  three independent instances of a larger language model (Claude, of the
+  Opus class). Each instance was given only the written rule and the
+  documents, was blind to the other two and to every model score, and the
+  majority label was taken as the \emph{reference label}. I ruled on the
+  boundary cases that the raters could not settle.
+\item Every archived version was scored once on the fresh pack, and
+  agreement with the reference labels was measured. This is the
+  out-of-sample agreement figure.
+\item Each candidate instrument was then tested against the gold standard on
+  the visited schools, and an instrument was retained by the rule described
+  below.
+\end{enumerate}
+Agreement is measured by weighted kappa ($\kappa_w$), which is the standard
+statistic for agreement on an ordered scale. A value of 0 means agreement no
+better than chance and a value of 1 means perfect agreement, and a rating
+that is one band off is counted as a near miss rather than as a full
+disagreement. No instrument can be expected to reach 1. I applied the
 written rules to the same development documents twice, two weeks apart, with
 $\kappa_w = 0.77$ between the two passes. A rater who agrees with himself at
 $0.77$ can be matched by another rater, however good, at no more than the
 square root of that, which is about $0.88$, and the reference raters, who
-apply the same rules, inherit the same ceiling. Tuning and testing were kept
-apart by design. Each instrument was developed on a labelled pack of
-documents, every version of it was archived, and every archived version was
-then scored once on a fresh pack of documents that no version had been tuned
-on.
+apply the same rules, inherit the same ceiling.
 
-The first test is agreement on documents the instrument was not tuned on:
-$\kappa_w$ against the reference labels on the fresh pack. Every in-sample
-figure had read high, and the out-of-sample figures were lower for every
-instrument. \Cref{tab:instruments_adopted} reports them for the instruments
-that were kept. The second test is validity against the gold standard on the
-visited schools, and it is run against both halves of the gold standard.
+Two questions arise about the reference labels, and both can be answered
+from the data. The first is why labels produced by a language model should
+be trusted as a reference at all. The answer is that where the reference
+rater and I labelled the same documents, it agreed with me about as well as
+I agree with myself. On the 30 development inspection reports a blind pass
+by the reference rater agreed with my labels at $\kappa_w = 0.75$ for
+warmth, $0.76$ for strictness and $0.79$ for teaching, pooled $0.78$, which
+is above my own test--retest figure of $0.77$. On the 50 development
+websites the two of us agreed far less well ($\ClaudeDamianWebS$ for
+strictness and $\ClaudeDamianWebW$ for warmth); the disagreement was
+directional rather than random, the reference rater reading the sites as
+stricter and less warm than I did, and it is one of the reasons the website
+instruments are treated with more caution below. The second question is how
+the instruments of record compare with a human reading. The last column of
+\cref{tab:instruments_adopted} gives each instrument's agreement with my own
+labels on its development pack. The inspection-report strictness and
+teaching instruments agree with me at $\HumKOfstedS$ and $\HumKOfstedT$,
+the behaviour-policy strictness instrument at $\HumKBPS$, and the warmth
+instruments and the website instruments less well ($\HumKOfstedW$,
+$\HumKBPW$, $\HumKWebS$ and $\HumKWebW$). These are development-pack
+figures, and where an instrument agrees better with the reference labels
+than with mine, as the website instruments do, that is because it was tuned
+towards the reference labels, which is stated here rather than left for the
+reader to infer. The instruments also reproduce themselves: scoring the same
+document twice returns the same band about 92 per cent of the time.
+
+The instruments were then tested in three ways. The first test is agreement
+on documents the instrument was not tuned on: $\kappa_w$ against the
+reference labels on the fresh pack. Every in-sample figure had read high,
+and the out-of-sample figures were lower for every instrument.
+\Cref{tab:instruments_adopted} reports them for the instruments that were
+kept. The second test is validity against the gold standard on the visited
+schools, and it is run against both halves of the gold standard.
 Correlation with the enacted score asks whether a source reads what the
 school does, and correlation with the espoused score asks whether it reads
 what the school says about itself. A source that is written by the school
@@ -699,12 +739,24 @@ replaced the original only if it agreed at least as well with the labels and
 did no worse against the gold standard on the visited schools. For reports
 and policies no rebuild met that test and the prose versions were kept; for
 websites the decomposed rebuild did, and was kept; and the
-interview-transcript instruments were decomposed from the start. Because
-the comparison that decided which instrument was retained was made against
-the visited schools, the validity figures in \cref{tab:instruments_adopted}
-are for instruments chosen with those schools in view, and they are to that
-extent optimistic. The prediction models below are evaluated with each
-school held out, but the choice of instrument was not.
+interview-transcript instruments were decomposed from the start. It is
+worth being exact about how much choosing was involved, because a choice
+made against the visited schools makes the validity figures optimistic. For
+each source the comparison was between the prose instrument and the
+best-agreeing decomposed rebuild, that is, between two candidates per
+construct, and the rebuilt versions are the ones that agreed best with the
+reference labels. For inspection reports the choice mattered: the rebuilt
+strictness instrument correlated with observed strictness at $0.07$ against
+the prose instrument's $0.42$, and the rebuilt warmth instrument with
+observed warmth at $0.04$ against the prose instrument's $0.06$ (rank
+correlations). For behaviour
+policies and websites it did not matter, because every candidate, prose or
+rebuilt, was uncorrelated with the observed measures, so no choice could
+have raised those figures. The optimism therefore attaches to the
+inspection-report figures, and it is the optimism of having picked the
+better of two candidates on the same hundred schools. The prediction models
+below are evaluated with each school held out, but the choice of instrument
+was not.
 
 The second is that asking the model for facts works better than asking it
 for judgements. A fact can be checked. Does the page name a consequence? Does
