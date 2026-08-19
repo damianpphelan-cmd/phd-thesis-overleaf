@@ -10,38 +10,31 @@
 \end{center}
 
 \begin{chapterabstract}
-How warm a school is towards its pupils, and how strictly it runs, are widely
-thought to affect how much progress pupils make. Neither is measured in any
-dataset that covers every school. In this paper I construct measures of these
-two dimensions of school culture for English secondary schools and ask how
-well each can be recovered from data that are available for all of them. I
-collected detailed data for a gold-standard measure in \NTierOne{} schools,
-through a day of structured observation in each school and an interview with
-its headteacher. The observations give an ``enacted'' score, which records
-what the school does, and the interview gives an ``espoused'' score, which
-records what the headteacher says the school does. For every school in
-England I then scored three public documents, the inspection report, the
-behaviour policy and the website, using a large language model that reads
-each document against a written marking scheme, and I fitted models on the
-\NTierOne{} schools to see how well those scores predict the observed
-measures. There are two main findings. The first is that strictness can be
-predicted reasonably well from publicly available data but warmth cannot:
-the strictness score from inspection reports is correlated with observed
-strictness at $\CorrOfstedStrictness$, and a model using only the text
-scores predicts observed strictness for schools it was not fitted on with a
-correlation of $\RidgeBStrictness$, whereas no text source is correlated
-with observed warmth. The second is that what headteachers say about their
-school's warmth is only weakly related to what observers record: of the
+How warm a school is towards its pupils, and how strictly it runs, are
+widely thought to affect how much progress pupils make, yet neither is
+measured in any dataset that covers every school. In this paper I construct
+measures of these two dimensions of school culture for English secondary
+schools and ask how well each can be recovered from data that exist for all
+of them. I collected data for a gold-standard measure in \NTierOne{}
+schools, through a day of structured observation in each school and an
+interview with its headteacher. The observations give an ``enacted'' score,
+which records what the school does, and the interview an ``espoused'' score,
+which records what the headteacher says it does. For every school in England
+I then scored the inspection report, the behaviour policy and the website
+using a large language model reading each document against a written
+marking scheme, and I tested how well those scores predict the observed
+measures. There are two main findings. Strictness can be predicted to a
+modest but useful degree from public text (the inspection-report score is
+correlated with observed strictness at $\CorrOfstedStrictness$, and a
+text-only model predicts it for schools it was not fitted on at
+$\RidgeBStrictness$), whereas warmth cannot. And what headteachers say about
+their school's warmth bears little relation to what observers record: of the
 \TopQN{} schools whose heads rated them in the top quarter for warmth, only
-\TopQWMatch{} were in the top quarter as observed, and \TopQWBelowMedian{}
-were below the median. The two outside sources that contain any information
-about warmth, the inspection report and a survey of parents, agree with the
-headteacher rather than with the observers. The paper also reports what I
-learned about scoring text with a large language model. The most important
-lesson is that how closely a scoring rule agrees with the labels it was
-developed against says nothing about whether its scores reflect what happens
-in the school. The measures are used in the following chapter to ask what
-they predict.
+\TopQWMatch{} were there as observed, and \TopQWBelowMedian{} were below the
+median. The paper also reports what I learned about scoring text with a
+language model, chiefly that a scoring rule's agreement with the labels it
+was developed against says nothing about whether its scores reflect what
+happens in the school.
 \end{chapterabstract}
 
 % ---------------------------------------------------------------
@@ -121,7 +114,7 @@ national population. In the event, that is one source and one dimension.
 
 There are two main findings, and a third result about the scoring method.
 The first finding is that the two dimensions can be recovered to very
-different degrees. Strictness scored from the text of inspection reports is
+different degrees, and that even for strictness the recovery is modest. Strictness scored from the text of inspection reports is
 correlated with observed strictness at $r = \CorrOfstedStrictness$, and a
 prediction model using only the text scores, fitted with each school held out
 in turn, reproduces observed strictness with a correlation of
@@ -176,7 +169,9 @@ observation forms I use draw on those two domains, but they aggregate across
 lessons and out-of-lesson settings so as to characterise a school rather
 than a teacher. To my knowledge no study has combined such observation with
 a leadership interview and public text in order to separate what a school
-does from what it says. The literature on high-expectation, high-structure
+does from what it says.
+
+The literature on high-expectation, high-structure
 charter and academy models
 \citep{abdulkadiroglu2011,angrist2010,dobbie2013,fryer2014} finds large
 effects of a bundle of practices in which strict behaviour norms and warm,
@@ -572,8 +567,10 @@ can be observed, and the richest thing that can be observed is text. Each of
 the three collections of documents was scored by a large language model. The
 model reads one document about one school and returns a score from 1 to 5
 for warmth and for strictness (and, for inspection reports, for teaching).
-All of the scoring uses gpt-4o-mini with the sampling temperature set to
-zero. Every score records the version of the instructions given to the
+All of the scoring uses OpenAI's gpt-4o-mini (the July 2024 release) with
+the sampling temperature set to zero, and the reference labels described
+below were produced with Anthropic's Claude (an Opus-class model, August
+2026). Every score records the version of the instructions given to the
 model, a hash of the marking scheme and the model version, and identical
 inputs are served from a cache, so that any score in the dataset can be
 traced back to the exact instructions that produced it. Throughout the rest
@@ -625,10 +622,11 @@ steps were carried out is what allows the tests to be trusted.
   reports, 50 behaviour policies, 60 websites, and 100 interview
   transcripts) from schools outside the development pack, and labelled by
   three independent instances of a larger language model (Claude, of the
-  Opus class). Each instance was given only the written rule and the
+  Opus class, as noted above). Each instance was given only the written rule and the
   documents, was blind to the other two and to every model score, and the
-  majority label was taken as the \emph{reference label}. I ruled on the
-  boundary cases that the raters could not settle.
+  majority label was taken as the \emph{reference label}. In the three
+  cases, out of roughly 500 labels, where the three raters gave three
+  different bands, I made the ruling; everywhere else the majority stood.
 \item Every archived version was scored once on the fresh pack, and
   agreement with the reference labels was measured. This is the
   out-of-sample agreement figure.
@@ -653,14 +651,18 @@ be trusted as a reference at all. The answer is that where the reference
 rater and I labelled the same documents, it agreed with me about as well as
 I agree with myself. On the 30 development inspection reports, a blind pass
 by the reference rater agreed with my labels at $\kappa_w = 0.75$ for
-warmth, $0.76$ for strictness and $0.79$ for teaching, or $0.78$ when the
-three are pooled. This is above my own test--retest figure of $0.77$. On
+warmth, $0.76$ for strictness and $0.79$ for teaching, or approximately
+$0.78$ when the three are pooled. This is about the level of my own
+test--retest figure of $0.77$, which on 30 documents is as close as two
+raters can be expected to get. On
 the 50 development websites the two of us agreed far less well, at
 $\ClaudeDamianWebS$ for strictness and $\ClaudeDamianWebW$ for warmth. The
 disagreement there was directional rather than random, in that the reference
-rater read the sites as stricter and less warm than I did. This is one of
-the reasons why the website instruments are treated with more caution
-below. The second question is how
+rater read the sites as stricter and less warm than I did. The honest conclusion to draw from this is that warmth, and to a lesser
+extent strictness, are not reliably identifiable from a school's website by
+any reader, human or model, and the website instruments should be read in
+that light. Nothing in the paper depends on them: every result that uses a
+website score is a null. The second question is how
 the instruments of record compare with a human reading. The last column of
 \cref{tab:instruments_adopted} gives each instrument's agreement with my own
 labels on its development pack. The inspection-report strictness and
@@ -1078,8 +1080,8 @@ and public text, and asked how well each dimension can be recovered from
 data that exist for every school. There are three main things to take from
 it.
 
-The first is that strictness can be predicted reasonably well from publicly
-available data and warmth cannot. The strictness score read from an
+The first is that strictness can be predicted to a modest but useful degree
+from publicly available data, and warmth cannot be predicted at all. The strictness score read from an
 inspection report is correlated with observed strictness at
 $\CorrOfstedStrictness$, and a model that uses only text scores predicts
 observed strictness for schools it was not fitted on with a correlation of
