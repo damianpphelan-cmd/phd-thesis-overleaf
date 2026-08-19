@@ -12,9 +12,15 @@
     per school, so it decomposes school / rater only.
 
 (2) REPORT AGE. Inspection reports predate the fieldwork by varying amounts. The
-    anchor is the interview date (the visit workbook carries no date; visits
-    followed the interview). Reports the distribution of report age and the
-    strictness / warmth validity correlations by age band.
+    anchor is the VISIT date (Novel Data/School Visits.xlsx, 'Date of Visit'; names
+    joined to URN through the two lookups plus three hand matches). Reports the
+    distribution of report age and the strictness / warmth validity correlations by
+    age band.
+
+(3) DISATTENUATION. Composite reliability of each enacted score from its two
+    halves (Spearman-Brown on the in-lesson / out-of-lesson correlation), Cronbach
+    alpha of the espoused statement scales, and the split and criterion
+    correlations corrected for unreliability.
 
 Also writes bootstrap 95% CIs for the headline correlations and a bootstrap test
 of the warmth-vs-strictness split difference, as macros.
@@ -161,13 +167,34 @@ for c in ["gs_warmth_enacted", "gs_strictness_enacted", "gs_warmth_espoused", "g
           "ofsted_LLMWarmthScore", "ofsted_LLMStrictnessScore", "web_LLMStrictnessScore_v15"]:
     d[c] = pd.to_numeric(d[c], errors="coerce")
 d["ofsted_dt"] = pd.to_datetime(d["ofsted_date"], dayfirst=True, errors="coerce")
-iv = read_excel_safe(IV, "Scoring")
-iv["school"] = iv["School"].map(norm_name)
-iv["iv_dt"] = pd.to_datetime(iv["Date of interview"], errors="coerce")
-lk = pd.read_csv(ROOT / "interview_urn_lookup.csv"); lk["urn"] = lk["urn"].astype(str)
-iv = iv.merge(lk.rename(columns={"interview_name": "school"}), on="school", how="left")
-d = d.merge(iv[["urn", "iv_dt"]].dropna().drop_duplicates("urn"), on="urn", how="left")
-d["age_y"] = (d["iv_dt"] - d["ofsted_dt"]).dt.days / 365.25
+import difflib
+vis = pd.read_excel(ROOT / "Novel Data" / "School Visits.xlsx", sheet_name="Sheet1")[["School Name", "Date of Visit"]]
+vis = vis.dropna(subset=["School Name"])
+vis["school"] = vis["School Name"].map(lambda x: " ".join(str(x).replace("\n", " ").strip().lower().split()))
+vis["visit_dt"] = pd.to_datetime(vis["Date of Visit"], errors="coerce")
+lkv = pd.read_csv(ROOT / "visit_urn_lookup.csv"); lki = pd.read_csv(ROOT / "interview_urn_lookup.csv")
+names = {**dict(zip(lki.interview_name, lki.urn.astype(str))), **dict(zip(lkv.visit_name, lkv.urn.astype(str)))}
+HAND = {"trinity church of england school, belvedere": "136538", "marylebone school": "140884",
+        "framwellgate school durham": "137696"}
+def _strip(x): return re.sub(r"[^a-z0-9 ]", "", x.replace("saint ", "st ").replace("the ", "").replace(" school", "").replace(" academy", ""))
+pool = {_strip(k): u for k, u in names.items()}
+def to_urn(x):
+    if x in HAND: return HAND[x]
+    if x in names: return names[x]
+    c = difflib.get_close_matches(_strip(x), list(pool), n=1, cutoff=0.85)
+    return pool[c[0]] if c else None
+vis["urn"] = vis["school"].map(to_urn)
+assert vis["urn"].notna().all(), vis.loc[vis.urn.isna(), "school"].tolist()
+d = d.merge(vis[["urn", "visit_dt"]].drop_duplicates("urn"), on="urn", how="left")
+d["age_y"] = (d["visit_dt"] - d["ofsted_dt"]).dt.days / 365.25
+# espoused scale reliability (Cronbach alpha) from the statement battery
+iv = read_excel_safe(IV, "Scoring"); iv.columns = [f"c{i}" for i in range(iv.shape[1])]
+def alpha(cols):
+    X = iv[cols].apply(pd.to_numeric, errors="coerce").dropna(); k = X.shape[1]
+    return k / (k - 1) * (1 - X.var(ddof=1).sum() / X.sum(axis=1).var(ddof=1))
+alpha_w3, alpha_s4 = alpha(["c68", "c73", "c74"]), alpha(["c67", "c71", "c72", "c75"])
+# composite reliability of the enacted scores (Spearman-Brown on the two halves)
+rel_enW = 2 * r_w_halves / (1 + r_w_halves); rel_enS = 2 * r_s_halves / (1 + r_s_halves)
 v = d[d.gs_strictness_enacted.notna() & d.ofsted_LLMStrictnessScore.notna() & d.age_y.notna()].copy()
 age_q = v["age_y"].quantile([0.25, 0.5, 0.75]).round(1).tolist()
 age_share_3y = float((v["age_y"] > 3).mean())
@@ -205,6 +232,17 @@ if loo_path.exists():
         if len(sub):
             loo_ci = boot_r(sub.y, sub.y_loo)
 
+# disattenuated correlations
+r_split_w = stats.pearsonr(b.gs_warmth_enacted, b.gs_warmth_espoused)[0] if False else None
+bb = d.dropna(subset=["gs_warmth_enacted", "gs_warmth_espoused", "gs_strictness_enacted", "gs_strictness_espoused"])
+rw = stats.pearsonr(bb.gs_warmth_enacted, bb.gs_warmth_espoused)[0]
+rs = stats.pearsonr(bb.gs_strictness_enacted, bb.gs_strictness_espoused)[0]
+dis_w = rw / np.sqrt(rel_enW * alpha_w3); dis_s = rs / np.sqrt(rel_enS * alpha_s4)
+vs0 = d[d.gs_strictness_enacted.notna() & d.ofsted_LLMStrictnessScore.notna()]
+r_ofs = stats.pearsonr(vs0.ofsted_LLMStrictnessScore, vs0.gs_strictness_enacted)[0]
+dis_ofs = r_ofs / np.sqrt(rel_enS)
+print(f"alphas W3 {alpha_w3:.2f} S4 {alpha_s4:.2f}; composite rel W {rel_enW:.2f} S {rel_enS:.2f}; "
+      f"disattenuated split W {dis_w:.2f} S {dis_s:.2f}; ofsted S {dis_ofs:.2f}")
 print(f"in-lesson W1 {dec['W1']}\nin-lesson S1 {dec['S1']}\nteaching T1 {dec['T1']}")
 print(f"outside W2 {odec['W2']}\noutside S2 {odec['S2']}")
 print(f"halves r: warmth {r_w_halves:.3f}, strictness {r_s_halves:.3f}; n={len(halves)}")
@@ -260,6 +298,9 @@ nums = ("% Auto-generated by thesis/make_reliability_and_age.py -- do not edit b
         + mac("LessonsOneRater", str(n_raters_lesson.get(1, 0))) + mac("LessonsTwoRaters", str(n_raters_lesson.get(2, 0)))
         + mac("LessonsThreeRaters", str(n_raters_lesson.get(3, 0)))
         + mac("DaysOneRater", str(n_raters_day.get(1, 0))) + mac("DaysTwoPlusRaters", str(n_raters_day.get(2, 0) + n_raters_day.get(3, 0)))
+        + mac("AlphaWThree", f"{alpha_w3:.2f}") + mac("AlphaSFour", f"{alpha_s4:.2f}")
+        + mac("RelEnactedW", f"{rel_enW:.2f}") + mac("RelEnactedS", f"{rel_enS:.2f}")
+        + mac("DisSplitW", f"{dis_w:.2f}") + mac("DisSplitS", f"{dis_s:.2f}") + mac("DisOfstedS", f"{dis_ofs:.2f}")
         + mac("AgeQOne", f"{age_q[0]:.1f}") + mac("AgeMedian", f"{age_q[1]:.1f}") + mac("AgeQThree", f"{age_q[2]:.1f}")
         + mac("AgeShareOverThree", pct(age_share_3y))
         + mac("RStrictRecent", f"{r_s_recent:.2f}") + mac("RStrictOlder", f"{r_s_older:.2f}")
