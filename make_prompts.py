@@ -7,7 +7,7 @@ diverge from what the thesis claims was administered.
 
 19 Aug 2026 (Damian's ruling): the appendix carries EXACTLY the instruments in
 Chapter 2's Table 2.3 and nothing else -- inspection report (prose), behaviour
-policy v4 (decomposed, one call), website warmth v18 and strictness v15 (decomposed), website
+policy v4 (prose decision procedure, one call), website warmth v18 and strictness v15 (decomposed), website
 religious character (classifier), interview strictness v13 and warmth v15
 (decomposed, methodological comparisons). Interview teaching and faith
 prominence are not in the chapter and are not reproduced. Prompt-version

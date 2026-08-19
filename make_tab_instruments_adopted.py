@@ -26,8 +26,8 @@ rows = [
     ("Inspection report", "Warmth", "Prose", "ofsted_LLMWarmthScore", "gs_warmth_enacted", "gs_warmth_espoused", "0.45"),
     ("Inspection report", "Teaching", "Prose", "ofsted_LLMTeachingScore", "gs_teaching_enacted", None, "0.75"),
     None,
-    ("Behaviour policy", "Strictness", "Decomposed$^{a}$", "bp_LLMStrictnessScore_v4", "gs_strictness_enacted", "gs_strictness_espoused", "0.76"),
-    ("Behaviour policy", "Warmth", "Decomposed$^{a}$", "bp_LLMWarmthScore_v4", "gs_warmth_enacted", "gs_warmth_espoused", "0.76"),
+    ("Behaviour policy", "Strictness", "Prose$^{a}$", "bp_LLMStrictnessScore_v4", "gs_strictness_enacted", "gs_strictness_espoused", "0.76"),
+    ("Behaviour policy", "Warmth", "Prose$^{a}$", "bp_LLMWarmthScore_v4", "gs_warmth_enacted", "gs_warmth_espoused", "0.76"),
     None,
     ("Website", "Strictness", "Decomposed", "web_LLMStrictnessScore_v15", "gs_strictness_enacted", "gs_strictness_espoused", "0.66"),
     ("Website", "Warmth", "Decomposed", "web_LLMWarmthScore_v18", "gs_warmth_enacted", "gs_warmth_espoused", "0.69"),
@@ -71,8 +71,9 @@ enacted & espoused & $\kappa_w$ \\
 \textit{Notes}: ``Prose'': the model reads a written marking scheme and
 returns a band in one call. ``Decomposed'': the model answers factual
 questions with verified quotations and the band is assigned by a rule in
-code; $^{a}$the behaviour-policy instrument answers its questions for both
-constructs in one reading of the whole policy. Kappas are model--model agreement against the majority label of three
+code; $^{a}$the behaviour-policy instrument reads the whole policy against a
+written decision procedure in one call and answers its steps, and the band is
+computed from the answers rather than returned by the model. Kappas are model--model agreement against the majority label of three
 blind model raters. The inspection-report warmth score also tracks the
 inspection grade ($r = -0.40$) from grade-stripped text, and is used as a
 description of the report rather than a predictor. The website warmth
