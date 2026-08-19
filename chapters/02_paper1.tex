@@ -716,24 +716,25 @@ and the first is distinguishable from zero while the second is not.
 
 \input{tables/tab_instruments_adopted}
 
-The testing produced four results which governed which instruments were
-kept. Each of them is a lesson about measuring with language models rather
-than about schools, and I set them out in turn.
+The testing produced four results which determined which instruments were
+kept. Each of them says something about measuring with language models
+rather than about schools, and I set them out in turn.
 
-The first is that agreement with the labels and correlation with the gold
-standard are unrelated across versions of an instrument, and that the
-version which agreed best with its labels was usually the one that tracked
-the school worst. The inspection-report strictness instrument that agreed
-best with its labels correlated with observed strictness at $0.07$; the
-prose version, which agreed less well, correlated at $0.42$ on the same
+The first result is that agreement with the labels and correlation with the
+gold standard are unrelated across the versions of an instrument. In fact,
+the version which agreed best with its labels was usually the one that
+tracked the school worst. For example, the inspection-report strictness
+instrument that agreed best with its labels had a correlation of only
+$0.07$ with observed strictness, whereas the prose version, which agreed
+less well with the labels, had a correlation of $0.42$ on the same
 grade-stripped text and the same schools (these are rank correlations; the
 Pearson figure for the prose version is the $0.40$ of
-\cref{tab:instruments_adopted}). The reason is that a marking scheme can be
-tuned towards what labellers reliably notice in a document, and what
-labellers reliably notice is not always what a school does. Agreement
-measures the first of these, and only the visits measure the second. The
-instruments were therefore chosen by a rule that treats agreement as a
-floor and never as the objective. The inspection-report and behaviour-policy
+\cref{tab:instruments_adopted}). The reason for this is that a marking
+scheme can be tuned towards whatever labellers reliably notice in a
+document, and what labellers reliably notice is not always what a school
+actually does. Agreement measures the first of these things, and only the
+visits measure the second. This is why the instruments were chosen by a rule
+that treats agreement as a floor and never as the objective. The inspection-report and behaviour-policy
 instruments are the prose marking schemes that the project began with.
 Decomposed versions of each were built to raise agreement, and a rebuild
 replaced the original only if it agreed at least as well with the labels and
@@ -759,70 +760,76 @@ better of two candidates on the same hundred schools. The prediction models
 below are evaluated with each school held out, but the choice of instrument
 was not.
 
-The second is that asking the model for facts works better than asking it
-for judgements. A fact can be checked. Does the page name a consequence? Does
-the report say that pupils arrive on time? The model's answers to such
-questions are stable and can be verified against the text. A judgement
-cannot be checked. How strict does the document sound? The answer to that
-depends partly on how lenient or severe the model itself tends to be when it
-judges, and that tendency is not fixed: it differs from one version of the
-model to the next, so the same document can move between bands for reasons
-that have nothing to do with the document. The decomposed instruments
-therefore ask only for facts, count the verified answers in code, and assign
-the band by a written rule. In effect the judgement is taken out of the
-model and put into a rule that anyone can read.
+The second result is that asking the model for facts works better than
+asking it for judgements. The difference is that a fact can be checked. If
+the question is whether the page names a consequence, or whether the report
+says that pupils arrive on time, the model's answer is stable and it can be
+verified against the text. A judgement cannot be checked in the same way.
+If the question is how strict the document sounds, the answer depends
+partly on how lenient or severe the model itself tends to be when it judges,
+and that tendency is not fixed. It differs from one version of the model to
+the next, which means that the same document can move between bands for
+reasons that have nothing to do with the document. This is why the
+decomposed instruments ask only for facts, count the verified answers in
+code, and assign the band using a written rule. The judgement is taken out
+of the model and put into a rule that anyone can read.
 
-The third is that the correlation between two text scores depends on how
-they were produced, and cannot be read as a fact about schools. In the
-visited schools, warmth and strictness go together, and the enacted scores
-are correlated at $\CorrWarmthStrictnessEnacted$. The inspection-report
-instrument, which reads a report once and returns both scores from one
-reading, gives $0.54$. The behaviour-policy instrument, which also reads
-once but computes its bands from answers to a decision procedure, gives
+The third result is that the correlation between two text scores depends
+on how they were produced, and so it cannot be read as a fact about
+schools. In the visited schools warmth and strictness go together, and the
+enacted scores are correlated at $\CorrWarmthStrictnessEnacted$. The
+inspection-report instrument, which reads a report once and returns both
+scores from that one reading, gives a correlation between the two of
+$0.54$. The behaviour-policy instrument, which also reads the document once
+but computes its bands from the answers to a decision procedure, gives
 $0.22$. The website and interview instruments, which score warmth in one
 call and strictness in a separate call from separately verified facts, give
-$0.08$ to $0.18$. Part of that range is down to the sources, since an
-inspector describes conduct and relationships in one account and a website
-need not. However, part of it is down to the instrument. A scorer that answers a
-question about one passage at a time has no sense of the school as a whole,
-and it returns readings of passages rather than a reading of a school. The
-practical consequence is that whether the two dimensions go together is a
-question for the gold standard, not for the text scores.
+between $0.08$ and $0.18$. Part of that range is down to the sources, since
+an inspector describes conduct and relationships in a single account and a
+website need not. However, part of it is down to the instrument. A scorer
+that answers a question about one passage at a time has no sense of the
+school as a whole, and it returns readings of passages rather than a
+reading of a school. The practical consequence is that whether the two
+dimensions go together is a question that has to be answered from the gold
+standard, and not from the text scores.
 
-The fourth is that the model is part of the instrument. The same marking
-scheme moved from one model to another fell from $\kappa_w = 0.63$ to
-$0.12$, that is from substantial agreement to almost none, with the text and
-the labels held fixed. Each instrument is therefore pinned to the model it
-was tested with, and a change of model is treated as a new instrument to be
-tested again rather than as an upgrade.
+The fourth result is that the model is part of the instrument. When the
+same marking scheme was moved from one model to another, agreement fell
+from $\kappa_w = 0.63$ to $0.12$, that is, from substantial agreement to
+almost none, even though the text and the labels were held fixed. For this
+reason each instrument is pinned to the model it was tested with, and a
+change of model is treated as a new instrument that has to be tested again,
+rather than as an upgrade.
 
-Two of the instruments that were kept have a weakness that should be stated
-once, here, and borne in mind wherever their scores appear. The
-inspection-report warmth score moves with the school's inspection grade ($r
-= -0.40$, negative because 1 is Outstanding and 4 is Inadequate) even though
-every grade has been removed from the text it reads, and it does so more
-strongly than the reference raters reading the same text ($-0.25$). The
-model is picking up the tone in which inspectors write about a school they
-rate highly. The score is therefore treated as a description of the report,
-and never as a clean predictor of anything. The website warmth instrument
-cannot tell its two lowest bands apart reliably: the model reads the least
-warm websites as much the same, so the score carries less information at
-the bottom of its scale than at the top.
+Two of the instruments that were kept have a weakness which I state once
+here, and which should be borne in mind wherever their scores appear. The
+first is that the inspection-report warmth score moves with the school's
+inspection grade ($r = -0.40$; the correlation is negative because 1 is
+Outstanding and 4 is Inadequate) even though every grade has been removed
+from the text it reads, and it does so more strongly than the reference
+raters reading the same text ($-0.25$). In other words, the model is picking
+up the tone in which inspectors write about a school that they rate highly.
+The score is therefore treated as a description of the report, and never as
+a clean predictor of anything. The second is that the website warmth
+instrument cannot tell its two lowest bands apart reliably. The model reads
+the least warm websites as much the same, so the score contains less
+information at the bottom of its scale than at the top.
 
 A reader will notice that the inspection-report warmth instrument is also
 the weakest of the retained instruments on agreement ($\kappa_w = 0.18$),
-and will ask whether the warmth null reported below is a failure of the
-instrument rather than of the text. Two facts suggest that it is the text.
-The best-agreeing of the eleven warmth versions I tried, which reaches
-$\kappa_w = 0.45$ against the same labels, correlates with observed warmth
-at $0.04$, which is no better than the instrument I kept. Secondly, the retained
-instrument does read something in the report, since its scores track the
-espoused warmth measure ($0.29$) and the inspection grade ($-0.40$). What it
-reads is what inspectors write about relationships, and that does not track
-what observers see. The direct check, which would be a human reading of the
-visited schools' reports set against the visits, is not available, because
-the labelled packs were drawn from schools outside the visited sample. The
-inspection-report teaching score, which is listed in
+and will reasonably ask whether the warmth null reported below is a failure
+of the instrument rather than of the text. Two facts suggest that it is the
+text. The first is that the best-agreeing of the eleven warmth versions I
+tried, which reaches $\kappa_w = 0.45$ against the same labels, has a
+correlation of only $0.04$ with observed warmth, which is no better than
+the instrument I kept. The second is that the retained instrument does read
+something in the report, since its scores track the espoused warmth measure
+($0.29$) and the inspection grade ($-0.40$). What it reads is what inspectors
+write about relationships, and that does not track what observers see. The
+direct check, which would be a human reading of the visited schools'
+reports set against the visits, is not available, because the labelled
+packs were drawn from schools outside the visited sample. It should also be
+noted that the inspection-report teaching score, which is listed in
 \cref{tab:instruments_adopted} because the marking scheme returns it
 alongside the other two, does not track observed teaching practice ($0.06$)
 and is not used anywhere in what follows.
@@ -1150,12 +1157,13 @@ in terms of pupil progress.
 \vspace{2\baselineskip}
 \begin{center}
 \begin{minipage}{0.82\linewidth}
-\noindent This appendix collects the supporting material for the measurement
-framework, in the order the chapter uses it: how the visit and interview items
-combine into scores; the two observation forms and the interview guide
-as administered; the inter-rater reliability tables; the sample
-characteristics and corpus coverage; the specification of the prediction
-models; and, last, the operative text of every language-model scoring rule.
+\noindent This appendix collects the supporting material for the chapter,
+in the order in which the chapter uses it. It sets out how the visit and
+interview items combine into scores, reproduces the two observation forms and
+the interview guide as they were administered, gives the inter-rater
+reliability tables, describes the samples and the coverage of the text
+collections, specifies the prediction models, and finally reproduces the
+text of every marking scheme given to the language model.
 \end{minipage}
 \end{center}
 \clearpage
@@ -1165,65 +1173,70 @@ models; and, last, the operative text of every language-model scoring rule.
 \section{Scoring Guide and Item Definitions}
 \label{app:2A:guide}
 
-This section documents how the individual proforma items combine into the nine
-sub-scores and the two score sets. The items themselves---question
-wording, response format, and the anchor description attached to each rating
-level---are reproduced in full in \cref{app:2A:interview_guide} for the interview
-and \cref{app:2A:visit_protocol} for the two observation forms.
+This section sets out how the individual items on the forms combine into
+the nine sub-scores and the two sets of scores. The items themselves, that
+is, the question wording, the response format and the anchor description
+attached to each rating level, are reproduced in full in
+\cref{app:2A:interview_guide} for the interview and in
+\cref{app:2A:visit_protocol} for the two observation forms.
 
-Every item is recorded on a 1--5 scale. Two observation items admit a zero code
-with a distinct meaning: a zero on \emph{response of pupils to sanctions} records
-that no sanction was issued during the lesson, and a zero on \emph{effectiveness
-of pupil discussion} records that no discussion was initiated. The first is not
-a genuine low score---an orderly lesson requiring no sanction should not be
-counted as one where sanctions were ignored---so it is replaced by
-$6 - \text{disruption}$, which assigns a calm unsanctioned lesson a high value
+Every item is recorded on a 1--5 scale. Two observation items can also take
+a zero, with a distinct meaning in each case. A zero on \emph{response of
+pupils to sanctions} records that no sanction was issued during the lesson,
+and a zero on \emph{effectiveness of pupil discussion} records that no
+discussion was initiated. The first of these is not a genuine low score,
+because an orderly lesson in which no sanction was needed should not be
+counted as one in which sanctions were ignored. It is therefore replaced by
+$6 - \text{disruption}$, which gives a calm unsanctioned lesson a high value
 and a disrupted unsanctioned lesson a low one. The second is treated as a
 genuine negative, since a lesson containing no discussion did not achieve
 effective discussion.
 
-Observation item scores are averaged across lessons and across researchers to
-give one value per school before the sub-scores are formed.
-\cref{tab:p1_subscore_items} lists the constituent items of each sub-score.
+Observation item scores are averaged across lessons and across researchers
+to give one value per school before the sub-scores are formed.
+\Cref{tab:p1_subscore_items} lists the constituent items of each sub-score.
 
 \input{snippets/subscore_items}
 
 \paragraph{Items recorded but not scored.} Every item on the lesson
-observation form enters a sub-score. Four items on the outside-of-lessons form
-do not. Two---consistency of verbal feedback and quality of differentiation
-across lessons---are recorded as cross-lesson summaries of the corresponding
-lesson observation items, and so enter no sub-score of their own; the lesson
-items already carry them. Two more---the condition of wall and corridor
-displays, and the extent to which displays align with the school's stated
-values---are ratings of the building rather than of conduct or relationships,
-and fit neither dimension as defined; both are retained in the data.
+observation form enters a sub-score. Four items on the outside-of-lessons
+form do not. Two of them, the consistency of verbal feedback and the quality
+of differentiation across lessons, are recorded as cross-lesson summaries of
+the corresponding lesson observation items, and so they enter no sub-score
+of their own, because the lesson items already capture them. The other two,
+the condition of wall and corridor displays and the extent to which displays
+align with the school's stated values, are ratings of the building rather
+than of conduct or relationships, and they fit neither dimension as it is
+defined. Both are retained in the data.
 
 From the interview, three components are recorded but not scored. The
-ratings of how fully the headteacher answered each open question (Q5 to Q8,
-Q11 and Q12) measure how articulate the head is rather than how the school
-runs: they load on one general factor that tracks the interviewer's ratings
-of the head's confidence and willingness, and are uncorrelated with the
-observed scores. The checklist of ten named behaviour systems, counted as
-S3, correlates with observed strictness at $-0.01$ against $0.41$ for the
-statement battery, and enters no espoused score; of the ten systems, S3
-counts the eight that represent behavioural or academic requirements and
-omits the two reward systems (reward assemblies and reward points), whose
-presence indicates a warmer rather than a stricter regime, and is the count
-of those eight rescaled to 0--5. The tenth statement, on parental
-engagement, belongs to neither dimension. Two further statements, on staff
-turnover and morale, are scored but form the staff-climate score SC rather
-than a culture score; there is no espoused measure of teaching. The
-remaining questions (Q1 to Q4, Q9 and Q10: length of tenure, the description
-of the school's culture and how it is communicated, the characteristics of
-an effective school, the staff structure and accountability) were asked for
-context; their ratings, where taken, enter no score.
+first is the set of ratings of how fully the headteacher answered each open
+question (Q5 to Q8, Q11 and Q12). These measure how articulate the head is
+rather than how the school runs. They load on one general factor that tracks
+the interviewer's ratings of the head's confidence and willingness, and they
+are uncorrelated with the observed scores. The second is the checklist of
+ten named behaviour systems, counted as S3. This correlates with observed
+strictness at $-0.01$, against $0.41$ for the statement battery, and so it
+enters no espoused score. Of the ten systems, S3 counts the eight that
+represent behavioural or academic requirements and omits the two reward
+systems (reward assemblies and reward points), whose presence indicates a
+warmer rather than a stricter regime, and it is the count of those eight
+rescaled to 0--5. The third is the tenth statement, on parental engagement,
+which belongs to neither dimension. Two further statements, on staff turnover
+and morale, are scored but form the staff-climate score SC rather than a
+culture score, and there is no espoused measure of teaching. The remaining
+questions (Q1 to Q4, Q9 and Q10, which cover length of tenure, the
+description of the school's culture and how it is communicated, the
+characteristics of an effective school, the staff structure and
+accountability) were asked for context, and their ratings, where they were
+taken, enter no score.
 
 Every other sub-score is the mean of its items, computed over the items
 present so that a missing item reduces the number of contributing items
 rather than the school's score.
 
-Sub-scores combine into two score sets grouped by source, observed behaviour and
-stated philosophy kept apart:
+The sub-scores combine into two sets of scores, grouped by source, with
+observed behaviour and stated philosophy kept apart:
 %
 \begin{align}
 \text{Enacted:}\quad
@@ -1236,19 +1249,19 @@ stated philosophy kept apart:
   \mathrm{SC} &= \overline{(\text{S3-stmt}, \text{S4-stmt})} \label{eq:espoused}
 \end{align}
 %
-There is no espoused teaching score: the two interview statements under the
+There is no espoused teaching score. The two interview statements under the
 teaching heading concern staff turnover and morale, and they form the staff
 climate score SC instead. The systems count $S3$ enters no espoused score.
 
-Schools with an interview but no visit carry the espoused score set alone
+Schools with an interview but no visit have the espoused set of scores alone
 (every visited school was also interviewed). No imputation is attempted
-across the two, since the espoused and enacted scores are correlated at only
-$r = \GoldWarmthSplit$ (warmth) and $\GoldStrictnessSplit$ (strictness), too
-little for either to stand in for the other. All scores are finally rescaled
-from 0--5 to 0--10.
+across the two sets, since the espoused and enacted scores are correlated at
+only $r = \GoldWarmthSplit$ for warmth and $\GoldStrictnessSplit$ for
+strictness, which is too little for either to stand in for the other. All
+scores are finally rescaled from 0--5 to 0--10.
 
-The mapping in \cref{tab:p1_subscore_items} is generated from the scoring code
-itself, so it cannot drift from what the scorer does.
+The mapping in \cref{tab:p1_subscore_items} is generated directly from the
+scoring code, so it cannot drift from what the scoring code does.
 
 \clearpage
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1299,16 +1312,17 @@ itself, so it cannot drift from what the scorer does.
   \label{fig:2A:representativeness_region}
 \end{figure}
 
-\paragraph{Corpus coverage.} The three text corpora were each gathered from
-the register of open state secondary schools at a different date, so their raw
-counts differ: inspection reports were scored for 3,324 schools, behaviour
-policies obtained for 3,363, and websites crawled for 3,370. Read against the
-analysis panel of 3,332 schools, 3,272 carry a scored inspection report
-(98.2 per cent; the rest had opened too recently to be inspected), 3,294 a
-behaviour policy (98.9 per cent), and 3,311 a website crawl (99.4 per cent),
-of which 3,284 contain scorable prose. The few schools outside the panel in
-each corpus are schools that closed, merged or changed identifier between the
-crawl and the construction of the panel.
+\paragraph{Coverage of the text collections.} The three collections of
+text were each gathered from the register of open state secondary schools at
+a different date, which is why their raw counts differ. Inspection reports
+were scored for 3,324 schools, behaviour policies were obtained for 3,363,
+and websites were crawled for 3,370. Set against the analysis panel of 3,332
+schools, 3,272 have a scored inspection report (98.2 per cent; the rest had
+opened too recently to be inspected), 3,294 have a behaviour policy (98.9
+per cent), and 3,311 have a website crawl (99.4 per cent), of which 3,284
+contain prose that can be scored. The few schools in each collection that
+are outside the panel are schools that closed, merged or changed identifier
+between the crawl and the construction of the panel.
 
 \clearpage
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1331,61 +1345,65 @@ and the national-tier model (Model~B) from the three text scores alone,
   \hat{y}_s = \hat{\alpha} + \beta_O x_{O,s} + \beta_P x_{P,s} + \beta_W x_{W,s} ,
 \end{equation}
 %
-where $x_{O,s}$ is the inspection-report score, $x_{P,s}$ the
-behaviour-policy score and $x_{W,s}$ the website score for school~$s$. Both are ridge regressions fitted on the
-\RidgeTrainN{} visited schools with a complete predictor vector; the penalty
-$\lambda$ is selected by leave-one-out cross-validation on the same schools,
-and predictions are clipped to $[0, 10]$.
-The fitted coefficient vectors are reported in the chapter
-(\cref{tab:interview_model_coefs,tab:national_model_coefs}).
+where $x_{O,s}$ is the inspection-report score, $x_{P,s}$ is the
+behaviour-policy score and $x_{W,s}$ is the website score for school~$s$.
+Both are ridge regressions fitted on the \RidgeTrainN{} visited schools that
+have a complete set of predictors. The penalty $\lambda$ is selected by
+leave-one-out cross-validation on the same schools, and predictions are
+clipped to the range $[0, 10]$. The fitted coefficients are reported in the
+chapter (\cref{tab:interview_model_coefs,tab:national_model_coefs}).
 
-The national-tier model takes the language model's holistic score for each
-document as a single number per source. The question that specification invites
-is whether the model's reading contributes anything that a deterministic counter
-could not recover from the same text.
-\Cref{tab:ridge_spec_comparison} tests this directly, comparing two feature
-representations under the identical estimation procedure: (A) the three
-language-model scores used throughout the chapter, and (D) the keyword-rule scores computed by
-the pattern matcher that runs alongside the language model on the same
-documents, as a floor against which to judge whether the language model
-contributes anything beyond term counting.
+The national-tier model takes the language model's overall score for each
+document as a single number per source. This raises the question of whether
+the model's reading of the document contributes anything that a simple
+word-counting rule could not recover from the same text.
+\Cref{tab:ridge_spec_comparison} tests this directly. It compares two sets
+of predictors under an identical estimation procedure: (A) the three
+language-model scores that are used throughout the chapter, and (D) the
+keyword-rule scores computed by a pattern matcher that runs alongside the
+language model on the same documents. The second of these provides a floor
+against which to judge whether the language model contributes anything
+beyond counting terms.
 
 \input{tables/tab_ridge_spec_comparison}
 
-The comparison rests on the identical \RidgeTrainN{}~schools in every cell, so
-it is like for like. The result is dimension-specific, and the
-split runs along the same seam as the rest of the chapter.
+The comparison uses the same \RidgeTrainN{} schools in every cell, so it
+is like for like. The result differs by dimension, and it splits in the same
+way as the rest of the chapter.
 
-On strictness, the language model's reading contributes something the counter
-cannot recover. The holistic specification reaches $r = \RidgeBStrictness$ with
-a cross-validated $R^2$ of $0.099$; the keyword baseline on the same documents
-reaches $r = 0.094$ and an $R^2$ of $0.008$, barely distinguishable from
-predicting the sample mean. Whatever the strictness score captures, it is not
-the frequency of particular words. It is located in an act of reading rather
-than in any countable property of the text, which is the opposite of what one
-would see if the score were merely picking up word frequencies.
+On strictness, the language model's reading contributes something that the
+word-counting rule cannot recover. The language-model specification reaches
+$r = \RidgeBStrictness$ with a cross-validated $R^2$ of $0.099$, while the
+keyword baseline on the same documents reaches $r = 0.094$ and an $R^2$ of
+$0.008$, which is barely distinguishable from predicting the sample mean.
+This means that whatever the strictness score captures, it is not the
+frequency of particular words. It comes from reading the document rather
+than from any countable property of the text, which is the opposite of what
+one would see if the score were merely picking up word frequencies.
 
-On warmth, neither specification recovers anything. Both select a penalty at or
-near the top of the grid and shrink almost entirely to the training mean, and
-both return a negative cross-validated $R^2$ ($-0.023$ for the holistic scores
-and $-0.020$ for the keyword rules), meaning each predicts the enacted warmth
-score worse than the sample mean does, and in both the predictions are too
-nearly constant for a correlation to be defined. This is not evidence
-that the warmth score is empty---\cref{tab:source_criterion} shows it is
-correlated with the espoused criterion---but it does establish that the part
-of it that survives to the national tier carries no enacted-warmth signal for
-either representation to find. The feature-representation test can only
-discriminate between two readings of the text where there is something in the
-text to read.
+On warmth, neither specification recovers anything. Both select a penalty at
+or near the top of the grid and shrink almost entirely to the training mean,
+and both return a negative cross-validated $R^2$ ($-0.023$ for the
+language-model scores and $-0.020$ for the keyword rules). This means that
+each predicts the enacted warmth score worse than the sample mean does, and
+in both cases the predictions are too nearly constant for a correlation to
+be defined. This is not evidence that the warmth score is empty, since
+\cref{tab:source_criterion} shows that it is correlated with the espoused
+criterion. What it does establish is that the part of the warmth score that
+survives to the national tier contains no information about enacted warmth
+for either set of predictors to find. The comparison can only discriminate
+between two ways of reading the text where there is something in the text to
+read.
 
 \clearpage
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \section{LLM Prompt Text}
 \label{app:2A:prompts}
 
-This section reproduces the scoring instruments in full: the system instruction
-and rubric administered to the language model for each source. The text is
-generated directly from the scoring code, so it is the text that was
-administered rather than a description of it.
+This section reproduces the scoring instruments in full, that is, the
+system instruction and the marking scheme given to the language model for
+each source. The text is generated directly from the scoring code, so what
+appears here is the text that was actually given to the model rather than a
+description of it.
 
 \input{snippets/llm_prompts}
