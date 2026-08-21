@@ -126,9 +126,10 @@ Grade-control specification & $N$ & Warmth ($W$) & Strictness ($S$) \\
 \footnotesize\textit{{Notes:}} Standard errors in parentheses.
 \sym{{*}} \(p<0.10\), \sym{{**}} \(p<0.05\), \sym{{***}} \(p<0.01\).
 Outcome is average Progress 8; predictors are standardised. Seven visited academies
-lacked a 2019 grade under their current URN; the primary specification fills five of
-them from the predecessor school's grade. Including the late-entry schools leaves the
-primary estimates essentially unchanged ($W = {lw['b']:.3f}$, $p = {lw['pval']:.3f}$;
+lacked a 2019 grade under their current URN; of the five in the estimation sample,
+four are filled from the predecessor school's grade (a fifth predecessor grade
+belongs to a school excluded for a missing control). Including the late-entry
+schools leaves the primary estimates essentially unchanged ($W = {lw['b']:.3f}$, $p = {lw['pval']:.3f}$;
 $S = {ls['b']:.3f}$, $p = {ls['pval']:.3f}$; $N = {int(lw['n'])}$).
 \end{{minipage}}
 \end{{table}}
@@ -244,7 +245,7 @@ excluded.
 def main_results(df: pd.DataFrame) -> None:
     specs = [
         ("tab_main_results_s1.tex", "primary_stage1", "tab:main_results_s1",
-         "Stage 1: Total culture effect ($W + S$)",
+         "Stage 1: Total culture association ($W + S$)",
          [("Warmth ($W$)", W), ("Strictness ($S$)", S)]),
         ("tab_main_results_s2.tex", "primary_stage2", "tab:main_results_s2",
          "Stage 2: Teaching quality benchmark ($T$)",

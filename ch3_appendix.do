@@ -148,11 +148,19 @@ program define typology
         }
     }
     regress p8mea_avg ibn.quad `dem' if smp, noconstant vce(hc3)
+    * The HC3 leverage adjustment is undefined when a covariate cell contains a
+    * single school (h_ii = 1), in which case Stata returns a missing VCE and
+    * _se[] reads 0. Fall back to HC1 for the adjusted means and record it.
+    local vlbl "hc3"
+    if missing(_se[1.quad]) | _se[1.quad] == 0 {
+        regress p8mea_avg ibn.quad `dem' if smp, noconstant vce(robust)
+        local vlbl "hc1"
+    }
     foreach q in 1 2 3 4 {
         local b = _b[`q'.quad]
         local se = _se[`q'.quad]
         quietly count if quad == `q' & smp
-        post apf ("typology") ("`label'") ("quadrant_adjmean") ("overall") ("quad`q'") (`b') (`se') (.) (r(N)) (.) ("hc3")
+        post apf ("typology") ("`label'") ("quadrant_adjmean") ("overall") ("quad`q'") (`b') (`se') (.) (r(N)) (.) ("`vlbl'")
     }
     gen byte auth = quad == 1 if smp
     regress p8mea_avg auth `ctrls' if smp, vce(hc3)

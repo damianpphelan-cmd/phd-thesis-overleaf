@@ -137,8 +137,9 @@ def build() -> str:
     overall effectiveness grade from the Ofsted Management Information snapshot as at
     31~August~2019, used as the primary endogeneity-safe control; the contemporary 2024 grade
     enters sensitivity analyses only. Grade percentages are shares of the graded schools
-    (@G1@ in Tier~1, @G2@ in Tier~2), not of the tier, which is why the specifications that
-    include the grade dummies estimate on @G1@ Tier~1 schools rather than @N1@.
+    (@G1@ in Tier~1, @G2@ in Tier~2), not of the tier. The primary specification
+    estimates on 99 of the @N1@ Tier~1 schools, because predecessor grades fill four
+    of the seven schools without one; see the specification-ladder notes.
     Tier~1 (@N1@ schools) have both visit and interview data; Tier~2 (@N2@ schools)
     includes Tier~1.
   \end{minipage}

@@ -45,6 +45,9 @@ def main():
         return r.iloc[0]
 
     sd_y = row("sens_sd", "p8mea_avg").b
+    short_w, short_s = row("sens_short", W), row("sens_short", S)
+    eal_w, eal_s = row("sens_shorteal", W), row("sens_shorteal", S)
+    wald = row("wald_ws", "diff")
     out = {}
     for name, term in [("W", W), ("S", S)]:
         prim = row("primary_stage1", term)
@@ -112,6 +115,13 @@ address omitted variables only, not reverse causality or measurement error.
         rf"\newcommand{{\EValWCI}}{{{out['W']['evci']:.2f}}}",
         rf"\newcommand{{\EValSCI}}{{{out['S']['evci']:.2f}}}",
         rf"\newcommand{{\SensRmax}}{{{rmax:.2f}}}",
+        rf"\newcommand{{\SensShortW}}{{{short_w.b:.3f}}}",
+        rf"\newcommand{{\SensShortWP}}{{{short_w.pval:.2f}}}",
+        rf"\newcommand{{\SensShortS}}{{{short_s.b:.3f}}}",
+        rf"\newcommand{{\SensShortSP}}{{{short_s.pval:.3f}}}",
+        rf"\newcommand{{\SensShortEalW}}{{{eal_w.b:.3f}}}",
+        rf"\newcommand{{\SensShortEalS}}{{{eal_s.b:.3f}}}",
+        rf"\newcommand{{\WaldWSP}}{{{wald.pval:.2f}}}",
     ]) + "\n"
 
     targets = [

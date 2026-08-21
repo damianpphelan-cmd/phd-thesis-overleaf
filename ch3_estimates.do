@@ -113,6 +113,11 @@ program define postterms
 end
 
 * ---- Stages 1-3, all five outcomes ----
+* SUPERSEDED (19 Aug 2026): the stage1-3, nograde, singleyear, att8, semh,
+* semh_sample, wxs and espoused(_t1) rows below predate the primary
+* specification and feed no table or sentence; the chapter reads only the
+* primary_*, rob_*, ladder_*, sens_*, wald_ws and primary_espoused rows.
+* They are kept so the CSV stays append-stable across reruns.
 foreach outcome in p8mea_avg p8meaeng_avg p8meamat_avg p8meaebac_avg p8meaopen_avg {
     local lbl = cond("`outcome'"=="p8mea_avg",     "overall", ///
                 cond("`outcome'"=="p8meaeng_avg",  "english", ///
@@ -241,17 +246,30 @@ foreach outcome in p8mea_avg p8meaeng_avg p8meamat_avg p8meaebac_avg p8meaopen_a
 }
 
 * ---- Sensitivity to unobservables (Oster delta; E-value inputs) ----
-* Short regressions with no controls, for the Oster comparison, and the outcome
-* SD on the primary sample, for the E-value conversion in
-* thesis/make_sensitivity_bounds.py. psacalc is Oster (2019), installed from SSC.
-regress p8mea_avg $W $S, vce(hc3)
-postterms `pf' "sens_short" "overall" "$W $S"
-
+* Short regressions for the Oster comparison, run on the primary estimation
+* sample itself (an earlier version ran on n=101 because the sample
+* restrictions bind only through the controls), and the outcome SD for the
+* E-value conversion in thesis/make_sensitivity_bounds.py. psacalc is
+* Oster (2019), installed from SSC.
 regress p8mea_avg $W $S $controls_primary, vce(hc3)
 local nprim = e(N)
 local rmax = min(1.3*e(r2), 1)
-summarize p8mea_avg if e(sample)
+gen byte prim_smp = e(sample)
+summarize p8mea_avg if prim_smp
 post `pf' ("sens_sd") ("overall") ("p8mea_avg") (r(sd)) (.) (.) (.) (.) (r(N)) (.)
+
+regress p8mea_avg $W $S if prim_smp, vce(hc3)
+postterms `pf' "sens_short" "overall" "$W $S"
+
+* The one-control diagnostic behind the suppression discussion: the EAL share
+* alone moves the warmth coefficient most of the way to its full-control value.
+regress p8mea_avg $W $S eal if prim_smp, vce(hc3)
+postterms `pf' "sens_shorteal" "overall" "$W $S"
+
+* Wald test of equal warmth and strictness coefficients, primary specification.
+regress p8mea_avg $W $S $controls_primary, vce(hc3)
+test $W = $S
+post `pf' ("wald_ws") ("overall") ("diff") (_b[$W]-_b[$S]) (.) (r(p)) (.) (.) (`nprim') (.)
 
 * Each score as the single treatment, the other score among the controls;
 * rmax = 1.3 x the controlled R2 (Oster's convention), capped at 1.

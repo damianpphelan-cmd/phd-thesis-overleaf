@@ -90,6 +90,32 @@ foreach outcome in p8mea_avg p8meaeng_avg p8meamat_avg p8meaebac_avg p8meaopen_a
     display "B `lbl': b=" %7.4f `b' " se=" %6.4f `se' " N=" e(N) " R2=" %6.4f e(r2)
 }
 
+* ---- Reports predating the outcome window (referee point, 21 Aug 2026) ----
+* years_since_ofsted is measured from 31 Aug 2024, so > 2 means the report was
+* published before 1 Sept 2022, i.e. before either outcome cohort's results
+* existed. The subsample regression answers the reverse-causality reading of
+* the national extension directly.
+gen byte pre2022 = years_since_ofsted > 2 if !missing(years_since_ofsted)
+
+regress p8mea_avg ofsted_llmstrictnessscore $controls_ngrade if pre2022 == 1, vce(hc3)
+local b  = _b[ofsted_llmstrictnessscore]
+local se = _se[ofsted_llmstrictnessscore]
+local p  = 2*ttail(e(df_r), abs(`b'/`se'))
+post `pf' ("Overall") ("pre22ng") (`b') (`se') (`p') (e(N)) (e(r2))
+display "pre22 no-grade: b=" %7.4f `b' " N=" e(N)
+
+regress p8mea_avg ofsted_llmstrictnessscore $controls if pre2022 == 1, vce(hc3)
+local b  = _b[ofsted_llmstrictnessscore]
+local se = _se[ofsted_llmstrictnessscore]
+local p  = 2*ttail(e(df_r), abs(`b'/`se'))
+post `pf' ("Overall") ("pre22gr") (`b') (`se') (`p') (e(N)) (e(r2))
+display "pre22 grade19:  b=" %7.4f `b' " N=" e(N)
+
+* Share of the no-grade estimation sample whose report predates the window.
+regress p8mea_avg ofsted_llmstrictnessscore $controls_ngrade, vce(hc3)
+summarize pre2022 if e(sample)
+post `pf' ("Overall") ("pre22shr") (r(mean)) (.) (.) (r(N)) (.)
+
 postclose `pf'
 
 use "C:/Users/damia/OneDrive/Documents/Schools Project/thesis/tables/a7_estimates.dta", clear

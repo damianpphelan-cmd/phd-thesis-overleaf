@@ -94,7 +94,7 @@ def main():
     component; they are reported side by side rather than averaged, because
     the two are correlated at only $r = \GoldWarmthSplit$ (warmth) and
     $\GoldStrictnessSplit$ (strictness).
-    Bold entries indicate $|r| \geq {BOLD:.2f}$. $N$ varies slightly by column due to missing
+    $N$ varies slightly by column due to missing
     control values; all correlations use the Tier~1 sample of {n} visited schools.
   \end{{minipage}}
 \end{{table}}

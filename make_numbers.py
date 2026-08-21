@@ -484,6 +484,33 @@ def build() -> list[Num]:
             stale=["3{,}194", "3{,}148"]))
     add(Num("BetaNationalStrictness", f"{a7o['b']:.3f}",
             "a7_estimates.csv: national extension, overall P8"))
+    a7p = a7[(a7.outcome == "Overall") & (a7.spec == "pre22ng")].iloc[0]
+    add(Num("BetaNationalPre", f"{a7p['b']:.3f}",
+            "a7_estimates.csv: national extension on reports published before "
+            "Sept 2022 (pre-outcome-window subsample), no-grade spec"))
+    add(Num("NNationalPre", comma(int(a7p["n"])),
+            "a7_estimates.csv: pre-window subsample size"))
+    a7s = a7[(a7.outcome == "Overall") & (a7.spec == "pre22shr")].iloc[0]
+    add(Num("ShareNationalPre", f"{a7s['b'] * 100:.0f}",
+            "a7_estimates.csv: share of national-sample reports published "
+            "before Sept 2022, per cent"))
+
+    # Context benchmarks quoted beside the primary estimates (referee point:
+    # they had no cited source). Computed nationally from analysis_dataset.csv.
+    _ds = pd.read_csv(ROOT / "analysis_dataset.csv", low_memory=False,
+                      usecols=["p8mea_avg", "grade2019_filled", "fsm"])
+    _p8 = pd.to_numeric(_ds["p8mea_avg"], errors="coerce")
+    _g19 = pd.to_numeric(_ds["grade2019_filled"], errors="coerce")
+    _gap_grade = _p8[_g19 == 1].mean() - _p8[_g19 == 2].mean()
+    add(Num("GapOutstandingGood", f"{_gap_grade:.2f}",
+            "national mean P8 gap, 2019 Outstanding vs Good "
+            "(grade2019_filled), analysis_dataset.csv"))
+    _fsm = pd.to_numeric(_ds["fsm"], errors="coerce")
+    _q = pd.qcut(_fsm, 4, labels=False)
+    _gap_fsm = _p8[_q == 0].mean() - _p8[_q == 3].mean()
+    add(Num("GapFsmQuartiles", f"{_gap_fsm:.2f}",
+            "national mean P8 gap, least vs most disadvantaged FSM quartile, "
+            "analysis_dataset.csv"))
 
     # Still asserted: the teaching-philosophy cell writes only a LaTeX table, so
     # there is nothing tidy to read. Source is tables/tab_teaching_philosophy.tex,
