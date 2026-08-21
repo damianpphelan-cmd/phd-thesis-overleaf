@@ -570,10 +570,12 @@ absorb part of the raw association and the extrapolation continues that
 movement. The second measure is the E-value. A confounder would need an
 association of at least \EValW{} in risk-ratio terms with both warmth and
 progress, and \EValS{} for strictness, to explain the estimates away. It
-should be noted that both measures address omitted variables only. Neither
-touches reverse causality, and because the culture scores are measured with
-error, the estimated coefficients, and with them the bounds, are if
-anything understated.
+should be noted that both measures address omitted variables only, and
+neither touches reverse causality. They are also conservative. The culture
+scores measure a school with error, and error of that kind biases a
+coefficient towards zero. The true coefficients are therefore, if anything,
+larger than the estimated ones, and the bounds computed from them would be
+larger too.
 
 \input{tables/tab_robustness_overall}
 
