@@ -36,6 +36,17 @@ save `srs'
 restore
 merge 1:1 urn using `srs', keep(master match) nogenerate
 
+* London indicator (written from GIAS GOR by the referee close-out, 21 Aug 2026);
+* merged for the region robustness row -- the warmth result works through the EAL
+* control and EAL is concentrated in London, so the region check is owed.
+preserve
+import delimited "`ROOT'/scores/gias_london_flag.csv", clear stringcols(1) case(lower)
+tempfile lnd
+save `lnd'
+restore
+merge 1:1 urn using `lnd', keep(master match) nogenerate
+destring london, replace force
+
 foreach v of varlist eal sen {
     replace `v' = subinstr(`v', "%", "", .)
     destring `v', replace
@@ -352,6 +363,10 @@ postterms `pf' "rob_wxs" "overall" "$W $S wxs_p"
 * a little lower, and the share of such lessons correlates -0.25 with a
 * school's in-lesson warmth. Two checks: the share as a control, and the
 * primary spec on schools with no single-rated lesson.
+* London control (referee close-out, 21 Aug 2026)
+regress p8mea_avg $W $S london $controls_primary, vce(hc3)
+postterms `pf' "rob_london" "overall" "$W $S london"
+
 capture confirm variable share_single_rated
 if !_rc {
     regress p8mea_avg $W $S share_single_rated $controls_primary, vce(hc3)

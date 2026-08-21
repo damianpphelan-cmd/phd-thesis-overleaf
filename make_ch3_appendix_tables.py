@@ -522,7 +522,8 @@ average) Progress 8 for the same schools, without (A) and with (B) the predecess
 Across the national panel the pseudo measure correlates with real average Progress 8 at
 $r = {corr.b:+.3f}$ ($n = {nfmt(corr.n)}$). Validation of the construction one year back (the
 pseudo measure rebuilt from 2021--22 and 2022--23 baselines against the real 2023--24
-Progress 8) is reported in the text. On the body's per-standard-deviation scale, the gold
+Progress 8) is $+0.81$ (two-year construction, $n = 3{{,}}242$;
+ch3\_appendix\_p8proxy\_validation.csv). On the body's per-standard-deviation scale, the gold
 coefficients on the pseudo outcome sit within ${maxdiff:.2f}$ of their real-Progress 8 twins
 (pseudo {rawp.b:.3f}/{rawps.b:.3f} against real {rawr.b:.3f}/{rawrs.b:.3f}). The pseudo measure is
 school-level, not pupil-matched, so it is a robustness check, never a primary outcome.

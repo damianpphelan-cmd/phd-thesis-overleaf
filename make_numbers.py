@@ -529,6 +529,17 @@ def build() -> list[Num]:
             "national mean P8 gap, 2019 Outstanding vs Good "
             "(grade2019_filled), analysis_dataset.csv"))
     _fsm = pd.to_numeric(_ds["fsm"], errors="coerce")
+    # Espoused means/SDs over all interviewed schools (referee close-out: the
+    # 303-school figures previously appeared in no table or macro).
+    _esp = pd.read_csv(ROOT / "analysis_dataset.csv", low_memory=False,
+                       usecols=["gs_warmth_espoused", "gs_strictness_espoused"])
+    _ew = pd.to_numeric(_esp["gs_warmth_espoused"], errors="coerce").dropna()
+    _es = pd.to_numeric(_esp["gs_strictness_espoused"], errors="coerce").dropna()
+    add(Num("MeanWEspAll", f"{_ew.mean():.1f}", "espoused warmth mean, all interviewed"))
+    add(Num("SDWEspAll", f"{_ew.std():.1f}", "espoused warmth SD, all interviewed"))
+    add(Num("MeanSEspAll", f"{_es.mean():.1f}", "espoused strictness mean, all interviewed"))
+    add(Num("SDSEspAll", f"{_es.std():.1f}", "espoused strictness SD, all interviewed"))
+
     _q = pd.qcut(_fsm, 4, labels=False)
     _gap_fsm = _p8[_q == 0].mean() - _p8[_q == 3].mean()
     add(Num("GapFsmQuartiles", f"{_gap_fsm:.2f}",

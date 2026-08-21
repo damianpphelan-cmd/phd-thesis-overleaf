@@ -317,6 +317,7 @@ def robustness_overall(df: pd.DataFrame) -> None:
             ("rob_wxs", r"W$\times$S", "p8mea_avg"),
             ("rob_att8total", "Att8 total 24/25", "att8_total_2425"),
             ("rob_att8eng", "Att8 English 24/25", "att8screng_2425"),
+            ("rob_london", "London ctrl", "p8mea_avg"),
             ("rob_singlerater_ctrl", "Single-rater ctrl", "p8mea_avg"),
             ("rob_doublerated", "Double-rated only", "p8mea_avg")]
     W, S = "z_gs_warmth_enacted", "z_gs_strictness_enacted"
@@ -345,7 +346,7 @@ def robustness_overall(df: pd.DataFrame) -> None:
         r"\label{tab:robustness_overall}",
         r"\footnotesize\setlength{\tabcolsep}{4pt}",
         r"\resizebox{\linewidth}{!}{%",
-        r"\begin{tabular}{l*{9}{c}}",
+        r"\begin{tabular}{l*{10}{c}}",
         r"\toprule",
         f"                    & {heads} \\\\",
         r"\midrule",
