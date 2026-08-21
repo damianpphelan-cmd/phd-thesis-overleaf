@@ -17,12 +17,10 @@ three appendix five-outcome tables, which used to be estimated on the older
 spec. That is deliberate: an appendix column that a reader compares against a
 body column has to be comparable.
 
-Each table keeps its own house style, because they were written at different
-times and the chapter's cross-references and captions depend on their shape:
-the two esttab-derived families report standard errors and star at
-0.10/0.05/0.01, while tab_stages23_trio reports p-values and stars at
-0.05/0.01/0.001. Do not unify them here; unify them in the chapter or not at
-all.
+All tables report standard errors in parentheses and star at 0.10/0.05/0.01
+(unified 21 Aug 2026 on referee advice; tab_stages23_trio and
+tab_robustness_overall previously starred at 0.05/0.01/0.001, with the trio
+table showing p-values in parentheses).
 """
 from __future__ import annotations
 
@@ -63,14 +61,6 @@ def num(x: float, minus: str = "-") -> str:
 def stars_010(p: float) -> str:
     """The esttab convention: * 0.10, ** 0.05, *** 0.01."""
     for cut, mark in ((0.01, "***"), (0.05, "**"), (0.10, "*")):
-        if p < cut:
-            return f"\\sym{{{mark}}}"
-    return ""
-
-
-def stars_001(p: float) -> str:
-    """The trio table's convention: * 0.05, ** 0.01, *** 0.001."""
-    for cut, mark in ((0.001, "***"), (0.01, "**"), (0.05, "*")):
         if p < cut:
             return f"\\sym{{{mark}}}"
     return ""
@@ -192,9 +182,9 @@ def stages23_trio(df: pd.DataFrame) -> None:
     def rows(label: str, spec: str, term: str) -> str:
         rs = [get(df, spec, o, term) for o in TRIO]
         top = (f"{label:<12s} & "
-               + " & ".join(cell(r, stars_001, "$-$") for r in rs) + " \\\\")
+               + " & ".join(cell(r, stars_010, "$-$") for r in rs) + " \\\\")
         bot = ("             & "
-               + " & ".join(f"({r['pval']:.3f})" for r in rs) + " \\\\")
+               + " & ".join(f"({r['se']:.3f})" for r in rs) + " \\\\")
         return top + "\n" + bot
 
     r2 = " & ".join(f"{get(df, 'primary_stage2', o, T)['r2']:.3f}"
@@ -232,8 +222,8 @@ $R^2$        & {r2} \\
 \end{{tabular}}
 \begin{{minipage}}{{0.8\linewidth}}
 \vspace{{4pt}}\scriptsize
-\textit{{Notes}}: $p$-values in parentheses. \sym{{*}} $p<0.05$, \sym{{**}}
-$p<0.01$, \sym{{***}} $p<0.001$. Primary specification throughout: full
+\textit{{Notes}}: Standard errors in parentheses. \sym{{*}} \(p<0.10\),
+\sym{{**}} \(p<0.05\), \sym{{***}} \(p<0.01\). Primary specification throughout: full
 control set, predecessor-filled pre-COVID grade, late-entry schools
 excluded.
 \end{{minipage}}
@@ -331,7 +321,7 @@ def robustness_overall(df: pd.DataFrame) -> None:
         cells, ses = [], []
         for spec, _, _ in cols:
             r = get(df, spec, "overall", term)
-            cells.append(f"{num(r.b)}{stars_001(r.pval)}")
+            cells.append(f"{num(r.b)}{stars_010(r.pval)}")
             ses.append(f"({r.se:.3f})")
         return (f"{label:<20}& " + " & ".join(f"{c:>18}" for c in cells) + r" \\" + "\n"
                 f"{'':<20}& " + " & ".join(f"{s:>18}" for s in ses) + r" \\" + "\n")
@@ -363,8 +353,8 @@ def robustness_overall(df: pd.DataFrame) -> None:
         r"\bottomrule",
         r"\end{tabular}}",
         r"\begin{minipage}{\linewidth}\vspace{4pt}\scriptsize",
-        r"\textit{Notes}: HC3 standard errors in parentheses. \sym{*} $p<0.05$, "
-        r"\sym{**} $p<0.01$, \sym{***} $p<0.001$. The W$\times$S column adds the "
+        r"\textit{Notes}: HC3 standard errors in parentheses. \sym{*} \(p<0.10\), "
+        r"\sym{**} \(p<0.05\), \sym{***} \(p<0.01\). The W$\times$S column adds the "
         r"interaction of the two standardised scores; its main effects are not "
         r"interpretable alone. The single-rater column adds the share of a "
         r"school's observed lessons that were rated by one researcher rather "
