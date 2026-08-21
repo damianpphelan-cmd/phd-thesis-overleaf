@@ -53,7 +53,8 @@ supported by the adults around them. In a lesson it shows in whether the
 teacher uses pupils' names, how praise is given and how the teacher and the
 class speak to one another. Between lessons it shows in how staff and pupils
 deal with each other in corridors and at break, and in whether rewards are
-used consistently. Strictness is the school's behavioural structure: whether
+used consistently across the lessons of the day. Strictness is the school's
+behavioural structure: whether
 expectations of conduct are clear, enforced and met. In a lesson it shows in
 how much misbehaviour is tolerated before a sanction, how much disruption
 occurs and how pupils respond when they are corrected. Outside lessons it
@@ -102,14 +103,15 @@ the visit disagree substantially about the same school, the gold standard is
 in fact two measures, not one: an \emph{enacted} score, from what the
 observers recorded, and an \emph{espoused} score, from what the headteacher
 reported. For a further \NTierTwo{} schools I have the interview alone, and
-for the remaining national population only the public text. The question I
-ask of that text is whether the gold standard can be recovered from it. To
-answer it I fit prediction models on the schools where both the text scores
-and the gold standard exist, hold each school out in turn, and measure how
-well the predictions reproduce the gold standard. This measures what the
-public record contains, and the answer determines what can be carried to
-the national population. As it turns out, only one source and one dimension
-can be.
+for the remaining national population only the public text. I then test
+whether the gold standard can be recovered from that text. To do this I fit
+prediction models on the schools where both the text scores and the gold
+standard exist, hold each school out in turn, and measure how well the
+predictions reproduce the gold standard. This shows how much information
+about school culture the public record contains, and therefore which
+measures can be extended to every school in the country. As it turns out,
+only one measure passes this test: strictness read from inspection
+reports.
 
 There are two main findings, and a third result about the scoring method.
 The first finding is that the two dimensions can be recovered to very
@@ -249,13 +251,15 @@ lessons spread across year groups and subjects, and it chose the particular
 lessons itself. The team observed those lessons, typically five of them,
 spread across Years 7 to 11. The researchers knew which school they were
 visiting but not its inspection grade, and the school knew it was being
-observed but not which items were being rated. The movement between lessons,
-break and lunch that the outside-of-lessons form rates were not arranged by
-the school. It should be acknowledged that the school choosing the lessons
-is a limitation of the visit as a measure of practice. However, it cuts in a
-known direction: a school will tend to show a visitor its better lessons, so
-if anything the enacted scores are flattering and compressed, and this works
-against the differences the paper reports rather than for them. Each
+observed but not which items were being rated. Each school also allowed us
+to observe pupils moving between lessons, and pupils and staff interacting
+at break and lunch, which is what the outside-of-lessons form rates. It
+should be acknowledged that the school choosing the lessons is a limitation
+of the visit as a measure of practice. However, the direction of the
+problem is known. A school will tend to show a visitor its better lessons,
+so if anything the enacted scores are too high and too similar to one
+another. This makes it harder to find differences between schools, not
+easier, so it works against the results the paper reports. Each
 observation covered either a whole lesson or half of one, and every
 researcher present rated it independently on the lesson observation form.
 The team also watched arrival to lessons, movement between lessons, break
@@ -561,279 +565,174 @@ report accurately.
 
 \subsection{Scoring the public text}
 
-For schools without a visit, the gold standard has to be predicted from what
-can be observed, and the richest thing that can be observed is text. Each of
-the three collections of documents was scored by a large language model. The
-model reads one document about one school and returns a score from 1 to 5
-for warmth and for strictness (and, for inspection reports, for teaching).
-All of the scoring uses OpenAI's gpt-4o-mini (the July 2024 release) with
-the sampling temperature set to zero, and the reference labels described
-below were produced with Anthropic's Claude (an Opus-class model, August
-2026). Every score records the version of the instructions given to the
-model, a hash of the marking scheme and the model version, and identical
-inputs are served from a cache, so that any score in the dataset can be
-traced back to the exact instructions that produced it. Throughout the rest
-of the paper I refer to a particular set of instructions, applied to a
-particular type of document, as a scoring instrument.
+For schools without a visit, the gold standard has to be predicted from
+what can be observed, and the richest thing that can be observed is text.
+Each of the three collections of documents was scored by a large language
+model. The model reads one document about one school and returns a score
+from 1 to 5 for warmth and for strictness (and, for inspection reports, for
+teaching). All of the scoring uses OpenAI's gpt-4o-mini (the July 2024
+release) with the sampling temperature set to zero, and the reference
+labels described below were produced with Anthropic's Claude (an Opus-class
+model, August 2026). Every score records the version of the instructions
+that produced it, and identical inputs are served from a cache, so any
+score in the dataset can be traced back to the exact instructions used.
+Throughout the rest of the paper I refer to a particular set of
+instructions, applied to a particular type of document, as a scoring
+instrument.
 
-The pipeline is the same for every collection of documents. A document is
-retrieved and reduced to plain text. For inspection reports every stated
-grade, and every field that would let the model infer the grade, is stripped
-from the text, so that the score is read from the prose and not from the
-verdict. The text is then presented to the model together with the
-instrument's marking scheme, and the model's answer is converted into a band.
-Two kinds of instrument are used at that last step. I did not assume which
-kind is better for a given source; that was decided by the tests described
-below.
-\emph{Prose} instruments give the model a written marking scheme and have it
-read the whole document against it in one call. The inspection-report
-instrument is of this kind, and it returns a band for each of its three
-constructs. The behaviour-policy instrument is a variant: it gives the model
-the marking scheme in the form of a written decision procedure, has it read
-the whole policy once and answer the steps of the procedure, two of them
-with a quotation that is checked against the policy, and the band is then
-computed from the answers rather than returned by the model.
-\emph{Decomposed} instruments never ask the model for a band at all. Instead
-the model answers a fixed set of factual questions, each answer must be
-supported by a word-for-word quotation that is checked against the document,
-and the band is assigned by a fixed rule in code. The website strictness
-instrument, for example, asks whether the page names a specific consequence
-for a specific behaviour, whether it describes a rule at the level of a
-particular thing (a phone, a corridor, a uniform item), whether it uses the
-vocabulary of expectation, and so on. Each answer must be backed by a
-quotation that appears in the page, answers without a quotation are
-discarded, and the band is assigned by a fixed ladder over the answers that
-survive. The website and interview-transcript instruments are of this kind.
-The marking scheme and question set of every instrument is reproduced in
-\cref{app:2A:prompts}.
+The process is the same for every collection. A document is reduced to
+plain text. For inspection reports, every stated grade, and every field
+from which the grade could be worked out, is removed first, so that the
+score has to come from the prose and not from the verdict. The text is then
+given to the model together with the instrument's marking scheme, and the
+model's answer is converted into a band from 1 to 5. Some instruments ask
+the model for the band directly against a written marking scheme; I call
+these \emph{prose} instruments, and the inspection-report and
+behaviour-policy instruments are of this kind. Others never ask for a band
+at all. Instead the model answers a fixed set of factual questions, each
+answer must be supported by a word-for-word quotation that is checked
+against the document, and the band is assigned by a fixed rule in code; I
+call these \emph{decomposed} instruments, and the website and
+interview-transcript instruments are of this kind. The full marking scheme
+and question set of every instrument is reproduced in \cref{app:2A:prompts}.
 
-Each instrument was developed, tested and selected using the same
-procedure. I set it out here step by step, because the order in which the
-steps were carried out is what allows the tests to be trusted.
-\begin{enumerate}
-\item I wrote the marking scheme for each source, and labelled a
-  \emph{development pack} of documents myself: 30 inspection reports, 25
-  behaviour policies and 50 websites. The marking schemes were revised
-  against these packs, so every figure computed on them is a development
-  figure.
-\item Every version of every instrument was archived as it was written, so
-  that no version could be quietly replaced after the fact.
-\item A \emph{fresh pack} was then drawn for each source (60 inspection
-  reports, 50 behaviour policies, 60 websites, and 100 interview
-  transcripts) from schools outside the development pack, and labelled by
-  three independent instances of a larger language model (Claude, of the
-  Opus class, as noted above). Each instance was given only the written rule and the
-  documents, was blind to the other two and to every model score, and the
-  majority label was taken as the \emph{reference label}. In the three
-  cases, out of roughly 500 labels, where the three raters gave three
-  different bands, I made the ruling; everywhere else the majority stood.
-\item Every archived version was scored once on the fresh pack, and
-  agreement with the reference labels was measured. This is the
-  out-of-sample agreement figure.
-\item Each candidate instrument was then tested against the gold standard on
-  the visited schools, and an instrument was retained by the rule described
-  below.
-\end{enumerate}
-Agreement is measured by weighted kappa ($\kappa_w$), which is the standard
-statistic for agreement on an ordered scale. A value of 0 means agreement no
-better than chance and a value of 1 means perfect agreement, and a rating
-that is one band off is counted as a near miss rather than as a full
-disagreement. No instrument can be expected to reach 1. I applied the
-written rules to the same development documents twice, two weeks apart, with
-$\kappa_w = 0.77$ between the two passes. A rater who agrees with himself at
-$0.77$ can be matched by another rater, however good, at no more than the
-square root of that, which is about $0.88$, and the reference raters, who
-apply the same rules, inherit the same ceiling.
+The instruments were developed and tested as follows. I wrote the marking
+schemes and labelled a development pack of documents for each source myself
+(30 inspection reports, 25 behaviour policies and 50 websites), and the
+schemes were revised against those packs. A fresh pack was then drawn for
+each source from schools outside the development pack, and labelled by
+three independent instances of Claude, each blind to the other two and to
+every model score. The majority label is the \emph{reference label}; in the
+three cases, out of roughly 500 labels, where the three raters gave three
+different bands, I made the ruling. Agreement is measured by weighted kappa
+($\kappa_w$), which is the standard statistic for agreement on an ordered
+scale: 0 means agreement no better than chance, 1 means perfect agreement,
+and a rating that is one band off counts as a near miss rather than as a
+full disagreement. It is important that agreement is measured on the right
+documents. An instrument will always agree better with labels on the
+documents that were used to develop it than on documents it has never seen,
+so every agreement figure I report is measured on the fresh pack, which no
+version of any instrument was tuned on. As a guide to the level of
+agreement that is achievable, when I labelled the same development
+documents twice, two weeks apart, I agreed with myself at $\kappa_w =
+0.77$; and the instruments themselves are stable, returning the same band
+for the same document about 92 per cent of the time.
 
-Two questions arise about the reference labels, and both can be answered
-from the data. The first is why labels produced by a language model should
-be trusted as a reference at all. The answer is that where the reference
+Two questions arise about the reference labels. The first is whether labels
+produced by a language model can be trusted at all. Where the reference
 rater and I labelled the same documents, it agreed with me about as well as
-I agree with myself. On the 30 development inspection reports, a blind pass
-by the reference rater agreed with my labels at $\kappa_w = 0.75$ for
-warmth, $0.76$ for strictness and $0.79$ for teaching, or approximately
-$0.78$ when the three are pooled. This is about the level of my own test--retest figure of $0.77$, and on 30
-documents no closer agreement between two raters could be demonstrated. On
-the 50 development websites the two of us agreed far less well, at
-$\ClaudeDamianWebS$ for strictness and $\ClaudeDamianWebW$ for warmth. The
-disagreement there was directional rather than random, in that the reference
-rater read the sites as stricter and less warm than I did. The conclusion I draw from this is that warmth, and to a lesser extent
-strictness, cannot be reliably identified from a school's website by any
-reader, human or model, and the website instruments should be read in that
-light. It should be noted that none of the paper's findings depends on
-them, because every result that uses a website score is a null result. The second question is how
-the instruments of record compare with a human reading. The last column of
-\cref{tab:instruments_adopted} gives each instrument's agreement with my own
-labels on its development pack. The inspection-report strictness and
+I agree with myself: on the 30 development inspection reports, a blind pass
+by the reference rater agreed with my labels at approximately $\kappa_w =
+0.78$, against my own test--retest figure of $0.77$. On the 50 development
+websites the two of us agreed far less well ($\ClaudeDamianWebS$ for
+strictness and $\ClaudeDamianWebW$ for warmth). The conclusion I draw from
+this is that warmth, and to a lesser extent strictness, cannot be reliably
+identified from a school's website by any reader, human or model. It should
+be noted that none of the paper's findings depends on the website scores,
+because every result that uses one is a null result. The second question is
+how the instruments compare with a human reading. The final column of
+\cref{tab:instruments_adopted} gives each instrument's agreement with my
+own labels on its development pack: the inspection-report strictness and
 teaching instruments agree with me at $\HumKOfstedS$ and $\HumKOfstedT$,
 the behaviour-policy strictness instrument at $\HumKBPS$, and the warmth
-instruments and the website instruments less well ($\HumKOfstedW$,
-$\HumKBPW$, $\HumKWebS$ and $\HumKWebW$). These are development-pack
-figures. It should be noted that where an instrument agrees better with the
-reference labels than with mine, as the website instruments do, this is
-because it was tuned towards the reference labels. The instruments also
-reproduce their own scores: scoring the same document twice returns the
-same band about 92 per cent of the time.
+and website instruments less well.
 
-The instruments were then tested in three ways. The first test is agreement
-on documents the instrument was not tuned on: $\kappa_w$ against the
-reference labels on the fresh pack. Every in-sample figure had read high,
-and the out-of-sample figures were lower for every instrument.
-\Cref{tab:instruments_adopted} reports them for the instruments that were
-kept. The second test is validity against the gold standard on the visited
-schools, and it is run against both halves of the gold standard.
-Correlation with the enacted score asks whether a source reads what the
-school does, and correlation with the espoused score asks whether it reads
-what the school says about itself. A source that is written by the school
-might be expected to pass the second test even if it fails the first. For
-one construct there is also an official register to check against. The
-website instrument that reads a school's religious character agrees with the
-register of religious character held by the Department for Education for 97
-per cent of schools ($\kappa = 0.91$, $n = 2{,}889$). Religious character is
-stated plainly on a school's website, so this shows that where the text
-states something, the method recovers it. It does not show that the text
-states everything. It matters for what follows because it means that, where
-a construct fails against its criterion, the more likely explanation is that
+Each instrument was then tested in three ways, and the results are
+collected in \cref{tab:instruments_adopted}. The first test is agreement
+with the reference labels on the fresh pack. The second is validity against
+the gold standard on the visited schools, on both of its halves:
+correlation with the enacted score asks whether a source reflects what the
+school does, and correlation with the espoused score asks whether it
+reflects what the school says about itself. The third test checks that the
+model cannot see the inspection verdict in anything it is given: every
+stated grade is removed from the report before scoring, and I report below
+how far the verdict can still be worked out from the prose that remains.
+For one construct there is also an official register to check against. The
+website instrument that reads a school's religious character agrees with
+the Department for Education's register of religious character for 97 per
+cent of schools ($\kappa = 0.91$, $n = 2{,}889$). Religious character is
+stated plainly on a school's website, so where the text states something,
+the method recovers it. This matters because it means that where a
+construct fails against its criterion, the more likely explanation is that
 the text does not contain the information than that the method missed it.
-Much of what schools write about warmth is written by every school. A policy
-that opens with a commitment to every child feeling safe, valued and
-respected, or a welcome page that promises a caring community in which every
-pupil is known, describes an intention that the warmest and the least warm
-schools in the visited sample state in nearly the same words. An inspection
-report, by contrast, records whether pupils moved calmly between lessons and
-whether low-level disruption was seen, and those are the sentences from
-which a strictness score can be read. The third test checks that no field
-available to the model carries the inspection verdict: report bodies are
-stripped of every stated grade before scoring, and how far the verdict can
-still be read from the prose that remains is reported below. It should be
-borne in mind throughout that the correlations on the visited schools are
-estimated on about a hundred observations and carry confidence intervals to
-match. The inspection-report strictness score's correlation of $r =
-\CorrOfstedStrictness$ with observed strictness has a bootstrap 95 per cent
-interval of $\CIOfstedStrictLo$ to $\CIOfstedStrictHi$, and the website
-strictness score's $0.09$ has an interval of $\CIWebStrictLo$ to
-$\CIWebStrictHi$. The two are different instruments reading different text,
-and the first is distinguishable from zero while the second is not.
+Much of what schools write about warmth is written by every school: a
+policy that promises that every child will feel safe, valued and respected
+describes an intention that the warmest and the least warm schools in the
+visited sample state in nearly the same words. An inspection report, by
+contrast, records whether pupils moved calmly between lessons and whether
+low-level disruption was seen, and it is from sentences like those that a
+strictness score can be read.
+
+It should also be borne in mind that the validity correlations are
+estimated on only about a hundred schools, so there is a fair amount of
+uncertainty around each one. The correlation of $\CorrOfstedStrictness$
+between the inspection-report strictness score and observed strictness has
+a 95 per cent confidence interval of $\CIOfstedStrictLo$ to
+$\CIOfstedStrictHi$, so we can be confident that it is positive. The
+website strictness correlation of $0.09$ has an interval of
+$\CIWebStrictLo$ to $\CIWebStrictHi$, so we cannot rule out that it is
+zero.
 
 \input{tables/tab_instruments_adopted}
 
-The testing produced four results which determined which instruments were
-kept. Each of them says something about measuring with language models
-rather than about schools, and I set them out in turn.
+The main message of \cref{tab:instruments_adopted} is that it is very
+difficult to read warmth and strictness from these text sources. Only one
+instrument produces a score that is clearly related to what the observers
+saw, namely strictness read from inspection reports. Behaviour policies and
+websites are unrelated to the observed measures on both dimensions, and no
+source at all is related to observed warmth. Four further lessons from the
+testing affect how the scores should be read, and I state them briefly.
+First, agreement with labels and validity against observation are different
+things, and across the versions of an instrument they were unrelated. For
+example, the version of the inspection-report strictness instrument that
+agreed best with its labels had a correlation of only $0.07$ with observed
+strictness, whereas the version I kept, which agreed less well, had $0.42$
+(rank correlations; the Pearson figure is the $0.40$ of the table). This is
+because a marking scheme can be tuned towards whatever labellers reliably
+notice in a document, and what labellers reliably notice is not always what
+a school actually does. For this reason agreement was treated as a floor
+and never as the objective, and since the choice between candidate
+instruments was made partly against the visited schools (a choice that
+mattered only for the inspection-report instruments), the validity figures
+are to that extent optimistic. Second, asking the model factual questions
+that can be checked against the text worked better than asking it for
+judgements, because the answer to a question like ``how strict does this
+document sound?'' depends partly on how lenient the model itself is, and
+that changes from one model version to the next. Third, the model is part
+of the instrument: the same marking scheme moved to a different model fell
+from $\kappa_w = 0.63$ to $0.12$ with the text and the labels held fixed,
+so each instrument is pinned to the model it was tested with. Fourth, the
+correlation between two text scores partly reflects how the scores were
+produced rather than the schools themselves. Instruments that read a
+document once and score both dimensions from that one reading produce
+warmth and strictness scores correlated at $0.54$, close to the
+$\CorrWarmthStrictnessEnacted$ observed in the schools, while instruments
+that score each dimension separately produce scores correlated at only
+$0.08$ to $0.22$. This means that whether warmth and strictness go together
+in schools is a question that has to be answered from observation.
 
-The first result is that agreement with the labels and correlation with the
-gold standard are unrelated across the versions of an instrument. In fact,
-the version which agreed best with its labels was usually the one that
-tracked the school worst. For example, the inspection-report strictness
-instrument that agreed best with its labels had a correlation of only
-$0.07$ with observed strictness, whereas the prose version, which agreed
-less well with the labels, had a correlation of $0.42$ on the same
-grade-stripped text and the same schools (these are rank correlations; the
-Pearson figure for the prose version is the $0.40$ of
-\cref{tab:instruments_adopted}). The reason for this is that a marking
-scheme can be tuned towards whatever labellers reliably notice in a
-document, and what labellers reliably notice is not always what a school
-actually does. Agreement measures the first of these things, and only the
-visits measure the second. This is why the instruments were chosen by a rule
-that treats agreement as a floor and never as the objective. The inspection-report and behaviour-policy
-instruments are the prose marking schemes that the project began with.
-Decomposed versions of each were built to raise agreement, and a rebuild
-replaced the original only if it agreed at least as well with the labels and
-did no worse against the gold standard on the visited schools. For reports
-and policies no rebuild met that test and the prose versions were kept; for
-websites the decomposed rebuild did, and was kept; and the
-interview-transcript instruments were decomposed from the start. It is
-worth being exact about how much choosing was involved, because a choice
-that was made against the visited schools makes the validity figures
-optimistic. For each source the comparison was between the prose instrument
-and the best-agreeing decomposed rebuild. In other words, there were two
-candidates per construct, and the rebuilt versions were the ones that agreed
-best with the reference labels. For inspection reports the choice mattered: the rebuilt
-strictness instrument correlated with observed strictness at $0.07$ against
-the prose instrument's $0.42$, and the rebuilt warmth instrument with
-observed warmth at $0.04$ against the prose instrument's $0.06$ (rank
-correlations). For behaviour
-policies and websites it did not matter, because every candidate, prose or
-rebuilt, was uncorrelated with the observed measures, so no choice could
-have raised those figures. This means that the optimism attaches to the
-inspection-report figures only, and that it comes from having picked the
-better of two candidates on the same hundred schools. The prediction models
-below are evaluated with each school held out, but the choice of instrument
-was not.
-
-The second result is that asking the model for facts works better than
-asking it for judgements. The difference is that a fact can be checked. If
-the question is whether the page names a consequence, or whether the report
-says that pupils arrive on time, the model's answer is stable and it can be
-verified against the text. A judgement cannot be checked in the same way.
-If the question is how strict the document sounds, the answer depends
-partly on how lenient or severe the model itself tends to be when it judges,
-and that tendency is not fixed. It differs from one version of the model to
-the next, which means that the same document can move between bands for
-reasons that have nothing to do with the document. This is why the
-decomposed instruments ask only for facts, count the verified answers in
-code, and assign the band using a written rule. The effect is to take the judgement out of the model and put it into a
-written rule that can be inspected.
-
-The third result is that the correlation between two text scores depends
-on how they were produced, and so it cannot be read as a fact about
-schools. In the visited schools warmth and strictness go together, and the
-enacted scores are correlated at $\CorrWarmthStrictnessEnacted$. The
-inspection-report instrument, which reads a report once and returns both
-scores from that one reading, gives a correlation between the two of
-$0.54$. The behaviour-policy instrument, which also reads the document once
-but computes its bands from the answers to a decision procedure, gives
-$0.22$. The website and interview instruments, which score warmth in one
-call and strictness in a separate call from separately verified facts, give
-between $0.08$ and $0.18$. Part of that range is down to the sources, since
-an inspector describes conduct and relationships in a single account and a
-website need not. However, part of it is down to the instrument. A scorer that answers one
-question about one passage at a time never forms a view of the school as a
-whole, so what it returns is a set of readings of passages rather than a
-single reading of the school. The practical consequence is that whether the two
-dimensions go together is a question that has to be answered from the gold
-standard, and not from the text scores.
-
-The fourth result is that the model is part of the instrument. When the
-same marking scheme was moved from one model to another, agreement fell
-from $\kappa_w = 0.63$ to $0.12$, that is, from substantial agreement to
-almost none, even though the text and the labels were held fixed. For this
-reason each instrument is pinned to the model it was tested with, and a
-change of model is treated as a new instrument that has to be tested again,
-rather than as an upgrade.
-
-Two of the instruments that were kept have a weakness which I state once
-here, and which should be borne in mind wherever their scores appear. The
-first is that the inspection-report warmth score moves with the school's
-inspection grade ($r = -0.40$; the correlation is negative because 1 is
-Outstanding and 4 is Inadequate) even though every grade has been removed
-from the text it reads, and it does so more strongly than the reference
-raters reading the same text ($-0.25$). In other words, the model is picking
-up the tone in which inspectors write about a school that they rate highly.
-The score is therefore treated as a description of the report, and never as
-a clean predictor of anything. The second is that the website warmth
-instrument cannot tell its two lowest bands apart reliably. The model reads
-the least warm websites as much the same, so the score contains less
-information at the bottom of its scale than at the top.
-
-A reader will notice that the inspection-report warmth instrument is also
-the weakest of the retained instruments on agreement ($\kappa_w = 0.18$),
-and will reasonably ask whether the warmth null reported below is a failure
-of the instrument rather than of the text. Two facts suggest that it is the
-text. The first is that the best-agreeing of the eleven warmth versions I
-tried, which reaches $\kappa_w = 0.45$ against the same labels, has a
-correlation of only $0.04$ with observed warmth, which is no better than
-the instrument I kept. The second is that the retained instrument does read
-something in the report, since its scores track the espoused warmth measure
-($0.29$) and the inspection grade ($-0.40$). What it reads is what inspectors
-write about relationships, and that does not track what observers see. The
-direct check, which would be a human reading of the visited schools'
-reports set against the visits, is not available, because the labelled
+Finally, two limitations of the retained instruments should be stated once,
+here. The inspection-report warmth score moves with the school's inspection
+grade ($r = -0.40$; the correlation is negative because 1 is Outstanding
+and 4 is Inadequate) even though every grade has been removed from the text
+it reads, and it does so more strongly than the reference raters reading
+the same text ($-0.25$). It is therefore treated as a description of the
+report and never as a predictor of anything. Its agreement with human
+labels is also the weakest of the retained instruments ($\kappa_w = 0.18$
+against the reference labels and $\HumKOfstedW$ against mine), which raises
+the question of whether the warmth null reported below is a failure of the
+instrument rather than of the text. Two facts suggest that it is the text.
+The best-agreeing of the eleven warmth versions I tried, at $\kappa_w =
+0.45$, was no better against observation ($0.04$) than the version I kept.
+And the warmth score is related to what heads say ($0.29$) and to the
+inspection grade ($-0.40$), so the method does extract something from the
+reports; what it extracts is simply not related to what the observers saw.
+The direct check, which would be a human reading of the visited schools'
+own reports set against the visits, is not available, because the labelled
 packs were drawn from schools outside the visited sample. It should also be
-noted that the inspection-report teaching score, which is listed in
-\cref{tab:instruments_adopted} because the marking scheme returns it
-alongside the other two, does not track observed teaching practice ($0.06$)
-and is not used anywhere in what follows.
+noted that the inspection-report teaching score, which the marking scheme
+returns alongside the other two, is unrelated to observed teaching practice
+($0.06$) and is not used in what follows.
 
 \subsection{Predicting the gold standard}
 
@@ -976,11 +875,12 @@ of schools on warmth and \SameQuartileS{} per cent on strictness, against
 the 25 per cent that chance would give. Heads also rate their schools near
 the top of the warmth statements (a mean of $8.4$ on the 0--10 scale) and
 somewhat lower on strictness ($7.9$), while the observers' scores sit at
-$6.4$ and $7.0$. The two instruments use different items and different
-raters, so that difference in level is not in itself a measure of
-over-statement. What the rank comparison shows is that a head's warmth
-rating carries little information about where the school sits among its
-peers on the observed measure. Put simply, what a headteacher says about
+$6.4$ and $7.0$. The heads' scores and the observers' scores come from
+different questions answered by different people, so the fact that the
+heads' scores are higher does not by itself show that heads overstate their
+schools' warmth. What the rank comparison shows is that a head's warmth
+rating tells us little about where the school sits among its peers on the
+observed measure. Put simply, what a headteacher says about
 relationships is a poorer guide to what a visitor finds than what they say
 about behaviour. Within the interview, the items on
 which heads report reliably are those about the consistency of practice
@@ -1088,11 +988,13 @@ observed strictness for schools it was not fitted on with a correlation of
 $\RidgeBStrictness$. No text source is correlated with observed warmth, and
 the corresponding warmth model predicts nothing. The difference between the
 two dimensions appears to lie in the documents rather than in the scoring
-method. The warmth scoring rules that agree best with their labels do no
-better against observation than those that agree worst, and the
-inspection-report warmth score does track what heads say and what inspectors
-conclude, so the method is reading something; it is just not reading what
-observers see. Inspectors record conduct and enforcement in detail but
+method, for two reasons. The versions of the warmth scoring rules that
+agreed most closely with their labels were no better at matching
+observation than the versions that agreed least, so better rules did not
+produce a better measure. And the inspection-report warmth score is related
+to what heads say and to the inspectors' grades, so the method does extract
+something from the reports; what it extracts is simply not related to what
+observers see in the school. Inspectors record conduct and enforcement in detail but
 describe relationships in a uniformly positive register. Schools' own
 documents describe intentions, and websites are not written about the things
 that observers see. For the school-climate literature this is a caution: the
@@ -1123,12 +1025,12 @@ The third concerns the scoring method itself. How closely a large language
 model's scoring rule agrees with the labels it was developed against says
 nothing about whether its scores reflect what happens in the school. Across
 every version I tested the two were unrelated, and the best-agreeing version
-was usually the worse measure. Rules that ask the model for facts worked
-better than rules that ask it for judgements. How strongly two text scores
-correlate with each other depends on how they were produced, so the relation
-between the two dimensions has to be read from observation and not from the
-text scores. Finally, the same rule moved to a different model lost most of its
-agreement. These results apply to any study that scores text with a language
+was usually the worse measure. Rules that ask the model for facts worked better than rules that ask it
+for judgements. The correlation between two text scores partly reflects the
+way the scores were produced rather than the schools themselves, so the
+question of whether warmth and strictness go together in schools has to be
+answered from observation. Finally, the same rule moved to a different
+model lost most of its agreement. These results apply to any study that scores text with a language
 model against a set of labels, and they argue for testing every such scoring
 rule against something outside the labels rather than against agreement
 alone.
