@@ -103,12 +103,13 @@ in fact two measures, not one: an \emph{enacted} score, from what the
 observers recorded, and an \emph{espoused} score, from what the headteacher
 reported. For a further \NTierTwo{} schools I have the interview alone, and
 for the remaining national population only the public text. The question I
-put to that text is whether the gold standard can be recovered from it. To
+ask of that text is whether the gold standard can be recovered from it. To
 answer it I fit prediction models on the schools where both the text scores
-and the gold standard exist, hold each school out in turn, and ask how well
-the predictions reproduce the gold standard. This is the measure of what the
-public record contains, and the answer decides what can be carried to the
-national population. In the event, that is one source and one dimension.
+and the gold standard exist, hold each school out in turn, and measure how
+well the predictions reproduce the gold standard. This measures what the
+public record contains, and the answer determines what can be carried to
+the national population. As it turns out, only one source and one dimension
+can be.
 
 There are two main findings, and a third result about the scoring method.
 The first finding is that the two dimensions can be recovered to very
@@ -337,9 +338,9 @@ points. Both over-represent London (45 per cent of visited schools against
 English as an additional language. Both also lean towards stronger schools:
 25 per cent of visited schools held an Outstanding inspection grade as at
 August 2024 against 15 per cent nationally, and their mean Progress~8 in
-2018/19 was $+0.17$ against $+0.04$. That lean is what one would expect from
-recruiting through headteachers, since confident schools are the ones most
-likely to say yes, and it has two consequences. Estimates from the visited
+2018/19 was $+0.17$ against $+0.04$. That lean is what one would expect from recruiting through headteachers,
+since the schools most likely to agree to take part are those that are
+confident about what a visitor will find, and it has two consequences. Estimates from the visited
 sample apply most directly to a population that is somewhat stronger than
 the national average. Secondly, because the sample under-represents the weakest
 schools, the range of both culture and outcomes is restricted, which in the
@@ -456,9 +457,9 @@ The interview items were rated by the interviewer and the observer, with
 correlations of $0.61$ to $0.74$ and within-one-point agreement above 90 per
 cent (\cref{tab:irr_interview}).
 
-What the paper's claims rest on, however, is not the agreement of two raters
-on one lesson but the reliability of a school's score once it has been
-averaged over its lessons and raters. \Cref{tab:score_reliability} gives
+However, the paper's claims do not rest on the agreement of two raters on
+one lesson. They rest on the reliability of a school's score once it has
+been averaged over its lessons and raters. \Cref{tab:score_reliability} gives
 this, and the way it does so is worth explaining. Take every rating that a
 researcher gave a lesson for in-lesson strictness: one number, for one
 lesson, from one researcher. Those ratings differ from one another for three
@@ -546,8 +547,8 @@ agree with one another to within half a point. At the second, the
 headteacher rated warmth 9.3 and strictness 7.8, near the top of the scale,
 while the observers recorded 4.6 and 5.9. In-lesson warmth at that school
 averaged 2.2 out of 5 and out-of-lesson warmth 2.4, while the head's ratings
-on the three warmth statements averaged 4.7 out of 5. Nothing in the
-interview distinguishes the two heads. Across the \NTierOne{} schools, four
+on the three warmth statements averaged 4.7 out of 5. There is nothing in
+the interview that would tell these two heads apart. Across the \NTierOne{} schools, four
 in five have a warmth gap larger than one point on the 0--10 scale and half
 have a gap larger than two. One espoused measure can be checked against an
 outside record. Heads rated how low their staff turnover was and how high
@@ -581,8 +582,9 @@ grade, and every field that would let the model infer the grade, is stripped
 from the text, so that the score is read from the prose and not from the
 verdict. The text is then presented to the model together with the
 instrument's marking scheme, and the model's answer is converted into a band.
-Two kinds of instrument are used at that last step, and which is better for
-a given source was not assumed but decided by the tests described below.
+Two kinds of instrument are used at that last step. I did not assume which
+kind is better for a given source; that was decided by the tests described
+below.
 \emph{Prose} instruments give the model a written marking scheme and have it
 read the whole document against it in one call. The inspection-report
 instrument is of this kind, and it returns a band for each of its three
@@ -650,17 +652,16 @@ rater and I labelled the same documents, it agreed with me about as well as
 I agree with myself. On the 30 development inspection reports, a blind pass
 by the reference rater agreed with my labels at $\kappa_w = 0.75$ for
 warmth, $0.76$ for strictness and $0.79$ for teaching, or approximately
-$0.78$ when the three are pooled. This is about the level of my own
-test--retest figure of $0.77$, which on 30 documents is as close as two
-raters can be expected to get. On
+$0.78$ when the three are pooled. This is about the level of my own test--retest figure of $0.77$, and on 30
+documents no closer agreement between two raters could be demonstrated. On
 the 50 development websites the two of us agreed far less well, at
 $\ClaudeDamianWebS$ for strictness and $\ClaudeDamianWebW$ for warmth. The
 disagreement there was directional rather than random, in that the reference
-rater read the sites as stricter and less warm than I did. The honest conclusion to draw from this is that warmth, and to a lesser
-extent strictness, are not reliably identifiable from a school's website by
-any reader, human or model, and the website instruments should be read in
-that light. Nothing in the paper depends on them: every result that uses a
-website score is a null. The second question is how
+rater read the sites as stricter and less warm than I did. The conclusion I draw from this is that warmth, and to a lesser extent
+strictness, cannot be reliably identified from a school's website by any
+reader, human or model, and the website instruments should be read in that
+light. It should be noted that none of the paper's findings depends on
+them, because every result that uses a website score is a null result. The second question is how
 the instruments of record compare with a human reading. The last column of
 \cref{tab:instruments_adopted} gives each instrument's agreement with my own
 labels on its development pack. The inspection-report strictness and
@@ -771,8 +772,8 @@ and that tendency is not fixed. It differs from one version of the model to
 the next, which means that the same document can move between bands for
 reasons that have nothing to do with the document. This is why the
 decomposed instruments ask only for facts, count the verified answers in
-code, and assign the band using a written rule. The judgement is taken out
-of the model and put into a rule that anyone can read.
+code, and assign the band using a written rule. The effect is to take the judgement out of the model and put it into a
+written rule that can be inspected.
 
 The third result is that the correlation between two text scores depends
 on how they were produced, and so it cannot be read as a fact about
@@ -786,10 +787,10 @@ $0.22$. The website and interview instruments, which score warmth in one
 call and strictness in a separate call from separately verified facts, give
 between $0.08$ and $0.18$. Part of that range is down to the sources, since
 an inspector describes conduct and relationships in a single account and a
-website need not. However, part of it is down to the instrument. A scorer
-that answers a question about one passage at a time has no sense of the
-school as a whole, and it returns readings of passages rather than a
-reading of a school. The practical consequence is that whether the two
+website need not. However, part of it is down to the instrument. A scorer that answers one
+question about one passage at a time never forms a view of the school as a
+whole, so what it returns is a set of readings of passages rather than a
+single reading of the school. The practical consequence is that whether the two
 dimensions go together is a question that has to be answered from the gold
 standard, and not from the text scores.
 
@@ -1002,18 +1003,19 @@ warmth, no source is correlated with the observed measure, and the
 inspection report and the parent survey are correlated with the espoused one
 ($0.29$ and $0.31$). The parent survey is the fourth independent group of
 respondents, after the observers, the headteachers and the inspectors, and
-it shows the same crossover. Parents' reports of their children being happy
-and safe track what heads say about warmth ($0.31$) more than what observers
-record ($0.17$), and they track observed strictness ($0.28$) better than
-observed warmth. \Cref{fig:crossover_warmth} draws the warmth half of the
+it shows the same pattern. Parents' reports of their children being happy
+and safe are more closely related to what heads say about warmth ($0.31$)
+than to what observers record ($0.17$), and they are more closely related
+to observed strictness ($0.28$) than to observed warmth. \Cref{fig:crossover_warmth} draws the warmth half of the
 table. What is written and reported about a school's warmth, by inspectors,
 by parents and by the school itself, follows the school's account of itself
 and not the classroom. There are two possible readings of this. One is that
 the school's account is the common source: a head who describes the school
 as warm describes it that way to inspectors and to parents, and both repeat
-it. The other is that inspectors and parents see the same public face that
-the interview elicits, and that the classroom and the corridor are where
-warmth is enacted or not. The data do not separate the two readings, but
+it. The other is that inspectors and parents see the same presented version of
+the school that the interview draws out, while the classroom and the
+corridor, which observers see, are where warmth is or is not put into
+practice. The data do not separate the two readings, but
 both imply that a national measure of enacted warmth cannot be read from
 any of these sources.
 
@@ -1038,10 +1040,10 @@ negatively associated with pupil progress.
 qualify the inspection-report scores. The warmth score moves with the
 inspection grade ($r = -0.40$; a lower grade is a better school) even though
 every grade has been stripped from the text it reads, and it does so more
-than the reference raters reading the same text ($-0.25$). Inspectors write
-about relationships in a tone that moves with their overall verdict, and the
-model reads that tone. The score is therefore a characterisation of the
-report rather than a clean measure of the school. The strictness score also
+than the reference raters reading the same text ($-0.25$). This suggests that inspectors write about relationships in a tone that
+moves with their overall verdict, and that the model picks that tone up. The
+score is therefore best understood as a description of the report rather
+than as a clean measure of the school. The strictness score also
 moves with the verdict ($-0.49$), but unlike warmth it tracks observed
 practice as well, and in the following chapter its association with pupil
 progress survives conditioning on the grade. It should also be noted that a
@@ -1377,9 +1379,10 @@ $r = \RidgeBStrictness$ with a cross-validated $R^2$ of $0.099$, while the
 keyword baseline on the same documents reaches $r = 0.094$ and an $R^2$ of
 $0.008$, which is barely distinguishable from predicting the sample mean.
 This means that whatever the strictness score captures, it is not the
-frequency of particular words. It comes from reading the document rather
-than from any countable property of the text, which is the opposite of what
-one would see if the score were merely picking up word frequencies.
+frequency of particular words. The information comes from reading the
+document rather than from any countable property of the text, which is the
+opposite of what one would expect if the score were merely picking up word
+frequencies.
 
 On warmth, neither specification recovers anything. Both select a penalty at
 or near the top of the grid and shrink almost entirely to the training mean,
