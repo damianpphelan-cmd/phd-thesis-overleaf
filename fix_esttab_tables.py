@@ -31,7 +31,6 @@ MATH = re.compile(r"(?<!\\)\$(.+?)(?<!\\)\$")
 # chapter wants it scaled to \textwidth. tab_semh_mechanism is narrow enough
 # to set at natural size; the rest overflow without it.
 ESTTAB = {
-    "tab_continuity_robustness": True,
     "tab_enacted_espoused":      True,
     "tab_main_results_s1":       True,
     "tab_main_results_s2":       True,
