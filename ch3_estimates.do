@@ -240,6 +240,30 @@ foreach outcome in p8mea_avg p8meaeng_avg p8meamat_avg p8meaebac_avg p8meaopen_a
     postterms `pf' "primary_stage3" "`lbl'" "$W $S $T"
 }
 
+* ---- Sensitivity to unobservables (Oster delta; E-value inputs) ----
+* Short regressions with no controls, for the Oster comparison, and the outcome
+* SD on the primary sample, for the E-value conversion in
+* thesis/make_sensitivity_bounds.py. psacalc is Oster (2019), installed from SSC.
+regress p8mea_avg $W $S, vce(hc3)
+postterms `pf' "sens_short" "overall" "$W $S"
+
+regress p8mea_avg $W $S $controls_primary, vce(hc3)
+local nprim = e(N)
+local rmax = min(1.3*e(r2), 1)
+summarize p8mea_avg if e(sample)
+post `pf' ("sens_sd") ("overall") ("p8mea_avg") (r(sd)) (.) (.) (.) (.) (r(N)) (.)
+
+* Each score as the single treatment, the other score among the controls;
+* rmax = 1.3 x the controlled R2 (Oster's convention), capped at 1.
+foreach t in $W $S {
+    regress p8mea_avg $W $S $controls_primary, vce(hc3)
+    psacalc delta `t', rmax(`rmax')
+    post `pf' ("sens_delta") ("overall") ("`t'") (r(delta)) (.) (.) (.) (.) (`nprim') (`rmax')
+    regress p8mea_avg $W $S $controls_primary, vce(hc3)
+    psacalc beta `t', rmax(`rmax') delta(1)
+    post `pf' ("sens_betaone") ("overall") ("`t'") (r(beta)) (.) (.) (.) (.) (`nprim') (`rmax')
+}
+
 * ---- The specification ladder on overall P8 (tab_spec_ladder.tex) ----
 * Four treatments of the pre-COVID inspection grade, everything else held at the
 * primary spec (late-entry excluded throughout -- that is why this sits inside
