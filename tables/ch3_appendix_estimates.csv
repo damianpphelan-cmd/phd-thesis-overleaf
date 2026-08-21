@@ -55,10 +55,10 @@ items,,single,overall,z_it_outsiderecreational,.0938322872212746,.04006673073496
 typology,gold,interaction,overall,z_gs_warmth_enacted,.150482277011996,.0433412776736161,.0008185696281424,99,.6315790905652499,hc3
 typology,gold,interaction,overall,z_gs_strictness_enacted,.1088876533994761,.0417441139568355,.0107636257831865,99,.6315790905652499,hc3
 typology,gold,interaction,overall,z_wxs,.0390345654565985,.0349971273886882,.2678748921952262,99,.6315790905652499,hc3
-typology,gold,quadrant_adjmean,overall,quad1,.5465935443241854,0,,33,,hc3
-typology,gold,quadrant_adjmean,overall,quad2,.141808304625399,0,,16,,hc3
-typology,gold,quadrant_adjmean,overall,quad3,.3804291472336997,0,,15,,hc3
-typology,gold,quadrant_adjmean,overall,quad4,.0346297987082865,0,,35,,hc3
+typology,gold,quadrant_adjmean,overall,quad1,.5465935443241854,.0660051698370068,,33,,hc1
+typology,gold,quadrant_adjmean,overall,quad2,.141808304625399,.0750392718062551,,16,,hc1
+typology,gold,quadrant_adjmean,overall,quad3,.3804291472336997,.0729939332424792,,15,,hc1
+typology,gold,quadrant_adjmean,overall,quad4,.0346297987082865,.0576146190805754,,35,,hc1
 typology,gold,auth_vs_rest,overall,auth,.4026784478466521,.0884999233862951,.0000174908062545,99,.5584916706215313,hc3
 typology,natA,interaction,overall,z_ofsted_llmwarmthscore,.0300926790837685,.0073388226320793,.0000423105379574,3052,.5216670126280925,hc3
 typology,natA,interaction,overall,z_ofsted_llmstrictnessscore,.1301296200800477,.0086738465515013,3.89011729965e-49,3052,.5216670126280925,hc3

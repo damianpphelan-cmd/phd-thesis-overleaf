@@ -217,7 +217,9 @@ $N$                      & {ns[0]} & {nfmt(ns[1])} & {nfmt(ns[2])} \\
 \end{{tabular}}
 \begin{{minipage}}{{\linewidth}}
 \smallskip
-\footnotesize\textit{{Notes:}} Standard errors (HC3) in parentheses.
+\footnotesize\textit{{Notes:}} Standard errors (HC3) in parentheses; for the
+gold-sample adjusted quadrant means they are HC1, because the HC3 leverage
+adjustment is undefined when a covariate cell contains a single school.
 {NOTES_STARS}
 Quadrant means are covariate-adjusted; quadrants are median splits within each sample.
 The gold interaction is a low-power test at this sample size; the pattern --- interaction
