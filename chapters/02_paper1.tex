@@ -594,16 +594,22 @@ at all. Instead the model answers a fixed set of factual questions, each
 answer must be supported by a word-for-word quotation that is checked
 against the document, and the band is assigned by a fixed rule in code; I
 call these \emph{decomposed} instruments, and the website and
-interview-transcript instruments are of this kind. The full marking scheme
-and question set of every instrument is reproduced in \cref{app:2A:prompts}.
+interview-transcript instruments are of this kind. It should be noted that
+the interview-transcript instruments exist only as a methodological
+comparison, to test whether a model can recover the espoused scores from
+the transcripts; the espoused scores used throughout the paper come from
+the headteacher's statement ratings, not from the transcripts. The full
+marking scheme and question set of every instrument is reproduced in
+\cref{app:2A:prompts}.
 
 The instruments were developed and tested as follows. I wrote the marking
 schemes and labelled a development pack of documents for each source myself
 (30 inspection reports, 25 behaviour policies and 50 websites), and the
 schemes were revised against those packs. A fresh pack was then drawn for
-each source from schools outside the development pack, and labelled by
-three independent instances of Claude, each blind to the other two and to
-every model score. The majority label is the \emph{reference label}; in the
+each source from schools outside the development pack (60 inspection
+reports, 50 behaviour policies, 60 websites and 100 interview transcripts),
+and labelled by three independent instances of Claude, each blind to the
+other two and to every model score. The majority label is the \emph{reference label}; in the
 three cases, out of roughly 500 labels, where the three raters gave three
 different bands, I made the ruling. Agreement is measured by weighted kappa
 ($\kappa_w$), which is the standard statistic for agreement on an ordered
@@ -704,21 +710,24 @@ of the instrument: the same marking scheme moved to a different model fell
 from $\kappa_w = 0.63$ to $0.12$ with the text and the labels held fixed,
 so each instrument is pinned to the model it was tested with. Fourth, the
 correlation between two text scores partly reflects how the scores were
-produced rather than the schools themselves. Instruments that read a
-document once and score both dimensions from that one reading produce
-warmth and strictness scores correlated at $0.54$, close to the
-$\CorrWarmthStrictnessEnacted$ observed in the schools, while instruments
-that score each dimension separately produce scores correlated at only
-$0.08$ to $0.22$. This means that whether warmth and strictness go together
-in schools is a question that has to be answered from observation.
+produced rather than the schools themselves. The inspection-report
+instrument, which returns both scores from one reading, produces warmth and
+strictness scores correlated at $0.54$, close to the
+$\CorrWarmthStrictnessEnacted$ observed in the schools. The instruments
+that build each score from checked answers to factual questions produce
+much lower correlations: $0.22$ for the behaviour policies, and $0.08$ to
+$0.18$ for the websites and interview transcripts, where each dimension is
+scored in a separate call. This means that whether warmth and strictness go
+together in schools is a question that has to be answered from
+observation.
 
-Finally, two limitations of the retained instruments should be stated once,
-here. The inspection-report warmth score moves with the school's inspection
-grade ($r = -0.40$; the correlation is negative because 1 is Outstanding
-and 4 is Inadequate) even though every grade has been removed from the text
-it reads, and it does so more strongly than the reference raters reading
-the same text ($-0.25$). It is therefore treated as a description of the
-report and never as a predictor of anything. Its agreement with human
+Finally, two limitations of the retained instruments should be noted. The
+inspection-report warmth score moves with the school's inspection grade
+($r = -0.40$; the correlation is negative because 1 is Outstanding and 4 is
+Inadequate) even though every grade has been removed from the text it
+reads. This result is examined in Section~\ref{sec:p1_results}; the
+consequence is that the score is treated as a description of the report and
+never as a predictor of anything. Its agreement with human
 labels is also the weakest of the retained instruments ($\kappa_w = 0.18$
 against the reference labels and $\HumKOfstedW$ against mine), which raises
 the question of whether the warmth null reported below is a failure of the
@@ -1264,7 +1273,7 @@ the model's reading of the document contributes anything that a simple
 word-counting rule could not recover from the same text.
 \Cref{tab:ridge_spec_comparison} tests this directly. It compares two sets
 of predictors under an identical estimation procedure: (A) the three
-language-model scores that are used throughout the chapter, and (D) the
+language-model scores that are used throughout the chapter, and (B) the
 keyword-rule scores computed by a pattern matcher that runs alongside the
 language model on the same documents. The second of these provides a floor
 against which to judge whether the language model contributes anything
