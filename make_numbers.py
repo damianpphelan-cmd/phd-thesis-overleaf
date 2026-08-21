@@ -289,6 +289,16 @@ def build() -> list[Num]:
             "primary-spec strictness coefficient per SD, ch3_estimates.do (Stata)",
             expect=[r"\hat{\beta}_S = " + _ps],
             stale=[r"\hat{\beta}_S = 0.130", r"\hat{\beta}_S = 0.117", r"\hat{\beta}_S = 0.131"]))
+    _ppw = f"{_p.loc['z_gs_warmth_enacted', 'pval']:.3f}"
+    _pps = f"{_p.loc['z_gs_strictness_enacted', 'pval']:.3f}"
+    add(Num("PrimarySpecPW", _ppw,
+            "primary-spec warmth p-value, ch3_estimates.do (Stata)",
+            expect=[f"($p = {_ppw}$)"],
+            stale=[r"($p = 0.002$)"]))
+    add(Num("PrimarySpecPS", _pps,
+            "primary-spec strictness p-value, ch3_estimates.do (Stata)",
+            expect=[f"($p = {_pps}$)"],
+            stale=[r"($p = 0.007$)"]))
     add(Num("PrimarySpecN", "99",
             "primary estimation sample: 103 - 2 late-entry - 1 unfillable "
             "grade - 1 missing years_since_ofsted",
