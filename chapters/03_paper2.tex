@@ -477,7 +477,7 @@ the full control set without the grade it has a coefficient of
 $\BetaNationalStrictness$ ($p < 0.001$, $R^2 = 0.52$;
 \cref{tab:national_strictness}). With the 2019 grade added ($n = 2{,}746$)
 the coefficient is $0.140$, and no component estimate moves by more than
-$0.005$. Two things follow from this. The first concerns
+$0.005$. This result has two implications. The first concerns
 the score itself. A score read from an inspection report might be thought to be a proxy for
 the inspectorate's overall approval, in which case the association would
 really be the grade's association. However, the coefficient is unchanged by
@@ -498,6 +498,16 @@ results are consistent with the previous chapter's measurement findings and
 are reported in \cref{tab:llm_p8_matrix}: the behaviour-policy warmth score
 is significantly \emph{negatively} associated with progress, and the website
 warmth and strictness scores are not associated with it at all.
+
+A further question is whether the strictness association runs through the
+curriculum rather than through progress within it. Stricter schools do steer
+pupils towards the academic pathway: nationally, the strictness score
+predicts entry to the EBacc suite, to the humanities and to languages with
+the inspection grade held constant. However, controlling for EBacc entry
+reduces the strictness association with the EBaC component by only 11 to
+14~per~cent (\cref{tab:entry_rates}). This means that most of the
+association reflects progress within subjects, and not which subjects pupils
+are entered for.
 
 \input{tables/tab_national_strictness}
 
@@ -544,6 +554,26 @@ that the culture observed is the culture the outcome cohorts had, leaves the
 strictness point estimates at or above the full-sample values and the warmth
 estimates imprecise. That subsample is too small to be informative either
 way (\cref{app:3A:tables}).
+
+Finally, two standard sensitivity measures ask how strong unmeasured
+confounding would have to be to overturn these estimates
+(\cref{tab:sensitivity_bounds}). The first is Oster's $\delta$, which
+compares selection on unobservables with selection on the full control set.
+Driving the warmth coefficient to zero would require unobservables
+\OsterDeltaW{} times as important as the controls, against a conventional
+benchmark of one, and warmth retains a coefficient of \OsterBetaEqualW{}
+when unobservables are assumed to matter exactly as much as the controls.
+The strictness estimate is less robust on this measure. Its $\delta$ of
+\OsterDeltaS{} sits just above the benchmark, and its coefficient under the
+equal-selection assumption is close to zero, because the controls already
+absorb part of the raw association and the extrapolation continues that
+movement. The second measure is the E-value. A confounder would need an
+association of at least \EValW{} in risk-ratio terms with both warmth and
+progress, and \EValS{} for strictness, to explain the estimates away. It
+should be noted that both measures address omitted variables only. Neither
+touches reverse causality, and because the culture scores are measured with
+error, the estimated coefficients, and with them the bounds, are if
+anything understated.
 
 \input{tables/tab_robustness_overall}
 
@@ -885,3 +915,11 @@ larger in every component, while the warmth estimates are noisy and should
 not be interpreted directionally. This check does not provide evidence
 against the primary results, but the subsample is too small to detect
 effects of the size found in the full specification.
+
+\Cref{tab:sensitivity_bounds} reports the sensitivity measures quoted in
+the robustness discussion: Oster's $\delta$ and the equal-selection bound
+for each culture score, computed with \texttt{psacalc} under
+$R_{\max} = \SensRmax$, and the E-values for the point estimates and for
+the confidence-interval boundaries.
+
+\input{tables/tab_sensitivity_bounds}
