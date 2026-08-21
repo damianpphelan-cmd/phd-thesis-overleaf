@@ -543,7 +543,7 @@ whose headteacher is confirmed as unchanged since the last inspection, so
 that the culture observed is the culture the outcome cohorts had, leaves the
 strictness point estimates at or above the full-sample values and the warmth
 estimates imprecise. That subsample is too small to be informative either
-way (\cref{tab:continuity_robustness}).
+way (\cref{app:3A:tables}).
 
 \input{tables/tab_robustness_overall}
 
@@ -708,29 +708,21 @@ persistent positions in the distribution of structural characteristics, and
 support the use of culture scores measured in 2024--25 as proxies for the
 organisational conditions present during the 2023--24 outcome period.
 
-\Cref{tab:sen_category_stability} extends the analysis to the thirteen
-primary-need categories within the SEN population. ICC values range from
-0.320 (Severe Learning Difficulty) to 0.643 (Moderate Learning Difficulty);
-the educationally important Social, Emotional and Mental Health (SEMH)
-category has ICC~$= 0.545$. The lower stability of SEMH relative to the
-aggregate SEN support share (ICC~$= 0.65$) is consistent with SEMH composition
-being partly responsive to school behaviour and exclusion practices, rather than
-being determined solely by fixed intake characteristics. Low ICCs for rare
-categories (Severe Learning Difficulty, Multi-Sensory Impairment, Visual
-Impairment) partly reflect small-count measurement noise rather than genuine
-volatility. For the main analysis, aggregate SEN controls are preferred to
-category-level decompositions; the moderate stability of baseline SEMH share
-supports its inclusion as an additional control in the robustness specification
-of \cref{tab:robustness_overall}.
+The same analysis at the level of the thirteen primary-need categories
+within the SEN population shows moderate stability for the Social, Emotional
+and Mental Health (SEMH) category (ICC~$= 0.545$), which supports the
+baseline SEMH share entering as an additional control in the robustness
+specification of \cref{tab:robustness_overall}. The lower stability of SEMH
+relative to the aggregate SEN support share (ICC~$= 0.65$) is consistent
+with SEMH composition being partly responsive to school behaviour and
+exclusion practices, rather than being determined solely by fixed intake
+characteristics.
 
 \input{tables/tab_structural_stability}
 
-\input{tables/tab_sen_category_stability}
-
 \Cref{tab:p8_component_stability} reports ICC estimates separately for the four
-Progress~8 components that serve as the primary outcomes of this chapter,
-together with the corresponding Attainment~8 components used in the
-contemporaneous robustness specification. Among the Progress~8 components,
+Progress~8 components that serve as the primary outcomes of this chapter.
+Among the Progress~8 components,
 stability varies from ICC~$= 0.587$ for the Open component to ICC~$= 0.748$
 for EBaC, with English and Maths sitting between these at ICC~$\approx 0.67$.
 The higher stability of EBaC relative to Open reflects the fact that
@@ -752,17 +744,6 @@ sensitive to academic pathway steering. The lower stability of Open P8 relative 
 estimated against a noisier outcome, which may attenuate the estimated effect.
 This is a limitation to acknowledge in interpreting any differential finding
 between components.
-
-Attainment~8 component ICCs substantially exceed their Progress~8 counterparts
-across all four components, ranging from ICC~$= 0.750$ (Open) to
-ICC~$= 0.887$ (EBaC). This pattern is expected: Attainment~8 measures absolute
-performance without subtracting KS2 prior attainment, so the stable intake
-signal (which itself has an ICC of $0.91$ for the KS2 scaled score) is
-retained in the dependent variable and inflates between-school variance
-relative to within-school variance. The higher Attainment~8 ICCs therefore do
-not indicate that raw attainment is more stable than value-added in any
-useful sense. They reflect the composition of the variance rather than the
-reliability of the school-level signal.
 
 \input{tables/tab_p8_component_stability}
 
@@ -874,20 +855,6 @@ the movement to the change of sample.
 
 \input{tables/tab_semh_mechanism}
 
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.85\textwidth]{fig_academisation_event.pdf}
-  \caption{Mean Progress~8 in event time around academy conversion, shown
-  separately for converter and sponsor-led academies, with predecessor-school
-  years linked through the register of predecessor and successor URNs.
-  Sponsor-led schools decline before converting and recover afterwards, which
-  is the signature of regression to the mean following intervention in
-  struggling schools; converters are flat throughout. Any analysis of
-  conversion effects that pools the two types would mistake this selection
-  pattern for an effect of conversion itself.}
-  \label{fig:academisation_event}
-\end{figure}
-
 \Cref{tab:score_controls_corr} reports pairwise Pearson correlations between
 the three enacted culture scores ($W_{\text{enac}}$,
 $S_{\text{enac}}$, $T_{\text{enac}}$) and the two espoused scores
@@ -905,21 +872,16 @@ absorbs in every specification.
 
 \input{tables/tab_score_controls_corr}
 
-\Cref{tab:continuity_robustness} reports the Stage~1 specification
-side-by-side for the full primary sample ($n = 99$) and for the subset of
-schools where the headteacher named in the most recent Ofsted inspection report
-is confirmed still in post in the July~2026 GIAS snapshot ($n = 22$). The
-restriction is driven as much by data coverage as by turnover. Of the 103
-full-data schools, continuity could be determined for only 29, of which 22
-were unchanged and 7 had changed. Given the small $n$, the coefficients in
-the continuity subsample are imprecisely estimated (the standard errors are
-roughly four times larger than in the full sample), and neither warmth nor
-strictness is statistically significant in any component. The strictness
-point estimates are in the same direction as the full-sample estimates, and
-in every component they are larger ($\hat{\beta}_S$ ranges from 0.27 to
-0.33), while the warmth estimates are noisy and should not be interpreted
-directionally. This check does not provide evidence against the primary
-results, but the subsample is too small to detect effects of the size found
-in the full specification.
-
-\input{tables/tab_continuity_robustness}
+A final check re-estimates the Stage~1 specification on the subset of
+schools where the headteacher named in the most recent inspection report is
+confirmed still in post in the July~2026 GIAS snapshot. Continuity could be
+determined for only 29 of the 103 full-data schools, of which 22 were
+unchanged and 7 had changed, so the restriction is driven as much by data
+coverage as by turnover. In this subsample the standard errors are roughly
+four times larger than in the full sample, and neither warmth nor strictness
+is statistically significant in any component. The strictness point
+estimates are in the same direction as the full-sample estimates and are
+larger in every component, while the warmth estimates are noisy and should
+not be interpreted directionally. This check does not provide evidence
+against the primary results, but the subsample is too small to detect
+effects of the size found in the full specification.

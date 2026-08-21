@@ -1,10 +1,10 @@
-r"""Regenerate the eleven Chapter 3 appendix tables from ch3_appendix_estimates.csv
+r"""Regenerate the ten Chapter 3 appendix tables from ch3_appendix_estimates.csv
 (thesis/ch3_appendix.do, the primary specification) and the companion CSVs written by
 build_ch3_appendix_input.py. 19 Aug 2026, Damian's Option A.
 
 Tables: tab_subscores, tab_items_fdr, tab_typology, tab_gaps, tab_parentview,
 tab_llm_p8_matrix, tab_entry_rates, tab_p8_proxy, tab_semh_mechanism,
-tab_stability_p8, tab_continuity_robustness.
+tab_stability_p8.
 
 Every number in every table comes from a CSV; nothing is typed in. Run with --check
 to compare against the files on disk without writing.
@@ -624,47 +624,6 @@ zero and drift slightly upward.
 """
 
 
-# ---------------------------------------------------------------- continuity
-def t_continuity():
-    ocs = [("english", "English"), ("maths", "Maths"), ("ebac", "EBaC"), ("open", "Open")]
-    def c(panel, oc, term): return row("continuity", panel, "z", oc, term)
-    head1 = " & ".join(rf"\multicolumn{{2}}{{c}}{{{lab}}}" for _, lab in ocs)
-    head2 = " & ".join(r"\multicolumn{1}{c}{Full}&\multicolumn{1}{c}{Cont}" for _ in ocs)
-    def line(term, lab):
-        cells = []; ses = []
-        for oc, _ in ocs:
-            for p in ["all", "unchanged"]:
-                r = c(p, oc, term); cells.append(f3(r.b) + stars(r.pval)); ses.append(f"({r.se:.3f})")
-        return f"{lab:<20} & " + " & ".join(cells) + r" \\" + "\n" + f"{'':<20} & " + " & ".join(ses) + r" \\"
-    ns = " & ".join(str(int(c(p, oc, "g_gs_warmth_enacted").n)) for oc, _ in ocs for p in ["all", "unchanged"])
-    r2 = " & ".join(f"{c(p, oc, 'g_gs_warmth_enacted').r2:.3f}" for oc, _ in ocs for p in ["all", "unchanged"])
-    nun = int(row("continuity", "count", "unchanged", "", "n").b); nch = int(row("continuity", "count", "changed", "", "n").b); ndet = int(row("continuity", "count", "determined", "", "n").b)
-    return rf"""\begin{{table}}[htbp]\centering
-{SYM}
-\caption{{Headteacher continuity robustness (full primary sample vs.\ schools whose headteacher is confirmed unchanged since the last inspection)}}
-\label{{tab:continuity_robustness}}
-\footnotesize\setlength{{\tabcolsep}}{{4pt}}
-\resizebox{{\textwidth}}{{!}}{{%
-\begin{{tabular}}{{l*{{8}}{{c}}}}
-\toprule
- & {head1} \\
- & {head2} \\
-\midrule
-{line("g_gs_warmth_enacted", "Warmth ($W$)")}
-\addlinespace
-{line("g_gs_strictness_enacted", "Strictness ($S$)")}
-\midrule
-N & {ns} \\
-r2 & {r2} \\
-\bottomrule
-\multicolumn{{9}}{{l}}{{\footnotesize Standard errors (HC3) in parentheses; coefficients per standard deviation of the enacted scores, as in the body tables.}}\\
-\multicolumn{{9}}{{l}}{{\footnotesize {NOTES_STARS} Continuity determinable for {ndet} of the visited schools: {nun} unchanged, {nch} changed.}}\\
-\end{{tabular}}%
-}}
-\end{{table}}
-""", nun, nch, ndet
-
-
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--check", action="store_true")
@@ -680,14 +639,13 @@ def main():
     p8_tex, maxdiff, corr = t_p8proxy(); write("tab_p8_proxy.tex", p8_tex, a.check, changed)
     semh_tex, s_row, n_row = t_semh(); write("tab_semh_mechanism.tex", semh_tex, a.check, changed)
     write("tab_stability_p8.tex", t_stability(), a.check, changed)
-    cont_tex, nun, nch, ndet = t_continuity(); write("tab_continuity_robustness.tex", cont_tex, a.check, changed)
     print(f"\nprose-relevant: items positive {npos}/{nitems}, surviving BH {nsurv}; entry attenuation {amin:.0f}-{amax:.0f}%; "
           f"pseudo-vs-real max raw diff {maxdiff:.3f}, corr {corr.b:.3f} (n={int(corr.n)}); SEMH tier1 S {s_row.b:.3f} p={s_row.pval:.2f} n={int(s_row.n)}; "
-          f"national S {n_row.b:.3f} p={n_row.pval:.3f} n={int(n_row.n)}; continuity {nun}/{nch}/{ndet}")
+          f"national S {n_row.b:.3f} p={n_row.pval:.3f} n={int(n_row.n)}")
     if a.check:
         if changed:
             print("DIFFER:", changed); return 1
-        print("all eleven appendix tables match their CSVs"); return 0
+        print("all ten appendix tables match their CSVs"); return 0
     return 0
 
 
