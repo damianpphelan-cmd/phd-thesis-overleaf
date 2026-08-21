@@ -116,6 +116,19 @@ regress p8mea_avg ofsted_llmstrictnessscore $controls_ngrade, vce(hc3)
 summarize pre2022 if e(sample)
 post `pf' ("Overall") ("pre22shr") (r(mean)) (.) (.) (r(N)) (.)
 
+* Does the association decay with report age? Interaction of the standardised
+* score with centred years-since-inspection, no-grade spec, overall P8. A
+* persistent signal should show no decay (referee point, 21 Aug 2026).
+quietly summarize years_since_ofsted if !missing(p8mea_avg, ofsted_llmstrictnessscore)
+gen double ys_c = years_since_ofsted - r(mean)
+gen double score_x_age = ofsted_llmstrictnessscore * ys_c
+regress p8mea_avg ofsted_llmstrictnessscore score_x_age $controls_ngrade, vce(hc3)
+local b  = _b[score_x_age]
+local se = _se[score_x_age]
+local p  = 2*ttail(e(df_r), abs(`b'/`se'))
+post `pf' ("Overall") ("agexint") (`b') (`se') (`p') (e(N)) (e(r2))
+display "score x age:   b=" %7.4f `b' " p=" %6.4f `p'
+
 postclose `pf'
 
 use "C:/Users/damia/OneDrive/Documents/Schools Project/thesis/tables/a7_estimates.dta", clear

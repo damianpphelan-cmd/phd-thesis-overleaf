@@ -120,7 +120,10 @@ lacked a 2019 grade under their current URN; of the five in the estimation sampl
 four are filled from the predecessor school's grade (a fifth predecessor grade
 belongs to a school excluded for a missing control). Including the late-entry
 schools leaves the primary estimates essentially unchanged ($W = {lw['b']:.3f}$, $p = {lw['pval']:.3f}$;
-$S = {ls['b']:.3f}$, $p = {ls['pval']:.3f}$; $N = {int(lw['n'])}$).
+$S = {ls['b']:.3f}$, $p = {ls['pval']:.3f}$; $N = {int(lw['n'])}$ --- one of the two late-entry
+schools lacks a fillable grade, so $N$ rises by one). The filled and category-retained
+rows print identical estimates because the retained category contains a single school,
+which its own dummy fits exactly.
 \end{{minipage}}
 \end{{table}}
 """)

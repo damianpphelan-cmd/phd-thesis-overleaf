@@ -130,7 +130,7 @@ def t_items():
     q = q.merge(IRR.assign(term="z_" + IRR["var"]), on="term", how="left")
     q["q_bh"] = bh(q.pval)
     q = q.sort_values("b", ascending=False)
-    n = int(q.n.iloc[0])
+    n = int(q.n.max()); nmin = int(q.n.min())
     nsurv = int((q.q_bh < 0.05).sum()); npos = int((q.b > 0).sum())
     lines = []
     for _, r in q.iterrows():
@@ -144,7 +144,9 @@ def t_items():
 \footnotesize
 \caption{{Each visit-sheet item as a predictor of Progress 8, one small model per item.
 Every row regresses average Progress 8 on that item alone (standardised) plus the primary
-control set with the predecessor-filled grade ($N={n}$, late-entry schools excluded). Rows are
+control set with the predecessor-filled grade; late-entry schools excluded. $N={n}$ for the
+in-lesson items and as low as {nmin} for the outside items, which were recorded at fewer
+schools. Rows are
 sorted by coefficient size. The $q$ column is the Benjamini--Hochberg false-discovery-rate
 adjusted $p$-value across all {len(q)} items; a dagger marks items that survive at $q<0.05$
 ({nsurv} of {len(q)}; {npos} carry a positive coefficient). The final columns give each item's
