@@ -123,15 +123,30 @@ def build() -> list[Num]:
     # of that number came partly from the same interview, which is most of why it was
     # so much higher than either construct measured on its own.
     # CAVEAT THAT MUST TRAVEL WITH THIS NUMBER: one observer scored warmth and
-    # strictness in the same lesson, so it contains halo. The visit decomposition
-    # (three independent observer blocks, 351 lessons) puts the disattenuated
-    # cross-observer true-score correlation at +0.290. Quote this figure as the
-    # observed school-level association and that one as the trait correlation; do
-    # not present this as evidence that the two constructs are barely separable.
+    # strictness in the same lesson, so it contains halo and shared-occasion
+    # variance. The visit decomposition (visit_decomposition.py, 351 double- or
+    # triple-rated lessons) puts the cross-observer lesson-level correlation at
+    # +0.261 against +0.281 same-observer (individual halo is small), and the
+    # disattenuated cross-observer trait correlation at +0.360. The macros below
+    # are parsed from visit_decomposition_report.txt; rerun that script first if
+    # the visit data change. (The +0.290 previously noted here was a stale
+    # pre-item-extension figure.)
     add(Num("CorrWarmthStrictnessEnacted", f"{r_ws_en:.3f}",
-            f"observed W-S correlation, Tier 1, n={n_ws_en}; contains halo — "
-            f"cross-observer true-score r is +0.290",
+            f"observed W-S correlation, Tier 1, n={n_ws_en}; contains halo and "
+            f"shared-occasion variance — see CorrWSTrue",
             stale=["0.494"]))
+    _rep = open(ROOT / "visit_decomposition_report.txt", encoding="utf-8").read()
+    import re as _re
+    _m = _re.search(r"warmth x strictness\s+\+(0\.\d+) \(n=351\)\s+\+(0\.\d+) \(n=351\)", _rep)
+    _m2 = _re.search(r"warmth x strictness\s+\+(0\.\d+)\s+0\.\d+ x 0\.\d+\s+\+(0\.\d+)", _rep)
+    if not (_m and _m2):
+        raise SystemExit("make_numbers: halo figures not found in visit_decomposition_report.txt")
+    add(Num("CorrWSSameObs", f"{float(_m.group(1)):.2f}",
+            "visit_decomposition_report.txt: same-observer lesson-level W-S correlation"))
+    add(Num("CorrWSCrossObs", f"{float(_m.group(2)):.2f}",
+            "visit_decomposition_report.txt: cross-observer lesson-level W-S correlation"))
+    add(Num("CorrWSTrue", f"{float(_m2.group(2)):.2f}",
+            "visit_decomposition_report.txt: disattenuated cross-observer W-S trait correlation"))
     add(Num("CorrWarmthStrictnessEspoused", f"{r_ws_es:.3f}",
             f"interview W-S correlation, Tier 1 (visited) schools, n={n_ws_es}"))
     add(Num("CorrLeadershipNational", f"{r_lead:.3f}",
@@ -204,6 +219,8 @@ def build() -> list[Num]:
     # literal at all: a bare three-digit decimal collides with unrelated
     # coefficients. On 5 Aug 2026 the espoused warmth coefficient for the Open
     # component came out at exactly -0.018 and this check fired on it.
+    # NOTE: RidgeBWarmth is the LOO r of a DEGENERATE model (predictions near
+    # constant); the tables print "---" for it and no prose should quote it.
     ridge("RidgeBWarmth", "B", "Warmth", "Model B LOO-CV r, warmth",
           stale=["$r = -0.018$"])
     ridge("RidgeBStrictness", "B", "Strictness", "Model B LOO-CV r, strictness",

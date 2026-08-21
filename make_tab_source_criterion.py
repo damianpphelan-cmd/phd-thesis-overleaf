@@ -59,7 +59,8 @@ composite is also shown against enacted strictness.}}
 \vspace{{4pt}}\scriptsize
 \textit{{Notes}}: Pearson correlations. Text scores are the instruments of
 record listed in \cref{{tab:instruments_adopted}}. Correlations of $|r| \geq 0.20$ are
-significant at the five per cent level at these sample sizes.
+significant at the five per cent level in the observed columns ($n \approx 101$);
+in the espoused columns ($n \approx 300$) the threshold is $|r| \geq 0.11$.
 \end{{minipage}}
 \end{{table}}
 """
