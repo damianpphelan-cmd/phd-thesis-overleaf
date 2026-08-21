@@ -494,6 +494,12 @@ def build() -> list[Num]:
     add(Num("ShareNationalPre", f"{a7s['b'] * 100:.0f}",
             "a7_estimates.csv: share of national-sample reports published "
             "before Sept 2022, per cent"))
+    a7x = a7[(a7.outcome == "Overall") & (a7.spec == "agexint")].iloc[0]
+    add(Num("BetaNationalAgeInt", f"{a7x['b']:.3f}",
+            "a7_estimates.csv: interaction of the national strictness score "
+            "with centred report age, per year"))
+    add(Num("PNationalAgeInt", f"{a7x['pval']:.2f}",
+            "a7_estimates.csv: p-value of the score x report-age interaction"))
 
     # Context benchmarks quoted beside the primary estimates (referee point:
     # they had no cited source). Computed nationally from analysis_dataset.csv.
