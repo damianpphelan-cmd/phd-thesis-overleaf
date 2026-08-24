@@ -14,31 +14,33 @@ How warm a school is towards its pupils, and how strictly it runs, are
 widely thought to affect how much progress pupils make, yet neither is
 measured in any dataset that covers every school. In this paper I construct
 measures of these two dimensions of school culture for English secondary
-schools and ask how well each can be recovered from data that exist for all
-of them. I collected data for a gold-standard measure in \NTierOne{}
-schools, through a day of structured observation in each school (an
-``enacted'' score, recording what the school does) and an interview with its
-headteacher (an ``espoused'' score, recording what the head says it does).
-For every school in England I then scored the inspection report, the
-behaviour policy and the website using a large language model reading each
-document against a written marking scheme, and tested how well those scores
-predict the observed measures. There are two main findings. Strictness can
-be predicted to a modest degree from public text (the inspection-report
-score is correlated with observed strictness at $\CorrOfstedStrictness$,
-and a text-only model predicts it for schools it was not fitted on at
-$\RidgeBStrictness$; both figures carry some selection optimism, since the
-scoring rule was chosen partly against the same schools), whereas warmth
-cannot. And what headteachers say about their school's warmth bears little
-relation to what observers record: of the \TopQN{} schools whose heads
-rated them in the top quarter for warmth, only \TopQWMatch{} were there as
-observed --- close to the six or seven expected if the two sets of scores
-were
-unrelated, and far below the \TopQExpectedSameW{} expected if heads and
-observers measured the same thing with these instruments' reliabilities.
-For strictness the corresponding count is \TopQSMatch{}, almost as high as
-measurement error allows. The paper also reports what I learned about scoring text with a
-language model: chiefly, that a scoring rule's agreement with its labels
-says nothing about whether its scores reflect what happens in the school.
+schools and ask how well each can be recovered from the documents that
+exist for all of them. I collected data for a gold-standard measure in
+\NTierOne{} schools, through a day of structured observation in each school
+(an ``enacted'' score, recording what the school does) and an interview
+with its headteacher (an ``espoused'' score, recording what the head says
+it does). I then read three public documents --- the inspection report, the
+behaviour policy and the school website --- in two ways: with prediction
+models trained to reproduce the observed scores from the words of the text,
+and with one-page marking schemes applied by a language model. There are
+three main findings. First, inspection reports carry a modest signal of
+observed warmth. A model using only the report's wording predicts the
+warmth of schools it was never fitted on at
+\pending{final clean-corpus warmth first stage, $r \approx 0.3$}, and the
+signal survives the removal of everything that school demographics could
+explain. Second, observed strictness is recovered by no such model, however
+the text is represented, but \pending{grid: whether the one-page strictness
+marking scheme recovers it; expected yes} --- the two dimensions are
+written down differently: warmth lives in the report's habitual wording,
+which statistics can read, while strictness lives in checkable claims that
+only directed questions extract. Third, what schools write about themselves
+reveals what their heads say, not what observers record. Of the \TopQN{}
+schools whose heads rated them in the top quarter for warmth, only
+\TopQWMatch{} were there as observed --- close to the six or seven expected
+if the two sets of scores were unrelated --- and no public source carries
+any information about observed warmth in the school's own voice. The
+measures that pass these tests become the explanatory variables of the
+following chapter.
 \end{chapterabstract}
 
 % ---------------------------------------------------------------
@@ -98,39 +100,57 @@ carried through the analysis for that reason.
 The difficulty in measuring any of this is that none of it is recorded for
 every school. What is recorded, for every school, is text: an inspection
 report written by an external inspector, a behaviour policy written by the
-school, and a website written by the school for parents. For a smaller set of
-schools this study adds what no administrative source holds, which is direct
-observation of the school at work and a structured interview with its
-headteacher. The design follows from that asymmetry. For \NTierOne{} schools I
-have a research visit, made up of structured observations in lessons and
-around the school, and an interview with the headteacher, and from these I
-construct a gold-standard measure of each dimension. Because the interview and
-the visit disagree substantially about the same school, the gold standard is
-in fact two measures, not one: an \emph{enacted} score, from what the
-observers recorded, and an \emph{espoused} score, from what the headteacher
-reported. For a further \NTierTwo{} schools I have the interview alone, and
-for the remaining national population only the public text. I then test
-whether the gold standard can be recovered from that text. To do this I fit
-prediction models on the schools where both the text scores and the gold
-standard exist, hold each school out in turn, and measure how well the
-predictions reproduce the gold standard. This shows how much information
-about school culture the public record contains, and therefore which
-measures can be extended to every school in the country. As it turns out,
-only one measure passes this test: strictness read from inspection
-reports.
+school, and a website written by the school for parents. For a smaller set
+of schools this study adds what no administrative source holds, which is
+direct observation of the school at work and a structured interview with
+its headteacher. The design follows from that asymmetry. For \NTierOne{}
+schools I have a research visit, made up of structured observations in
+lessons and around the school, and an interview with the headteacher, and
+from these I construct a gold-standard measure of each dimension. Because
+the interview and the visit disagree substantially about the same school,
+the gold standard is in fact two measures, not one: an \emph{enacted}
+score, from what the observers recorded, and an \emph{espoused} score, from
+what the headteacher reported. For a further \NTierTwo{} schools I have the
+interview alone, and for the remaining national population only the public
+text.
 
-There are two main findings, and a third result about the scoring method.
-The first finding is that the two dimensions can be recovered to very
-different degrees, and that even for strictness the recovery is modest. Strictness scored from the text of inspection reports is
-correlated with observed strictness at $r = \CorrOfstedStrictness$, and a
-prediction model using only the text scores, fitted with each school held out
-in turn, reproduces observed strictness with a correlation of
-$\RidgeBStrictness$. Warmth was not recovered by any instrument tested here: no
-text-based warmth score is correlated with observed warmth, and the same kind
-of model predicts observed warmth no better than its mean would. The second
-finding is that the enacted and espoused measures diverge, and that in
-point estimate they diverge more for warmth than for strictness, although
-the difference between the two correlations is imprecisely estimated. The
+I then ask how much of the gold standard the public text contains, in two
+ways. The first is a prediction model: using the visited schools, a
+penalised regression learns which words and phrases of a document go with
+higher or lower observed scores, and is tested only on schools it was not
+fitted on. Before fitting, identifying details are removed from the text,
+and the part of each score that school demographics could explain is
+removed from the target, so the model earns credit only for reading culture
+in prose, not for recognising a school's intake or its paperwork. The
+second is a marking scheme: a one-page written rubric for each dimension,
+applied to each document once by a language model, and judged by the same
+standard --- correlation with what observers recorded. The first method
+assumes nothing about where culture shows up in text; the second states a
+theory of it. Comparing them, source by source and dimension by dimension,
+shows not only which measures can be extended to every school in the
+country but what kind of reading each dimension requires.
+
+There are three main findings. The first is that inspection reports carry
+a modest but genuine signal of observed warmth. A prediction model reading
+only the report's wording reproduces the observed warmth of held-out
+schools at \pending{final warmth first stage (clean corpus), $r \approx
+0.3$, against a reliability ceiling of about $0.83$}, and the correlation
+\emph{rises} when demographics are removed from the target, so the signal
+is carried by the prose itself. The words doing the work are recognisable:
+reports on schools observed to be warm describe adults attending to pupils
+(``listen carefully'', ``leaders check''), while reports on colder schools
+fall back on stock assurances (``pastoral support is in place'', ``pupils
+feel safe''). Observed teaching behaves like warmth, with a signal of
+\pending{final teaching first stage}. The second finding is that observed
+strictness behaves differently: no prediction model recovers it, however
+the text is represented, \pending{grid: rubric strictness result and the
+contrast sentence; expected --- the one-page marking scheme recovers it at
+roughly the level warmth reaches statistically}. The two dimensions are
+written down differently. Warmth lives in a report's habitual register,
+which a model with no instructions can learn; strictness lives in specific,
+checkable claims (``low-level disruption is rare''), which only directed
+questions extract. The third finding is that the enacted and espoused
+measures diverge, and that the divergence is a fact about warmth. The
 interview and the visit are correlated at only $\GoldWarmthSplit$ for
 warmth and $\GoldStrictnessSplit$ for strictness. Of the \TopQN{} schools
 whose heads rated them in the top quarter for warmth, only \TopQWMatch{}
@@ -138,15 +158,11 @@ were in the top quarter as observed, against roughly seven expected by
 chance and \TopQExpectedSameW{} expected if the two sets of scores
 measured the same thing with these instruments' reliabilities; for
 strictness the corresponding match is \TopQSMatch{} of \TopQN{}, against
-an error-limited ceiling of about \TopQExpectedSameS{}. Behaviour policies and websites carry no
-information about warmth against either measure. The two outside sources that
-do, the inspection report and a survey of parents, agree with the headteacher
-rather than with the observers. The third result concerns the method. A
-scoring rule for a large language model can be tuned until it agrees closely
-with the labels it is given, but that agreement says nothing about whether
-its scores reflect what happens in the school. Across every version of every
-rule I tested, the two were unrelated, and the version that agreed best with
-its labels was usually the one that tracked the school worst.
+an error-limited ceiling of about \TopQExpectedSameS{}. The same asymmetry
+runs through the public text: what schools write in their policies and on
+their websites tracks what their heads say about strictness and about
+staff morale, but their warmth language tracks nothing --- not the
+observers, and not even their own head's private account.
 
 The paper sits between five literatures and adds something to each of them.
 The school-climate literature measures culture through pupil, teacher and
@@ -191,16 +207,20 @@ dimension and the reason to expect it to matter, but it has not measured the
 two dimensions apart. Finally, the text-as-data literature in economics
 \citep{gentzkow2019} supplies the tools for reading the public record at
 scale. Its standing warning is that general-purpose methods misread
-domain-specific text \citep{loughran2011,muddiman2019}. This paper uses large
-language models rather than dictionary or topic methods, tests every scoring
-rule against direct observation, and reports what that choice costs and what
-it buys.
+domain-specific text \citep{loughran2011,muddiman2019}. This paper uses both of that literature's modern instruments ---
+supervised text regression and structured annotation by a large language
+model \citep{gilardi2023,eloundou2024} --- tests each against direct
+observation, and reports which dimension of culture yields to which
+instrument. In doing so it answers, for one concrete measurement problem,
+the question posed by \citet{ludwig2025} of when instructed language-model
+measurement adds value over statistical alternatives.
 
 Against those five literatures, the paper contributes three things: a
-measure of enacted culture built from observation; a national extension of
-one dimension through public text, whose validity is tested against
-observation rather than assumed; and the school-level scores that are the
-explanatory variables of the following chapter.
+measure of enacted culture built from observation; national extensions of
+culture through public text, whose validity is tested against observation
+rather than assumed; and a like-for-like comparison, on one criterion, of
+the two ways economists now read text --- learned weights and instructed
+reading --- showing that which one works is a property of the construct.
 
 The rest of the paper is organised as follows. Section~\ref{sec:p1_data}
 describes the data. Section~\ref{sec:p1_measurement} constructs the gold
