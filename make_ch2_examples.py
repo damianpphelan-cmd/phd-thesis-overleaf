@@ -9,8 +9,11 @@ fitted model (a sentence's score is the sum of its phrases' learned
 weights). Sentences are tagged with topics (behaviour / relationships /
 teaching / other) from ofsted_annotation_v1.jsonl, matched on normalised
 text (lowercase, alphanumeric only, first 80 chars). Outputs:
-  tables/tab_p1_examples.tex — main text: per dimension, the three
-    highest- and three lowest-scoring ON-TOPIC sentences, two panels;
+  tables/tab_p1_examples.tex — main text: per dimension, three raising
+    and three lowering sentences, two panels. Raising rule: warmth =
+    tagged relationships AND mentions a pupil-referring word; teaching =
+    tagged teaching AND direction positive. Lowering rule: on-topic,
+    no further restriction;
   snippets/exhibit_share.tex — \WarmTopShare, \WarmBaseShare,
     \TeachTopShare, \TeachBaseShare: on-topic share of the top-100
     tagged sentences vs the tagged-pool base rate;
@@ -48,9 +51,10 @@ def norm_key(s: str) -> str:
     return re.sub(r"[^a-z0-9]+", "", s.lower())[:80]
 
 
-def load_topic_lookup() -> dict[str, str]:
-    """normalised sentence text -> topic, across all annotation records."""
-    lookup: dict[str, str] = {}
+def load_topic_lookup() -> dict[str, tuple[str, str]]:
+    """normalised sentence text -> (topic, direction), across all
+    annotation records. direction is positive / negative / neutral."""
+    lookup: dict[str, tuple[str, str]] = {}
     with open(ROOT / "ofsted_annotation_v1.jsonl", encoding="utf-8") as fh:
         for line in fh:
             rec = json.loads(line)
@@ -58,8 +62,14 @@ def load_topic_lookup() -> dict[str, str]:
             for tag in rec["tags"]:
                 i = tag["i"]
                 if 0 <= i < len(sents):
-                    lookup[norm_key(sents[i])] = tag["topic"]
+                    lookup[norm_key(sents[i])] = (
+                        tag["topic"], tag["direction"])
     return lookup
+
+
+STAFF_RE = re.compile(r"\b(staff|teacher|teachers|leaders?|colleagues?|workload|workloads)\b", re.I)
+PUPIL_RE = re.compile(
+    r"\b(pupil|pupils|child|children|student|students)\b", re.IGNORECASE)
 
 
 def main() -> None:
@@ -102,9 +112,11 @@ def main() -> None:
             pool.append(s)
     S = vec.transform(pool)
 
-    # topic tags
+    # topic tags: tags[i] is None or (topic, direction)
     lookup = load_topic_lookup()
-    topics = [lookup.get(norm_key(s)) for s in pool]
+    tags = [lookup.get(norm_key(s)) for s in pool]
+    topics = [t[0] if t is not None else None for t in tags]
+    dirs = [t[1] if t is not None else None for t in tags]
     n_tagged = sum(t is not None for t in topics)
     print("pool: %d sentences, %d tagged (%.1f%%)"
           % (len(pool), n_tagged, 100.0 * n_tagged / len(pool)))
@@ -138,7 +150,15 @@ def main() -> None:
         on_order = sorted(on_idx, key=lambda i: sc[i], reverse=True)
         hi_on = [pool[i] for i in on_order[:8]]
         lo_on = [pool[i] for i in on_order[::-1][:8]]
-        panels[name] = (hi_on[:3], lo_on[:3])
+
+        # main-table "raises" rule: warmth requires a pupil-referring
+        # word (staff-to-pupil, not leader-to-staff); teaching requires
+        # direction == positive. "Lowers" is on-topic, no further filter.
+        if name == "Warmth":
+            hi_idx = [i for i in on_order if PUPIL_RE.search(pool[i])]
+        else:
+            hi_idx = [i for i in on_order if dirs[i] == "positive"]
+        panels[name] = ([pool[i] for i in hi_idx[:3]], lo_on[:3])
 
         # unfiltered rankings (regardless of topic)
         hi_all = [pool[i] for i in order[:8]]
@@ -149,6 +169,18 @@ def main() -> None:
         app_parts.append("\\begin{itemize}")
         app_parts += ["  \\item ``%s''" % esc(s) for s in hi_on]
         app_parts.append("\\end{itemize}")
+        if name == "Warmth":
+            staff_idx = [i for i in on_order
+                         if not PUPIL_RE.search(pool[i]) and STAFF_RE.search(pool[i])][:4]
+            leader_staff = [pool[i] for i in staff_idx]
+            app_parts.append("\\paragraph{Leader-to-staff warmth.}")
+            app_parts.append(
+                "The model also credits warmth towards staff; these "
+                "sentences score highly but describe the staff room "
+                "rather than the classroom.")
+            app_parts.append("\\begin{itemize}")
+            app_parts += ["  \\item ``%s''" % esc(s) for s in leader_staff]
+            app_parts.append("\\end{itemize}")
         app_parts.append("\\paragraph{Sentences that lower the score.}")
         app_parts.append("\\begin{itemize}")
         app_parts += ["  \\item ``%s''" % esc(s) for s in lo_on]
@@ -191,13 +223,13 @@ def main() -> None:
         "\\begin{table}[htbp]\n\\centering\n"
         "\\caption{Sentences from the visited schools' inspection reports "
         "that most raise or lower the models' scores. A sentence's score "
-        "is the sum of its phrases' learned weights. Shown are the "
-        "highest- and lowest-scoring sentences among those tagged as "
-        "being about staff-pupil relationships (warmth panel) or teaching "
-        "(teaching panel); the share statistics in the text report how "
-        "often the models' strongest sentences are on-topic. The full "
-        "listing, including an unfiltered one, is in "
-        "\\cref{sec:p1_app_examples}.}\n"
+        "is the sum of its phrases' learned weights. Selection: the "
+        "highest-scoring sentences tagged as being about staff--pupil "
+        "relationships and mentioning pupils (warmth) or tagged as "
+        "positive teaching content (teaching); the lowest-scoring "
+        "sentences tagged on-topic with no further restriction. "
+        "Unfiltered listings appear in the appendix "
+        "(\\cref{sec:p1_app_examples}).}\n"
         "\\label{tab:p1_examples}\n"
         "{\\small\\begin{tabular}{p{0.45\\textwidth}p{0.45\\textwidth}}\n"
         "\\toprule\n"
