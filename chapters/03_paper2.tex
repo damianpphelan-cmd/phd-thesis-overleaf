@@ -44,10 +44,13 @@ another rather than amplifying each other: the schools that are both warm
 and strict sit $0.40$ of a grade above the rest after controls, and the
 interaction between the two is indistinguishable from zero in the visited
 sample. Replacing the observed scores with the headteacher's own account of
-the school removes the warmth association, while an independently produced strictness signal read from inspection
-reports predicts progress across \NNationalStrictness{} schools
-($\BetaNationalStrictness$), essentially unchanged when the inspection
-grade is held constant and on reports that predate the outcome years.
+the school removes the warmth association. Finally, all three dimensions
+extend to national scale through instruments validated in the previous
+chapter: across \NNationalStrictness{} schools, text-predicted warmth
+carries $\NatW$ per standard deviation, text-predicted teaching $\NatT$,
+and strictness read by a one-page marking scheme $\NatS$ --- each
+essentially unchanged when the inspection grade is held constant and on
+reports that predate the outcome years.
 \end{chapterabstract}
 
 % ---------------------------------------------------------------
@@ -167,9 +170,11 @@ while the interaction between the two dimensions is indistinguishable from
 zero in the visited sample. In other words, the dimensions add to one
 another rather than amplifying each other. Replacing the observed scores
 with the headteacher's own account of the school removes the warmth
-association entirely, and an independently produced strictness signal read from inspection
-reports predicts progress across the national population with the
-inspection grade held constant.
+association entirely. And all three dimensions extend to national scale
+through the previous chapter's text instruments: predicted warmth,
+predicted teaching and marking-scheme strictness each predict progress
+across the national population, with the inspection grade held constant
+and on reports that predate the outcome years.
 
 The rest of the paper is organised as follows. Section~\ref{sec:p2_data}
 describes the outcome, the culture measures, the controls and the sample.
@@ -236,30 +241,33 @@ questioning, feedback, explanation and structure, enters as a benchmark. It
 is the most obvious rival explanation for any association between culture
 and progress, since a school whose teachers are warm and orderly may also be
 a school whose teachers teach well. The espoused scores, from the headteacher
-interview, enter one robustness specification, and the inspection-report
-strictness score enters the national extension. That score is produced by
-a language model that reads each school's most recent inspection report
-with the graded judgements removed and every stated grade deleted, and
-returns a strictness rating on a five-point scale under a fixed marking
-scheme; the previous chapter describes its construction and testing in
-full. Its correlation with observed strictness in the visited schools is
-$\CorrOfstedStrictness$. The companion warmth score tracks the tone of
-the report's verdict rather than observed warmth, which is why only the
-strictness leg is carried forward.
-\Cref{fig:ofsted_distributions} shows its distribution, and that of the
-companion warmth score, across the national population.
+interview, enter one robustness specification. Three text-derived scores
+enter the national extension, all built and validated in the previous
+chapter and all reading the school's most recent inspection report with
+its stated grades removed. Warmth and teaching come from prediction
+models: each learns, from the visited schools, which words and phrases of
+a report go with higher observed scores, and every national school's
+prediction comes from a model that never saw it. Both models are trained
+on the part of the observed score that intake statistics cannot explain,
+so they earn no credit for recognising demographics. Their held-out
+correlations with the observed scores are $\PredWOfsted$ for warmth and
+$\PredTOfsted$ for teaching. Strictness comes from a different kind of
+instrument: a one-page marking scheme applied once per report by a
+language model, frozen before any scoring; its bands correlate with
+observed strictness at $\RubricSOfstedRaw$. The previous chapter
+explains why the two dimensions need different instruments: warmth lives
+in a report's habitual wording, which statistics can read, while
+strictness lives in specific claims that only directed questions
+extract. \Cref{fig:national_bands} shows the national distribution of
+the strictness bands.
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\textwidth]{fig_A2_ofsted_distributions.pdf}
-  \caption{Distributions of the inspection-report warmth (left) and strictness (right) scores
-    across the national population (1--5 scale). Dashed lines mark means.
-    The strictness score enters the national extension; the warmth score is
-    not used as the warmth leg of that extension, for the reasons given in
-    the previous chapter, and appears only in the exploratory tables of the
-    appendix and as the warmth leg of the national quadrant analysis in
-    \cref{tab:typology}.}
-  \label{fig:ofsted_distributions}
+  \includegraphics[width=0.7\textwidth]{fig_ch2_bands.pdf}
+  \caption{The national distribution of strictness bands under the
+  one-page marking scheme (3,324 schools). All five bands are used;
+  band 4 --- conduct presented as a strength --- is the national mode.}
+  \label{fig:national_bands}
 \end{figure}
 
 \textbf{Controls.} All specifications condition on the same set of
@@ -342,9 +350,10 @@ is appropriate when $n$ is near 100. I estimate three stages:
 equation~(\ref{eq:main}); the same equation with the teaching-practice score
 $T_s$ in place of $W_s$ and $S_s$; and the equation with all three. Each
 dimension is also entered on its own. The national extension replaces $W_s$
-and $S_s$ with the inspection-report strictness score, standardised, on all
-schools with an outcome, and is estimated both with and without the grade
-dummies.
+and $S_s$ with the text-derived scores of the previous chapter ---
+predicted warmth, predicted teaching, and the marking-scheme strictness
+bands --- each standardised and entered on its own, on all schools with an
+outcome, estimated both with and without the grade dummies.
 
 The estimates are associations, and it is worth being exact about what the
 design does and does not achieve. Because the outcome is value-added, the
@@ -368,9 +377,11 @@ consistent with stable culture without demonstrating it. The one cohort
 that was measured at the same time as the fieldwork gives coefficients
 within $0.03$ of the primary ones on the overall measure. And in the
 national extension, old reports predict progress as well as recent ones:
-the interaction of the strictness score with report age is
-$\BetaNationalAgeInt$ per year ($p = \PNationalAgeInt$), which is the
-behaviour a persistent signal would produce. Because the 2019 grade is held constant, the comparison is between
+the interaction of the strictness score with report age is small
+and insignificant ($\BetaNationalAgeInt$ per year, $p =
+\PNationalAgeInt$, measured with the earlier strictness instrument;
+\pending{re-estimate the age interaction with the marking-scheme
+bands}), which is the behaviour a persistent signal would produce. Because the 2019 grade is held constant, the comparison is between
 schools that the inspectorate regarded alike before the outcome cohorts
 arrived, so a school's reputation, and whatever that reputation draws in
 terms of staff and families, is partly absorbed. Finally, because the sample excludes schools that enrol at 13 or 14, no
@@ -527,11 +538,11 @@ magnitude smaller than the strictness main effect, although about half the
 size of the national warmth one, and its sign is the opposite of a
 trade-off, so the additive description remains a fair summary; the
 exact statement is that the visited sample shows no interaction and the
-national panel a small positive one. It should be noted that the warmth
-leg of the national panel is the inspection-report warmth score, which the
-previous chapter found tracks the tone of the verdict, so the national
-interaction is read as suggestive rather than as a test on the visited
-constructs. Breaking
+national panel a small positive one. It should be noted that the national quadrant
+analysis predates the present instruments and used the earlier
+report-derived scores, so the national interaction is read as suggestive
+rather than as a test on the visited constructs. \pending{re-run the
+national typology on the new predicted scores} Breaking
 the visit scores down into their five observational blocks
 (\cref{tab:subscores}) shows that the association runs through warmth
 outside lessons and orderly conduct within them. Out-of-lesson warmth
@@ -574,80 +585,99 @@ survey responses on their children's happiness and safety are positively
 associated with progress ($0.15$ per standard deviation), with the caveat
 that satisfaction and results are jointly determined.
 
-\textbf{National extension.} The inspection-report strictness score, which
-the previous chapter showed to track observed strictness at $r =
-\CorrOfstedStrictness$, is available for \NNationalStrictness{} schools with
-an outcome, which is some thirty times the size of the visited sample. On
-the full control set without the grade it has a coefficient of
-$\BetaNationalStrictness$ ($p < 0.001$, $R^2 = 0.52$;
-\cref{tab:national_strictness}). With the 2019 grade added ($n = 2{,}746$)
-the coefficient is $0.140$, and no component estimate moves by more than
-$0.005$. This result has two implications. The first concerns
-the score itself. A score read from an inspection report might be thought to be a proxy for
-the inspectorate's overall approval, in which case the association would
-really be the grade's association. However, the coefficient is unchanged by
-conditioning on the grade, and a proxy for the grade would lose most of its
-coefficient when the grade entered. The score therefore captures what the
-report says about conduct and enforcement over and above the verdict, and
-it is this that predicts progress. The second concerns the visited
-sample. The visited schools agreed to be visited, and the previous chapter
-showed that they lean towards stronger schools. The national coefficient is
-estimated on every school with a report and an outcome, so the association
-is not a property of the schools that agreed to take part. The two
-coefficients should not, however, be read as the same estimand. The report
-score tracks observed strictness at $r = \CorrOfstedStrictness$, and a
-score that were nothing but a noisy stand-in for observed strictness would
-carry a coefficient of roughly $0.4$ times the visited strictness-only
-coefficient of $0.199$, which is about $0.08$; the national coefficient
-sits well above that benchmark, so much of it rests on variance in what
-reports say that is not observed strictness --- the
-breadth of what inspectors describe, and whatever of their knowledge of
-the school reaches the prose. The right statement is that an independently
-produced strictness signal predicts progress at national scale, robust to
-the grade control and to report timing, and not that the visited
-coefficient has been reproduced. A further check concerns timing:
-\ShareNationalPre~per~cent of the reports behind the national score were
-published before September 2022, before either outcome cohort's results
-existed, and on that subsample alone the coefficient is
-$\BetaNationalPre$ ($n = \NNationalPre$), essentially the full-sample
-value. The reports that could have been written in knowledge of the
-outcomes are therefore not driving the association. What conditioning on
-the grade cannot do is remove outcome information that sits in the
-report's text but not in its verdict: inspectors see a school's results,
-and two schools with the same grade may be described differently partly
-because of them. The pre-window subsample meets the sharpest version of
-that concern, since those reports predate the results entirely, but a halo
-from earlier results remains possible, and it is one of the reasons the
-estimates are presented as associations. It should also be noted that the
-national standard errors treat schools as independent; schools in the
-same academy trust share practices, and no trust identifier is attached
-to the dataset, so the reported precision is likely somewhat overstated,
-although the coefficient would clearly survive any plausible
-clustering. What the extension does not provide
-is the same reassurance for warmth, since no text source contains observed
-warmth (the inspection-report warmth score carries a small association
-with progress in \cref{tab:llm_p8_matrix}, but the previous chapter found
-that it tracks the tone of the verdict rather than observed warmth, so it
-is not read as a warmth replication), and nor does it provide
-identification, since a text-derived measure
-is open to the same omitted-variable concern as an observed one. Two further text-derived
-results are consistent with the previous chapter's measurement findings and
-are reported in \cref{tab:llm_p8_matrix}: the behaviour-policy warmth score
-is negatively associated with progress, though after the false-discovery
-correction the association is significant only for the Open component, and the website
-warmth and strictness scores are not associated with it at all.
+\textbf{National extension.} All three culture dimensions now carry a
+national test (\cref{tab:national_legs}). For \NNationalStrictness{}
+schools with an outcome --- some thirty times the visited sample --- warmth
+and teaching are predicted from each school's inspection report by the
+models of the previous chapter, and strictness is read by the one-page
+marking scheme. Every warmth and teaching prediction comes from a model
+that never saw the school. All three coefficients are positive and precise:
+$\NatW$ per standard deviation for warmth, $\NatT$ for teaching and
+$\NatS$ for strictness, each with $p < 0.001$.
 
-A further question is whether the strictness association runs through the
-curriculum rather than through progress within it. Stricter schools do steer
-pupils towards the academic pathway: nationally, the strictness score
-predicts entry to the EBacc suite, to the humanities and to languages with
-the inspection grade held constant. However, controlling for EBacc entry
-reduces the strictness association with the EBaC component by only 11 to
-14~per~cent (\cref{tab:entry_rates}). This means that most of the
-association reflects progress within subjects, and not which subjects pupils
-are entered for.
+\input{tables/tab_national_legs}
 
-\input{tables/tab_national_strictness}
+Three checks discipline these estimates. First, the inspection grade.
+A score read from a report might merely restate the inspectorate's
+verdict, in which case its association would be the grade's association.
+Adding the 2019 grade dummies moves the coefficients almost nowhere
+($\NatWGrade$, $\NatTGrade$, $\NatSGrade$): what the text says predicts
+progress over and above what the verdict says. Second, timing. Restricted
+to reports published before September 2022 --- before either outcome
+cohort's results existed --- the coefficients are $\NatWPre$, $\NatTPre$
+and $\NatSPre$, essentially their full-sample values, so reports that
+could have been written in knowledge of the outcomes are not driving the
+associations. Third, for the model-based legs, the training uncertainty.
+The warmth score is an estimated quantity, so its regression was
+bootstrapped over the training fit: the 95 per cent interval is
+[$\NatWBootLo$, $\NatWBootHi$], comfortably away from zero. Excluding the
+visited schools from the national sample \emph{raises} the warmth
+coefficient, so the association is no artefact of the schools that agreed
+to take part.
+
+The three numbers should be read against what each instrument is built to
+carry, and not against one another. The two model legs behave like clean,
+faint copies of the visited estimates: a proxy capturing about a third of
+true warmth should show about a third of the visited warmth effect, and
+$\NatW$ is almost exactly that; teaching matches its own arithmetic the
+same way. The strictness leg sits roughly twice its equivalent benchmark.
+The reason is construction, not the construct. The warmth and teaching
+models were deliberately purified --- trained on the part of the observed
+score that demographics cannot explain, with identifying and tonal
+shortcuts scrubbed --- so they carry warmth and little else. The marking
+scheme reads the report raw, and its bands absorb not only conduct but
+some of the broader register of an orderly, effective school, which is
+itself correlated with results. Part of the strictness coefficient is
+therefore that extra freight, and the honest ranking of how much each
+dimension matters comes from the visited sample, where the dimensions
+were measured directly and warmth carries at least as much weight as
+strictness. For the same reason, an outcome halo cannot be fully excluded
+for the strictness leg: inspectors see results, and some of what reaches
+their prose may reflect them. The pre-2022 restriction meets the sharpest
+version of that concern; a residue from earlier results remains possible,
+and it is one of the reasons the estimates are presented as associations.
+It should also be noted that the national standard errors treat schools
+as independent; schools in the same academy trust share practices, and no
+trust identifier is attached to the dataset, so the reported precision is
+likely somewhat overstated, although the coefficients would clearly
+survive any plausible clustering.
+
+Warmth's national leg carries one further, independent corroboration from
+the previous chapter: on the national schools outside training, the same
+predicted warmth correlates $\PVPredWarmth$ with parents' reports of
+happy, safe children. A text-derived score that tracks both pupil
+progress and parent experience, on schools it never saw, is measuring
+something real about schools. What the extension still does not provide
+is identification: a text-derived measure is open to the same
+omitted-variable concerns as an observed one, and the sensitivity bounds
+of \cref{tab:sensitivity_bounds} remain the honest statement of how much
+confounding the visited estimates could bear. Consistent with the
+previous chapter's measurement findings, the schools' own documents
+supply no rival signal: behaviour-policy and website scores are not
+positively associated with progress in any specification
+(\cref{tab:llm_p8_matrix}).
+
+\pending{Re-run the entry-rate analysis (EBacc, humanities, languages)
+with the marking-scheme bands in place of the retired strictness score;
+the earlier instrument's version attenuated the EBaC association by only
+11--14 per cent, indicating progress within subjects rather than entry
+steering.}
+
+\textbf{Exploratory: what else websites reveal.} Beyond the culture
+scores, the previous chapter's identity measures --- read from school
+websites and, for faith prominence, validated against the official
+register --- carry their own associations with progress
+(\cref{tab:identity}). Schools whose websites espouse a traditional
+pedagogy make more progress ($\IdPed$ of a grade per subject,
+$p < 0.01$), as do
+schools with a traditional ethos ($\IdEth$), and both survive the grade
+control. Prominence of faith shows a modest gradient: schools where faith
+is central to the site's self-presentation sit $\IdFaithCentral$ above
+otherwise similar non-faith schools, an estimate that weakens with the
+grade control. These are exploratory: the measures are self-presentation,
+the specifications were not pre-registered, and the associations are
+reported as descriptions rather than tests.
+
 
 \textbf{Robustness.} \Cref{tab:robustness_overall} reports the primary
 estimate under alternative specifications, all on the primary sample, and
@@ -773,9 +803,12 @@ but is the more exposed to one. The two dimensions
 contribute additively, and the schools that combine them outperform the
 rest by two-fifths of a grade. Conditioning on observed teaching quality
 does not account for the association. The headteacher's own account of the
-school predicts nothing on warmth, and an independently produced strictness signal read from inspection
-reports predicts progress nationally, with the inspection grade held
-constant and on reports that predate the outcome years.
+school predicts nothing on warmth. And the associations are not a
+property of the hundred schools that agreed to be visited: through the
+previous chapter's instruments, all three dimensions predict progress
+across the national population --- warmth and teaching by prediction
+model, strictness by a one-page marking scheme --- with the inspection
+grade held constant and on reports that predate the outcome years.
 
 Against the literature the paper sits in, the results say three things. To
 the school-effects tradition, they give a quantitative reading of two of the
@@ -982,8 +1015,11 @@ association.
 
 \Cref{tab:outcome_stats_full} reports descriptive statistics for all five
 Progress~8 components and the four Attainment~8 buckets, and
-\cref{tab:national_strictness_full} the national extension on all five
-outcomes; the EBaC and Open coefficients are of the same size as the others.
+\cref{tab:national_strictness_full} the earlier strictness
+instrument's national extension on all five outcomes
+(\pending{regenerate the five-outcome national table from the
+marking-scheme bands}); the EBaC and Open coefficients are of the same
+size as the others.
 
 \input{tables/tab_outcome_stats_full}
 \input{tables/tab_national_strictness_full}
