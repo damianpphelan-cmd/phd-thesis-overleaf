@@ -80,3 +80,52 @@ espoused measure (r = 0.40 and 0.38)."
 Old: "An earlier specification did produce the dissociation, but it did so
 because the selectivity control was miscoded…"
 New: [delete.]
+
+
+## Clear and simple sentences (added 24 Aug 2026, Damian's instruction)
+
+Prefer the clear, simple sentence. One idea per sentence. If a sentence needs
+a second reading to parse, split it or shorten it.
+
+- Keep most sentences under about 25 words; never stack more than two
+  subordinate clauses.
+- Subject early, verb close behind it. Avoid openings that delay the point
+  ("It is worth noting that...", "In terms of...").
+- Plain words over grand ones: "use" not "utilise", "show" not "demonstrate",
+  "because" not "in consequence of the fact that".
+- Prefer active voice unless the actor is genuinely irrelevant.
+- Technical terms are fine; ornamental abstraction is not. Say "the model
+  predicts warmth from word counts", not "the framework operationalises the
+  construct via lexical frequencies".
+- When a sentence must carry a number and a caveat, give each its own
+  sentence rather than nesting the caveat mid-clause.
+
+Calibration:
+
+Old: "The residualisation procedure, which was implemented so as to preclude
+the possibility of the intake composition of schools contaminating the
+predictive relationship, was applied prior to estimation."
+New: "Before estimation, intake is partialled out of the target, so the model
+cannot get credit for reading demographics."
+
+
+## What to include (added 24 Aug 2026, Damian's instruction)
+
+Write for a reader who knows nothing about the project. Explain what was
+done and what was found, clearly, and stop.
+
+- Do NOT narrate process: no decision histories, no "we first tried X",
+  no round-by-round genealogy, no rejected alternatives — unless a failed
+  attempt IS the finding, in which case state the finding, not the story.
+- One sentence of motivation is enough before any method; the reader needs
+  to know what the method does, not why every design choice beat its rivals.
+- Grainy operational detail (thresholds, file mechanics, tuning history)
+  belongs in an appendix or nowhere.
+- Test for every paragraph: could a stranger read it once and say what was
+  done and what was found? If not, simplify or cut.
+
+Calibration:
+Old: "After the first round revealed that the models were exploiting
+document metadata, a second pre-registered round was designed in which..."
+New: "School and trust names, dates, and page furniture were removed from
+the text before modelling."
