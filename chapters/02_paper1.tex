@@ -116,9 +116,9 @@ text.
 
 I then ask how much of the gold standard the public text contains, in two
 ways. The first is a prediction model: using the visited schools, a
-penalised regression learns which words and phrases of a document go with
-higher or lower observed scores, and is tested only on schools it was not
-fitted on. Before fitting, identifying details are removed from the text,
+statistical model learns which words and phrases of a document go with
+higher or lower observed scores, and it is tested only on schools it was
+not fitted on. Before fitting, identifying details are removed from the text,
 and the part of each score that school demographics could explain is
 removed from the target, so the model earns credit only for reading culture
 in prose, not for recognising a school's intake or its paperwork. The
@@ -629,84 +629,100 @@ turnover, and does not speak to the warmth statements.
 \subsection{Reading the text with prediction models}
 \label{sec:p1_prediction}
 
-The first way of reading the public text assumes nothing about where
-culture shows up in it. For each source, every document is reduced to
-counts of its words and two-word phrases, weighted so that distinctive
-phrases count for more than ubiquitous ones. A ridge regression is then
-fitted on the visited schools: it learns which phrases go with higher or
-lower observed scores, spreading small weights across thousands of terms.
-Every reported correlation is out of sample. Each school is held out in
-turn, the model is fitted on the others, and the held-out school's score is
-predicted; the penalty that controls the model's flexibility is re-chosen
-inside every fold, so the held-out school plays no part in any fitting
-decision. A permutation test (200 draws of the same pipeline on shuffled
-scores) supplies the significance benchmark.
+The first way of reading the documents uses no theory of culture at all. It
+asks a single question: do the words a document uses tend to go with the
+culture that observers found in the school?
 
-Two preparations keep the models honest. First, identifying material is
-removed from the text before anything is counted: school, trust and
-authority names, dates, postcodes, page furniture and boilerplate. Without
-this step the models learn to recognise which school or which era of
-document they are reading rather than what it says; with it, the weights
-fall on ordinary prose. Second, the part of each observed score that school
-demographics could explain is removed from the target before fitting: each
-score is regressed on the school's disadvantage share, share of pupils with
-English as an additional language, prior attainment and the age of its
-report, and the model is trained to predict the residual. A text score that
-merely repackaged a school's intake would poison any later use, so the
-model earns credit only for what the text says beyond demographics. Results
-are reported with and without this adjustment.
+The method works as follows. Each document is turned into a list of counts:
+how often each word, and each two-word phrase, appears in it. Phrases that
+appear in almost every document count for little; phrases that distinguish
+one document from another count for more. A statistical model is then
+fitted on the visited schools. It learns which phrases tend to appear in
+the reports of schools observed to be warm, and which in the reports of
+schools observed to be cold, and it attaches a small positive or negative
+weight to each. To score a new school, the model adds up the weights of the
+phrases in its document. No single phrase decides anything: a school's
+score is thousands of tiny nudges summed. (For the technical reader: the
+representation is TF--IDF over words and bigrams, and the model is a ridge
+regression; \cref{sec:p1_app_prediction} gives the specification.)
 
-Richer representations of the text buy nothing here. Longer phrases,
-topic models, and semantic embeddings from a pretrained neural encoder were
-all run through the identical harness, and none improves on the weighted
-word counts; sentence-level annotations produced by a language model
-(topic and polarity tags for every sentence) carry strictly less
-information than the raw wording. The word-count models are therefore the
-specification of record, and \cref{sec:p1_app_prediction} records the
-alternatives.
+Three safeguards stop the model from flattering itself.
+
+First, it never grades its own homework. Every school's reported prediction
+comes from a model fitted with that school left out, so each number says
+how well the model reads a school it has never seen. As a further check, I
+re-ran the whole procedure two hundred times on deliberately scrambled
+scores; a real result has to beat what scrambling produces, and the
+reported significance levels come from that comparison.
+
+Second, it cannot recognise the school. Before anything is counted, school
+and trust names, place names, dates, page numbers and standard boilerplate
+are removed from every document. Without this step, the model learns to
+spot \emph{which} school or which era of report it is reading, rather than
+what the report says. With it, the weights fall on ordinary prose.
+
+Third, it gets no credit for reading demographics. A school's intake
+statistics predict part of its culture score, and a document often reveals
+the intake. So each observed score is first split into the part that
+intake statistics explain and the part they do not, and the model is asked
+to predict only the second part. A model that merely recognised a
+disadvantaged school from its report would score nothing. Results are
+shown with and without this adjustment.
+
+More elaborate ways of representing the text were also tried: longer
+phrases, topic groupings, and meaning-vectors from a neural network that
+scores passages as similar when they say similar things in different
+words. None beat simple counting, and \cref{sec:p1_app_prediction} records
+them. The counting model is the one reported throughout.
 
 \subsection{Reading the text with marking schemes}
 \label{sec:p1_rubrics}
 
-The second way of reading the text states a theory of each dimension. For
-each source and dimension I wrote a one-page marking scheme: a sentence
-saying what is measured, five band descriptions with a stated default, and
-two or three tie-break rules. The seven schemes are reproduced in full in
-\cref{sec:p1_app_rubrics}. A language model (gpt-4o-mini, version-pinned)
-reads each document against the scheme once and returns a band and one
-quoted sentence of evidence. The schemes were frozen before any document
-was scored, and scored exactly once: there was no revision after seeing
-results, so the numbers reported are not the product of iteration. This
-design follows an established workflow in economics in which written coding
-schemes are applied by machine raters and validated against human
-benchmarks \citep{eloundou2024,gilardi2023}; its validation here is
-stronger than is usual in that literature, because the criterion is
-independent observation of the school rather than agreement with labels on
-the same text.
+The second way of reading the documents states what to look for. For each
+source and dimension I wrote a marking scheme of one page: a sentence
+saying what is being measured, five numbered bands, and two or three
+tie-break rules. To give the flavour, the inspection-report warmth scheme
+sets band~3, the default, as ``a safe and generally positive school,
+described through labels, provision or outcomes, without describing how
+staff and pupils actually relate'', and band~4 as ``the report describes
+the relationships themselves''. All seven schemes are printed in full in
+\cref{sec:p1_app_rubrics}.
 
-Two reliability checks accompany the scores. The full grid was re-scored
-once by a second, larger model (gpt-4o), reported as a sensitivity column
-and never used to select results: \pending{sensitivity agreement summary}.
-And thirty documents per source were re-scored by the primary model with
-caching disabled, measuring run-to-run stability:
-\pending{test--retest: measured, 96\% exact overall on 210 re-scored documents, both strictness schemes 100\%; macro to follow from the grid producer}. Band--length correlations are
-reported per cell, since a model reading more text has more evidence to
-cite; they are small for inspection reports and material for websites,
-where they qualify the affected cells.
+A language model reads each document against the scheme and returns a band
+from 1 to 5, together with one quoted sentence as evidence. The same fixed
+model reads every document. The schemes were written once, frozen, and
+applied in a single run: nothing was revised after seeing any result, so
+the reported numbers are first attempts, not the survivors of tuning.
+Applying written coding schemes by machine and validating them against
+human benchmarks is an established workflow in economics
+\citep{eloundou2024,gilardi2023}; the validation here is stricter than
+usual, because the benchmark is what observers recorded in the school, not
+agreement with labels on the same text.
+
+Three checks accompany the scores. Thirty documents per source were scored
+twice, and the two runs give the same band \pending{retest macro: 96\%} of
+the time, with both strictness schemes at 100\%. The whole exercise was
+repeated with a second, larger language model; its results are reported
+alongside as a sensitivity check and are never used to choose a headline.
+And because a model reading a longer document has more evidence to cite,
+the correlation between band and document length is reported for every
+cell; it is small for inspection reports and substantial for websites,
+where it qualifies the affected results.
 
 \subsection{Judging both methods}
 \label{sec:p1_judging}
 
-Both methods face the same criterion: correlation with what trained
-observers recorded in the school. Neither is judged by agreement with
-labels, by internal consistency, or by plausibility. For each of the three
-sources and each dimension the two readings are placed side by side, which
-answers two questions at once: how much culture the public record contains,
-and whether extracting it needs a stated theory or only statistics. A
-useful discipline throughout is a negative control: any text feature that
-improves the prediction of every dimension at once is reading the document
---- its era, its format, its length --- rather than the school, and is
-discarded on that ground.
+Both readings face the same yardstick: correlation with what trained
+observers recorded in the school. Neither is judged by how plausible its
+output looks or how well it agrees with anything else. Setting the two
+side by side, for each source and each dimension, answers two questions at
+once: how much information about culture the public record contains, and
+whether extracting it requires a stated theory or only statistics. One
+further rule of evidence is applied throughout: if some feature of the
+text appears to help predict \emph{every} dimension at once, it is treated
+as reading the document rather than the school --- its age, its format,
+its length --- and discarded. Several apparent improvements failed exactly
+this test.
 
 \section{Results}
 \label{sec:p1_results}
