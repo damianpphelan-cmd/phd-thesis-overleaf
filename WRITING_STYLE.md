@@ -80,3 +80,30 @@ espoused measure (r = 0.40 and 0.38)."
 Old: "An earlier specification did produce the dissociation, but it did so
 because the selectivity control was miscoded…"
 New: [delete.]
+
+
+## Clear and simple sentences (added 24 Aug 2026, Damian's instruction)
+
+Prefer the clear, simple sentence. One idea per sentence. If a sentence needs
+a second reading to parse, split it or shorten it.
+
+- Keep most sentences under about 25 words; never stack more than two
+  subordinate clauses.
+- Subject early, verb close behind it. Avoid openings that delay the point
+  ("It is worth noting that...", "In terms of...").
+- Plain words over grand ones: "use" not "utilise", "show" not "demonstrate",
+  "because" not "in consequence of the fact that".
+- Prefer active voice unless the actor is genuinely irrelevant.
+- Technical terms are fine; ornamental abstraction is not. Say "the model
+  predicts warmth from word counts", not "the framework operationalises the
+  construct via lexical frequencies".
+- When a sentence must carry a number and a caveat, give each its own
+  sentence rather than nesting the caveat mid-clause.
+
+Calibration:
+
+Old: "The residualisation procedure, which was implemented so as to preclude
+the possibility of the intake composition of schools contaminating the
+predictive relationship, was applied prior to estimation."
+New: "Before estimation, intake is partialled out of the target, so the model
+cannot get credit for reading demographics."
