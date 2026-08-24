@@ -11,36 +11,29 @@
 
 \begin{chapterabstract}
 How warm a school is towards its pupils, and how strictly it runs, are
-widely thought to affect how much progress pupils make, yet neither is
-measured in any dataset that covers every school. In this paper I construct
-measures of these two dimensions of school culture for English secondary
-schools and ask how well each can be recovered from the documents that
-exist for all of them. I collected data for a gold-standard measure in
-\NTierOne{} schools, through a day of structured observation in each school
-(an ``enacted'' score, recording what the school does) and an interview
-with its headteacher (an ``espoused'' score, recording what the head says
-it does). I then read three public documents --- the inspection report, the
-behaviour policy and the school website --- in two ways: with prediction
-models trained to reproduce the observed scores from the words of the text,
-and with one-page marking schemes applied by a language model. There are
-three main findings. First, inspection reports carry a modest signal of
-observed warmth. A model using only the report's wording predicts the
-warmth of schools it was never fitted on at
-\pending{measured: +0.33 reports-only, +0.315 combined, perm p=.015; macro to follow}, and the
-signal survives the removal of everything that school demographics could
-explain. Second, observed strictness is recovered by no such model, however
-the text is represented, but \pending{grid: whether the one-page strictness
-marking scheme recovers it; expected yes} --- the two dimensions are
-written down differently: warmth lives in the report's habitual wording,
-which statistics can read, while strictness lives in checkable claims that
-only directed questions extract. Third, what schools write about themselves
-reveals what their heads say, not what observers record. Of the \TopQN{}
-schools whose heads rated them in the top quarter for warmth, only
-\TopQWMatch{} were there as observed --- close to the six or seven expected
-if the two sets of scores were unrelated --- and no public source carries
-any information about observed warmth in the school's own voice. The
-measures that pass these tests become the explanatory variables of the
-following chapter.
+widely thought to affect how much progress pupils make. Neither is measured
+in any dataset that covers every school. This paper measures both, and asks
+how much of each can be read from the documents that every school already
+produces. In \NTierOne{} schools I collected a gold-standard measure: a day
+of structured observation recorded what each school does, and an interview
+with its headteacher recorded what the head says it does. I then read every
+school's inspection report, behaviour policy and website in two ways. A
+prediction model learns, from the visited schools, which words and phrases
+go with warmer or stricter schools, and is tested only on schools it has
+never seen. A set of one-page marking schemes is applied by a language
+model, once, and judged against the same observations. There are three
+findings. First, inspection reports carry a modest signal of how warm a
+school actually is: the prediction model reads it at \pending{final warmth
+first stage: +0.33}, even after removing everything that a school's intake
+statistics could explain. Second, no prediction model can read strictness
+--- but the marking scheme can \pending{grid strictness: +0.30}. The two
+dimensions are written down differently: warmth shows in a report's
+everyday wording, strictness in specific claims that have to be asked for.
+Third, what schools write about themselves reflects what their heads say,
+not what observers see. Of the \TopQN{} schools whose heads placed them in
+the top quarter for warmth, only \TopQWMatch{} were there when observed
+--- about what chance would produce. The measures that pass these tests
+become the explanatory variables of the next chapter.
 \end{chapterabstract}
 
 % ---------------------------------------------------------------
