@@ -107,3 +107,25 @@ the possibility of the intake composition of schools contaminating the
 predictive relationship, was applied prior to estimation."
 New: "Before estimation, intake is partialled out of the target, so the model
 cannot get credit for reading demographics."
+
+
+## What to include (added 24 Aug 2026, Damian's instruction)
+
+Write for a reader who knows nothing about the project. Explain what was
+done and what was found, clearly, and stop.
+
+- Do NOT narrate process: no decision histories, no "we first tried X",
+  no round-by-round genealogy, no rejected alternatives — unless a failed
+  attempt IS the finding, in which case state the finding, not the story.
+- One sentence of motivation is enough before any method; the reader needs
+  to know what the method does, not why every design choice beat its rivals.
+- Grainy operational detail (thresholds, file mechanics, tuning history)
+  belongs in an appendix or nowhere.
+- Test for every paragraph: could a stranger read it once and say what was
+  done and what was found? If not, simplify or cut.
+
+Calibration:
+Old: "After the first round revealed that the models were exploiting
+document metadata, a second pre-registered round was designed in which..."
+New: "School and trust names, dates, and page furniture were removed from
+the text before modelling."
