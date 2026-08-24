@@ -727,7 +727,18 @@ a school's enacted score at about \RelEnactedW{} for warmth and
 clearly distinct: once observer effects and measurement noise are
 removed, the two correlate at \CorrWSTrue{}. A school can be warm without
 being orderly, and orderly without being warm, and the sample contains
-both kinds.
+both kinds (\cref{fig:p1_quadrants}).
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth]{fig_quadrants_ch2.pdf}
+  \caption{Observed warmth and strictness in the visited schools. Each
+  dot is a school. The spread across all four quadrants shows that the
+  two dimensions describe genuinely different approaches: schools are
+  found warm-and-strict, warm-and-permissive, cold-and-strict, and
+  cold-and-permissive.}
+  \label{fig:p1_quadrants}
+\end{figure}
 
 What heads say and what observers see are different measures. The
 interview and the visit are correlated at only $\GoldWarmthSplit$ for
@@ -744,6 +755,16 @@ accurately as the measures allow, and their warmth hardly at all.
 \subsection{What the public record contains}
 
 \input{tables/tab_p1_grid}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{fig_ch2_validation.pdf}
+  \caption{The two national instruments against the visit scores. Left:
+  the warmth prediction model's held-out predictions against observed
+  warmth (each school predicted by a model that never saw it). Right:
+  the strictness marking scheme's bands against observed strictness.}
+  \label{fig:p1_validation}
+\end{figure}
 
 The grid has a simple shape. Inspection reports are the only documents
 that carry information about what a school is actually like, and the two
@@ -783,19 +804,42 @@ methods never disagree about a source.
 
 \input{tables/tab_p1_examples}
 
-The warmth model's strongest phrases describe adults attending to pupils:
-``listen carefully'', ``leaders check'', ``regularly check''. Its
-strongest negative phrases are the stock assurances --- ``pastoral
-support is in place'', ``pupils are kept safe'', ``pupils feel
-confident'' --- the sentences inspectors reach for when there is
-provision to report but no relationships to describe. Whole sentences
-make the pattern legible: the highest-scoring sentences in the corpus
-describe pupils listening to one another and staff acting on what pupils
-tell them, while among the most negative is the formula ``many pupils
-feel confident they have a trusted adult they can go to''. Warm schools
-get described; colder schools get reassured about. The teaching model
-behaves the same way: sentences about how content is chosen and checked
-score high, and the stock curriculum formulas score low.
+Are the models reading the constructs, or just the tone of a good
+school? Both, and the split can be measured. Every sentence in these
+reports carries an independent topic tag (whether it is about
+relationships, behaviour, teaching, or something else), so the models'
+strongest sentences can be checked for topic. Of the hundred sentences
+the warmth model scores highest, \WarmTopShare{} are about staff--pupil
+relationships, against a base rate of \WarmBaseShare{} across all
+sentences: the model seeks out relational content at well above chance.
+For teaching the corresponding shares are \TeachTopShare{} against
+\TeachBaseShare{} --- no enrichment, because teaching is what
+inspection reports mostly discuss anyway, and the teaching model reads
+a broad register rather than one topic. So part of each model's signal
+is construct-specific language and part is the general register of a
+school doing well; the deconfounding step guarantees that none of it
+is demographics, but the reader should understand the scores as
+reading the report's whole account of the school, weighted toward the
+construct.
+
+\Cref{tab:p1_examples} shows the sentences themselves: the highest-
+and lowest-scoring sentences among those tagged as on-topic, so the
+examples illustrate the construct-relevant part of the signal (the
+selection rule is stated in the caption, and the unfiltered listings
+are in \cref{sec:p1_app_examples}). The pattern is consistent.
+Sentences describing adults attending to pupils raise the warmth score
+--- ``they listen to staff and take into account the pressures on
+them'' --- while the stock assurances lower it: ``many pupils feel
+confident they have a `trusted adult' they can go to'' is among the
+strongest negative sentences in the corpus. Warm schools get
+described; colder schools get reassured about. For teaching, sentences
+about choosing and checking what pupils learn raise the score and the
+boilerplate curriculum formulas lower it. One quirk in the table is
+worth a sentence: a negatively phrased teaching sentence scores high
+because it contains the vocabulary of serious curriculum thinking ---
+a reminder that the model reads words, not meaning, and why its
+assessment should rest on the held-out correlations rather than any
+single sentence.
 
 \subsection{The school's own voice}
 
@@ -811,42 +855,90 @@ account (falling from $\CrossWireRaw$ to $\CrossWireNet$): reports know what sch
 and appear to know what heads say only because the two overlap. Each kind
 of document knows only its own side of the espoused--enacted divide.
 
-One outside register remains: parents. Ofsted's Parent View survey asks
-parents whether their child is happy and feels safe at school, and it
-covers most of the country. For the \PVPredWarmthN{} schools that played
-no part in fitting the warmth model, the model's predicted warmth ---
-computed from each school's inspection report alone --- correlates with
-parent-reported warmth at $\PVPredWarmth$. Parents do not read inspection
-reports to their children, so this is corroboration from an entirely
-independent source, at national scale, on schools the model had never
-seen: schools whose reports read warmer are schools whose parents report
+\subsection{A check against parents}
+\label{sec:p1_pv}
+
+One outside register remains: parents. Ofsted runs a standing online
+survey of parents, Parent View, which any parent can complete. Two of
+its questions bear directly on warmth: whether the child is happy at
+the school, and whether the child feels safe there. I use the share of
+parents answering positively to these two questions, averaged, as a
+parent-reported warmth measure. It exists for most schools in England,
+though it comes with a health warning: responses accumulate over
+several years, so for some schools the parent data are older than the
+culture data.
+
+Parents agree with the observers, not with the schools' own documents.
+On the visited schools, parent-reported warmth correlates positively
+with observed warmth, while no document a school writes about itself
+does. The sharper test uses the prediction model at national scale.
+For the \PVPredWarmthN{} schools that played no part in fitting the
+warmth model, the model's predicted warmth --- computed from each
+school's inspection report alone --- correlates with parent-reported
+warmth at $\PVPredWarmth$ (\cref{fig:p1_pv}).
+
+This check matters for two reasons. First, it is fully out of sample:
+none of these schools was used to build the model, so nothing about
+the correlation can be an artefact of fitting. Second, the two
+measures share no machinery and no text. Parents answer from their
+child's daily experience; the model reads an inspector's prose. When
+two such different windows on a school agree, the most natural
+explanation is that both are looking at the same real thing. Schools
+whose inspection reports read warmer are schools whose parents report
 happier, safer children.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.75\textwidth]{fig_ch2_pv.pdf}
+  \caption{Predicted warmth and parent-reported warmth, nationally.
+  Each dot is a bin of schools (twenty equal-count bins); the model
+  never saw any of these schools in training.}
+  \label{fig:p1_pv}
+\end{figure}
 
 \section{Conclusion}
 \label{sec:p1_conclusion}
 
-Warmth and strictness can be measured, and the two require different
-instruments at every level. In person, strictness is the easier dimension
-to observe reliably; warmth needs more lessons and more settings. In
-public text, warmth can be read statistically from inspection reports but
-defeats a written marking scheme, while strictness defeats statistics and
-yields to one page of directed questions. In self-description, strictness
-survives --- what schools write tracks what their heads say --- while
-warmth vanishes entirely: no document a school produces about itself
-carries any information about how warm it actually is, or even about how
-warm its head claims it is in private.
+Warmth and strictness can both be measured. The chapter's central
+lesson is that the two dimensions need different instruments, and that
+the pattern of which instrument works where is itself informative
+about what each dimension is.
 
-For measurement at scale, the practical conclusion is a pair of national
-instruments: a prediction model for warmth (and teaching), and a marking
-scheme for strictness, each validated against direct observation and each
-usable for every school in England. These are the explanatory variables
-of the next chapter. The chapter's limitations are stated rather than
-hidden: each school was visited once, so a school's day may not be its
-year; the visit instrument's own reliability caps every correlation
-reported here well below one; the marking schemes were deliberately
-scored in a single run, so their figures are first attempts; and
-inspection reports are written at different dates under different
-frameworks, a source of noise that cleaning reduces but cannot remove.
+Consider warmth first. In person, it is the harder dimension to
+observe reliably: it takes more lessons and more settings to pin down
+than strictness does. In public text, it can be read --- but only
+statistically. A prediction model finds it spread thinly across an
+inspection report's everyday wording, in whether the inspector writes
+about adults attending to pupils or falls back on stock assurances. A
+written marking scheme, by contrast, cannot see it at all: warmth
+leaves no single sentence for a rule to find.
+
+Strictness is the mirror image. In person it is easy to observe
+reliably. In text it defeats every statistical model tried, because it
+lives in specific claims --- whether disruption is rare, whether rules
+are enforced consistently --- that word patterns cannot distinguish
+from their opposites. But precisely because it lives in claims, one
+page of directed questions recovers it.
+
+The documents schools write about themselves tell a third story. They
+track what heads say about strictness and staff morale, but they carry
+nothing about warmth --- not the observers' warmth, and not even the
+head's own private account of it. Parents complete the picture from
+outside: their reports of happy, safe children agree with the
+observers and with the model, not with the schools' self-descriptions.
+
+The practical product is a pair of national instruments, each
+validated against direct observation: a prediction model for warmth
+(and teaching), and a one-page marking scheme for strictness. These
+become the explanatory variables of the next chapter. Four limitations
+should be kept in view. Each school was visited once, so a school's
+day may not be its year. The visit instrument's own reliability caps
+every correlation reported here well below one. The marking schemes
+were scored in a single frozen run, so their figures are first
+attempts rather than tuned bests --- a feature for credibility, but a
+limit on polish. And inspection reports are written in different years
+under different frameworks, a source of noise that cleaning reduces
+but cannot remove.
 
 \startchapterappendix{2}
 \thispagestyle{plain}
