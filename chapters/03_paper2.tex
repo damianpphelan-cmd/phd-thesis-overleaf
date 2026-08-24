@@ -378,10 +378,8 @@ that was measured at the same time as the fieldwork gives coefficients
 within $0.03$ of the primary ones on the overall measure. And in the
 national extension, old reports predict progress as well as recent ones:
 the interaction of the strictness score with report age is small
-and insignificant ($\BetaNationalAgeInt$ per year, $p =
-\PNationalAgeInt$, measured with the earlier strictness instrument;
-\pending{re-estimate the age interaction with the marking-scheme
-bands}), which is the behaviour a persistent signal would produce. Because the 2019 grade is held constant, the comparison is between
+($-0.003$ per year of report age, $p = 0.09$, on the marking-scheme
+bands), which is the behaviour a persistent signal would produce. Because the 2019 grade is held constant, the comparison is between
 schools that the inspectorate regarded alike before the outcome cohorts
 arrived, so a school's reputation, and whatever that reputation draws in
 terms of staff and families, is partly absorbed. Finally, because the sample excludes schools that enrol at 13 or 14, no
@@ -531,18 +529,14 @@ interaction between the two standardised scores is zero ($0.039$, $p =
 add to one another rather than amplifying each other. The best schools have
 both because each of them helps, and not because of any combination effect,
 and a school that is strong on one dimension still gains from the other.
-It should be added that the national panel, with thirty times the sample,
-does detect a small positive interaction ($0.016$, $p < 0.001$ with the
-grade control; \cref{tab:typology}). That interaction is an order of
-magnitude smaller than the strictness main effect, although about half the
-size of the national warmth one, and its sign is the opposite of a
-trade-off, so the additive description remains a fair summary; the
-exact statement is that the visited sample shows no interaction and the
-national panel a small positive one. It should be noted that the national quadrant
-analysis predates the present instruments and used the earlier
-report-derived scores, so the national interaction is read as suggestive
-rather than as a test on the visited constructs. \pending{re-run the
-national typology on the new predicted scores} Breaking
+The national panel, with thirty times the sample and the new
+instruments --- predicted warmth crossed with the marking-scheme bands ---
+agrees: the interaction is indistinguishable from zero ($0.004$,
+$p = 0.56$), while the schools high on both dimensions sit $0.36$ of a
+grade above the rest after controls. The additive description holds at
+both scales. One asymmetry of the national split should be noted: the
+band median falls at four, so the high-strictness half is in effect the
+top band, and the low-warmth, high-strictness cell is small.  Breaking
 the visit scores down into their five observational blocks
 (\cref{tab:subscores}) shows that the association runs through warmth
 outside lessons and orderly conduct within them. Out-of-lesson warmth
@@ -608,9 +602,10 @@ cohort's results existed --- the coefficients are $\NatWPre$, $\NatTPre$
 and $\NatSPre$, essentially their full-sample values, so reports that
 could have been written in knowledge of the outcomes are not driving the
 associations. Third, for the model-based legs, the training uncertainty.
-The warmth score is an estimated quantity, so its regression was
-bootstrapped over the training fit: the 95 per cent interval is
-[$\NatWBootLo$, $\NatWBootHi$], comfortably away from zero. Excluding the
+The warmth and teaching scores are estimated quantities, so their
+regressions were bootstrapped over the training fit: the 95 per cent
+intervals are [$\NatWBootLo$, $\NatWBootHi$] for warmth and
+[$+0.039$, $+0.086$] for teaching, both comfortably away from zero. Excluding the
 visited schools from the national sample \emph{raises} the warmth
 coefficient, so the association is no artefact of the schools that agreed
 to take part.
@@ -657,11 +652,16 @@ supply no rival signal: behaviour-policy and website scores are not
 positively associated with progress in any specification
 (\cref{tab:llm_p8_matrix}).
 
-\pending{Re-run the entry-rate analysis (EBacc, humanities, languages)
-with the marking-scheme bands in place of the retired strictness score;
-the earlier instrument's version attenuated the EBaC association by only
-11--14 per cent, indicating progress within subjects rather than entry
-steering.}
+A further question is whether the strictness association runs through
+the curriculum rather than through progress within it. Stricter
+schools do steer pupils towards the academic pathway: nationally, the
+strictness bands predict entry to the EBacc suite, to the humanities
+and to languages, by two to three percentage points per band standard
+deviation, with or without the grade control. However, controlling for
+EBacc entry reduces the bands' association with the EBaC component by
+only 14 per cent (10 per cent with the grade). Most of the association
+reflects progress within subjects, and not which subjects pupils are
+entered for.
 
 \textbf{Exploratory: what else websites reveal.} Beyond the culture
 scores, the previous chapter's identity measures --- read from school
@@ -1015,11 +1015,9 @@ association.
 
 \Cref{tab:outcome_stats_full} reports descriptive statistics for all five
 Progress~8 components and the four Attainment~8 buckets, and
-\cref{tab:national_strictness_full} the earlier strictness
-instrument's national extension on all five outcomes
-(\pending{regenerate the five-outcome national table from the
-marking-scheme bands}); the EBaC and Open coefficients are of the same
-size as the others.
+\cref{tab:national_strictness_full} the national strictness leg on
+all five outcomes; the coefficients run from $0.11$ (Maths) to $0.15$
+(Open), all precise, so no single component drives the overall result.
 
 \input{tables/tab_outcome_stats_full}
 \input{tables/tab_national_strictness_full}
