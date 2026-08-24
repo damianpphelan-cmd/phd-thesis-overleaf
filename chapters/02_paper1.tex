@@ -26,7 +26,7 @@ and with one-page marking schemes applied by a language model. There are
 three main findings. First, inspection reports carry a modest signal of
 observed warmth. A model using only the report's wording predicts the
 warmth of schools it was never fitted on at
-\pending{final clean-corpus warmth first stage, $r \approx 0.3$}, and the
+\pending{measured: +0.33 reports-only, +0.315 combined, perm p=.015; macro to follow}, and the
 signal survives the removal of everything that school demographics could
 explain. Second, observed strictness is recovered by no such model, however
 the text is represented, but \pending{grid: whether the one-page strictness
@@ -133,15 +133,14 @@ country but what kind of reading each dimension requires.
 There are three main findings. The first is that inspection reports carry
 a modest but genuine signal of observed warmth. A prediction model reading
 only the report's wording reproduces the observed warmth of held-out
-schools at \pending{final warmth first stage (clean corpus), $r \approx
-0.3$, against a reliability ceiling of about $0.83$}, and the correlation
+schools at \pending{measured: +0.33 reports-only (deconf, LOO), ceiling about 0.83; macro to follow}, and the correlation
 \emph{rises} when demographics are removed from the target, so the signal
 is carried by the prose itself. The words doing the work are recognisable:
 reports on schools observed to be warm describe adults attending to pupils
 (``listen carefully'', ``leaders check''), while reports on colder schools
 fall back on stock assurances (``pastoral support is in place'', ``pupils
 feel safe''). Observed teaching behaves like warmth, with a signal of
-\pending{final teaching first stage}. The second finding is that observed
+\pending{measured: +0.28 reports-only; macro to follow}. The second finding is that observed
 strictness behaves differently: no prediction model recovers it, however
 the text is represented, \pending{grid: rubric strictness result and the
 contrast sentence; expected --- the one-page marking scheme recovers it at
@@ -690,7 +689,7 @@ once by a second, larger model (gpt-4o), reported as a sensitivity column
 and never used to select results: \pending{sensitivity agreement summary}.
 And thirty documents per source were re-scored by the primary model with
 caching disabled, measuring run-to-run stability:
-\pending{test--retest exact agreement}. Band--length correlations are
+\pending{test--retest: measured, 96\% exact overall on 210 re-scored documents, both strictness schemes 100\%; macro to follow from the grid producer}. Band--length correlations are
 reported per cell, since a model reading more text has more evidence to
 cite; they are small for inspection reports and material for websites,
 where they qualify the affected cells.
