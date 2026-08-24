@@ -1158,9 +1158,21 @@ sentence encoders, with mean and relevance-weighted pooling; sentence-level
 topic and polarity annotations produced by a language model; and the
 counts signed by sentence polarity, which passed the correlation test but
 failed the negative control (its gain loaded on clerical vocabulary and
-improved all dimensions at once). \pending{appendix table of alternative
-representations; and the bge confirmation-run note when its chain
-completes.}
+improved all dimensions at once). The alternative representations, in brief. Phrases of three and four
+words changed no correlation by more than noise. Topic groupings
+performed worse than counting everywhere. Passage embeddings from two
+pretrained encoders read enacted warmth and teaching at essentially
+zero (the signal is vocabulary, not paraphrasable meaning) while
+confirming the espoused-strictness result; one cell disagrees between
+encoders --- the larger encoder reads enacted strictness at $+0.33$
+with mean pooling where the smaller reads nothing and no word-based
+model finds it --- and, as a single-encoder result failing the
+consistency rule, it is recorded here as unresolved rather than used.
+Sentence-level annotations (topic and polarity tags) carried strictly
+less information than the raw wording, and counts signed by sentence
+polarity passed the correlation test but failed the negative control:
+their gain loaded on clerical vocabulary and lifted every dimension at
+once.
 
 \section{What the Models Read: Examples}
 \label{sec:p1_app_examples}
