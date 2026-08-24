@@ -23,15 +23,14 @@ go with warmer or stricter schools, and is tested only on schools it has
 never seen. A set of one-page marking schemes is applied by a language
 model, once, and judged against the same observations. There are three
 findings. First, inspection reports carry a modest signal of how warm a
-school actually is: the prediction model reads it at $\PredWOfsted$, even after removing everything that a school's intake
-statistics could explain. Second, no prediction model can read strictness
---- but the marking scheme can (at $\RubricSOfstedRaw$). The two
+school actually is: the prediction model reads it at $\PredWOfsted$, even after removing what a school's intake statistics explain. Second, no prediction model can read strictness
+--- but the marking scheme can ($\RubricSOfstedRaw$ raw, $\RubricSOfstedDec$ with demographics removed). The two
 dimensions are written down differently: warmth shows in a report's
 everyday wording, strictness in specific claims that have to be asked for.
 Third, what schools write about themselves reflects what their heads say,
 not what observers see. Of the \TopQN{} schools whose heads placed them in
 the top quarter for warmth, only \TopQWMatch{} were there when observed
---- about what chance would produce. The measures that pass these tests
+--- nearer the six or seven chance would produce than the \TopQExpectedSameW{} the instruments' reliabilities would allow. The measures that pass these tests
 become the explanatory variables of the next chapter.
 \end{chapterabstract}
 
@@ -125,13 +124,7 @@ country but what kind of reading each dimension requires.
 There are three main findings. The first is that inspection reports carry
 a modest but genuine signal of observed warmth. A prediction model reading
 only the report's wording reproduces the observed warmth of held-out
-schools at $\PredWOfsted$, against a reliability ceiling of about $0.83$, and the correlation
-\emph{rises} when demographics are removed from the target, so the signal
-is carried by the prose itself. The words doing the work are recognisable:
-reports on schools observed to be warm describe adults attending to pupils
-(``listen carefully'', ``leaders check''), while reports on colder schools
-fall back on stock assurances (``pastoral support is in place'', ``pupils
-feel safe''). Observed teaching behaves like warmth, with a signal of
+schools at $\PredWOfsted$, against a reliability ceiling of about $0.83$, and the correlation rises when demographics are removed from the target ($\PredWOfstedRaw$ raw against $\PredWOfsted$), so the signal is carried by the prose itself. The signal is clearest in what marks the colder schools: their reports fall back on stock assurances --- ``pastoral support is in place'', ``pupils feel confident they have a trusted adult'' --- while the warmer schools' reports spend their sentences describing pupils and adults dealing with one another, a register spread across many small choices of phrase rather than concentrated in quotable lines. Observed teaching behaves like warmth, with a signal of
 $\PredTOfsted$. The second finding is that observed
 strictness behaves differently: no prediction model recovers it, however
 the text is represented, yet the one-page marking scheme reads it at $\RubricSOfstedDec$ --- above every model, and stable across two different language models. The two dimensions are
@@ -153,7 +146,7 @@ their websites tracks what their heads say about strictness and about
 staff morale, but their warmth language tracks nothing --- not the
 observers, and not even their own head's private account.
 
-The paper sits between five literatures and adds something to each of them.
+The paper sits between four literatures and adds something to each of them.
 The school-climate literature measures culture through pupil, teacher and
 parent surveys \citep{hoy2001,cohen2009,thapa2013}. Those surveys have
 produced consistent associations between climate and wellbeing, attendance
@@ -177,8 +170,7 @@ an orderly environment and a supportive climate
 \citep{edmonds1979,sammons1995,teddlie2000}. That strand has stayed largely
 qualitative, because ethos has been measured by case study. The contribution
 here is to make two of its correlates measurable across a national
-population. Structured classroom observation, in particular the CLASS
-framework of \citet{hamre2007}, measures emotional support and classroom
+population. Structured classroom observation, in particular the CLASS framework \citep{pianta2008}, measures emotional support and classroom
 organisation directly and predicts pupil gains at secondary level
 \citep{allen2013} and in English primary schools \citep{sammons2008}. The
 observation forms I use draw on those two domains, but they aggregate across
@@ -392,8 +384,7 @@ The scores are built up in two steps. First, items are averaged into
 in lessons, warmth outside lessons, strictness in lessons, strictness outside
 lessons, and so on. Second, the sub-scores for a dimension are averaged into
 that dimension's \emph{score}, so that each school ends up with one warmth
-score and one strictness score, and each score is doubled from the 1--5
-range of the items to a 0--10 scale. Two sets of scores are constructed and
+score and one strictness score, and each score is rescaled from the 1--5 range of the items to the upper half of a 0--10 scale. Two sets of scores are constructed and
 kept apart. The \emph{enacted} scores use the observations alone. Enacted
 warmth is the average of in-lesson warmth (the use of names, praise, the
 quality of interaction, pupil participation and motivation) and
@@ -560,9 +551,7 @@ result. The attenuation is not large enough to change any conclusion. The
 enacted--espoused correlations, corrected for the unreliability of both
 sides, rise to about \DisSplitW{} for warmth and \DisSplitS{} for
 strictness, which is still far short of what two readings of the same
-quantity would give, and the inspection-report strictness correlation of
-\CorrOfstedStrictness{}, corrected for the unreliability of the observed
-measure, is about \DisOfstedS{}. I show these corrections to give a sense of
+quantity would give, and the marking-scheme strictness correlation of $\RubricSOfstedRaw$ reported below, corrected the same way, would be about $0.36$. I show these corrections to give a sense of
 scale; the uncorrected figures are the ones reported throughout. Enacted
 warmth and strictness are correlated at $r = \CorrWarmthStrictnessEnacted$
 across the \NTierOne{} visited schools, and the espoused pair at
@@ -675,29 +664,22 @@ tie-break rules. To give the flavour, the inspection-report warmth scheme
 sets band~3, the default, as ``a safe and generally positive school,
 described through labels, provision or outcomes, without describing how
 staff and pupils actually relate'', and band~4 as ``the report describes
-the relationships themselves''. All seven schemes are printed in full in
-\cref{sec:p1_app_rubrics}.
+the relationships themselves''. All seven schemes are printed in full in \cref{sec:p1_app_rubrics}. One asymmetry between the schemes and the visit instrument is deliberate and should be stated. The visit instrument counts consistently used rewards as warmth, because a reward given in person is a relational act: an adult noticing and affirming a child. The policy scheme excludes reward machinery from warmth, because a document describing a reward economy is provision on paper, not a relationship observed. The same espoused--enacted line explains why consistent sanctions count as strictness in both instruments: consistency of enforcement is what makes conduct rules real, whether watched or written.
 
-A language model reads each document against the scheme and returns a band
-from 1 to 5, together with one quoted sentence as evidence. The same fixed
-model reads every document. The schemes were written once, frozen, and
-applied in a single run: nothing was revised after seeing any result, so
-the reported numbers are first attempts, not the survivors of tuning.
+A language model reads each document against the scheme and returns a band from 1 to 5, together with one quoted sentence as evidence (the models and their pinned versions are given in \cref{sec:p1_app_rubrics}). The same fixed
+model reads every document. The schemes were frozen in a version-controlled file (committed 24 August 2026) before any document was scored, and applied in a single run: nothing was revised after seeing any result against the visit criterion, so the reported numbers are first attempts, not the survivors of tuning. The schemes' wording drew on the project's earlier reading of these documents, but no version of them was ever scored against the visits before the frozen run.
 Applying written coding schemes by machine and validating them against
-human benchmarks is an established workflow in economics
+human benchmarks is an established workflow in the social sciences, with economics adopting it quickly
 \citep{eloundou2024,gilardi2023}; the validation here is stricter than
 usual, because the benchmark is what observers recorded in the school, not
 agreement with labels on the same text.
 
 Three checks accompany the scores. Thirty documents per source were scored
 twice, and the two runs give the same band \GridRetestExact{} of
-the time, with both strictness schemes at 100\%. The whole exercise was
-repeated with a second, larger language model; its results are reported
-alongside as a sensitivity check and are never used to choose a headline.
+the time, with the inspection-report and policy strictness schemes at 100\% and the website scheme at 97\%. The whole exercise was repeated with a second, larger language model, reported as a sensitivity check and never used to choose a headline: its strictness scheme reads the visits at $\RubricSFourO$, close to the primary model's, while its warmth and teaching schemes read essentially nothing ($\RubricWFourO$, $\RubricTFourO$) --- so only the strictness scheme survives a change of reader.
 And because a model reading a longer document has more evidence to cite,
 the correlation between band and document length is reported for every
-cell; it is small for inspection reports and substantial for websites,
-where it qualifies the affected results.
+cell; for the inspection-report schemes it is modest (between $\LenOfstedS$ and $\LenOfstedW$), but for the website schemes it reaches $\LenWebS$ and $\LenWebW$ --- a length confound that qualifies those cells.
 
 \subsection{Judging both methods}
 \label{sec:p1_judging}
@@ -711,8 +693,7 @@ whether extracting it requires a stated theory or only statistics. One
 further rule of evidence is applied throughout: if some feature of the
 text appears to help predict \emph{every} dimension at once, it is treated
 as reading the document rather than the school --- its age, its format,
-its length --- and discarded. Several apparent improvements failed exactly
-this test.
+its length --- and discarded. Several apparent improvements failed exactly this test (\cref{sec:p1_app_prediction}).
 
 \section{Results}
 \label{sec:p1_results}
@@ -776,10 +757,8 @@ higher, when everything demographics could explain is removed. But no
 prediction model reads observed strictness --- the best attempt reaches
 $\PredSOfsted$, indistinguishable from the scrambled-score benchmark ---
 and this failure repeated across every representation of the text tried.
-The marking scheme reverses the pattern. The one-page strictness scheme
-scores $\RubricSOfstedRaw$ raw and $\RubricSOfstedDec$ with demographics removed, above the model and
-stable across both language models tested; the warmth scheme fails
-entirely (($\RubricWOfstedDec$)), putting three-quarters of schools in one
+The marking scheme reverses the pattern in point estimate, though the difference between the two methods' strictness readings is within sampling noise at this sample size ($z = \StrictDiffZ$, $p = \StrictDiffP$); what distinguishes the scheme is that its reading survives every check the model's fails. The one-page strictness scheme scores $\RubricSOfstedRaw$ raw and $\RubricSOfstedDec$ with demographics removed, above the model and
+stable across both language models tested; the warmth scheme fails entirely ($\RubricWOfstedDec$), putting three-quarters of schools in one
 band while the model reads the same reports at $\PredWOfsted$.
 
 The two dimensions are therefore written down differently. Warmth shows
@@ -788,12 +767,9 @@ phrase, which a model with no instructions can learn but a marking scheme
 cannot pin down. Strictness shows in specific, checkable claims ---
 whether disruption is rare, whether rules are applied consistently ---
 which have to be asked for, and which word-counting cannot distinguish
-from their negations. Teaching sits in between and is read about equally
-well by both routes, though only the model's reading is stable across
-models.
+from their negations. Teaching sits in between and is read about equally well by both routes in the primary run, but only the model's reading survives the change of language model (the second model's teaching scheme reads $\RubricTFourO$), so teaching stays with the prediction model.
 
-Behaviour policies and websites contain almost nothing about enacted
-culture, and this is now established by both methods at once: the
+Behaviour policies and websites show no detectable signal of enacted culture by either method: the
 prediction models find at most $\OwnVoiceMax$ in any cell, and the
 marking schemes find less. Where a scheme did fail to spread schools
 across bands (both policy schemes concentrated nearly all schools in one
@@ -817,8 +793,7 @@ For teaching the corresponding shares are \TeachTopShare{} against
 inspection reports mostly discuss anyway, and the teaching model reads
 a broad register rather than one topic. So part of each model's signal
 is construct-specific language and part is the general register of a
-school doing well; the deconfounding step guarantees that none of it
-is demographics, but the reader should understand the scores as
+school doing well; the deconfounding step removes the part that four intake variables explain linearly, but the reader should understand the scores as
 reading the report's whole account of the school, weighted toward the
 construct.
 
@@ -827,22 +802,15 @@ rules, and the two models illustrate differently --- in a way that
 echoes the chapter's central contrast. For teaching, the strongest
 sentences are squarely about pedagogy: choosing core knowledge,
 embedding learning in long-term memory, pupils focusing in lessons.
-For warmth, the picture is more diffuse, and honestly so. The
-clearest single sentences are the \emph{negative} ones: ``many pupils
-feel confident they have a `trusted adult' they can go to'' and the
-pastoral-provision formulas are among the strongest score-lowering
-sentences in the corpus --- reassurance boilerplate marks the colder
-school. On the positive side no single sentence carries much weight:
+For warmth, the picture is more diffuse, and honestly so. The clearest single sentences are the \emph{negative} ones. ``Many pupils feel confident they have a `trusted adult' they can go to'' is among the strongest score-lowering sentences in the corpus, and the pastoral-provision formulas sit beside it: reassurance boilerplate marks the colder school. The reading is less strange than it first seems --- inspectors reach for these assurances when there is provision to certify but no relationships to describe. On the positive side no single sentence carries much weight:
 the model's warmth evidence is spread across many small choices of
-phrase (``listen carefully'', ``leaders check'', names used, care
-described in passing), and its strongest whole sentences read as
+phrase (attentive verbs, names used, care described in passing), and its strongest whole sentences read as
 engaged-community tone rather than tenderness. That is not a defect of
 the display; it is the construct. Warmth leaves no single sentence for
 a rule to find --- which is precisely why the one-page marking scheme
 failed on warmth while the phrase-summing model succeeds, and why the
 model's validity rests on the held-out correlations and the topic
-statistics rather than on any quotable line. The appendix also lists
-the model's leader-to-staff warmth sentences: it credits schools whose
+statistics rather than on any quotable line. \Cref{sec:p1_app_examples} also lists the model's leader-to-staff warmth sentences: it credits schools whose
 leaders listen to their staff, a genuine and interpretable part of the
 signal, though one step removed from the classroom.
 
@@ -853,8 +821,7 @@ what the school does. Read against the interview rather than the visit,
 the policy and website text predicts the head's private account of
 strictness at $\PredEspS$ (demographics removed) and of staff morale at
 $\PredEspClim$, but of warmth at $\PredEspW$, not significant:
-public warmth language is unrelated even to what the same school's head
-says in private. And the inspection report's apparent knowledge of
+public warmth language shows no detectable relation even to what the same school's head says in private, though the espoused warmth scale is coarse and compressed, so only a weak relation can be excluded. And the inspection report's apparent knowledge of
 espoused strictness largely dissolves once observed strictness is taken into
 account (falling from $\CrossWireRaw$ to $\CrossWireNet$): reports know what schools do,
 and appear to know what heads say only because the two overlap. Each kind
@@ -886,9 +853,7 @@ This check matters for two reasons. First, it is fully out of sample:
 none of these schools was used to build the model, so nothing about
 the correlation can be an artefact of fitting. Second, the two
 measures share no machinery and no text. Parents answer from their
-child's daily experience; the model reads an inspector's prose. When
-two such different windows on a school agree, the most natural
-explanation is that both are looking at the same real thing. Schools
+child's daily experience; the model reads an inspector's prose. Two such different windows agreeing is encouraging, though both respond in part to general school quality, so the agreement is corroboration rather than proof of construct. Schools
 whose inspection reports read warmer are schools whose parents report
 happier, safer children.
 
@@ -1103,8 +1068,10 @@ scoring code, so it cannot drift from what the scoring code does.
     the national population of open secondary and all-through schools in England.
     Bars show the percentage of schools in each region for the national population
     ($n = 3{,}312$), interviewed schools ($n = 300$), and visited schools ($n = 102$),
-    the tier members matched to the school panel. Regions are ordered by national
-    share. Both samples over-represent London, and the interviewed sample the South East; the
+    the tier members matched to the school panel (the 2023/24 regional
+    characteristics panel holds 3{,}312 of the 3{,}332 analysis-panel
+    schools; the remainder lack a region record at that date). Regions
+    are ordered by national share. Both samples over-represent London, and the interviewed sample the South East; the
     visited sample is particularly concentrated in London (45.1\% versus 15.0\%
     nationally). $\chi^2$ goodness-of-fit tests reject equal regional composition
     for both samples ($p < .001$).}
@@ -1186,6 +1153,15 @@ give the strongest sentences in each direction for each model, followed
 by the strongest longer phrases. The pattern is consistent: sentences
 describing adults attending to pupils, and teaching designed and checked,
 raise the scores; stock assurances and provision boilerplate lower them.
+One oddity in the teaching listing should be read with care: several of
+the score-raising sentences are criticisms (``pupils are not remembering
+knowledge deeply''). The model counts the vocabulary of the
+memory-and-retrieval discourse without registering negation, and a
+report only discusses long-term memory at all --- approvingly or not ---
+when the school works in that idiom. This blindness to negation is the
+same property that makes the model fail on strictness, where the
+negations carry the signal; it is why teaching is scored by the model
+and strictness by the marking scheme.
 
 \input{snippets/app_examples}
 
@@ -1196,7 +1172,7 @@ The seven schemes below are reproduced verbatim as frozen before scoring.
 Each was applied once per document by gpt-4o-mini (version-pinned), which
 returned a band and one quoted evidence sentence. Thirty documents per
 source were re-scored with caching disabled (96\% identical bands
-overall; both strictness schemes 100\%), and the full grid was re-scored
+overall; the inspection-report and policy strictness schemes 100\%), and the full grid was re-scored
 once by gpt-4o as a sensitivity check, reported alongside and never used
 to select results.
 

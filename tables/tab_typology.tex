@@ -2,42 +2,46 @@
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
 \small
 \caption{The authoritative-school typology tested directly. The upper panel gives
-covariate-adjusted mean Progress 8 for the four quadrants formed by median splits on
+covariate-adjusted mean Progress 8 for the four quadrants formed by splits on
 warmth and strictness; the lower panel gives the continuous interaction test and the
 contrast of the authoritative (high-warmth, high-strictness) quadrant against all
 others. The first column uses the gold-standard visit scores on the primary
-specification; the national columns use the Ofsted-derived scores without (A) and with
-(B) the predecessor-filled 2019 inspection-grade control. Scores are standardised within
-each estimation sample; late-entry schools excluded throughout.}
+specification; the national columns use the prediction-model warmth and the
+marking-scheme strictness bands of Chapter~2, without (A) and with (B) the
+predecessor-filled 2019 inspection-grade control. In the national columns warmth is
+split at the national median of the predicted score, and ``high'' strictness means
+above the in-sample band median of 4 --- that is, band 5 only --- so the
+high-strictness cells are small. Scores are standardised within each estimation
+sample; late-entry schools excluded throughout.}
 \label{tab:typology}
 \footnotesize\setlength{\tabcolsep}{4pt}
 \begin{tabular}{lccc}
 \toprule
- & Gold visits & \multicolumn{2}{c}{National (Ofsted scores)} \\
+ & Gold visits & \multicolumn{2}{c}{National (text instruments)} \\
 \cmidrule(lr){3-4}
  & & Panel A & Panel B \\
 \midrule
 \multicolumn{4}{l}{\textit{Adjusted quadrant means (mean, SE, $n$)}} \\
 \addlinespace[2pt]
-Authoritative (high $W$, high $S$) & $+$0.547 (0.066) & $+$0.351 (0.033) & $+$0.289 (0.034) \\
-   & $n=33$ & $n=90$ & $n=84$ \\
-Authoritarian (low $W$, high $S$)  & $+$0.142 (0.075) & $+$0.332 (0.024) & $+$0.277 (0.024) \\
-   & $n=16$ & $n=356$ & $n=334$ \\
-Permissive (high $W$, low $S$)     & $+$0.380 (0.073) & $+$0.167 (0.043) & $+$0.174 (0.043) \\
-   & $n=15$ & $n=57$ & $n=54$ \\
-Neglectful (low $W$, low $S$)      & $+$0.035 (0.058) & $-$0.052 (0.007) & $-$0.022 (0.007) \\
-   & $n=35$ & $n=2{,}549$ & $n=2{,}274$ \\
+Authoritative (high $W$, high $S$) & $+$0.547 (0.066) & $+$0.347 (0.025) & $+$0.275 (0.026) \\
+   & $n=33$ & $n=299$ & $n=277$ \\
+Authoritarian (low $W$, high $S$)  & $+$0.142 (0.075) & $+$0.240 (0.047) & $+$0.213 (0.049) \\
+   & $n=16$ & $n=46$ & $n=44$ \\
+Permissive (high $W$, low $S$)     & $+$0.380 (0.073) & $+$0.022 (0.010) & $+$0.053 (0.011) \\
+   & $n=15$ & $n=1{,}227$ & $n=1{,}095$ \\
+Neglectful (low $W$, low $S$)      & $+$0.035 (0.058) & $-$0.078 (0.009) & $-$0.051 (0.009) \\
+   & $n=35$ & $n=1{,}480$ & $n=1{,}330$ \\
 \midrule
 \multicolumn{4}{l}{\textit{Regression tests}} \\
 \addlinespace[2pt]
-Warmth ($W$)             & 0.150\sym{***} & 0.030\sym{***} & 0.028\sym{***} \\
-                         & (0.043) & (0.007) & (0.007) \\
-Strictness ($S$)         & 0.109\sym{**} & 0.130\sym{***} & 0.129\sym{***} \\
-                         & (0.042) & (0.009) & (0.009) \\
-$W \times S$ interaction & 0.039 & 0.018\sym{***} & 0.016\sym{***} \\
-                         & (0.035) & (0.004) & (0.005) \\
-Authoritative vs rest    & 0.403\sym{***} & 0.290\sym{***} & 0.269\sym{***} \\
-                         & (0.088) & (0.034) & (0.034) \\
+Warmth ($W$)             & 0.150\sym{***} & 0.054\sym{***} & 0.055\sym{***} \\
+                         & (0.043) & (0.007) & (0.008) \\
+Strictness ($S$)         & 0.109\sym{**} & 0.117\sym{***} & 0.096\sym{***} \\
+                         & (0.042) & (0.008) & (0.008) \\
+$W \times S$ interaction & 0.039 & 0.004 & $-$0.005 \\
+                         & (0.035) & (0.008) & (0.008) \\
+Authoritative vs rest    & 0.403\sym{***} & 0.363\sym{***} & 0.262\sym{***} \\
+                         & (0.088) & (0.027) & (0.027) \\
 \midrule
 $N$                      & 99 & 3{,}052 & 2{,}746 \\
 \bottomrule
@@ -48,11 +52,14 @@ $N$                      & 99 & 3{,}052 & 2{,}746 \\
 gold-sample adjusted quadrant means they are HC1, because the HC3 leverage
 adjustment is undefined when a covariate cell contains a single school.
 \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\).
-Quadrant means are covariate-adjusted; quadrants are median splits within each sample.
-The gold interaction is a low-power test at this sample size; the pattern --- interaction
-near zero with the high-both quadrant on top --- reads as additive rather than
-synergistic. In the national columns the warmth--strictness halo in the Ofsted scores
-thins the off-diagonal cells, and the Ofsted scores carry the verdict-reconstruction
-caveat described in the text.
+Quadrant means are covariate-adjusted; gold quadrants are median splits within the
+visited sample. The gold interaction is a low-power test at this sample size; the
+pattern --- interaction near zero with the high-both quadrant on top --- reads as
+additive rather than synergistic, and the national columns repeat it: the
+interaction is indistinguishable from zero while the high-both quadrant sits on
+top. The national columns use the prediction-model warmth and the marking-scheme
+strictness bands of Chapter~2, not the retired analyser scores; because ``high''
+strictness is band 5 only, the two high-strictness cells are thin and their means
+carry wider standard errors.
 \end{minipage}
 \end{table}

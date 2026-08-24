@@ -49,8 +49,7 @@ extend to national scale through instruments validated in the previous
 chapter: across \NNationalStrictness{} schools, text-predicted warmth
 carries $\NatW$ per standard deviation, text-predicted teaching $\NatT$,
 and strictness read by a one-page marking scheme $\NatS$ --- each
-essentially unchanged when the inspection grade is held constant and on
-reports that predate the outcome years.
+essentially unchanged when the inspection grade is held constant and on reports that predate the outcome years, though the three are not directly comparable with one another, for reasons the text explains.
 \end{chapterabstract}
 
 % ---------------------------------------------------------------
@@ -141,8 +140,7 @@ specification below. The outcome is value-added, so it already conditions on
 where pupils started. The regressions condition on intake composition, prior
 attainment, school type, size, location and the school's pre-pandemic
 inspection grade. The sample excludes schools that admit pupils only at 13
-or 14. Finally, the strictness association is found again across the national
-population with a text-based measure. What the design cannot do is rule out
+or 14. Finally, all three associations are found again across the national population with text-based measures. What the design cannot do is rule out
 the possibility that some persistent characteristic of a school produces
 both its culture and its results, and for that reason every estimate is
 presented as an association.
@@ -200,7 +198,7 @@ means that the difference between a school at the first quartile and one at
 the third is roughly two-thirds of a grade in every subject for every pupil.
 I report overall Progress~8 and its English and Maths components, which are
 the cleanest measures the tables offer because every pupil sits both of
-those examinations. The remaining components, EBaC and Open, are partly
+those examinations. The remaining components, EBacc and Open, are partly
 determined by which subjects a school enters its pupils for, and they are
 reported in \cref{app:3A:tables} together with a direct analysis of subject
 entry rates; \cref{app:3A:p8mechanics} sets out how the components are
@@ -254,8 +252,7 @@ correlations with the observed scores are $\PredWOfsted$ for warmth and
 $\PredTOfsted$ for teaching. Strictness comes from a different kind of
 instrument: a one-page marking scheme applied once per report by a
 language model, frozen before any scoring; its bands correlate with
-observed strictness at $\RubricSOfstedRaw$. The previous chapter
-explains why the two dimensions need different instruments: warmth lives
+observed strictness at $\RubricSOfstedRaw$. Four further website-derived measures --- indicators of a traditional pedagogy and a traditional ethos, the school's religious character, and the prominence of faith in its self-presentation --- enter an exploratory section only. The previous chapter explains why the two dimensions need different instruments: warmth lives
 in a report's habitual wording, which statistics can read, while
 strictness lives in specific claims that only directed questions
 extract. \Cref{fig:national_bands} shows the national distribution of
@@ -265,7 +262,7 @@ the strictness bands.
   \centering
   \includegraphics[width=0.7\textwidth]{fig_ch2_bands.pdf}
   \caption{The national distribution of strictness bands under the
-  one-page marking scheme (3,324 schools). All five bands are used;
+  one-page marking scheme (3,324 schools with a scored report; the regressions run on the 3,052 with an outcome and full controls). All five bands are used;
   band 4 --- conduct presented as a strength --- is the national mode.}
   \label{fig:national_bands}
 \end{figure}
@@ -379,7 +376,7 @@ within $0.03$ of the primary ones on the overall measure. And in the
 national extension, old reports predict progress as well as recent ones:
 the interaction of the strictness score with report age is small
 ($-0.003$ per year of report age, $p = 0.09$, on the marking-scheme
-bands), which is the behaviour a persistent signal would produce. Because the 2019 grade is held constant, the comparison is between
+bands), consistent with a signal that decays only slowly, though the marginal estimate is a decay and is read as such. Because the 2019 grade is held constant, the comparison is between
 schools that the inspectorate regarded alike before the outcome cohorts
 arrived, so a school's reputation, and whatever that reputation draws in
 terms of staff and families, is partly absorbed. Finally, because the sample excludes schools that enrol at 13 or 14, no
@@ -393,8 +390,7 @@ and motivated families. Two features of the data bear on this without
 resolving it. The teaching-practice score is observed alongside the culture
 scores, so the most obvious such characteristic, that warm and orderly
 schools are simply schools whose teachers teach well, can be tested directly
-rather than assumed away. Secondly, the strictness association appears again across the
-national population using a text-based measure with the inspection grade
+rather than assumed away. Secondly, each association appears again across the national population using a text-based measure with the inspection grade
 held constant, so it is not an artefact of which schools agreed to be
 visited. The sorting concern that remains, which is that strict schools may
 retain fewer pupils with social, emotional and mental-health needs and gain
@@ -473,15 +469,13 @@ At the level of the components, warmth is significant for both subjects
 (English $0.162$, $p < 0.001$; Maths $0.135$, $p = 0.011$), while
 strictness falls short of significance in each taken alone (English
 $0.071$, $p = 0.11$; Maths $0.076$, $p = 0.09$). Overall Progress~8 is not
-the sum of these two components: it also counts the EBaC and Open slots,
-and it is there that the strictness association is clearest (EBaC $0.138$,
+the sum of these two components: it also counts the EBacc and Open slots,
+and it is there that the strictness association is clearest (EBacc $0.138$,
 $p = 0.008$; Open $0.119$, $p = 0.035$). Those two components mix progress
 with the school's entry decisions, so part of the strictness headline's
 significance comes from the components where entry policy is in play. The
 entry-rate analysis suggests the entry channel itself is small:
-controlling for EBacc entry attenuates the association by 11 to
-14~per~cent nationally, and by a similar 11~per~cent in the visited
-sample. What only the national data can show is the first stage, since at
+controlling for EBacc entry attenuates the association by 10 to 14~per~cent nationally, and by about 11~per~cent in the visited sample. What only the national data can show is the first stage, since at
 this sample size strictness does not significantly predict EBacc entry in
 the visited schools. The full component
 estimates and the entry analysis are in \cref{app:3A:tables}.
@@ -541,9 +535,7 @@ the visit scores down into their five observational blocks
 (\cref{tab:subscores}) shows that the association runs through warmth
 outside lessons and orderly conduct within them. Out-of-lesson warmth
 ($0.111$, $p = 0.006$) and in-lesson strictness ($0.115$, $p = 0.008$)
-survive joint entry, and their counterparts do not. This means that the
-relational quality that goes with progress is the one visible in corridors
-and at break, and the order that goes with it is the one visible in lessons.
+survive joint entry, and their counterparts do not. This suggests that the relational quality that goes with progress is the one visible in corridors and at break, and the order that goes with it the one visible in lessons, though the sub-scores are strongly collinear and the ranking of near-collinear siblings is fragile at this sample size.
 
 \begin{figure}[htbp]
   \centering
@@ -558,7 +550,7 @@ and at break, and the order that goes with it is the one visible in lessons.
 headteacher's espoused scores for the observed ones on the same schools
 reduces the warmth coefficient to $0.051$ ($p = 0.29$), while espoused
 strictness retains an association of the same size as the observed one
-($0.120$, $p = 0.018$). The asymmetry found in the previous chapter's measurement appears again
+($0.120$, $p = 0.018$; \cref{tab:enacted_espoused}). The asymmetry found in the previous chapter's measurement appears again
 here in prediction. What a headteacher says about warmth contains no
 information about progress, and what they say about behaviour systems
 contains some. Part of the warmth null may be range compression rather
@@ -587,7 +579,7 @@ models of the previous chapter, and strictness is read by the one-page
 marking scheme. Every warmth and teaching prediction comes from a model
 that never saw the school. All three coefficients are positive and precise:
 $\NatW$ per standard deviation for warmth, $\NatT$ for teaching and
-$\NatS$ for strictness, each with $p < 0.001$.
+$\NatS$ for strictness, each with $p < 0.001$. The three coefficients are not directly comparable with one another, because the instruments carry different freight; the paragraphs below explain.
 
 \input{tables/tab_national_legs}
 
@@ -605,17 +597,21 @@ associations. Third, for the model-based legs, the training uncertainty.
 The warmth and teaching scores are estimated quantities, so their
 regressions were bootstrapped over the training fit: the 95 per cent
 intervals are [$\NatWBootLo$, $\NatWBootHi$] for warmth and
-[$+0.039$, $+0.086$] for teaching, both comfortably away from zero. Excluding the
+[$NatTBootLo$, $NatTBootHi$] for teaching, both comfortably away from zero. Excluding the
 visited schools from the national sample \emph{raises} the warmth
 coefficient, so the association is no artefact of the schools that agreed
 to take part.
 
 The three numbers should be read against what each instrument is built to
-carry, and not against one another. The two model legs behave like clean,
-faint copies of the visited estimates: a proxy capturing about a third of
-true warmth should show about a third of the visited warmth effect, and
-$\NatW$ is almost exactly that; teaching matches its own arithmetic the
-same way. The strictness leg sits roughly twice its equivalent benchmark.
+carry, and not against one another. The benchmark for each leg is the
+univariate visited coefficient (the national scores enter alone) scaled by
+the instrument's held-out correlation: a proxy capturing about a third of
+observed warmth should show about a third of the visited warmth-only
+coefficient of $0.219$, roughly $0.07$, and $\NatW$ sits almost exactly
+there. Teaching lands about a quarter above its equivalent benchmark
+($0.28 \times 0.206 \approx 0.06$ against $\NatT$), close but less
+exact. The strictness leg sits at roughly twice its benchmark
+($0.30 \times 0.199 \approx 0.06$ against $\NatS$).
 The reason is construction, not the construct. The warmth and teaching
 models were deliberately purified --- trained on the part of the observed
 score that demographics cannot explain, with identifying and tonal
@@ -631,11 +627,7 @@ for the strictness leg: inspectors see results, and some of what reaches
 their prose may reflect them. The pre-2022 restriction meets the sharpest
 version of that concern; a residue from earlier results remains possible,
 and it is one of the reasons the estimates are presented as associations.
-It should also be noted that the national standard errors treat schools
-as independent; schools in the same academy trust share practices, and no
-trust identifier is attached to the dataset, so the reported precision is
-likely somewhat overstated, although the coefficients would clearly
-survive any plausible clustering.
+Schools in the same academy trust share practices, so the standard errors were also computed with clustering on trust membership from the schools register (1,595 clusters; three-fifths of schools in multi-school trusts). Clustering moves the standard errors by between one and nine per cent and changes no inference.
 
 Warmth's national leg carries one further, independent corroboration from
 the previous chapter: on the national schools outside training, the same
@@ -656,9 +648,9 @@ A further question is whether the strictness association runs through
 the curriculum rather than through progress within it. Stricter
 schools do steer pupils towards the academic pathway: nationally, the
 strictness bands predict entry to the EBacc suite, to the humanities
-and to languages, by two to three percentage points per band standard
+and to languages, by between 1.6 and 3.5 percentage points per band standard
 deviation, with or without the grade control. However, controlling for
-EBacc entry reduces the bands' association with the EBaC component by
+EBacc entry reduces the bands' association with the EBacc component by
 only 14 per cent (10 per cent with the grade). Most of the association
 reflects progress within subjects, and not which subjects pupils are
 entered for.
@@ -666,8 +658,9 @@ entered for.
 \textbf{Exploratory: what else websites reveal.} Beyond the culture
 scores, the previous chapter's identity measures --- read from school
 websites and, for faith prominence, validated against the official
-register --- carry their own associations with progress
-(\cref{tab:identity}). Schools whose websites espouse a traditional
+register --- carry their own associations with progress (\cref{tab:identity}).
+
+\input{tables/tab_identity} Schools whose websites espouse a traditional
 pedagogy make more progress ($\IdPed$ of a grade per subject,
 $p < 0.01$), as do
 schools with a traditional ethos ($\IdEth$), and both survive the grade
@@ -707,8 +700,7 @@ the sample over-represents London and the EAL share, through which the
 warmth association works, is concentrated there. It is not: adding a
 London indicator built from the schools register moves warmth to $0.152$
 ($p = 0.001$) and strictness to $0.096$, and the indicator itself is not
-significant ($0.113$, $p = 0.33$). Restricting the sample to the 64 schools in
-which every lesson was rated by two researchers gives $0.189$ for warmth
+significant ($0.113$, $p = 0.33$). Restricting the sample to the 64 schools in which every lesson was rated by at least two researchers gives $0.189$ for warmth
 ($p = 0.001$) and $0.071$ for strictness ($p = 0.15$). The warmth estimate is
 larger on that subset and the strictness estimate smaller, with a standard
 error a quarter larger on two-thirds of the sample, so the strictness result
@@ -723,9 +715,7 @@ which supports using culture measured after the outcome window as a proxy
 for culture during it (\cref{tab:stability_p8}), and the 2024/25
 pseudo-progress measure, which is the one cohort measured at the same time
 as the fieldwork, gives coefficients within $0.03$ of their real-Progress~8 counterparts
-on the overall measure (\cref{tab:p8_proxy}); the contemporaneous
-strictness coefficient is if anything larger, which sits well with the
-timing argument. Restricting the sample to the 22 schools where the headteacher named in
+on the overall measure (\cref{tab:p8_proxy}); the contemporaneous strictness coefficient is if anything larger. That observation is consistent with the timing argument, but a same-year association is equally open to results shaping the school's orderliness, so it is not counted as evidence on its own. Restricting the sample to the 22 schools where the headteacher named in
 the most recent inspection report is confirmed still in post in July 2026,
 so that the culture observed is more plausibly the culture the outcome
 cohorts had, leaves the strictness point estimates at or above the
@@ -766,8 +756,7 @@ rather than smaller.
 \textbf{Implications.} Two implications bear on the current policy debate,
 and they follow from the pattern of results rather than from any single
 coefficient. The behaviour debate treats discipline as the part of school improvement
-that does the work, and relational culture as secondary. These estimates
-give relational culture at least the weight of discipline, they show no
+that does the work, and relational culture as secondary. These estimates give relational culture the same weight as discipline, they show no
 trade-off between the two, and they place the warm-and-strict schools
 two-fifths of a grade ahead. On these estimates the two dimensions carry comparable weight, so if any
 part of the association is causal, an improvement drive that tightens
@@ -778,9 +767,7 @@ too small to compare with any precision.
 The second implication is that the independent signal in the association
 sits in relational quality outside lessons and orderly conduct within
 them. If that pattern is causal, the relational work that matters most is
-outside the classroom, in corridors, at break and at the gate, which is
-where schools currently direct the least observation and training
-effort. Both implications are conditional on the association being at
+outside the classroom, in corridors, at break and at the gate, which is, in the visited schools' accounts, where observation and training effort is least often directed. Both implications are conditional on the association being at
 least partly causal, which the design supports but does not establish.
 
 % ============================================================
@@ -813,9 +800,7 @@ grade held constant and on reports that predate the outcome years.
 Against the literature the paper sits in, the results say three things. To
 the school-effects tradition, they give a quantitative reading of two of the
 correlates of ethos that Rutter and the effective-schools syntheses named,
-measured by observation in a hundred ordinary schools, with the
-strictness half extended to the national population through a text-based
-measure, rather than in a case-study sample. To the charter and academy literature, they say that the
+measured by observation in a hundred ordinary schools, with all three dimensions extended to the national population through text-based measures, rather than in a case-study sample. To the charter and academy literature, they say that the
 two halves of the practice bundle, structure and support, each matter
 when they are measured apart, and that neither is the whole of the effect.
 To the authoritative-school literature, they supply the
@@ -835,9 +820,7 @@ would provide evidence on the direction of the association, and a design
 that observed culture changing within schools, as headteachers changed or
 behaviour systems were introduced, would provide evidence on its cause. Within the
 present limits, the results identify the relational and disciplinary
-features of a school that go together with its pupils' progress, and they
-show that one of the two, strictness, can be read at national scale from the
-public record.
+features of a school that go together with its pupils' progress, and they show that both, and teaching besides, can be read at national scale from the public record, each by the instrument its nature requires.
 
 % ===============================================================
 %  APPENDIX 3A
@@ -854,7 +837,7 @@ reported in the chapter. It explains how the Progress~8 measures and the
 subject entry rates are calculated, sets out the evidence on the stability of
 school characteristics that underpins the choice of outcome years, and gives
 the full five-outcome versions of the main results tables (the chapter body
-reports overall, English and Maths Progress~8, and the EBaC and Open
+reports overall, English and Maths Progress~8, and the EBacc and Open
 components appear here) together with the secondary and exploratory
 analyses.
 \medskip
@@ -875,23 +858,23 @@ intake.
 The eight slots are structured, and this structure is why the thesis
 treats the components differently. English and Maths each fill two slots and
 are double-weighted. Every pupil sits both, so these components measure
-progress and nothing else. The EBaC component covers three slots that must be filled
+progress and nothing else. The EBacc component covers three slots that must be filled
 from a restricted academic list: sciences, computer science, history,
 geography, and modern foreign languages. The Open component covers the final
 three slots, which may be filled by any approved qualification, including
 arts and vocational subjects. For these last six slots the school makes
 entry decisions, and an unfilled slot contributes zero progress to the
-school's average. Consequently, a school's EBaC and Open components mix two
+school's average. Consequently, a school's EBacc and Open components mix two
 different things: how much progress pupils make in the subjects they enter,
 and which subjects the school enters them for. A school that enters few
-pupils for languages will carry empty EBaC slots and a depressed EBaC
+pupils for languages will carry empty EBacc slots and a depressed EBacc
 component even if the pupils it does enter progress well.
 
 This structure generates a theoretical prediction about warmth and
 strictness. Schools higher on strictness, characterised by structured
 behaviour management, high academic expectations, and intensive pupil
-steering, are more likely to direct pupils into the EBaC pathway, and could
-therefore raise their EBaC component through the entry-rate channel as well
+steering, are more likely to direct pupils into the EBacc pathway, and could
+therefore raise their EBacc component through the entry-rate channel as well
 as through progress itself. Schools higher on warmth might generate stronger
 progress in the more elective Open component. The five-outcome versions of the main results tables in this appendix
 provide evidence on that prediction, and the entry-rate analysis below
@@ -900,7 +883,7 @@ addresses the pathway channel directly.
 The entry rates themselves are calculated from the pupil count columns of
 the 2023--24 performance tables, because the Department for Education
 stopped publishing entry rates in percentage form in recent releases. The
-EBaC entry rate is the number of pupils entered for the full EBaC suite
+EBacc entry rate is the number of pupils entered for the full EBacc suite
 divided by the number of pupils at the end of Key Stage~4, and the
 humanities and languages rates are constructed in the same way from their
 respective counts. Entry rates are available only at the subject-group
@@ -958,8 +941,8 @@ characteristics.
 Progress~8 components reported in this chapter.
 Among the Progress~8 components,
 stability varies from ICC~$= 0.587$ for the Open component to ICC~$= 0.748$
-for EBaC, with English and Maths sitting between these at ICC~$\approx 0.67$.
-The higher stability of EBaC relative to Open reflects the fact that
+for EBacc, with English and Maths sitting between these at ICC~$\approx 0.67$.
+The higher stability of EBacc relative to Open reflects the fact that
 curriculum-pathway decisions, that is, which subjects pupils are entered for,
 are governed by stable school policy and change little from year to year,
 while the more varied Open bucket (arts, vocational and additional GCSEs) is
@@ -972,10 +955,10 @@ characteristics already discussed.
 The theoretical prediction of this chapter is that warmth is most strongly
 associated with the Open component, which is the dimension most sensitive to
 breadth of provision and pupil engagement, and that strictness is most
-strongly associated with the EBaC component, which is the dimension most
-sensitive to academic pathway steering. The lower stability of Open P8 relative to EBaC P8
+strongly associated with the EBacc component, which is the dimension most
+sensitive to academic pathway steering. The lower stability of Open P8 relative to EBacc P8
 (ICC~$= 0.587$ versus $0.748$) implies that the warmth coefficient will be
-estimated against a noisier outcome, which may attenuate the estimated effect.
+estimated against a noisier outcome, which may attenuate the estimated association.
 This is a limitation to acknowledge in interpreting any differential finding
 between components.
 
@@ -986,17 +969,17 @@ between components.
 \label{app:3A:tables}
 
 \Cref{tab:main_results_s1,tab:main_results_s2,tab:main_results_s3} report the
-full five-outcome versions of the three main-body stages, including the EBaC
+full five-outcome versions of the three main-body stages, including the EBacc
 and Open components. These tables use the primary specification ($n = 99$,
 predecessor-filled pre-COVID grades, late-entry schools excluded), which is
 the same one as the main-body tables, so the Overall, English and Maths
 columns reproduce the body exactly and the two extra columns can be read on
 the same footing.
-Reading the EBaC and Open columns, warmth and strictness are both
-significant for EBaC with near-equal magnitudes, and both are significant for
+Reading the EBacc and Open columns, warmth and strictness are both
+significant for EBacc with near-equal magnitudes, and both are significant for
 Open as well, again with near-equal magnitudes. The differential prediction
 set out in \cref{app:3A:p8mechanics}, that strictness should show most
-strongly in the EBaC component and warmth in the Open component, is
+strongly in the EBacc component and warmth in the Open component, is
 therefore not supported: both dimensions are associated with both components
 to a similar degree. As \cref{app:3A:p8mechanics} explains, both components mix progress with
 the school's entry decisions, so the entry-rate analysis in
@@ -1004,7 +987,7 @@ the school's entry decisions, so the entry-rate analysis in
 The strictness score predicts EBacc, humanities and languages entry
 nationally with the inspection grade held constant. The attenuation figure
 quoted in the body of the chapter comes from these regressions: adding the
-EBacc entry rate to the EBaC specification reduces the strictness
+EBacc entry rate to the EBacc specification reduces the strictness
 coefficient by 11 to 14~per~cent, so the entry channel carries little of the
 association.
 
@@ -1120,8 +1103,7 @@ absorbs in every specification.
 
 A final check re-estimates the Stage~1 specification on the subset of
 schools where the headteacher named in the most recent inspection report is
-confirmed still in post in the July~2026 GIAS snapshot. Continuity could be
-determined for only 29 of the 103 full-data schools, of which 22 were
+confirmed still in post in the July~2026 GIAS snapshot. Continuity could be determined for only 29 of the 99 estimation-sample schools, of which 22 were
 unchanged and 7 had changed, so the restriction is driven as much by data
 coverage as by turnover. In this subsample the standard errors are three to seven
 times larger than in the full sample, and neither warmth nor strictness

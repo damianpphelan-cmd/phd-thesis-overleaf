@@ -494,29 +494,52 @@ def build() -> list[Num]:
             "ch3_estimates.csv: espoused-for-enacted warmth reduction, per cent",
             stale=["63--91", "63--106"]))
 
-    a7 = pd.read_csv(THESIS / "tables" / "a7_estimates.csv")
-    a7o = a7[(a7.outcome == "Overall") & (a7.spec == "nograde")].iloc[0]
-    add(Num("NNationalStrictness", comma(int(a7o["n"])),
-            "a7_estimates.csv: national extension sample",
+    # REPOINTED 24 Aug 2026 from thesis/tables/a7_estimates.csv (the RETIRED
+    # analyser-score national leg) to the new-instrument runs: the
+    # marking-scheme strictness bands (national_strictness_regression_results
+    # .csv, written by national_strictness_regression.py) and the band
+    # age-interaction from band_extras_results.csv (analyse_band_extras.py).
+    # The chapters quote the coefficients through \NatS/\NatSPre in
+    # snippets/national_numbers.tex (make_ch3_national_tables.py), so the two
+    # Beta macros carry expect=[] here; they exist so a literal 0.138/0.137 --
+    # the retired a7 values -- can never be mistaken for canonical again.
+    # Those retired values are NOT stale-guarded: bare "0.138"/"0.137" also
+    # occur legitimately (gold EBaC strictness, one-cohort robustness), and a
+    # stale literal must be unambiguous.
+    nsr = pd.read_csv(ROOT / "national_strictness_regression_results.csv")
+    nso = nsr[nsr.spec == "no grade control"].iloc[0]
+    add(Num("NNationalStrictness", comma(int(nso["n"])),
+            "national_strictness_regression_results.csv: marking-scheme "
+            "bands, national estimation sample",
             stale=["3{,}194", "3{,}148"]))
-    add(Num("BetaNationalStrictness", f"{a7o['b']:.3f}",
-            "a7_estimates.csv: national extension, overall P8"))
-    a7p = a7[(a7.outcome == "Overall") & (a7.spec == "pre22ng")].iloc[0]
-    add(Num("BetaNationalPre", f"{a7p['b']:.3f}",
-            "a7_estimates.csv: national extension on reports published before "
-            "Sept 2022 (pre-outcome-window subsample), no-grade spec"))
-    add(Num("NNationalPre", comma(int(a7p["n"])),
-            "a7_estimates.csv: pre-window subsample size"))
-    a7s = a7[(a7.outcome == "Overall") & (a7.spec == "pre22shr")].iloc[0]
-    add(Num("ShareNationalPre", f"{a7s['b'] * 100:.0f}",
-            "a7_estimates.csv: share of national-sample reports published "
-            "before Sept 2022, per cent"))
-    a7x = a7[(a7.outcome == "Overall") & (a7.spec == "agexint")].iloc[0]
-    add(Num("BetaNationalAgeInt", f"{a7x['b']:.3f}",
-            "a7_estimates.csv: interaction of the national strictness score "
-            "with centred report age, per year"))
-    add(Num("PNationalAgeInt", f"{a7x['pval']:.2f}",
-            "a7_estimates.csv: p-value of the score x report-age interaction"))
+    add(Num("BetaNationalStrictness", f"{nso['b']:.3f}",
+            "national_strictness_regression_results.csv: marking-scheme "
+            "bands, overall P8, no-grade spec (chapters quote \\NatS)",
+            expect=[]))
+    nsp = nsr[nsr.spec == "pre-2022 reports, no grade"].iloc[0]
+    add(Num("BetaNationalPre", f"{nsp['b']:.3f}",
+            "national_strictness_regression_results.csv: marking-scheme "
+            "bands on reports published before Sept 2022 (pre-outcome-window "
+            "subsample), no-grade spec (chapters quote \\NatSPre)",
+            expect=[]))
+    add(Num("NNationalPre", comma(int(nsp["n"])),
+            "national_strictness_regression_results.csv: pre-window "
+            "subsample size"))
+    add(Num("ShareNationalPre", f"{100 * nsp['n'] / nso['n']:.0f}",
+            "national_strictness_regression_results.csv: share of "
+            "national-sample reports published before Sept 2022, per cent"))
+    bex = pd.read_csv(ROOT / "band_extras_results.csv")
+    bx = bex[bex.spec == "age interaction"].iloc[0]
+    add(Num("BetaNationalAgeInt", f"{bx['b']:.3f}",
+            "band_extras_results.csv: interaction of the marking-scheme band "
+            "score with centred report age, per year",
+            expect=["$-0.003$ per year of report age"],
+            stale=["$-0.002$ per year of report age"]))
+    add(Num("PNationalAgeInt", f"{bx['p']:.2f}",
+            "band_extras_results.csv: p-value of the band x report-age "
+            "interaction",
+            expect=["$p = 0.09$, on the marking-scheme"],
+            stale=["per year of report age, $p = 0.15$"]))
 
     # Context benchmarks quoted beside the primary estimates (referee point:
     # they had no cited source). Computed nationally from analysis_dataset.csv.

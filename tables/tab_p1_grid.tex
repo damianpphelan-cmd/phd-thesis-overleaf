@@ -3,22 +3,27 @@
 \centering
 \caption{What each public text carries about enacted culture: two readings,
 one criterion. Cells are correlations with the visit scores on the visited
-schools ($n \approx 100$), with intake and report age partialled out of the
-target. ``Agree'' is exact band agreement between the two language models
-reading the same marking scheme; ``Retest'' is exact agreement on thirty
-documents re-scored by the primary model.}
+schools ($n = 100$ in every cell: 101 scored documents,
+one school lost to a missing control), with intake and report age partialled
+out of the target. ``$p$'' is the prediction model's permutation $p$-value
+where the results file carries one (permutation tests were run for the
+combined-text models only, so single-source cells show ``--''); the bracketed
+interval is a Fisher-$z$ 95\% confidence interval for the marking-scheme
+correlation. ``Agree'' is exact band agreement between the two language
+models reading the same marking scheme; ``Retest'' is exact agreement on
+thirty documents re-scored by the primary model.}
 \label{tab:p1_grid}
-\begin{tabular}{llcccc}
+\begin{tabular}{llcccccc}
 \toprule
-Source & Dimension & Prediction model & Marking scheme & Agree & Retest \\
+Source & Dimension & Model & $p$ & Scheme & 95\% CI & Agree & Retest \\
 \midrule
-Inspection report & Warmth & +0.33 & -0.07 & 68\% & 97\% \\
-Inspection report & Strictness & +0.19 & +0.25 & 71\% & 100\% \\
-Inspection report & Teaching & +0.28 & +0.27 & 72\% & 97\% \\
-Behaviour policy & Warmth & +0.15 & +0.04 & 62\% & 83\% \\
-Behaviour policy & Strictness & -0.15 & -0.03 & 72\% & 100\% \\
-Website & Warmth & +0.14 & -0.13 & 31\% & 97\% \\
-Website & Strictness & +0.17 & +0.13 & 39\% & 97\% \\
+Inspection report & Warmth & +0.33 & -- & -0.07 & [-0.26, +0.13] & 68\% & 97\% \\
+Inspection report & Strictness & +0.19 & -- & +0.25 & [+0.06, +0.43] & 71\% & 100\% \\
+Inspection report & Teaching & +0.28 & -- & +0.27 & [+0.08, +0.45] & 72\% & 97\% \\
+Behaviour policy & Warmth & +0.15 & -- & +0.04 & [-0.16, +0.23] & 62\% & 83\% \\
+Behaviour policy & Strictness & -0.15 & -- & -0.03 & [-0.23, +0.17] & 72\% & 100\% \\
+Website & Warmth & +0.14 & -- & -0.13 & [-0.32, +0.06] & 31\% & 97\% \\
+Website & Strictness & +0.17 & -- & +0.13 & [-0.07, +0.31] & 39\% & 97\% \\
 \bottomrule
 \end{tabular}
 \end{table}

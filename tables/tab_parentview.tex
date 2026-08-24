@@ -4,10 +4,13 @@
 \caption{Parent View as a soft national criterion for the warmth instruments. The parent
 composite is the mean of the ``my child is happy at this school'' and ``my child feels
 safe at this school'' positive-response rates. The upper panel correlates each warmth
-instrument with the composite and then regresses the composite on the instrument
-(standardised) plus the national control set; the lower panel reports the composite's own
-association with Progress 8 on the primary specification, which is descriptive only
-because parents observe outcomes.}
+instrument with the composite; for the document instruments it also regresses the
+composite on the instrument (standardised) plus the national control set. The
+national predicted warmth is the prediction model of Chapter~2 with the training
+schools excluded, so every prediction is out of sample; the predicted-teaching row is
+its discriminant check. The lower panel reports the composite's own association with
+Progress 8 on the primary specification, which is descriptive only because parents
+observe outcomes.}
 \label{tab:parentview}
 \footnotesize\setlength{\tabcolsep}{4pt}
 \begin{tabular}{lccccc}
@@ -19,7 +22,9 @@ Instrument & $r$ & $\rho$ & $n$ & Controlled $\beta$ & $p$ \\
 Website warmth (v18)          & $+$0.035 & $+$0.035 & 3{,}053 & $+$0.002 (0.003) & 0.56 \\
 Website warmth (v13)          & $+$0.032 & $+$0.026 & 3{,}053 & $+$0.001 (0.003) & 0.75 \\
 Behaviour-policy warmth (v4)  & $-$0.037 & $-$0.040 & 3{,}043 & $-$0.005 (0.003) & 0.06 \\
-Ofsted warmth                 & $+$0.393 & $+$0.387 & 3{,}034 & $+$0.050 (0.003) & $<$0.001 \\
+Predicted warmth (excl.\ training) & $+$0.293 & $+$0.287 & 3{,}114 & --- & $<$0.001 \\
+\quad demographics partialled      & $+$0.199 &          & 3{,}069 & --- & $<$0.001 \\
+Predicted teaching (discriminant)  & $+$0.249 & $+$0.252 & 3{,}114 & --- & $<$0.001 \\
 \midrule
 \multicolumn{6}{l}{\textit{Panel B: parent composite as a Progress 8 predictor (descriptive)}} \\
 \addlinespace[2pt]
@@ -33,13 +38,23 @@ P8 Maths    & \multicolumn{2}{c}{$+$0.122} & 0.009 & 2{,}749 & $<$0.001 \\
 \begin{minipage}{\linewidth}
 \smallskip
 \footnotesize\textit{Notes:} Standard errors in parentheses (HC3; the behaviour-policy row
-clustered on the shared document digest). Panel A regressions control for the national
-control set without the grade; Panel B adds the predecessor-filled 2019 grade. Late-entry
-schools excluded. Parent View is a soft criterion: it conflates school culture with parent
+clustered on the shared document digest). The document-instrument regressions control
+for the national control set without the grade and exclude late-entry schools; Panel B
+adds the predecessor-filled 2019 grade. The predicted-warmth and predicted-teaching
+rows are correlations over every school with an out-of-sample prediction and a
+survey (training schools excluded; no late-entry exclusion, since no regression is
+run). They carry no controlled-$\beta$ column because the prediction models'
+training targets were already residualised on the national control set, so a
+controlled regression would partial the same variables twice; the demographics
+row instead partials FSM, EAL and KS2 intake out of both the prediction and the
+composite over the same sample. The teaching prediction correlates with the parent
+composite almost as strongly as the warmth prediction, so the association reads as
+report-tone validity shared across dimensions rather than a warmth-specific signal.
+Parent View is a soft criterion: it conflates school culture with parent
 satisfaction, each school contributes its single most recent survey release (releases span
 September 2022 to September 2025), and responses are not temporally aligned with the
 instrument sources. The document-based instruments (website, behaviour policy) do not
-track parents' experienced climate; the Ofsted-derived score does, consistent with both
+track parents' experienced climate; the report-derived predictions do, consistent with both
 drawing on visits to the school. Panel B is endogenous --- parents plausibly respond to
 results as well as climate --- so it is reported as a description, never as a causal
 predictor.
