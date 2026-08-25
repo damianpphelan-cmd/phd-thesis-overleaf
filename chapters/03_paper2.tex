@@ -43,7 +43,7 @@ another rather than amplifying each other: the schools that are both warm
 and strict sit $0.40$ of a grade above the rest after controls, and the
 interaction between the two is indistinguishable from zero in the visited
 sample. Replacing the observed scores with the headteacher's own account of
-the school removes the warmth association. Finally, the two culture dimensions and the teaching-practice score all
+the school removes the warmth association. The fourth result is national: the two culture dimensions and the teaching-practice score all
 extend to national scale through instruments tested against direct
 observation in the previous chapter. Across \NNationalStrictness{}
 schools, predicted warmth carries $\NatW$ per standard deviation,
@@ -175,9 +175,9 @@ while the interaction between the two dimensions is indistinguishable from
 zero in the visited sample. In other words, the dimensions add to one
 another rather than amplifying each other. Replacing the observed scores
 with the headteacher's own account of the school removes the warmth
-association entirely. And all three dimensions extend to national scale
-through
-the previous chapter's text-derived scores: predicted warmth,
+association entirely.
+
+The fourth result is the national extension. Through the previous chapter's text-derived scores, predicted warmth,
 predicted teaching and marking-scheme strictness each predict progress
 across the national population, with the inspection grade held constant
 and on reports that predate the outcome years.
@@ -280,14 +280,6 @@ strictness lives in specific claims that only directed questions
 extract. \Cref{fig:national_bands} shows the national distribution of
 the strictness bands.
 
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.7\textwidth]{fig_ch2_bands.pdf}
-  \caption{The national distribution of strictness bands under the
-  one-page marking scheme (3,324 schools with a scored report; the regressions run on the 3,052 with an outcome and full controls). All five bands are used;
-  band 4, conduct presented as a strength, is the national mode.}
-  \label{fig:national_bands}
-\end{figure}
 
 \textbf{Controls.} All specifications condition on the same set of
 controls. The first is the mean Key Stage~2 score of the cohort, which guards
@@ -546,14 +538,7 @@ interaction between the two standardised scores is zero ($0.039$, $p =
 add to one another rather than amplifying each other. The best schools have
 both because each of them helps. The data show no combination effect, and a
 school that is strong on one dimension still gains from the other.
-The national panel, with thirty times the sample and the new
-instruments, predicted warmth crossed with the marking-scheme bands,
-agrees: the interaction is indistinguishable from zero ($0.004$,
-$p = 0.56$), while the schools high on both dimensions sit $0.36$ of a grade above the rest after controls ($0.26$ with the inspection grade held constant). The additive description holds at
-both scales. The national split is asymmetric: the
-band median falls at four, so the high-strictness half is in effect the
-top band, and the
-low-warmth, high-strictness cell is small.
+The national extension below repeats this test at thirty times the sample and reaches the same additive conclusion.
 
 \Cref{tab:subscores} breaks the observed scores into their five
 observational blocks. Item-level associations, corrected for multiple
@@ -588,12 +573,11 @@ bunch near the top of their scale. The result is also a check on the
 observed measures as much as on the espoused ones. Had the espoused scores predicted progress as well as
 the observed ones, the visits would have added nothing that an hour with the
 headteacher could not supply. Two related results are in
-\cref{app:3A:tables}. The gap between a school's espoused and observed scores predicts nothing beyond the observed level. And the pattern is not confined to what schools say about themselves: on the national panel, parents' survey responses on their children's happiness and safety are positively associated with progress, at $0.15$ per standard deviation. Satisfaction and results are jointly determined, though, so this is corroboration rather than an independent test.
+\cref{app:3A:tables}. The gap between a school's espoused and observed scores predicts nothing beyond the observed level. And the pattern is not confined to what schools say about themselves: on the national panel introduced below, parents' survey responses on their children's happiness and safety are positively associated with progress, at $0.15$ per standard deviation. Satisfaction and results are jointly determined, though, so this is corroboration rather than an independent test.
 
 \input{tables/tab_enacted_espoused}
 
-\textbf{National extension.} The two culture dimensions and the teaching-practice score now
-carry a national test (\cref{tab:national_legs}). For \NNationalStrictness{}
+\textbf{National extension.} The estimates so far rest on a hundred schools that agreed to be visited. The national test asks whether the associations survive outside that sample, on schools that no one visited (\cref{tab:national_legs}). For \NNationalStrictness{}
 schools with an outcome, some thirty times the visited sample, warmth
 and teaching are predicted from each school's inspection report by the
 models of the previous chapter, and strictness is read by the one-page
@@ -621,6 +605,15 @@ regressions were bootstrapped over the training fit: the 95 per cent
 intervals are [$\NatWBootLo$, $\NatWBootHi$] for warmth and [$\NatTBootLo$, $\NatTBootHi$] for teaching, both away from zero. The fourth concerns sample dependence: excluding the visited schools from the national sample raises the warmth coefficient (to $+0.136$) and the teaching coefficient (to $+0.122$), so neither association is an artefact of the schools that agreed to take part.
 
 The per-standard-deviation strictness coefficient does not lean on treating the five bands as equally spaced: entered as dummies around band 3, the bands trace a monotone gradient ($-0.27$, $-0.05$, $+0.15$, $+0.43$; \cref{tab:band_dummies}).
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth]{fig_ch2_bands.pdf}
+  \caption{The national distribution of strictness bands under the
+  one-page marking scheme (3,324 schools with a scored report; the regressions run on the 3,052 with an outcome and full controls). All five bands are used;
+  band 4, conduct presented as a strength, is the national mode.}
+  \label{fig:national_bands}
+\end{figure}
 
 The three numbers should be read against what each instrument (measurement
 instrument, never an instrumental variable) is built to carry rather than
@@ -660,19 +653,9 @@ footing.
 The national warmth estimate carries one further, independent corroboration from
 the previous chapter: on the national schools outside training, the same
 predicted warmth correlates $\PVPredWarmth$ with parents' reports of
-happy, safe children. A text-derived score that tracks both pupil
-progress and parent experience, on schools it never saw, is unlikely
-to be an artefact of any one source.
+happy, safe children. A text-derived score that tracks both pupil progress and parent experience, on schools it never saw, is unlikely to be an artefact of any one source.
 
-What the extension still does not provide
-is identification: a
-text-derived score is open to the same omitted-variable concerns as an observed one, and the sensitivity bounds
-of \cref{tab:sensitivity_bounds} remain the measure of how much
-confounding the visited estimates could bear. Consistent with the
-previous chapter's measurement findings, the schools' own documents
-supply no rival signal: behaviour-policy and website scores are not
-positively associated with progress in any specification
-(\cref{tab:llm_p8_matrix}).
+The combination result also repeats at this scale. Crossing predicted warmth with the strictness bands, the interaction is indistinguishable from zero ($0.004$, $p = 0.56$), while the schools high on both dimensions sit $0.36$ of a grade above the rest after controls, or $0.26$ with the inspection grade held constant (\cref{tab:typology}). The national split is asymmetric, though: the band median falls at four, so the high-strictness half is in effect the top band, and the low-warmth, high-strictness cell is small.
 
 A further question is whether the strictness association runs through
 the curriculum rather than through progress within it. Stricter
@@ -684,24 +667,15 @@ EBacc entry removes only 10 to 14~per~cent of the association nationally,
 and about 11~per~cent in the visited sample. Most of the association
 reflects progress within subjects. The entry channel carries little of it.
 
-\textbf{Exploratory: what else websites reveal.} Beyond the culture
-scores, the previous chapter's identity measures, read from school
-websites and, for faith prominence, validated against the official
-register, carry their own associations with progress (\cref{tab:identity}).
-
-\input{tables/tab_identity}
-
-Schools whose websites espouse a traditional
-pedagogy make more progress ($\IdPed$ of a grade per subject,
-$p < 0.01$), as do
-schools with a traditional ethos ($\IdEth$), and both survive the grade
-control. Prominence of faith shows a modest gradient: schools where faith
-is central to the site's self-presentation sit $\IdFaithCentral$ above
-otherwise similar non-faith schools, an estimate that weakens with the
-grade control. These are exploratory: the measures are self-presentation,
-the specifications were not pre-registered, and the associations are
-reported as descriptions rather than tests.
-
+What the extension still does not provide
+is identification: a
+text-derived score is open to the same omitted-variable concerns as an observed one, and the sensitivity bounds
+of \cref{tab:sensitivity_bounds} remain the measure of how much
+confounding the visited estimates could bear. Consistent with the
+previous chapter's measurement findings, the schools' own documents
+supply no rival signal: behaviour-policy and website scores are not
+positively associated with progress in any specification
+(\cref{tab:llm_p8_matrix}).
 
 \textbf{Robustness.} \Cref{tab:robustness_overall} reports the primary
 estimate under alternative specifications, all on the primary sample, and
@@ -787,6 +761,23 @@ coefficients, and the bounds computed from them, are likelier larger than
 smaller.
 
 \input{tables/tab_robustness_overall}
+
+\textbf{Exploratory: what else websites reveal.} The same public record carries identity signals beyond culture. The previous chapter's identity measures, read from school
+websites and, for faith prominence, validated against the official
+register, carry their own associations with progress (\cref{tab:identity}).
+
+\input{tables/tab_identity}
+
+Schools whose websites espouse a traditional
+pedagogy make more progress ($\IdPed$ of a grade per subject,
+$p < 0.01$), as do
+schools with a traditional ethos ($\IdEth$), and both survive the grade
+control. Prominence of faith shows a modest gradient: schools where faith
+is central to the site's self-presentation sit $\IdFaithCentral$ above
+otherwise similar non-faith schools, an estimate that weakens with the
+grade control. These are exploratory: the measures are self-presentation,
+the specifications were not pre-registered, and the associations are
+reported as descriptions rather than tests.
 
 \textbf{Implications.} Two implications bear on the current policy debate,
 and they follow from the pattern of results rather than from any single
