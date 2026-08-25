@@ -13,6 +13,8 @@ from pathlib import Path
 
 import pandas as pd
 
+from fix_tables import move_caption_below
+
 BASE = Path(__file__).resolve().parent.parent
 OUT = Path(__file__).resolve().parent / "tables" / "tab_score_dist.tex"
 
@@ -56,10 +58,10 @@ def main():
         lines.append(row(g[col].dropna(), dim, rf"\emph{{{kind}}}"))
 
     body = "\n".join(lines)
-    OUT.write_text(rf"""\begin{{table}}[htbp]
+    tex = rf"""\begin{{table}}[htbp]
 \centering
 \caption{{Distribution of sub-scores and of the enacted and espoused scores for
-Tier~1 full-data schools ($n = {n}$).
+the visited schools with full data ($n = {n}$).
 Sub-scores are on a $[0,5]$ scale; the enacted and espoused scores on a $[0,10]$ scale.}}
 \label{{tab:score_dist}}
 \footnotesize\setlength{{\tabcolsep}}{{4pt}}
@@ -78,7 +80,9 @@ out in \cref{{eq:enacted,eq:espoused}}. The systems count $S3$ enters no
 score. No sub-score enters both sets.
 \end{{minipage}}
 \end{{table}}
-""", encoding="utf-8")
+"""
+    tex, _ = move_caption_below(tex)
+    OUT.write_text(tex, encoding="utf-8")
 
     print(f"wrote {OUT.relative_to(BASE)}  (n = {n})")
     for col, label, _d, _s in SUBSCORES:

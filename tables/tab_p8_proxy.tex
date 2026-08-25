@@ -1,6 +1,26 @@
 \begin{table}[htbp]\centering
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
 \small
+\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llccccc}
+\toprule
+ & Predictor & $N$ & \shortstack{Pseudo\\overall} & \shortstack{Pseudo\\English} & \shortstack{Pseudo\\Maths} & \shortstack{Real P8\\overall} \\
+\midrule
+A & Visited warmth ($W$)   & 100     & 0.162\sym{***} & 0.182\sym{***} & 0.114\sym{*} & 0.154\sym{***} \\
+  &                        &         & (0.050) & (0.051) & (0.061) & (0.041) \\
+A & Visited strictness ($S$) & 100     & 0.135\sym{***} & 0.092\sym{*} & 0.156\sym{***} & 0.098\sym{**} \\
+  &                        &         & (0.050) & (0.050) & (0.056) & (0.040) \\
+A & Ofsted strictness      & 3{,}076 & 0.154\sym{***} & 0.134\sym{***} & 0.136\sym{***} & 0.137\sym{***} \\
+  &                        &         & (0.009) & (0.009) & (0.009) & (0.007) \\
+\addlinespace
+B & Visited warmth ($W$)   & 99      & 0.165\sym{***} & 0.195\sym{***} & 0.116\sym{*} & 0.147\sym{***} \\
+  &                        &         & (0.057) & (0.057) & (0.067) & (0.043) \\
+B & Visited strictness ($S$) & 99      & 0.135\sym{**} & 0.081 & 0.157\sym{**} & 0.107\sym{**} \\
+  &                        &         & (0.055) & (0.055) & (0.061) & (0.041) \\
+B & Ofsted strictness      & 2{,}753 & 0.153\sym{***} & 0.136\sym{***} & 0.136\sym{***} & 0.136\sym{***} \\
+  &                        &         & (0.009) & (0.010) & (0.010) & (0.007) \\
+\bottomrule
+\end{tabular}
 \caption{Culture coefficients on the pseudo 2024/25 progress measure beside their
 real-Progress 8 twins. The pseudo measure residualises 2024/25 Attainment 8 on a
 multi-year z-averaged KS2 intake proxy, giving a progress-like score for the cohort
@@ -9,26 +29,6 @@ coefficient from the same specification run on the pseudo outcome and on real (2
 average) Progress 8 for the same schools, without (A) and with (B) the predecessor-filled
 2019 inspection-grade control; late-entry schools excluded.}
 \label{tab:p8_proxy}
-\footnotesize\setlength{\tabcolsep}{4pt}
-\begin{tabular}{llccccc}
-\toprule
- & Predictor & $N$ & \shortstack{Pseudo\\overall} & \shortstack{Pseudo\\English} & \shortstack{Pseudo\\Maths} & \shortstack{Real P8\\overall} \\
-\midrule
-A & Gold warmth ($W$)      & 100     & 0.162\sym{***} & 0.182\sym{***} & 0.114\sym{*} & 0.154\sym{***} \\
-  &                        &         & (0.050) & (0.051) & (0.061) & (0.041) \\
-A & Gold strictness ($S$)  & 100     & 0.135\sym{***} & 0.092\sym{*} & 0.156\sym{***} & 0.098\sym{**} \\
-  &                        &         & (0.050) & (0.050) & (0.056) & (0.040) \\
-A & Ofsted strictness      & 3{,}076 & 0.154\sym{***} & 0.134\sym{***} & 0.136\sym{***} & 0.137\sym{***} \\
-  &                        &         & (0.009) & (0.009) & (0.009) & (0.007) \\
-\addlinespace
-B & Gold warmth ($W$)      & 99      & 0.165\sym{***} & 0.195\sym{***} & 0.116\sym{*} & 0.147\sym{***} \\
-  &                        &         & (0.057) & (0.057) & (0.067) & (0.043) \\
-B & Gold strictness ($S$)  & 99      & 0.135\sym{**} & 0.081 & 0.157\sym{**} & 0.107\sym{**} \\
-  &                        &         & (0.055) & (0.055) & (0.061) & (0.041) \\
-B & Ofsted strictness      & 2{,}753 & 0.153\sym{***} & 0.136\sym{***} & 0.136\sym{***} & 0.136\sym{***} \\
-  &                        &         & (0.009) & (0.010) & (0.010) & (0.007) \\
-\bottomrule
-\end{tabular}
 \begin{minipage}{\linewidth}
 \smallskip
 \footnotesize\textit{Notes:} Standard errors (HC3) in parentheses.
@@ -37,9 +37,13 @@ Across the national panel the pseudo measure correlates with real average Progre
 $r = +0.719$ ($n = 3{,}140$). Validation of the construction one year back (the
 pseudo measure rebuilt from 2021--22 and 2022--23 baselines against the real 2023--24
 Progress 8) is $+0.81$ (two-year construction, $n = 3{,}242$;
-ch3\_appendix\_p8proxy\_validation.csv). On the body's per-standard-deviation scale, the gold
-coefficients on the pseudo outcome sit within $0.03$ of their real-Progress 8 twins
-(pseudo 0.164/0.134 against real 0.146/0.106). The pseudo measure is
+ch3\_appendix\_p8proxy\_validation.csv). On the body's per-standard-deviation scale, the
+visited-school coefficients on the pseudo outcome sit within $0.04$ of their
+real-Progress 8 twins in the same panel (Panel A: pseudo 0.162/0.135 against real
+0.154/0.098; Panel B: pseudo 0.165/0.135 against real 0.147/0.107,
+warmth/strictness). The ``Ofsted strictness'' rows use the marking-scheme strictness
+bands of Chapter~2 (1--5, standardised over each estimation sample), not the retired
+analyser score. The pseudo measure is
 school-level, not pupil-matched, so it is a robustness check, never a primary outcome.
 \end{minipage}
 \end{table}

@@ -1,6 +1,5 @@
 \begin{table}[htbp]\centering
-\caption{Interview-tier (Model~A) Ridge coefficients}
-\label{tab:interview_model_coefs}
+
 \footnotesize\setlength{\tabcolsep}{4pt}% width fix 17 Aug 2026
 \begin{tabular}{lcccc}
 \toprule
@@ -19,6 +18,8 @@ Intercept & \multicolumn{2}{c}{6.380} & \multicolumn{2}{c}{7.037} \\
 $N$ (training schools) & \multicolumn{2}{c}{101} & \multicolumn{2}{c}{101} \\
 \bottomrule
 \end{tabular}
+\caption{Interview-tier (Model~A) Ridge coefficients}
+\label{tab:interview_model_coefs}
 \begin{minipage}{\textwidth}\vspace{0.5em}\footnotesize
 \textit{Notes.} Ridge coefficients for the interview-tier calibration model (\cref{eq:ridge_interview}). The target is the \emph{enacted} score from the school visit; no feature appears in it. Features are standardised before fitting, so the ``Std.'' columns give the change in the predicted score for a one-standard-deviation change in the predictor and the ``Raw'' columns rescale these to the predictor's original units. The penalty $\lambda$ is selected by leave-one-out cross-validation; warmth and strictness models use the text feature of the corresponding dimension.
 \end{minipage}

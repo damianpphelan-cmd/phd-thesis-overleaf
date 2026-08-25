@@ -1,10 +1,9 @@
 \begin{table}[htbp]\centering
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
-\caption{SEMH mechanism: culture and current SEMH composition conditional on baseline}
-\label{tab:semh_mechanism}
+
 \begin{tabular}{l*{3}{c}}
 \toprule
-                    &\multicolumn{1}{c}{Tier 1 (S)}&\multicolumn{1}{c}{Tier 1 (W)}&\multicolumn{1}{c}{National (S)}\\
+                    &\multicolumn{1}{c}{Visited (S)}&\multicolumn{1}{c}{Visited (W)}&\multicolumn{1}{c}{National (S)}\\
 \midrule
 Strictness ($S_{\text{visit}}$, per SD)&      $-$0.257         &                     &                     \\
                     &     (0.280)         &                     &                     \\
@@ -25,4 +24,14 @@ r2                  &       0.559         &       0.547         &       0.484   
 \multicolumn{4}{l}{\footnotesize baseline is the 2015--16 SEMH count over the current roll. Primary controls; late-entry excluded.}\\
 \multicolumn{4}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\).}\\
 \end{tabular}
+\caption{The SEMH composition mechanism. Each column regresses a school's 2023--24
+share of pupils with social, emotional and mental-health (SEMH) needs, as a
+percentage of the roll, on one culture score plus the school's 2015--16 baseline
+SEMH share and the primary control set: visited-school strictness and warmth
+($n=94$ visited schools), and the national Ofsted marking-scheme strictness
+($n=2{,}594$). Coefficients are percentage points per standard deviation of the
+score. The strictness coefficients are null or negative: strict schools do not
+carry more SEMH pupils today than their baseline predicts, so a changing intake
+does not explain the strictness--progress association.}
+\label{tab:semh_mechanism}
 \end{table}

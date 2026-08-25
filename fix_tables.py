@@ -40,6 +40,17 @@ LABEL_RE = re.compile(r"\\label\{[^}]*\}")
 CAPTION_RE = re.compile(r"\\caption\{")
 MATH_RE = re.compile(r"\$([^$]*?)\$")
 
+# Files this script must never rewrite: tab_p1_grid.tex is owned by
+# make_grid_numbers.py and formatted by hand there.
+DO_NOT_TOUCH = {"tab_p1_grid"}
+
+# The thesis float convention: inside every table float the body (tabular)
+# comes first, then \caption + \label, then any notes block. Producers used
+# to emit the caption at the top; move_caption_below() enforces the order and
+# is idempotent, so producers call it on their output and this script sweeps
+# every table as a backstop for producers that live outside thesis/.
+TABULAR_END_RE = re.compile(r"\\end\{(?:tabularx?|longtable|threeparttable)\*?\}")
+
 
 def read(path: Path) -> tuple[str, str]:
     """Read without newline translation, and report the file's own newline.
@@ -87,6 +98,69 @@ def add_label(text: str, label: str, nl: str = "\n") -> tuple[str, bool]:
         return text, False
     end = find_caption_end(text, m.start())
     return text[:end] + nl + "\\label{" + label + "}" + text[end:], True
+
+
+def move_caption_below(text: str, nl: str = "\n") -> tuple[str, bool]:
+    """Move \\caption{...} (+ adjacent \\label) to just after the tabular body.
+
+    Enforces the float convention: tabular first, then caption + label, then
+    notes. Handles multi-line captions (balanced braces) and a \\resizebox
+    wrapper whose closing ``}`` follows \\end{tabular}. Files with no caption
+    or no tabular are left alone. Idempotent.
+    """
+    m = CAPTION_RE.search(text)
+    if not m:
+        return text, False
+    ends = [mm.end() for mm in TABULAR_END_RE.finditer(text)]
+    if not ends:
+        return text, False
+    body_end = max(ends)
+    cap_start = m.start()
+    if cap_start > body_end:
+        return text, False  # already below the body
+
+    cap_end = find_caption_end(text, cap_start)
+    lm = re.match(r"\s*\\label\{[^}]*\}", text[cap_end:])
+    block_end = cap_end + lm.end() if lm else cap_end
+    block = text[cap_start:block_end]
+
+    # Expand the removal region to whole lines where possible.
+    rm_start = cap_start
+    line_start = text.rfind("\n", 0, cap_start) + 1
+    prefix = text[line_start:cap_start]
+    if prefix.strip() == "":
+        rm_start = line_start
+    rm_end = block_end
+    nl_after = text.find("\n", block_end)
+    tail_of_line = text[block_end:nl_after] if nl_after != -1 else text[block_end:]
+    if tail_of_line.strip("% \t") == "" and nl_after != -1:
+        rm_end = nl_after + 1
+
+    remainder = text[:rm_start] + text[rm_end:]
+
+    # Recompute the insertion point on the remainder.
+    ends = [mm.end() for mm in TABULAR_END_RE.finditer(remainder)]
+    ins = max(ends)
+    # Step past the closer of any wrapper opened before the tabular --
+    # `{\small\begin{tabular}...\end{tabular}}` puts it on the same line,
+    # \resizebox puts a lone `}` on the next line (after an optional `%`).
+    same_line = re.compile(r"[ \t]*\}+[ \t]*%?").match(remainder, ins)
+    if same_line and "}" in same_line.group(0):
+        ins = same_line.end()
+    else:
+        next_line = re.compile(r"[ \t]*%?[ \t]*\r?\n\}[ \t]*%?"
+                               r"(?=[ \t]*\r?\n)").match(remainder, ins)
+        if next_line and "\\resizebox" in remainder[:ins]:
+            ins = next_line.end()
+
+    # Reuse the removed block's own indentation for the inserted lines.
+    indent = prefix if prefix.strip() == "" else ""
+    lines = block.replace("\r\n", "\n").split("\n")
+    insert = nl + nl.join(
+        (indent + ln.lstrip() if ln.strip().startswith("\\label") or i == 0
+         else ln)
+        for i, ln in enumerate(lines))
+    return remainder[:ins] + insert + remainder[ins:], True
 
 
 def unescape_math(text: str) -> tuple[str, bool]:
@@ -162,14 +236,20 @@ def main() -> int:
                 print("            ... and %d more" % (len(broken) - 6))
             continue
 
+        if path.stem in DO_NOT_TOUCH:
+            continue
+
         text, labelled = add_label(original, expected_label(path.stem), nl)
         text, unescaped = unescape_math(text)
+        text, moved = move_caption_below(text, nl)
 
         notes = []
         if labelled:
             notes.append("added \\label{%s}" % expected_label(path.stem))
         if unescaped:
             notes.append("unescaped math subscripts")
+        if moved:
+            notes.append("moved caption below the tabular body")
         if not notes:
             continue
 

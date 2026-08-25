@@ -13,6 +13,8 @@ import argparse, os, sys
 import numpy as np
 import pandas as pd
 
+from fix_tables import move_caption_below
+
 ROOT = r"C:\Users\damia\OneDrive\Documents\Schools Project"
 TAB = os.path.join(ROOT, "thesis", "tables")
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -65,6 +67,9 @@ def bh(p):
 
 
 def write(name, tex, check, changed):
+    if name.endswith(".tex") and name.startswith("tab_"):
+        # Float convention: tabular first, then \caption + \label, then notes.
+        tex, _ = move_caption_below(tex)
     path = os.path.join(TAB, name)
     cur = open(path, encoding="utf-8").read() if os.path.exists(path) else ""
     if cur != tex:
@@ -194,7 +199,7 @@ def t_typology():
 covariate-adjusted mean Progress 8 for the four quadrants formed by median splits on
 warmth and strictness; the lower panel gives the continuous interaction test and the
 contrast of the authoritative (high-warmth, high-strictness) quadrant against all
-others. The first column uses the gold-standard visit scores on the primary
+others. The first column uses the visit scores on the primary
 specification; the national columns use the Ofsted-derived scores without (A) and with
 (B) the predecessor-filled 2019 inspection-grade control. Scores are standardised within
 each estimation sample; late-entry schools excluded throughout.}}
@@ -202,7 +207,7 @@ each estimation sample; late-entry schools excluded throughout.}}
 \footnotesize\setlength{{\tabcolsep}}{{4pt}}
 \begin{{tabular}}{{lccc}}
 \toprule
- & Gold visits & \multicolumn{{2}}{{c}}{{National (Ofsted scores)}} \\
+ & Visited schools & \multicolumn{{2}}{{c}}{{National (Ofsted scores)}} \\
 \cmidrule(lr){{3-4}}
  & & Panel A & Panel B \\
 \midrule
@@ -220,11 +225,11 @@ $N$                      & {ns[0]} & {nfmt(ns[1])} & {nfmt(ns[2])} \\
 \begin{{minipage}}{{\linewidth}}
 \smallskip
 \footnotesize\textit{{Notes:}} Standard errors (HC3) in parentheses; for the
-gold-sample adjusted quadrant means they are HC1, because the HC3 leverage
+visited-sample adjusted quadrant means they are HC1, because the HC3 leverage
 adjustment is undefined when a covariate cell contains a single school.
 {NOTES_STARS}
 Quadrant means are covariate-adjusted; quadrants are median splits within each sample.
-The gold interaction is a low-power test at this sample size; the pattern --- interaction
+The visited-sample interaction is a low-power test at this sample size; the pattern --- interaction
 near zero with the high-both quadrant on top --- reads as additive rather than
 synergistic. In the national columns the warmth--strictness halo in the Ofsted scores
 thins the off-diagonal cells, and the Ofsted scores carry the verdict-reconstruction
@@ -269,7 +274,7 @@ whether an absolute-gap effect is genuine dissonance or just curvature in the co
 \toprule
  & Signed gap & Absolute gap & \shortstack{{Absolute gap\\(+ component quadratics)}} \\
 \midrule
-\multicolumn{{4}}{{l}}{{\textit{{Gold tier (visit vs interview, $n={ngold}$)}}}} \\
+\multicolumn{{4}}{{l}}{{\textit{{Visited sample (visit vs interview, $n={ngold}$)}}}} \\
 \addlinespace[2pt]
 {chr(10).join(lines(blocks))}
 \midrule
@@ -284,7 +289,7 @@ whether an absolute-gap effect is genuine dissonance or just curvature in the co
 clustered on the shared document digest).
 {NOTES_STARS}
 Scores are z-standardised within instrument and estimation sample before the gap is
-formed; late-entry schools excluded. In the gold tier neither gap adds anything beyond
+formed; late-entry schools excluded. In the visited sample neither gap adds anything beyond
 the enacted level. Nationally, the absolute strictness gap is {'positive' if a_bp.b > 0 else 'negative'} for the
 behaviour-policy source ($p={a_bp.pval:.2f}$) and {'same' if np.sign(a_web.b) == np.sign(a_bp.b) else 'opposite'}-signed for the website
 source ($p={a_web.pval:.2f}$); once component quadratics enter, the squared enacted (Ofsted)
@@ -415,14 +420,14 @@ head-teacher interview.
 def t_entry():
     A = []
     for panel in ["A", "B"]:
-        for model, term, lab in [("gold", "z_gs_warmth_enacted", "Gold warmth ($W$)"), ("gold", "z_gs_strictness_enacted", "Gold strictness ($S$)"),
+        for model, term, lab in [("gold", "z_gs_warmth_enacted", "Visited warmth ($W$)"), ("gold", "z_gs_strictness_enacted", "Visited strictness ($S$)"),
                                  ("national", "z_ofsted_llmstrictnessscore", "Ofsted strictness")]:
             cs = [row("entry", panel, model, oc, term) for oc in ["ebacc_entry", "hum_entry", "lang_entry"]]
             A.append(f"{panel} & {lab:<22} & {nfmt(cs[0].n):<7} & " + " & ".join(f"{f3(c.b)}{stars(c.pval)} ({c.se:.3f})" for c in cs) + r" \\")
         if panel == "A": A.append(r"\addlinespace")
     B = []
     for panel in ["A", "B"]:
-        for who, lab, term in [("national", "National (Ofsted $S$)", "z_ofsted_llmstrictnessscore"), ("gold", "Gold ($S$)", "z_gs_strictness_enacted")]:
+        for who, lab, term in [("national", "National (Ofsted $S$)", "z_ofsted_llmstrictnessscore"), ("gold", "Visited ($S$)", "z_gs_strictness_enacted")]:
             w = row("channel", panel, f"{who}_without", "ebac", term); wi = row("channel", panel, f"{who}_with", "ebac", term)
             att = 100 * (w.b - wi.b) / w.b
             B.append(f"{panel} & {lab:<22} & {nfmt(w.n):<7} & {f3(w.b)}{stars(w.pval)} & {f3(wi.b)}{stars(wi.pval)} & {att:.1f}\\% \\\\")
@@ -437,7 +442,7 @@ def t_entry():
 \small
 \caption{{Culture and curriculum entry. Panel A asks whether warm or strict schools
 enter pupils for more academic curricula: each cell regresses an entry rate (EBacc,
-humanities, languages) on the standardised culture score plus controls, for the gold
+humanities, languages) on the standardised culture score plus controls, for the
 visit scores and the national Ofsted-derived strictness score, without (A) and with (B)
 the predecessor-filled 2019 inspection-grade control; late-entry schools excluded.
 Panel B then asks how much of the strictness--EBacc-progress association runs through
@@ -478,17 +483,22 @@ strictness--EBacc link is progress within the curriculum entered, not entry itse
 # ---------------------------------------------------------------- pseudo-P8
 def t_p8proxy():
     lines = []
+    printed = {}
     for panel in ["A", "B"]:
-        for model, term, lab in [("gold", "z_gs_warmth_enacted", "Gold warmth ($W$)"), ("gold", "z_gs_strictness_enacted", "Gold strictness ($S$)"),
+        for model, term, lab in [("gold", "z_gs_warmth_enacted", "Visited warmth ($W$)"), ("gold", "z_gs_strictness_enacted", "Visited strictness ($S$)"),
                                  ("national", "z_ofsted_llmstrictnessscore", "Ofsted strictness")]:
             cs = [row("p8proxy", panel, model, oc, term) for oc in ["pseudo_p8_2425", "pseudo_p8_2425_eng", "pseudo_p8_2425_mat", "p8mea_avg"]]
+            printed[(panel, term)] = cs
             lines.append(f"{panel} & {lab:<22} & {nfmt(cs[0].n):<7} & " + " & ".join(f3(c.b) + stars(c.pval) for c in cs) + r" \\")
             lines.append(f"  & {'':<22} & {'':<7} & " + " & ".join(f"({c.se:.3f})" for c in cs) + r" \\")
         if panel == "A": lines.append(r"\addlinespace")
     corr = row("p8proxy", "", "corr_pseudo_vs_real_p8avg", "overall", "pearson")
-    rawp = row("p8proxy", "z", "gold_pseudo", "overall", "g_gs_warmth_enacted"); rawr = row("p8proxy", "z", "gold_real", "overall", "g_gs_warmth_enacted")
-    rawps = row("p8proxy", "z", "gold_pseudo", "overall", "g_gs_strictness_enacted"); rawrs = row("p8proxy", "z", "gold_real", "overall", "g_gs_strictness_enacted")
-    maxdiff = max(abs(rawp.b - rawr.b), abs(rawps.b - rawrs.b))
+    # The note quotes the same cells the panels print (pseudo overall vs real
+    # overall for the visited-school rows); it used to quote a separate
+    # raw-score export, which disagreed with the table by rounding and spec.
+    pw_a = printed[("A", "z_gs_warmth_enacted")]; ps_a = printed[("A", "z_gs_strictness_enacted")]
+    pw_b = printed[("B", "z_gs_warmth_enacted")]; ps_b = printed[("B", "z_gs_strictness_enacted")]
+    maxdiff = max(abs(cs[0].b - cs[3].b) for cs in (pw_a, ps_a, pw_b, ps_b))
     valtxt = ""
     if VAL is not None:
         try:
@@ -523,9 +533,13 @@ Across the national panel the pseudo measure correlates with real average Progre
 $r = {corr.b:+.3f}$ ($n = {nfmt(corr.n)}$). Validation of the construction one year back (the
 pseudo measure rebuilt from 2021--22 and 2022--23 baselines against the real 2023--24
 Progress 8) is $+0.81$ (two-year construction, $n = 3{{,}}242$;
-ch3\_appendix\_p8proxy\_validation.csv). On the body's per-standard-deviation scale, the gold
-coefficients on the pseudo outcome sit within ${maxdiff:.2f}$ of their real-Progress 8 twins
-(pseudo {rawp.b:.3f}/{rawps.b:.3f} against real {rawr.b:.3f}/{rawrs.b:.3f}). The pseudo measure is
+ch3\_appendix\_p8proxy\_validation.csv). On the body's per-standard-deviation scale, the
+visited-school coefficients on the pseudo outcome sit within ${maxdiff:.2f}$ of their
+real-Progress 8 twins in the same panel (Panel A: pseudo {pw_a[0].b:.3f}/{ps_a[0].b:.3f} against real
+{pw_a[3].b:.3f}/{ps_a[3].b:.3f}; Panel B: pseudo {pw_b[0].b:.3f}/{ps_b[0].b:.3f} against real {pw_b[3].b:.3f}/{ps_b[3].b:.3f},
+warmth/strictness). The ``Ofsted strictness'' rows use the marking-scheme strictness
+bands of Chapter~2 (1--5, standardised over each estimation sample), not the retired
+analyser score. The pseudo measure is
 school-level, not pupil-matched, so it is a robustness check, never a primary outcome.
 \end{{minipage}}
 \end{{table}}
@@ -539,11 +553,19 @@ def t_semh():
     n_ = row("semh", "", "national_S", "semh_share", "z_ofsted_llmstrictnessscore"); nb = row("semh", "", "national_S", "semh_share", "semh_share_2016")
     return rf"""\begin{{table}}[htbp]\centering
 {SYM}
-\caption{{SEMH mechanism: culture and current SEMH composition conditional on baseline}}
+\caption{{The SEMH composition mechanism. Each column regresses a school's 2023--24
+share of pupils with social, emotional and mental-health (SEMH) needs, as a
+percentage of the roll, on one culture score plus the school's 2015--16 baseline
+SEMH share and the primary control set: visited-school strictness and warmth
+($n=94$ visited schools), and the national Ofsted marking-scheme strictness
+($n=2{{,}}594$). Coefficients are percentage points per standard deviation of the
+score. The strictness coefficients are null or negative: strict schools do not
+carry more SEMH pupils today than their baseline predicts, so a changing intake
+does not explain the strictness--progress association.}}
 \label{{tab:semh_mechanism}}
 \begin{{tabular}}{{l*{{3}}{{c}}}}
 \toprule
-                    &\multicolumn{{1}}{{c}}{{Tier 1 (S)}}&\multicolumn{{1}}{{c}}{{Tier 1 (W)}}&\multicolumn{{1}}{{c}}{{National (S)}}\\
+                    &\multicolumn{{1}}{{c}}{{Visited (S)}}&\multicolumn{{1}}{{c}}{{Visited (W)}}&\multicolumn{{1}}{{c}}{{National (S)}}\\
 \midrule
 Strictness ($S_{{\text{{visit}}}}$, per SD)&      {f3(s.b)}{stars(s.pval)}         &                     &                     \\
                     &     ({s.se:.3f})         &                     &                     \\

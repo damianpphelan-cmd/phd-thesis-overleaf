@@ -18,6 +18,8 @@ import sys
 
 import pandas as pd
 
+from fix_tables import move_caption_below
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 CSV = os.path.join(HERE, "tables", "ch3_estimates.csv")
 
@@ -124,6 +126,7 @@ address omitted variables only, not reverse causality or measurement error.
         rf"\newcommand{{\WaldWSP}}{{{wald.pval:.2f}}}",
     ]) + "\n"
 
+    table, _ = move_caption_below(table)
     targets = [
         (os.path.join(HERE, "tables", "tab_sensitivity_bounds.tex"), table),
         (os.path.join(HERE, "snippets", "sensitivity_numbers.tex"), snippet),

@@ -1,23 +1,10 @@
 \begin{table}[htbp]\centering
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
 \small
-\caption{The authoritative-school typology tested directly. The upper panel gives
-covariate-adjusted mean Progress 8 for the four quadrants formed by splits on
-warmth and strictness; the lower panel gives the continuous interaction test and the
-contrast of the authoritative (high-warmth, high-strictness) quadrant against all
-others. The first column uses the gold-standard visit scores on the primary
-specification; the national columns use the prediction-model warmth and the
-marking-scheme strictness bands of Chapter~2, without (A) and with (B) the
-predecessor-filled 2019 inspection-grade control. In the national columns warmth is
-split at the national median of the predicted score, and ``high'' strictness means
-above the in-sample band median of 4 --- that is, band 5 only --- so the
-high-strictness cells are small. Scores are standardised within each estimation
-sample; late-entry schools excluded throughout.}
-\label{tab:typology}
 \footnotesize\setlength{\tabcolsep}{4pt}
 \begin{tabular}{lccc}
 \toprule
- & Gold visits & \multicolumn{2}{c}{National (text instruments)} \\
+ & Visited schools & \multicolumn{2}{c}{National (text instruments)} \\
 \cmidrule(lr){3-4}
  & & Panel A & Panel B \\
 \midrule
@@ -46,14 +33,27 @@ Authoritative vs rest    & 0.403\sym{***} & 0.363\sym{***} & 0.262\sym{***} \\
 $N$                      & 99 & 3{,}052 & 2{,}746 \\
 \bottomrule
 \end{tabular}
+\caption{The authoritative-school typology tested directly. The upper panel gives
+covariate-adjusted mean Progress 8 for the four quadrants formed by splits on
+warmth and strictness; the lower panel gives the continuous interaction test and the
+contrast of the authoritative (high-warmth, high-strictness) quadrant against all
+others. The first column uses the visit scores on the primary
+specification; the national columns use the prediction-model warmth and the
+marking-scheme strictness bands of Chapter~2, without (A) and with (B) the
+predecessor-filled 2019 inspection-grade control. In the national columns warmth is
+split at the national median of the predicted score, and ``high'' strictness means
+above the in-sample band median of 4 --- that is, band 5 only --- so the
+high-strictness cells are small. Scores are standardised within each estimation
+sample; late-entry schools excluded throughout.}
+\label{tab:typology}
 \begin{minipage}{\linewidth}
 \smallskip
 \footnotesize\textit{Notes:} Standard errors (HC3) in parentheses; for the
-gold-sample adjusted quadrant means they are HC1, because the HC3 leverage
+visited-sample adjusted quadrant means they are HC1, because the HC3 leverage
 adjustment is undefined when a covariate cell contains a single school.
 \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\).
-Quadrant means are covariate-adjusted; gold quadrants are median splits within the
-visited sample. The gold interaction is a low-power test at this sample size; the
+Quadrant means are covariate-adjusted; visited-school quadrants are median splits within the
+visited sample. The visited-sample interaction is a low-power test at this sample size; the
 pattern --- interaction near zero with the high-both quadrant on top --- reads as
 additive rather than synergistic, and the national columns repeat it: the
 interaction is indistinguishable from zero while the high-both quadrant sits on

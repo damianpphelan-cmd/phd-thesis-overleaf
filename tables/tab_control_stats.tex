@@ -1,11 +1,9 @@
 \begin{table}[htbp]
   \centering
-  \caption{Summary statistics: control variables by data tier}
-  \label{tab:control_stats}
   \small
   \begin{tabular}{lrrrrrr}
     \toprule
-    & \multicolumn{3}{c}{Tier~1 ($N=103$, visited)} & \multicolumn{3}{c}{Tier~2 ($N=303$, interview)} \\
+    & \multicolumn{3}{c}{Visited ($N=103$)} & \multicolumn{3}{c}{Interviewed ($N=303$)} \\
     \cmidrule(lr){2-4}\cmidrule(lr){5-7}
     Variable & $N$ & Mean & SD & $N$ & Mean & SD \\
     \midrule
@@ -30,6 +28,11 @@
     \quad No pre-COVID grade & 7 & & & 36 & & \\
     \bottomrule
   \end{tabular}
+  \caption{Summary statistics: control variables for the visited and
+  interviewed samples. The interviewed sample contains the visited schools;
+  within a column, $N$ falls below the sample size only where a control is
+  missing for a school.}
+  \label{tab:control_stats}
   \begin{minipage}{\linewidth}
     \vspace{2pt}
     \footnotesize
@@ -40,10 +43,10 @@
     overall effectiveness grade from the Ofsted Management Information snapshot as at
     31~August~2019, used as the primary endogeneity-safe control; the contemporary 2024 grade
     enters sensitivity analyses only. Grade percentages are shares of the graded schools
-    (96 in Tier~1, 267 in Tier~2), not of the tier. The primary specification
-    estimates on 99 of the 103 Tier~1 schools, because predecessor grades fill four
+    (96 visited, 267 interviewed), not of the sample. The primary specification
+    estimates on 99 of the 103 visited schools, because predecessor grades fill four
     of the seven schools without one; see the specification-ladder notes.
-    Tier~1 (103 schools) have both visit and interview data; Tier~2 (303 schools)
-    includes Tier~1.
+    The 103 visited schools all have both visit and interview data; the interviewed
+    sample (303 schools) includes them.
   \end{minipage}
 \end{table}

@@ -1,30 +1,30 @@
 \begin{table}[htbp]\centering
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
-\caption{Enacted vs. espoused culture scores as predictors ($N=96$)}
-\label{tab:enacted_espoused}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{l*{8}{c}}
+\begin{tabular}{l*{5}{c}}
 \toprule
-                    &\multicolumn{2}{c}{English}                &\multicolumn{2}{c}{Maths}                  &\multicolumn{2}{c}{EBaC}                   &\multicolumn{2}{c}{Open}                   \\\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}
-                    &\multicolumn{1}{c}{Enact}&\multicolumn{1}{c}{Espo}&\multicolumn{1}{c}{Enact}&\multicolumn{1}{c}{Espo}&\multicolumn{1}{c}{Enact}&\multicolumn{1}{c}{Espo}&\multicolumn{1}{c}{Enact}&\multicolumn{1}{c}{Espo}\\
+                    &     Overall         &     English         &       Maths         &       EBacc         &        Open         \\
 \midrule
-Warmth (visit, $W_{12}$)&       0.177\sym{***}&                     &       0.118\sym{**} &                     &       0.165\sym{***}&                     &       0.146\sym{**} &                     \\
-                    &     (0.043)         &                     &     (0.056)         &                     &     (0.058)         &                     &     (0.059)         &                     \\
+Espoused warmth     &       0.051         &       0.010         &       0.092\sym{*}  &       0.061         &       0.002         \\
+                    &     (0.048)         &     (0.046)         &     (0.049)         &     (0.062)         &     (0.048)         \\
 \addlinespace
-Strictness (visit, $S_{12}$)&       0.086\sym{*}  &                     &       0.109\sym{**} &                     &       0.169\sym{***}&                     &       0.135\sym{**} &                     \\
-                    &     (0.049)         &                     &     (0.052)         &                     &     (0.058)         &                     &     (0.065)         &                     \\
-\addlinespace
-Warmth (interview, $W_3$)&                     &      -0.002         &                     &       0.020         &                     &       0.042         &                     &      -0.018         \\
-                    &                     &     (0.037)         &                     &     (0.030)         &                     &     (0.040)         &                     &     (0.038)         \\
-\addlinespace
-Strictness (interview, $\bar{S}_{34}$)&                     &       0.055         &                     &      -0.018         &                     &       0.055         &                     &       0.080         \\
-                    &                     &     (0.055)         &                     &     (0.044)         &                     &     (0.063)         &                     &     (0.058)         \\
+Espoused strictness &       0.120\sym{**} &       0.113\sym{**} &       0.040         &       0.130\sym{**} &       0.167\sym{***}\\
+                    &     (0.050)         &     (0.050)         &     (0.047)         &     (0.060)         &     (0.057)         \\
 \midrule
-N                   &          96         &          96         &          96         &          96         &          96         &          96         &          96         &          96         \\
-r2                  &       0.638         &       0.470         &       0.538         &       0.387         &       0.612         &       0.407         &       0.565         &       0.392         \\
+$N$                 &          99         &          99         &          99         &          96         &          96         \\
+$R^2$               &       0.502         &       0.500         &       0.435         &       0.472         &       0.476         \\
 \bottomrule
-\multicolumn{9}{l}{\footnotesize Standard errors in parentheses}\\
-\multicolumn{9}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\multicolumn{6}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{6}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
 \end{tabular}%
 }
+\caption{Espoused culture and Progress~8. Each column regresses the named
+Progress~8 component on espoused warmth and espoused strictness --- the
+standardised headteacher-interview statement-battery scores --- with the full
+control set, on the visited schools. The Overall, English and Maths columns
+use the primary specification (predecessor-filled pre-COVID inspection grade,
+late-entry schools excluded; $n=99$); the EBacc and Open columns are estimated
+on the same control set before the predecessor-grade fill ($n=96$), the only
+form in which those components are available.}
+\label{tab:enacted_espoused}
 \end{table}

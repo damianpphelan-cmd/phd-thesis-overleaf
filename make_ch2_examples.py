@@ -32,6 +32,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from fix_tables import move_caption_below
+
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 sys.path.insert(0, str(ROOT))
@@ -235,6 +237,7 @@ def main() -> None:
         "\\toprule\n"
         + panel("Warmth") + "\n\\midrule\n" + panel("Teaching") +
         "\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n")
+    table, _ = move_caption_below(table)
     (HERE / "tables" / "tab_p1_examples.tex").write_text(
         table, encoding="utf-8")
     (HERE / "snippets" / "app_examples.tex").write_text(

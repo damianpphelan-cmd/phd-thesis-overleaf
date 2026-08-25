@@ -20,6 +20,8 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import cohen_kappa_score
 
+from fix_tables import move_caption_below
+
 ROOT = r"C:\Users\damia\OneDrive\Documents\Schools Project"
 TAB = os.path.join(ROOT, "thesis", "tables")
 XLSX = os.path.join(ROOT, "Novel Data", "School visit data_with_urns.xlsx")
@@ -92,6 +94,7 @@ def main():
     }
     rc = 0
     for name, body in files.items():
+        body, _ = move_caption_below(body)
         p = os.path.join(TAB, name)
         cur = open(p, encoding="utf-8").read() if os.path.exists(p) else ""
         if cur == body:

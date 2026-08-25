@@ -13,6 +13,8 @@ from pathlib import Path
 
 import pandas as pd
 
+from fix_tables import move_caption_below
+
 BASE = Path(__file__).resolve().parent.parent
 OUT = Path(__file__).resolve().parent / "tables" / "tab_score_controls_corr.tex"
 
@@ -71,9 +73,9 @@ def main():
     header = " & ".join(lab for _, lab in SCORES)
     body = "\n".join(rows)
 
-    OUT.write_text(rf"""\begin{{table}}[htbp]
+    tex = rf"""\begin{{table}}[htbp]
   \centering
-  \caption{{Pairwise correlations: culture scores and control variables (Tier~1, $N={n}$)}}
+  \caption{{Pairwise correlations: culture scores and control variables (visited schools, $N={n}$)}}
   \label{{tab:score_controls_corr}}
   \small
   \begin{{tabular}}{{lrrrrr}}
@@ -95,10 +97,12 @@ def main():
     the two are correlated at only $r = \GoldWarmthSplit$ (warmth) and
     $\GoldStrictnessSplit$ (strictness).
     $N$ varies slightly by column due to missing
-    control values; all correlations use the Tier~1 sample of {n} visited schools.
+    control values; all correlations use the sample of {n} visited schools.
   \end{{minipage}}
 \end{{table}}
-""", encoding="utf-8")
+"""
+    tex, _ = move_caption_below(tex)
+    OUT.write_text(tex, encoding="utf-8")
 
     print(f"wrote {OUT.relative_to(BASE)}  (N = {n})")
     print(f"  largest |r| = {biggest[0]:+.2f}  ({biggest[1]} x {biggest[2]})")

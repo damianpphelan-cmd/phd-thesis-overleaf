@@ -28,6 +28,8 @@ import pathlib
 
 import pandas as pd
 
+from fix_tables import move_caption_below
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "thesis" / "tables" / "tab_outcome_stats.tex"
 OUT_FULL = ROOT / "thesis" / "tables" / "tab_outcome_stats_full.tex"
@@ -61,8 +63,8 @@ def build(OUTCOMES=OUTCOMES_BODY, full=False) -> str:
     tier = d["gs_data_tier"].fillna("national")
 
     tiers = [
-        (r"Visited (Tier~1)",     tier == "full"),
-        (r"Interviewed (Tier~2)", tier.isin(["full", "interview_only"])),
+        (r"Visited",     tier == "full"),
+        (r"Interviewed", tier.isin(["full", "interview_only"])),
         (r"National",             pd.Series(True, index=d.index)),
     ]
 
@@ -82,12 +84,15 @@ def build(OUTCOMES=OUTCOMES_BODY, full=False) -> str:
 
     return r"""\begin{table}[htbp]
   \centering
-  \caption{Summary statistics: Progress~8 @WHICH@outcomes by data tier}
+  \caption{Summary statistics: Progress~8 @WHICH@outcomes for the visited
+  and interviewed samples. The interviewed sample numbers 303 schools and
+  contains the 103 visited schools; $N$ falls short of 303 where an outcome
+  is unpublished for a school.}
   \label{tab:outcome_stats@LABTAIL@}
   \footnotesize\setlength{\tabcolsep}{4pt}
   \begin{tabular}{llrrrrr}
     \toprule
-    Outcome & Tier & $N$ & Mean & SD & Min & Max \\
+    Outcome & Sample & $N$ & Mean & SD & Min & Max \\
     \midrule
 @BODY@
     \bottomrule
@@ -99,9 +104,11 @@ def build(OUTCOMES=OUTCOMES_BODY, full=False) -> str:
     years are available (both years are present for every school in the current data,
     so the single-year fallback never binds). Att8 2024--25 components are the
     contemporaneous robustness outcome; no Progress~8 is available for this cohort because the cohort were
-    in Year~6 in 2019--20 when Key Stage~2 assessments were cancelled. Tier~2 is the full interviewed
-    sample and therefore contains Tier~1; both are subsets of the national sample, hence the different
-    $N$ values across tiers.
+    in Year~6 in 2019--20 when Key Stage~2 assessments were cancelled. The interviewed rows
+    describe the full interviewed sample and therefore contain the visited schools; both are
+    subsets of the national sample. Four interviewed schools have no published Progress~8 and
+    three no 2024--25 Attainment~8, which is why those rows fall short of the sample's
+    303 schools.
   \end{minipage}
 \end{table}
 """.replace("@BODY@", body) \
@@ -131,6 +138,8 @@ def main() -> int:
 
     tex = build()
     tex_full = build(OUTCOMES_FULL, full=True)
+    tex, _ = move_caption_below(tex)
+    tex_full, _ = move_caption_below(tex_full)
     problems = audit(tex) + audit(tex_full)
     if problems:
         print("refusing to write -- generated table is malformed:")

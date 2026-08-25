@@ -1,17 +1,6 @@
 \begin{table}[htbp]\centering
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
 \footnotesize
-\caption{Each visit-sheet item as a predictor of Progress 8, one small model per item.
-Every row regresses average Progress 8 on that item alone (standardised) plus the primary
-control set with the predecessor-filled grade; late-entry schools excluded. $N=98$ for the
-in-lesson items and as low as 88 for the outside items, which were recorded at fewer
-schools. Rows are
-sorted by coefficient size. The $q$ column is the Benjamini--Hochberg false-discovery-rate
-adjusted $p$-value across all 33 items; a dagger marks items that survive at $q<0.05$
-(28 of 33; 33 carry a positive coefficient). The final columns give each item's
-inter-rater reliability: the pooled pairwise Pearson correlation between independent
-observers, and the number of observer pairs it rests on.}
-\label{tab:items_fdr}
 \begin{tabular}{llcccccr}
 \toprule
 Item & Setting & Sub-score & $\beta$ & SE & $q$ & IRR $r$ & Pairs \\
@@ -51,4 +40,15 @@ Canteen         & Outside   & S2  & 0.058 & 0.038 & 0.146    & 0.727 & 91  \\
 Alignment       & Outside   & --  & 0.050 & 0.045 & 0.278    & 0.578 & 84  \\
 \bottomrule
 \end{tabular}
+\caption{Each visit-sheet item as a predictor of Progress 8, one small model per item.
+Every row regresses average Progress 8 on that item alone (standardised) plus the primary
+control set with the predecessor-filled grade; late-entry schools excluded. $N=98$ for the
+in-lesson items and as low as 88 for the outside items, which were recorded at fewer
+schools. Rows are
+sorted by coefficient size. The $q$ column is the Benjamini--Hochberg false-discovery-rate
+adjusted $p$-value across all 33 items; a dagger marks items that survive at $q<0.05$
+(28 of 33; 33 carry a positive coefficient). The final columns give each item's
+inter-rater reliability: the pooled pairwise Pearson correlation between independent
+observers, and the number of observer pairs it rests on.}
+\label{tab:items_fdr}
 \end{table}

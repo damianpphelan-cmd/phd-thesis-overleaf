@@ -29,6 +29,8 @@ import pathlib
 
 import pandas as pd
 
+from fix_tables import move_caption_below
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "thesis" / "tables" / "tab_control_stats.tex"
 
@@ -115,12 +117,15 @@ def build() -> str:
 
     return r"""\begin{table}[htbp]
   \centering
-  \caption{Summary statistics: control variables by data tier}
+  \caption{Summary statistics: control variables for the visited and
+  interviewed samples. The interviewed sample contains the visited schools;
+  within a column, $N$ falls below the sample size only where a control is
+  missing for a school.}
   \label{tab:control_stats}
   \small
   \begin{tabular}{lrrrrrr}
     \toprule
-    & \multicolumn{3}{c}{Tier~1 ($N=@N1@$, visited)} & \multicolumn{3}{c}{Tier~2 ($N=@N2@$, interview)} \\
+    & \multicolumn{3}{c}{Visited ($N=@N1@$)} & \multicolumn{3}{c}{Interviewed ($N=@N2@$)} \\
     \cmidrule(lr){2-4}\cmidrule(lr){5-7}
     Variable & $N$ & Mean & SD & $N$ & Mean & SD \\
     \midrule
@@ -137,11 +142,11 @@ def build() -> str:
     overall effectiveness grade from the Ofsted Management Information snapshot as at
     31~August~2019, used as the primary endogeneity-safe control; the contemporary 2024 grade
     enters sensitivity analyses only. Grade percentages are shares of the graded schools
-    (@G1@ in Tier~1, @G2@ in Tier~2), not of the tier. The primary specification
-    estimates on 99 of the @N1@ Tier~1 schools, because predecessor grades fill four
+    (@G1@ visited, @G2@ interviewed), not of the sample. The primary specification
+    estimates on 99 of the @N1@ visited schools, because predecessor grades fill four
     of the seven schools without one; see the specification-ladder notes.
-    Tier~1 (@N1@ schools) have both visit and interview data; Tier~2 (@N2@ schools)
-    includes Tier~1.
+    The @N1@ visited schools all have both visit and interview data; the interviewed
+    sample (@N2@ schools) includes them.
   \end{minipage}
 \end{table}
 """.replace("@BODY@", body).replace("@N1@", str(n1)).replace("@N2@", str(n2)) \
@@ -168,6 +173,7 @@ def main() -> int:
     args = ap.parse_args()
 
     tex = build()
+    tex, _ = move_caption_below(tex)
     problems = audit(tex)
     if problems:
         print("refusing to write -- generated table is malformed:")

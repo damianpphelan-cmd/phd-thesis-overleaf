@@ -19,6 +19,8 @@ import re
 import sys
 from pathlib import Path
 
+from fix_tables import move_caption_below
+
 TABLES = Path(__file__).resolve().parent / "tables"
 
 # esttab escapes `_` to `\_` everywhere, including inside the math it was told
@@ -31,7 +33,11 @@ MATH = re.compile(r"(?<!\\)\$(.+?)(?<!\\)\$")
 # chapter wants it scaled to \textwidth. tab_semh_mechanism is narrow enough
 # to set at natural size; the rest overflow without it.
 ESTTAB = {
-    "tab_enacted_espoused":      True,
+    # tab_enacted_espoused is deliberately absent: since 25 Aug 2026 it is
+    # rebuilt by make_ch3_tables.py from ch3_estimates.csv (the esttab version
+    # was stale: old instrument, no Overall column, n=96 throughout). If the
+    # notebook still writes a rival version to that path, delete that esttab
+    # call as was done for tab_national_strictness.
     "tab_main_results_s1":       True,
     "tab_main_results_s2":       True,
     "tab_main_results_s3":       True,
@@ -54,6 +60,9 @@ def unescape_math(text: str) -> str:
 
 def patch(text: str, stem: str, resize: bool) -> str:
     label = rf"\label{{tab:{stem.removeprefix('tab_')}}}"
+    # esttab inherits the "EBaC" header from the do-file coeflabels; the
+    # thesis spells it EBacc. Width-preserving so the column geometry holds.
+    text = text.replace(" EBaC ", "EBacc ").replace("{EBaC}", "{EBacc}")
     lines = unescape_math(text).splitlines()
 
     if not any(r"\label{" in ln for ln in lines):
@@ -78,7 +87,10 @@ def patch(text: str, stem: str, resize: bool) -> str:
                 lines.insert(i + 1, "}")
                 break
 
-    return "\n".join(lines) + "\n"
+    # Float convention: tabular first, then \caption + \label, then notes.
+    # esttab emits the caption at the top of the float; move it below.
+    text, _ = move_caption_below("\n".join(lines) + "\n")
+    return text
 
 
 def main() -> int:

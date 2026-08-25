@@ -1,16 +1,6 @@
 \begin{table}[htbp]
 \centering
-\caption{Decomposing the interview-tier model's cross-validated performance.
-Column~(1) is the headline figure: leave-one-out predictions correlated with
-the gold-standard composite, of which the interview sub-scores form
-40~per~cent by construction. Column~(2) correlates those same predictions with
-the visit-only component, which shares no input with the predictors.
-Column~(3) refits the identical feature set directly against the visit-only
-component, with the ridge penalty re-selected by generalised cross-validation
-for that target, giving the best that these features can do against an
-independent target. $N = 101$ full-data schools with complete features.
-Reproduced by \texttt{ridge\_diagnostics.py}.}
-\label{tab:ridge_circularity}
+
 \small
 \begin{tabular}{lccc}
 \toprule
@@ -27,4 +17,15 @@ Strictness & $0.701$ & $0.276$ & $0.349$ \\
 \multicolumn{4}{l}{\footnotesize Entries are Pearson $r$; leave-one-out
 cross-validated throughout.}\\
 \end{tabular}
+\caption{Decomposing the interview-tier model's cross-validated performance.
+Column~(1) is the headline figure: leave-one-out predictions correlated with
+the gold-standard composite (the combined visit-and-interview culture score), of which the interview sub-scores form
+40~per~cent by construction. Column~(2) correlates those same predictions with
+the visit-only component, which shares no input with the predictors.
+Column~(3) refits the identical feature set directly against the visit-only
+component, with the ridge penalty re-selected by generalised cross-validation
+for that target, giving the best that these features can do against an
+independent target. $N = 101$ full-data schools with complete features.
+Reproduced by \texttt{ridge\_diagnostics.py}.}
+\label{tab:ridge_circularity}
 \end{table}

@@ -29,6 +29,8 @@ import pathlib
 
 import pandas as pd
 
+from fix_tables import move_caption_below
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 EST = ROOT / "thesis" / "tables" / "a7_estimates.csv"
 OUT = ROOT / "thesis" / "tables" / "tab_national_strictness.tex"
@@ -38,6 +40,10 @@ OUT_FULL = ROOT / "thesis" / "tables" / "tab_national_strictness_full.tex"
 # version carries all five (Damian, 17 Aug 2026: EBaC and Open to the appendix).
 COLS_BODY = ["Overall", "English", "Maths"]
 COLS_FULL = ["Overall", "English", "Maths", "EBaC", "Open"]
+
+# a7_estimates.csv labels the EBacc outcome "EBaC"; the thesis spells it
+# EBacc. The CSV key stays as-is, only the printed header changes.
+DISPLAY = {"EBaC": "EBacc"}
 
 PANELS = [
     ("nograde", r"Panel A: published specification (Ofsted grade omitted)"),
@@ -122,7 +128,7 @@ def build(COLS=COLS_BODY, full=False) -> str:
   omits the Ofsted grade because the strictness score is read from the same
   inspection report. Panel~A includes @NA@ schools. Panel~B adds the predecessor-filled pre-COVID
   (2019) overall Ofsted grade as a set of dummies---the same control used in
-  the primary Tier~1 specification---and is estimated on the @NB@ schools with
+  the primary visited-sample specification---and is estimated on the @NB@ schools with
   a 2019 grade on record, @DROPPED@ fewer than Panel~A. The strictness
   coefficient is materially unchanged throughout, indicating that it is not
   simply recording Ofsted's overall approval of the school.
@@ -133,7 +139,7 @@ def build(COLS=COLS_BODY, full=False) -> str:
    .replace("@NB@", r"{:,}".format(n_b).replace(",", r"{,}")) \
    .replace("@DROPPED@", str(dropped)) \
    .replace("@NCOL@", str(len(COLS))) \
-   .replace("@HEAD@", " & ".join(COLS)) \
+   .replace("@HEAD@", " & ".join(DISPLAY.get(c, c) for c in COLS)) \
    .replace("@CAPTAIL@", " (all five outcomes)" if full else "") \
    .replace("@LABTAIL@", "_full" if full else "")
 
@@ -161,6 +167,8 @@ def main() -> int:
 
     tex = build()
     tex_full = build(COLS_FULL, full=True)
+    tex, _ = move_caption_below(tex)
+    tex_full, _ = move_caption_below(tex_full)
     problems = audit(tex) + audit(tex_full)
     if problems:
         print("refusing to write -- generated table is malformed:")

@@ -16,6 +16,8 @@ import sys
 import numpy as np
 import pandas as pd
 
+from fix_tables import move_caption_below
+
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 sys.path.insert(0, str(ROOT))
@@ -81,6 +83,7 @@ def main() -> None:
         "Raises & Lowers & Raises & Lowers \\\\\n\\midrule\n"
         + "\n".join(rows) +
         "\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n")
+    table, _ = move_caption_below(table)
     (HERE / "tables" / "tab_p1_phrases.tex").write_text(
         table, encoding="utf-8")
 

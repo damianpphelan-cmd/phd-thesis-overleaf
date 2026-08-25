@@ -28,6 +28,8 @@ from pathlib import Path
 
 import pandas as pd
 
+from fix_tables import move_caption_below
+
 ROOT = Path(__file__).resolve().parent.parent
 TABLES = ROOT / "thesis" / "tables"
 CSV = TABLES / "ch3_estimates.csv"
@@ -71,6 +73,8 @@ def cell(r: pd.Series, stars=stars_010, minus: str = "-") -> str:
 
 
 def write(name: str, body: str) -> None:
+    # Float convention: tabular first, then \caption + \label, then notes.
+    body, _ = move_caption_below(body)
     (TABLES / name).write_text(body, encoding="utf-8")
     print(f"wrote thesis/tables/{name}")
 
@@ -97,7 +101,7 @@ def spec_ladder(df: pd.DataFrame) -> None:
     write("tab_spec_ladder.tex", rf"""\begin{{table}}[htbp]\centering
 \def\sym#1{{\ifmmode^{{#1}}\else\(^{{#1}}\)\fi}}
 \small
-\caption{{The headline gold-standard model under four treatments of the pre-COVID
+\caption{{The primary specification on the visited schools under four treatments of the pre-COVID
 inspection-grade control. Each row is the same regression of average Progress 8 on
 enacted warmth ($W$) and enacted strictness ($S$), each per standard deviation, with the
 full control set; the rows
@@ -173,7 +177,7 @@ $N$        &                  & {n}            & {n}            & {n}           
 \smallskip
 \footnotesize\textit{{Notes:}} Standard errors in parentheses.
 \sym{{*}} \(p<0.10\), \sym{{**}} \(p<0.05\), \sym{{***}} \(p<0.01\).
-Gold-standard visited tier, late-entry schools excluded. EBacc and Open components
+Visited sample, late-entry schools excluded. EBacc and Open components
 are reported in the chapter appendix.
 \end{{minipage}}
 \end{{table}}
@@ -285,7 +289,78 @@ Progress~8 components.}}
 \resizebox{{\textwidth}}{{!}}{{%
 \begin{{tabular}}{{l*{{5}}{{c}}}}
 \toprule
-                    &     Overall         &     English         &       Maths         &        EBaC         &        Open         \\
+                    &     Overall         &     English         &       Maths         &       EBacc         &        Open         \\
+\midrule
+{(chr(10) + chr(92) + "addlinespace" + chr(10)).join(blocks)}
+\midrule
+$N$                 &{ns}\\
+$R^2$               &{r2}\\
+\bottomrule
+\multicolumn{{6}}{{l}}{{\footnotesize Standard errors in parentheses}}\\
+\multicolumn{{6}}{{l}}{{\footnotesize \sym{{*}} \(p<0.10\), \sym{{**}} \(p<0.05\), \sym{{***}} \(p<0.01\)}}\\
+\end{{tabular}}%
+}}
+\end{{table}}
+""")
+
+
+# ── tab_enacted_espoused ─────────────────────────────────────────────────────
+def enacted_espoused(df: pd.DataFrame) -> None:
+    """Rebuilt 25 Aug 2026 from ch3_estimates.csv, replacing the stale esttab
+    version (old instrument, no Overall column, n=96 throughout, W12/S34
+    notation). The chapter prose quotes the primary_espoused overall row
+    (warmth 0.051, p=0.29; strictness 0.120, p=0.018; n=99).
+
+    ch3_estimates.csv carries the espoused models under two specs: the primary
+    specification (predecessor-filled pre-COVID grade; n=99) exists for
+    overall, english and maths only; ebac and open exist only under the
+    unfilled-grade variant of the same control set (espoused_t1; n=96). The
+    N row and the notes state both.
+    """
+    WE, SE = "z_gs_warmth_espoused", "z_gs_strictness_espoused"
+    spec_for = {"overall": "primary_espoused", "english": "primary_espoused",
+                "maths": "primary_espoused", "ebac": "espoused_t1",
+                "open": "espoused_t1"}
+
+    def col(text: str, star: str = " " * 9) -> str:
+        return f"{text:>12}{star}"
+
+    def starfield(p: float) -> str:
+        for cut, mark in ((0.01, "***"), (0.05, "**"), (0.10, "*")):
+            if p < cut:
+                return f"\\sym{{{mark}}}".ljust(9)
+        return " " * 9
+
+    blocks = []
+    for term_label, term in [("Espoused warmth", WE),
+                             ("Espoused strictness", SE)]:
+        rs = [get(df, spec_for[o], o, term) for o in FIVE]
+        top = (f"{term_label:<20s}&"
+               + "&".join(col(num(r["b"]), starfield(r["pval"]))
+                          for r in rs) + "\\\\")
+        bot = (f"{'':<20s}&"
+               + "&".join(col(f"({r['se']:.3f})") for r in rs) + "\\\\")
+        blocks.append(top + "\n" + bot)
+    r2 = "&".join(col(f"{get(df, spec_for[o], o, WE)['r2']:.3f}")
+                  for o in FIVE)
+    ns = "&".join(col(str(int(get(df, spec_for[o], o, WE)["n"])))
+                  for o in FIVE)
+
+    write("tab_enacted_espoused.tex", rf"""\begin{{table}}[htbp]\centering
+\def\sym#1{{\ifmmode^{{#1}}\else\(^{{#1}}\)\fi}}
+\caption{{Espoused culture and Progress~8. Each column regresses the named
+Progress~8 component on espoused warmth and espoused strictness --- the
+standardised headteacher-interview statement-battery scores --- with the full
+control set, on the visited schools. The Overall, English and Maths columns
+use the primary specification (predecessor-filled pre-COVID inspection grade,
+late-entry schools excluded; $n=99$); the EBacc and Open columns are estimated
+on the same control set before the predecessor-grade fill ($n=96$), the only
+form in which those components are available.}}
+\label{{tab:enacted_espoused}}
+\resizebox{{\textwidth}}{{!}}{{%
+\begin{{tabular}}{{l*{{5}}{{c}}}}
+\toprule
+                    &     Overall         &     English         &       Maths         &       EBacc         &        Open         \\
 \midrule
 {(chr(10) + chr(92) + "addlinespace" + chr(10)).join(blocks)}
 \midrule
@@ -376,6 +451,7 @@ def main() -> int:
     univariate_ws(df)
     stages23_trio(df)
     main_results(df)
+    enacted_espoused(df)
     robustness_overall(df)
     return 0
 
