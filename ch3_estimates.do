@@ -228,7 +228,14 @@ foreach outcome in p8mea_avg p8meaeng_avg p8meamat_avg p8meaebac_avg p8meaopen_a
 * so a difference between these rows and the Python estimates in
 * analyse_ch3_batch.py is a specification difference, not a software one.
 * ================================================================
-global ctrl_ofsted_f "2.grade2019_filled 3.grade2019_filled 4.grade2019_filled"
+* The 2019 grade enters with grade 2 (Good) as the factor base, so the
+* estimated indicators are for grades 3 and 4 only and grades 1-2 are
+* deliberately pooled: Outstanding schools were exempt from routine
+* inspection before 2020, so the Outstanding label is the stalest
+* category in the variable. The earlier list included 2.grade, which
+* Stata dropped as the omitted base; listing only 3. and 4. states
+* the intended specification directly and estimates identically.
+global ctrl_ofsted_f "3.grade2019_filled 4.grade2019_filled"
 global controls_primary "$ctrl_cont $ctrl_bin $ctrl_ofsted_f"
 
 preserve

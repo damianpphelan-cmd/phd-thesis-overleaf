@@ -27,7 +27,14 @@ foreach v of varlist _all {
 }
 
 global ctrl "ks2 fsm eal sen log_size years_since_ofsted academy urban_bin selective"
-global gradef "2.grade2019_filled 3.grade2019_filled 4.grade2019_filled"
+* The 2019 grade enters with grade 2 (Good) as the factor base, so the
+* estimated indicators are for grades 3 and 4 only and grades 1-2 are
+* deliberately pooled: Outstanding schools were exempt from routine
+* inspection before 2020, so the Outstanding label is the stalest
+* category in the variable. The earlier list included 2.grade, which
+* Stata dropped as the omitted base; listing only 3. and 4. states
+* the intended specification directly and estimates identically.
+global gradef "3.grade2019_filled 4.grade2019_filled"
 global ctrlg "$ctrl $gradef"
 
 keep if late_entry != 1
