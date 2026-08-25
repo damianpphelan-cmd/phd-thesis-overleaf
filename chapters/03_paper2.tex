@@ -39,7 +39,7 @@ another rather than amplifying each other: the schools that are both warm
 and strict sit $0.40$ of a grade above the rest after controls, and the
 interaction between the two is indistinguishable from zero in the visited
 sample. Replacing the observed scores with the headteacher's own account of
-the school removes the warmth association. Finally, the two culture dimensions and the teaching benchmark all extend to national scale through instruments validated in the previous chapter (``instrument'' throughout means measurement instrument, never an instrumental variable). Across \NNationalStrictness{} schools, text-predicted warmth carries $\NatW$ per standard deviation, text-predicted teaching $\NatT$, and strictness read by a one-page marking scheme $\NatS$. Each is essentially unchanged when the inspection grade is held constant, and on reports that predate the outcome years. The three coefficients ride on different instruments and are not directly comparable with one another.
+the school removes the warmth association. Finally, the two culture dimensions and the teaching benchmark all extend to national scale through instruments validated in the previous chapter. Across \NNationalStrictness{} schools, text-predicted warmth carries $\NatW$ per standard deviation, text-predicted teaching $\NatT$, and strictness read by a one-page marking scheme $\NatS$. Each is essentially unchanged when the inspection grade is held constant, and on reports that predate the outcome years. The three coefficients ride on different instruments and are not directly comparable with one another.
 \end{chapterabstract}
 
 % ---------------------------------------------------------------
@@ -275,7 +275,7 @@ contemporaneous grade is partly an outcome of the culture being measured. I
 enter it at all because it is the best available summary of how the school
 was regarded before the outcome cohorts arrived. Seven of the 103 visited schools carry no 2019 grade under their current
 URN, mostly through conversion to an academy after 2019. One of the seven
-is excluded from the outcome regressions anyway as a late-entry school (the schools admitting only from age 13, defined below),
+is excluded from the outcome regressions anyway as a late-entry school (schools admitting only from age 13; defined below),
 and one lacks the years-since-inspection control, so five remain in the
 estimation sample. The predecessor school's grade fills four of them, and
 the fifth has no traceable predecessor and is dropped where the grade
@@ -584,12 +584,11 @@ The warmth and teaching scores are estimated quantities, so their
 regressions were bootstrapped over the training fit: the 95 per cent
 intervals are [$\NatWBootLo$, $\NatWBootHi$] for warmth and [$\NatTBootLo$, $\NatTBootHi$] for teaching, both comfortably away from zero. Fourth, sample dependence: excluding the visited schools from the national sample \emph{raises} the warmth coefficient (to $+0.136$) and the teaching coefficient (to $+0.122$), so neither association is an artefact of the schools that agreed to take part.
 
-The per-standard-deviation strictness coefficient does not lean on treating the five bands as equally spaced: entered as dummies around band 3, the bands trace a monotone gradient ($-0.27$, $-0.05$, $+0.15$, $+0.43$; \cref{tab:band_dummies}). The three numbers should be read against what each instrument is built to carry, and not against one another. The benchmarks that follow are heuristic, not exact. The held-out correlations are estimated on about a hundred range-restricted schools, so each carries a sampling error of roughly $0.1$. The strictness correlation is further attenuated by the coarseness of a five-band score, which makes its benchmark, if anything, too low. The benchmark for each leg is the
+The per-standard-deviation strictness coefficient does not lean on treating the five bands as equally spaced: entered as dummies around band 3, the bands trace a monotone gradient ($-0.27$, $-0.05$, $+0.15$, $+0.43$; \cref{tab:band_dummies}). The three numbers should be read against what each instrument (measurement instrument, never an instrumental variable) is built to carry, and not against one another. The benchmarks that follow are heuristic, not exact. The held-out correlations are estimated on about a hundred range-restricted schools, so each carries a sampling error of roughly $0.1$. The benchmark for each leg is the
 univariate visited coefficient (the national scores enter alone) scaled by
 the instrument's held-out correlation: a proxy capturing about a third of
 observed warmth should show about a third of the visited warmth-only
-coefficient of $0.219$, roughly $0.07$; the estimate of $\NatW$ is consistent with
-there. Teaching lands about a quarter above its equivalent benchmark
+coefficient of $0.219$, roughly $0.07$; the estimate of $\NatW$ is consistent with that benchmark. The strictness benchmark is further attenuated by the coarseness of a five-band score, which makes it, if anything, too low. Teaching lands about a quarter above its equivalent benchmark
 ($0.28 \times 0.206 \approx 0.06$ against $\NatT$), close but less
 exact. The strictness leg sits at roughly twice its benchmark
 ($0.30 \times 0.199 \approx 0.06$ against $\NatS$).
@@ -609,9 +608,9 @@ their prose may reflect them. The pre-2022 restriction meets the sharpest
 version of that concern; a residue from earlier results remains possible,
 and it is one of the reasons the estimates are presented as associations.
 
-Schools in the same academy trust share practices, so the standard errors were also computed with clustering on trust membership from the schools register (1,595 clusters; three-fifths of schools in multi-school trusts). Clustering moves the standard errors by at most ten per cent and changes no inference. The visited sample has too few multi-school trusts (25 schools across a dozen shared trusts) for cluster-robust inference to be informative, so no reassurance is claimed from it.
+Schools in the same academy trust share practices, so the standard errors were also computed with clustering on trust membership from the schools register (1,595 clusters; three-fifths of schools in multi-school trusts). Clustering moves the standard errors by at most ten per cent and changes no inference. The visited sample has too few multi-school trusts (25 schools across nine shared trusts) for cluster-robust inference to be informative, so no reassurance is claimed from it.
 
-Entering predicted warmth and the bands together (\cref{tab:typology}) moves warmth from $+0.078$ to $0.054$ while the bands hold at $0.117$, consistent with the two instruments sharing some report register; the univariate legs remain the headline because the two readings are not on an equal footing. Warmth's national leg carries one further, independent corroboration from
+Entering predicted warmth and the bands together (\cref{tab:typology}) moves warmth from $+0.078$ to $+0.054$ while the bands stay at $+0.117$, consistent with the two instruments sharing some report register; the univariate legs remain the headline because the two readings are not on an equal footing. Warmth's national leg carries one further, independent corroboration from
 the previous chapter: on the national schools outside training, the same
 predicted warmth correlates $\PVPredWarmth$ with parents' reports of
 happy, safe children. A text-derived score that tracks both pupil
@@ -1077,8 +1076,7 @@ coverage as by turnover. In this subsample the standard errors are three to seve
 times larger than in the full sample, and neither warmth nor strictness
 is statistically significant in any component. The strictness point
 estimates are in the same direction as the full-sample estimates and are
-larger in every component, but with standard errors three to seven times the full-sample ones neither dimension's subsample estimates should
-not be interpreted directionally. This check does not provide evidence
+larger in every component, but neither dimension's subsample estimates should be interpreted directionally. This check does not provide evidence
 against the primary results, but the subsample is too small to detect
 effects of the size found in the full specification.
 

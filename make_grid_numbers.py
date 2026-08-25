@@ -378,6 +378,9 @@ def main() -> None:
         f"{f3(cells[('ofsted','strictness')]['r_lenp'])} (inspection "
         "strictness), "
         f"{f3(cells[('ofsted','teaching')]['r_lenp'])} (inspection teaching), "
+        f"{f3(cells[('bp','warmth')]['r_lenp'])} (policy warmth), "
+        f"{f3(cells[('bp','strictness')]['r_lenp'])} (policy "
+        "strictness), "
         f"{f3(cells[('web','warmth')]['r_lenp'])} (website warmth) and "
         f"{f3(cells[('web','strictness')]['r_lenp'])} (website strictness)")
     cell_name = {"ofsted": "inspection", "bp": "policy", "web": "website"}
@@ -386,8 +389,9 @@ def main() -> None:
         kind, src, dim = lab.split("_")
         return f"the {cell_name[src]} {dim} {kind} cell"
 
-    surv_note = (", ".join(surv_name(s) for s in survivors)
-                 if survivors else "no cell")
+    _sn = [surv_name(s) for s in survivors]
+    surv_note = ((", ".join(_sn[:-1]) + " and " + _sn[-1])
+                 if len(_sn) > 1 else (_sn[0] if _sn else "no cell"))
 
     rows = []
     order = [("ofsted", "warmth"), ("ofsted", "strictness"),
