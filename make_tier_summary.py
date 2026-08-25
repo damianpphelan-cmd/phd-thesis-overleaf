@@ -85,9 +85,11 @@ Tier & $N$ & FSM\% & EAL\% & Median size & Outstanding\% & Good\% \\
 \midrule
 @BODY@
 \bottomrule
-\multicolumn{7}{l}{\footnotesize The tiers sum to one fewer than the total: one interviewed school whose head}\\
-\multicolumn{7}{l}{\footnotesize left the statement battery blank belongs to the total but to no tier.}\\
 \end{tabular}
+\smallskip
+\begin{minipage}{0.92\linewidth}
+\footnotesize\textit{Notes:} The tiers sum to one fewer than the total: one interviewed school whose head left the statement battery blank belongs to the total but to no tier.
+\end{minipage}
 \end{table}
 """.replace("@BODY@", body)
 

@@ -27,6 +27,7 @@ RET = ROOT / "rubric_grid_scores_gpt-4o-mini_retest.csv"
 GRIDP = ROOT / "grid_perm_pvalues.csv"
 N_PERM = 200  # draws behind grid_perm_pvalues.csv; floor p = 1/(N_PERM+1)
 SPINE = ROOT / "text_spine.csv"
+LENGTHS = ROOT / "grid_doc_lengths.csv"
 DATASET = ROOT / "analysis_dataset.csv"
 CORPUS = ROOT / "text_corpus_r2"
 
@@ -161,8 +162,8 @@ def main() -> None:
         ydec = pd.Series(deconf_target(y.to_numpy(float), C), index=urns)
         r_dec, n_dec = corr(s.reindex(urns), ydec)
         lo, hi = fisher_ci(r_dec, n_dec)
-        cells[(src, dim)] = {"band": s, "r_dec": r_dec, "n_dec": n_dec,
-                             "ci": (lo, hi)}
+        cells[(src, dim)] = {"band": s, "ydec": ydec, "r_dec": r_dec,
+                             "n_dec": n_dec, "ci": (lo, hi)}
         rec = round(g.loc[(src, dim), "rubric_deconf"], 3)
         if abs(round(r_dec, 3) - rec) > 0.0015:
             print(f"WARNING: recomputed deconf r for {src}/{dim} = "
@@ -182,22 +183,59 @@ def main() -> None:
                     yv.loc[urns, VISIT_COL[dim]].astype(float))
         fouro[dim] = r
 
-    # ---- band vs log document length (primary model) ----
-    lengths = {}  # source -> Series urn -> log length
+    # ---- document lengths (words + chars) from the scored corpus ----
+    # The scheme read text_corpus_r2/<source>/<urn>.txt verbatim
+    # (score_rubric_grid.py), so word counts of those files ARE the lengths
+    # the bands could be confounded by. Persisted to grid_doc_lengths.csv so
+    # the numbers are reproducible even without the untracked corpus.
+    len_rows = []
     for src in ("ofsted", "bp", "web"):
         d = CORPUS / src
-        ser = {}
         for u in a[a["source"] == src]["urn"].unique():
             f = d / f"{u}.txt"
             if f.exists():
-                ser[int(u)] = math.log(
-                    max(len(f.read_text(encoding="utf-8", errors="replace")),
-                        1))
-        lengths[src] = pd.Series(ser)
+                t = f.read_text(encoding="utf-8", errors="replace")
+                len_rows.append({"source": src, "urn": int(u),
+                                 "words": len(t.split()), "chars": len(t)})
+    if len_rows:
+        ldf = pd.DataFrame(len_rows).sort_values(["source", "urn"])
+        ldf.to_csv(LENGTHS, index=False)
+    else:  # corpus not on this machine: fall back to the persisted file
+        ldf = pd.read_csv(LENGTHS)
+    lengths = {}   # source -> Series urn -> log char length (legacy macros)
+    wlengths = {}  # source -> Series urn -> log word count (partialling)
+    for src in ("ofsted", "bp", "web"):
+        s = ldf[ldf["source"] == src].set_index("urn")
+        lengths[src] = np.log(s["chars"].clip(lower=1).astype(float))
+        wlengths[src] = np.log(s["words"].clip(lower=1).astype(float))
     lencorr = {}
     for (src, dim), c in cells.items():
         r, _ = corr(c["band"], lengths[src])
         lencorr[(src, dim)] = r
+
+    # ---- length-partialled scheme correlations ----
+    # Partial r of band with the deconfounded visit score, controlling for
+    # log word count of the document the scheme read (referee point: the
+    # Ofsted strictness scheme's band-length correlation matches its
+    # validity, so length must be partialled, not just disclosed).
+    def partial_r(x: pd.Series, y: pd.Series, z: pd.Series
+                  ) -> tuple[float, int]:
+        j = pd.concat([x, y, z], axis=1).dropna()
+        if len(j) < 5:
+            return float("nan"), len(j)
+        A = np.column_stack([np.ones(len(j)), j.iloc[:, 2].to_numpy(float)])
+        rx = j.iloc[:, 0].to_numpy(float)
+        ry = j.iloc[:, 1].to_numpy(float)
+        bx, *_ = np.linalg.lstsq(A, rx, rcond=None)
+        by, *_ = np.linalg.lstsq(A, ry, rcond=None)
+        return float(np.corrcoef(rx - A @ bx, ry - A @ by)[0, 1]), len(j)
+
+    print("scheme cells: raw deconf r vs length-partialled r")
+    for (src, dim), c in cells.items():
+        rp, n_p = partial_r(c["band"], c["ydec"], wlengths[src])
+        c["r_lenp"], c["n_lenp"] = rp, n_p
+        print(f"  {src:6s} {dim:10s} raw {c['r_dec']:+.3f}  "
+              f"len-partialled {rp:+.3f}  (n={n_p})")
 
     # ---- dependent-correlation difference tests (Steiger) ----
     loo = pd.read_csv(LOO)
@@ -219,6 +257,40 @@ def main() -> None:
 
     sz, sp, *_ = diff_test("strictness")
     wz, wp, *_ = diff_test("warmth")
+
+    # ---- multiplicity: BH q-values across the 14 grid tests ----
+    # Family = the 7 model cells (200-draw permutation p's) + the 7 scheme
+    # cells (two-sided Fisher-z p's on the deconfounded correlations).
+    def fisher_p(r: float, n: int) -> float:
+        z = math.atanh(r) * math.sqrt(n - 3)
+        return math.erfc(abs(z) / math.sqrt(2))
+
+    tmap_all = {"warmth": "enacted_warmth", "strictness": "enacted_strictness",
+                "teaching": "enacted_teaching"}
+    tests = []  # (label, p)
+    for (src, dim), c in cells.items():
+        tests.append((f"model_{src}_{dim}",
+                      float(gp.loc[(src, tmap_all[dim]), "perm_p"])))
+        tests.append((f"scheme_{src}_{dim}",
+                      fisher_p(c["r_dec"], c["n_dec"])))
+
+    def bh_q(pvals: list[float]) -> list[float]:
+        m_ = len(pvals)
+        order = sorted(range(m_), key=lambda i: pvals[i])
+        q = [0.0] * m_
+        prev = 1.0
+        for rank_from_top, i in enumerate(reversed(order)):
+            rank = m_ - rank_from_top
+            prev = min(prev, pvals[i] * m_ / rank)
+            q[i] = prev
+        return q
+
+    qvals = dict(zip([t[0] for t in tests], bh_q([t[1] for t in tests])))
+    survivors = sorted(k for k, v in qvals.items() if v < 0.05)
+    print("BH q-values over the 14 grid tests (q<0.05 starred):")
+    for (lab, pv_) in sorted(tests, key=lambda t: t[1]):
+        star = " *" if qvals[lab] < 0.05 else ""
+        print(f"  {lab:26s} p={pv_:.4f}  q={qvals[lab]:.4f}{star}")
 
     # ---- raw-leg warmth model correlation, recomputed from LOO preds ----
     raw_w = loo[(loo["arm"] == "tfidf") & (loo["sample"] == "enacted")
@@ -254,6 +326,17 @@ def main() -> None:
         "LenBPW": f3(lencorr[("bp", "warmth")]),
         "LenWebS": f3(lencorr[("web", "strictness")]),
         "LenWebW": f3(lencorr[("web", "warmth")]),
+        # length-partialled scheme correlations (log word count partialled
+        # out of both band and deconfounded target)
+        "RubricWOfstedLenP": f3(cells[("ofsted", "warmth")]["r_lenp"]),
+        "RubricSOfstedLenP": f3(cells[("ofsted", "strictness")]["r_lenp"]),
+        "RubricTOfstedLenP": f3(cells[("ofsted", "teaching")]["r_lenp"]),
+        "RubricWBPLenP": f3(cells[("bp", "warmth")]["r_lenp"]),
+        "RubricSBPLenP": f3(cells[("bp", "strictness")]["r_lenp"]),
+        "RubricWWebLenP": f3(cells[("web", "warmth")]["r_lenp"]),
+        "RubricSWebLenP": f3(cells[("web", "strictness")]["r_lenp"]),
+        # BH q-value for the Ofsted strictness scheme cell (14-test family)
+        "QGridSOfsted": f"{qvals['scheme_ofsted_strictness']:.3f}",
         # Steiger dependent-correlation difference tests (Ofsted cells)
         "StrictDiffZ": f"{sz:.2f}",
         "StrictDiffP": fmt_p(sp),
@@ -288,6 +371,23 @@ def main() -> None:
         lines.append(f"\\newcommand{{\\{k}}}{{{v}}}")
     (HERE / "snippets" / "grid_numbers.tex").write_text(
         "\n".join(lines) + "\n", encoding="utf-8")
+
+    # notes sentences: length-partialled headline cells, BH survivors
+    lenp_note = (
+        f"{f3(cells[('ofsted','warmth')]['r_lenp'])} (inspection warmth), "
+        f"{f3(cells[('ofsted','strictness')]['r_lenp'])} (inspection "
+        "strictness), "
+        f"{f3(cells[('ofsted','teaching')]['r_lenp'])} (inspection teaching), "
+        f"{f3(cells[('web','warmth')]['r_lenp'])} (website warmth) and "
+        f"{f3(cells[('web','strictness')]['r_lenp'])} (website strictness)")
+    cell_name = {"ofsted": "inspection", "bp": "policy", "web": "website"}
+
+    def surv_name(lab: str) -> str:
+        kind, src, dim = lab.split("_")
+        return f"the {cell_name[src]} {dim} {kind} cell"
+
+    surv_note = (", ".join(surv_name(s) for s in survivors)
+                 if survivors else "no cell")
 
     rows = []
     order = [("ofsted", "warmth"), ("ofsted", "strictness"),
@@ -336,6 +436,12 @@ confidence interval for the correlation to its left (model and marking
 scheme respectively). ``Agree'' is exact band agreement between the two
 language models reading the same marking scheme; ``Retest'' is exact
 agreement on thirty documents re-scored by the primary model.
+Partialling document length (log word count of the text each scheme read)
+out of band and target leaves the scheme correlations at """ + lenp_note \
+        + r""".
+Across the fourteen tests in the table (seven permutation $p$-values, seven
+Fisher-$z$ scheme $p$-values), Benjamini--Hochberg $q<0.05$ is met by """ \
+        + surv_note + r""".
 \end{minipage}
 \end{table}
 """

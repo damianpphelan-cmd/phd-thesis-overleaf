@@ -313,9 +313,14 @@ def enacted_espoused(df: pd.DataFrame) -> None:
 
     ch3_estimates.csv carries the espoused models under two specs: the primary
     specification (predecessor-filled pre-COVID grade; n=99) exists for
-    overall, english and maths only; ebac and open exist only under the
-    unfilled-grade variant of the same control set (espoused_t1; n=96). The
-    N row and the notes state both.
+    overall, english and maths only; ebac and open exist only under an earlier
+    vintage of the same control set (espoused_t1; n=96): grade as recorded
+    rather than filled AND the late-entry exclusion not yet applied. Rerunning
+    that regression with late entry excluded gives n=95 (verified in Python,
+    25 Aug 2026), so the 96th school is a late-entry school with a recorded
+    grade. The caption states both. The stage1/stage2/stage3 rows of the CSV
+    (n=96) are the same stale vintage; the ladder_a row (n=95) is the
+    current-spec version.
     """
     WE, SE = "z_gs_warmth_espoused", "z_gs_strictness_espoused"
     spec_for = {"overall": "primary_espoused", "english": "primary_espoused",
@@ -354,8 +359,10 @@ standardised headteacher-interview statement-battery scores --- with the full
 control set, on the visited schools. The Overall, English and Maths columns
 use the primary specification (predecessor-filled pre-COVID inspection grade,
 late-entry schools excluded; $n=99$); the EBacc and Open columns are estimated
-on the same control set before the predecessor-grade fill ($n=96$), the only
-form in which those components are available.}}
+on the same control set before the predecessor-grade fill and before the
+late-entry exclusion ($n=96$; with that exclusion applied the unfilled-grade
+sample has 95 schools), the only form in which those components are
+available.}}
 \label{{tab:enacted_espoused}}
 \resizebox{{\textwidth}}{{!}}{{%
 \begin{{tabular}}{{l*{{5}}{{c}}}}

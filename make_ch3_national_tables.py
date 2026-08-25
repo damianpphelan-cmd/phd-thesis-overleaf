@@ -88,7 +88,11 @@ def main() -> None:
         " & Instrument & \\multicolumn{2}{c}{Full controls} & +Grade & "
         "Pre-2022 & 95\\% CI \\\\\n\\midrule\n"
         + "\n".join(rows) +
-        "\n\\bottomrule\n\\end{tabular}\n\\end{table}\n")
+        "\n\\bottomrule\n\\end{tabular}\n"
+        "\\begin{minipage}{\\linewidth}\n\\smallskip\n"
+        "\\footnotesize\\textit{Notes:} Standard errors in parentheses. "
+        "$^{*}$ \\(p<0.10\\), $^{**}$ \\(p<0.05\\), $^{***}$ \\(p<0.01\\).\n"
+        "\\end{minipage}\n\\end{table}\n")
     table, _ = move_caption_below(table)
     (HERE / "tables" / "tab_national_legs.tex").write_text(
         table, encoding="utf-8")
@@ -124,7 +128,11 @@ def main() -> None:
         "\\begin{tabular}{lcccc}\n\\toprule\n"
         " & Full controls & (se) & +Grade & $n$ \\\\\n\\midrule\n"
         + "\n".join(irows) +
-        "\n\\bottomrule\n\\end{tabular}\n\\end{table}\n")
+        "\n\\bottomrule\n\\end{tabular}\n"
+        "\\begin{minipage}{\\linewidth}\n\\smallskip\n"
+        "\\footnotesize\\textit{Notes:} Standard errors in parentheses. "
+        "$^{*}$ \\(p<0.10\\), $^{**}$ \\(p<0.05\\), $^{***}$ \\(p<0.01\\).\n"
+        "\\end{minipage}\n\\end{table}\n")
     itable, _ = move_caption_below(itable)
     (HERE / "tables" / "tab_identity.tex").write_text(itable, encoding="utf-8")
 
