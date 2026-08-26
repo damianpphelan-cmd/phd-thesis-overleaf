@@ -18,8 +18,7 @@ on prior attainment, intake composition, school type, size, location and the
 school's pre-pandemic inspection grade. The culture measures come from
 visits made during and after the outcome years, so the design rests on
 the persistence of school culture. That persistence is stated as an
-assumption and probed. There are three main results. The
-first is that both dimensions are associated with progress. A one
+assumption and probed. There are four main results. The first is that both dimensions are associated with progress. A one
 standard deviation
 increase in observed warmth is associated with Progress~8 that is
 $\hat{\beta}_W = \PrimarySpecW$ of a grade higher, and a one standard
@@ -366,7 +365,7 @@ and motivated families. Two features of the data bear on this without
 resolving it. The teaching-practice score is observed alongside the culture
 scores, so the most obvious such characteristic, that warm and orderly
 schools are simply schools whose teachers teach well, can be tested directly
-rather than assumed away. Secondly, each association appears again across the
+rather than assumed away. The second feature is that each association appears again across the
 national population using a text-derived score with the inspection grade
 held constant, so it is not an artefact of which schools agreed to be
 visited. One sorting concern remains: strict schools may
@@ -804,7 +803,7 @@ difference in outcome noise.
 \section{Robustness in Detail}
 \label{app:3A:robust}
 
-This section walks through the checks summarised with the results: the alternative specifications of \cref{tab:robustness_overall}, the head-teacher continuity split, and the two sensitivity measures of \cref{tab:sensitivity_bounds}.
+This section walks through the checks summarised with the results: the alternative specifications of \cref{tab:robustness_overall}, the headteacher continuity split, and the two sensitivity measures of \cref{tab:sensitivity_bounds}.
 
 \Cref{tab:robustness_overall} reports the primary
 estimate under alternative specifications, all on the primary sample, and
@@ -846,9 +845,9 @@ is the one that depends on the full sample.
 
 No single school carries the visited estimates: dropping each school in turn moves the warmth coefficient by at most $0.019$ and the strictness coefficient by at most $0.017$, and no omission moves either across conventional significance.
 
-In the head-teacher continuity split reported with the timing checks, the strictness point estimates stay at or above the full-sample values and the warmth point estimate falls close to zero, but the standard errors are three to seven times the full-sample ones, so neither movement is informative.
+In the headteacher continuity split reported with the timing checks, the strictness point estimates stay at or above the full-sample values and the warmth point estimate falls close to zero, but the standard errors are three to seven times the full-sample ones, so neither movement is informative.
 
-The two sensitivity measures reason differently. The first, Oster's $\delta$, reasons from the controls that can be seen. Adding the full control set moves each coefficient by a known amount, and the measure extrapolates: if unobserved confounders behaved like the observed controls, how much of them would it take to drive the coefficient to zero. For warmth the question has a twist. Adding the controls raises the warmth coefficient rather than lowering it, and when the controls push a coefficient up, an extrapolation of this kind can hardly ever drive it to zero, so warmth's large $\delta$ of \OsterDeltaW{} is not in itself evidence of robustness. The informative number is a different one: assume unobservables matter exactly as much as the controls, and the warmth coefficient that survives is \OsterBetaEqualW{}. What no measure of this kind can rule out is a confounder unlike the observed controls, working in the opposite direction to the EAL share. Strictness is the more exposed. Adding the controls lowered its coefficient, the extrapolation continues that movement, and under the equal-importance assumption little of the coefficient survives; its $\delta$ of \OsterDeltaS{} sits just above the conventional benchmark of one.
+The two sensitivity measures reason differently. The first, Oster's $\delta$, reasons from the controls that can be seen. Adding the full control set moves each coefficient by a known amount, and the measure extrapolates: if unobserved confounders behaved like the observed controls, how much of them it would take to drive the coefficient to zero. For warmth the question has a twist. Adding the controls raises the warmth coefficient rather than lowering it, and when the controls push a coefficient up, an extrapolation of this kind can hardly ever drive it to zero, so warmth's large $\delta$ of \OsterDeltaW{} is not in itself evidence of robustness. The informative number is a different one: assume unobservables matter exactly as much as the controls, and the warmth coefficient that survives is \OsterBetaEqualW{}. What no measure of this kind can rule out is a confounder unlike the observed controls, working in the opposite direction to the EAL share. Strictness is the more exposed. Adding the controls lowered its coefficient, the extrapolation continues that movement, and under the equal-importance assumption little of the coefficient survives; its $\delta$ of \OsterDeltaS{} sits just above the conventional benchmark of one.
 
 The second measure, the E-value, asks the question without reference to the controls: how strongly a single unmeasured confounder would have to be associated with both the culture score and progress to account for the whole estimate. The answer is an association of at least \EValW{} in risk-ratio terms for warmth and \EValS{} for strictness. Both measures speak only to omitted variables; neither touches reverse causation. Both are also likelier understatements than overstatements, because measurement error in the culture scores biases the estimated coefficients, and the bounds built on them, towards zero.
 
