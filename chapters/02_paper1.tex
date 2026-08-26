@@ -96,15 +96,14 @@ text available for each school that may be informative about their culture.
 Every school has a report written by an external inspector, a behaviour policy written by the
 school, and a website written by the school. For a smaller set
 of 103 schools this study adds data from direct observation of the school at work and from a 
-structured interview with its headteacher.
+structured interview with its headteacher. For a further \NTierTwo{} schools we have the 
+interview alone.
 
-From these I construct a gold-standard measure of each dimension. Because
-the interview and the visit disagree substantially about the same school,
+From the structured observation and interview data, I construct a gold-standard measure of 
+each dimension. Because the interview and the visit disagree substantially about the same school,
 the gold standard is in fact two measures rather than one: an \emph{enacted}
 score, from what the observers recorded, and an \emph{espoused} score, from
-what the headteacher reported. For a further \NTierTwo{} schools I have the
-interview alone, and for all schools nationally we have the public
-text.
+what the headteacher reported. 
 
 I then ask how much of the gold standard the public text contains using two methods. 
 The first is a prediction model: using the visited schools, a
@@ -113,20 +112,22 @@ higher or lower observed scores, and it is tested only on schools it was
 not fitted on. Before fitting, identifying details are removed from the text,
 and the part of each score that school demographics could explain is
 removed from the target, so the model is reading culture from the prose only. The
-second method uses a mark scheme approach. A large language model is provided with a one-page written rubric for each dimension and
-asked to score each document on a 1 to 5 scale. The first method assumes nothing about where culture 
-shows up in text; the second assumes it is there and scores it. Comparing the two methods for each text source and
-for each dimension shows not only which measures can be extended to every school in the
-country but what method is most appropriate for each dimension.
+second method uses a mark scheme approach. A large language model is provided with a one-page 
+written rubric for each dimension and
+asked to score each document on a 1 to 5 scale. The first method assumes nothing about where 
+culture shows up in text; the second assumes it is there and scores it. Comparing the two 
+methods for each text source and for each dimension shows not only which measures can be 
+extended to every school in the country but what method is most appropriate for each dimension.
 
 There are three main findings. The first is that inspection reports
 carry a modest but real signal of observed warmth. A prediction model
 reading only the report's wording reproduces the observed warmth of
 held-out schools at $\PredWOfsted$. The most that any correlation with a score this 
-noisy could reach is about $0.83$, a ceiling derived below from the score's reliability. Before intake is removed
+noisy could reach is about $0.83$, a ceiling derived below from the score's reliability. 
+Before intake is removed
 from the target the correlation is $\PredWOfstedRaw$, and after it is
-$\PredWOfsted$. Removing intake therefore strengthens the signal rather
-than creating it, so the signal is carried by the prose itself. The
+$\PredWOfsted$. The fact that removing intake strengthens the signal rather
+indicates that it is carried by the prose itself. The
 signal is clearest in what marks the colder schools. Their reports fall
 back on stock assurances such as ``pastoral support is in place'' and
 ``pupils feel confident they have a trusted adult''. The warmer schools'
@@ -137,9 +138,7 @@ like warmth, with a signal of $\PredTOfsted$.
 
 The second finding is that observed strictness must be read differently.
 The prediction model reads it only weakly. The one-page marking scheme reads
-strictness at $\RubricSOfstedDec$. That reading is indistinguishable in
-size from the best model's. However, it survives a change of language
-model and demographic adjustment, and the models' readings do not. The
+strictness at $\RubricSOfstedDec$. The
 reason is that the two dimensions are written down differently. Warmth
 lives in a report's habitual register, which a model with no
 instructions can learn. Strictness lives in specific, checkable claims,
@@ -158,12 +157,20 @@ there, and two noisy readings of the same quantity would put about
 measurement error is allowed for. The same asymmetry runs through the
 public text. What schools write in their policies and on their websites
 tracks what their heads say about strictness and about staff morale.
-However, their warmth language shows no relation to the observers, or even to their own headteacher's responses during the interview. The divergence has an economic reading. What a head says about strictness is checkable, because behaviour leaves a public record: a visitor can watch a corridor, and an inspection can report whether disruption is rare. What a head says about warmth is not, because no record shows whether pupils feel cared for. The economics of communication predicts exactly this split: statements that can be checked can carry information, and statements that cannot be checked need not \citep{milgrom1981, crawford1982}. The schools' words behave as that prediction says.
+However, their warmth language shows no relation to the observers, or even to their 
+own headteacher's responses during the interview. The divergence has an economic reading. 
+What a head says about strictness is checkable, because behaviour leaves a public record: 
+a visitor can watch a corridor, and an inspection can report whether disruption is rare. 
+What a head says about warmth is not, because no record shows whether pupils feel cared for. 
+The economics of communication predicts exactly this split: statements that can be checked can 
+carry information, and statements that cannot be checked need 
+not \citep{milgrom1981, crawford1982}.
 
 The paper contributes to various strands of the literature. The school-climate literature measures 
 culture through pupil, teacher and parent surveys \citep{hoy2001,cohen2009,thapa2013}. Those surveys have
 produced consistent associations between climate and wellbeing, attendance and attainment. 
-However, they capture perceptions rather than practice and are open to social desirability. They are also costly at national scale.
+However, they capture perceptions rather than practice and are open to social desirability. They 
+are also costly at national scale.
 \citet{vanhoutte2005} argues that climate, meaning the aggregate of members'
 perceptions, should be kept apart from culture, meaning the shared norms that
 govern behaviour, and it is culture in that sense that the measures here aim
@@ -195,15 +202,18 @@ dimension and the reason to expect it to matter, but it has not measured the two
 
 Finally, the text-as-data literature in economics
 \citep{gentzkow2019} supplies the tools for reading public text at
-scale.  This paper uses both of  that literature's modern tools, supervised text regression and marking schemes applied 
+scale.  This paper uses both of that literature's modern tools, supervised text regression and marking schemes applied 
 by a large language model \citep{gilardi2023,eloundou2024}. It tests each against direct observation 
 and reports which dimension of culture each can read. For one concrete measurement problem, it 
 answers the question posed by \citet{ludwig2025} of when instructed language-model
 measurement adds value over statistical alternatives.
 
-Against those four literatures, the paper contributes three things: a measure of enacted culture built from 
-observation rather than perception, with the perception data from headteachers and parents kept as comparisons 
-against it; a model to predict enacted culture in all English state secondary schools; and a like-for-like comparison, on one 
+Against those four literatures, the paper contributes three things: a measure of enacted culture 
+built from 
+observation rather than perception, with the perception data from headteachers and parents 
+kept as comparisons 
+against it; a model to predict enacted culture in all English state secondary schools; and 
+a like-for-like comparison, on one 
 criterion, of the two ways economists now read text, prediction models 
 and marking schemes. The comparison shows that which one works is a property of the construct.
 
@@ -214,10 +224,12 @@ are built and judged, reports what the measures show, and concludes.
 \section{Data}
 \label{sec:p1_data}
 
-The paper uses four kinds of data on English state secondary schools: a structured observation from a visit and a 
+The paper uses four kinds of data on English state secondary schools: a structured observation 
+from a visit and a 
 headteacher interview that were carried out for this
 study, three collections of public text, a national survey of parents, and
-the Department for Education's school-level administrative data. The sources divide by whose account of the school they give. 
+the Department for Education's school-level administrative data. The sources divide by whose 
+account of the school they give. 
 The visit records what trained observers saw the school do, and the inspection report
 records what an inspector saw, so these two are sources on \emph{enacted}
 culture. The interview, the behaviour policy and the website record what the
@@ -269,10 +281,13 @@ observed but not which items were being rated. Each school also allowed us
 to observe pupils moving between lessons, and pupils and staff interacting
 at break and lunch, which is what the outside-of-lessons form rates. Each observation covered 
 either a whole lesson or half of one, and every researcher present rated it independently on the 
-lesson observation form. The team also watched arrival to lessons, movement between lessons, break and lunch, and 
-at the end of the day each researcher completed the outside-of-lessons form once, summarising the whole day.
+lesson observation form. The team also watched arrival to lessons, movement between lessons, 
+break and lunch, and 
+at the end of the day each researcher completed the outside-of-lessons form once, 
+summarising the whole day.
 
-The lesson form has twenty items; the mapping from the printed form to the scored items is in \cref{app:2A:guide}. Ten of the 
+The lesson form has twenty items; the mapping from the printed form to the scored items 
+is in \cref{app:2A:guide}. Ten of the 
 twenty relate to warmth and strictness, for example the
 frequency with which the teacher uses pupils' names, and the level of
 misbehaviour tolerated before a first sanction. The other ten relate to
@@ -281,18 +296,21 @@ The outside-of-lessons form has thirteen items: nine on the school outside
 the classroom (sanctions and rewards, corridors, arrival, the dining hall,
 and interactions and relationships at break), two on the condition of wall
 displays, and two in which the observer compares the teaching seen across
-the day. Every item is rated from 1 to 5 and the item ratings are averaged across researchers and 
-across lessons to give one value per school.
+the day. Every item is rated from 1 to 5 and the item ratings are averaged across 
+researchers and across lessons to give one value per school.
 
-The school choosing the lessons is a limitation of the visit as a measure of practice. However, the most likely direction 
-of the problem is known. A school will tend to show a visitor its better lessons, so if anything the enacted scores are 
-too high and too similar to one another, which makes differences between schools harder rather than easier to find. 
-What this argument cannot exclude is differential staging, meaning that some schools are better at performing for a visitor 
+The school choosing the lessons is a limitation of the visit as a measure of practice. However, 
+the most likely direction of the problem is known. A school will tend to show a visitor its 
+better lessons, so if anything the enacted scores are 
+too high and too similar to one another, which makes differences between schools harder 
+rather than easier to find. 
+What this argument cannot exclude is differential staging, meaning that some schools are 
+better at performing for a visitor 
 than others, and its direction is unknown.
 
 The interview lasted about an hour and followed a fixed guide. It had three
-parts: twelve open questions on the school's approach to behaviour,
-relationships, wellbeing and teaching, the first of which records how long the headteacher has been in post. 
+parts. The first part consisted of twelve open questions on the school's approach to behaviour,
+relationships, wellbeing and teaching. 
 This was followed by ten statements on which the
 headteacher rated their own school on a five-point agreement scale (for
 example ``The sanction systems are applied consistently by all staff'' and
@@ -302,7 +320,8 @@ or absent. Two researchers attended every interview, one asking the
 questions and one observing, and both scored the open questions
 independently. The observation forms and the interview guide are reproduced
 in full in \cref{app:2A:visit_protocol,app:2A:interview_guide}, and the
-agreement between researchers on the observation and interview items is reported together with the measures below.
+agreement between researchers on the observation and interview items is reported together 
+with the measures below.
 
 \textbf{Public text.} Three collections of text cover the national
 population. A scored inspection report exists for
@@ -329,7 +348,8 @@ so for some schools the parent data are older than the culture data. The survey 
 \textbf{Administrative data.} All schools are matched on their unique
 reference number to a school-year panel that I built from the Department for
 Education's published tables for 2015/16 to 2024/25. The panel carries pupil
-composition, prior attainment, Progress~8 (a value added measure) and its components, workforce and
+composition, prior attainment, Progress~8 (a value added measure) and its components, 
+workforce and
 finance. This paper uses the panel only to describe the samples; the
 following chapter uses it for outcomes and controls. The panel also carries
 each school's most recent overall inspection grade. Inspections from
@@ -358,10 +378,10 @@ vary less than nationally.
 \section{Measurement}
 \label{sec:p1_measurement}
 
-This section builds the measures in the order that the design requires. It
-first constructs the gold-standard scores from the visits and the interviews
-and reports how reliable they are. It then builds the prediction models used to produce scores for the 
-schools that were not visited. It ends with the marking schemes read by a large language model, and with how both routes are judged.
+This section builds the measures starting with the gold-standard scores from the visits and 
+the interviews and reports how reliable they are. It then builds the prediction model and describes
+the mark scheme and LLM approach that were both used to 
+produce scores for the schools that were not visited. It ends with with how both approaches are judged.
 
 \subsection{The gold standard}
 
@@ -455,7 +475,8 @@ the choice of methods ($0.53$ and $0.55$).
 
 However, the paper's claims do not rest on the agreement of two raters on
 one lesson. They rest on the reliability of a school's score once it has
-been averaged over its lessons and raters. \Cref{tab:score_reliability} gives this. Take every rating that a
+been averaged over its lessons and raters. \Cref{tab:score_reliability} gives this. Take 
+every rating that a
 researcher gave a lesson for in-lesson strictness: one number, for one
 lesson, from one researcher. Those ratings differ from one another for three
 reasons. The first is that the lesson was in a stricter or a less strict
@@ -522,7 +543,7 @@ pair at $\CorrWarmthStrictnessEspoused$. Read at face value, the enacted figure 
 It should not be read that way, because part of it is produced by the measurement itself: the same observers scored both dimensions 
 at the same school on the same day, and a good impression lifts both ratings at once. The lessons that two researchers rated 
 independently show how much this explains. If the correlation lived inside each observer's head, an observer's warmth rating would 
-predict their own strictness rating much better than their colleague's. It barely does: \CorrWSSameObs{} against \CorrWSCrossObs{}. 
+predict their own strictness rating much better than their colleague's. That is not the case: \CorrWSSameObs{} against \CorrWSCrossObs{}. 
 So the inflation comes from the shared visit rather than from individual judgement, since both observers watched the same lessons at 
 the same school on the same day. Removing measurement noise from the cross-observer figure puts the correlation between the dimensions 
 themselves at about \CorrWSTrue{}. That, rather than $\CorrWarmthStrictnessEnacted$, is the better estimate of how strongly warmth and 
@@ -554,15 +575,17 @@ correlated with the school's actual teacher turnover, as recorded by the
 Department for Education, at $r = -0.52$, and at $-0.48$ once the other
 espoused scores, disadvantage and school size are held constant. On the one
 question where a head's answer can be checked against the record, heads
-report accurately. This check concerns staff turnover, though, and says nothing about the warmth statements.
+report accurately. This check concerns staff turnover, though, and says nothing about 
+the warmth statements.
 
 \subsection{Reading the text with prediction models}
 \label{sec:p1_prediction}
 
-The first way of reading the documents uses no theory of culture at all. It asks only whether the words a document uses tend to 
-go with the culture observers found in the school.
+The first way of reading the documents uses no theory of culture at all. It asks only whether 
+the words a document uses tend to go with the culture observers found in the school.
 
-The method works as follows using warmth as an example. Each document is turned into a list of counts:
+The method works as follows using warmth as an example. Each document is turned into a 
+list of counts:
 how often each word, and each two-word phrase, appears in it. Phrases that
 appear in almost every document count for little; phrases that distinguish
 one document from another count for more. A statistical model is then
@@ -575,11 +598,10 @@ score is thousands of tiny nudges summed. (\cref{sec:p1_app_prediction} gives th
 
 Three safeguards stop the model from scoring well for the wrong reasons.
 
-First, the model is never tested on a school it learned from. Every school's reported prediction comes from a model fitted 
-with that school left out, so each number says how well it reads a school it has never seen. As a further check, I re-ran the 
-whole procedure two hundred times on deliberately scrambled scores. Scrambling leaves nothing real to find, so whatever correlation 
-the model still reaches is what luck alone produces. A real result has to beat that, and the reported significance levels say how 
-often scrambling did.
+First, the model is never tested on a school it learned from. Every school's reported 
+prediction comes from a model fitted 
+with that school left out, so each number says how well it reads a school it has never seen. 
+As a further check, I re-ran the whole procedure two hundred times on deliberately scrambled scores. Scrambling means shuffling the warmth scores across the schools, so that each report is paired with a score that belongs to some other school. The reports are real and the scores are real, but the pairing between them is destroyed, so there is nothing true left for the model to find. Whatever correlation it still reaches is what luck alone produces. A real result has to beat that, and the reported significance levels say how often the scrambled runs did.
 
 Second, it cannot recognise the school. Before anything is counted, school
 and trust names, place names, dates, page numbers and standard boilerplate
