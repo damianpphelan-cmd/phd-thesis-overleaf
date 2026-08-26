@@ -18,7 +18,7 @@ of structured observation recorded what each school does, and an interview
 with its headteacher recorded what the head says it does. I then carried out textual analysis of every
 school's Ofsted inspection report, behaviour policy and website in two ways. A
 prediction model learns, from the visited schools, which words and phrases
-are linked with warmer or stricter schools. A large language model is asked to use a one page rubric to evaluate the document on a 1 to 5 scale. There are three
+are linked with warmer or stricter schools. A large language model is asked to use a one-page rubric to evaluate the document on a 1 to 5 scale. There are three
 findings. First, inspection reports carry a modest signal of how warm a
 school actually is: the prediction model gives a correlation of $\PredWOfsted$, even after removing what a school's intake statistics explain. Second, prediction models read strictness only weakly. The LLM using the rubric gives a correlation of $\RubricSOfstedDec$ after adjusting for pupil intake. The two
 dimensions are written down differently: warmth shows in a report's
@@ -33,8 +33,7 @@ Third, what schools write about themselves reflects, at most, what their heads s
 How warm a school is towards its pupils, and how strictly it runs, are two of
 the things most often said to affect how much progress its pupils make. In this paper I construct
 measures of these two dimensions of school culture based on a structured day of observations at a school. I refer to these 
-two dimensions as warmth and strictness. I then ask how well each dimension can be recovered from public available texts 
-that exist for all 3,332 schools in the country.
+two dimensions as warmth and strictness. I then ask how well each dimension can be recovered from publicly available texts that exist for all 3,332 schools in the country.
 
 The two dimensions have precise meanings here. Warmth is
 the relational quality of a school: whether pupils are known, cared for and
@@ -58,13 +57,9 @@ responsiveness and finds that the combination of both, the authoritative
 style, produces the best child outcomes across cognitive and non-cognitive
 domains. \citet{majumder2015} and \citet{zhang2020} find the same pattern in
 educational attainment, with each dimension carrying an independent effect.
- \citet{pellerin2005} applies the typology to schools classifying each school into the 
-four parenting-style analogues — authoritative, authoritarian, permissive, indifferent — based on their 
-levels of demandingness (academic and behavioural expectations) and responsiveness (support for pupils)
-She find that pupils in authoritative schools have lower dropout and truancy rates.
+ \citet{pellerin2005} applies the typology to schools, classifying each school as authoritative, authoritarian, permissive or indifferent based on its levels of demandingness (academic and behavioural expectations) and responsiveness (support for pupils). She finds that pupils in authoritative schools have lower dropout and truancy rates.
 \citet{gregory2010,gregory2011} use a similar typology and find that more authoritative schools have
-less bullying, less victimisation and lower suspension rates. \citet{gottfredson2005} finds that school 
-type predicts the level of disorder in a school more strongly than the demographics of the pupils. 
+less bullying, less victimisation and lower suspension rates. \citet{gottfredson2005} finds that a school's climate, the clarity and fairness of its rules and how consistently they are enforced, predicts the level of disorder in the school more strongly than the demographics of its pupils. 
 All of these studies rely on surveys of pupils, parents or staff to measure warmth and strictness. 
 This paper measures them through direct observation. 
 
@@ -290,8 +285,7 @@ relationships, wellbeing and teaching, the first of which records how long the h
 This was followed by ten statements on which the
 headteacher rated their own school on a five-point agreement scale (for
 example ``The sanction systems are applied consistently by all staff'' and
-``Pupils feel like their teachers care''); and a
-checklist of ten named behaviour systems (centralised detentions, an
+``Pupils feel like their teachers care''). The final part was a checklist of ten named behaviour systems (centralised detentions, an
 internal exclusion room, a mobile phone ban and so on) recorded as present
 or absent. Two researchers attended every interview, one asking the
 questions and one observing, and both scored the open questions
@@ -342,7 +336,7 @@ points. Both over-represent London (45 per cent of visited schools against
 English as an additional language. Both also lean towards stronger schools:
 25 per cent of visited schools held an Outstanding inspection grade as at
 August 2024 against 15 per cent nationally, and their mean Progress~8 in
-2018/19 was $+0.17$ against $+0.04$. The mismatches on those dimensions is what one would expect from recruiting through headteachers,
+2018/19 was $+0.17$ against $+0.04$. The mismatch on those dimensions is what one would expect from recruiting through headteachers,
 since the schools most likely to agree to take part are those that are
 confident about what a visitor will find, and it has two consequences. The first is that 
 estimates from the visited sample apply most directly to a population that is somewhat stronger than the national average. 
@@ -712,7 +706,7 @@ Fourteen readings also give luck fourteen chances, so the grid is corrected for 
 tests as well. Four readings pass this test: the model's warmth and teaching, and the scheme's 
 strictness and teaching (the strictness scheme at $q = \QGridSOfsted$). 
 
-The predictionmodel's surviving readings are warmth and teaching. It reads observed warmth from a 
+The prediction model's surviving readings are warmth and teaching. It reads observed warmth from a 
 report's wording at $\PredWOfsted$ and observed teaching at $\PredTOfsted$, and both figures are essentially 
 unchanged, or higher, when everything demographics could explain is removed. Strictness is 
 different: no prediction model reads it well. The best attempt reaches $\PredSOfsted$, it beats 
@@ -819,20 +813,34 @@ Beyond that, the two measures have nothing in common that could manufacture agre
 \section{Conclusion}
 \label{sec:p1_conclusion}
 
-Warmth and strictness can both be measured. The chapter's central lesson is that they have to be measured differently, and that the pattern of what works where is itself informative about what each dimension is.
+Warmth and strictness can both be measured by observation and in public text. Warmth is the harder 
+of the two to catch. In person it takes more lessons and more settings to 
+pin down than strictness does. In public text it can be read only by counting. A prediction model 
+finds it spread thinly across an inspection report's everyday wording, in whether the inspector 
+writes about adults attending to pupils or falls back on stock assurances. A marking scheme cannot 
+see it at all, because no single sentence carries it.
 
-Warmth is the harder of the two to catch. In person it takes more lessons and more settings to pin down than strictness does. In public text it can be read only by counting. A prediction model finds it spread thinly across an inspection report's everyday wording, in whether the inspector writes about adults attending to pupils or falls back on stock assurances. A marking scheme cannot see it at all, because no single sentence carries it.
+Strictness is the opposite. In person it is easy to observe reliably. In text it sits in specific claims: whether disruption is rare, whether rules are enforced consistently. Claims defeat word counting, because a report saying that disruption is rare and one saying that it is common use almost the same words. That is why the models read strictness weakly and why their readings did not stand up to the checks. The same property is what the marking scheme exploits. A claim can be asked about: the scheme asks whether the report says conduct is orderly, and the sentence either says so or it does not.
 
-Strictness is the opposite. In person it is easy to observe reliably. In text it lives in specific claims, such as whether disruption is rare and whether rules are enforced consistently. Counting words fails here, because word patterns cannot tell such claims from their opposites, and the models' weak readings did not stand up to the checks. The marking scheme recovers strictness because a claim is something that can be asked for.
+The documents schools write about themselves track what heads say about strictness and staff 
+morale. On warmth they carry no signal detectable at this sample size, either against the observers 
+or against what headteachers say when interviewed. 
 
-The documents schools write about themselves track what heads say about strictness and staff morale. On warmth they carry no signal detectable at this sample size, either against the observers or against the head's private account. The espoused warmth scale is coarse, though, so a strong relation is ruled out but a modest one is not.
+Parents are the one outside source. At national scale their reports of happy, safe children agree with the model, which supports the claim that inspection reports carry a real warmth signal. On the visited schools they agree with the head more than with the observers, so where those two accounts of a school disagree, parents cannot say which one describes it accurately.
 
-Parents are the one outside source. At national scale their reports of happy, safe children agree with the model. On the visited schools they agree with the head more than with the observers. They therefore corroborate the text signal without judging between what schools say and what observers see.
+The practical product is two national measures, each validated against direct observation: 
+a prediction model for warmth (and teaching), and a one-page marking scheme for strictness. 
 
-The practical product is two national measures, each validated against direct observation: a prediction model for warmth
-(and teaching), and a one-page marking scheme for strictness. These become the explanatory variables of the next chapter.
 
-There are six limitations. The first is that each school was visited once, so the day observed may not represent the year. The second is the visit's own reliability, which caps every correlation reported here well below one. The third is that the marking schemes were scored in a single frozen run: their figures are first attempts rather than tuned bests, which protects credibility at some cost in polish. The fourth is that inspection reports are written in different years under different frameworks, a source of noise that cleaning reduces but cannot remove. The fifth is that the schemes were only ever applied by language models, so there is no check that a human reader would apply them the same way; the retest and the second model are the only tests of that. The sixth is that the warmth result depends on how the inspection grade is handled: removing the pre-COVID grade from the validation leaves the correlation at $+0.29$, while removing the grade of the same report that provided the text lowers it to $+0.16$, because that takes out the inspection's verdict as well as its prose.
+There are four limitations that should be noted. The visit's own reliability caps every correlation 
+reported here well below one, so the true relations are likely stronger than the reported ones. 
+Secondly, inspection reports are written in different years under different frameworks, which adds noise 
+that cleaning reduces but cannot remove; noise of this kind pushes correlations towards zero, 
+not away from it.
+
+The third is that each school was visited once. A visit is a 
+snapshot, and a school may have had an unusually calm or an unusually rough day; the scores cannot 
+tell an unusual day from an ordinary one. The final limitation is that the model's warmth reading cannot be fully separated from the inspection's overall verdict. The prose the model reads and the grade the inspection awarded come from the same visit and say related things, so part of what the model reads may be the inspection's judgement of the school rather than its warmth in particular. The checks in the results show that the model reads more than the grade alone. What they cannot show is how much of the rest is warmth, because no comparison can strip out the inspector's verdict without stripping out some of the warmth with it.
 
 \startchapterappendix{2}
 \thispagestyle{plain}
