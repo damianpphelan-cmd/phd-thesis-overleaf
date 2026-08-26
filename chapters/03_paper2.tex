@@ -477,7 +477,7 @@ headteacher could not supply. Two related results are in
 
 \textbf{National extension.} The estimates so far rest on a hundred schools that agreed to be visited. The national test asks whether the associations survive outside that sample, on schools that no one visited (\cref{tab:national_legs}). For \NNationalStrictness{}
 schools with an outcome, some thirty times the visited sample,%
-\footnote{The national sample starts from the 3,332-school panel: 60 schools have no scored inspection report, mostly because they opened too recently to have been inspected; a further 80 have no published Progress~8, mostly because their first cohort has not yet reached GCSEs; 95 are excluded as late-entry schools, the same exclusion the visited sample applies; and 45 lack a control variable. That leaves 3,052.} warmth
+\footnote{The national sample starts from the 3,332-school panel: 60 schools have no scored inspection report, mostly because they opened too recently to have been inspected; a further 80 have no published Progress~8, mostly because their first cohort has not yet reached GCSEs; 95 are excluded as late-entry schools, the same exclusion the visited sample applies; and 45 lack a control variable. That leaves 3,052. \Cref{app:3A:robust} checks whether these omissions could bias the estimates.} warmth
 and teaching are predicted from each school's inspection report by the
 models of the previous chapter, and strictness is read by the one-page
 marking scheme. Every warmth and teaching prediction comes from a model
@@ -763,7 +763,7 @@ difference in outcome noise.
 \section{Robustness in Detail}
 \label{app:3A:robust}
 
-This section walks through the checks summarised with the results: the alternative specifications of \cref{tab:robustness_overall}, the headteacher continuity split, and the two sensitivity measures of \cref{tab:sensitivity_bounds}.
+This section walks through the checks summarised with the results: the alternative specifications of \cref{tab:robustness_overall}, the headteacher continuity split, the two sensitivity measures of \cref{tab:sensitivity_bounds}, and a check on the schools the national sample omits.
 
 \Cref{tab:robustness_overall} reports the primary
 estimate under alternative specifications, all on the primary sample, and
@@ -810,6 +810,12 @@ In the headteacher continuity split reported with the timing checks, the strictn
 The two sensitivity measures reason differently. The first, Oster's $\delta$, reasons from the controls that can be seen. Adding the full control set moves each coefficient by a known amount, and the measure extrapolates: if unobserved confounders behaved like the observed controls, how much of them it would take to drive the coefficient to zero. For warmth the question has a twist. Adding the controls raises the warmth coefficient rather than lowering it, and when the controls push a coefficient up, an extrapolation of this kind can hardly ever drive it to zero, so warmth's large $\delta$ of \OsterDeltaW{} is not in itself evidence of robustness. The informative number is a different one: assume unobservables matter exactly as much as the controls, and the warmth coefficient that survives is \OsterBetaEqualW{}. What no measure of this kind can rule out is a confounder unlike the observed controls, working in the opposite direction to the EAL share. Strictness is the more exposed. Adding the controls lowered its coefficient, the extrapolation continues that movement, and under the equal-importance assumption little of the coefficient survives; its $\delta$ of \OsterDeltaS{} sits just above the conventional benchmark of one.
 
 The second measure, the E-value, asks the question without reference to the controls: how strongly a single unmeasured confounder would have to be associated with both the culture score and progress to account for the whole estimate. The answer is an association of at least \EValW{} in risk-ratio terms for warmth and \EValS{} for strictness. Both measures speak only to omitted variables; neither touches reverse causation. Both are also likelier understatements than overstatements, because measurement error in the culture scores biases the estimated coefficients, and the bounds built on them, towards zero.
+
+One further doubt concerns the national sample itself. The national regressions run on 3,052 of the 3,332 panel schools, and the footnote with the results gives the arithmetic: 60 schools have no scored inspection report, 80 no published Progress~8, 95 are excluded as late-entry schools, and 45 lack a control variable. The doubt is whether the missing 280 differ from the rest in a way that could bias the estimated associations.
+
+They differ in level. The omitted schools are more disadvantaged and weaker than the estimation sample: the uninspected group averages a free-school-meals share of 37 per cent against the sample's 30, and where an outcome is published the omitted groups' mean Progress~8 sits well below zero ($-0.45$ for the uninspected schools, $-0.44$ for the late-entry schools and $-0.27$ for those missing a control, against $+0.01$ in the sample). That is the profile of newly opened schools, schools in transition and university technical colleges, and it bounds the estimates' scope: they describe established mainstream schools.
+
+A difference in level, though, cannot bias an association. Bias would need the relationship between strictness and progress to differ among the omitted schools, and for one group that can be tested directly. The 45 schools dropped only for a missing control have both a strictness band and an outcome, and their raw band--progress slope is $0.29$ (standard error $0.07$), indistinguishable from the estimation sample's $0.23$ ($0.01$) and if anything steeper. For the omissions to inflate the national strictness association, the missing schools would need a weaker relationship than the sample. The one direct test finds the same relationship or a slightly stronger one, so the exclusions read as mildly conservative rather than flattering.
 
 \section{Additional Tables}
 \label{app:3A:tables}
