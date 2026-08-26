@@ -888,8 +888,8 @@ respond, and the typical school's figure rests on about 120 replies, roughly one
 The second is a timing issue. Responses are taken over several years, so at some schools the 
 parents' answers describe an earlier version of the school than the one the culture data describe.
 
-The main test uses the prediction model at national scale. The warmth model was fitted on the 
-visited schools alone, about a hundred of them. That leaves \PVPredWarmthN{} schools the model 
+The main test uses the prediction model for all schools. The warmth model was fitted on the 
+visited schools alone. That leaves \PVPredWarmthN{} schools the model 
 has never seen. For each of these, the model reads the school's inspection report and turns it 
 into a predicted warmth score. Those predictions can then be set against what parents say. 
 Across the \PVPredWarmthN{} schools, predicted warmth and parent-reported warmth correlate 
@@ -914,16 +914,18 @@ If the grade were all the model reads, then
 comparing schools with the same grade should destroy the correlation. 
 Restricting to the 99 schools with a pre-COVID grade leaves the held-out warmth correlation 
 at $+0.32$, essentially the same as its full-sample value of $+0.33$. Comparing schools with the 
-same grade moves it only to $+0.29$. Teaching behaves the same way. The model is not simply reading back the school's old grade. \Cref{sec:p1_app_parents} adds a harsher version of this check, together with what the visited schools show and a test that the parents' answers do not reach the model through the text. 
+same grade moves it only to $+0.29$. Teaching behaves the same way. The model is not simply 
+reading back the school's old grade. \Cref{sec:p1_app_parents} adds a harsher version of this 
+check, together with what the visited schools show and a check on one loophole: some reports 
+quote the Parent View survey, so the model could in principle be reading the parents' answers 
+rather than independently agreeing with them. 
 
-The two measures also have nothing in common that could manufacture agreement. Parents 
-answer from their child's daily experience. The model reads an inspector's prose. No shared 
-method, no shared text, no shared respondent connects them, so when two sources this different 
-agree, the agreement has to come from the school itself. One reservation remains. A school 
-that is good in general tends to have both a warmer-reading report and happier parents, so 
+The wider point is that the two measures, the parents' survey answers and the model's reading of 
+the report, share nothing that could make them agree for any reason other than the school. 
+There is a final point to consider though.
+A school that is good in general tends to have both a warmer-reading report and happier parents, so 
 part of the agreement may reflect general quality rather than warmth in particular. The 
-agreement therefore stands as corroboration rather than proof. Schools whose inspection 
-reports read warmer are schools whose parents report happier, safer children.
+agreement therefore stands as corroboration rather than proof. 
 
 \section{Conclusion}
 \label{sec:p1_conclusion}
@@ -935,23 +937,42 @@ finds it spread thinly across an inspection report's everyday wording, in whethe
 writes about adults attending to pupils or falls back on stock assurances. A marking scheme cannot 
 see it at all, because no single sentence carries it.
 
-Strictness is the opposite. In person it is easy to observe reliably. In text it sits in specific claims: whether disruption is rare, whether rules are enforced consistently. Claims defeat word counting, because a report saying that disruption is rare and one saying that it is common use almost the same words. That is why the models read strictness weakly and why their readings did not stand up to the checks. The same property is what the marking scheme exploits. A claim can be asked about: the scheme asks whether the report says conduct is orderly, and the sentence either says so or it does not.
+Strictness is the opposite. In person it is easy to observe reliably. In text it sits in specific 
+claims: whether disruption is rare, whether rules are enforced consistently. Checking claims is necessary 
+because a report saying that disruption is rare and one saying that it is common use 
+almost the same words. That is why the prediction model reads strictness weakly but the marking scheme 
+does better.
 
 The documents schools write about themselves track what heads say about strictness and staff 
-morale. On warmth they carry no signal detectable at this sample size, either against the observers or against what headteachers say when interviewed. The split is the one the economics of communication predicts: the claims that can be checked are the ones that carry information. 
+morale. On warmth they carry no signal detectable at this sample size, either against the 
+observers or against what headteachers say when interviewed. The split is the one the economics 
+of communication predicts: the claims that can be checked are the ones that carry information. 
 
-Parents are the one outside source. At national scale their reports of happy, safe children agree with the model, which supports the claim that inspection reports carry a real warmth signal. On the visited schools they agree with the head more than with the observers, so where those two accounts of a school disagree, parents cannot say which one describes it accurately.
+The parent surveys provide a useful check. At the national level their reports of happy, safe children 
+agree with the model, which supports the claim that inspection reports carry a real warmth signal. 
+On the visited schools they agree with the head more than with the observers.
 
-The practical product is two national measures, each validated against direct observation: 
-a prediction model for warmth (and teaching), and a one-page marking scheme for strictness. 
+The useful outcome is that we now have three national measures, each validated against 
+direct observation: prediction models for warmth and teaching, and a one-page marking scheme 
+for strictness. These will be used in the following chapter to investigate the associations between
+warmth, strictness, teaching and pupil progress.
 
-There are four limitations. The first is that the visit's own reliability caps every correlation reported here well below one, so the true relations are likely stronger than the reported ones. The second is that inspection reports are written in different years under different frameworks, which adds noise 
-that cleaning reduces but cannot remove; noise of this kind pushes correlations towards zero, 
-not away from it.
+There are four limitations. The first is that the visit's own reliability 
+caps every correlation reported here below one, so the true relations are likely stronger than 
+the reported ones. The second is that inspection reports are written in different years under 
+different inspection frameworks, which adds noise that cleaning reduces but cannot remove. 
+This kind of noise pushes correlations towards zero.
 
-The third is that each school was visited once. A visit is a 
-snapshot, and a school may have had an unusually calm or an unusually rough day; the scores cannot 
-tell an unusual day from an ordinary one. The final limitation is that the model's warmth reading cannot be fully separated from the inspection's overall verdict. The prose the model reads and the grade the inspection awarded come from the same visit and say related things, so part of what the model reads may be the inspection's judgement of the school rather than its warmth in particular. The checks in the results show that the model reads more than the grade alone. What they cannot show is how much of the rest is warmth, because no comparison can strip out the inspector's verdict without stripping out some of the warmth with it.
+The third limitation is that each school was visited once. A visit is a 
+snapshot, and a school may have had an unusually calm or an unusually rough day; the scores 
+cannot tell an unusual day from an ordinary one. The final limitation is that the model's 
+warmth reading cannot be fully separated from the inspection's overall verdict. The prose 
+the model reads and the grade the inspection awarded come from the same visit and say 
+related things, so part of what the model reads may be the inspection's judgement of the 
+school rather than its warmth in particular. The checks in the results show that the model 
+reads more than the grade alone. What they cannot show is how much of the rest is warmth, 
+because no comparison can strip out the inspector's verdict without stripping out some of 
+the warmth with it.
 
 \startchapterappendix{2}
 \thispagestyle{plain}
