@@ -577,59 +577,15 @@ and about 11~per~cent in the visited sample. Most of the association
 reflects progress within subjects. The entry channel carries little of it.
 
 What the extension still does not provide
-is identification: a
-text-derived score is open to the same omitted-variable concerns as an observed one, and the sensitivity bounds
-of \cref{tab:sensitivity_bounds} remain the measure of how much
-confounding the visited estimates could bear. Consistent with the
+is identification: a text-derived score is open to the same omitted-variable concerns as an observed one, and the sensitivity analysis below remains the measure of how strong a confounder would have to be to overturn the visited estimates. Consistent with the
 previous chapter's measurement findings, the schools' own documents
 supply no rival signal: behaviour-policy and website scores are not
 positively associated with progress in any specification
 (\cref{tab:llm_p8_matrix}).
 
-\textbf{Robustness.} \Cref{tab:robustness_overall} reports the primary
-estimate under alternative specifications, all on the primary sample, and
-each of them addresses a particular doubt. The grade control might be doing
-the work, or absorbing part of it. The specification ladder
-(\cref{tab:spec_ladder}) already varies its treatment. Dropping the control
-altogether leaves $0.153$ and $0.097$ ($n = 100$).
+\textbf{Robustness.} \Cref{tab:robustness_overall} puts the primary estimate through eight checks, each aimed at a particular doubt: that the grade control is doing the work; that a result found in a two-year average fails in a single year; that strict schools shed pupils with social, emotional and mental-health needs and gain measured progress that way; that the result is a property of Progress~8 rather than of attainment; that it leans on the lessons rated by one researcher rather than two; that it is a London artefact; or that it hangs on a single school. \Cref{app:3A:robust} walks through the checks one by one. Every check but two leaves both coefficients significant at the five per cent level or better. The exceptions are both for strictness: the Attainment~8 English component, and the subset of schools where every lesson was double-rated.
 
 \input{tables/tab_robustness_overall}
-
-Averaging two cohorts might smooth over a result that holds in
-only one of them. The single 2023/24 outcome year gives $0.155$ and $0.105$.
-
-Strict schools might have fewer pupils with social, emotional and
-mental-health needs, and gain in measured progress by that route. Adding the
-2015/16 baseline share of such pupils, which was measured before any of the
-culture was observed, gives $0.149$ and $0.090$ ($n = 94$), and the sorting
-channel accounts for under a tenth of the strictness association
-(\cref{tab:semh_mechanism}).
-
-Progress~8 might be peculiar. On the 2024/25 cohort's Attainment~8, which does not condition on intake, both dimensions remain significant at the 5 per cent level on the total, at $1.40$ and $1.32$ points per standard deviation of the score. Attainment~8 sums grades over ten weighted subject slots, so these coefficients are roughly a seventh of a grade per subject. On the English component alone warmth remains significant ($0.35$) while strictness does not ($0.16$, $p = 0.12$). The Key Stage~2 control in
-these regressions is the school-level mean for the Progress~8 cohorts,
-since the 2024/25 cohort has no Key Stage~2 results of its own.
-
-The observed scores might reflect something about the visits themselves. About
-a third of the observed lessons were rated by one researcher rather than
-two, those lessons were scored a little lower, and the share of such lessons
-in a school's visit correlates $-0.25$ with its warmth score. Adding that
-share as a control moves nothing ($0.150$ and $0.105$; the share itself
-has a coefficient of $0.025$, $p = 0.76$).
-
-The warmth result might be a London artefact, since
-the sample over-represents London and the EAL share, through which the
-warmth association works, is concentrated there. Adding a London indicator built from the schools register moves warmth only to $0.152$ ($p = 0.001$) and strictness to $0.096$, and the indicator itself is not significant ($0.113$, $p = 0.33$), so the association is not a London artefact.
-
-Restricting the sample to the 64 schools in which every lesson was rated by at least two researchers gives $0.189$ for warmth
-($p = 0.001$) and $0.071$ for strictness ($p = 0.15$). The warmth estimate is
-larger on that subset and the strictness estimate smaller, with a standard
-error a quarter larger on two-thirds of the sample, so the strictness result
-is the one that depends on the full sample.
-
-No single school carries the visited estimates: dropping each school in turn moves the warmth coefficient by at most $0.019$ and the strictness coefficient by at most $0.017$, and no omission moves either across conventional significance.
-
-All but the English-bucket and the double-rated strictness cells leave
-both coefficients significant at the five per cent level or better.
 
 Two further checks concern timing and the headteacher. Within-school
 Progress~8 is stable across years: the mean within-school standard
@@ -641,35 +597,15 @@ time as the fieldwork. It gives coefficients within $0.04$ of their
 real-Progress~8 counterparts on the overall measure (\cref{tab:p8_proxy}),
 and the contemporaneous strictness coefficient is if anything larger. That observation is consistent with the timing argument, but a same-year association is equally open to results shaping the school's orderliness, so it is not counted as evidence on its own.
 
-A placebo outcome sharpens the timing question. The placebo regresses
-pre-pandemic Progress~8 (2018/19) on the culture scores observed in
-2023--25, with era controls where they exist. It gives $+0.09$ for warmth
-and $+0.08$ for strictness on the 93 schools with both outcomes, against
-$+0.16$ and $+0.10$ contemporaneously on the same schools
-(\cref{tab:timing_checks}). Neither placebo coefficient is significant. Culture as observed today does relate to results from before the pandemic, which is what a persistent school trait, benign or confounding, would produce. The contemporaneous association is larger. For warmth the placebo coefficient is about six-tenths of the contemporaneous one, and for strictness about four-fifths. However, a formal test does not reject equality of the placebo and contemporaneous coefficients ($p = 0.17$ for warmth and $p = 0.62$ for strictness with era controls, $0.09$ and $0.57$ with current controls). The placebo therefore neither separates timing from persistence nor collapses the distinction. It leans the way the timing argument predicts, most visibly for warmth, and no further.
+A placebo outcome sharpens the timing question. If culture is a persistent trait of a school, the culture observed in 2023--25 should relate even to results from long before; if the association belongs to the recent years alone, it should not. The test regresses the school's pre-pandemic Progress~8, from 2018/19, on the culture scores observed in 2023--25, with that era's controls where they exist. The old results are related, but more weakly: $+0.09$ for warmth and $+0.08$ for strictness on the 93 schools with both outcomes, against $+0.16$ and $+0.10$ for current results on the same schools, and neither placebo coefficient is significant.
 
-A stricter version of the timing check restricts the sample to the 22 schools whose headteacher, named in the most recent inspection report, is confirmed still in post in July 2026. There the culture observed is most plausibly the culture the outcome cohorts had. The strictness point estimates stay at or above the full-sample values, and the warmth point estimate falls close to zero. But the standard errors are three to seven times the full-sample ones, so the subsample is too small to be read directionally either way. \Cref{tab:timing_checks} collects the placebo and continuity estimates with their standard errors.
+The informative comparison is whether today's culture fits today's results better than it fits the past's. The point estimates say it does, most visibly for warmth, where the old association is about six-tenths of the current one. A formal test, though, cannot reject that the old and current associations are equal ($p = 0.17$ for warmth and $0.62$ for strictness with era controls, $0.09$ and $0.57$ with current ones). The placebo leans the way the timing argument predicts without settling it.
+
+A stricter version of the timing check keeps only the 22 schools whose headteacher, named in the most recent inspection report, is confirmed still in post in July 2026; there the culture observed is most plausibly the culture the outcome cohorts had. Its standard errors are three to seven times the full-sample ones, so the subsample can support no conclusion in either direction. \Cref{tab:timing_checks} collects the placebo and continuity estimates with their standard errors.
 
 \input{tables/tab_timing_checks}
 
-Finally, two standard sensitivity measures ask how strong unmeasured
-confounding would have to be to overturn these estimates
-(\cref{tab:sensitivity_bounds}). The first is Oster's $\delta$, which
-compares selection on unobservables with selection on the full control
-set. For warmth the observed controls raise the coefficient rather than
-lower it. When selection runs that way a large $\delta$, here
-\OsterDeltaW{}, is easy to obtain and is not in itself evidence of
-robustness. The informative statements for warmth are the bound and the E-value: when unobservables are assumed to matter exactly as much as the controls, the coefficient that survives is \OsterBetaEqualW{}. What the convention cannot rule out is a confounder patterned unlike the observed controls and working in the opposite direction to the EAL share. The
-strictness estimate is the more exposed. Its $\delta$ of \OsterDeltaS{}
-sits just above the conventional benchmark of one, and its coefficient
-under the equal-selection assumption is close to zero, because the
-controls already absorb part of the raw association and the extrapolation
-continues that movement. The second measure is the E-value. A confounder would need an
-association of at least \EValW{} in risk-ratio terms with both warmth and
-progress, and \EValS{} for strictness, to explain the estimates away. Both measures address omitted variables only, and neither touches reverse causality. They are also plausibly conservative: as the
-measurement-error argument in the data section implies, the true
-coefficients, and the bounds computed from them, are likelier larger than
-smaller.
+Finally, two standard measures ask how strong an unmeasured confounder would have to be to overturn these estimates (\cref{tab:sensitivity_bounds}). By the simpler of the two, the E-value, a single confounder would need an association of at least \EValW{} in risk-ratio terms with both warmth and progress, and \EValS{} for strictness, to account for the estimates on its own. The other, Oster's $\delta$, reaches a similar verdict for strictness and a flattering one for warmth, because the controls raise the warmth coefficient rather than lower it, and a measure built on extrapolating the controls' behaviour rewards that pattern; \cref{app:3A:robust} sets out both measures in full. Neither measure touches reverse causation, and both are likelier understatements, because measurement error biases the coefficients they start from towards zero.
 
 \textbf{Exploratory: what else websites reveal.} The same public record carries identity signals beyond culture. The previous chapter's identity measures, read from school
 websites and, for faith prominence, validated against the official
@@ -873,6 +809,59 @@ difference in outcome noise.
 \input{tables/tab_p8_component_stability}
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\clearpage
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\section{Robustness in Detail}
+\label{app:3A:robust}
+
+This section walks through the checks summarised with the results: the alternative specifications of \cref{tab:robustness_overall}, the head-teacher continuity split, and the two sensitivity measures of \cref{tab:sensitivity_bounds}.
+
+\Cref{tab:robustness_overall} reports the primary
+estimate under alternative specifications, all on the primary sample, and
+each of them addresses a particular doubt. The grade control might be doing
+the work, or absorbing part of it. The specification ladder
+(\cref{tab:spec_ladder}) already varies its treatment. Dropping the control
+altogether leaves $0.153$ and $0.097$ ($n = 100$).
+
+Averaging two cohorts might smooth over a result that holds in
+only one of them. The single 2023/24 outcome year gives $0.155$ and $0.105$.
+
+Strict schools might have fewer pupils with social, emotional and
+mental-health needs, and gain in measured progress by that route. Adding the
+2015/16 baseline share of such pupils, which was measured before any of the
+culture was observed, gives $0.149$ and $0.090$ ($n = 94$), and the sorting
+channel accounts for under a tenth of the strictness association
+(\cref{tab:semh_mechanism}).
+
+Progress~8 might be peculiar. On the 2024/25 cohort's Attainment~8, which does not condition on intake, both dimensions remain significant at the 5 per cent level on the total, at $1.40$ and $1.32$ points per standard deviation of the score. Attainment~8 sums grades over ten weighted subject slots, so these coefficients are roughly a seventh of a grade per subject. On the English component alone warmth remains significant ($0.35$) while strictness does not ($0.16$, $p = 0.12$). The Key Stage~2 control in
+these regressions is the school-level mean for the Progress~8 cohorts,
+since the 2024/25 cohort has no Key Stage~2 results of its own.
+
+The observed scores might reflect something about the visits themselves. About
+a third of the observed lessons were rated by one researcher rather than
+two, those lessons were scored a little lower, and the share of such lessons
+in a school's visit correlates $-0.25$ with its warmth score. Adding that
+share as a control moves nothing ($0.150$ and $0.105$; the share itself
+has a coefficient of $0.025$, $p = 0.76$).
+
+The warmth result might be a London artefact, since
+the sample over-represents London and the EAL share, through which the
+warmth association works, is concentrated there. Adding a London indicator built from the schools register moves warmth only to $0.152$ ($p = 0.001$) and strictness to $0.096$, and the indicator itself is not significant ($0.113$, $p = 0.33$), so the association is not a London artefact.
+
+Restricting the sample to the 64 schools in which every lesson was rated by at least two researchers gives $0.189$ for warmth
+($p = 0.001$) and $0.071$ for strictness ($p = 0.15$). The warmth estimate is
+larger on that subset and the strictness estimate smaller, with a standard
+error a quarter larger on two-thirds of the sample, so the strictness result
+is the one that depends on the full sample.
+
+No single school carries the visited estimates: dropping each school in turn moves the warmth coefficient by at most $0.019$ and the strictness coefficient by at most $0.017$, and no omission moves either across conventional significance.
+
+In the head-teacher continuity split reported with the timing checks, the strictness point estimates stay at or above the full-sample values and the warmth point estimate falls close to zero, but the standard errors are three to seven times the full-sample ones, so neither movement is informative.
+
+The two sensitivity measures reason differently. The first, Oster's $\delta$, reasons from the controls that can be seen. Adding the full control set moves each coefficient by a known amount, and the measure extrapolates: if unobserved confounders behaved like the observed controls, how much of them would it take to drive the coefficient to zero. For warmth the question has a twist. Adding the controls raises the warmth coefficient rather than lowering it, and when the controls push a coefficient up, an extrapolation of this kind can hardly ever drive it to zero, so warmth's large $\delta$ of \OsterDeltaW{} is not in itself evidence of robustness. The informative number is a different one: assume unobservables matter exactly as much as the controls, and the warmth coefficient that survives is \OsterBetaEqualW{}. What no measure of this kind can rule out is a confounder unlike the observed controls, working in the opposite direction to the EAL share. Strictness is the more exposed. Adding the controls lowered its coefficient, the extrapolation continues that movement, and under the equal-importance assumption little of the coefficient survives; its $\delta$ of \OsterDeltaS{} sits just above the conventional benchmark of one.
+
+The second measure, the E-value, asks the question without reference to the controls: how strongly a single unmeasured confounder would have to be associated with both the culture score and progress to account for the whole estimate. The answer is an association of at least \EValW{} in risk-ratio terms for warmth and \EValS{} for strictness. Both measures speak only to omitted variables; neither touches reverse causation. Both are also likelier understatements than overstatements, because measurement error in the culture scores biases the estimated coefficients, and the bounds built on them, towards zero.
+
 \section{Additional Tables}
 \label{app:3A:tables}
 
