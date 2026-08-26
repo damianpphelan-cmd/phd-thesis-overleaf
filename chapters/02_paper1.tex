@@ -15,15 +15,23 @@ widely thought to affect how much progress pupils make. This paper measures both
 how much of each can be extracted from the documents that every school
 produces. In \NTierOne{} schools I collected a gold-standard measure: a day
 of structured observation recorded what each school does, and an interview
-with its headteacher recorded what the head says it does. I then carried out textual analysis of every
-school's Ofsted inspection report, behaviour policy and website in two ways. A
-prediction model learns, from the visited schools, which words and phrases
-are linked with warmer or stricter schools. A large language model is asked to use a one-page rubric to evaluate the document on a 1 to 5 scale. There are three
-findings. First, inspection reports carry a modest signal of how warm a
-school actually is: the prediction model gives a correlation of $\PredWOfsted$, even after removing what a school's intake statistics explain. Second, prediction models read strictness only weakly. The LLM using the rubric gives a correlation of $\RubricSOfstedDec$ after adjusting for pupil intake. The two
-dimensions are written down differently: warmth shows in a report's
-everyday wording, strictness in specific claims that have to be asked for.
-Third, what schools write about themselves reflects, at most, what their heads say: their strictness and staff-morale language tracks what the headteacher says when interviewed, their warmth language tracks nothing, and neither tracks what observers see. Of the \TopQN{} schools whose heads placed them in the top quarter for warmth, only \TopQWMatch{} were there when observed. Chance alone would put six or seven there; two noisy readings of the same quantity would put about \TopQExpectedSameW{}.
+with its headteacher recorded what the head says it does. I then carried out textual analysis of 
+every school's Ofsted inspection report, behaviour policy and website using two different approaches. 
+Firstly, a prediction model learns, from the visited schools, which words and phrases
+are linked with warmer or stricter schools.  Secondly, a large language model (LLM) is asked to 
+use a one-page rubric to evaluate the document on each dimension on a 1 to 5 scale. 
+There are three findings. First, inspection reports carry a modest signal of how warm a
+school actually is: the prediction model gives a correlation of $\PredWOfsted$, even after 
+removing what a school's intake statistics explain. Second, we see a similar modest correlation of
+of $\RubricSOfstedDec$ after adjusting for pupil intake for strictness measured by the LLM using 
+the rubric. Different approaches are required because the two dimensions are written down 
+differently: warmth shows in a report's everyday wording, strictness in specific claims that 
+have to be asked for.
+Third, what schools write about themselves reflects, at most, what their headteachers say: their 
+strictness and staff-morale language tracks what the headteacher says when interviewed, 
+their warmth language tracks nothing, and neither tracks what observers see. Of 
+the \TopQN{} schools whose heads placed them in the top quarter for warmth, 
+only \TopQWMatch{} were there when observed. Chance alone would put six or seven there.
 \end{chapterabstract}
 
 % ---------------------------------------------------------------
