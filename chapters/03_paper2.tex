@@ -214,11 +214,7 @@ strictness. This means that ``a strict school'' here is a school whose
 lessons are orderly on average, and not one in which every lesson is. The
 second is that the scores carry measurement error, with a reliability
 of about 0.7. For a score entered on its own, error of this kind biases
-the coefficient towards zero, so those estimates are conservative. When
-the two scores enter together the direction of the bias on each is not
-guaranteed, because error in one can contaminate the other's coefficient;
-what the noise threatens is the exact split between the two dimensions
-rather than the overall association. About a third
+the coefficient towards zero, so those estimates are conservative. Entered together, the two scores behave less simply. Warmth and strictness are correlated, so the regression's job is to decide how much of the joint association belongs to each. Noise interferes with exactly that decision: when one score is measured with more error than the other, some of its association is credited to the other score instead. The noise therefore threatens the split between the two coefficients, not the finding that culture and progress go together. About a third
 of the observed lessons were rated by one researcher rather than two, and the
 robustness section checks that the estimates do not depend on those schools.
 
@@ -358,11 +354,7 @@ the 2022/23 and 2023/24 cohorts experienced. This is an assumption, and it is no
 circumstantial, and the pieces of it point the same way. A school's
 Progress~8, and the structural characteristics that shape it, are stable
 across years relative to the differences between schools, which is
-consistent with stable culture without establishing it. The one cohort measured at the same time as the fieldwork gives coefficients close to the primary ones. That check is reported with the robustness
-results. And in the national extension, old reports predict progress as well as recent ones:
-the interaction of the strictness score with report age is small
-($-0.003$ per year of report age, $p = 0.09$, on the marking-scheme
-bands), consistent with a signal that decays only slowly. The point estimate does indicate decay, and I read it as such. Because the 2019 grade is held constant, the comparison is between
+consistent with stable culture without establishing it. The 2024/25 cohort, the one measured at the same time as the fieldwork, gives coefficients close to the primary ones on its pseudo-progress measure. That check is reported with the robustness results. And in the national extension, old inspection reports predict progress almost as well as recent ones. Some schools were last inspected many years ago, so their reports describe an older version of the school; if culture drifted quickly, those reports should predict today's progress much worse than fresh ones do. They predict only slightly worse: each additional year since a report was written weakens the association between strictness and progress by about $0.003$ ($p = 0.09$). The fade is real, and I read it as such, but it is slow. Because the 2019 grade is held constant, the comparison is between
 schools that the inspectorate regarded alike before the outcome cohorts
 arrived. A school's reputation is therefore partly absorbed, together with
 whatever staff and families that reputation draws in. Finally, because the sample excludes schools that enrol at 13 or 14, no
@@ -420,14 +412,7 @@ well-above-average school from an average one.
 Each dimension, entered on its own, has a coefficient of about $0.2$
 (\cref{tab:univariate_ws}): $0.219$ for warmth and $0.199$ for strictness.
 When the two enter jointly, warmth keeps two-thirds of its solo coefficient
-and strictness about half. The two dimensions therefore share some variance,
-as their correlation of $\CorrWarmthStrictnessEnacted$ implies, but each
-contains substantial information that the other does not. If there were a
-single scale running from warm to strict, one coefficient would absorb the
-other. The scored correlation carries shared-rater and shared-occasion
-variance, though. The previous chapter's cross-observer estimate of the
-trait correlation is about \CorrWSTrue{}, which if anything strengthens the
-case for treating the two as separate constructs.
+and strictness about half. The two scores overlap, as their correlation of $\CorrWarmthStrictnessEnacted$ implies, but each keeps a substantial association of its own. If there were a single scale running from warm to strict, one coefficient would absorb the other. That correlation, though, partly reflects how the scores were made: the same observers scored both dimensions at the same school on the same day, which pushes the two scores together. The previous chapter's estimate of the correlation between the dimensions themselves, with that pushed-together part stripped out, is about \CorrWSTrue{}, so the case for treating them as two separate things is stronger still.
 
 \input{tables/tab_univariate_ws}
 
@@ -445,8 +430,7 @@ ignores intake composition hides the warmth association. The warmth result
 is therefore a conditional one. It appears when schools are compared with
 others of similar intake, which is the comparison the specification is built to make. This conditionality matters when reading the sensitivity analysis below. The lower warmth
 scores of high-EAL schools could partly reflect how observers read warmth
-in different contexts rather than the schools themselves. The adjustment
-is the same either way, but the reading differs.
+in different contexts rather than the schools themselves. The regression handles both cases identically. The difference is in what the adjusted warmth association means: a fact about the schools if the scores are right, and partly a correction for how the observers scored if they are not.
 
 At the level of the components, warmth is significant for both subjects
 (English $0.162$, $p < 0.001$; Maths $0.135$, $p = 0.011$), while
@@ -454,13 +438,7 @@ strictness falls short of significance in each taken alone (English
 $0.071$, $p = 0.11$; Maths $0.076$, $p = 0.09$). Overall Progress~8 is not
 the sum of these two components: it also counts the EBacc and Open slots,
 and it is there that the strictness association is clearest (EBacc $0.138$,
-$p = 0.008$; Open $0.119$, $p = 0.035$). Those two components mix progress
-with the school's entry decisions, so part of the strictness headline's
-significance comes from the components where entry policy is in play. The
-entry-rate analysis, reported with the national extension, suggests the
-entry channel itself is small. Only the national data can show the first
-stage, since at this sample size strictness does not significantly predict
-EBacc entry in the visited schools. The full component
+$p = 0.008$; Open $0.119$, $p = 0.035$). Those two components mix progress with the school's entry decisions, so part of the strictness headline could come from stricter schools entering pupils for different subjects rather than from their pupils progressing more. Testing that route means first showing that stricter schools do enter pupils differently, and the visited sample is too small to show it: there, strictness does not significantly predict EBacc entry. The national panel is large enough, and the entry analysis reported with the national extension finds the route to be small. The full component
 estimates and the entry analysis are in \cref{app:3A:tables}.
 
 \textbf{Teaching quality does not account for it.} \Cref{tab:stages23_trio}
@@ -517,12 +495,7 @@ The national extension below repeats this test at thirty times the sample and re
   \label{fig:quadrant_ws}
 \end{figure}
 
-\Cref{tab:subscores} breaks the observed scores into their five
-observational blocks. Item-level associations, corrected for multiple
-testing, are in \cref{tab:items_fdr}. The association runs through warmth
-outside lessons and orderly conduct within them. Out-of-lesson warmth
-($0.111$, $p = 0.006$) and in-lesson strictness ($0.115$, $p = 0.008$)
-survive joint entry, and their counterparts do not. This suggests that the relational quality that goes with progress is the one visible in corridors and at break, and that the order that goes with it is the one visible in lessons. The sub-scores are strongly collinear, however, and the ranking of near-collinear sub-scores is fragile at this sample size.
+\Cref{tab:subscores} breaks the observed scores into their five blocks: warmth in lessons, warmth outside them, strictness in lessons, strictness outside them, and teaching. Item-level associations, corrected for multiple testing, are in \cref{tab:items_fdr}. Entered together, two of the five keep their associations: warmth outside lessons ($0.111$, $p = 0.006$) and strictness inside them ($0.115$, $p = 0.008$). Their counterparts fade. Read literally, the relational quality that goes with progress is the one visible in corridors and at break, and the order that goes with it is the one visible in lessons. The five blocks overlap heavily, though. When measures overlap, small amounts of noise decide which of them the regression credits, so the ranking is fragile at this sample size and the literal reading should be held loosely.
 
 
 \textbf{Espoused warmth does not predict progress.} Substituting the
@@ -534,15 +507,11 @@ predicts progress no better than chance. What they say about behaviour
 systems carries some signal. This is the pattern that the previous
 chapter's measurement predicts, since espoused warmth was shown there to be
 only weakly related to observed warmth, and espoused strictness more
-closely related to observed strictness. Part of the warmth null may be
-range compression rather than pure absence of information. Heads overstate
-warmth against the observed scores by \GapWarmth{} points on average,
-against \GapStrictness{} for strictness, so the espoused warmth scores
-bunch near the top of their scale. The result is also a check on the
+closely related to observed strictness. Part of the warmth result may reflect the shape of the espoused scale rather than a pure absence of information. Heads overstate warmth against the observed scores by \GapWarmth{} points on average, against \GapStrictness{} for strictness, so the espoused warmth scores bunch near the top of their scale, and scores that bunch have little variation left to predict with. The result is also a check on the
 observed measures as much as on the espoused ones. Had the espoused scores predicted progress as well as
 the observed ones, the visits would have added nothing that an hour with the
 headteacher could not supply. Two related results are in
-\cref{app:3A:tables}. The gap between a school's espoused and observed scores predicts nothing beyond the observed level. And the pattern is not confined to what schools say about themselves: on the national panel introduced below, parents' survey responses on their children's happiness and safety are positively associated with progress, at $0.15$ per standard deviation. Satisfaction and results are jointly determined, though, so this is corroboration rather than an independent test.
+\cref{app:3A:tables}. A second question is whether the size of a head's overstatement matters in itself: whether a school whose head claims much more than the observers saw does worse, or better, than one whose head claims only what they saw. It does not. Once the observed score is in the regression, the gap between the espoused and observed scores predicts nothing. And the pattern is not confined to what schools say about themselves: on the national panel introduced below, parents' survey responses on their children's happiness and safety are positively associated with progress, at $0.15$ per standard deviation. Satisfaction and results are jointly determined, though, so this is corroboration rather than an independent test.
 
 \input{tables/tab_enacted_espoused}
 
@@ -553,8 +522,7 @@ models of the previous chapter, and strictness is read by the one-page
 marking scheme. Every warmth and teaching prediction comes from a model
 that never saw the school. All three coefficients are positive and precise:
 $\NatW$ per standard deviation for warmth, $\NatT$ for teaching and
-$\NatS$ for strictness, each with $p < 0.001$. The three coefficients are not directly comparable with one another, because the instruments
-carry different freight, meaning content beyond the target dimension.
+$\NatS$ for strictness, each with $p < 0.001$. The three coefficients cannot be ranked against one another. Each is the association for a different score, and the three scores are not equally good at their jobs: each captures a different share of its dimension, and each picks up a different amount of everything else a report says about a school. A larger coefficient can therefore mean a stronger association, or just a score that carries more of the report.
 
 \input{tables/tab_national_legs}
 
@@ -568,12 +536,9 @@ published before September 2022, before either outcome cohort's results
 existed, the coefficients are $\NatWPre$, $\NatTPre$
 and $\NatSPre$, essentially their full-sample values, so reports that
 could have been written in knowledge of the outcomes are not driving the
-associations. The third, for the two model-based estimates, concerns the training uncertainty.
-The warmth and teaching scores are estimated quantities, so their
-regressions were bootstrapped over the training fit: the 95 per cent
-intervals are [$\NatWBootLo$, $\NatWBootHi$] for warmth and [$\NatTBootLo$, $\NatTBootHi$] for teaching, both away from zero. The fourth concerns sample dependence: excluding the visited schools from the national sample raises the warmth coefficient (to $+0.136$) and the teaching coefficient (to $+0.122$), so neither association is an artefact of the schools that agreed to take part.
+associations. The third concerns the models' own estimation error. The warmth and teaching scores are themselves the output of a fitted model, so they carry that model's uncertainty as well as the regression's. Refitting the model many times on resampled training schools and rerunning the regression each time gives 95 per cent intervals of [$\NatWBootLo$, $\NatWBootHi$] for warmth and [$\NatTBootLo$, $\NatTBootHi$] for teaching, both away from zero. The fourth concerns sample dependence: excluding the visited schools from the national sample raises the warmth coefficient (to $+0.136$) and the teaching coefficient (to $+0.122$), so neither association is an artefact of the schools that agreed to take part.
 
-The per-standard-deviation strictness coefficient does not lean on treating the five bands as equally spaced: entered as dummies around band 3, the bands trace a monotone gradient ($-0.27$, $-0.05$, $+0.15$, $+0.43$; \cref{tab:band_dummies}).
+The strictness result does not depend on treating the five bands as equally spaced steps. Comparing each band directly with band 3, progress rises band by band ($-0.27$, $-0.05$, $+0.15$, $+0.43$; \cref{tab:band_dummies}).
 
 \begin{figure}[htbp]
   \centering
@@ -584,40 +549,15 @@ The per-standard-deviation strictness coefficient does not lean on treating the 
   \label{fig:national_bands}
 \end{figure}
 
-The three numbers should be read against what each instrument (measurement
-instrument, never an instrumental variable) is built to carry rather than
-against one another. The benchmark for each estimate is the univariate
-visited coefficient (the text-derived scores enter alone) scaled by the
-instrument's held-out correlation. These benchmarks are approximate. The
-held-out correlations are estimated on about a hundred range-restricted
-schools, so each carries a sampling error of roughly $0.1$. A proxy
-capturing about a third of observed warmth should show about a third of
-the visited warmth-only coefficient of $0.219$, roughly $0.07$, and the
-estimate of $\NatW$ is consistent with that benchmark. Teaching sits about
-a quarter above its benchmark ($0.28 \times 0.206 \approx 0.06$ against
-$\NatT$). The strictness estimate is roughly twice its benchmark
-($0.30 \times 0.199 \approx 0.06$ against $\NatS$). Part of that excess may reflect the benchmark itself, because the coarseness of a five-band score attenuates the held-out correlation and so sets the benchmark too low.
+Each national coefficient has a benchmark. The national score is an imperfect stand-in for the observed one, so its coefficient should be a scaled-down copy of the visited coefficient, shrunk by the share of the observed score it captures. For warmth that benchmark is a third of $0.219$, roughly $0.07$, and the national estimate of $\NatW$ sits on it. For teaching it is $0.28 \times 0.206 \approx 0.06$, and the estimate of $\NatT$ sits about a quarter above. For strictness it is $0.30 \times 0.199 \approx 0.06$, and the estimate of $\NatS$ is roughly double. The benchmarks are rough: the shares they rest on come from about a hundred schools of restricted range, so each carries a sampling error of about $0.1$, and the strictness share is dragged down by the coarseness of a five-band score, which sets that benchmark too low.
 
-The reason lies in how the instruments were built. The warmth and teaching
-models were deliberately purified: trained on the part of the observed
-score that demographics cannot explain, with identifying and tonal
-shortcuts removed, so they carry warmth and little else. The marking
-scheme reads the report raw, and its bands absorb conduct and some of the
-broader register of an orderly, effective school, which is itself
-correlated with results. Part of the strictness coefficient is therefore
-that extra freight. The ranking of how much each dimension matters comes
-from the visited sample, where the dimensions
-were measured directly and warmth carries at least as much weight as
-strictness. For the same reason, an outcome halo cannot be fully excluded
-for the strictness estimate: inspectors see results, and some of what reaches
-their prose may reflect them. The pre-2022 restriction meets the sharpest
-version of that concern. However, a residue from earlier results remains
-possible.
+The strictness overshoot has an explanation in how the two readings were built. The warmth and teaching models were trained only on the part of the observed score that demographics cannot explain, with names and other shortcuts stripped from the text, so their scores carry warmth and teaching and little else. The marking scheme reads the report as it stands. Its bands pick up conduct, and with it some of the general character of an orderly, effective school, and that general character is itself correlated with results. Part of the strictness coefficient is that extra content rather than strictness alone. For the ranking of the two dimensions, the visited sample is the one to trust, because there the dimensions were measured directly, and warmth carries at least as much weight as strictness.
+
+The scheme's openness admits one further worry. Inspectors know a school's exam results when they write, and a school with good results may receive a more favourable account of its conduct than its corridors alone would earn. If that happens, the strictness score partly measures results, and part of the strictness coefficient is results predicting results. The pre-2022 check rules out the direct version: reports written before the outcome years still show the association, and those inspectors could not have known the outcomes. It cannot rule out the indirect version. An inspector who saw the school's earlier results may still have written a friendlier account of conduct, and earlier results resemble current ones, so some of the association may still run through results rather than strictness.
 
 Schools in the same academy trust share practices, so the standard errors were also computed with clustering on trust membership from the schools register (1,595 clusters; three-fifths of schools in multi-school trusts). Clustering moves the standard errors by at most ten per cent and changes no inference. The visited sample has too few multi-school trusts (25 schools across nine shared trusts) for cluster-robust inference to be informative, so I claim no reassurance from it.
 
-Entering predicted warmth and the bands together (\cref{tab:typology}) moves warmth from $+0.078$ to $+0.054$ while the bands stay at $+0.117$, consistent with the two instruments sharing some report register. The univariate estimates remain the primary numbers because the two readings are not on an equal
-footing.
+Entering predicted warmth and the bands together (\cref{tab:typology}) moves warmth from $+0.078$ to $+0.054$ while the bands stay at $+0.117$, consistent with the two readings picking up some of the same features of a report. The univariate estimates remain the primary numbers because, as above, the two readings do not carry the same mix of content.
 
 The national warmth estimate carries one further, independent corroboration from
 the previous chapter: on the national schools outside training, the same
