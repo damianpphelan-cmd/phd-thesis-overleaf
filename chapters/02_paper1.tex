@@ -22,7 +22,7 @@ are linked with warmer or stricter schools.  Secondly, a large language model (L
 use a one-page rubric to evaluate the document on each dimension on a 1 to 5 scale. 
 There are three findings. First, inspection reports carry a modest signal of how warm a
 school actually is: the prediction model gives a correlation of $\PredWOfsted$, even after 
-removing what a school's intake statistics explain. Second, we see a similar modest correlation of
+removing what a school's intake statistics explain. Second, we see a similar modest correlation
 of $\RubricSOfstedDec$ after adjusting for pupil intake for strictness measured by the LLM using 
 the rubric. Different approaches are required because the two dimensions are written down 
 differently: warmth shows in a report's everyday wording, strictness in specific claims that 
@@ -70,7 +70,7 @@ authoritarian, permissive or indifferent based on its levels of demandingness
 (academic and behavioural expectations) and responsiveness (support for pupils). She finds that 
 pupils in authoritative schools have lower dropout and truancy rates.
 \citet{gregory2010,gregory2011} use a similar typology and find that more authoritative schools 
-haveless bullying, less victimisation and lower suspension rates. \citet{gottfredson2005} finds 
+have less bullying, less victimisation and lower suspension rates. \citet{gottfredson2005} finds 
 that a school's climate, the clarity and fairness of its rules and how consistently they are 
 enforced (demandingness), predicts the level of disorder in the school more strongly than the 
 demographics of its pupils. All of these studies rely on surveys of pupils, parents or staff and 
@@ -111,8 +111,9 @@ statistical model learns which words and phrases of a document go with
 higher or lower observed scores, and it is tested only on schools it was
 not fitted on. Before fitting, identifying details are removed from the text,
 and the part of each score that school demographics could explain is
-removed from the target, so the model is reading culture from the prose only. The
-second method uses a mark scheme approach. A large language model is provided with a one-page 
+removed from the target, so the model is reading culture from the prose only. 
+
+The second method uses a mark scheme approach. A large language model is provided with a one-page 
 written rubric for each dimension and
 asked to score each document on a 1 to 5 scale. The first method assumes nothing about where 
 culture shows up in text; the second assumes it is there and scores it. Comparing the two 
@@ -126,7 +127,7 @@ held-out schools at $\PredWOfsted$. The most that any correlation with a score t
 noisy could reach is about $0.83$, a ceiling derived below from the score's reliability. 
 Before intake is removed
 from the target the correlation is $\PredWOfstedRaw$, and after it is
-$\PredWOfsted$. The fact that removing intake strengthens the signal rather
+$\PredWOfsted$. The fact that removing intake strengthens the signal
 indicates that it is carried by the prose itself. The
 signal is clearest in what marks the colder schools. Their reports fall
 back on stock assurances such as ``pastoral support is in place'' and
@@ -158,13 +159,7 @@ measurement error is allowed for. The same asymmetry runs through the
 public text. What schools write in their policies and on their websites
 tracks what their heads say about strictness and about staff morale.
 However, their warmth language shows no relation to the observers, or even to their 
-own headteacher's responses during the interview. The divergence has an economic reading. 
-What a head says about strictness is checkable, because behaviour leaves a public record: 
-a visitor can watch a corridor, and an inspection can report whether disruption is rare. 
-What a head says about warmth is not, because no record shows whether pupils feel cared for. 
-The economics of communication predicts exactly this split: statements that can be checked can 
-carry information, and statements that cannot be checked need 
-not \citep{milgrom1981, crawford1982}.
+own headteacher's responses during the interview. The divergence has an economic reading. A claim is worth believing only if a false claim could be caught. A school's claims about strictness could be caught: the inspection report already says whether behaviour is good, and even a brief visit shows whether the corridors are calm. A school's claims about warmth could not be caught: no record of warmth existed, and checking warmth in person takes a full day inside the school, which is what this study's visits took. The economics of communication predicts the result \citep{milgrom1981, crawford1982}: the claims that could be caught carry information, and the claims that could not carry none. The schools' words behave exactly that way, informative on strictness and staff morale, empty on warmth. An inspector is a different kind of speaker, with nothing to gain from flattering the school, which is why an inspection report can carry warmth when the school's own words cannot. 
 
 The paper contributes to various strands of the literature. The school-climate literature measures 
 culture through pupil, teacher and parent surveys \citep{hoy2001,cohen2009,thapa2013}. Those surveys have
@@ -241,7 +236,7 @@ what the school says about itself is one of the questions the paper answers.
 
 Together the sources define three tiers of coverage: \NTierOne{} schools with
 a visit, an interview and the public text; \NTierTwo{} schools with an
-interview and the public text (a handful lack one of the three); and
+interview and the public text; and
 the rest of the national population
 with the public text alone. \Cref{tab:tier_summary} sets out the tiers and
 compares the schools in each on intake, size and inspection grade.
