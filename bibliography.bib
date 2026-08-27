@@ -251,8 +251,8 @@
 % entry read "Zhang, Wei", but the byline is "Wenxin Zhang" -- the given name
 % had been taken from the second author, Xing Wei. Remaining authors, volume,
 % issue, pages and year all confirmed against the byline.
-% Published 2017; the key says 2020. Harmless to BibTeX, but key and year differ.
-@article{zhang2020,
+% Key renamed zhang2020 -> zhang2017 (27 Aug 2026) to match the publication year.
+@article{zhang2017,
   author    = {Zhang, Wenxin and Wei, Xing and Ji, Linqin and Chen, Liang and
                Deater-Deckard, Kirby},
   title     = {Reconsidering Parenting in Chinese Culture: Subtypes, Stability,
@@ -416,6 +416,20 @@
   year      = {2019},
 }
 
+% Added 27 Aug 2026: the converter-academy (weaker effects) finding
+% is this paper, not eyles2019, which studies the first-wave
+% sponsored academies only.
+@article{eyles2018,
+  author    = {Eyles, Andrew and Machin, Stephen and Silva, Olmo},
+  title     = {Academies 2: The New Batch -- The Changing Nature of
+               Academy Schools in England},
+  journal   = {Fiscal Studies},
+  volume    = {39},
+  number    = {1},
+  pages     = {121--158},
+  year      = {2018},
+}
+
 @article{machin2020,
   author    = {Machin, Stephen and Sandi, Matteo},
   title     = {Autonomous Schools and Strategic Pupil Exclusion},
@@ -476,13 +490,16 @@
 % was the DfES RR679 Key Stage 3 report (which also lists Steele); the upgrade
 % report cites the IoE/CEE secondary-school output, and the citing sentence at
 % 03_paper2.tex:139 is about GCSE attainment, so this is the intended source.
+% CORRECTED 27 Aug 2026: the publication of record is DfES Research
+% Report RR679, with Fiona Steele as a co-author.
 @techreport{levacic2005,
   author    = {Leva\v{c}i\'{c}, Rosalind and Jenkins, Andrew and Vignoles, Anna
-               and Allen, Rebecca},
+               and Steele, Fiona and Allen, Rebecca},
   title     = {The Effect of School Resources on Student Attainment in English
                Secondary Schools},
-  institution = {Institute of Education and Centre for the Economics of
-                 Education},
+  institution = {Department for Education and Skills},
+  type      = {Research Report},
+  number    = {RR679},
   address   = {London},
   year      = {2005},
 }
@@ -666,11 +683,14 @@
   year        = {2025}
 }
 
-@book{pianta2008,
-  author    = {Pianta, Robert C. and La Paro, Karen M. and Hamre, Bridget K.},
+% CORRECTED 27 Aug 2026: the 2008 CLASS manuals (Pianta, La Paro &
+% Hamre) are the Pre-K and K-3 versions; the Secondary manual is
+% Pianta, Hamre & Mintz, 2012. Key renamed pianta2008 -> pianta2012.
+@book{pianta2012,
+  author    = {Pianta, Robert C. and Hamre, Bridget K. and Mintz, Susan L.},
   title     = {Classroom Assessment Scoring System ({CLASS}) Manual, Secondary},
-  publisher = {Paul H. Brookes},
-  year      = {2008}
+  publisher = {Teachstone},
+  year      = {2012}
 }
 
 @article{crawford1982,
