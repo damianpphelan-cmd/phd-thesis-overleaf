@@ -109,8 +109,7 @@ The first is a prediction model: using the visited schools, a
 statistical model learns which words and phrases of a document go with
 higher or lower observed scores, and it is tested only on schools it was
 not fitted on. Before fitting, identifying details are removed from the text,
-and the part of each score that school demographics could explain is
-removed from the target, so the model is reading culture from the prose only. 
+and the part of each score that school demographics could explain is removed from the target, so the model is reading culture from the prose only. I call this the demographic adjustment. 
 
 The second method uses a mark scheme approach. A large language model is provided with a one-page 
 written rubric for each dimension and
@@ -222,7 +221,7 @@ espoused score and the interview-only tier numbers \NTierTwo{}; that school
 belongs to neither tier in \cref{tab:tier_summary}. Of the \NTierOne{}
 visited schools, two have no scored inspection report and two have no
 published parent survey, so correlations and prediction models that use
-those sources run on 101 schools. The deconfounded correlations run on 100, because one school lacks a control variable. 
+those sources run on 101 schools. The demographically adjusted correlations run on 100, because one school lacks a control variable. 
 Among the interviewed schools, between 299 and 302 have each text source. Finally, one visited school and three
 interviewed schools could not be matched to the 2023/24 characteristics
 panel used in \cref{app:2A:sample}, which therefore describes 102 and 300
@@ -700,7 +699,7 @@ This section shows three things. First, the public text does contain culture, bu
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=\textwidth]{fig_ch2_validation.pdf}
-  \caption{The warmth model and the strictness scheme against the enacted scores, on the deconfounded scale (the part of each enacted score that the four adjustment variables do not explain). Left: the warmth prediction
+  \caption{The warmth model and the strictness scheme against the enacted scores, after the demographic adjustment (the part of each enacted score that the four adjustment variables do not explain). Left: the warmth prediction
   model's held-out predictions against observed warmth (each school
   predicted by a model that never saw it). Right: the strictness
   marking scheme's bands against observed strictness.}
@@ -785,7 +784,7 @@ A model can score well for two reasons: because it has learned the dimension it 
 
 The check takes the hundred sentences the warmth model rewards most and asks what they are about. \WarmTopShare{} of them are about staff--pupil relationships, against a base rate of \WarmBaseShare{} across all sentences, so the model seeks out relational content at well above chance. For teaching the corresponding shares are \TeachTopShare{} against \TeachBaseShare{}, which is no enrichment at all. That is not a failure. Teaching is what inspection reports mostly discuss anyway, so the teaching model reads the report's broad register rather than any one topic.
 
-Together, the two checks say what a model's score is made of. Part of it is language specific to the model's dimension: for warmth, the relational sentences the model seeks out. The rest is the general tone of a school doing well, which runs through a good school's whole report whatever the sentence is about. The deconfounding step removes some of that general tone, but only the part that the four adjustment variables (three intake measures and report age) can predict; the remainder stays in the score. A predicted warmth score is therefore best read as the model's reading of the report's whole account of the school, tilted towards warmth, rather than as a reading of warmth alone.
+Together, the two checks say what a model's score is made of. Part of it is language specific to the model's dimension: for warmth, the relational sentences the model seeks out. The rest is the general tone of a school doing well, which runs through a good school's whole report whatever the sentence is about. The demographic adjustment removes some of that general tone, but only the part that the four adjustment variables (three intake measures and report age) can predict; the remainder stays in the score. A predicted warmth score is therefore best read as the model's reading of the report's whole account of the school, tilted towards warmth, rather than as a reading of warmth alone.
 
 \Cref{tab:p1_examples} shows the sentences each model weighs most heavily, under selection rules 
 stated with the table. The two listings differ, and the difference illustrates an important 
@@ -1120,7 +1119,7 @@ Before modelling, documents are cleaned of identifying and clerical
 material: establishment, trust and local-authority names (from the
 national register), month names and years, postcodes, tokens containing
 digits, inspection-report page furniture, letter salutations, and
-framework boilerplate. The deconfounded specification regresses each outcome on the school's free-school-meals share, share of pupils with English as an additional language, prior attainment and report age, and takes the residual as the target. The marking-scheme readings are adjusted the same way: the bands are left as awarded, and the adjusted figure is their correlation with this residual.
+framework boilerplate. The demographic adjustment regresses each outcome on the school's free-school-meals share, share of pupils with English as an additional language, prior attainment and report age, and takes the residual as the target. The marking-scheme readings are adjusted the same way: the bands are left as awarded, and the adjusted figure is their correlation with this residual.
 
 Alternative representations were evaluated in the identical harness and none improved on the specification above. In brief: phrases of three and four words changed no correlation by more than noise. Topic groupings
 performed worse than counting everywhere. Passage embeddings from two
