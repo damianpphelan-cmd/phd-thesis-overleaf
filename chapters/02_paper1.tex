@@ -739,9 +739,9 @@ For strictness the marking
 scheme does better than the prediction model, although the gap between the two is small enough to 
 be chance 
 at this sample size ($z = \StrictDiffZ$, $p = \StrictDiffP$). The numbers alone therefore cannot 
-separate the two methods on strictness. The three checks set out in the measurement section can, and the scheme's reading passes all three: it gives the same band on a second run, a different language model applying the same page reads the school almost identically, and its bands do not track document length.
+separate the two methods on strictness. The three checks set out in the measurement section can: the retest, the change of language model, and the length check. The scheme's strictness reading passes all three, as the next paragraphs report.
 
-The retest asks whether the language model gives the same answer twice. Each scheme was run twice on the same documents. Across all fourteen readings, the two runs give the same band \GridRetestExact{} of the time. The two strictness schemes, one reading the inspection reports and one reading the behaviour policies, gave every school the same band on both runs. The weakest agreement between runs is the policy warmth scheme at 83\%, and that is a reading the chapter does not use.
+The retest asks whether the language model gives the same answer twice. Each scheme was run twice on the same documents. Across all fourteen readings, the two runs give the same band \GridRetestExact{} of the time, and the report strictness scheme gave every school the same band on both runs. The weakest agreement, 83 per cent, is in a policy scheme whose reading the chapter does not use.
 
 The purpose of changing the language model is to check whether the reading is genuinely down 
 to the marking scheme or if the particular model that applies it makes a difference. 
@@ -750,12 +750,7 @@ the same rubric should find the same thing. For strictness, the second model rea
 enacted scores at $\RubricSFourO$, close to the primary model's $\RubricSOfstedRaw$, so the 
 scheme is what determines the band, not the model. The warmth and teaching schemes fail the same check. Applying the same pages, the second model reads essentially nothing ($\RubricWFourO$ for warmth, $\RubricTFourO$ for teaching), so what the primary model found there came from the model rather than the scheme. 
 
-The length check asks whether the marking scheme bands track document length rather than 
-the school. For the inspection-report schemes the worry is small: the strictness bands correlate 
-with length at $\LenOfstedS$ and the warmth bands at $\LenOfstedW$, and removing the effect of 
-length moves the strictness reading only from $+0.25$ to $\RubricSOfstedLenP$. The website schemes 
-are different: their bands track length at $\LenWebS$ and $\LenWebW$, and even with length 
-removed ($\RubricWWebLenP$, $\RubricSWebLenP$) the website readings are questionable.
+The length check asks whether the marking scheme bands track document length rather than the school. For the inspection-report schemes the worry is small: the strictness bands correlate with length at $\LenOfstedS$ and the warmth bands at $\LenOfstedW$, and removing the effect of length moves the strictness reading only from $+0.25$ to $\RubricSOfstedLenP$. The website schemes' bands track length closely, one more reason their readings are not used.
 
 Demographic adjustment changes the strictness reading little: the scheme scores $\RubricSOfstedRaw$ raw and $\RubricSOfstedDec$ with everything demographics could explain removed. The warmth scheme fails entirely: it reads the reports at $\RubricWOfstedDec$ and 
 puts three-quarters of schools in one band. The model reads the same reports at $\PredWOfsted$, 
