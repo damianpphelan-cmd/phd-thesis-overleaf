@@ -1094,6 +1094,32 @@ national register), month names and years, postcodes, tokens containing
 digits, inspection-report page furniture, letter salutations, and
 framework boilerplate. The demographic adjustment regresses each outcome on the school's free-school-meals share, share of pupils with English as an additional language, prior attainment and report age, and takes the residual as the target. The mark-scheme readings are adjusted the same way: the bands are left as awarded, and the adjusted figure is their correlation with this residual.
 
+In symbols, let $x_s$ be school $s$'s text vector, $y_s$ its enacted
+score and $C_s$ its four control variables. The target is the residual
+from the demographic adjustment,
+%
+\begin{equation}
+  \tilde{y}_s = y_s - \hat{c} - C_s'\hat{\gamma},
+  \label{eq:p1_deconf}
+\end{equation}
+%
+with $\hat{c}$ and $\hat{\gamma}$ estimated by least squares on all
+schools. For each school $s$, the model is fitted on every other school,
+%
+\begin{equation}
+  (\hat{a}_{-s}, \hat{\beta}_{-s})
+  = \arg\min_{a,\,\beta}
+    \sum_{t \neq s} \bigl(\tilde{y}_t - a - x_t'\beta\bigr)^2
+    + \lambda_{-s}\,\lVert\beta\rVert^2,
+  \label{eq:p1_ridge}
+\end{equation}
+%
+with the penalty $\lambda_{-s}$ chosen by leave-one-out error within the
+$t \neq s$ schools alone. The held-out prediction for school $s$ is
+$\hat{y}_s = \hat{a}_{-s} + x_s'\hat{\beta}_{-s}$, and every correlation
+reported for a prediction model is the correlation between $\hat{y}_s$
+and $\tilde{y}_s$ across the held-out schools.
+
 Alternative representations were evaluated in the identical harness and none improved on the specification above. In brief: phrases of three and four words changed no correlation by more than noise. Topic groupings
 performed worse than counting everywhere. Passage embeddings from two
 pretrained encoders read enacted warmth and teaching at essentially
