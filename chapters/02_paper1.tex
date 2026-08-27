@@ -594,11 +594,17 @@ to predict only the second part. A model that merely recognised a
 disadvantaged school from its report would score nothing. Results are
 shown with and without this adjustment.
 
-I also tried more elaborate ways of representing the text, and none beat simple counting: 
-longer phrases, 
-topic groupings, and meaning-vectors from a neural network that scores passages as 
+I also tried more elaborate ways of representing the text: 
+longer phrases, topic groupings, and meaning-vectors from a neural network that scores passages as 
 similar when they say similar 
-things in different words. \cref{sec:p1_app_prediction} records them. The counting representation is the one reported throughout. The more complex methods failing to beat counting does not cast doubt on counting. The complex methods can read things counting cannot. A meaning-vector, for example, treats two sentences as alike when they say the same thing in different words. So if the reports held a signal that counting misses, the complex methods would have found it. They found nothing that held up. The signal in these documents is in the words themselves, and counting reads the words themselves.
+things in different words. \cref{sec:p1_app_prediction} records the findings. None of them 
+improved on counting so that is the method reported throughout. The more complex methods 
+failing to beat 
+counting does not cast doubt on counting. The complex methods can read things counting cannot. 
+A meaning-vector, for example, treats two sentences as alike when they say the same thing in 
+different words. So if the reports held a signal that counting misses, the complex methods 
+would have found it. The fact that they didn't suggests that the signal in these documents is in 
+the words themselves.
 
 \subsection{Reading the text with marking schemes}
 \label{sec:p1_rubrics}
