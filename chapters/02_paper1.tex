@@ -41,13 +41,13 @@ the things most often said to affect how much progress its pupils make. In this 
 measures of these two dimensions of school culture based on a structured day of observations at a school. I refer to these 
 two dimensions as warmth and strictness. I then ask how well each dimension can be recovered from publicly available texts that exist for all 3,332 schools in the country.
 
-The two dimensions have precise meanings here. Warmth is
+In this study, I define warmth as
 the relational quality of a school: whether pupils are known, cared for and
 supported by the adults around them. In a lesson it shows in whether the
 teacher uses pupils' names, how praise is given and how the teacher and the
 class speak to one another. Between lessons it shows in how staff and pupils
 deal with each other in corridors and at break. It also shows in whether rewards are
-used consistently across the lessons of the day. Strictness is the school's
+used consistently across the lessons of the day. I define strictness as the school's
 behavioural structure: whether
 expectations of conduct are clear, enforced and met. In a lesson it shows in
 how much misbehaviour is tolerated before a sanction, how much disruption
@@ -69,10 +69,12 @@ pupils in authoritative schools have lower dropout and truancy rates.
 \citet{gregory2010,gregory2011} use a similar typology and find that more authoritative schools 
 have less bullying, less victimisation and lower suspension rates. \citet{gottfredson2005} finds 
 that a school's climate, the clarity and fairness of its rules and how consistently they are 
-enforced (demandingness), predicts the level of disorder in the school even after accounting for the demographics of its pupils. All of these studies rely on surveys of pupils, parents or staff and 
-use slight variations on the demandingness and responsiveness language. 
-This paper refers to the dimensions as warmth and strictness, as this is common terminology in the 
-teaching profession, and measures them through direct observation. 
+enforced (demandingness), predicts the level of disorder in the school even after accounting for the demographics of its pupils. All of these studies rely on surveys of pupils, parents or staff, which may be affected by perceptions, and do not apply the definitions of demandingness and responsiveness consistently. 
+%use slight variations on the demandingness and responsiveness language. 
+In contrast, this paper measures warmth and strictness consistently across schools and through direct observations and interviews with headteachers, who oversee and manage the policies underlying actual school culture. 
+
+%This paper refers to the dimensions as warmth and strictness, as this is common terminology in the 
+%teaching profession, and measures them through direct observation. 
 
 What makes the two dimensions measurable in a school,
 as opposed to in a family, is that both are enacted in public. A researcher
@@ -82,37 +84,39 @@ move calmly and whether staff speak to them. Neither requires access to
 anything private. I treat warmth and strictness as two separate dimensions
 rather than as the two ends of one scale, because a school can be warm
 without being orderly and orderly without being warm. Whether the two go
-together in practice is a question the data answer rather than something I assume.
+together in practice is an empirical question.
 
 I also observed a third dimension, the quality of teaching practice.
 This is not part of culture as I define it, but it is the most obvious alternative channel
 for any association between culture and results, and it is kept in the analysis for that reason.
 
-Warmth and strictness are not directly observed for schools in England. However, there is public
-text available for each school that may be informative about their culture.
-Every school has a report written by an external inspector, a behaviour policy written by the
-school, and a website written by the school. For a smaller set
-of 103 schools this study adds data from direct observation of the school at work and from a 
-structured interview with its headteacher. For a further \NTierTwo{} schools we have the 
-interview alone.
+Warmth and strictness are not directly observed for all schools in England, but only for the 103 schools in which I conducted school observations and structured headteacher interviews. Building on the evidence generated from these school visits, this paper proposes a new measure of warmth and strictness that can be built from public
+text that is available for each school.
+For every school, there exist a report written by an external inspector, a behaviour policy written by the
+school, and a website written by the school. I exploit a set of 103 schools in which school-visit-based measures are available to estimate a model that can accurately predict these measures from the publicly available text alone. This model, then, can be applied to all schools in the country to build predicted warmth and strictness measures. 
 
-From the structured observation and interview data, I construct a gold-standard measure of 
-each dimension. Because the interview and the visit disagree substantially about the same school,
-the gold standard is in fact two measures rather than one: an \emph{enacted}
+%Since in 303 schools (the 103 visited schools, plus a further 200) I also conducted structured headteacher interviews, in this second sample of schools I ... unclear how you use this sample for now.
+
+%For a smaller set
+%of 103 schools this study adds data from direct observation of the school at work and from a 
+%structured interview with its headteacher. For a further \NTierTwo{} schools we have the 
+%interview alone.
+
+From the observation and structured interview data, I construct a gold-standard measure of 
+warmth and strictness. Because the interview and the visit disagree substantially about the same school, each gold standard score, one for warmth and one for strictness, is in fact two-dimensional: an \emph{enacted}
 score, from what the observers recorded, and an \emph{espoused} score, from
 what the headteacher reported. 
 
-I then ask whether these scores could be recovered from a school's public text alone using
+I then examine whether these scores can be accurately predicted from a school's public text alone using
 two different methods.  
 The first is a prediction model: using the visited schools, a
 statistical model learns which words and phrases of a document go with
 higher or lower enacted scores, and it is tested only on schools it was
-not fitted on. Before fitting, identifying details are removed from the text,
+not estimated on. Before estimation, identifying details are removed from the text,
 and the part of each score that school demographics could explain is removed from the target, so the model is reading culture from the prose only. 
 
-The second method uses a mark scheme approach. A large language model is provided with a one-page written mark scheme for each dimension and
-asked to score each document on a 1 to 5 scale. The first method assumes nothing about where 
-culture shows up in text; the second assumes it is there and scores it. Comparing the two 
+The second method uses a mark scheme approach. A large language model is provided with a one-page written mark scheme for each dimension, which I produced, and
+asked to score each document on a 1 to 5 scale. The first method is ex-ante agnostic about which components of the text are associated with warmth or strictness; the second, in  contrast, scores the text according to how informative it is about school culture based on the marking scheme that I produced. Comparing the two 
 methods for each text source and for each dimension shows not only which measures can be 
 extended to every school in the country but what method is most appropriate for each dimension.
 
