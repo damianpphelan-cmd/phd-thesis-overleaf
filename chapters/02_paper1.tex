@@ -120,7 +120,7 @@ culture shows up in text; the second assumes it is there and scores it. Comparin
 methods for each text source and for each dimension shows not only which measures can be 
 extended to every school in the country but what method is most appropriate for each dimension.
 
-There are three main findings. The first is that inspection reports
+There are four main findings. The first is that inspection reports
 carry a modest but real signal of observed warmth. A prediction model
 reading only the report's wording reproduces the observed warmth of
 held-out schools at $\PredWOfsted$. The most that any correlation with a score this 
@@ -148,11 +148,11 @@ for example ``low-level disruption is rare'', which only a reader told what to l
 The third finding is that the enacted and espoused measures diverge,
 and that the divergence is stronger for warmth. The interview and the
 visit are correlated at only $\GoldWarmthSplit$ for warmth, against
-$\GoldStrictnessSplit$ for strictness. Sort the schools into a warmer and a colder half, once by the heads' ratings and once by the observers'. The two sortings agree at \HalfMatchW{} of the 103 schools. Chance alone would agree at about \HalfLuck{}, and two noisy readings of the same quantity at about \HalfCeilingW{}. For strictness the agreement is \HalfMatchS{} of 103, against a ceiling of about \HalfCeilingS{} once measurement error is allowed for. The same asymmetry runs through the
-public text. What schools write in their policies and on their websites
-tracks what their heads say about strictness and about staff morale.
+$\GoldStrictnessSplit$ for strictness. Sort the schools into a warmer and a colder half, once by the heads' ratings and once by the observers'. The two sortings agree at \HalfMatchW{} of the 103 schools. Chance alone would agree at about \HalfLuck{}, and two noisy readings of the same quantity at about \HalfCeilingW{}. For strictness the agreement is \HalfMatchS{} of 103, against a ceiling of about \HalfCeilingS{} once measurement error is allowed for.
+
+The fourth finding is that the same asymmetry runs through the public text. What schools write in their policies and on their websites tracks what their heads say about strictness and about staff morale.
 However, their warmth language shows no relation to the observers, or even to their 
-own headteacher's responses during the interview. The divergence has an economic reading. A claim is worth believing only if a false claim could be caught. A school's claims about strictness could be caught: the inspection report already says whether behaviour is good, and even a brief visit shows whether the corridors are calm. A school's claims about warmth could not be caught: no record of warmth existed, and checking warmth in person takes a full day inside the school, which is what this study's visits took. The economics of communication predicts the result \citep{milgrom1981, crawford1982}: the claims that could be caught carry information, and the claims that could not carry none. The schools' words behave exactly that way, informative on strictness and staff morale, empty on warmth. An inspector is a different kind of speaker, with nothing to gain from flattering the school, which is why an inspection report can carry warmth when the school's own words cannot. 
+own headteacher's responses during the interview. 
 
 The paper contributes to various strands of the literature. The school-climate literature measures 
 culture through pupil, teacher and parent surveys \citep{hoy2001,cohen2009,thapa2013}. Those surveys have
@@ -188,6 +188,8 @@ effects of a bundle of practices in which strict behaviour norms and warm,
 individual relationships come together. It is the origin of the strictness
 dimension and the reason to expect it to matter, but it has not measured the two dimensions apart.
 
+The fourth finding also connects the paper to the economics of communication. A claim is worth believing only if a false claim could be caught. A school's claims about strictness could be caught: the inspection report already says whether behaviour is good, and even a brief visit shows whether the corridors are calm. A school's claims about warmth could not be caught: no record of warmth existed, and checking warmth in person takes a full day inside the school, which is what this study's visits took. The economics of communication predicts the result \citep{milgrom1981, crawford1982}: the claims that could be caught carry information, and the claims that could not carry none. The schools' words behave exactly that way, informative on strictness and staff morale, empty on warmth. An inspector is a different kind of speaker, with nothing to gain from flattering the school, which is why an inspection report can carry warmth when the school's own words cannot.
+
 Finally, the text-as-data literature in economics
 \citep{gentzkow2019} supplies the tools for reading public text at
 scale.  This paper uses both of that literature's modern tools, supervised text regression and marking schemes applied 
@@ -196,7 +198,7 @@ and reports which dimension of culture each can read. For one concrete measureme
 answers the question posed by \citet{ludwig2025} of when instructed language-model
 measurement adds value over statistical alternatives.
 
-Against those four literatures, the paper contributes three things: a measure of enacted culture 
+Against those literatures, the paper contributes three things: a measure of enacted culture 
 built from 
 observation rather than perception, with the perception data from headteachers and parents 
 kept as comparisons 
