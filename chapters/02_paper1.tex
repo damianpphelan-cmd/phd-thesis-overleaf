@@ -292,7 +292,7 @@ warmth: the share of responding parents who agree that their child is happy
 at the school, and the share who agree that their child feels safe there.
 The two shares are averaged into one parent-reported warmth measure, which
 is available for 3,255 schools in the panel and for 101 of the visited
-schools. Parents choose whether to respond. The typical release rests on about 120 responses at a response rate of about 12
+schools. Parents choose whether to respond, and the typical release rests on about 120 responses at a response rate of about 12
 per cent, so the measure is the view of the parents who chose to give one. Responses also accumulate over several years, 
 so for some schools the parent data are older than the culture data. The survey has no item on strictness.
 
@@ -382,7 +382,7 @@ disruption, the pupils' response to correction, how respectfully they treated
 the teacher, and how well they concentrated. Misbehaviour and disruption are
 reverse-scored so that a higher value means a stricter lesson. 
 
-One item needs a rule. If no pupil was sanctioned during a lesson there is no response
+One item needs a rule: if no pupil was sanctioned during a lesson there is no response
 to correction to rate, and the researcher records a zero. That zero is not a
 low score, and dropping it would throw away what the lesson shows. It is
 therefore replaced by the reverse of the disruption rating, which means that
@@ -771,7 +771,7 @@ cannot correlate with anything, whatever the policies contain. Its zero is there
 
 A model can score well for two reasons: because it has learned the dimension it was trained on, or because it has learned the general tone of a school doing well. The mix of the two can be measured, using a separate labelling of the reports. For that labelling, a language model read every sentence of every report and tagged what the sentence is about: relationships, behaviour, teaching, or something else. The tagging is independent of the prediction models: it was produced without seeing the schools' scores or anything the models learned, so it can be used to check what they learned.
 
-The check takes the hundred sentences the warmth model rewards most and asks what they are about. \WarmTopShare{} of them are about staff--pupil relationships, against a base rate of \WarmBaseShare{} across all sentences, so the model seeks out relational content at well above chance. For teaching the corresponding shares are \TeachTopShare{} against \TeachBaseShare{}, which is no enrichment at all. That is not a failure. Teaching is what inspection reports mostly discuss anyway, so the teaching model reads the report's broad register rather than any one topic.
+The check takes the hundred sentences the warmth model rewards most and asks what they are about. \WarmTopShare{} of them are about staff--pupil relationships, against a base rate of \WarmBaseShare{} across all sentences, so the model seeks out relational content at well above chance. For teaching the corresponding shares are \TeachTopShare{} against \TeachBaseShare{}, which is no enrichment at all. That is not a failure: teaching is what inspection reports mostly discuss anyway, so the teaching model reads the report's broad register rather than any one topic.
 
 Together, the two checks say what a model's score is made of. Part of it is language specific to the model's dimension: for warmth, the relational sentences the model seeks out. The rest is the general tone of a school doing well, which runs through a good school's whole report whatever the sentence is about. The demographic adjustment removes some of that general tone, but only the part that the four control variables (three intake measures and report age) can predict; the remainder stays in the score. A predicted warmth score is therefore best read as the model's reading of the report's whole account of the school, tilted towards warmth, rather than as a reading of warmth alone.
 
