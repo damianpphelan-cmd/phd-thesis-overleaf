@@ -385,7 +385,7 @@ published before September 2022, before either outcome cohort's results
 existed, the coefficients are $\NatWPre$, $\NatTPre$
 and $\NatSPre$, essentially their full-sample values, so reports that
 could have been written in knowledge of the outcomes are not driving the
-associations. The third concerns the models' own estimation error. The warmth and teaching scores are themselves the output of a fitted model, so they carry that model's uncertainty as well as the regression's. Refitting the model many times on resampled training schools and rerunning the regression each time gives 95 per cent intervals of [$\NatWBootLo$, $\NatWBootHi$] for warmth and [$\NatTBootLo$, $\NatTBootHi$] for teaching, both away from zero. The fourth concerns sample dependence: excluding the visited schools from the national sample raises the warmth coefficient (to $+0.136$) and the teaching coefficient (to $+0.122$), so neither association is an artefact of the schools that agreed to take part.
+associations. The third concerns the models' own estimation error. The warmth and teaching scores are themselves the output of a fitted model, so they carry that model's uncertainty as well as the regression's. Refitting the model many times on resampled training schools and rerunning the regression each time gives 95 per cent intervals of [$\NatWBootLo$, $\NatWBootHi$] for warmth and [$\NatTBootLo$, $\NatTBootHi$] for teaching, both away from zero. The fourth concerns sample dependence: excluding the visited schools from the national sample raises the warmth coefficient (to $+0.136$) and the teaching coefficient (to $+0.122$), so neither association depends on the schools that agreed to take part.
 
 \begin{figure}[htbp]
   \centering
@@ -403,7 +403,7 @@ The scheme's openness admits one further worry. Inspectors know a school's exam 
 The national warmth estimate carries one further, independent corroboration from
 the previous chapter: on the national schools outside training, the same
 predicted warmth correlates $\PVPredWarmth$ with parents' reports of
-happy, safe children. A text-derived score that tracks both pupil progress and parent experience, on schools it never saw, is unlikely to be an artefact of any one source.
+happy, safe children. A text-derived score that tracks both pupil progress and parent experience, on schools it never saw, is unlikely to be produced by any one source alone.
 
 The combination result also repeats at this scale. Crossing predicted warmth with the strictness bands, the interaction is indistinguishable from zero ($0.004$, $p = 0.56$), while the schools high on both dimensions sit $0.36$ of a grade above the rest after controls, or $0.26$ with the inspection grade held constant (\cref{tab:typology}). The national split is asymmetric, though: the band median falls at four, so the high-strictness half is in effect the top band, and the low-warmth, high-strictness cell is small.
 
@@ -421,7 +421,7 @@ positively associated with progress in any specification
 \Cref{tab:robustness_overall} puts the primary estimate through eight checks, each aimed at a particular doubt: that the grade control is doing the work; that a 
 result found in a two-year average fails in a single year; that strict schools shed pupils 
 with social, emotional and mental-health needs and gain measured progress that way; that the 
-result is a property of Progress~8 rather than of attainment; that it depends on the lessons rated by one researcher rather than two; that it is a London artefact; or that it depends on a single school. \Cref{app:3A:robust} walks through the checks one by one. Every check but two 
+result is a property of Progress~8 rather than of attainment; that it depends on the lessons rated by one researcher rather than two; that it holds only because of London; or that it depends on a single school. \Cref{app:3A:robust} walks through the checks one by one. Every check but two 
 leaves both coefficients significant at the five per cent level or better. The exceptions are both for strictness: the Attainment~8 English component, and the subset of schools where every lesson was double-rated. Nationally, clustering the standard errors on academy trust moves them by at most ten per cent (\cref{app:3A:robust}).
 
 \input{tables/tab_robustness_overall}
@@ -663,9 +663,9 @@ in a school's visit correlates $-0.25$ with its warmth score. Adding that
 share as a control moves nothing ($0.150$ and $0.105$; the share itself
 has a coefficient of $0.025$, $p = 0.76$).
 
-The warmth result might be a London artefact, since
+The warmth result might depend on London, since
 the sample over-represents London and the EAL share, through which the
-warmth association works, is concentrated there. Adding a London indicator built from the schools register moves warmth only to $0.152$ ($p = 0.001$) and strictness to $0.096$, and the indicator itself is not significant ($0.113$, $p = 0.33$), so the association is not a London artefact.
+warmth association works, is concentrated there. Adding a London indicator built from the schools register moves warmth only to $0.152$ ($p = 0.001$) and strictness to $0.096$, and the indicator itself is not significant ($0.113$, $p = 0.33$), so the association does not depend on London.
 
 Restricting the sample to the 64 schools in which every lesson was rated by at least two researchers gives $0.189$ for warmth
 ($p = 0.001$) and $0.071$ for strictness ($p = 0.15$). The warmth estimate is
