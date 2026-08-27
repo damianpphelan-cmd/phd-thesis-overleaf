@@ -1118,7 +1118,7 @@ with the penalty $\lambda_{-s}$ chosen by leave-one-out error within the
 $t \neq s$ schools alone. The held-out prediction for school $s$ is
 $\hat{y}_s = \hat{a}_{-s} + x_s'\hat{\beta}_{-s}$, and every correlation
 reported for a prediction model is the correlation between $\hat{y}_s$
-and $\tilde{y}_s$ across the held-out schools.
+and $\tilde{y}_s$ across the held-out schools. In the same notation, a mark-scheme reading is $B_s = f(x_s)$, where $f$ is the one-page scheme applied once per document by the version-pinned language model, frozen before any scoring. Nothing in $f$ is estimated from the schools, so there is no training step and no held-out distinction; the adjusted figure reported for a scheme is the correlation between $B_s$ and $\tilde{y}_s$.
 
 Alternative representations were evaluated in the identical harness and none improved on the specification above. In brief: phrases of three and four words changed no correlation by more than noise. Topic groupings
 performed worse than counting everywhere. Passage embeddings from two
