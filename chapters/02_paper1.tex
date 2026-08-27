@@ -648,7 +648,14 @@ at once. The first is how much the public text says about a school's culture at 
 is what it takes to read it: whether the words must be interpreted against a stated theory, as 
 the marking schemes do, or whether counting them is enough, as the prediction models do.
 
-One further rule applies throughout. Warmth, strictness and teaching are different things, and a school's three scores need not agree. So a signal that genuinely reads one of them should not help predict all three at once. When a feature of a document does help with all three, the likely reason is not that the school is better at everything. It is that the feature describes the document itself, so two schools with similar documents receive similar scores however much the schools differ. A signal of that kind is discarded. Document age, format and length were discarded for exactly this reason, and so were several changes that appeared to improve the models (\cref{sec:p1_app_prediction}).
+One further rule applies throughout. Warmth, strictness and teaching are different things, and 
+a school's three scores need not agree. So a signal that genuinely reads one of them should not 
+help predict all three at once. When a feature of a document does help with all three, the likely 
+reason is not that the school is better at everything. It is that the feature describes the 
+document itself, so two schools with similar documents receive similar scores however much the 
+schools differ. A signal of that kind is discarded. Document age, format and length were 
+discarded for exactly this reason, and so were several changes that appeared to improve 
+the models (\cref{sec:p1_app_prediction}).
 
 \section{Results}
 \label{sec:p1_results}
@@ -658,11 +665,7 @@ text contains and which method extracts it, and two checks from outside the proj
 
 \subsection{What direct measurement shows}
 
-A school can be warm without being orderly, and orderly without being warm, and the visited sample 
-contains both kinds (\cref{fig:p1_quadrants}). Warmth and strictness are related but distinct: 
-once observer effects and measurement noise are removed, the two correlate at \CorrWSTrue{}. 
-The enacted scores are reliable enough to use, and their limits are 
-measured rather than assumed; \cref{tab:score_reliability} reports the reliabilities.
+Direct measurement shows two things. The first is that warmth and strictness are separate dimensions of a school. A school can be warm without being orderly, and orderly without being warm, and the visited sample contains both kinds: \cref{fig:p1_quadrants} plots the schools on the two dimensions and every quadrant is occupied. The two dimensions are related but distinct: once observer effects and measurement noise are removed, they correlate at \CorrWSTrue{}. The enacted scores are reliable enough to use, and their limits are measured rather than assumed; \cref{tab:score_reliability} reports the reliabilities.
 
 \begin{figure}[htbp]
   \centering
@@ -672,8 +675,7 @@ measured rather than assumed; \cref{tab:score_reliability} reports the reliabili
   \label{fig:p1_quadrants}
 \end{figure}
 
-What heads say and what observers see are different measures. The interview and visit scores are 
-correlated at only $\GoldWarmthSplit$ for warmth ($p = \GoldWarmthSplitP$) and 
+The second is that what heads say and what observers see are different measures. The interview and visit scores are correlated at only $\GoldWarmthSplit$ for warmth ($p = \GoldWarmthSplitP$) and 
 $\GoldStrictnessSplit$ for strictness ($p \GoldStrictnessSplitP$), on the \NTierOne{} schools
 with both.
 
