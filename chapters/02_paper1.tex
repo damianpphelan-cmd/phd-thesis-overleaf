@@ -531,8 +531,7 @@ two warmth measures share about a
 sixteenth of their variance, and the two strictness measures about a sixth. Averaging two measures of different things does not cancel noise. The average would be a mixture, partly what the observers saw and partly what the head said, and choosing different weights would give a different mixture. 
 
 I therefore keep 
-the two measures separate throughout, and their divergence is itself a result, reported with 
-the results. Strictness is the 
+the two measures separate throughout, and their divergence is itself a result. Strictness is the 
 borderline case: its corrected correlation reaches \DisSplitS{}, so there the two measures 
 partly overlap rather than measure 
 different things outright. Two schools show what the divergence looks
@@ -582,12 +581,12 @@ prediction comes from a model fitted
 with that school left out, so each number says how well it reads a school it has never seen. 
 As a further check, I re-ran the whole procedure two hundred times on deliberately scrambled scores. Scrambling means shuffling the warmth scores across the schools, so that each report is paired with a score that belongs to some other school. The reports are real and the scores are real, but the pairing between them is destroyed, so there is nothing true left for the model to find. Whatever correlation it still reaches is what luck alone produces. A real result has to beat that, and the reported significance levels say how often the scrambled runs did.
 
-Second, it cannot recognise the school. Before anything is counted, school
+The second safeguard is to ensure it cannot recognise the school. Before anything is counted, school
 and trust names, place names, dates, page numbers and standard boilerplate
 are removed from every document. Without this step, the model learns to spot which school or which era of report it is reading, 
-rather than what the report says. With it, the weights fall on ordinary prose.
+rather than what the report says. 
 
-Third, it gets no credit for reading demographics. A school's intake
+Finally, the model is prevented from reading demographics. A school's intake
 statistics predict part of its culture score, and a document often reveals
 the intake. So each observed score is first split into the part that
 intake statistics explain and the part they do not, and the model is asked
@@ -599,8 +598,7 @@ I also tried more elaborate ways of representing the text, and none beat simple 
 longer phrases, 
 topic groupings, and meaning-vectors from a neural network that scores passages as 
 similar when they say similar 
-things in different words. \cref{sec:p1_app_prediction} records them. The counting 
-representation is the one reported throughout.
+things in different words. \cref{sec:p1_app_prediction} records them. The counting representation is the one reported throughout. The more complex methods failing to beat counting does not cast doubt on counting. The complex methods can read things counting cannot. A meaning-vector, for example, treats two sentences as alike when they say the same thing in different words. So if the reports held a signal that counting misses, the complex methods would have found it. They found nothing of the kind. The signal in these documents is in the words themselves, and counting reads the words themselves.
 
 \subsection{Reading the text with marking schemes}
 \label{sec:p1_rubrics}
@@ -631,7 +629,7 @@ the gold standard scores changes substantially with the larger model.
 The third check asks whether the marking schemes are reading length rather than culture. A longer document 
 gives the model more evidence to cite, so a scheme could award higher bands to longer documents 
 rather than to warmer or stricter schools. The correlation between band and document length is 
-therefore computed for every source and dimension, and each scheme correlation is recomputed with 
+therefore computed for every source and dimension, and each correlation is recomputed with 
 the effect of length removed.
 
 \subsection{Judging both methods}
