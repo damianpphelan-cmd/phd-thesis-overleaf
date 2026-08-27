@@ -20,7 +20,7 @@ every school's Ofsted inspection report, behaviour policy and website using two 
 Firstly, a prediction model learns, from the visited schools, which words and phrases
 are linked with warmer or stricter schools.  Secondly, a large language model (LLM) is asked to 
 use a one-page rubric to evaluate the document on each dimension on a 1 to 5 scale. 
-There are three findings. First, inspection reports carry a modest signal of how warm a
+There are four findings. First, inspection reports carry a modest signal of how warm a
 school actually is: the prediction model gives a correlation of $\PredWOfsted$, even after 
 removing what a school's intake statistics explain. Second, we see a similar modest correlation
 of $\RubricSOfstedDec$ after adjusting for pupil intake for strictness measured by the LLM using 
@@ -30,7 +30,7 @@ Third, what a headteacher says about their school is not what observers find the
 is widest for warmth. Sorting the schools into a warmer and a colder half, once by the heads' 
 ratings and once by the observers', the two agree at \HalfMatchW{} schools of 103; chance alone 
 would agree at about \HalfLuck{}. For strictness the agreement is \HalfMatchS{} of 103, better 
-than chance but short of what two noisy readings of the same school would give.
+than chance but short of what two noisy readings of the same school would give. Fourth, schools' own documents echo their heads on strictness and carry no signal about warmth.
 \end{chapterabstract}
 
 % ---------------------------------------------------------------
