@@ -39,7 +39,7 @@ def main() -> None:
     rows = []
     order = [("warmth", "Warmth", "prediction model"),
              ("teaching", "Teaching", "prediction model"),
-             ("strictness", "Strictness", "marking scheme")]
+             ("strictness", "Strictness", "mark scheme")]
     def tex_n(n):
         return f"{int(n):,}".replace(",", "{,}")
 
@@ -77,10 +77,10 @@ def main() -> None:
         "culture score, one standard deviation units, HC3 standard errors. "
         "Every school's warmth and teaching predictions come from models "
         "that never saw it; the strictness bands come from the frozen "
-        "one-page marking scheme applied once per report. The last column "
+        "one-page mark scheme applied once per report. The last column "
         "is the 95 per cent generated-regressor bootstrap interval for the "
         "full-controls coefficient (B=500 over the training fit); the "
-        "marking-scheme bands estimate nothing from the sample, so the "
+        "mark-scheme bands estimate nothing from the sample, so the "
         "strictness leg has none. Each column reports its own "
         "estimation-sample $n$.}\n"
         "\\label{tab:national_legs}\n"

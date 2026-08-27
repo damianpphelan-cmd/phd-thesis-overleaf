@@ -438,7 +438,7 @@ from 200 target-scrambled draws through the identical pipeline (floor
 $1/201$, shown as $<$0.005). Each bracketed interval is a Fisher-$z$ 95\%
 confidence interval for the correlation to its left (model and marking
 scheme respectively). ``Agree'' is exact band agreement between the two
-language models reading the same marking scheme; ``Retest'' is exact
+language models reading the same mark scheme; ``Retest'' is exact
 agreement on thirty documents re-scored by the primary model.
 Partialling document length (log word count of the text each scheme read)
 out of band and target leaves the scheme correlations at """ + lenp_note \
