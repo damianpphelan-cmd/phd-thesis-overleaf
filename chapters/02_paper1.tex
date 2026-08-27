@@ -835,7 +835,7 @@ The inspection report seems to show the opposite result. Its text relates to the
 \subsection{A check against parents}
 \label{sec:p1_pv}
 
-The last check comes from parents. Everything so far has judged the warmth model against the visited schools, and there are only 103 of them. Parents offer a second, independent judge at national scale: Ofsted's Parent View survey asks them, at nearly every school in England, whether their child is happy at the school and feels safe there, which is warmth as a parent experiences it. If the model's warmth reading is real, it should agree with what parents report. This section makes that comparison and reports two results: the model's warmth readings do agree with the parents, and the agreement is not explained by the inspection grade.
+The last check comes from parents. Everything so far has judged the prediction model's reading of warmth against the visited schools, and there are only 103 of them. Parents offer a second, independent judge at national scale: Ofsted's Parent View survey asks them, at nearly every school in England, whether their child is happy at the school and feels safe there, which is warmth as a parent experiences it. If the model's warmth reading is real, it should agree with what parents report. This section makes that comparison and reports two results: the model's warmth readings do agree with the parents, and the agreement is not explained by the inspection grade.
 
 The measure is the parent-reported warmth score: the share of parents who say their child is happy at the school and feels safe there. There are two important limitations to this data that should be kept in mind. 
 The first is that parents choose whether to 
@@ -843,7 +843,7 @@ respond, and the typical school's figure rests on about 120 replies, roughly one
 The second is a timing issue. Responses are taken over several years, so at some schools the 
 parents' answers describe an earlier version of the school than the one the culture data describe.
 
-The first result is the national agreement. The warmth model was fitted on the visited schools alone. That leaves \PVPredWarmthN{} schools the model 
+The first result is the national agreement. The warmth prediction model was fitted on the visited schools alone. That leaves \PVPredWarmthN{} schools the model 
 has never seen. For each of these, the model reads the school's inspection report and turns it 
 into a predicted warmth score. Those predictions can then be set against what parents say. 
 Across the \PVPredWarmthN{} schools, predicted warmth and parent-reported warmth correlate at $\PVPredWarmth$; \cref{fig:p1_pv} plots the two measures against each other. That agreement would be worthless if the model had been 
