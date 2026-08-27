@@ -453,8 +453,9 @@ school, which is the difference the measure is meant to capture. The second
 is that, within the same school, that lesson was calmer or rowdier than the
 school's other lessons, because it had a different teacher, a different
 class or a different period of the day. The third is that, looking at the
-same lesson, one researcher scored it a little higher than the other. The
-table divides the spread of the ratings into those three shares. For
+same lesson, one researcher scored it a little higher than the other. 
+
+The table divides the spread of the ratings into those three shares. For
 in-lesson strictness the shares are \ShareSchoolS{} per cent school,
 \ShareLessonS{} per cent lesson and \ShareRaterS{} per cent rater. This means
 that well over half of the variation in single-lesson strictness ratings is
@@ -468,8 +469,7 @@ above.
 
 \input{tables/tab_score_reliability}
 
-This decomposition has two implications. The first is that
-averaging matters. A single lesson is a poor guide to its school, but when
+One implication of this decomposition is that averaging matters. A single lesson is a poor guide to its school, but when
 five lessons and the ratings of the researchers who saw them are averaged,
 the lesson-to-lesson and rater-to-rater variation is greatly reduced. The reliability of the 
 in-lesson warmth score, 
@@ -478,10 +478,26 @@ strictness score is \RelSLessons{}. The outside-of-lessons sub-scores, which sum
 are more
 reliable (\RelWOutside{} and \RelSOutside{}). 
 
-Each enacted score has two halves, one from the lessons and one from the rest of the school day. The two halves are correlated at \HalvesW{} for warmth and \HalvesS{} for strictness across the \NHalves{} schools. This puts the 
-reliability of each combined enacted score at about \RelEnactedW{} for warmth and \RelEnactedS{} for 
+Each enacted score has two halves, one from the lessons and one from the rest of the school day. 
+The two halves are correlated at \HalvesW{} for warmth and \HalvesS{} for strictness across 
+the \NHalves{} schools. This puts the reliability of each combined enacted score at 
+about \RelEnactedW{} for warmth and \RelEnactedS{} for 
 strictness. The components are computed before rounding. The ceiling on any correlation with 
-the enacted warmth score is the square root of its reliability, $\sqrt{0.69} \approx 0.83$. These figures rest on an assumption about the disagreement between the two halves. A school's two halves do not agree perfectly, and the figures above treat all of that disagreement as measurement error. That is the right treatment if lessons and the rest of the day are two readings of one and the same thing. But a school might genuinely be warmer in its lessons than in its corridors. If so, part of the disagreement is real rather than error, and the reliabilities are \RelEnactedWUpper{} and \RelEnactedSUpper{} instead. The corrections below use the lower figures. Dividing by a lower reliability gives a larger corrected correlation, so every corrected correlation in this chapter is the most generous version of that number: the true agreement could be lower than the corrected figure, but not higher. One further limit: each school was visited once. If a school is different on a different day, that difference cannot be separated from the school itself. These are reliabilities of the school as seen on its visit day.
+the enacted warmth score is the square root of its reliability, $\sqrt{0.69} \approx 0.83$. 
+
+These figures rest on an assumption about the disagreement between the two halves. A school's 
+two halves do not agree perfectly, and the figures above treat all of that disagreement as 
+measurement error. That is the right treatment if lessons and the rest of the day are two 
+readings of one and the same thing. But a school might genuinely be warmer in its lessons 
+than in its corridors. If so, part of the disagreement is real rather than error, and the 
+reliabilities are \RelEnactedWUpper{} and \RelEnactedSUpper{} instead. The corrections below 
+use the lower figures. Dividing by a lower reliability gives a larger corrected correlation, 
+so every corrected correlation in this chapter is the most generous version of that number: 
+the true agreement could be lower than the corrected figure, but not higher. 
+
+One further limit: each school was visited once. If a school is different on a different day, 
+that difference cannot be separated from the school itself. These are reliabilities of 
+the school as seen on its visit day.
 
 The lessons that carry only one rating cost little here. Had every lesson been rated twice, the in-lesson
 reliabilities would have been \RelWOneTwoRaters{} and \RelSOneTwoRaters{}
@@ -493,8 +509,7 @@ slightly lower scores as a result: the share of a school's single-rated lessons 
 its in-lesson warmth at $r = \CorrSingleShareW{}$. The following chapter therefore checks that its
 estimates do not depend on those schools.
 
-The second implication concerns schools themselves rather than the measurement. Behaviour varies more from classroom 
-to classroom within a school than it does between schools. A school's enacted score is therefore an average over 
+The decomposition, which split the variation in ratings into a school part, a lesson part and a rater part, also says something about the schools themselves, not just the measurement. Behaviour varies more from classroom to classroom within a school than it does between schools. A school's enacted score is therefore an average over 
 quite different lessons, and a visit of five lessons measures that average with error. The error pulls every correlation 
 with the enacted scores towards zero, so the figures reported below are, if anything, too small. Two corrections give a 
 sense of how much. The enacted--espoused correlations, corrected for the noise on both sides, rise to 
