@@ -148,10 +148,11 @@ first is that a school's score is an average over lessons that differ from
 one another more than schools differ from each other. Within-school lesson
 variation is about three times the between-school variation for in-lesson
 strictness. This means that ``a strict school'' here is a school whose
-lessons are orderly on average, and not one in which every lesson is. The
-second is that the scores carry measurement error, with a reliability
-of about 0.7. For a score entered on its own, error of this kind biases
-the coefficient towards zero, so those estimates are conservative. Entered together, the two scores behave less simply. Warmth and strictness are correlated, so the regression's job is to decide how much of the joint association belongs to each. Noise interferes with exactly that decision: when one score is measured with more error than the other, some of its association is credited to the other score instead. So when the two scores enter together, the error makes the division between the two coefficients uncertain: part of the warmth association can appear as strictness, and the reverse. The error cannot produce the overall association. It moves estimates towards zero, so if anything the association between culture and progress is understated. About a third
+lessons are orderly on average, and not one in which every lesson is.
+
+The second is that the scores carry measurement error, with a reliability
+of about 0.7. For a score entered on its own, error of this kind biases the coefficient towards zero, so those estimates are conservative. Entered together, the two scores behave less simply.
+ Warmth and strictness are correlated, so the regression's job is to decide how much of the joint association belongs to each. Noise interferes with exactly that decision: when one score is measured with more error than the other, some of its association is credited to the other score instead. So when the two scores enter together, the error makes the division between the two coefficients uncertain: part of the warmth association can appear as strictness, and the reverse. The error cannot produce the overall association. It moves estimates towards zero, so if anything the association between culture and progress is understated. About a third
 of the observed lessons were rated by one researcher rather than two, and the
 robustness section checks that the estimates do not depend on those schools.
 
@@ -181,11 +182,13 @@ religious character, and the prominence of faith in its self-presentation.
 The previous chapter explains why the two dimensions are read differently: warmth shows in a report's everyday wording, which counting can pick up, while strictness sits in specific claims that a reader has to be told to look for. \Cref{fig:national_bands}, reported with the national extension, shows the national distribution of the strictness bands.
 
 \textbf{Controls.} All specifications condition on the same set of
-controls. The first is the mean Key Stage~2 score of the cohort. Progress~8 already compares each pupil with pupils who left primary school at the same level, so intake should not matter to it, but the adjustment may be imperfect. The control protects the estimates if it is. The next are the shares of pupils eligible for free school meals, with English as an additional language (EAL) and with special educational needs, which are the
-composition measures most strongly associated with progress. Then comes school size, logged so that the control compares proportional rather than absolute differences in size; academy status, urban location and selective admissions; and
+controls. The first is the mean Key Stage~2 score of the cohort. Progress~8 already compares each pupil with pupils who left primary school at the same level, so intake should not matter to it, but the adjustment may be imperfect. The control protects the estimates if it is. The next are the shares of pupils eligible for free school meals, with English as an additional language (EAL) and with special educational needs, which are the composition measures most strongly associated with progress.
+
+Then comes school size, logged so that the control compares proportional rather than absolute differences in size; academy status, urban location and selective admissions; and
 the number of years since the school's last inspection, since a school that
-was inspected long ago is described by an older report. Finally, the
-school's overall inspection grade as at August 2019 enters as indicators for grades below Good,
+was inspected long ago is described by an older report.
+
+Finally, the school's overall inspection grade as at August 2019 enters as indicators for grades below Good,
 pooling Outstanding with Good. Outstanding schools were exempt from
 routine inspection before 2020, so the Outstanding label carries the
 oldest information in the variable. I use the 2019 grade rather than the current one because a
@@ -209,20 +212,13 @@ grade.
 and \cref{tab:control_stats} report descriptive statistics for the outcomes
 and the controls. The visited schools' mean Progress~8 is about a quarter of
 a grade above zero, with a standard deviation a little below the national
-one, which is the restricted range noted in the previous chapter. The visited schools are stronger on average than the national population, so the estimates apply most directly to a population somewhat above the national average. The sample also contains few very weak schools, so both the culture scores and Progress~8 cover a narrower range than they do nationally. An association is estimated from differences between schools, so when the schools differ less there is less for the regression to work with, and a real association becomes harder to detect. If anything, then, this feature of the sample understates the associations; it cannot have created them. The
-interviewed schools are the previous chapter's 303, of which the
-visited are a subset; the descriptive tables show both groups. On the
-controls the visited schools are close to the interviewed ones and to the
-country as a whole: 29 per cent of pupils eligible for free school meals, 16
-per cent with special educational needs, three-quarters academies, nine in
-ten urban, one in twenty selective, and a 2019 grade distribution of roughly
-a quarter Outstanding, five-eighths Good and one in nine below Good. The one
-visible difference is the share of pupils with English as an additional
-language: 28 per cent, against 21 per cent in the interviewed sample. The
-difference reflects the London weighting, and the share is controlled for
-throughout. The correlations between the culture scores and the controls, reported in \cref{tab:score_controls_corr}, are all below $|0.3|$. This means that the culture measures are not close proxies for intake or
-school type, and that the coefficients below cannot simply be reflecting
-differences in pupil composition.
+one, which is the restricted range noted in the previous chapter.
+
+The visited schools are stronger on average than the national population, so the estimates apply most directly to a population somewhat above the national average. The sample also contains few very weak schools, so both the culture scores and Progress~8 cover a narrower range than they do nationally. An association is estimated from differences between schools, so when the schools differ less there is less for the regression to work with, and a real association becomes harder to detect. If anything, then, this feature of the sample understates the associations; it cannot have created them. Two checks on the sample follow. The first asks whether the visited schools look like other English secondary schools. The second asks whether the culture scores simply track the schools' intakes.
+
+On the first, the visited schools are close on the controls to the interviewed schools, the larger pool of 303 from which they were recruited (the descriptive tables report both groups), and to the country as a whole: 29 per cent of pupils eligible for free school meals, 16 per cent with special educational needs, three-quarters academies, nine in ten urban, one in twenty selective, and a 2019 grade distribution of roughly a quarter Outstanding, five-eighths Good and one in nine below Good. The one visible difference is the share of pupils with English as an additional language: 28 per cent, against 21 per cent in the interviewed sample. The difference reflects the London weighting, and the share is controlled for throughout.
+
+On the second, the correlations between the culture scores and the controls, reported in \cref{tab:score_controls_corr}, are all below $|0.3|$. The culture measures are not close proxies for intake or school type, so the coefficients below cannot simply be reflecting differences in pupil composition.
 
 \input{tables/tab_outcome_stats}
 
