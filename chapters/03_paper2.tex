@@ -285,8 +285,9 @@ One sorting concern remains. Pupils with social, emotional and mental-health nee
 \section{Results}
 \label{sec:p2_results}
 
-\textbf{Culture is associated with progress.} \Cref{tab:spec_ladder} reports the
-primary estimates. In the primary specification enacted warmth has a
+\subsection{Estimates on the visited schools}
+
+Culture is associated with progress. \Cref{tab:spec_ladder} reports the primary estimates. In the primary specification enacted warmth has a
 coefficient of $\hat{\beta}_W = \PrimarySpecW$ ($p = 0.001$) and enacted strictness a coefficient of $\hat{\beta}_S = \PrimarySpecS$ ($p = 0.012$) on
 overall Progress~8, with $R^2 = 0.62$. Warmth is the larger of the two
 coefficients, although the difference between them is not itself
@@ -344,8 +345,7 @@ and it is there that the strictness association is clearest (EBacc $0.138$,
 $p = 0.008$; Open $0.119$, $p = 0.035$). Those two components mix progress with the school's entry decisions, so part of the overall strictness association could come from stricter schools entering pupils for different subjects rather than from their pupils progressing more. Testing that route means first showing that stricter schools do enter pupils differently, and the visited sample is too small to show it: there, strictness does not significantly predict EBacc entry. The national sample introduced below is large enough, and the entry analysis reported with the national extension finds the route to be small. The full component
 estimates and the entry analysis are in \cref{app:3A:tables}.
 
-\textbf{Teaching quality does not account for it.} \Cref{tab:stages23_trio}
-reports the second and third stages. On its own, the visit's
+Teaching quality does not account for the association. \Cref{tab:stages23_trio} reports the second and third stages. On its own, the visit's
 teaching-practice score predicts overall Progress~8 at $0.206$ ($p <
 0.001$), but with a lower $R^2$ ($0.55$) than the two culture scores. When it
 is added to the primary specification it enters at $0.015$ ($p = 0.82$), and
@@ -376,8 +376,7 @@ on enacted teaching quality does not account for the culture association.
 
 \input{tables/tab_stages23_trio}
 
-\textbf{The dimensions add.} \Cref{fig:quadrant_ws} plots the visited
-schools by their two culture scores, shaded by progress. Schools in the warm
+The two dimensions add rather than amplify each other. \Cref{fig:quadrant_ws} plots the visited schools by their two culture scores, shaded by progress. Schools in the warm
 and strict quadrant are predominantly above-average performers, and the
 other three quadrants are all populated, which is what makes it possible to
 test the combination. Formally, the warm-and-strict quadrant sits $0.40$ of
@@ -397,10 +396,9 @@ The national extension below repeats this test at thirty times the sample and re
   \label{fig:quadrant_ws}
 \end{figure}
 
-\textbf{Where the association sits within the scores.} \Cref{tab:subscores} breaks the enacted scores into their five blocks: warmth in lessons, warmth outside them, strictness in lessons, strictness outside them, and teaching. Item-level associations, corrected for multiple testing, are in \cref{tab:items_fdr}. Entered together, two of the five keep their associations: warmth outside lessons ($0.111$, $p = 0.006$) and strictness inside them ($0.115$, $p = 0.008$). Their counterparts lose their associations. Read literally, the relational quality that goes with progress is the one visible in corridors and at break, and the order that goes with it is the one visible in lessons. The five blocks overlap heavily, though. When measures overlap, small amounts of noise decide which of them the regression credits, so the ranking is fragile at this sample size and the literal reading should be held loosely.
+The sub-scores say where the association sits. \Cref{tab:subscores} breaks the enacted scores into their five blocks: warmth in lessons, warmth outside them, strictness in lessons, strictness outside them, and teaching. Item-level associations, corrected for multiple testing, are in \cref{tab:items_fdr}. Entered together, two of the five keep their associations: warmth outside lessons ($0.111$, $p = 0.006$) and strictness inside them ($0.115$, $p = 0.008$). Their counterparts lose their associations. Read literally, the relational quality that goes with progress is the one visible in corridors and at break, and the order that goes with it is the one visible in lessons. The five blocks overlap heavily, though. When measures overlap, small amounts of noise decide which of them the regression credits, so the ranking is fragile at this sample size and the literal reading should be held loosely.
 
-\textbf{Espoused warmth does not predict progress.} Substituting the
-headteacher's espoused scores for the enacted ones on the same schools
+Espoused warmth does not predict progress. Substituting the headteacher's espoused scores for the enacted ones on the same schools
 reduces the warmth coefficient to $0.051$ ($p = 0.29$), while espoused
 strictness retains an association of the same size as the enacted one
 ($0.120$, $p = 0.018$); \cref{tab:enacted_espoused} reports both regressions. So far as this sample can tell, what a headteacher says about warmth
@@ -416,7 +414,9 @@ headteacher could not supply. Two related results are in
 
 \input{tables/tab_enacted_espoused}
 
-\textbf{National extension.} The estimates so far rest on a hundred schools that agreed to be visited. The national test asks whether the associations survive outside that sample, on schools that no one visited. \Cref{tab:national_legs} reports these regressions. For \NNationalStrictness{}
+\subsection{The national extension}
+
+The estimates so far rest on a hundred schools that agreed to be visited. The national test asks whether the associations survive outside that sample, on schools that no one visited. \Cref{tab:national_legs} reports these regressions. For \NNationalStrictness{}
 schools with an outcome, some thirty times the visited sample,%
 \footnote{The national sample starts from the 3,332 schools of the national population: 60 schools have no scored inspection report, mostly because they opened too recently to have been inspected; a further 80 have no published Progress~8, mostly because their first cohort has not yet reached GCSEs; 95 are excluded as late-entry schools, the same exclusion the visited sample applies; and 45 lack a control variable. That leaves 3,052. \Cref{app:3A:robust} checks whether these omissions could bias the estimates.} warmth
 and teaching are predicted from each school's inspection report by the
@@ -469,8 +469,9 @@ supply no rival signal: behaviour-policy and website scores are not
 positively associated with progress in any specification
 (\cref{tab:llm_p8_matrix}).
 
-\textbf{Robustness.} \Cref{tab:robustness_overall} puts the primary estimate through eight 
-checks, each aimed at a particular doubt: that the grade control is doing the work; that a 
+\subsection{Robustness}
+
+\Cref{tab:robustness_overall} puts the primary estimate through eight checks, each aimed at a particular doubt: that the grade control is doing the work; that a 
 result found in a two-year average fails in a single year; that strict schools shed pupils 
 with social, emotional and mental-health needs and gain measured progress that way; that the 
 result is a property of Progress~8 rather than of attainment; that it depends on the lessons rated by one researcher rather than two; that it is a London artefact; or that it depends on a single school. \Cref{app:3A:robust} walks through the checks one by one. Every check but two 
@@ -498,7 +499,9 @@ A stricter version of the timing check keeps only the 22 schools whose headteach
 
 Finally, two standard measures ask how strong an unmeasured confounder would have to be to overturn these estimates (\cref{tab:sensitivity_bounds}). By the simpler of the two, the E-value, a single confounder would need an association of at least \EValW{} in risk-ratio terms with both warmth and progress, and \EValS{} for strictness, to account for the estimates on its own. The other, Oster's $\delta$, reaches a similar verdict for strictness and a more favourable one for warmth, because the controls raise the warmth coefficient rather than lower it, and a measure built on extrapolating the controls' behaviour rewards that pattern; \cref{app:3A:robust} sets out both measures in full. Neither measure touches reverse causation, and both are likelier understatements, because measurement error biases the coefficients they start from towards zero.
 
-\textbf{Exploratory: what else websites reveal.} The same public record carries identity signals beyond culture. The previous chapter's identity measures, read from school
+\subsection{Exploratory website measures}
+
+The same public record carries identity signals beyond culture. The previous chapter's identity measures, read from school
 websites and, for faith prominence, validated against the official
 register, carry their own associations with progress. \Cref{tab:identity} reports them.
 
