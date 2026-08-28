@@ -10,10 +10,10 @@ Warmth     & 0.200 & 0.040 & 0.907 & 100 \\
 Strictness & 0.354 & 0.118 & 0.794 & 10 \\
 \bottomrule
 \end{tabular}
-\caption{Leave-one-out cross-validated performance of the interview-tier Ridge
-calibration model (Model~A) for warmth and strictness. Features: the
-espoused sub-scores ($W3$, $S4$), the systems count ($S3$), and the Ofsted,
-behaviour-policy and website LLM scores (6 features per dimension). Target: the \emph{enacted} score from
-the school visit, which shares no input with any feature. Training and evaluation sample: $N = 101$. Of the 103 full-data schools, 2 schools lack a scored Ofsted report and are dropped. A dash marks predictions too nearly constant for a correlation to be informative and is not reported (standard deviation under a tenth of the target's); the model has shrunk to the sample mean.}
+\caption{Interview-tier model: leave-one-out performance}
 \label{tab:interview_model_loo}
+\begin{minipage}{\linewidth}
+\smallskip
+\footnotesize\textit{Notes:} Features: the espoused sub-scores ($W3$, $S4$), the systems count ($S3$), and the Ofsted, behaviour-policy and website LLM scores (6 features per dimension). Target: the \emph{enacted} score from the school visit, which shares no input with any feature. Training and evaluation sample: $N = 101$. Of the 103 full-data schools, 2 schools lack a scored Ofsted report and are dropped. A dash marks predictions too nearly constant for a correlation to be informative and is not reported (standard deviation under a tenth of the target's); the model has shrunk to the sample mean.
+\end{minipage}
 \end{table}

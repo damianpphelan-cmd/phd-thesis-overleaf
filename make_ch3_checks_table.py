@@ -18,7 +18,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from fix_tables import move_caption_below
+from fix_tables import caption_to_title, move_caption_below
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
@@ -119,6 +119,8 @@ def main() -> None:
         f"$p={age['p']:.3f}$, $n={age_n}$).\n"
         "\\end{minipage}\n\\end{table}\n")
     table, _ = move_caption_below(table)
+    table = caption_to_title(
+        table, "Timing checks on the visited-school estimates")
     out = HERE / "tables" / "tab_timing_checks.tex"
     out.write_text(table, encoding="utf-8")
     print(f"wrote thesis/tables/{out.name}")

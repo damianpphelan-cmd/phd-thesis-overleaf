@@ -28,7 +28,28 @@ from pathlib import Path
 
 import pandas as pd
 
-from fix_tables import move_caption_below
+from fix_tables import caption_to_title, move_caption_below
+
+# Caption convention (29 Aug 2026): short title in the caption, all
+# detail in the notes. (title, keep_first_sentence_of_old_caption)
+TITLES = {
+    "tab_spec_ladder.tex":
+        ("Four treatments of the inspection-grade control", False),
+    "tab_univariate_ws.tex":
+        ("Warmth and strictness alone and together", False),
+    "tab_stages23_trio.tex":
+        ("Stages 2 and 3 under the primary specification", True),
+    "tab_main_results_s1.tex":
+        ("Stage 1: total culture association, five outcomes", False),
+    "tab_main_results_s2.tex":
+        ("Stage 2: teaching quality benchmark, five outcomes", False),
+    "tab_main_results_s3.tex":
+        ("Stage 3: culture net of teaching, five outcomes", False),
+    "tab_enacted_espoused.tex":
+        ("Espoused culture and Progress~8", False),
+    "tab_robustness_overall.tex":
+        ("Robustness of the visited estimates", False),
+}
 
 ROOT = Path(__file__).resolve().parent.parent
 TABLES = ROOT / "thesis" / "tables"
@@ -75,6 +96,8 @@ def cell(r: pd.Series, stars=stars_010, minus: str = "-") -> str:
 def write(name: str, body: str) -> None:
     # Float convention: tabular first, then \caption + \label, then notes.
     body, _ = move_caption_below(body)
+    if name in TITLES:
+        body = caption_to_title(body, *TITLES[name])
     (TABLES / name).write_text(body, encoding="utf-8")
     print(f"wrote thesis/tables/{name}")
 

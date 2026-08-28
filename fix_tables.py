@@ -163,6 +163,43 @@ def move_caption_below(text: str, nl: str = "\n") -> tuple[str, bool]:
     return remainder[:ins] + insert + remainder[ins:], True
 
 
+def caption_to_title(text: str, title: str,
+                     keep_first: bool = False) -> str:
+    """Shorten a table's caption to a title, moving the detail into Notes.
+
+    Journal convention (adopted 29 Aug 2026): the caption is a short title;
+    everything explanatory lives in the notes minipage. This helper rewrites
+    the caption to `title` and prepends the old caption's remaining text to
+    the notes, creating a notes minipage when the table has none. By default
+    the old caption's first sentence is dropped (it is normally the title in
+    longer form); pass keep_first=True when it carries real content.
+    Idempotent once applied, since a title-length caption is left alone by
+    the callers' own length checks -- callers should apply it exactly once
+    to a freshly composed table.
+    """
+    m = CAPTION_RE.search(text)
+    if not m:
+        return text
+    end = find_caption_end(text, m.start())
+    old = " ".join(text[m.end():end - 1].split())
+    moved = old
+    if not keep_first:
+        sm = re.match(r".+?[.!?](?:\s+|$)(.*)$", old, re.S)
+        moved = sm.group(1).strip() if sm else ""
+    text = text[:m.start()] + "\\caption{" + title + "}" + text[end:]
+    if not moved:
+        return text
+    nm = re.search(r"(\\textit\{Notes:?\}:?\s*)", text)
+    if nm:
+        return (text[:nm.end()] + moved + " " + text[nm.end():])
+    block = ("\\begin{minipage}{\\linewidth}\n\\smallskip\n"
+             "\\footnotesize\\textit{Notes:} " + moved
+             + "\n\\end{minipage}\n")
+    i = text.rfind("\\end{table}")
+    assert i != -1, "no end{table}"
+    return text[:i] + block + text[i:]
+
+
 def unescape_math(text: str) -> tuple[str, bool]:
     changed = False
 
