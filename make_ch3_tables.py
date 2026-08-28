@@ -142,7 +142,7 @@ Grade-control specification & $N$ & Warmth ($W$) & Strictness ($S$) \\
 \smallskip
 \footnotesize\textit{{Notes:}} Standard errors in parentheses.
 \sym{{*}} \(p<0.10\), \sym{{**}} \(p<0.05\), \sym{{***}} \(p<0.01\).
-Outcome is average Progress 8; predictors are standardised. Seven visited academies
+Seven visited academies
 lacked a 2019 grade under their current URN; of the five in the estimation sample,
 four are filled from the predecessor school's grade (a fifth predecessor grade
 belongs to a school excluded for a missing control). The filled and category-retained
