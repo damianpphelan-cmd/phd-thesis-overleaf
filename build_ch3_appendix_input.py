@@ -64,11 +64,18 @@ keep = ["urn", "urn_num", "gs_data_tier", "late_entry", "grade2019_filled", "ofs
         "web_LLMStrictnessScore_v15", "web_TradEthos_v2", "web_TradPedagogy_v1b",
         "trx_LLMStrictnessScore_v13", "trx_LLMTeachingScore_v3", "trx_LLMWarmthScore_v15",
         "trx_LLMWarmthScore_counts", "pv_warmth", "semh_baseline_2016", "semh_current",
-        "ofsted_HeadteacherChanged"]
+        ]
 out = d[keep].copy()
-# head-teacher continuity flag: True/False strings -> 1/0 (NaN = not determinable)
-out["ofsted_HeadteacherChanged"] = d["ofsted_HeadteacherChanged"].map(
-    {True: 1, False: 0, "True": 1, "False": 0, 1: 1, 0: 0})
+# head-teacher continuity flag from GIAS snapshots (1 Sep 2022 vs
+# 1 Jul 2025), built by build_head_continuity.py: 1 = same head,
+# 0 = changed. Replaces the retired report-based flag.
+hc = pd.read_csv(os.path.join(ROOT, "head_continuity.csv"),
+                 usecols=["urn", "head_same"])
+hc["urn"] = pd.to_numeric(hc["urn"], errors="coerce")
+hc = hc.dropna(subset=["urn"])
+hc["head_same"] = pd.to_numeric(hc["head_same"], errors="coerce")
+out = out.merge(hc.rename(columns={"urn": "urn_num"}),
+                on="urn_num", how="left")
 
 # SEMH shares of the roll (the dataset carries pupil COUNTS; the mechanism table
 # is specified in shares). Both use the current roll as denominator because the

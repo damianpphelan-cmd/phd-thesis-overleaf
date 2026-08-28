@@ -58,14 +58,16 @@ replace ofsted_llmstrictnessscore = (ofsted_llmstrictnessscore - r(mean)) / r(sd
 * ---- Macros (identical to cell 2) ----
 global ctrl_cont "ks2 fsm eal sen log_size years_since_ofsted"
 global ctrl_bin  "academy urban_bin selective"
-* The 2019 grade enters with grade 2 (Good) as the factor base, so the
-* estimated indicators are for grades 3 and 4 only and grades 1-2 are
-* deliberately pooled: Outstanding schools were exempt from routine
-* inspection before 2020, so the Outstanding label is the stalest
-* category in the variable. The earlier list included 2.grade, which
-* Stata dropped as the omitted base; listing only 3. and 4. states
-* the intended specification directly and estimates identically.
-global ctrl_ofsted "3.grade2019_filled 4.grade2019_filled"
+* The 2019 grade enters with grade 2 (Good) as the factor base: 2. is
+* listed FIRST because Stata merges same-variable factor specs and takes
+* the first listed level as the base, so the 2. term is the omitted base
+* and the estimated indicators are for grades 3 and 4. Grade 1 is
+* unlisted and pools with the base (Outstanding schools were exempt from
+* routine inspection before 2020, so that label is the stalest category).
+* Do NOT shorten the list to 3./4. only: that silently rebases to grade 3
+* and pools the grade-3 schools into the base (the 25 Aug 2026 mistake,
+* caught 28 Aug before any published number was regenerated under it).
+global ctrl_ofsted "2.grade2019_filled 3.grade2019_filled 4.grade2019_filled"
 global controls        "$ctrl_cont $ctrl_bin $ctrl_ofsted"
 global controls_ngrade "$ctrl_cont $ctrl_bin"
 
