@@ -422,25 +422,21 @@ The remaining doubts concern the measures. The association might be a property o
 
 Every check but two leaves both coefficients significant at the five per cent level or better. The exceptions are both for strictness: the Attainment~8 English component, and the subset of schools where every lesson was double-rated. \Cref{app:3A:robust} walks through the checks one by one.
 
-One further check concerns the standard errors rather than the coefficients. Schools in the same academy trust share policies and often leadership, so their results may not be independent of one another, and treating them as independent would make the standard errors too small. Clustering the standard errors by academy trust in the national sample changes them by at most ten per cent (\cref{app:3A:robust}).
+One further check concerns the standard errors rather than the coefficients. Schools in the same academy trust share policies and often leadership, so their results may not be independent of one another, and treating them as independent would make the standard errors too small. Clustering the standard errors by academy trust in the national sample changes them by at most ten per cent. Each national coefficient is at least nine times its standard error, so a change of that size leaves all three significant at the one per cent level (\cref{app:3A:robust}).
 
 \input{tables/tab_robustness_overall}
 
-Two further checks concern timing and the headteacher. Within-school
-Progress~8 is stable across years: the mean within-school standard
-deviation is $0.20$, against a between-school standard deviation of about
-$0.5$ (\cref{tab:stability_p8}). This stability supports using culture
-measured after the outcome window as a proxy for culture during it. The
-2024/25 pseudo-progress measure is the one cohort measured at the same
-time as the fieldwork. It gives coefficients within $0.04$ of their
-real-Progress~8 counterparts on the overall measure (\cref{tab:p8_proxy}),
-and the contemporaneous strictness coefficient is if anything larger. That observation is consistent with the timing argument, but a same-year association is equally open to results shaping the school's orderliness, so it is not counted as evidence on its own.
+The scores describe each school as it was in 2023--25, while the outcomes belong to cohorts that sat their GCSEs earlier. Four checks ask whether that gap matters.
 
-A placebo outcome sharpens the timing question. If culture is a persistent trait of a school, the culture observed in 2023--25 should relate even to results from long before; if the association belongs to the recent years alone, it should not. The test regresses the school's pre-pandemic Progress~8, from 2018/19, on the culture scores observed in 2023--25, with that era's controls where they exist. The old results are related, but more weakly: $+0.09$ for warmth and $+0.08$ for strictness on the 93 schools with both outcomes, against $+0.16$ and $+0.10$ for current results on the same schools, and neither placebo coefficient is significant.
+The first looks at how much a school's results move from year to year. The average within-school standard deviation of Progress~8 is $0.20$, against a standard deviation across schools of about $0.5$ (\cref{tab:stability_p8}). Results are therefore a slow-moving feature of a school rather than something that swings from cohort to cohort. This does not by itself show that culture is slow-moving too, which is what the timing argument needs, and the two checks that follow address that directly.
 
-The informative comparison is whether today's culture fits today's results better than it fits the past's. The point estimates say it does, most visibly for warmth, where the old association is about six-tenths of the current one. A formal test, though, cannot reject that the old and current associations are equal ($p = 0.17$ for warmth and $0.62$ for strictness with era controls, $0.09$ and $0.57$ with current ones). The placebo points in the direction the timing argument predicts without settling it.
+The second uses the one cohort measured at the same time as the fieldwork. Progress~8 does not exist for the 2024/25 cohort, so a stand-in is built by adjusting that year's Attainment~8 for the pupils' Key Stage~2 starting point. The culture coefficients on this outcome are within $0.04$ of the Progress~8 ones on the overall measure (\cref{tab:p8_proxy}), and the strictness coefficient is if anything larger. Here, though, the results and the culture come from the same year, so the results could be shaping the school's orderliness as easily as the reverse. The check is therefore not treated as evidence on its own.
 
-A stricter version of the timing check keeps only the 22 schools whose headteacher, named in the most recent inspection report, is confirmed still in post in July 2026; there the culture observed is most plausibly the culture the outcome cohorts had. Its standard errors are three to seven times the full-sample ones, so the subsample can support no conclusion in either direction. \Cref{tab:timing_checks} collects the placebo and continuity estimates with their standard errors.
+The third uses results from long before the fieldwork. If culture is a lasting feature of a school, the culture observed in 2023--25 should relate to results from earlier years as well; if the score mostly reflects the school's recent results, it should not. Regressing pre-pandemic Progress~8, from 2018/19, on the culture scores observed in 2023--25, with that era's control variables where they exist, gives $+0.09$ for warmth and $+0.08$ for strictness on the 93 schools with both outcomes. Neither is significant, and both are smaller than the $+0.16$ and $+0.10$ that the same schools give for current results.
+
+The result carries two pieces of information. The association with results from six years earlier is not zero, so what the observers scored is not simply a reflection of the school's most recent results. It is also smaller than the association with current results, which is the pattern a school characteristic that changes slowly would produce. The second point is suggestive rather than firm, because a formal test cannot reject that the older and current associations are equal ($p = 0.17$ for warmth and $0.62$ for strictness with the era's control variables, $0.09$ and $0.57$ with current ones).
+
+The fourth check keeps only the 22 schools whose headteacher, named in the most recent inspection report, was confirmed still in post in July 2026. In those schools the culture observed is most likely to be the culture the outcome cohorts experienced, because the person leading the school did not change in between. The standard errors are three to seven times the full-sample ones, so this subsample supports no conclusion in either direction. \Cref{tab:timing_checks} collects the placebo and continuity estimates with their standard errors.
 
 \input{tables/tab_timing_checks}
 
