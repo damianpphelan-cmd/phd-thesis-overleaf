@@ -635,7 +635,7 @@ difference in outcome noise.
 \section{Robustness in Detail}
 \label{app:3A:robust}
 
-This section walks through the checks summarised with the results: the alternative specifications of \cref{tab:robustness_overall}, the headteacher continuity split, the two sensitivity measures of \cref{tab:sensitivity_bounds}, the clustering of the national standard errors, and a check on the schools the national sample omits.
+This section walks through the checks summarised with the results: the alternative specifications of \cref{tab:robustness_overall}, the headteacher-change split, the two sensitivity measures of \cref{tab:sensitivity_bounds}, the clustering of the national standard errors, and a check on the schools the national sample omits.
 
 \Cref{tab:robustness_overall} reports the primary
 estimate under alternative specifications, all on the primary sample, and
@@ -677,7 +677,7 @@ is the one that depends on the full sample.
 
 No single school carries the visited estimates: dropping each school in turn moves the warmth coefficient by at most $0.019$ and the strictness coefficient by at most $0.017$, and no omission moves either across conventional significance.
 
-In the headteacher continuity split reported with the timing checks, the 58 schools with the same head in the September 2022 and July 2025 registers give estimates close to the full-sample values for both dimensions, while the 41 schools whose head changed give a near-zero warmth estimate with standard errors more than twice as large; a formal test cannot reject that the two groups' associations are equal.
+In the headteacher-change split reported with the timing checks, the 58 schools with the same head in the September 2022 and July 2025 registers give estimates close to the full-sample values for both dimensions, while the 41 schools whose head changed give a near-zero warmth estimate with standard errors more than twice as large; a formal test cannot reject that the two groups' associations are equal.
 
 The two sensitivity measures reason differently. The first, Oster's $\delta$, reasons from the controls that can be seen. Adding the full control set moves each coefficient by a known amount, and the measure extrapolates: if unobserved confounders behaved like the observed controls, how much of them it would take to drive the coefficient to zero. For warmth the question has a twist. Adding the controls raises the warmth coefficient rather than lowering it, and when the controls push a coefficient up, an extrapolation of this kind can hardly ever drive it to zero, so warmth's large $\delta$ of \OsterDeltaW{} is not in itself evidence of robustness. The informative number is a different one: assume unobservables matter exactly as much as the controls, and the warmth coefficient that survives is \OsterBetaEqualW{}. What no measure of this kind can rule out is a confounder unlike the observed controls, working in the opposite direction to the EAL share. Strictness is the more exposed. Adding the controls lowered its coefficient, the extrapolation continues that movement, and under the equal-importance assumption little of the coefficient survives; its $\delta$ of \OsterDeltaS{} sits just above the conventional benchmark of one.
 

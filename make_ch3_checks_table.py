@@ -44,7 +44,7 @@ def main() -> None:
                f"{s['b']:+.3f}{stars(s['p'])} & ({s['se']:.3f}) & {n} \\\\")
         return top
 
-    rows = ["\\multicolumn{6}{l}{\\textit{Panel A: pre-pandemic placebo "
+    rows = ["\\multicolumn{6}{l}{\\textit{Panel A: results from before the fieldwork "
             "(outcome is 2018/19 Progress 8 unless stated)}} \\\\",
             "\\addlinespace[2pt]"]
     w, s = pl_cells("placebo_era_controls")
@@ -55,7 +55,7 @@ def main() -> None:
     rows.append(row("Contemporaneous P8, same schools", w, s, int(w["n"])))
 
     rows += ["\\addlinespace[6pt]",
-             "\\multicolumn{6}{l}{\\textit{Panel B: head-teacher continuity "
+             "\\multicolumn{6}{l}{\\textit{Panel B: same or changed headteacher "
              "(contemporaneous P8, primary specification)}} \\\\",
              "\\addlinespace[2pt]"]
     hc = tc[tc["block"] == "head_continuity"]
@@ -89,7 +89,8 @@ def main() -> None:
         "plus pre-COVID inspection-grade indicators (grades 3 and 4; grades "
         "1--2 pooled base; schools with a missing grade drop), HC3 standard "
         "errors, late-entry schools excluded; each row reports its own "
-        "estimation-sample $n$. Panel A explains the outcome to a cohort "
+        "estimation-sample $n$. Panel A relates the culture scores to "
+        "results from a cohort "
         "the visits never observed: the 2018/19 school-level Progress 8, "
         "with the intake controls either swapped to that era's values (KS2 "
         "APS of the GCSE cohort and FSM share) or held at current values, "
@@ -102,15 +103,16 @@ def main() -> None:
         "\\begin{minipage}{\\linewidth}\n\\smallskip\n"
         "\\footnotesize\\textit{Notes:} Standard errors in parentheses. "
         "$^{*}$ \\(p<0.10\\), $^{**}$ \\(p<0.05\\), $^{***}$ \\(p<0.01\\). "
-        "A formal test of the placebo-vs-contemporaneous difference (the "
+        "A formal test of the difference between the 2018/19 and "
+        "contemporaneous associations (the "
         "two outcomes stacked on the 93 common schools, each with its own "
         "full parameter set, standard errors clustered by school) does not "
         "reject equality: era-controls comparison "
         f"$p={p_w:.2f}$ (warmth), $p={p_s:.2f}$ (strictness); all-current-"
         f"controls comparison $p={p_wc:.2f}$ and $p={p_sc:.2f}$. "
         "Panel B's full-sample benchmarks ($n=99$) are warmth $+0.146$ "
-        "(se $0.043$) and strictness $+0.106$ (se $0.041$). The continuity "
-        "flag is built by build\\_head\\_continuity.py and covers every "
+        "(se $0.043$) and strictness $+0.106$ (se $0.041$). The "
+        "headteacher-change flag is built by build\\_head\\_continuity.py and covers every "
         "estimation-sample school. A related persistence check on the "
         "national strictness leg interacts the band score with report age: "
         f"${age['b']:+.4f}$ per year (se ${age['se']:.4f}$, "
