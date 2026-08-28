@@ -425,8 +425,7 @@ Source & Dimension & Model & 95\% CI & $p$ & Scheme & 95\% CI & Agree & Retest \
 """ + "\n".join(rows) + r"""
 \bottomrule
 \end{tabular}
-\caption{What each public text carries about enacted culture: two readings,
-one criterion.}
+\caption{What each public text carries about enacted culture}
 \label{tab:p1_grid}
 \begin{minipage}{\linewidth}
 \smallskip

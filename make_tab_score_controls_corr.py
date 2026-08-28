@@ -75,7 +75,7 @@ def main():
 
     tex = rf"""\begin{{table}}[htbp]
   \centering
-  \caption{{Pairwise correlations: culture scores and control variables (visited schools, $N={n}$)}}
+  \caption{{Pairwise correlations: culture scores and control variables}}
   \label{{tab:score_controls_corr}}
   \small
   \begin{{tabular}}{{lrrrrr}}
