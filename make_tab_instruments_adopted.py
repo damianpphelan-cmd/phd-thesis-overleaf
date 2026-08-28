@@ -90,10 +90,7 @@ tex = r"""\begin{table}[htbp]
 each instrument's correlation with the gold standard: with the enacted
 (observed) score on the visited schools, and with the espoused
 (headteacher-reported) score on the interviewed schools; for religious
-character, agreement with the Department for Education's register.
-Agreement is weighted kappa against the reference labels, measured out of
-sample on documents no version was tuned on, and against the author's own
-labels on the development packs.}
+character, agreement with the Department for Education's register.}
 \label{tab:instruments_adopted}
 \begin{tabular}{llccccc}
 \toprule
@@ -123,10 +120,7 @@ concordance evidence rather than as a test. The
 inspection-report mark scheme was calibrated to a different labelling scale from
 the reference labels, so its kappas carry a systematic offset and understate
 its agreement on ordering (rank correlations with the reference labels:
-$0.56$, $0.31$ and $0.59$ for strictness, warmth and teaching). The
-inspection-report warmth score also tracks the inspection grade ($r =
--0.40$) from grade-stripped text, and is used as a description of the report
-rather than a predictor. The website warmth instrument does not separate its
+$0.56$, $0.31$ and $0.59$ for strictness, warmth and teaching). The website warmth instrument does not separate its
 two lowest bands reliably. The interview transcript instruments are
 methodological comparisons only; the espoused scores of record come from the
 statement battery, not the transcripts.

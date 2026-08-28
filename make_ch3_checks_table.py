@@ -103,20 +103,7 @@ def main() -> None:
         "\\begin{minipage}{\\linewidth}\n\\smallskip\n"
         "\\footnotesize\\textit{Notes:} Standard errors in parentheses. "
         "$^{*}$ \\(p<0.10\\), $^{**}$ \\(p<0.05\\), $^{***}$ \\(p<0.01\\). "
-        "A formal test of the difference between the 2018/19 and "
-        "contemporaneous associations (the "
-        "two outcomes stacked on the 93 common schools, each with its own "
-        "full parameter set, standard errors clustered by school) does not "
-        "reject equality: era-controls comparison "
-        f"$p={p_w:.2f}$ (warmth), $p={p_s:.2f}$ (strictness); all-current-"
-        f"controls comparison $p={p_wc:.2f}$ and $p={p_sc:.2f}$. "
-        "Panel B's full-sample benchmarks ($n=99$) are warmth $+0.146$ "
-        "(se $0.043$) and strictness $+0.106$ (se $0.041$). The "
-        "headteacher-change flag is built by build\\_head\\_continuity.py and covers every "
-        "estimation-sample school. A related persistence check on the "
-        "national strictness leg interacts the band score with report age: "
-        f"${age['b']:+.4f}$ per year (se ${age['se']:.4f}$, "
-        f"$p={age['p']:.3f}$, $n={age_n}$).\n"
+        "The headteacher-change flag covers every estimation-sample school.\n"
         "\\end{minipage}\n\\end{table}\n")
     table, _ = move_caption_below(table)
     table = caption_to_title(

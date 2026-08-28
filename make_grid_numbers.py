@@ -440,12 +440,6 @@ confidence interval for the correlation to its left (model and marking
 scheme respectively). ``Agree'' is exact band agreement between the two
 language models reading the same mark scheme; ``Retest'' is exact
 agreement on thirty documents re-scored by the primary model.
-Partialling document length (log word count of the text each scheme read)
-out of band and target leaves the scheme correlations at """ + lenp_note \
-        + r""".
-Across the fourteen tests in the table (seven permutation $p$-values, seven
-Fisher-$z$ scheme $p$-values), Benjamini--Hochberg $q<0.05$ is met by """ \
-        + surv_note + r""".
 \end{minipage}
 \end{table}
 """

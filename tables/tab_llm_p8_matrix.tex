@@ -2,58 +2,51 @@
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
 
 \footnotesize\setlength{\tabcolsep}{4pt}
-\resizebox{\textwidth}{!}{%
 \begin{tabular}{lrccccc}
 \toprule
 Predictor & $N$ & Overall & English & Maths & EBacc & Open \\
 \midrule
-Ofsted strictness          & 2{,}746 & 0.136\sym{\dagger} & 0.122\sym{\dagger} & 0.119\sym{\dagger} & 0.142\sym{\dagger} & 0.153\sym{\dagger} \\
-                           &         & (0.007) & (0.008) & (0.008) & (0.009) & (0.009) \\
-Ofsted warmth              & 2{,}746 & 0.077\sym{\dagger} & 0.066\sym{\dagger} & 0.058\sym{\dagger} & 0.080\sym{\dagger} & 0.095\sym{\dagger} \\
-                           &         & (0.006) & (0.007) & (0.007) & (0.007) & (0.008) \\
-Ofsted teaching            & 2{,}746 & 0.130\sym{\dagger} & 0.120\sym{\dagger} & 0.114\sym{\dagger} & 0.140\sym{\dagger} & 0.140\sym{\dagger} \\
-                           &         & (0.007) & (0.008) & (0.007) & (0.008) & (0.009) \\
-BP strictness (v4)         & 2{,}745 & $-$0.007 & $-$0.004 & $-$0.001 & $-$0.009 & $-$0.011 \\
-                           &         & (0.007) & (0.008) & (0.008) & (0.008) & (0.009) \\
-BP warmth (v4)             & 2{,}745 & $-$0.015 & $-$0.009 & $-$0.011 & $-$0.015 & $-$0.022\sym{\dagger} \\
-                           &         & (0.007) & (0.008) & (0.007) & (0.008) & (0.009) \\
-Website warmth (v13)       & 2{,}755 & $-$0.004 & $-$0.001 & $-$0.005 & $-$0.002 & $-$0.007 \\
-                           &         & (0.006) & (0.007) & (0.006) & (0.007) & (0.008) \\
-Website strictness (v13)   & 2{,}755 & 0.005 & 0.001 & 0.011 & 0.004 & 0.004 \\
-                           &         & (0.007) & (0.007) & (0.007) & (0.008) & (0.008) \\
-Website strictness (v15)   & 2{,}755 & 0.004 & 0.001 & 0.010 & 0.003 & 0.004 \\
-                           &         & (0.007) & (0.007) & (0.007) & (0.008) & (0.008) \\
-Traditional ethos (v2)     & 2{,}755 & 0.027\sym{\dagger} & 0.021\sym{\dagger} & 0.033\sym{\dagger} & 0.027\sym{\dagger} & 0.027\sym{\dagger} \\
-                           &         & (0.008) & (0.008) & (0.008) & (0.009) & (0.009) \\
+Ofsted strictness & 2{,}746 & 0.136\sym{\dagger} & 0.122\sym{\dagger} & 0.119\sym{\dagger} & 0.142\sym{\dagger} & 0.153\sym{\dagger} \\
+ & & (0.007) & (0.008) & (0.008) & (0.009) & (0.009) \\
+Ofsted warmth & 2{,}746 & 0.077\sym{\dagger} & 0.066\sym{\dagger} & 0.058\sym{\dagger} & 0.080\sym{\dagger} & 0.095\sym{\dagger} \\
+ & & (0.006) & (0.007) & (0.007) & (0.007) & (0.008) \\
+Ofsted teaching & 2{,}746 & 0.130\sym{\dagger} & 0.120\sym{\dagger} & 0.114\sym{\dagger} & 0.140\sym{\dagger} & 0.140\sym{\dagger} \\
+ & & (0.007) & (0.008) & (0.007) & (0.008) & (0.009) \\
+BP strictness (v4) & 2{,}745 & $-$0.007 & $-$0.004 & $-$0.001 & $-$0.009 & $-$0.011 \\
+ & & (0.007) & (0.008) & (0.008) & (0.008) & (0.009) \\
+BP warmth (v4) & 2{,}745 & $-$0.015 & $-$0.009 & $-$0.011 & $-$0.015 & $-$0.022\sym{\dagger} \\
+ & & (0.007) & (0.008) & (0.007) & (0.008) & (0.009) \\
+Website warmth (v13) & 2{,}755 & $-$0.004 & $-$0.001 & $-$0.005 & $-$0.002 & $-$0.007 \\
+ & & (0.006) & (0.007) & (0.006) & (0.007) & (0.008) \\
+Website strictness (v13) & 2{,}755 & 0.005 & 0.001 & 0.011 & 0.004 & 0.004 \\
+ & & (0.007) & (0.007) & (0.007) & (0.008) & (0.008) \\
+Website strictness (v15) & 2{,}755 & 0.004 & 0.001 & 0.010 & 0.003 & 0.004 \\
+ & & (0.007) & (0.007) & (0.007) & (0.008) & (0.008) \\
+Traditional ethos (v2) & 2{,}755 & 0.027\sym{\dagger} & 0.021\sym{\dagger} & 0.033\sym{\dagger} & 0.027\sym{\dagger} & 0.027\sym{\dagger} \\
+ & & (0.008) & (0.008) & (0.008) & (0.009) & (0.009) \\
 Traditional pedagogy (v1b) & 2{,}755 & 0.023\sym{\dagger} & 0.022 & 0.021 & 0.030\sym{\dagger} & 0.018 \\
-                           &         & (0.009) & (0.010) & (0.009) & (0.010) & (0.009) \\
-Faith prominence (0--3)    & 2{,}755 & 0.021\sym{\dagger} & 0.021\sym{\dagger} & $-$0.007 & 0.004 & 0.057\sym{\dagger} \\
-                           &         & (0.007) & (0.008) & (0.007) & (0.009) & (0.009) \\
-Interview strictness (v13) & 251     & $-$0.009 & $-$0.007 & $-$0.005 & 0.009 & $-$0.032 \\
-                           &         & (0.026) & (0.027) & (0.027) & (0.031) & (0.029) \\
-Interview teaching (v3)    & 251     & 0.019 & 0.013 & 0.027 & 0.036 & $-$0.001 \\
-                           &         & (0.025) & (0.026) & (0.025) & (0.028) & (0.030) \\
-Interview warmth (v15)     & 251     & 0.018 & 0.016 & 0.006 & 0.034 & 0.011 \\
-                           &         & (0.025) & (0.025) & (0.027) & (0.029) & (0.028) \\
-Interview warmth (counts)  & 251     & 0.034 & 0.039 & $-$0.002 & 0.035 & 0.052 \\
-                           &         & (0.022) & (0.023) & (0.026) & (0.026) & (0.025) \\
+ & & (0.009) & (0.010) & (0.009) & (0.010) & (0.009) \\
+Faith prominence (0--3) & 2{,}755 & 0.021\sym{\dagger} & 0.021\sym{\dagger} & $-$0.007 & 0.004 & 0.057\sym{\dagger} \\
+ & & (0.007) & (0.008) & (0.007) & (0.009) & (0.009) \\
+Interview strictness (v13) & 251 & $-$0.009 & $-$0.007 & $-$0.005 & 0.009 & $-$0.032 \\
+ & & (0.026) & (0.027) & (0.027) & (0.031) & (0.029) \\
+Interview teaching (v3) & 251 & 0.019 & 0.013 & 0.027 & 0.036 & $-$0.001 \\
+ & & (0.025) & (0.026) & (0.025) & (0.028) & (0.030) \\
+Interview warmth (v15) & 251 & 0.018 & 0.016 & 0.006 & 0.034 & 0.011 \\
+ & & (0.025) & (0.025) & (0.027) & (0.029) & (0.028) \\
+Interview warmth (counts) & 251 & 0.034 & 0.039 & $-$0.002 & 0.035 & 0.052 \\
+ & & (0.022) & (0.023) & (0.026) & (0.026) & (0.025) \\
 \bottomrule
-\end{tabular}%
-}
+\end{tabular}
 \caption{Retired-instrument scores against Progress~8}
 \label{tab:llm_p8_matrix}
 \begin{minipage}{\linewidth}
 \smallskip
-\footnotesize\textit{Notes:} Every LLM-derived culture score against every Progress 8 outcome, as scored by the retired instruments of an earlier design (``analysers'': instructed language-model scorers whose prompt versions are the v-tags in the row labels). This appendix matrix is kept for the behaviour-policy and website null results only; the current national instruments --- the prediction-model warmth and teaching scores and the marking-scheme strictness bands --- are those of Table~\ref{tab:national_legs}, and the Ofsted rows here do not supersede them. Each cell is the coefficient from one regression of the outcome on the (standardised) predictor plus the national control set, including the predecessor-filled 2019 inspection-grade control; late-entry schools excluded. Because the sweep runs 150 such tests (75 per grade panel), significance is marked only after Benjamini--Hochberg correction across the whole matrix. Behaviour-policy rows use standard errors clustered on the shared document digest. All predictors in this matrix are the retired analyser
-scores of the earlier scorer design; the table is retained so that the
-behaviour-policy and website null results stay on the record, and none of its
-Ofsted-derived rows is a current instrument. Standard errors in parentheses (HC3 throughout, except the
+\footnotesize\textit{Notes:} Every LLM-derived culture score against every Progress 8 outcome, as scored by the retired instruments of an earlier design (``analysers'': instructed language-model scorers whose prompt versions are the v-tags in the row labels). This appendix matrix is kept for the behaviour-policy and website null results only; the current national instruments --- the prediction-model warmth and teaching scores and the marking-scheme strictness bands --- are those of Table~\ref{tab:national_legs}, and the Ofsted rows here do not supersede them. Each cell is the coefficient from one regression of the outcome on the (standardised) predictor plus the national control set, including the predecessor-filled 2019 inspection-grade control; late-entry schools excluded. Because the sweep runs 150 such tests (75 per grade panel), significance is marked only after Benjamini--Hochberg correction across the whole matrix. Standard errors in parentheses (HC3 throughout, except the
 behaviour-policy rows, which are clustered on the shared trust-template document
 digest). \sym{\dagger} survives Benjamini--Hochberg correction at $q<0.05$ across all 150
 tests in the sweep (both grade panels); the panel shown here includes the 2019
-inspection-grade control, which is why $N$ falls below the full national panel. The companion
-panel without the grade control gives the same qualitative picture with slightly larger
-Ofsted coefficients. Interview rows are limited to schools with a scoreable
+inspection-grade control, which is why $N$ falls below the full national panel. Interview rows are limited to schools with a scoreable
 head-teacher interview.
 \end{minipage}
 \end{table}
