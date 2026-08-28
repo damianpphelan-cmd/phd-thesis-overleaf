@@ -392,60 +392,62 @@ def robustness_overall(df: pd.DataFrame) -> None:
     the English bucket alone -- the source of a factor-of-four disagreement.
     Both outcomes are now named explicitly and estimated on one specification.
     """
-    cols = [("primary_stage1", "Primary", "p8mea_avg"),
-            ("rob_nograde", "No grade", "p8mea_avg"),
-            ("rob_singleyear", "2023--24 only", "p8mea_2324"),
-            ("rob_semh", "SEMH ctrl", "p8mea_avg"),
-            ("rob_wxs", r"W$\times$S", "p8mea_avg"),
-            ("rob_att8total", "Att8 total 24/25", "att8_total_2425"),
-            ("rob_att8eng", "Att8 English 24/25", "att8screng_2425"),
-            ("rob_london", "London ctrl", "p8mea_avg"),
-            ("rob_singlerater_ctrl", "Single-rater ctrl", "p8mea_avg"),
-            ("rob_doublerated", "Double-rated only", "p8mea_avg")]
+    rows = [("primary_stage1", "Primary specification", "p8mea_avg"),
+            ("rob_nograde", "No grade control", "p8mea_avg"),
+            ("rob_singleyear", "2023--24 results only", "p8mea_2324"),
+            ("rob_semh", "SEMH share controlled", "p8mea_avg"),
+            ("rob_wxs", r"Warmth $\times$ strictness added", "p8mea_avg"),
+            ("rob_att8total", "Attainment~8 total, 2024/25", "att8_total_2425"),
+            ("rob_att8eng", "Attainment~8 English, 2024/25", "att8screng_2425"),
+            ("rob_london", "London controlled", "p8mea_avg"),
+            ("rob_singlerater_ctrl", "Single-rater share controlled",
+             "p8mea_avg"),
+            ("rob_doublerated", "Double-rated schools only", "p8mea_avg")]
     W, S = "z_gs_warmth_enacted", "z_gs_strictness_enacted"
-    def row(term, label):
-        cells, ses = [], []
-        for spec, _, _ in cols:
-            r = get(df, spec, "overall", term)
-            cells.append(f"{num(r.b)}{stars_010(r.pval)}")
-            ses.append(f"({r.se:.3f})")
-        return (f"{label:<20}& " + " & ".join(f"{c:>18}" for c in cells) + r" \\" + "\n"
-                f"{'':<20}& " + " & ".join(f"{s:>18}" for s in ses) + r" \\" + "\n")
-    ns = [f"{int(get(df, s, 'overall', W).n):>18}" for s, _, _ in cols]
-    r2 = [f"{get(df, s, 'overall', W).r2:>18.3f}" for s, _, _ in cols]
-    heads = " & ".join(rf"\multicolumn{{1}}{{c}}{{{h}}}" for _, h, _ in cols)
+
+    def line(spec: str, label: str) -> str:
+        w = get(df, spec, "overall", W)
+        s = get(df, spec, "overall", S)
+        wc = f"{num(w.b)}{stars_010(w.pval)} ({w.se:.3f})"
+        sc = f"{num(s.b)}{stars_010(s.pval)} ({s.se:.3f})"
+        return (f"{label:<34}& {int(w.n):>4} & {wc:>24} & {sc:>24} "
+                f"& {w.r2:.3f} \\\\")
+
     body = "\n".join([
         r"\begin{table}[htbp]\centering",
         r"\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}",
         r"\small",
-        r"\caption{Robustness of the primary estimate (overall Progress~8 unless "
-        r"stated). All columns use the primary specification: full controls, "
-        r"predecessor-filled 2019 grade, late-entry schools excluded. The two "
-        r"Attainment~8 columns use the 2024/25 cohort, which has no Progress~8; "
-        r"the first is the sum of the four Attainment~8 buckets and the second "
-        r"the English bucket alone, so their coefficients are in points rather "
-        r"than grades.}",
+        r"\caption{Robustness of the primary estimate. Each row is one check, "
+        r"and reports the warmth and strictness coefficients from a single "
+        r"regression. The outcome is the two-year average of overall "
+        r"Progress~8 unless the row says otherwise, and every row uses the "
+        r"primary specification: full controls, predecessor-filled 2019 "
+        r"grade, late-entry schools excluded. The two Attainment~8 rows use "
+        r"the 2024/25 cohort, which has no Progress~8; the first takes the "
+        r"sum of the four Attainment~8 buckets and the second the English "
+        r"bucket alone, so their coefficients are in points rather than "
+        r"grades.}",
         r"\label{tab:robustness_overall}",
-        r"\footnotesize\setlength{\tabcolsep}{4pt}",
-        r"\resizebox{\linewidth}{!}{%",
-        r"\begin{tabular}{l*{10}{c}}",
+        r"\begin{tabular}{lcccc}",
         r"\toprule",
-        f"                    & {heads} \\\\",
+        f"{'Check':<34}& {'$N$':>4} & {'Warmth ($W$)':>24} & "
+        f"{'Strictness ($S$)':>24} & $R^2$ \\\\",
         r"\midrule",
-        row(W, "$W$") + r"\addlinespace" + "\n" + row(S, "$S$"),
-        r"\midrule",
-        f"{'N':<20}& " + " & ".join(ns) + r" \\",
-        f"{'$R^2$':<20}& " + " & ".join(r2) + r" \\",
+        line(*rows[0][:2]),
+        r"\addlinespace",
+        "\n".join(line(spec, label) for spec, label, _ in rows[1:]),
         r"\bottomrule",
-        r"\end{tabular}}",
+        r"\end{tabular}",
         r"\begin{minipage}{\linewidth}\vspace{4pt}\scriptsize",
-        r"\textit{Notes}: HC3 standard errors in parentheses. \sym{*} \(p<0.10\), "
-        r"\sym{**} \(p<0.05\), \sym{***} \(p<0.01\). The W$\times$S column adds the "
-        r"interaction of the two standardised scores; its main effects are not "
-        r"interpretable alone. The single-rater column adds the share of a "
-        r"school's observed lessons that were rated by one researcher rather "
-        r"than two; the double-rated column keeps only schools in which every "
-        r"lesson was rated by at least two.",
+        r"\textit{Notes}: HC3 standard errors in parentheses. \sym{*} "
+        r"\(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\). The "
+        r"warmth $\times$ strictness row adds the interaction of the two "
+        r"standardised scores; the two coefficients shown are then main "
+        r"effects, which are not interpretable on their own. The "
+        r"single-rater row adds the share of a school's observed lessons "
+        r"that were rated by one researcher rather than two; the "
+        r"double-rated row keeps only schools in which every lesson was "
+        r"rated by at least two.",
         r"\end{minipage}",
         r"\end{table}",
         ""])

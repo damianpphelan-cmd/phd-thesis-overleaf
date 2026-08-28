@@ -412,11 +412,17 @@ The same associations do not appear in what schools say about themselves. Neithe
 
 \subsection{Robustness}
 
-\Cref{tab:robustness_overall} puts the primary estimate through eight checks, each aimed at a particular doubt: that the grade control is doing the work; that a 
-result found in a two-year average fails in a single year; that strict schools shed pupils 
-with social, emotional and mental-health needs and gain measured progress that way; that the 
-result is a property of Progress~8 rather than of attainment; that it depends on the lessons rated by one researcher rather than two; that it holds only because of London; or that it depends on a single school. \Cref{app:3A:robust} walks through the checks one by one. Every check but two 
-leaves both coefficients significant at the five per cent level or better. The exceptions are both for strictness: the Attainment~8 English component, and the subset of schools where every lesson was double-rated. Nationally, clustering the standard errors on academy trust moves them by at most ten per cent (\cref{app:3A:robust}).
+\Cref{tab:robustness_overall} reports checks on the primary estimate, each aimed at a particular doubt about it.
+
+Two doubts concern how the regression is set up. The inspection grade is the strongest control in the specification, so the first check drops it, in case the grade rather than culture is doing the work. The outcome averages two years of results, which could hide a result that holds in one of those years only, so the second check uses 2023--24 alone.
+
+Three doubts concern which pupils and which schools produce the association. A strict school might raise its measured progress by losing pupils with social, emotional and mental-health needs rather than by teaching them better, so the share of those pupils is added as a control. London schools make more progress than schools elsewhere and differ from them in other ways, so London is controlled for separately. A single unusual school could be producing the association on its own, so each school is dropped in turn, with those results in the appendix.
+
+The remaining doubts concern the measures. The association might be a property of Progress~8 rather than of what pupils actually achieve, so the estimates are repeated on Attainment~8 for the 2024/25 cohort, both in total and for English alone. The culture scores rest on the researchers' ratings, so two checks ask whether the number of raters matters: one adds the share of a school's lessons that were rated by a single researcher, and the other keeps only the schools where every lesson was rated by at least two.
+
+Every check but two leaves both coefficients significant at the five per cent level or better. The exceptions are both for strictness: the Attainment~8 English component, and the subset of schools where every lesson was double-rated. \Cref{app:3A:robust} walks through the checks one by one.
+
+One further check concerns the standard errors rather than the coefficients. Schools in the same academy trust share policies and often leadership, so their results may not be independent of one another, and treating them as independent would make the standard errors too small. Clustering the standard errors by academy trust in the national sample changes them by at most ten per cent (\cref{app:3A:robust}).
 
 \input{tables/tab_robustness_overall}
 
