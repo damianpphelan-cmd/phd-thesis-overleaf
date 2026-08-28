@@ -423,8 +423,6 @@ Progress~8 counts eight subject slots, and a slot that a school does not enter a
 
 The extension does not make these associations causal. A score built from an inspection report is open to the same doubt as a score built from a visit: some feature of a school that the control variables do not capture could produce both the score and the results. How strong such a feature would have to be to overturn the visited estimates is the subject of the sensitivity analysis below.
 
-The same associations do not appear in what schools say about themselves. Neither the behaviour-policy scores nor the website culture scores are positively associated with progress in any specification (\cref{tab:llm_p8_matrix}), which matches the previous chapter's finding that these documents carry little of what the visit measured.
-
 \subsection{Robustness}
 
 \Cref{tab:robustness_overall} reports checks on the warmth and strictness estimates for the visited schools. Each check is aimed at a particular doubt about those estimates.
@@ -759,22 +757,12 @@ panel.
 
 Entering predicted warmth and the bands together (\cref{tab:typology}) moves warmth from $+0.078$ to $+0.054$ while the bands stay at $+0.117$, consistent with the two readings picking up some of the same features of a report. The univariate estimates remain the primary numbers because, as the body explains, the two readings do not carry the same mix of content.
 
-Three results qualify and extend the body's espoused comparison. First, part of the espoused warmth null may reflect the shape of the espoused scale rather than a pure absence of information. Heads overstate warmth against the enacted scores by \GapWarmth{} points on average, against \GapStrictness{} for strictness, so the espoused warmth scores bunch near the top of their scale, and scores that bunch have little variation left to predict with. Second, the size of a head's overstatement does not matter in itself: once the enacted score is in the regression, the gap between the espoused and enacted scores predicts nothing (\cref{tab:gaps}, discussed below). Third, the pattern is not confined to what schools say about themselves. On the national sample, parents' survey responses on their children's happiness and safety are positively associated with progress, at $0.15$ per standard deviation; satisfaction and results are jointly determined, though, so this is corroboration rather than an independent test.
+Two results qualify and extend the body's espoused comparison. First, part of the espoused warmth null may reflect the shape of the espoused scale rather than a pure absence of information. Heads overstate warmth against the enacted scores by \GapWarmth{} points on average, against \GapStrictness{} for strictness, so the espoused warmth scores bunch near the top of their scale, and scores that bunch have little variation left to predict with. Second, the size of a head's overstatement does not matter in itself: once the enacted score is in the regression, the gap between the espoused and enacted scores predicts nothing (\cref{tab:gaps}, discussed below). 
 
-\Cref{tab:gaps} examines whether disagreement between two measures of the same school predicts progress. It sets espoused
-against enacted scores in the visited sample, and document scores against the inspection-report scores nationally. Disagreement predicts nothing. The final columns explain the two gap terms that look significant: they track the square of the enacted score, so what they pick up is schools with extreme scores, not schools whose words and behaviour disagree.
+\Cref{tab:gaps} examines whether disagreement between the espoused and enacted scores of the same school predicts progress. Disagreement predicts nothing.
 
 \input{tables/tab_typology}
 \input{tables/tab_gaps}
-
-\Cref{tab:llm_p8_matrix} reports, for completeness, the association of every
-text-derived score with the five outcomes under the grade-controlled
-specification. Only the inspection-report scores have substantial
-associations that survive the grade control and the false-discovery
-correction. The website binary indicators have small ones, and the behaviour-policy warmth score is negative, surviving the false-discovery correction only for the Open component: schools whose policies sound warmest do slightly worse, consistent with the previous chapter's finding that policy language describes aspiration rather than practice. \Cref{tab:parentview} gives the parent-survey panel.
-
-\input{tables/tab_llm_p8_matrix}
-\input{tables/tab_parentview}
 
 The pseudo-progress measure of \cref{tab:p8_proxy} is validated by running
 the identical construction one year earlier, where it correlates with the
