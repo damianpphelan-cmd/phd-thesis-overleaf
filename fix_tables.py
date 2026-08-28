@@ -189,7 +189,7 @@ def caption_to_title(text: str, title: str,
     text = text[:m.start()] + "\\caption{" + title + "}" + text[end:]
     if not moved:
         return text
-    nm = re.search(r"(\\textit\{Notes:?\}:?\s*)", text)
+    nm = re.search(r"(\\textit\{Notes[:.]?\}:?\s*)", text)
     if nm:
         return (text[:nm.end()] + moved + " " + text[nm.end():])
     block = ("\\begin{minipage}{\\linewidth}\n\\smallskip\n"
