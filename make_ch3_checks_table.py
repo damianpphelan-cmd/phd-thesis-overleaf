@@ -60,9 +60,9 @@ def main() -> None:
              "\\addlinespace[2pt]"]
     hc = tc[tc["block"] == "head_continuity"]
     for spec, label in (("continuing_head",
-                         "Head confirmed still in post"),
-                        ("other_schools",
-                         "Head changed or not determinable")):
+                         "Same head, Sept 2022 and July 2025"),
+                        ("changed_head",
+                         "Head changed between those dates")):
         d = hc[hc["spec"] == spec].set_index("term")
         rows.append(row(label, d.loc["warmth"], d.loc["strictness"],
                         int(d.loc["warmth", "n"])))
@@ -94,9 +94,10 @@ def main() -> None:
         "with the intake controls either swapped to that era's values (KS2 "
         "APS of the GCSE cohort and FSM share) or held at current values, "
         "beside the contemporaneous outcome on the same 93 schools. Panel B "
-        "splits the primary specification by whether the head-teacher named "
-        "in the most recent inspection report is confirmed still in post in "
-        "July 2026.}\n"
+        "splits the primary specification by whether the school had the "
+        "same headteacher in the 1 September 2022 and 1 July 2025 GIAS "
+        "extracts, that is, from the first outcome cohort's final year to "
+        "the end of the visit window.}\n"
         "\\label{tab:timing_checks}\n"
         "\\begin{minipage}{\\linewidth}\n\\smallskip\n"
         "\\footnotesize\\textit{Notes:} Standard errors in parentheses. "
@@ -107,10 +108,10 @@ def main() -> None:
         "reject equality: era-controls comparison "
         f"$p={p_w:.2f}$ (warmth), $p={p_s:.2f}$ (strictness); all-current-"
         f"controls comparison $p={p_wc:.2f}$ and $p={p_sc:.2f}$. "
-        "In Panel B the continuing-head standard errors are three to seven "
-        "times the full-sample ones ($n=99$: warmth $+0.146$, se $0.043$; "
-        "strictness $+0.106$, se $0.041$), so the split is reported for "
-        "completeness, not direction. A related persistence check on the "
+        "Panel B's full-sample benchmarks ($n=99$) are warmth $+0.146$ "
+        "(se $0.043$) and strictness $+0.106$ (se $0.041$). The continuity "
+        "flag is built by build\\_head\\_continuity.py and covers every "
+        "estimation-sample school. A related persistence check on the "
         "national strictness leg interacts the band score with report age: "
         f"${age['b']:+.4f}$ per year (se ${age['se']:.4f}$, "
         f"$p={age['p']:.3f}$, $n={age_n}$).\n"

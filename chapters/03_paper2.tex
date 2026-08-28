@@ -438,7 +438,7 @@ The third check uses results from long before the fieldwork. The question is sti
 
 The result shows us two things. Firstly, the culture observed in 2023--25 is related to results from six years earlier. That is what would be expected if culture lasts, and it is not what would be expected if the observers were simply scoring schools by their recent results. Secondly, the older association is weaker than the current one. That is also what would be expected if culture changes slowly: the further back the results, the less that school resembles the school the observers saw. The second point is only suggestive, because a formal test cannot reject that the older and current associations are the same size ($p = 0.17$ for warmth and $0.62$ for strictness with the era's control variables, $0.09$ and $0.57$ with current ones).
 
-The fourth check keeps only the 22 schools whose headteacher, named in the most recent inspection report, was confirmed still in post in July 2026. In those schools the culture observed is most likely to be the culture the outcome cohorts experienced, because the person leading the school did not change in between. The standard errors are three to seven times the full-sample ones, so this subsample supports no conclusion in either direction. \Cref{tab:timing_checks} collects the placebo and continuity estimates with their standard errors.
+The fourth check splits the schools by whether the headteacher changed between the first outcome cohort's final year and the end of the visit window. This can be determined for all 99 schools: 58 kept the same headteacher and 41 changed. In the 58 continuing-head schools, where the culture observed is most likely to be the culture the outcome cohorts experienced, both associations hold, at $+0.16$ for warmth and $+0.13$ for strictness, close to the full-sample estimates. In the 41 schools whose head changed, the warmth association is close to zero and neither association is significant, which is the pattern that would be expected if a change of head can change a school's culture. The changed-head group is small and its estimates are noisy, though, and a formal test cannot reject that the two groups' associations are equal ($p = 0.27$ for warmth), so the contrast between the groups is only suggestive. \Cref{tab:timing_checks} collects the placebo and continuity estimates with their standard errors.
 
 \input{tables/tab_timing_checks}
 
@@ -673,7 +673,7 @@ is the one that depends on the full sample.
 
 No single school carries the visited estimates: dropping each school in turn moves the warmth coefficient by at most $0.019$ and the strictness coefficient by at most $0.017$, and no omission moves either across conventional significance.
 
-In the headteacher continuity split reported with the timing checks, the strictness point estimates stay at or above the full-sample values and the warmth point estimate falls close to zero, but the standard errors are three to seven times the full-sample ones, so neither movement is informative.
+In the headteacher continuity split reported with the timing checks, the 58 schools with the same head in the September 2022 and July 2025 registers give estimates close to the full-sample values for both dimensions, while the 41 schools whose head changed give a near-zero warmth estimate with standard errors more than twice as large; a formal test cannot reject that the two groups' associations are equal.
 
 The two sensitivity measures reason differently. The first, Oster's $\delta$, reasons from the controls that can be seen. Adding the full control set moves each coefficient by a known amount, and the measure extrapolates: if unobserved confounders behaved like the observed controls, how much of them it would take to drive the coefficient to zero. For warmth the question has a twist. Adding the controls raises the warmth coefficient rather than lowering it, and when the controls push a coefficient up, an extrapolation of this kind can hardly ever drive it to zero, so warmth's large $\delta$ of \OsterDeltaW{} is not in itself evidence of robustness. The informative number is a different one: assume unobservables matter exactly as much as the controls, and the warmth coefficient that survives is \OsterBetaEqualW{}. What no measure of this kind can rule out is a confounder unlike the observed controls, working in the opposite direction to the EAL share. Strictness is the more exposed. Adding the controls lowered its coefficient, the extrapolation continues that movement, and under the equal-importance assumption little of the coefficient survives; its $\delta$ of \OsterDeltaS{} sits just above the conventional benchmark of one.
 
@@ -818,18 +818,7 @@ absorbs in every specification.
 
 \input{tables/tab_score_controls_corr}
 
-A final check re-estimates the Stage~1 specification on the subset of
-schools where the headteacher named in the most recent inspection report is
-confirmed still in post in the July~2026 GIAS snapshot. Continuity could be determined for only 29 of the 99 estimation-sample schools, of which 22 were
-unchanged and 7 had changed, so the restriction is driven as much by data
-coverage as by turnover. The strictness point
-estimates are in the same direction as the full-sample estimates and are
-larger in every component. However, neither warmth nor strictness is
-significant at the 5 per cent level in any component, and, as the body
-reports, the subsample estimates cannot be read directionally. This check
-does not provide evidence against the primary results, but the subsample
-is too small to detect effects of the size found in the full
-specification.
+A final check re-estimates the Stage~1 specification on the schools whose headteacher did not change. The flag compares the headteacher recorded for each school in the GIAS extract of 1 September 2022 with the extract of 1 July 2025. Names count as the same person when they match after titles are stripped, when one is an initial form of the other, or when a co-headteacher pair is listed in a different order, and a school absent from the 2022 extract is looked up under its predecessor URN. The flag covers all 99 estimation-sample schools: 58 kept the same head and 41 changed. On the 58, warmth is $+0.160$ (se $0.044$) and strictness $+0.130$ (se $0.052$), both significant and close to the full-sample values. On the 41, warmth is $+0.028$ (se $0.111$) and strictness $+0.121$ (se $0.100$), neither significant. A fully interacted comparison cannot reject equal associations across the two groups ($p = 0.27$ for warmth, $0.94$ for strictness). This flag replaces an earlier one based on the headteacher named in the inspection report, which could be determined for only 29 of the 99 schools, because most reports do not name the headteacher.
 
 \Cref{tab:sensitivity_bounds} reports the sensitivity measures quoted in
 the robustness discussion: Oster's $\delta$ and the equal-selection bound
