@@ -78,7 +78,7 @@ def main() -> None:
         "that never saw it; the strictness bands come from the frozen "
         "one-page mark scheme applied once per report. The last column "
         "is the 95 per cent generated-regressor bootstrap interval for the "
-        "full-controls coefficient (B=500 over the training fit); the "
+        "full-controls coefficient (B=500 over the estimation sample); the "
         "mark-scheme bands estimate nothing from the sample, so the strictness column has none. Each column reports its own "
         "estimation-sample $n$.}\n"
         "\\label{tab:national_legs}\n"

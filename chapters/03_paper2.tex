@@ -397,7 +397,7 @@ and $\NatSPre$, essentially their full-sample values, so reports that
 could have been written in knowledge of the outcomes are not driving the
 associations.
 
-The third concerns the models' own estimation error. The warmth and teaching scores are themselves the output of a fitted model, so they carry that model's uncertainty as well as the regression's. Refitting the model many times on resampled training schools and rerunning the regression each time gives 95 per cent intervals of [$\NatWBootLo$, $\NatWBootHi$] for warmth and [$\NatTBootLo$, $\NatTBootHi$] for teaching, both away from zero.
+The third concerns the models' own estimation error. The warmth and teaching scores are themselves the output of an estimated model, so they carry that model's uncertainty as well as the regression's. Re-estimating the model many times on resampled training schools and rerunning the regression each time gives 95 per cent intervals of [$\NatWBootLo$, $\NatWBootHi$] for warmth and [$\NatTBootLo$, $\NatTBootHi$] for teaching, both away from zero.
 
 The fourth concerns sample dependence: excluding the visited schools from the national sample raises the warmth coefficient (to $+0.136$) and the teaching coefficient (to $+0.122$), so neither association depends on the schools that agreed to take part.
 

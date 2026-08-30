@@ -16,7 +16,7 @@ import sys
 import numpy as np
 import pandas as pd
 
-from fix_tables import move_caption_below
+from fix_tables import caption_to_title, move_caption_below
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
@@ -74,7 +74,7 @@ def main() -> None:
         "\\caption{What the prediction models read: the ten phrases with the "
         "largest positive and negative weights in the warmth and teaching "
         "models (inspection reports, demographics removed from the target). "
-        "Full-sample descriptive fits at the penalty the tested models "
+        "Full-sample descriptive estimates at the penalty the tested models "
         "chose.}\n"
         "\\label{tab:p1_phrases}\n"
         "{\\small\\begin{tabular}{llll}\n\\toprule\n"
@@ -84,6 +84,9 @@ def main() -> None:
         + "\n".join(rows) +
         "\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n")
     table, _ = move_caption_below(table)
+    # caption convention (PIPELINE.md, 29 Aug 2026)
+    table = caption_to_title(
+        table, 'The phrases with the largest weights', keep_first=True)
     (HERE / "tables" / "tab_p1_phrases.tex").write_text(
         table, encoding="utf-8")
 
