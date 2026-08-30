@@ -25,6 +25,12 @@ PRIM = ROOT / "rubric_grid_scores_gpt-4o-mini.csv"
 SENS = ROOT / "rubric_grid_scores_gpt-4o.csv"
 RET = ROOT / "rubric_grid_scores_gpt-4o-mini_retest.csv"
 GRIDP = ROOT / "grid_perm_pvalues.csv"
+# The school's own documents (behaviour policy + website) pooled, from
+# text_prediction_ownvoice.py. The frozen harness has no such block: its
+# "combined" pools all three sources, inspection report included, which
+# cannot support a claim about what schools write about themselves.
+OWN_ESP = ROOT / "text_prediction_ownvoice_minilm.csv"
+OWN_ENA = ROOT / "text_prediction_ownvoice_enacted_minilm.csv"
 N_PERM = 200  # draws behind grid_perm_pvalues.csv; floor p = 1/(N_PERM+1)
 SPINE = ROOT / "text_spine.csv"
 LENGTHS = ROOT / "grid_doc_lengths.csv"
@@ -39,6 +45,10 @@ VISIT_COL = {"warmth": "gs_warmth_enacted",
 
 def f3(x):
     return ("+" if x >= 0 else "") + f"{x:.2f}"
+
+
+def pct(x):
+    return f"{x:.0%}".replace("%", "\\%")
 
 
 def corr(a: pd.Series, b: pd.Series) -> tuple[float, int]:
@@ -299,15 +309,35 @@ def main() -> None:
     r_raw_w, _ = corr(raw_w.set_index("urn")["y"].astype(float),
                       raw_w.set_index("urn")["pred"].astype(float))
 
+    def own(path, target):
+        d = pd.read_csv(path)
+        d = d[(d['arm'] == 'tfidf') & (d['leg'] == 'deconf')
+              & (d['target'] == target)]
+        assert len(d) == 1, f'own cell {target} x{len(d)}'
+        return float(d['loo_r'].iloc[0])
+
     m = {
         "PredWOfsted": f3(pcell("ofsted", "enacted_warmth")),
         "PredTOfsted": f3(pcell("ofsted", "enacted_teaching")),
         "PredSOfsted": f3(pcell("ofsted", "enacted_strictness")),
         "PredWCombined": f3(pcell("combined", "enacted_warmth")),
         "PredWCombinedP": f"{pp('enacted_warmth'):.3f}",
-        "PredEspS": f3(pcell("combined", "espoused_strictness")),
-        "PredEspClim": f3(pcell("combined", "espoused_staff_climate")),
-        "PredEspW": f3(pcell("combined", "espoused_warmth")),
+        # espoused: the school's own documents, not all three sources
+        "PredEspS": f3(own(OWN_ESP, "espoused_strictness")),
+        "PredEspClim": f3(own(OWN_ESP, "espoused_staff_climate")),
+        "PredEspW": f3(own(OWN_ESP, "espoused_warmth")),
+        # the same two documents pooled, against the visit scores
+        "PredBPWebW": f3(own(OWN_ENA, "enacted_warmth")),
+        "PredBPWebS": f3(own(OWN_ENA, "enacted_strictness")),
+        "PredBPWebT": f3(own(OWN_ENA, "enacted_teaching")),
+        "PredSWeb": f3(pcell("web", "enacted_strictness")),
+        "PredTCombined": f3(pcell("combined", "enacted_teaching")),
+        # two language models applying the same scheme: exact band
+        # agreement, used where the schemes' reliability is discussed
+        "AgreeWebW": pct(g.loc[("web", "warmth"), "sens_exact"]),
+        "AgreeWebS": pct(g.loc[("web", "strictness"), "sens_exact"]),
+        "AgreeOfstedW": pct(g.loc[("ofsted", "warmth"), "sens_exact"]),
+        "AgreeOfstedT": pct(g.loc[("ofsted", "teaching"), "sens_exact"]),
         "RubricSOfstedRaw": f3(g.loc[("ofsted", "strictness"), "rubric_raw"]),
         "RubricSOfstedDec": f3(g.loc[("ofsted", "strictness"), "rubric_deconf"]),
         "RubricWOfstedDec": f3(g.loc[("ofsted", "warmth"), "rubric_deconf"]),
