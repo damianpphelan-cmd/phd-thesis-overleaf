@@ -112,8 +112,7 @@ statistical model learns which words and phrases of a document go with
 higher or lower enacted scores, and it is tested only on schools it was
 not fitted on. Before fitting, identifying details are removed from the text. The school's intake is also taken out of the score the model is asked to predict. Schools with similar intakes tend to receive similar culture scores, and a report often reveals what a school's intake is, so without this step a model could score well by recognising the intake rather than by reading anything about the culture. The model is therefore asked to predict only the part of a school's score that its intake does not explain. 
 
-The second method uses a mark scheme approach. A large language model is provided with a one-page written mark scheme for each dimension and
-asked to score each document on a 1 to 5 scale. The first method assumes nothing about where 
+The second method uses a mark scheme approach. A large language model is provided with a one-page written mark scheme for each dimension --- warmth, strictness, and teaching --- and asked to score each document on a 1 to 5 scale. The first method assumes nothing about where 
 culture shows up in text; the second assumes it is there and scores it. Comparing the two 
 methods for each text source and for each dimension shows not only which measures can be 
 extended to every school in the country but what method is most appropriate for each dimension.
