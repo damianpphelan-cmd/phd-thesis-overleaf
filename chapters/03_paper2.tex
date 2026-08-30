@@ -465,7 +465,7 @@ The last check concerns the possibility that some characteristic of a school tha
 
 \subsection{Exploratory results on traditional pedagogy}
 
-The last results concern what schools say about how they teach. In the public debate about school improvement, the schools known for combining warmth with strictness often also describe their teaching as traditional: knowledge is taught directly by subject-expert teachers and practised until it is remembered, and creative work is treated as something that builds on knowledge rather than something that develops alongside it. Whether a school takes this approach cannot be read from its inspection report, because reports assess the quality of a school's teaching but rarely describe its approach. The one public source in which schools state their approach is their own website, so traditional pedagogy is measured from each school's site: an indicator that marks a school when its website presents knowledge as the organising principle of the curriculum, or describes teaching as instruction by subject experts. Every school whose website contains any of the language associated with this approach was read in full against a written rule, twice and independently, and the readings agreed on 95 per cent of them. The indicator marks 50 of the 3,048 national schools with an outcome.
+The last results concern what schools say about how they teach. In the public debate about school improvement, the schools known for combining warmth with strictness often also describe their teaching as traditional: knowledge is taught directly by subject-expert teachers and practised until it is remembered, and creative work is treated as something that builds on knowledge rather than something that develops alongside it. Whether a school takes this approach cannot be read from its inspection report, because reports assess the quality of a school's teaching but rarely describe its approach. The one public source in which schools state their approach is their own website, so traditional pedagogy is measured from each school's site: an indicator that marks a school when its website presents knowledge as the organising principle of the curriculum, or describes teaching as instruction by subject experts. Every school whose website contains any of the language associated with this approach was read in full against a written rule, twice and independently, and the readings agreed on 95 per cent of them. \Cref{app:3A:pedagogy} sets out how the indicator was built and how accurate it is. The indicator marks 50 of the 3,048 national schools with an outcome.
 
 Schools whose websites espouse traditional pedagogy make \IdPed{} of a grade per subject more progress than otherwise similar schools ($p = 0.02$, $n = 3{,}075$). The association changes little when the school's pre-pandemic inspection grade is added to the control variables ($+0.179$).
 
@@ -703,6 +703,68 @@ Being weaker is not, by itself, a source of bias. The regression estimates how p
 Each national coefficient has a benchmark. The national score is an imperfect stand-in for the enacted one, so its coefficient should be a scaled-down copy of the visited coefficient, shrunk by the share of the enacted score it captures. For warmth that benchmark is a third of $0.219$, roughly $0.07$, and the national estimate of $\NatW$ sits on it. For teaching it is $0.28 \times 0.206 \approx 0.06$, and the estimate of $\NatT$ sits about a quarter above. For strictness it is $0.30 \times 0.199 \approx 0.06$, and the estimate of $\NatS$ is roughly double. The benchmarks are rough: the shares they rest on come from about a hundred schools of restricted range, so each carries a sampling error of about $0.1$, and the strictness share is lowered by the coarseness of a five-band score, which sets that benchmark too low.
 
 The strictness overshoot has an explanation in how the two readings were built. The warmth and teaching models were trained only on the part of the enacted score that demographics cannot explain, with names and other shortcuts stripped from the text, so their scores carry warmth and teaching and little else. The mark scheme reads the report as it stands. Its bands pick up conduct, and with it some of the general character of an orderly, effective school, and that general character is itself correlated with results. Part of the strictness coefficient is that extra content rather than strictness alone. For the ranking of the two dimensions, the visited sample is the one to trust, because there the dimensions were measured directly, and warmth carries at least as much weight as strictness.
+
+\section{The Traditional-Pedagogy Indicator}
+\label{app:3A:pedagogy}
+
+This section explains how the traditional-pedagogy indicator was built and
+how accurate it is.
+
+The indicator records what a school's website says about its teaching.
+Deciding that means reading sentences and judging what they are about. A rule
+that searches for words cannot do it. Words like ``knowledge-rich'',
+``mastery'' and ``traditional'' appear on the websites of many schools that do
+not teach this way, so finding the word settles nothing.
+
+The reading was done by a large language model, Claude Opus, pinned to the
+version \texttt{claude-opus-5}. There are 3,370 school websites in the
+collection, and reading all of them was not practical, so the schools were
+narrowed down first. A school became a candidate if its website used any one
+of about thirty terms linked to this approach, or two terms from a second,
+weaker list. This gave 436 candidates. The term lists were kept long, so that
+few schools which describe this approach would be missed at this stage.
+
+Each of the 436 websites was then read in full against a written rule, which
+is reproduced in \cref{app:3A:pedrule}. The rule sets out the question, says
+that using a word is not the same as giving an account of teaching, lists four
+common mistakes, and says that doubtful cases are not marked. Every website
+was read twice, by two separate runs of the model. Each run saw only the rule
+and the websites, and read them in a different order. Where the two runs
+disagreed, a third run decided, without seeing either earlier answer. To mark
+a school, the model had to quote a sentence from that school's website. Every
+quoted sentence was then checked against the website text by a script.
+
+The two runs agreed on 95 per cent of the 436 websites ($\kappa = 0.81$) and
+disagreed on 21. Every sentence the model quoted was found in the website it
+came from. The indicator marks 60 of the 3,370 schools. Because both runs are
+the same model working from the same rule, that figure is a measure of how
+repeatable the reading is, and not of how far two independent judges agree.
+
+Accuracy is measured against 50 websites set aside for this purpose. Each of
+those was read three times by a language model, working from the same rule,
+and the answer is what two of the three runs said. The version of the model
+used for those readings was not recorded. The indicator agrees with that
+answer on 49 of the 50 ($\kappa = 0.94$). Of the ten websites the three runs
+marked, it marks all ten. Of the forty they did not mark, it marks one.
+
+That comparison is between one set of model readings and another. I also read
+those 50 websites myself. My labels and the indicator agree on 86 per cent of
+them ($\kappa = 0.55$). I then looked at the seven websites we disagreed about
+and judged that all seven do describe this approach. Those judgements were
+made after seeing the model's reading, so they are not a test of it, but they
+are why two further schools are marked.
+
+Three limits remain. The reading is a model's reading, and the accuracy
+figures above mostly compare it with other readings by the same model. The
+figures measure agreement about what a website says, which is not the same as
+evidence about how the school teaches; the measure is of what a school says,
+throughout. And the collection holds three pages per school, so a school that
+teaches this way without describing it on those pages cannot be marked.
+
+\subsection{The rule the model was given}
+\label{app:3A:pedrule}
+
+\input{snippets/trad_pedagogy_rule}
 
 \section{Additional Tables}
 \label{app:3A:tables}
