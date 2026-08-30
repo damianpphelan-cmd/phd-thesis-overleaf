@@ -26,10 +26,7 @@ removing what a school's intake statistics explain. Second, we see a similar mod
 of $\RubricSOfstedDec$ after adjusting for pupil intake for strictness measured by the LLM using the mark scheme. Different approaches are required because the two dimensions are written down 
 differently: warmth shows in a report's everyday wording, strictness in specific claims that a reader has to be told to look for.
 Third, what a headteacher says about their school is not what observers find there, and the gap 
-is widest for warmth. Sorting the schools into a warmer and a colder half, once by the heads' 
-ratings and once by the observers', the two agree at \HalfMatchW{} schools of 103; chance alone 
-would agree at about \HalfLuck{}. For strictness the agreement is \HalfMatchS{} of 103, better 
-than chance but short of what two noisy readings of the same school would give. Fourth, schools' own documents match what their heads say about strictness and carry no signal about warmth.
+is widest for warmth. The heads' ratings and the observers' scores correlate at $\GoldWarmthSplit$ for warmth and $\GoldStrictnessSplit$ for strictness. Correcting both for measurement error raises them to $\DisSplitW$ and $\DisSplitS$, still far below what two readings of the same quantity would give. Fourth, schools' own documents match what their heads say about strictness and carry no signal about warmth.
 \end{chapterabstract}
 
 % ---------------------------------------------------------------
@@ -134,7 +131,7 @@ for example ``low-level disruption is rare'', which only a reader told what to l
 
 The third finding is that the enacted and espoused measures diverge,
 and that the divergence is stronger for warmth. The interview and the
-visit are correlated at only $\GoldWarmthSplit$ for warmth, against $\GoldStrictnessSplit$ for strictness. A simple count says what a correlation that low means in practice. Sort the schools into a warmer and a colder half, once by the heads' ratings and once by the observers'. If the two measures agreed, most schools would fall in the same half both times. In fact the two sortings agree at \HalfMatchW{} of the 103 schools. Chance alone would agree at about \HalfLuck{}, and two noisy readings of the same quantity at about \HalfCeilingW{}. For strictness the agreement is \HalfMatchS{} of 103, against a ceiling of about \HalfCeilingS{} once measurement error is allowed for.
+visit are correlated at only $\GoldWarmthSplit$ for warmth, against $\GoldStrictnessSplit$ for strictness. Both measures contain error, which caps any correlation between them, so the raw figures understate the agreement. Correcting for the error in both raises warmth to $\DisSplitW$ and strictness to $\DisSplitS$. Two error-free readings of the same quantity would correlate near one, so even corrected, the head's account and the observers' scores are not readings of the same thing, and warmth falls furthest short.
 
 The fourth finding is that the same asymmetry runs through the public text. What schools write in their policies and on their websites matches what their heads say about strictness and about staff morale.
 However, their warmth language shows no relation to the observers, or even to their 
@@ -662,13 +659,7 @@ visit scores are correlated at only $\GoldWarmthSplit$ for warmth ($p = \GoldWar
 $\GoldStrictnessSplit$ for strictness ($p \GoldStrictnessSplitP$), on the \NTierOne{} schools
 with both.
 
-A simple count shows the gap. Sort the schools into a warmer half and a colder half, once by 
-the heads' ratings and once by the observers' scores. If the two measures agreed perfectly, 
-every school would fall in the same half both times. In fact \HalfMatchW{} of the 103 do.
-
-Two benchmarks put that number in context. The first is chance. If the heads' ratings had nothing to do with the observers', half the schools would still land in the same half, about \HalfLuck{} of the 103. The second is the most the agreement could be. Even if heads and observers were measuring exactly the same thing, measurement error would move some schools across the middle, and given how noisy the two measures are, the agreement would reach about \HalfCeilingW{} of the 103. The actual figure, \HalfMatchW{}, is close to the chance figure and well below the ceiling: on warmth, the heads' ratings agree with the observers' scores no more than chance would produce. The heads' scale is coarse, so several schools sit exactly at the middle and must be counted into one half or the other. Counting them the other way gives \HalfMatchWAlt{}, and the conclusion is the same.
-
-Strictness is different. There the agreement is \HalfMatchS{} of 103, above the chance benchmark and below the ceiling of \HalfCeilingS{}. Heads place their school's strictness with some accuracy, though not with all the accuracy the measures would allow. The disagreement is concentrated in warmth, and noise does not account for it: correcting the warmth correlation for the noise in both measures raises it only to $0.42$.
+Both scores are measured with error, and that error caps the correlation between them. Correcting for the error in both raises warmth to $\DisSplitW$ and strictness to $\DisSplitS$. Neither reaches the value two readings of a shared quantity would give, and the shortfall is much larger for warmth: heads place their school's strictness with some accuracy and its warmth with very little. The disagreement on warmth is therefore not a measurement artefact.
 
 \subsection{What the public text contains}
 
