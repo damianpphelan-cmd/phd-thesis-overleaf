@@ -38,9 +38,9 @@ def main() -> None:
 
     tier = d["gs_data_tier"].fillna("national")
     groups = [
-        ("Full data (Tier 1)", d[tier == "full"]),
-        ("Interview only (Tier 2)", d[tier == "interview_only"]),
-        ("Remaining national (Tier 3)", d[tier == "national"]),
+        ("Visited and interviewed", d[tier == "full"]),
+        ("Interviewed only", d[tier == "interview_only"]),
+        ("Rest of the national population", d[tier == "national"]),
         (None, None),                       # rule
         ("All schools", d),
     ]
@@ -69,11 +69,7 @@ def main() -> None:
     body = "\n".join(rows)
     tex = r"""\begin{table}[htbp]
 \centering
-\caption{Distribution of schools across measurement tiers and selected
-observable characteristics (2023--24 school year). Tiers are mutually
-exclusive: Tier~1 schools received both a headteacher interview and a
-researcher visit, Tier~2 an interview only, and Tier~3 comprises the remaining
-national population. FSM\%: mean proportion eligible for free school meals.
+\caption{Distribution of schools across the three groups and selected observable characteristics (2023--24 school year). The groups are mutually exclusive: the first received both a headteacher interview and a researcher visit, the second an interview only, and the third is the rest of the national population. FSM\%: mean proportion eligible for free school meals.
 EAL\%: mean proportion with English as an additional language. Size: median
 number of pupils on roll. Outstanding\%/Good\%: percentage rated Outstanding or
 Good at most recent inspection, among schools with a grade.}
@@ -81,14 +77,14 @@ Good at most recent inspection, among schools with a grade.}
 \small
 \begin{tabular}{lcccccc}
 \toprule
-Tier & $N$ & FSM\% & EAL\% & Median size & Outstanding\% & Good\% \\
+Group & $N$ & FSM\% & EAL\% & Median size & Outstanding\% & Good\% \\
 \midrule
 @BODY@
 \bottomrule
 \end{tabular}
 \smallskip
 \begin{minipage}{0.92\linewidth}
-\footnotesize\textit{Notes:} The tiers sum to one fewer than the total: one interviewed school whose head left the statement battery blank belongs to the total but to no tier.
+\footnotesize\textit{Notes:} The groups sum to one fewer than the total: one interviewed school whose head left the statement battery blank belongs to the total but to no group.
 \end{minipage}
 \end{table}
 """.replace("@BODY@", body)
