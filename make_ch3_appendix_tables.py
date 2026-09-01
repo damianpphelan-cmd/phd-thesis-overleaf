@@ -13,7 +13,7 @@ import argparse, os, sys
 import numpy as np
 import pandas as pd
 
-from fix_tables import move_caption_below
+from fix_tables import move_caption_above
 
 ROOT = r"C:\Users\damia\OneDrive\Documents\Schools Project"
 TAB = os.path.join(ROOT, "thesis", "tables")
@@ -69,7 +69,7 @@ def bh(p):
 def write(name, tex, check, changed):
     if name.endswith(".tex") and name.startswith("tab_"):
         # Float convention: tabular first, then \caption + \label, then notes.
-        tex, _ = move_caption_below(tex)
+        tex, _ = move_caption_above(tex)
     path = os.path.join(TAB, name)
     cur = open(path, encoding="utf-8").read() if os.path.exists(path) else ""
     if cur != tex:

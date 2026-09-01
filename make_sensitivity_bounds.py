@@ -18,7 +18,7 @@ import sys
 
 import pandas as pd
 
-from fix_tables import caption_to_title, move_caption_below
+from fix_tables import caption_to_title, move_caption_above
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CSV = os.path.join(HERE, "tables", "ch3_estimates.csv")
@@ -125,7 +125,7 @@ the boundary of the 95 per cent confidence interval nearer zero.
         rf"\newcommand{{\WaldWSP}}{{{wald.pval:.2f}}}",
     ]) + "\n"
 
-    table, _ = move_caption_below(table)
+    table, _ = move_caption_above(table)
     # caption convention (PIPELINE.md, 29 Aug 2026)
     table = caption_to_title(table, 'Sensitivity to unmeasured confounding')
     targets = [

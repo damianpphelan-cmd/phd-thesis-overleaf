@@ -1,5 +1,7 @@
 \begin{table}[htbp]
-\centering
+\centering\caption{National-tier model: leave-one-out performance}
+\label{tab:national_model_loo}
+
 \small
 \begin{tabular}{lcccr}
 \toprule
@@ -9,8 +11,6 @@ Warmth     & --- & -0.023 & 0.469 & 1000 \\
 Strictness & 0.319 & 0.099 & 0.402 & 10 \\
 \bottomrule
 \end{tabular}
-\caption{National-tier model: leave-one-out performance}
-\label{tab:national_model_loo}
 \begin{minipage}{\linewidth}
 \smallskip
 \footnotesize\textit{Notes:} Features: Ofsted LLM score, behaviour-policy LLM score and website LLM score (3 features per dimension). Target: the \emph{enacted} score from the school visit; no interview input enters either side. Training and evaluation sample: $N = 101$. Of the 103 full-data schools, 2 schools lack a scored Ofsted report and are dropped. A dash marks predictions too nearly constant for a correlation to be informative and is not reported (standard deviation under a tenth of the target's); the model has shrunk to the sample mean.

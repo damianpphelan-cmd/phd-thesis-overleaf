@@ -18,7 +18,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from fix_tables import caption_to_title, move_caption_below
+from fix_tables import caption_to_title, move_caption_above
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
@@ -102,7 +102,7 @@ def main() -> None:
         "$^{*}$ \\(p<0.10\\), $^{**}$ \\(p<0.05\\), $^{***}$ \\(p<0.01\\). "
         "The headteacher-change flag covers every estimation-sample school.\n"
         "\\end{minipage}\n\\end{table}\n")
-    table, _ = move_caption_below(table)
+    table, _ = move_caption_above(table)
     table = caption_to_title(
         table, "Timing checks on the visited-school estimates")
     out = HERE / "tables" / "tab_timing_checks.tex"

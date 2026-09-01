@@ -1,5 +1,7 @@
 \begin{table}[htbp]
 \centering
+\caption{The national-tier model against a keyword baseline}
+\label{tab:ridge_spec_comparison}
 
 \small
 \footnotesize\setlength{\tabcolsep}{4pt}% width fix 17 Aug 2026
@@ -16,8 +18,6 @@ Specification & $N$ & $k$ & LOO $r$ & LOO $R^2$ & RMSE & $\lambda$ \\
 \quad (B) Keyword-rule scores & 101 & 2 & 0.027 & -0.013 & 0.851 & 100 \\
 \bottomrule
 \end{tabular}
-\caption{The national-tier model against a keyword baseline}
-\label{tab:ridge_spec_comparison}
 \begin{minipage}{\linewidth}
 \smallskip
 \footnotesize\textit{Notes:} Specification~(A) uses the language model's holistic score for each document and is the model used throughout the chapter; specification~(B) replaces the three with the keyword-rule scores computed by the pattern matcher that runs alongside the language model on the same text. Both are estimated on the visited schools and evaluated by leave-one-out cross-validation against the \emph{enacted} gold-standard score, using the same penalty grid and selection procedure as \cref{tab:national_model_loo}. $k$ is the number of predictors. Negative $R^2$ indicates worse out-of-sample prediction than the sample mean; a dash indicates predictions too nearly constant for the correlation to be informative; it is not reported.

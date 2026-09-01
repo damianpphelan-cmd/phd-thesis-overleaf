@@ -13,7 +13,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from fix_tables import move_caption_below
+from fix_tables import move_caption_above
 
 BASE = Path(__file__).resolve().parent.parent
 OUT = Path(__file__).resolve().parent / "tables" / "tab_score_dist.tex"
@@ -81,7 +81,7 @@ score. No sub-score enters both sets.
 \end{{minipage}}
 \end{{table}}
 """
-    tex, _ = move_caption_below(tex)
+    tex, _ = move_caption_above(tex)
     OUT.write_text(tex, encoding="utf-8")
 
     print(f"wrote {OUT.relative_to(BASE)}  (n = {n})")

@@ -44,11 +44,20 @@ MATH_RE = re.compile(r"\$([^$]*?)\$")
 # make_grid_numbers.py and formatted by hand there.
 DO_NOT_TOUCH = {"tab_p1_grid"}
 
-# The thesis float convention: inside every table float the body (tabular)
-# comes first, then \caption + \label, then any notes block. Producers used
-# to emit the caption at the top; move_caption_below() enforces the order and
-# is idempotent, so producers call it on their output and this script sweeps
-# every table as a backstop for producers that live outside thesis/.
+# The thesis float convention (1 Sep 2026): the title sits above the body
+# and the notes below it, which is what economics journals do. Inside every
+# table float the order is caption + label, then the tabular, then any notes
+# block. move_caption_above() enforces it and is idempotent, so producers
+# call it on their output and this script sweeps every table as a backstop
+# for producers that live outside thesis/. Until this date the caption sat
+# below the body; move_caption_below() is kept because producers still call
+# it, and it now simply delegates.
+# The float opener: egin{table}, its placement option and any
+# \centering. The caption is placed immediately after this.
+TABLE_OPEN_RE = re.compile(
+    r"\\begin\{table\*?\}(?:\[[^\]]*\])?"
+    r"(?:\s*\\centering)?")
+TABULAR_OPEN_RE = re.compile(r"\\begin\{(?:tabularx?|longtable|threeparttable)\*?\}")
 TABULAR_END_RE = re.compile(r"\\end\{(?:tabularx?|longtable|threeparttable)\*?\}")
 
 
@@ -101,66 +110,58 @@ def add_label(text: str, label: str, nl: str = "\n") -> tuple[str, bool]:
 
 
 def move_caption_below(text: str, nl: str = "\n") -> tuple[str, bool]:
-    """Move \\caption{...} (+ adjacent \\label) to just after the tabular body.
+    """Deprecated alias for move_caption_above.
 
-    Enforces the float convention: tabular first, then caption + label, then
-    notes. Handles multi-line captions (balanced braces) and a \\resizebox
-    wrapper whose closing ``}`` follows \\end{tabular}. Files with no caption
-    or no tabular are left alone. Idempotent.
+    The convention was inverted on 1 Sep 2026: the title now sits
+    above the body and the notes below it. This alias is kept so that
+    any producer still calling the old name complies with the current
+    convention rather than silently reverting the sweep.
+    """
+    return move_caption_above(text, nl)
+
+
+def move_caption_above(text: str, nl: str = "\n") -> tuple[str, bool]:
+    """Move \\caption{...} (+ adjacent \\label) to the top of the float.
+
+    Economics convention: the title goes above the table and the notes
+    below it. The caption is placed immediately after \\begin{table}
+    and its \\centering, which is robust to whatever wraps the body
+    (\\resizebox, \\small, a \\def). Any notes block is left where it
+    is, after the body, which puts it below. Files with no caption or
+    no float are left alone. Idempotent.
     """
     m = CAPTION_RE.search(text)
-    if not m:
+    om = TABLE_OPEN_RE.search(text)
+    if not m or not om:
         return text, False
-    ends = [mm.end() for mm in TABULAR_END_RE.finditer(text)]
-    if not ends:
-        return text, False
-    body_end = max(ends)
+
     cap_start = m.start()
-    if cap_start > body_end:
-        return text, False  # already below the body
+    body = TABULAR_OPEN_RE.search(text)
+    if body and cap_start < body.start():
+        return text, False  # already above the body
 
     cap_end = find_caption_end(text, cap_start)
     lm = re.match(r"\s*\\label\{[^}]*\}", text[cap_end:])
     block_end = cap_end + lm.end() if lm else cap_end
     block = text[cap_start:block_end]
 
-    # Expand the removal region to whole lines where possible.
     rm_start = cap_start
-    line_start = text.rfind("\n", 0, cap_start) + 1
-    prefix = text[line_start:cap_start]
-    if prefix.strip() == "":
+    line_start = text.rfind(nl, 0, cap_start) + 1
+    if text[line_start:cap_start].strip() == "":
         rm_start = line_start
     rm_end = block_end
-    nl_after = text.find("\n", block_end)
-    tail_of_line = text[block_end:nl_after] if nl_after != -1 else text[block_end:]
-    if tail_of_line.strip("% \t") == "" and nl_after != -1:
+    nl_after = text.find(nl, block_end)
+    if nl_after != -1 and text[block_end:nl_after].strip() == "":
         rm_end = nl_after + 1
 
     remainder = text[:rm_start] + text[rm_end:]
-
-    # Recompute the insertion point on the remainder.
-    ends = [mm.end() for mm in TABULAR_END_RE.finditer(remainder)]
-    ins = max(ends)
-    # Step past the closer of any wrapper opened before the tabular --
-    # `{\small\begin{tabular}...\end{tabular}}` puts it on the same line,
-    # \resizebox puts a lone `}` on the next line (after an optional `%`).
-    same_line = re.compile(r"[ \t]*\}+[ \t]*%?").match(remainder, ins)
-    if same_line and "}" in same_line.group(0):
-        ins = same_line.end()
-    else:
-        next_line = re.compile(r"[ \t]*%?[ \t]*\r?\n\}[ \t]*%?"
-                               r"(?=[ \t]*\r?\n)").match(remainder, ins)
-        if next_line and "\\resizebox" in remainder[:ins]:
-            ins = next_line.end()
-
-    # Reuse the removed block's own indentation for the inserted lines.
-    indent = prefix if prefix.strip() == "" else ""
-    lines = block.replace("\r\n", "\n").split("\n")
-    insert = nl + nl.join(
-        (indent + ln.lstrip() if ln.strip().startswith("\\label") or i == 0
-         else ln)
-        for i, ln in enumerate(lines))
-    return remainder[:ins] + insert + remainder[ins:], True
+    om2 = TABLE_OPEN_RE.search(remainder)
+    if not om2:
+        return text, False
+    ins = om2.end()
+    if ins < len(remainder) and remainder[ins] == nl:
+        ins += 1
+    return remainder[:ins] + block + nl + remainder[ins:], True
 
 
 def caption_to_title(text: str, title: str,
@@ -278,7 +279,7 @@ def main() -> int:
 
         text, labelled = add_label(original, expected_label(path.stem), nl)
         text, unescaped = unescape_math(text)
-        text, moved = move_caption_below(text, nl)
+        text, moved = move_caption_above(text, nl)
 
         notes = []
         if labelled:
@@ -286,7 +287,7 @@ def main() -> int:
         if unescaped:
             notes.append("unescaped math subscripts")
         if moved:
-            notes.append("moved caption below the tabular body")
+            notes.append("moved caption above the table body")
         if not notes:
             continue
 

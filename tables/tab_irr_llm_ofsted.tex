@@ -1,5 +1,7 @@
 \begin{table}[htbp]
 \centering
+\caption{Manual labels against the LLM scores: inspection reports}
+\label{tab:irr_llm_ofsted}
 
 \small
 \begin{tabular}{lrrrrcr}
@@ -12,8 +14,6 @@ Teaching & 30 & 57 & 100 & 0.718 & [0.42,\,0.85] & 0.528 \\
 Leadership & 30 & 80 & 100 & 0.811 & [0.67,\,0.92] & 0.726 \\
 \bottomrule
 \end{tabular}
-\caption{Manual labels against the LLM scores: inspection reports}
-\label{tab:irr_llm_ofsted}
 \begin{minipage}{\linewidth}
 \smallskip
 \footnotesize\textit{Notes:} A stratified sample of 30 documents was labelled blind to the model's scores and to the overall inspection grade; both coders read the identical prepared text. $N$: documents scored by both. Exact: proportion identical; W1: proportion agreeing within one scale point; $\kappa_w$: weighted Cohen's $\kappa$ (quadratic weights) with a percentile bootstrap 95\% interval resampling documents; $\kappa_{\text{lin}}$: the same statistic under linear weights, for comparison with the human--human reliabilities in Table~\ref{tab:irr_interview}, which are linear. At $N=30$ an interval clear of zero supports the claim that the instrument is functioning; it cannot support a claim of substantial agreement.

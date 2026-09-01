@@ -16,7 +16,7 @@ import pandas as pd
 from scipy import stats
 from sklearn.metrics import cohen_kappa_score
 
-from fix_tables import caption_to_title, move_caption_below
+from fix_tables import caption_to_title, move_caption_above
 ROOT = r"C:\Users\damia\OneDrive\Documents\Schools Project"
 OUT = os.path.join(ROOT, "thesis", "tables", "tab_instruments_adopted.tex")
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -148,7 +148,7 @@ if curn != nums:
     if a.check:
         print("DIFFERS concordance_numbers.tex"); raise SystemExit(1)
     open(NUM_OUT, "w", encoding="utf-8", newline="\n").write(nums); print("wrote concordance_numbers.tex")
-tex, _ = move_caption_below(tex)
+tex, _ = move_caption_above(tex)
 tex = caption_to_title(
     tex, "The scoring instruments adopted for the national tier")
 cur = open(OUT, encoding="utf-8").read() if os.path.exists(OUT) else ""

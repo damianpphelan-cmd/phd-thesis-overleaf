@@ -28,7 +28,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from fix_tables import caption_to_title, move_caption_below
+from fix_tables import caption_to_title, move_caption_above
 
 # Caption convention (29 Aug 2026): short title in the caption, all
 # detail in the notes. (title, keep_first_sentence_of_old_caption)
@@ -95,7 +95,7 @@ def cell(r: pd.Series, stars=stars_010, minus: str = "-") -> str:
 
 def write(name: str, body: str) -> None:
     # Float convention: tabular first, then \caption + \label, then notes.
-    body, _ = move_caption_below(body)
+    body, _ = move_caption_above(body)
     if name in TITLES:
         body = caption_to_title(body, *TITLES[name])
     (TABLES / name).write_text(body, encoding="utf-8")

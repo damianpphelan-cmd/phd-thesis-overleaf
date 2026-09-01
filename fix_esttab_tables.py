@@ -19,7 +19,7 @@ import re
 import sys
 from pathlib import Path
 
-from fix_tables import move_caption_below
+from fix_tables import move_caption_above
 
 TABLES = Path(__file__).resolve().parent / "tables"
 
@@ -89,7 +89,7 @@ def patch(text: str, stem: str, resize: bool) -> str:
 
     # Float convention: tabular first, then \caption + \label, then notes.
     # esttab emits the caption at the top of the float; move it below.
-    text, _ = move_caption_below("\n".join(lines) + "\n")
+    text, _ = move_caption_above("\n".join(lines) + "\n")
     return text
 
 

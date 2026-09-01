@@ -29,7 +29,7 @@ import pathlib
 
 import pandas as pd
 
-from fix_tables import move_caption_below
+from fix_tables import move_caption_above
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "thesis" / "tables" / "tab_control_stats.tex"
@@ -173,7 +173,7 @@ def main() -> int:
     args = ap.parse_args()
 
     tex = build()
-    tex, _ = move_caption_below(tex)
+    tex, _ = move_caption_above(tex)
     problems = audit(tex)
     if problems:
         print("refusing to write -- generated table is malformed:")

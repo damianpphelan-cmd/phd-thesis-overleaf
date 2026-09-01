@@ -16,7 +16,7 @@ import sys
 import numpy as np
 import pandas as pd
 
-from fix_tables import caption_to_title, move_caption_below
+from fix_tables import caption_to_title, move_caption_above
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
@@ -83,7 +83,7 @@ def main() -> None:
         "Raises & Lowers & Raises & Lowers \\\\\n\\midrule\n"
         + "\n".join(rows) +
         "\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n")
-    table, _ = move_caption_below(table)
+    table, _ = move_caption_above(table)
     # caption convention (PIPELINE.md, 29 Aug 2026)
     table = caption_to_title(
         table, 'The phrases with the largest weights', keep_first=True)

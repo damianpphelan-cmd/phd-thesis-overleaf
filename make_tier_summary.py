@@ -14,7 +14,7 @@ import pathlib
 import numpy as np
 import pandas as pd
 
-from fix_tables import move_caption_below
+from fix_tables import move_caption_above
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "thesis" / "tables" / "tab_tier_summary.tex"
@@ -89,7 +89,7 @@ Group & $N$ & FSM\% & EAL\% & Median size & Outstanding\% & Good\% \\
 \end{table}
 """.replace("@BODY@", body)
 
-    tex, _ = move_caption_below(tex)
+    tex, _ = move_caption_above(tex)
     OUT.write_text(tex, encoding="utf-8")
     print("wrote", OUT)
     print(tex)

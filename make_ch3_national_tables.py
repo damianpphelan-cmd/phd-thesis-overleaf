@@ -14,7 +14,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from fix_tables import caption_to_title, move_caption_below
+from fix_tables import caption_to_title, move_caption_above
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
@@ -91,7 +91,7 @@ def main() -> None:
         "\\footnotesize\\textit{Notes:} Standard errors in parentheses. "
         "$^{*}$ \\(p<0.10\\), $^{**}$ \\(p<0.05\\), $^{***}$ \\(p<0.01\\).\n"
         "\\end{minipage}\n\\end{table}\n")
-    table, _ = move_caption_below(table)
+    table, _ = move_caption_above(table)
     table = caption_to_title(
         table, "The three national estimates", keep_first=True)
     (HERE / "tables" / "tab_national_legs.tex").write_text(
@@ -133,7 +133,7 @@ def main() -> None:
         "\\footnotesize\\textit{Notes:} Standard errors in parentheses. "
         "$^{*}$ \\(p<0.10\\), $^{**}$ \\(p<0.05\\), $^{***}$ \\(p<0.01\\).\n"
         "\\end{minipage}\n\\end{table}\n")
-    itable, _ = move_caption_below(itable)
+    itable, _ = move_caption_above(itable)
     itable = caption_to_title(
         itable, "Website identity measures and Progress~8 (exploratory)",
         keep_first=True)

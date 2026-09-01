@@ -13,7 +13,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from fix_tables import caption_to_title, move_caption_below
+from fix_tables import caption_to_title, move_caption_above
 
 BASE = Path(__file__).resolve().parent.parent
 OUT = Path(__file__).resolve().parent / "tables" / "tab_score_controls_corr.tex"
@@ -101,7 +101,7 @@ def main():
   \end{{minipage}}
 \end{{table}}
 """
-    tex, _ = move_caption_below(tex)
+    tex, _ = move_caption_above(tex)
     # caption convention (PIPELINE.md, 29 Aug 2026)
     tex = caption_to_title(tex, 'Pairwise correlations: culture scores and control variables')
     OUT.write_text(tex, encoding="utf-8")
