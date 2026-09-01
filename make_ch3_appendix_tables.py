@@ -13,6 +13,7 @@ import argparse, os, sys
 import numpy as np
 import pandas as pd
 
+from fix_esttab_tables import fold_legend
 from fix_tables import caption_to_title, move_caption_above
 
 ROOT = r"C:\Users\damia\OneDrive\Documents\Schools Project"
@@ -22,6 +23,11 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 E = pd.read_csv(os.path.join(TAB, "ch3_appendix_estimates.csv"))
 E["panel"] = E["panel"].fillna("")
 E["outcome"] = E["outcome"].fillna("")
+# The do-file still estimates the national legs on the retired LLM
+# columns; swap in the marking-scheme band re-runs before anything
+# is formatted. See thesis/rubric_overrides.py.
+import rubric_overrides  # noqa: E402
+E, N_REDIRECTED = rubric_overrides.apply(E)
 IRR = pd.read_csv(os.path.join(TAB, "ch3_appendix_items_irr.csv"))
 STAB = pd.read_csv(os.path.join(TAB, "ch3_appendix_stability.csv"))
 ACAD = pd.read_csv(os.path.join(TAB, "ch3_appendix_academisation.csv"))
@@ -89,6 +95,17 @@ def write(name, tex, check, changed):
         tex, _ = move_caption_above(tex)
         if name in TITLES:
             tex = caption_to_title(tex, TITLES[name])
+        # One home for the significance legend: fold any \multicolumn
+        # rows below \bottomrule into the notes minipage that
+        # caption_to_title has just built.
+        if r"\end{minipage}" in tex:
+            lines_, legend = fold_legend(tex.splitlines())
+            if legend:
+                for i in range(len(lines_) - 1, -1, -1):
+                    if lines_[i].startswith(r"\end{minipage}"):
+                        lines_.insert(i, legend)
+                        break
+                tex = "\n".join(lines_) + "\n"
     path = os.path.join(TAB, name)
     cur = open(path, encoding="utf-8").read() if os.path.exists(path) else ""
     if cur != tex:
@@ -219,14 +236,15 @@ covariate-adjusted mean Progress 8 for the four quadrants formed by median split
 warmth and strictness; the lower panel gives the continuous interaction test and the
 contrast of the authoritative (high-warmth, high-strictness) quadrant against all
 others. The first column uses the visit scores on the primary
-specification; the national columns use the Ofsted-derived scores without (A) and with
-(B) the predecessor-filled 2019 inspection-grade control. Scores are standardised within
+specification; the national columns use the prediction-model warmth and the marking-scheme
+strictness bands of Chapter~2, without (A) and with (B) the predecessor-filled
+2019 inspection-grade control. Scores are standardised within
 each estimation sample; late-entry schools excluded throughout.}}
 \label{{tab:typology}}
 \footnotesize\setlength{{\tabcolsep}}{{4pt}}
 \begin{{tabular}}{{lccc}}
 \toprule
- & Visited schools & \multicolumn{{2}}{{c}}{{National (Ofsted scores)}} \\
+ & Visited schools & \multicolumn{{2}}{{c}}{{National (text instruments)}} \\
 \cmidrule(lr){{3-4}}
  & & Panel A & Panel B \\
 \midrule
@@ -324,7 +342,7 @@ ${zd_bp.b:+.3f}$ ($p={zd_bp.pval:.2f}$) and ${zd_web.b:+.3f}$ ($p={zd_web.pval:.
 # ---------------------------------------------------------------- parent view
 def t_parentview():
     ins = [("web_llmwarmthscore_v18", "Website warmth (v18)"), ("web_llmwarmthscore_v13", "Website warmth (v13)"),
-           ("bp_llmwarmthscore_v4", "Behaviour-policy warmth (v4)"), ("ofsted_llmwarmthscore", "Ofsted warmth")]
+           ("bp_llmwarmthscore_v4", "Behaviour-policy warmth (v4)"), ("ofsted_llmwarmthscore", "Prediction-model warmth")]
     A = []
     for v, lab in ins:
         rb = row("parentview", "A", v, "pv_warmth", "z_" + v)
@@ -383,7 +401,7 @@ predictor.
 
 # ---------------------------------------------------------------- LLM x P8 matrix
 def t_llm_matrix():
-    preds = [("ofsted_llmstrictnessscore", "Ofsted strictness"), ("ofsted_llmwarmthscore", "Ofsted warmth"),
+    preds = [("ofsted_llmstrictnessscore", "Marking-scheme bands"), ("ofsted_llmwarmthscore", "Prediction-model warmth"),
              ("ofsted_llmteachingscore", "Ofsted teaching"), ("bp_llmstrictnessscore_v4", "BP strictness (v4)"),
              ("bp_llmwarmthscore_v4", "BP warmth (v4)"), ("web_llmwarmthscore_v13", "Website warmth (v13)"),
              ("web_llmstrictnessscore_v13", "Website strictness (v13)"), ("web_llmstrictnessscore_v15", "Website strictness (v15)"),
@@ -436,20 +454,23 @@ head-teacher interview.
 
 
 # ---------------------------------------------------------------- entry rates
+GRADE = {"A": "No", "B": "Yes"}
+
+
 def t_entry():
     A = []
     for panel in ["A", "B"]:
         for model, term, lab in [("gold", "z_gs_warmth_enacted", "Visited warmth ($W$)"), ("gold", "z_gs_strictness_enacted", "Visited strictness ($S$)"),
-                                 ("national", "z_ofsted_llmstrictnessscore", "Ofsted strictness")]:
+                                 ("national", "z_ofsted_llmstrictnessscore", "Marking-scheme bands")]:
             cs = [row("entry", panel, model, oc, term) for oc in ["ebacc_entry", "hum_entry", "lang_entry"]]
-            A.append(f"{panel} & {lab:<22} & {nfmt(cs[0].n):<7} & " + " & ".join(f"{f3(c.b)}{stars(c.pval)} ({c.se:.3f})" for c in cs) + r" \\")
+            A.append(f"{GRADE[panel]} & {lab:<22} & {nfmt(cs[0].n):<7} & " + " & ".join(f"{f3(c.b)}{stars(c.pval)} ({c.se:.3f})" for c in cs) + r" \\")
         if panel == "A": A.append(r"\addlinespace")
     B = []
     for panel in ["A", "B"]:
-        for who, lab, term in [("national", "National (Ofsted $S$)", "z_ofsted_llmstrictnessscore"), ("gold", "Visited ($S$)", "z_gs_strictness_enacted")]:
+        for who, lab, term in [("national", "National (marking-scheme bands)", "z_ofsted_llmstrictnessscore"), ("gold", "Visited ($S$)", "z_gs_strictness_enacted")]:
             w = row("channel", panel, f"{who}_without", "ebac", term); wi = row("channel", panel, f"{who}_with", "ebac", term)
             att = 100 * (w.b - wi.b) / w.b
-            B.append(f"{panel} & {lab:<22} & {nfmt(w.n):<7} & {f3(w.b)}{stars(w.pval)} & {f3(wi.b)}{stars(wi.pval)} & {att:.1f}\\% \\\\")
+            B.append(f"{GRADE[panel]} & {lab:<22} & {nfmt(w.n):<7} & {f3(w.b)}{stars(w.pval)} & {f3(wi.b)}{stars(wi.pval)} & {att:.1f}\\% \\\\")
     ent = [row("channel", p, f"{who}_with", "ebac", "ebacc_entry") for p in ["A", "B"] for who in ["national", "gold"]]
     atts = []
     for panel in ["A", "B"]:
@@ -462,8 +483,9 @@ def t_entry():
 \caption{{Culture and curriculum entry. Panel A asks whether warm or strict schools
 enter pupils for more academic curricula: each cell regresses an entry rate (EBacc,
 humanities, languages) on the standardised culture score plus controls, for the
-visit scores and the national Ofsted-derived strictness score, without (A) and with (B)
-the predecessor-filled 2019 inspection-grade control; late-entry schools excluded.
+visit scores and the national marking-scheme strictness bands. The Grade column records
+whether the predecessor-filled 2019 inspection-grade control is absent (No) or present
+(Yes); late-entry schools excluded.
 Panel B then asks how much of the strictness--EBacc-progress association runs through
 entry: the strictness coefficient on the EBacc Progress 8 component before and after
 controlling the EBacc entry rate.}}
@@ -473,13 +495,13 @@ controlling the EBacc entry rate.}}
 \toprule
 \multicolumn{{6}}{{l}}{{\textit{{Panel A: entry-rate regressions}}}} \\
 \addlinespace[2pt]
- & Predictor & $N$ & EBacc entry & Humanities entry & Languages entry \\
+Grade & Predictor & $N$ & EBacc entry & Humanities entry & Languages entry \\
 \midrule
 {chr(10).join(A)}
 \midrule
 \multicolumn{{6}}{{l}}{{\textit{{Panel B: channel decomposition, strictness $\rightarrow$ EBacc Progress 8 component}}}} \\
 \addlinespace[2pt]
- & Model & $N$ & Without entry & With entry & Attenuation \\
+Grade & Model & $N$ & Without entry & With entry & Attenuation \\
 \midrule
 {chr(10).join(B)}
 \bottomrule
@@ -505,7 +527,7 @@ def t_p8proxy():
     printed = {}
     for panel in ["A", "B"]:
         for model, term, lab in [("gold", "z_gs_warmth_enacted", "Visited warmth ($W$)"), ("gold", "z_gs_strictness_enacted", "Visited strictness ($S$)"),
-                                 ("national", "z_ofsted_llmstrictnessscore", "Ofsted strictness")]:
+                                 ("national", "z_ofsted_llmstrictnessscore", "Marking-scheme bands")]:
             cs = [row("p8proxy", panel, model, oc, term) for oc in ["pseudo_p8_2425", "pseudo_p8_2425_eng", "pseudo_p8_2425_mat", "p8mea_avg"]]
             printed[(panel, term)] = cs
             lines.append(f"{panel} & {lab:<22} & {nfmt(cs[0].n):<7} & " + " & ".join(f3(c.b) + stars(c.pval) for c in cs) + r" \\")
@@ -556,7 +578,7 @@ ch3\_appendix\_p8proxy\_validation.csv). On the body's per-standard-deviation sc
 visited-school coefficients on the pseudo outcome sit within ${maxdiff:.2f}$ of their
 real-Progress 8 twins in the same panel (Panel A: pseudo {pw_a[0].b:.3f}/{ps_a[0].b:.3f} against real
 {pw_a[3].b:.3f}/{ps_a[3].b:.3f}; Panel B: pseudo {pw_b[0].b:.3f}/{ps_b[0].b:.3f} against real {pw_b[3].b:.3f}/{ps_b[3].b:.3f},
-warmth/strictness). The ``Ofsted strictness'' rows use the marking-scheme strictness
+warmth/strictness). The marking-scheme rows use the strictness
 bands of Chapter~2 (1--5, standardised over each estimation sample), not the retired
 analyser score. The pseudo measure is
 school-level, not pupil-matched, so it is a robustness check, never a primary outcome.
@@ -576,7 +598,7 @@ def t_semh():
 share of pupils with social, emotional and mental-health (SEMH) needs, as a
 percentage of the roll, on one culture score plus the school's 2015--16 baseline
 SEMH share and the primary control set: visited-school strictness and warmth
-($n=94$ visited schools), and the national Ofsted marking-scheme strictness
+($n=94$ visited schools), and the national marking-scheme strictness bands
 ($n=2{{,}}594$). Coefficients are percentage points per standard deviation of the
 score. The strictness coefficients are null or negative: strict schools do not
 carry more SEMH pupils today than their baseline predicts, so a changing intake
@@ -595,7 +617,7 @@ SEMH share 2015--16 (\%)&       {f3(sb.b)}{stars(sb.pval)} &       {f3(wb.b)}{st
 Warmth ($W_{{\text{{visit}}}}$, per SD)&                     &      {f3(w.b)}{stars(w.pval)}         &                     \\
                     &                     &     ({w.se:.3f})         &                     \\
 \addlinespace
-Strictness (Ofsted LLM, per SD)&                     &                     &      {f3(n_.b)}{stars(n_.pval)}\\
+Strictness (marking-scheme bands, per SD)&                     &                     &      {f3(n_.b)}{stars(n_.pval)}\\
                     &                     &                     &     ({n_.se:.3f})         \\
 \midrule
 N                   &          {int(s.n)}         &          {int(w.n)}         &        {nfmt(n_.n)}         \\
@@ -675,7 +697,7 @@ REFUSING TO WRITE. This generator is quarantined (1 Sep 2026).
 
 It still reads the RETIRED LLM apparatus columns in analysis_dataset.csv,
 not the text-prediction instruments Chapter 3 is built on. Its output is
-labelled "National (Ofsted scores)" and "Ofsted strictness" where the
+labelled "National (text instruments)" and "Marking-scheme bands" where the
 committed tables say "National (text instruments)" and "Marking-scheme
 bands". The committed .tex files are the correct, current ones.
 
