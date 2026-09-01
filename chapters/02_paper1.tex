@@ -158,8 +158,7 @@ and reports which dimension of culture each can read. \citet{ludwig2025} argue t
 
 Against those literatures, the paper contributes three things. The first is a measure of enacted culture built from observation rather than perception; the perception data from headteachers and parents are kept as comparisons against it. The second is a model that predicts enacted culture in every English state secondary school. The third is a comparison of the two ways economists now read text, prediction models and mark schemes, with both judged against the same enacted scores for the same schools. The comparison shows that neither method is better outright: which one works depends on what it is being asked to measure.
 
-The next section describes the data. The paper then constructs the gold standard, describes how the two text readings 
-are built and judged, reports what the measures show, and concludes.
+The next section describes the data. The paper then constructs the gold standard, describes how the two text measures are built and judged, reports what the measures show, and concludes.
 
 % ---------------------------------------------------------------
 \section{Data}
@@ -524,7 +523,7 @@ question where a head's answer can be checked against the record, heads
 report accurately. This check concerns staff turnover, though, and says nothing about 
 the warmth statements.
 
-\subsection{Reading the text with prediction models}
+\subsection{Predicting the scores from text}
 \label{sec:p1_prediction}
 
 The first way of reading the documents uses no theory of culture at all. It asks only whether 
@@ -571,7 +570,7 @@ different words. So if the reports held a signal that counting misses, the compl
 would have found it. The fact that they didn't suggests that the signal in these documents is in 
 the words themselves.
 
-\subsection{Reading the text with mark schemes}
+\subsection{Scoring the text with mark schemes}
 \label{sec:p1_rubrics}
 
 The second way of reading the documents states what to look for. For each
@@ -591,8 +590,7 @@ same fixed model reads every document.
 Three checks are carried out to assess the robustness of the LLM scoring, and their outcomes 
 are reported with the results. The first asks whether the language model gives the same answer 
 twice: thirty documents per source were scored a second time, and the agreement between the two 
-runs is reported. The second asks whether the readings depend on which large language model did 
-the reading. To assess this the whole exercise was repeated with a second, larger model. This 
+runs is reported. The second asks whether the bands depend on which large language model produced them. To assess this the whole exercise was repeated with a second, larger model. This 
 check also helps to settle a single question: when the prediction model and the mark scheme 
 have equal predictive strength for a dimension, the mark scheme loses if the correlation with 
 the gold standard scores changes substantially with the larger model.
@@ -656,20 +654,16 @@ Both scores are measured with error, and that error caps the correlation between
 
 \subsection{What the public text contains}
 
-This section shows three things. First, the public text does contain culture, but only in one place: every reading that passes the tests comes from an inspection report, and the documents schools write about themselves carry no signal. Second, within the reports the two dimensions are read by different methods: the prediction model reads warmth, the mark scheme reads strictness, and teaching is read by both. Third, the readings the chapter goes on to use pass the three checks set out in the measurement section.
+This section shows three things. First, the public text does contain culture, but only in one place: every text measure that passes the tests comes from an inspection report, and the documents schools write about themselves carry no signal. Second, within the reports the two dimensions are read by different methods: the prediction model predicts warmth, the mark scheme scores strictness, and both work for teaching. Third, the measures the chapter goes on to use pass the three checks set out in the measurement section.
 
 \Cref{fig:p1_validation} plots the warmth scores from the prediction model and the strictness 
 scores from the mark scheme against the enacted scores: the warmth model's held-out predictions 
-on the left, the strictness scheme's bands on the right. In both panels the readings rise together: 
+on the left, the strictness scheme's bands on the right. In both panels the two rise together: 
 schools the model reads as warmer are schools the observers scored as warmer, and reports the 
 scheme places in higher bands come from schools the observers scored as stricter. The relationship 
 is loose, with exceptions at every level, but it is not the work of a few outlying schools.
 
-\Cref{tab:p1_grid} reports fourteen readings of the public text: seven pairings of a 
-source with a dimension, each read twice, once by the prediction model and once by the mark scheme. Each reading is summarised by one number: the correlation between the score the reading gives a school and the score the observers gave it. Each reading then faces two tests: it must beat luck, and it must stay significant once 
-the number of readings is allowed for. Every reading that passes both tests comes from an 
-inspection report, and none of the readings of the documents schools write about themselves 
-passes either. Within the reports, warmth and strictness come out by different routes. The rest of this section works through the tests in \cref{tab:p1_grid} and then the three checks, one at a time.
+\Cref{tab:p1_grid} reports fourteen text measures: seven pairings of a source with a dimension, each scored twice, once by the prediction model and once by the mark scheme. Each measure is summarised by one number: the correlation between the score it gives a school and the score the observers gave it. Each measure then faces two tests: it must beat luck, and it must stay significant once the number of tests is allowed for. Every measure that passes both tests comes from an inspection report, and none of the measures taken from the documents schools write about themselves passes either. Within the reports, warmth and strictness come out by different routes. The rest of this section works through the tests in \cref{tab:p1_grid} and then the three checks, one at a time.
 
 \input{tables/tab_p1_grid}
 
@@ -683,17 +677,16 @@ passes either. Within the reports, warmth and strictness come out by different r
 \end{minipage}
 \end{figure}
 
-The scrambled scores say how easily each of the model's readings could be luck. Its three inspection-report readings all beat luck (permutation $p$: warmth \PermPOfstedW{}, teaching \PermPOfstedT{}, strictness \PermPOfstedS{}). Its readings of the behaviour policies and the websites all fail to.
+The scrambled scores say how easily each of the model's results could be luck. Its three inspection-report measures all beat luck (permutation $p$: warmth \PermPOfstedW{}, teaching \PermPOfstedT{}, strictness \PermPOfstedS{}). Its measures from the behaviour policies and the websites all fail to.
 
 The prediction model can be given several documents at once and the mark scheme cannot, so these pooled results are for the model alone. Each figure is again the correlation between the model's predictions and the observers' scores. Pooling the behaviour policy and the website, the two documents the school writes, gives a correlation with enacted warmth of $\PredBPWebW$; for strictness and teaching the pooled correlations are near zero. So pooling recovers no signal that the separate readings missed. It can also lose one: the website on its own correlates with enacted strictness at $\PredSWeb$, and adding the policy leaves $\PredBPWebS$. Pooling all three sources never improves on the best single source; on observed teaching the correlation falls from $\PredTOfsted$ for the inspection report alone to $\PredTCombined$ for the three together.
 
-Fourteen readings also give luck fourteen chances, so the readings in \cref{tab:p1_grid} are corrected for the number of tests as well. Four readings pass this test: the model's warmth and teaching, and the scheme's 
+Fourteen measures also give luck fourteen chances, so the measures in \cref{tab:p1_grid} are corrected for the number of tests as well. Four pass this test: the model's warmth and teaching, and the scheme's 
 strictness and teaching (the strictness scheme at $q = \QGridSOfsted$). 
 
-The prediction model reads enacted warmth from 
-a report's wording at $\PredWOfsted$ and enacted teaching at $\PredTOfsted$, and both figures 
+The prediction model predicts enacted warmth from a report's wording, correlating at $\PredWOfsted$, and enacted teaching at $\PredTOfsted$, and both figures 
 are essentially unchanged, or higher, when everything demographics could explain is removed. 
-Strictness is different: no prediction model reads it well. The best attempt reaches 
+Strictness is different: no prediction model predicts it well. The best attempt reaches 
 $\PredSOfsted$, it beats luck only narrowly (\PermPOfstedS{}), and its confidence interval 
 touches zero ($\CIPredSOfsted$). Every word-count representation tried showed the same weakness.
 
@@ -701,8 +694,7 @@ For strictness the mark scheme does better than the prediction model, although t
 be chance 
 at this sample size ($z = \StrictDiffZ$, $p = \StrictDiffP$). The numbers alone therefore cannot 
 separate the two methods on strictness. The three checks set out in the measurement section 
-can: the retest, the change of language model, and the length check. The scheme's strictness 
-reading passes all three.
+can: the retest, the change of language model, and the length check. The scheme's strictness bands pass all three.
 
 The retest asks whether the language model gives the same answer twice. Each scheme was run 
 twice on the same documents. Across all fourteen readings, the two runs give the same 
@@ -711,16 +703,14 @@ the same band on both runs.
 
 The purpose of changing the language model is to check whether the reading is genuinely down 
 to the mark scheme or if the particular model that applies it makes a difference. 
-If the scheme is doing the work, a different model applying the same mark scheme should find the same thing. For strictness, the second model reads the 
-enacted scores at $\RubricSFourO$, close to the primary model's $\RubricSOfstedRaw$, so the 
+If the scheme is doing the work, a different model applying the same mark scheme should find the same thing. For strictness, the second model's bands correlate with the enacted scores at $\RubricSFourO$, close to the primary model's $\RubricSOfstedRaw$, so the 
 scheme is what determines the band, not the model. The warmth and teaching schemes fail 
-the same check. Applying the same mark schemes, the second model reads essentially 
-nothing ($\RubricWFourO$ for warmth, $\RubricTFourO$ for teaching), so what the 
+the same check. Applying the same mark schemes, the second model's bands correlate with the enacted scores at essentially nothing ($\RubricWFourO$ for warmth, $\RubricTFourO$ for teaching), so what the 
 primary model found there came from the model rather than the scheme. 
 
-The length check asks whether the mark scheme bands follow document length rather than the school. For the inspection-report schemes the worry is small: the strictness bands correlate with length at $\LenOfstedS$ and the warmth bands at $\LenOfstedW$, and removing the effect of length moves the strictness reading only from $+0.25$ to $\RubricSOfstedLenP$. The website schemes' bands follow length closely, one more reason their readings are not used.
+The length check asks whether the mark scheme bands follow document length rather than the school. For the inspection-report schemes the worry is small: the strictness bands correlate with length at $\LenOfstedS$ and the warmth bands at $\LenOfstedW$, and removing the effect of length moves the strictness correlation only from $+0.25$ to $\RubricSOfstedLenP$. The website schemes' bands follow length closely, one more reason their bands are not used.
 
-Demographic adjustment is separate from the three checks, and it is applied to the mark-scheme readings in the same way as to the prediction models'; \cref{sec:p1_app_prediction} gives the specification. The adjustment changes the strictness reading little: the scheme's correlation with enacted strictness is $\RubricSOfstedRaw$ raw and $\RubricSOfstedDec$ adjusted. The warmth scheme, by contrast, reads the reports at $\RubricWOfstedDec$ and puts three-quarters of schools in one band. The model reads the same reports at $\PredWOfsted$, 
+Demographic adjustment is separate from the three checks, and it is applied to the mark-scheme bands in the same way as to the prediction models' predictions; \cref{sec:p1_app_prediction} gives the specification. The adjustment changes the strictness correlation little: the scheme's correlation with enacted strictness is $\RubricSOfstedRaw$ raw and $\RubricSOfstedDec$ adjusted. The warmth scheme's bands, by contrast, correlate with enacted warmth at $\RubricWOfstedDec$ and puts three-quarters of schools in one band. The model, on the same reports, predicts enacted warmth at $\PredWOfsted$, 
 and its advantage is itself significant (paired test, $p = \WarmDiffP$).
 
 The two dimensions are therefore written down differently. Warmth shows
@@ -728,7 +718,7 @@ in a report's everyday register, spread across many small choices of
 phrase, which a model with no instructions can learn but a mark scheme
 cannot pin down. Strictness shows in specific, checkable claims, for example whether disruption is rare or whether rules are applied consistently, which a reader must be told to look for, and which the prediction model cannot distinguish from their negations. Teaching, kept in the 
 analysis as the rival explanation for the next chapter, sits in between and is read about 
-equally well by both methods. However, only the model's reading passes the change-of-model check (the second model's teaching scheme reads $\RubricTFourO$), so 
+equally well by both methods. However, only the model's predictions pass the change-of-model check (the second model's teaching bands correlate at $\RubricTFourO$), so 
 the prediction model scores are used for teaching.
 
 Behaviour policies and websites tell neither method anything about enacted culture. The prediction 
@@ -744,7 +734,7 @@ A model can score well for two reasons: because it has learned the dimension it 
 
 The check takes the hundred sentences the warmth model rewards most and asks what they are about. \WarmTopShare{} of them are about staff--pupil relationships, against a base rate of \WarmBaseShare{} across all sentences, so the model seeks out relational content at well above chance. For teaching the corresponding shares are \TeachTopShare{} against \TeachBaseShare{}, which is no enrichment at all. That is not a failure: teaching is what inspection reports mostly discuss anyway, so the teaching model reads the report's broad register rather than any one topic.
 
-Together, the two checks say what a model's score is made of. Part of it is language specific to the model's dimension: for warmth, the relational sentences the model seeks out. The rest is the general tone of a school doing well, which runs through a good school's whole report whatever the sentence is about. The demographic adjustment removes some of that general tone, but only the part that the four control variables (three intake measures and report age) can predict; the remainder stays in the score. A predicted warmth score is therefore best read as the model's reading of the report's whole account of the school, tilted towards warmth, rather than as a reading of warmth alone.
+Together, the two checks say what a model's score is made of. Part of it is language specific to the model's dimension: for warmth, the relational sentences the model seeks out. The rest is the general tone of a school doing well, which runs through a good school's whole report whatever the sentence is about. The demographic adjustment removes some of that general tone, but only the part that the four control variables (three intake measures and report age) can predict; the remainder stays in the score. A predicted warmth score is therefore best understood as the model's summary of the report's whole account of the school, tilted towards warmth, rather than as a measure of warmth alone.
 
 \Cref{tab:p1_examples} shows the sentences each model weighs most heavily, under selection rules 
 stated with the table. The two listings differ, and the difference illustrates an important 
@@ -798,7 +788,7 @@ The inspection report seems to show the opposite result. Its text correlates wit
 \subsection{A check against the parent survey}
 \label{sec:p1_pv}
 
-The last check comes from parents. Everything so far has judged the prediction model's reading of warmth against the visited schools, and there are only 103 of them. Parents offer a second, independent judge at national scale: Ofsted's Parent View survey asks them, at nearly every school in England, whether their child is happy at the school and feels safe there, which is warmth as a parent experiences it. If the model's warmth reading is real, it should agree with what parents report. This section makes that comparison and reports two results: the model's warmth readings do agree with the parents, and the agreement is not explained by the inspection grade.
+The last check comes from parents. Everything so far has judged the prediction model's warmth scores against the visited schools, and there are only 103 of them. Parents offer a second, independent judge at national scale: Ofsted's Parent View survey asks them, at nearly every school in England, whether their child is happy at the school and feels safe there, which is warmth as a parent experiences it. If the model's warmth scores are real, it should agree with what parents report. This section makes that comparison and reports two results: the model's warmth scores do agree with the parents, and the agreement is not explained by the inspection grade.
 
 The measure is the parent-reported warmth score: the share of parents who say their child is happy at the school and feels safe there. There are two important limitations to this data that should be kept in mind. 
 The first is that parents choose whether to 
@@ -823,13 +813,12 @@ is tested on the data it was trained on. Neither is the case here. The model nev
 \end{minipage}
 \end{figure}
 
-The second result concerns the inspection grade. The model reads inspection reports, and a report reflects the grade the school received. If the model's warmth score were the grade in different words, the parents' agreement with the model would add nothing beyond the parents' agreement with the grade. The test is to compare schools that share the same grade. Within such a group the grade is the same for every school, so it cannot explain why the model scores one school warmer than another. On the visited schools, 99 of which have a pre-COVID grade, the model's correlation with enacted warmth is $+0.32$, essentially its full-sample value of $+0.33$. Comparing only schools with the same grade leaves it at $+0.29$. Teaching behaves the same way. The model's reading is not the grade in different words. \Cref{sec:p1_app_parents} adds a stricter version of this check, together with what the visited schools show and a check on one possible route: some reports quote the Parent View survey, so the model could in principle be reading the parents' answers 
+The second result concerns the inspection grade. The model reads inspection reports, and a report reflects the grade the school received. If the model's warmth score were the grade in different words, the parents' agreement with the model would add nothing beyond the parents' agreement with the grade. The test is to compare schools that share the same grade. Within such a group the grade is the same for every school, so it cannot explain why the model scores one school warmer than another. On the visited schools, 99 of which have a pre-COVID grade, the model's correlation with enacted warmth is $+0.32$, essentially its full-sample value of $+0.33$. Comparing only schools with the same grade leaves it at $+0.29$. Teaching behaves the same way. The model's warmth scores are not the grade in different words. \Cref{sec:p1_app_parents} adds a stricter version of this check, together with what the visited schools show and a check on one possible route: some reports quote the Parent View survey, so the model could in principle be reading the parents' answers 
 rather than independently agreeing with them. 
 
-The wider point is that the two measures, the parents' survey answers and the model's reading of 
-the report, share nothing that could make them agree for any reason other than the school. 
+The wider point is that the two measures, the parents' survey answers and the model's warmth scores, share nothing that could make them agree for any reason other than the school. 
 There is a final point to consider, though.
-A school that is good in general tends to have both a warmer-reading report and happier parents, so 
+A school that is good in general tends to have both a report the model scores as warmer and happier parents, so 
 part of the agreement may reflect general quality rather than warmth in particular. The 
 agreement therefore stands as corroboration rather than proof. 
 
@@ -846,8 +835,7 @@ see it at all, because no single sentence carries it.
 Strictness is the opposite. In person it is easy to observe reliably. In text it sits in specific 
 claims: whether disruption is rare, whether rules are enforced consistently. Checking claims is necessary 
 because a report saying that disruption is rare and one saying that it is common use 
-almost the same words. That is why the prediction model reads strictness weakly but the mark scheme 
-does better.
+almost the same words. That is why the prediction model predicts strictness weakly but the mark scheme does better.
 
 The documents schools write about themselves match what heads say about strictness and staff morale. On warmth they carry no signal detectable at this sample size, either against the 
 observers or against what headteachers say when interviewed. The split is the one the economics 
@@ -867,7 +855,7 @@ The third limitation is that each school was visited once. A visit is a
 snapshot, and a school may have had an unusually calm or an unusually rough day; the scores 
 cannot tell an unusual day from an ordinary one.
 
-The final limitation is that the model's warmth reading cannot be fully separated from the inspection's overall verdict. The prose 
+The final limitation is that the model's warmth scores cannot be fully separated from the inspection's overall verdict. The prose 
 the model reads and the grade the inspection awarded come from the same visit and say 
 related things, so part of what the model reads may be the inspection's judgement of the 
 school rather than its warmth in particular. The checks in the results show that the model 
@@ -1056,7 +1044,7 @@ Before modelling, documents are cleaned of identifying and clerical
 material: establishment, trust and local-authority names (from the
 national register), month names and years, postcodes, tokens containing
 digits, inspection-report page furniture, letter salutations, and
-framework boilerplate. The demographic adjustment regresses each outcome on the school's free-school-meals share, share of pupils with English as an additional language, prior attainment and report age, and takes the residual as the target. The mark-scheme readings are adjusted the same way: the bands are left as awarded, and the adjusted figure is their correlation with this residual.
+framework boilerplate. The demographic adjustment regresses each outcome on the school's free-school-meals share, share of pupils with English as an additional language, prior attainment and report age, and takes the residual as the target. The mark-scheme bands are adjusted the same way: the bands are left as awarded, and the adjusted figure is their correlation with this residual.
 
 In symbols, let $x_s$ be school $s$'s text vector, $y_s$ its enacted
 score and $C_s$ its four control variables. The target is the residual
@@ -1082,16 +1070,16 @@ with the penalty $\lambda_{-s}$ chosen by leave-one-out error within the
 $t \neq s$ schools alone. The held-out prediction for school $s$ is
 $\hat{y}_s = \hat{a}_{-s} + x_s'\hat{\beta}_{-s}$, and every correlation
 reported for a prediction model is the correlation between $\hat{y}_s$
-and $\tilde{y}_s$ across the held-out schools. In the same notation, a mark-scheme reading is $B_s = f(x_s)$, where $f$ is the one-page scheme applied once per document by the version-pinned language model, frozen before any scoring. Nothing in $f$ is estimated from the schools, so there is no training step and no held-out distinction; the adjusted figure reported for a scheme is the correlation between $B_s$ and $\tilde{y}_s$.
+and $\tilde{y}_s$ across the held-out schools. In the same notation, a mark-scheme band is $B_s = f(x_s)$, where $f$ is the one-page scheme applied once per document by the version-pinned language model, frozen before any scoring. Nothing in $f$ is estimated from the schools, so there is no training step and no held-out distinction; the adjusted figure reported for a scheme is the correlation between $B_s$ and $\tilde{y}_s$.
 
 Alternative representations were evaluated in the identical harness and none improved on the specification above. In brief: phrases of three and four words changed no correlation by more than noise. Topic groupings
 performed worse than counting everywhere. Passage embeddings from two
 pretrained encoders read enacted warmth and teaching at essentially
-zero (the signal is vocabulary rather than paraphrasable meaning) while confirming the espoused-strictness result. One reading disagrees between the two encoders. The larger encoder reads enacted strictness at $+0.33$ with mean pooling, where the smaller encoder reads nothing and no word-based model finds it. Because it appears under one encoder and not the other, it is recorded here as unresolved rather than used.
+zero (the signal is vocabulary rather than paraphrasable meaning) while confirming the espoused-strictness result. One result disagrees between the two encoders. The larger encoder predicts enacted strictness at $+0.33$ with mean pooling, where the smaller encoder reads nothing and no word-based model finds it. Because it appears under one encoder and not the other, it is recorded here as unresolved rather than used.
 Sentence-level annotations (topic and polarity tags) carried strictly
 less information than the raw wording, and counts signed by sentence polarity raised the correlations but failed the chapter's rule of evidence: their gain came from clerical vocabulary and lifted every dimension at once, the signature of reading the document rather than the school.
 
-\section{What the Models Read: Examples}
+\section{What the Models Use: Examples}
 \label{sec:p1_app_examples}
 
 This appendix supports the validity of the warmth and teaching prediction
