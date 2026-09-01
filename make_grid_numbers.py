@@ -467,7 +467,7 @@ from 200 target-scrambled draws through the identical pipeline (floor
 $1/201$, shown as $<$0.005). Each bracketed interval is a Fisher-$z$ 95\%
 confidence interval for the correlation to its left (model and marking
 scheme respectively). ``Agree'' is exact band agreement between the two
-language models reading the same mark scheme; ``Retest'' is exact
+language models applying the same mark scheme; ``Retest'' is exact
 agreement on thirty documents re-scored by the primary model.
 \end{minipage}
 \end{table}

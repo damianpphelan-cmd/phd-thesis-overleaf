@@ -125,7 +125,7 @@ def build(COLS=COLS_BODY, full=False) -> str:
   excluded. All specifications control for prior attainment (KS2), FSM, EAL, SEN, log
   cohort size, years since inspection, academy status, urban location and
   selective status. Panel~A is the specification reported in the text, which
-  omits the Ofsted grade because the strictness score is read from the same
+  omits the Ofsted grade because the strictness score is taken from the same
   inspection report. Panel~A includes @NA@ schools. Panel~B adds the predecessor-filled pre-COVID
   (2019) overall Ofsted grade as a set of dummies---the same control used in
   the primary visited-sample specification---and is estimated on the @NB@ schools with

@@ -9,7 +9,7 @@
 \end{center}
 
 \begin{chapterabstract}
-This paper asks whether the culture of a school affects how much progress its pupils make. I measure the warmth and strictness of \NTierOne{} English secondary schools by direct observation, and relate those scores to Progress~8, the Department for Education's measure of pupil progress. The estimates are associations, with intake, school characteristics and the pre-pandemic inspection grade held constant. There are four main results. First, both dimensions are associated with progress: a standard deviation of warmth goes with 0.15 of a grade more progress, and a standard deviation of strictness with 0.11. Second, the quality of the teaching observed does not account for either association. Third, the two dimensions add rather than amplify each other, and the schools in the top half on both dimensions outperform the rest by two-fifths of a GCSE grade per subject. The warmth association also depends on the observation: substituting the headteacher's own account of the school for the scores removes it. Fourth, the results extend nationally: culture scores read from inspection reports predict progress across effectively all English state secondary schools. A standard deviation of the strictness reading goes with 0.13 of a grade, and of the warmth reading with 0.08.
+This paper asks whether the culture of a school affects how much progress its pupils make. I measure the warmth and strictness of \NTierOne{} English secondary schools by direct observation, and relate those scores to Progress~8, the Department for Education's measure of pupil progress. The estimates are associations, with intake, school characteristics and the pre-pandemic inspection grade held constant. There are four main results. First, both dimensions are associated with progress: a standard deviation of warmth goes with 0.15 of a grade more progress, and a standard deviation of strictness with 0.11. Second, the quality of the teaching observed does not account for either association. Third, the two dimensions add rather than amplify each other, and the schools in the top half on both dimensions outperform the rest by two-fifths of a GCSE grade per subject. The warmth association also depends on the observation: substituting the headteacher's own account of the school for the scores removes it. Fourth, the results extend nationally: culture scores derived from inspection reports predict progress across effectively all English state secondary schools. A standard deviation of the strictness score goes with 0.13 of a grade, and of the warmth score with 0.08.
 \end{chapterabstract}
 
 % ---------------------------------------------------------------
@@ -164,15 +164,14 @@ interview, enter one robustness specification.
 
 Three text-derived scores
 enter the national extension, all built and validated in the previous
-chapter and all reading the school's most recent inspection report with
-its stated grades removed. Warmth and teaching come from prediction
+chapter and all using the school's most recent inspection report with its stated grades removed. Warmth and teaching come from prediction
 models: each learns, from the visited schools, which words and phrases of
 a report go with higher enacted scores, and every national school's
 prediction comes from a model that never saw it. Both models are trained
 on the part of the enacted score that intake statistics cannot explain,
 so they earn no credit for recognising demographics. Their held-out
 correlations with the enacted scores are $\PredWOfsted$ for warmth and
-$\PredTOfsted$ for teaching. Strictness is read differently: a one-page mark scheme applied once per report by a language model, frozen before any scoring. Its bands correlate with
+$\PredTOfsted$ for teaching. Strictness is measured differently: a one-page mark scheme applied once per report by a language model, frozen before any scoring. Its bands correlate with
 enacted strictness at $\RubricSOfstedRaw$.
 
 One further website-derived measure enters an exploratory section only: an indicator of a traditional pedagogy.
@@ -369,8 +368,7 @@ The estimates so far rest on a hundred schools that agreed to be visited. The na
 schools with an outcome, some thirty times the visited sample,%
 \footnote{The national sample starts from the 3,332 schools of the national population: 60 schools have no scored inspection report, mostly because they opened too recently to have been inspected; a further 80 have no published Progress~8, mostly because their first cohort has not yet reached GCSEs; 95 are excluded as late-entry schools, the same exclusion the visited sample applies; and 45 lack a control variable. That leaves 3,052. \Cref{app:3A:robust} checks whether these omissions could bias the estimates.} warmth
 and teaching are predicted from each school's inspection report by the
-models of the previous chapter, and strictness is read by the one-page
-mark scheme. Every warmth and teaching prediction comes from a model
+models of the previous chapter, and strictness is scored by the one-page mark scheme. Every warmth and teaching prediction comes from a model
 that never saw the school.
 
 All three coefficients are positive and precise:
@@ -384,8 +382,7 @@ The imperfection raises a different concern. Besides culture, each score picks u
 \input{tables/tab_national_legs}
 
 Four checks address particular doubts about these estimates. The first concerns the inspection grade.
-A score read from a report might merely restate the inspectorate's
-grade, in which case its association would be the grade's association.
+A score derived from a report might merely restate the inspectorate's grade, in which case its association would be the grade's association.
 Adding the 2019 grade dummies moves the coefficients almost nowhere
 (warmth $\NatWGrade$, teaching $\NatTGrade$, strictness $\NatSGrade$): what the text says predicts
 progress over and above what the grade says.
@@ -488,7 +485,7 @@ Observed school culture is associated with pupil progress. Across the
 English secondary schools that were visited, a standard deviation of enacted warmth is associated with Progress~8 that is $0.15$ of a grade higher, and a standard deviation of enacted strictness with $0.11$ of a grade. The coefficients barely move whether the pre-pandemic inspection grade is included among the control variables, excluded, or filled in from a predecessor school where it is missing. The two coefficients are close in size, and a formal test cannot distinguish them. 
 
 The two associations simply add together: a school that is high on both dimensions gains no more and no less than the sum of the two. Schools in the top half on both outperform the rest by two-fifths of a grade. Conditioning on enacted teaching quality
-does not account for the association. Substituting the headteacher's own description of the school for the observed scores removes the warmth association, so the association belongs to what the observers saw rather than to what the school says about itself. And the associations are not a property of the hundred schools that agreed to be visited: all three scores predict progress across the national population, with warmth and teaching read from inspection reports by the prediction models and strictness by the one-page mark scheme. Each of the three national associations survives two checks. It holds when the pre-pandemic inspection grade is added to the control variables, so the scores carry information beyond the report's overall verdict. And it holds on the reports written before the outcome cohorts sat their GCSEs, whose inspectors could not have known the results the scores now predict.
+does not account for the association. Substituting the headteacher's own description of the school for the observed scores removes the warmth association, so the association belongs to what the observers saw rather than to what the school says about itself. And the associations are not a property of the hundred schools that agreed to be visited: all three scores predict progress across the national population, with warmth and teaching predicted from inspection reports by the prediction models and strictness scored by the one-page mark scheme. Each of the three national associations survives two checks. It holds when the pre-pandemic inspection grade is added to the control variables, so the scores carry information beyond the report's overall verdict. And it holds on the reports written before the outcome cohorts sat their GCSEs, whose inspectors could not have known the results the scores now predict.
 
 There are two implications for the current policy debate. Both depend on the association being at least partly causal, which the design cannot prove, though the checks above have removed many of the other explanations.
 
@@ -702,7 +699,7 @@ Being weaker is not, by itself, a source of bias. The regression estimates how p
 
 Each national coefficient has a benchmark. The national score is an imperfect stand-in for the enacted one, so its coefficient should be a scaled-down copy of the visited coefficient, shrunk by the share of the enacted score it captures. For warmth that benchmark is a third of the visited coefficient of $0.219$, roughly $0.07$, and the national estimate of $\NatW$ sits on it. For teaching it is $0.28 \times 0.206 \approx 0.06$, and the estimate of $\NatT$ sits about a quarter above. For strictness it is $0.30 \times 0.199 \approx 0.06$, and the estimate of $\NatS$ is roughly double. The benchmarks are rough: the shares they rest on come from about a hundred schools of restricted range, so each carries a sampling error of about $0.1$, and the strictness share is lowered by the coarseness of a five-band score, which sets that benchmark too low.
 
-The strictness overshoot has an explanation in how the two readings were built. The warmth and teaching models were trained only on the part of the enacted score that demographics cannot explain, with names and other shortcuts stripped from the text, so their scores carry warmth and teaching and little else. The mark scheme reads the report as it stands. Its bands pick up conduct, and with it some of the general character of an orderly, effective school, and that general character is itself correlated with results. Part of the strictness coefficient is that extra content rather than strictness alone. For the ranking of the two dimensions, the visited sample is the one to trust, because there the dimensions were measured directly, and warmth carries at least as much weight as strictness.
+The strictness overshoot has an explanation in how the two scores were built. The warmth and teaching models were trained only on the part of the enacted score that demographics cannot explain, with names and other shortcuts stripped from the text, so their scores carry warmth and teaching and little else. The mark scheme is applied to the report as it stands. Its bands pick up conduct, and with it some of the general character of an orderly, effective school, and that general character is itself correlated with results. Part of the strictness coefficient is that extra content rather than strictness alone. For the ranking of the two dimensions, the visited sample is the one to trust, because there the dimensions were measured directly, and warmth carries at least as much weight as strictness.
 
 \section{The Traditional-Pedagogy Indicator}
 \label{app:3A:pedagogy}
@@ -817,7 +814,7 @@ item's inter-rater reliability shown beside it. Every one of the 33 items has a 
 body's additive result, for both the visited sample and the national
 panel.
 
-Entering predicted warmth and the bands together (\cref{tab:typology}) moves warmth from $+0.078$ to $+0.054$ while the bands stay at $+0.117$, consistent with the two readings picking up some of the same features of a report. The univariate estimates remain the primary numbers because, as the body explains, the two readings do not carry the same mix of content.
+Entering predicted warmth and the bands together (\cref{tab:typology}) moves warmth from $+0.078$ to $+0.054$ while the bands stay at $+0.117$, consistent with the two scores picking up some of the same features of a report. The univariate estimates remain the primary numbers because, as the body explains, the two readings do not carry the same mix of content.
 
 Two results qualify and extend the body's espoused comparison. First, part of the espoused warmth null may reflect the shape of the espoused scale rather than a pure absence of information. Heads overstate warmth against the enacted scores by \GapWarmth{} points on average, against \GapStrictness{} for strictness, so the espoused warmth scores bunch near the top of their scale, and scores that bunch have little variation left to predict with. Second, the size of a head's overstatement does not matter in itself: once the enacted score is in the regression, the gap between the espoused and enacted scores predicts nothing (\cref{tab:gaps}, discussed below). 
 

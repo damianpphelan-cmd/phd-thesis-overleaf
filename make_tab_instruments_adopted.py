@@ -107,7 +107,7 @@ enacted & espoused & reference labels & author's labels ($n$) \\
 \textit{Notes}: ``Prose'': the model reads a written mark scheme and
 returns a band in one call. ``Decomposed'': the model answers factual
 questions with verified quotations and the band is assigned by a rule in
-code. $^{a}$The behaviour-policy instrument reads the whole policy against a
+code. $^{a}$The behaviour-policy instrument is applied to the whole policy against a
 written decision procedure in one call and answers its steps, and the band is
 computed from the answers rather than returned by the model. The
 reference-label kappas are out-of-sample figures for the instrument in each
