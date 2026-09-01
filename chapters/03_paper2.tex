@@ -615,7 +615,10 @@ difference in outcome noise.
 \input{tables/tab_p8_component_stability}
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\clearpage
+% No \clearpage here. It was the only one before an appendix
+% section, and \clearpage flushes pending floats onto float pages
+% without applying \floatpagefraction, which stranded Table 3A.2
+% alone on a blank page.
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \section{Robustness in Detail}
 \label{app:3A:robust}
