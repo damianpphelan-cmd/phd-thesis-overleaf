@@ -27,6 +27,21 @@
 \usepackage{float}
 \usepackage{subcaption}
 
+% Float placement. LaTeX's defaults sent six of the larger tables to float
+% pages of their own and then, because \floatpagefraction is 0.5 by default,
+% were content to leave those pages half empty (Tables 2.5, 2A.5, 3.2, 3A.2,
+% 3A.15 and 3A.18 each sat under a third to a half page of white space).
+% Letting a float occupy more of a text page, and requiring a float page to
+% be nearly full before it is allowed, keeps the large tables next to the
+% prose that discusses them.
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.85}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+
 % Colour (for tables etc.)
 \usepackage[table]{xcolor}
 

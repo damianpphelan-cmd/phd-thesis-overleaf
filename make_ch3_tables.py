@@ -28,6 +28,7 @@ from pathlib import Path
 
 import pandas as pd
 
+from fix_esttab_tables import fold_legend
 from fix_tables import caption_to_title, move_caption_above
 
 # Caption convention (29 Aug 2026): short title in the caption, all
@@ -98,6 +99,17 @@ def write(name: str, body: str) -> None:
     body, _ = move_caption_above(body)
     if name in TITLES:
         body = caption_to_title(body, *TITLES[name])
+    # One home for the significance legend: caption_to_title has just built
+    # the notes minipage, so any \multicolumn legend rows still sitting under
+    # \bottomrule would state it twice. Fold them in.
+    if r"\end{minipage}" in body:
+        lines, legend = fold_legend(body.splitlines())
+        if legend:
+            for i in range(len(lines) - 1, -1, -1):
+                if lines[i].startswith(r"\end{minipage}"):
+                    lines.insert(i, legend)
+                    break
+            body = "\n".join(lines) + "\n"
     (TABLES / name).write_text(body, encoding="utf-8")
     print(f"wrote thesis/tables/{name}")
 

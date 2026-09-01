@@ -640,7 +640,7 @@ observer effects and measurement noise are removed, they correlate at \CorrWSTru
   \label{fig:p1_quadrants}
   \includegraphics[width=0.8\textwidth]{fig_quadrants_ch2.pdf}
 \begin{minipage}{\linewidth}\smallskip
-\footnotesize\textit{Notes:} Each dot is a school. Schools are found in all four quadrants: warm-and-strict, warm-and-permissive, cold-and-strict, and cold-and-permissive.
+\footnotesize\textit{Notes:} Each dot is a school. Dashed lines mark the sample medians, which divide the schools into the four labelled quadrants. All four are occupied: warm and strict; warm, less strict; strict, less warm; and neither.
 \end{minipage}
 \end{figure}
 
@@ -662,10 +662,6 @@ schools the model reads as warmer are schools the observers scored as warmer, an
 scheme places in higher bands come from schools the observers scored as stricter. The relationship
 is loose, with exceptions at every level, but it is not the work of a few outlying schools.
 
-\Cref{tab:p1_grid} reports fourteen text measures: seven pairings of a source with a dimension, each scored twice, once by the prediction model and once by the mark scheme. Each measure is summarised by one number: the correlation between the score it gives a school and the score the observers gave it. Each measure then faces two tests: it must beat luck, and it must stay significant once the number of tests is allowed for. Every measure that passes both tests comes from an inspection report, and none of the measures taken from the documents schools write about themselves passes either. Within the reports, warmth and strictness come out by different routes. The rest of this section works through the tests in \cref{tab:p1_grid} and then the three checks, one at a time.
-
-\input{tables/tab_p1_grid}
-
 \begin{figure}[htbp]
   \centering
   \caption{The warmth model and the strictness scheme against the enacted scores}
@@ -675,6 +671,10 @@ is loose, with exceptions at every level, but it is not the work of a few outlyi
 \footnotesize\textit{Notes:} Panel A shows the warmth prediction model's held-out predictions against enacted warmth, both after the demographic adjustment, that is, the part of each score that the four control variables do not explain; each school is predicted by a model that never saw it. Panel B shows the strictness mark scheme's bands against enacted strictness without that adjustment, so the correlation shown is the raw $\RubricSOfstedRaw$; the adjusted figure, $\RubricSOfstedDec$, is the one in \cref{tab:p1_grid}.
 \end{minipage}
 \end{figure}
+
+\Cref{tab:p1_grid} reports fourteen text measures: seven pairings of a source with a dimension, each scored twice, once by the prediction model and once by the mark scheme. Each measure is summarised by one number: the correlation between the score it gives a school and the score the observers gave it. Each measure then faces two tests: it must beat luck, and it must stay significant once the number of tests is allowed for. Every measure that passes both tests comes from an inspection report, and none of the measures taken from the documents schools write about themselves passes either. Within the reports, warmth and strictness come out by different routes. The rest of this section works through the tests in \cref{tab:p1_grid} and then the three checks, one at a time.
+
+\input{tables/tab_p1_grid}
 
 The scrambled scores say how easily each of the model's results could be luck. Its three inspection-report measures all beat luck (permutation $p$: warmth \PermPOfstedW{}, teaching \PermPOfstedT{}, strictness \PermPOfstedS{}). Its measures from the behaviour policies and the websites all fail to.
 

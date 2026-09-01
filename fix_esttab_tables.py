@@ -29,6 +29,13 @@ TABLES = Path(__file__).resolve().parent / "tables"
 # the text before esttab sees it), this one is recoverable here.
 MATH = re.compile(r"(?<!\\)\$(.+?)(?<!\\)\$")
 
+# esttab parks its "Standard errors in parentheses" legend in \multicolumn
+# rows below \bottomrule, so those tables carried the legend inside the
+# tabular while every hand-built table carries it in the notes. One table
+# (tab_semh_mechanism) showed both at once. These rows are folded into the
+# notes instead, so Chapter 3 states the legend in exactly one place.
+FOOTROW = re.compile(r"^\\multicolumn\{\d+\}\{l\}\{\\footnotesize (.*)\}\\\\\s*$")
+
 # Every table chapter3_analysis.ipynb writes via esttab, and whether the
 # chapter wants it scaled to \textwidth. tab_semh_mechanism is narrow enough
 # to set at natural size; the rest overflow without it.
@@ -51,6 +58,28 @@ ESTTAB = {
     "tab_semh_mechanism":        False,
     "tab_teaching_philosophy":   True,
 }
+
+
+def fold_legend(lines: list[str]) -> tuple[list[str], str]:
+    """Strip the \\multicolumn footnote rows that sit below \\bottomrule and
+    return them as one string, for the caller to move into the notes."""
+    below = [i for i, ln in enumerate(lines) if ln.startswith(r"\bottomrule")]
+    if not below:
+        return lines, ""
+    b = max(below)
+    keep, moved = [], []
+    for ln in lines[b + 1:]:
+        m = FOOTROW.match(ln)
+        if m:
+            chunk = m.group(1).strip()
+            if chunk and chunk[-1] not in ".;:":
+                chunk += "."
+            moved.append(chunk)
+        else:
+            keep.append(ln)
+    if not moved:
+        return lines, ""
+    return lines[:b + 1] + keep, " ".join(moved)
 
 
 def unescape_math(text: str) -> str:
@@ -86,6 +115,17 @@ def patch(text: str, stem: str, resize: bool) -> str:
                 lines[i] = r"\end{tabular}%"
                 lines.insert(i + 1, "}")
                 break
+
+    # Only fold where there is a notes minipage to fold into. Tables that
+    # carry no notes (none of them are \input into a chapter) keep the
+    # legend inside the tabular, which is the only place they have.
+    if any(ln.startswith(r"\end{minipage}") for ln in lines):
+        lines, legend = fold_legend(lines)
+        if legend:
+            for i in range(len(lines) - 1, -1, -1):
+                if lines[i].startswith(r"\end{minipage}"):
+                    lines.insert(i, legend)
+                    break
 
     # Float convention: tabular first, then \caption + \label, then notes.
     # esttab emits the caption at the top of the float; move it below.

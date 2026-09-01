@@ -89,7 +89,7 @@ def main() -> None:
         "estimation-sample $n$.}\n"
         "\\label{tab:national_legs}\n"
         "\\begin{tabular}{llcccc}\n\\toprule\n"
-        " & Instrument & Full controls & +Grade & "
+        "Dimension & Instrument & Full controls & +Grade & "
         "Pre-2022 & 95\\% CI \\\\\n\\midrule\n"
         + "\n".join(rows) +
         "\n\\bottomrule\n\\end{tabular}\n"
