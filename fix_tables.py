@@ -136,9 +136,14 @@ def move_caption_above(text: str, nl: str = "\n") -> tuple[str, bool]:
         return text, False
 
     cap_start = m.start()
-    body = TABULAR_OPEN_RE.search(text)
-    if body and cap_start < body.start():
-        return text, False  # already above the body
+    # The canonical position is immediately after the float opener, not
+    # merely somewhere above the body. Producers that emit \def\sym and
+    # \small first left the caption below them, and since the preamble
+    # sets no caption font, a preceding \small shrank the title: ten
+    # committed tables carried a smaller title than the rest. Normalising
+    # to the top of the float fixes both the ordering and the font.
+    if not text[om.end():cap_start].strip():
+        return text, False  # already at the top of the float
 
     cap_end = find_caption_end(text, cap_start)
     lm = re.match(r"\s*\\label\{[^}]*\}", text[cap_end:])
@@ -287,7 +292,7 @@ def main() -> int:
         if unescaped:
             notes.append("unescaped math subscripts")
         if moved:
-            notes.append("moved caption above the table body")
+            notes.append("moved caption to the top of the float")
         if not notes:
             continue
 

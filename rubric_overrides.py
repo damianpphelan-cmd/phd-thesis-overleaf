@@ -80,12 +80,15 @@ def apply(E: pd.DataFrame) -> tuple[pd.DataFrame, int]:
             for _, r in qs.iterrows():
                 qk = quad.get(str(r.quadrant))
                 if qk:
-                    # analyse_typology_rubric writes the quadrant standard
-                    # error into the p column and the mean into adj_mean.
+                    # analyse_typology_rubric writes the quadrant mean into
+                    # adj_mean, not beta; se and n are in their usual
+                    # columns and p is left empty (a quadrant mean has no
+                    # test attached). Reading the SE from p instead printed
+                    # "(nan)" in all eight national cells.
                     hits += _set(E, dict(table="typology", panel=panel,
                                          model="quadrant_adjmean",
                                          outcome="overall", term=qk),
-                                 r.adj_mean, r.p, None, r.n)
+                                 r.adj_mean, r.se, None, r.n)
 
     ent = _csv("entry_rates_rubric_results.csv")
     if ent is not None:
