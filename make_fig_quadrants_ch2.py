@@ -45,16 +45,22 @@ counts = {
 }
 
 fig, ax = plt.subplots(figsize=(5.2, 4.2))
-ax.scatter(s, w, s=30, facecolor="white", edgecolor="0.25", linewidth=0.7)
-ax.axvline(sm, color="0.6", lw=0.8, ls="--")
-ax.axhline(wm, color="0.6", lw=0.8, ls="--")
+ax.scatter(s, w, s=30, facecolor="white", edgecolor="0.25", linewidth=0.7,
+           zorder=2)
+ax.axvline(sm, color="0.6", lw=0.8, ls="--", zorder=1)
+ax.axhline(wm, color="0.6", lw=0.8, ls="--", zorder=1)
+# Margin plus an opaque backing box: the corner labels sat on top of the
+# points nearest each corner and were unreadable in the compiled PDF.
+ax.margins(0.10)
 for (xq, yq, lab, ha, va) in [
         (0.98, 0.98, "warm and strict", "right", "top"),
         (0.02, 0.98, "warm, less strict", "left", "top"),
         (0.98, 0.02, "strict, less warm", "right", "bottom"),
         (0.02, 0.02, "neither", "left", "bottom")]:
     ax.text(xq, yq, f"{lab}\n(n = {counts[lab]})", transform=ax.transAxes,
-            ha=ha, va=va, fontsize=8, color="0.35", style="italic")
+            ha=ha, va=va, fontsize=8, color="0.35", style="italic", zorder=5,
+            bbox=dict(boxstyle="round,pad=0.28", facecolor="white",
+                      edgecolor="none", alpha=0.9))
 ax.set_xlabel("Enacted strictness (visit score, 1–5)")
 ax.set_ylabel("Enacted warmth (visit score, 1–5)")
 fig.tight_layout()

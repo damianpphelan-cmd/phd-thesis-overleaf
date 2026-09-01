@@ -29,7 +29,7 @@ import pathlib
 
 import pandas as pd
 
-from fix_tables import move_caption_above
+from fix_tables import caption_to_title, move_caption_above
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "thesis" / "tables" / "tab_control_stats.tex"
@@ -140,13 +140,8 @@ def build() -> str:
     cohort shares from the 2023--24 performance tables. Selective admissions is the share of
     schools recorded as selective in the performance tables. Pre-COVID Ofsted grade is the
     overall effectiveness grade from the Ofsted Management Information snapshot as at
-    31~August~2019, used as the primary endogeneity-safe control; the contemporary 2024 grade
-    enters sensitivity analyses only. Grade percentages are shares of the graded schools
-    (@G1@ visited, @G2@ interviewed), not of the sample. The primary specification
-    estimates on 99 of the @N1@ visited schools, because predecessor grades fill four
-    of the seven schools without one; see the specification-ladder notes.
-    The @N1@ visited schools all have both visit and interview data; the interviewed
-    sample (@N2@ schools) includes them.
+    31~August~2019. Grade percentages are shares of the graded schools
+    (@G1@ visited, @G2@ interviewed), not of the sample.
   \end{minipage}
 \end{table}
 """.replace("@BODY@", body).replace("@N1@", str(n1)).replace("@N2@", str(n2)) \
@@ -174,6 +169,7 @@ def main() -> int:
 
     tex = build()
     tex, _ = move_caption_above(tex)
+    tex = caption_to_title(tex, "Control variables: summary statistics")
     problems = audit(tex)
     if problems:
         print("refusing to write -- generated table is malformed:")

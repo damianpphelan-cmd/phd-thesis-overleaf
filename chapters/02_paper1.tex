@@ -465,7 +465,7 @@ quite different lessons, and a visit of five lessons measures that average with 
 error pulls every correlation
 with the enacted scores towards zero, so the figures reported below are, if anything, too small.
 
-Two corrections give a sense of how much the error lowers the correlations. The first corrects the enacted--espoused correlations for the error in both scores at once. They rise to about \DisSplitW{} for warmth and \DisSplitS{} for strictness. Two error-free readings of the same school would correlate near one, so even after the correction the head and the observers are far from describing the same school. The second corrects the mark scheme's strictness correlation with the enacted score, $\RubricSOfstedRaw$, for the enacted score's error alone, and it rises to about $0.36$. In both cases the corrected number leads to the same verdict as the raw one, so the uncorrected figures are the ones reported throughout.
+Two corrections give a sense of how much the error lowers the correlations. The first corrects the enacted--espoused correlations for the error in both scores at once. They rise to about \DisSplitW{} for warmth and \DisSplitS{} for strictness. Two error-free measurements of the same quantity would correlate near one, so even after the correction the head and the observers are far from describing the same school. The second corrects the mark scheme's strictness correlation with the enacted score, $\RubricSOfstedRaw$, for the enacted score's error alone, and it rises to about $0.36$. In both cases the corrected number leads to the same verdict as the raw one, so the uncorrected figures are the ones reported throughout.
 
 The two enacted scores are correlated at $r = \CorrWarmthStrictnessEnacted$ across the \NTierOne{} visited schools, and the two espoused scores at $\CorrWarmthStrictnessEspoused$. Taken at face value, the enacted figure says that warm schools are usually strict ones. Part of that figure, though, comes from how the scores were made rather than from the schools. The same observers scored both dimensions at the same school on the same day, and an overall impression of a school formed on the day can move both ratings in the same direction.
 
@@ -672,7 +672,7 @@ is loose, with exceptions at every level, but it is not the work of a few outlyi
   \label{fig:p1_validation}
   \includegraphics[width=\textwidth]{fig_ch2_validation.pdf}
 \begin{minipage}{\linewidth}\smallskip
-\footnotesize\textit{Notes:} Scores are shown after the demographic adjustment, that is, the part of each enacted score that the four control variables do not explain. Left: the warmth prediction model's held-out predictions against enacted warmth (each school predicted by a model that never saw it). Right: the strictness mark scheme's bands against enacted strictness.
+\footnotesize\textit{Notes:} Panel A shows the warmth prediction model's held-out predictions against enacted warmth, both after the demographic adjustment, that is, the part of each score that the four control variables do not explain; each school is predicted by a model that never saw it. Panel B shows the strictness mark scheme's bands against enacted strictness without that adjustment, so the correlation shown is the raw $\RubricSOfstedRaw$; the adjusted figure, $\RubricSOfstedDec$, is the one in \cref{tab:p1_grid}.
 \end{minipage}
 \end{figure}
 
@@ -696,7 +696,7 @@ separate the two methods on strictness. The three checks set out in the measurem
 can: the retest, the change of language model, and the length check. The scheme's strictness bands pass all three.
 
 The retest asks whether the language model gives the same answer twice. Each scheme was run
-twice on the same documents. Across all fourteen readings, the two runs give the same
+twice on the same documents. Across the seven mark schemes, the two runs give the same
 band \GridRetestExact{} of the time, and the report strictness scheme gave every school
 the same band on both runs.
 
@@ -709,7 +709,7 @@ primary model found there came from the model rather than the scheme.
 
 The length check asks whether the mark scheme bands follow document length rather than the school. For the inspection-report schemes the worry is small: the strictness bands correlate with length at $\LenOfstedS$ and the warmth bands at $\LenOfstedW$, and removing the effect of length moves the strictness correlation only from $+0.25$ to $\RubricSOfstedLenP$. The website schemes' bands follow length closely, one more reason their bands are not used.
 
-Demographic adjustment is separate from the three checks, and it is applied to the mark-scheme bands in the same way as to the prediction models' predictions; \cref{sec:p1_app_prediction} gives the specification. The adjustment changes the strictness correlation little: the scheme's correlation with enacted strictness is $\RubricSOfstedRaw$ raw and $\RubricSOfstedDec$ adjusted. The warmth scheme's bands, by contrast, correlate with enacted warmth at $\RubricWOfstedDec$ and puts three-quarters of schools in one band. The model, on the same reports, predicts enacted warmth at $\PredWOfsted$,
+Demographic adjustment is separate from the three checks, and it is applied to the mark-scheme bands in the same way as to the prediction models' predictions; \cref{sec:p1_app_prediction} gives the specification. The adjustment changes the strictness correlation little: the scheme's correlation with enacted strictness is $\RubricSOfstedRaw$ raw and $\RubricSOfstedDec$ adjusted. The warmth scheme's bands, by contrast, correlate with enacted warmth at $\RubricWOfstedDec$ and put three-quarters of schools in one band. The model, on the same reports, predicts enacted warmth at $\PredWOfsted$,
 and its advantage is itself significant (paired test, $p = \WarmDiffP$).
 
 The two dimensions are therefore written down differently. Warmth shows

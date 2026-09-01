@@ -216,6 +216,10 @@ def stages23_trio(df: pd.DataFrame) -> None:
 
     r2 = " & ".join(f"{get(df, 'primary_stage2', o, T)['r2']:.3f}"
                     for o in TRIO)
+    # Stage 3 reported its coefficients but not its fit, unlike the
+    # five-outcome versions in the appendix
+    r2_s3 = " & ".join(f"{get(df, 'primary_stage3', o, W)['r2']:.3f}"
+                       for o in TRIO)
     n = int(get(df, "primary_stage1", "overall", W)["n"])
 
     # The \def\sym line is load-bearing: \sym is defined per-file by esttab, and
@@ -245,6 +249,7 @@ $R^2$        & {r2} \\
 {rows("Warmth $W$", "primary_stage3", W)}
 {rows("Strictness $S$", "primary_stage3", S)}
 {rows("Teaching $T$", "primary_stage3", T)}
+$R^2$        & {r2_s3} \\
 \bottomrule
 \end{{tabular}}
 \begin{{minipage}}{{0.8\linewidth}}
@@ -381,8 +386,10 @@ use the primary specification (predecessor-filled pre-COVID inspection grade,
 late-entry schools excluded; $n=99$); the EBacc and Open columns are estimated
 on the same control set before the predecessor-grade fill and before the
 late-entry exclusion ($n=96$; with that exclusion applied the unfilled-grade
-sample has 95 schools), the only form in which those components are
-available.}}
+sample has 95 schools), the only form in which the espoused estimates for
+those two components exist. The enacted estimates for EBacc and Open are
+available on the primary specification and are reported in
+\cref{{tab:main_results_s1}}.}}
 \label{{tab:enacted_espoused}}
 \resizebox{{\textwidth}}{{!}}{{%
 \begin{{tabular}}{{l*{{5}}{{c}}}}

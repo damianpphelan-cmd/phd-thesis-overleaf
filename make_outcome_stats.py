@@ -28,7 +28,7 @@ import pathlib
 
 import pandas as pd
 
-from fix_tables import move_caption_above
+from fix_tables import caption_to_title, move_caption_above
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "thesis" / "tables" / "tab_outcome_stats.tex"
@@ -100,15 +100,9 @@ def build(OUTCOMES=OUTCOMES_BODY, full=False) -> str:
   \begin{minipage}{\linewidth}
     \vspace{2pt}
     \footnotesize
-    \textit{Notes:} P8 outcomes are 2-year averages of 2022--23 and 2023--24 component scores where both
-    years are available (both years are present for every school in the current data,
-    so the single-year fallback never binds). Att8 2024--25 components are the
+    \textit{Notes:} P8 outcomes are 2-year averages of 2022--23 and 2023--24 component scores where both years are available. Att8 2024--25 components are the
     contemporaneous robustness outcome; no Progress~8 is available for this cohort because the cohort were
-    in Year~6 in 2019--20 when Key Stage~2 assessments were cancelled. The interviewed rows
-    describe the full interviewed sample and therefore contain the visited schools; both are
-    subsets of the national sample. Four interviewed schools have no published Progress~8 and
-    three no 2024--25 Attainment~8, which is why those rows fall short of the sample's
-    303 schools.
+    in Year~6 in 2019--20 when Key Stage~2 assessments were cancelled.
   \end{minipage}
 \end{table}
 """.replace("@BODY@", body) \
@@ -140,6 +134,9 @@ def main() -> int:
     tex_full = build(OUTCOMES_FULL, full=True)
     tex, _ = move_caption_above(tex)
     tex_full, _ = move_caption_above(tex_full)
+    tex = caption_to_title(tex, "Progress~8 outcomes: summary statistics")
+    tex_full = caption_to_title(
+        tex_full, "Progress~8 and Attainment~8 outcomes: summary statistics")
     problems = audit(tex) + audit(tex_full)
     if problems:
         print("refusing to write -- generated table is malformed:")

@@ -20,7 +20,7 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import cohen_kappa_score
 
-from fix_tables import move_caption_above
+from fix_tables import caption_to_title, move_caption_above
 
 ROOT = r"C:\Users\damia\OneDrive\Documents\Schools Project"
 TAB = os.path.join(ROOT, "thesis", "tables")
@@ -92,9 +92,18 @@ def main():
         "tab_irr_outside.tex": tex(out, "tab:irr_outside",
             "Inter-rater reliability for outside-of-lesson observation items.\nEach row pools all pairwise comparisons across school days observed by two or\nthree researchers simultaneously. $r$: Pearson correlation; MAD: mean\nabsolute difference; Exact: exact agreement; W1: within-one-point agreement;\n$\\kappa_w$: weighted Cohen's $\\kappa$ (linear weights, categories 1--5).", OUT_LABELS),
     }
+    # the caption is composed here as title-plus-detail; the house convention
+    # is a short title with the detail in the notes
+    titles = {
+        "tab_irr_classroom.tex":
+            "Inter-rater reliability: classroom observation items",
+        "tab_irr_outside.tex":
+            "Inter-rater reliability: outside-of-lesson items",
+    }
     rc = 0
     for name, body in files.items():
         body, _ = move_caption_above(body)
+        body = caption_to_title(body, titles[name])
         p = os.path.join(TAB, name)
         cur = open(p, encoding="utf-8").read() if os.path.exists(p) else ""
         if cur == body:

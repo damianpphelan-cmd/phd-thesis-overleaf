@@ -431,6 +431,8 @@ def build_scoring_guide() -> str:
          r'% Source: warm_strict_scorer.py',
          '',
          r'\begin{longtable}{@{}p{0.055\linewidth}p{0.235\linewidth}p{0.62\linewidth}@{}}',
+         r'\caption{Composition of the gold-standard sub-scores}',
+         r'\label{tab:p1_subscore_items} \\',
          r'\toprule',
          r'& Sub-score & Constituent items \\',
          r'\midrule',
@@ -442,9 +444,9 @@ def build_scoring_guide() -> str:
          r'\bottomrule',
          r'\endfoot',
          r'\bottomrule',
-         r'\caption{Composition of the gold-standard sub-scores. Item wording is given'
-         r' in full in \cref{app:2A:interview_guide} and \cref{app:2A:visit_protocol}.}',
-         r'\label{tab:p1_subscore_items}',
+         r'\multicolumn{3}{@{}p{\linewidth}@{}}{\footnotesize\textit{Notes:} Item'
+         r' wording is given in full in \cref{app:2A:interview_guide} and'
+         r' \cref{app:2A:visit_protocol}.} \\',
          r'\endlastfoot']
     group = None
     for construct, key, label, source in SUBSCORES:

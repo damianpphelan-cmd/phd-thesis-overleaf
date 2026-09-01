@@ -63,11 +63,17 @@ def main() -> None:
             ci = "---"
         rows.append(
             f"{label} & {inst} & {ng['b']:+.3f}{stars(ng['p'])} & "
-            f"({ng['se']:.3f}) & {wg['b']:+.3f}{stars(wg['p'])} & "
+            f"{wg['b']:+.3f}{stars(wg['p'])} & "
             f"{pre['b']:+.3f}{stars(pre['p'])} & {ci} \\\\")
+        # every coefficient column carries its own standard error: the
+        # +Grade and Pre-2022 columns used to print stars with no se beside
+        # them, which the note's "standard errors in parentheses" belied
+        rows.append(
+            f" & & ({ng['se']:.3f}) & ({wg['se']:.3f}) & "
+            f"({pre['se']:.3f}) & \\\\")
         # each column's own estimation-sample n, read from its result row
         rows.append(
-            f" & & $n={tex_n(ng['n'])}$ & & $n={tex_n(wg['n'])}$ & "
+            f" & & $n={tex_n(ng['n'])}$ & $n={tex_n(wg['n'])}$ & "
             f"$n={tex_n(pre['n'])}$ & \\\\")
 
     table = (
@@ -82,8 +88,8 @@ def main() -> None:
         "mark-scheme bands estimate nothing from the sample, so the strictness column has none. Each column reports its own "
         "estimation-sample $n$.}\n"
         "\\label{tab:national_legs}\n"
-        "\\begin{tabular}{llccccc}\n\\toprule\n"
-        " & Instrument & \\multicolumn{2}{c}{Full controls} & +Grade & "
+        "\\begin{tabular}{llcccc}\n\\toprule\n"
+        " & Instrument & Full controls & +Grade & "
         "Pre-2022 & 95\\% CI \\\\\n\\midrule\n"
         + "\n".join(rows) +
         "\n\\bottomrule\n\\end{tabular}\n"

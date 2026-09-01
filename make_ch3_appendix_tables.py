@@ -13,7 +13,7 @@ import argparse, os, sys
 import numpy as np
 import pandas as pd
 
-from fix_tables import move_caption_above
+from fix_tables import caption_to_title, move_caption_above
 
 ROOT = r"C:\Users\damia\OneDrive\Documents\Schools Project"
 TAB = os.path.join(ROOT, "thesis", "tables")
@@ -66,10 +66,29 @@ def bh(p):
     r[o] = np.minimum(ranked, 1.0); return r
 
 
+# Caption convention: a short title, with the detail in the notes. The
+# captions composed below are title-plus-detail, so each is routed through
+# caption_to_title on the way out.
+TITLES = {
+    "tab_entry_rates.tex": "Culture and curriculum entry",
+    "tab_gaps.tex": "The espoused--enacted gap and Progress~8",
+    "tab_items_fdr.tex": "Item-level associations with Progress~8",
+    "tab_llm_p8_matrix.tex": "Retired-instrument scores against Progress~8",
+    "tab_p8_proxy.tex": "Culture coefficients on the 2024/25 stand-in outcome",
+    "tab_parentview.tex": "Parent View and the warmth instruments",
+    "tab_semh_mechanism.tex": "The SEMH composition mechanism",
+    "tab_stability_p8.tex": "Stability of Progress~8 and academisation",
+    "tab_subscores.tex": "The five visit sub-scores entered jointly",
+    "tab_typology.tex": "The authoritative-school typology",
+}
+
+
 def write(name, tex, check, changed):
     if name.endswith(".tex") and name.startswith("tab_"):
-        # Float convention: tabular first, then \caption + \label, then notes.
+        # Float convention: \caption + \label, then the tabular, then notes.
         tex, _ = move_caption_above(tex)
+        if name in TITLES:
+            tex = caption_to_title(tex, TITLES[name])
     path = os.path.join(TAB, name)
     cur = open(path, encoding="utf-8").read() if os.path.exists(path) else ""
     if cur != tex:
