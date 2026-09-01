@@ -340,6 +340,23 @@ def build() -> list[Num]:
     add(Num("QuadrantSD", f"{_auth / _sd_est:.2f}",
             "authoritative-vs-rest gap in estimation-sample outcome SDs"))
 
+    # The espoused substitution: the same primary specification with the
+    # headteacher's own ratings in place of the observers' scores.
+    _es = _e[(_e.spec == "primary_espoused")
+             & (_e.outcome == "overall")].set_index("term")
+    add(Num("EspousedWCoef",
+            f"{_es.loc['z_gs_warmth_espoused', 'b']:.3f}",
+            "espoused warmth coefficient, primary spec (Stata)"))
+    add(Num("EspousedWP",
+            f"{_es.loc['z_gs_warmth_espoused', 'pval']:.2f}",
+            "espoused warmth p-value, primary spec (Stata)"))
+    add(Num("EspousedSCoef",
+            f"{_es.loc['z_gs_strictness_espoused', 'b']:.3f}",
+            "espoused strictness coefficient, primary spec (Stata)"))
+    add(Num("EspousedSP",
+            f"{_es.loc['z_gs_strictness_espoused', 'pval']:.3f}",
+            "espoused strictness p-value, primary spec (Stata)"))
+
     add(Num("PrimarySpecN", "99",
             "primary estimation sample: 103 - 2 late-entry - 1 unfillable "
             "grade - 1 missing years_since_ofsted",
