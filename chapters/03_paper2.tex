@@ -140,7 +140,7 @@ lessons are orderly on average, and not one in which every lesson is.
 
 The second is that the scores carry measurement error, with a reliability
 of about 0.7. For a score entered on its own, error of this kind biases the coefficient towards zero, so those estimates are conservative. Entered together, the two scores behave less simply.
- Warmth and strictness are correlated, so the regression's job is to decide how much of the joint association belongs to each. Noise interferes with exactly that decision: when one score is measured with more error than the other, some of its association is credited to the other score instead. So when the two scores enter together, the error makes the division between the two coefficients uncertain: part of the warmth association can appear as strictness, and the reverse. The error cannot produce the overall association. It moves estimates towards zero, so if anything the association between culture and progress is understated. About a third
+ Warmth and strictness are correlated, so the regression's job is to decide how much of the joint association belongs to each. Noise interferes with exactly that decision: when one score is measured with more error than the other, some of its association is credited to the other score instead. So when the two scores enter together, the error makes the division between the two coefficients uncertain: part of the warmth association can appear as strictness, and the reverse. The error cannot produce the overall association. It moves estimates towards zero, so if anything the association between culture and progress is understated. \Cref{app:3A:robust} makes that argument formally, using the two raters' scores as replicate measurements of one another. About a third
 of the observed lessons were rated by one researcher rather than two, and the
 robustness section checks that the estimates do not depend on those schools.
 
@@ -446,6 +446,8 @@ The number of schools that changed headteacher also has an implication for the m
 
 \input{tables/tab_timing_checks}
 
+A related check asks whose progress the associations reflect. The Department publishes Progress~8 separately for disadvantaged pupils, and the primary regressions can be re-run on that outcome. The associations are, if anything, stronger for disadvantaged pupils than for their peers: nationally, a standard deviation of the strictness bands is associated with $0.15$ of a grade of disadvantaged-pupil progress against $0.12$ for other pupils, and on the visited schools both culture dimensions hold on the disadvantaged-pupil outcome (warmth $0.14$, strictness $0.13$, both $p \approx 0.02$). Whatever the associations reflect, they are not gains concentrated among the already advantaged.
+
 The last check concerns the possibility that some characteristic of a school that the control variables do not capture produces both its culture scores and its results. This is the doubt the design cannot remove, and no test can rule it out. What two standard sensitivity measures can do is calculate how strong such a characteristic would have to be to explain the estimates away (\cref{tab:sensitivity_bounds}). For strictness, an unmeasured characteristic about as influential as the full control set would be enough to remove the association. For warmth, the same amount of confounding would leave about three-quarters of the association in place. Two limits apply. Firstly, the measures say nothing about reverse causation, only about omitted variables. Secondly, the measures start from the estimated coefficients. The culture scores contain measurement error, and error of that kind pulls an estimated coefficient towards zero, so the coefficients the measures start from are likely smaller than the true associations. A larger association takes more confounding to remove, so the measures likelier understate than overstate how much confounding the associations could withstand. \Cref{app:3A:robust} sets out both measures in full.
 
 \subsection{Exploratory results on traditional pedagogy}
@@ -662,6 +664,21 @@ Restricting the sample to the 64 schools in which every lesson was rated by at l
 larger on that subset and the strictness estimate smaller, with a standard
 error a quarter larger on two-thirds of the sample, so the strictness result
 is the one that depends on the full sample.
+
+The measurement-error argument can also be made formally. Each school was
+scored by more than one researcher, and building each observer's warmth and
+strictness scores separately gives two replicate measurements of the same
+school whose rater-specific errors are plausibly independent, so one
+observer's scores can instrument the other's \citep{gillen2019}. On the 66
+schools where a second observer's full set of forms exists, the two
+observers' school-level scores correlate at $0.77$ for warmth and $0.85$ for
+strictness, and the instrumented estimates move the warmth coefficient from
+$0.17$ to $0.20$ while leaving strictness essentially unchanged. The
+correction is modest because it removes only disagreement between raters:
+both observers saw the same lessons on the same day, so the error that comes
+from which lessons a visit happened to sample is common to the two
+replicates and survives. The corrected estimates therefore remain
+conservative.
 
 No single school carries the visited estimates: dropping each school in turn moves the warmth coefficient by at most $0.019$ and the strictness coefficient by at most $0.017$, and no omission moves either across conventional significance.
 

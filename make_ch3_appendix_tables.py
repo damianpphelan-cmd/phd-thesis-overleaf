@@ -587,9 +587,9 @@ percentage of the roll, on one culture score plus the school's 2015--16 baseline
 SEMH share and the primary control set: visited-school strictness and warmth
 ($n=94$ visited schools), and the national marking-scheme strictness bands
 ($n=2{{,}}594$). Coefficients are percentage points per standard deviation of the
-score. The strictness coefficients are null or negative: strict schools do not
-carry more SEMH pupils today than their baseline predicts, so a changing intake
-does not explain the strictness--progress association.}}
+score. The strictness coefficients are null or slightly negative: there is a
+detectable trace of sorting, and controlling for it removes under a tenth of
+the strictness--progress association.}}
 \label{{tab:semh_mechanism}}
 \begin{{tabular}}{{l*{{3}}{{c}}}}
 \toprule
