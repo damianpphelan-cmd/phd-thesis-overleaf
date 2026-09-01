@@ -26,6 +26,7 @@ from __future__ import annotations
 
 import argparse
 import pathlib
+import sys
 
 import pandas as pd
 
@@ -163,7 +164,24 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--check", action="store_true",
                     help="compare against the file on disk; do not write")
+    ap.add_argument("--force", action="store_true",
+                    help="write anyway; see the refusal message")
     args = ap.parse_args()
+
+    # Quarantined 1 Sep 2026. tab_national_strictness_full is Table 3A.8 in
+    # the thesis, and what this script builds from a7_estimates.csv differs
+    # from it numerically. Which side is right was never established: the
+    # Stata estimates date from 24 Aug and the committed table is newer.
+    # Writing blind would move a published table's numbers, so it now needs
+    # an explicit --force. Establish which is current, then delete this.
+    if not args.check and not args.force:
+        print("REFUSING TO WRITE. Quarantined 1 Sep 2026: this script's "
+              "output differs numerically from the committed "
+              f"{OUT_FULL.name} (Table 3A.8), and it was never settled "
+              "whether a7_estimates.csv or the table is the current one. "
+              "Run --check to see the differences; --force to write.",
+              file=sys.stderr)
+        return 2
 
     tex = build()
     tex_full = build(COLS_FULL, full=True)
@@ -187,7 +205,8 @@ def main() -> int:
         current_full = OUT_FULL.read_text(encoding="utf-8") if OUT_FULL.exists() else ""
         if current != tex or current_full != tex_full:
             print(f"{OUT.name}/{OUT_FULL.name} differ from the Stata estimates "
-                  f"-- run: python thesis/make_national_strictness.py")
+                  f"-- quarantined 1 Sep 2026; settle which side is current "
+                  f"before overwriting, then rerun with --force")
             return 1
         print(f"{OUT.name} and {OUT_FULL.name} match {EST.name}")
         return 0

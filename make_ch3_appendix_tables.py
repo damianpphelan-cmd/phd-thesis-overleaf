@@ -670,10 +670,36 @@ zero and drift slightly upward.
 """
 
 
+STALE_WARNING = """
+REFUSING TO WRITE. This generator is quarantined (1 Sep 2026).
+
+It still reads the RETIRED LLM apparatus columns in analysis_dataset.csv,
+not the text-prediction instruments Chapter 3 is built on. Its output is
+labelled "National (Ofsted scores)" and "Ofsted strictness" where the
+committed tables say "National (text instruments)" and "Marking-scheme
+bands". The committed .tex files are the correct, current ones.
+
+Writing would silently replace eight in-thesis appendix tables with
+retired-instrument numbers. In tab_typology the national warmth-by-
+strictness interaction moves from 0.004 (null, p = 0.56) to 0.018***,
+which would contradict the chapter body and one of its four headline
+results.
+
+Run with --check to see the differences. Rewire the producer to the
+current instrument columns before writing, then delete this guard.
+Override deliberately with --force.
+"""
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--force", action="store_true",
+                    help="write anyway; see STALE_WARNING")
     a = ap.parse_args()
+    if not a.check and not a.force:
+        print(STALE_WARNING, file=sys.stderr)
+        return 2
     changed = []
     write("tab_subscores.tex", t_subscores(), a.check, changed)
     items_tex, npos, nsurv, nitems = t_items(); write("tab_items_fdr.tex", items_tex, a.check, changed)
