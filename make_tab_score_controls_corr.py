@@ -91,7 +91,7 @@ def main():
     \textit{{Notes:}} Pearson correlation coefficients. $W_{{\text{{enac}}}}$,
     $S_{{\text{{enac}}}}$ and $T_{{\text{{enac}}}}$ are the enacted culture scores
     built from school visit observations only (mean of $W_1, W_2$; $S_1, S_2$;
-    $T_1$, each scaled 0--10). $W_{{\text{{esp}}}}$ and $S_{{\text{{esp}}}}$ are the
+    $T_1$, each on the $1$--$5$ scale). $W_{{\text{{esp}}}}$ and $S_{{\text{{esp}}}}$ are the
     espoused scores built from the headteacher interview. The two sets share no
     component; they are reported side by side rather than averaged, because
     the two are correlated at only $r = \GoldWarmthSplit$ (warmth) and

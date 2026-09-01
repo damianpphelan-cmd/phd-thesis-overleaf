@@ -13,7 +13,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from fix_tables import move_caption_above
+from fix_tables import caption_to_title, move_caption_above
 
 BASE = Path(__file__).resolve().parent.parent
 OUT = Path(__file__).resolve().parent / "tables" / "tab_score_dist.tex"
@@ -62,7 +62,7 @@ def main():
 \centering
 \caption{{Distribution of sub-scores and of the enacted and espoused scores for
 the visited schools with full data ($n = {n}$).
-Sub-scores are on a $[0,5]$ scale; the enacted and espoused scores on a $[0,10]$ scale.}}
+The visited schools with full data ($n = {n}$); sub-scores and scores are on the same $1$--$5$ scale as the items.}}
 \label{{tab:score_dist}}
 \footnotesize\setlength{{\tabcolsep}}{{4pt}}
 \begin{{tabular}}{{llcccccc}}
@@ -82,6 +82,10 @@ score. No sub-score enters both sets.
 \end{{table}}
 """
     tex, _ = move_caption_above(tex)
+    # journal convention: short title, detail in the notes
+    tex = caption_to_title(
+        tex, 'Distribution of the sub-scores and scores',
+        keep_first=False)
     OUT.write_text(tex, encoding="utf-8")
 
     print(f"wrote {OUT.relative_to(BASE)}  (n = {n})")

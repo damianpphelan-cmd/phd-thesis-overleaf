@@ -14,7 +14,7 @@ import pathlib
 import numpy as np
 import pandas as pd
 
-from fix_tables import move_caption_above
+from fix_tables import caption_to_title, move_caption_above
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "thesis" / "tables" / "tab_tier_summary.tex"
@@ -90,6 +90,10 @@ Group & $N$ & FSM\% & EAL\% & Median size & Outstanding\% & Good\% \\
 """.replace("@BODY@", body)
 
     tex, _ = move_caption_above(tex)
+    # journal convention: short title, detail in the notes
+    tex = caption_to_title(
+        tex, 'Distribution of schools across the three groups',
+        keep_first=False)
     OUT.write_text(tex, encoding="utf-8")
     print("wrote", OUT)
     print(tex)

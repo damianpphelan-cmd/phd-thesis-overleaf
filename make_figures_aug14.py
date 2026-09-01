@@ -56,8 +56,8 @@ for (xq, yq, lab, ha, va) in [
         (0.02, 0.02, "neither", "left", "bottom")]:
     ax.text(xq, yq, lab, transform=ax.transAxes, ha=ha, va=va,
             fontsize=8, color="0.35", style="italic")
-ax.set_xlabel("Enacted strictness (visit score, 0–10)")
-ax.set_ylabel("Enacted warmth (visit score, 0–10)")
+ax.set_xlabel("Enacted strictness (visit score, 1–5)")
+ax.set_ylabel("Enacted warmth (visit score, 1–5)")
 cb = fig.colorbar(sc, ax=ax, shrink=0.85)
 cb.set_label("Progress 8 (two-year average)")
 fig.tight_layout()
