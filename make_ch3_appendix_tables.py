@@ -685,8 +685,13 @@ strictness interaction moves from 0.004 (null, p = 0.56) to 0.018***,
 which would contradict the chapter body and one of its four headline
 results.
 
-Run with --check to see the differences. Rewire the producer to the
-current instrument columns before writing, then delete this guard.
+Run with --check to see the differences. All four in-thesis national
+legs now have a band-based source to rewire to:
+  tab_typology       <- typology_rubric_results.csv
+  tab_entry_rates    <- entry_rates_rubric_results.csv
+  tab_p8_proxy       <- p8proxy_semh_rubric_results.csv (leg=national_band)
+  tab_semh_mechanism <- p8proxy_semh_rubric_results.csv (leg=national_band)
+Rewire to those, check against the committed tables, then delete this guard.
 Override deliberately with --force.
 """
 
