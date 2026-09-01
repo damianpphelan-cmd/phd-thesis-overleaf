@@ -663,7 +663,12 @@ def check(nums: list[Num]) -> int:
 
     for n in nums:
         for bad in map(flat, n.stale):
-            hits = [f for f, t in text.items() if bad in t]
+            # Boundary-aware: a plain substring test reported \NProgressive's
+            # superseded 179 as still present in Chapter 3, where the only
+            # match was the digits inside the coefficient $+0.179$. A stale
+            # literal must not be part of a longer number.
+            pat = re.compile(r"(?<![\d.])" + re.escape(bad) + r"(?![\d.])")
+            hits = [f for f, t in text.items() if pat.search(t)]
             if hits:
                 problems += 1
                 print(f"STALE  \\{n.key}: superseded value {bad!r} still in "
