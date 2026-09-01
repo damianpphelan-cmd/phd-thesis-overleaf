@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-from fix_tables import move_caption_below
+from fix_tables import caption_to_title, move_caption_below
 ROOT = r"C:\Users\damia\OneDrive\Documents\Schools Project"
 OUT = os.path.join(ROOT, "thesis", "tables", "tab_source_criterion.tex")
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -68,6 +68,10 @@ in the espoused columns ($n \approx 300$) the threshold is $|r| \geq 0.11$.
 """
 ap = argparse.ArgumentParser(); ap.add_argument("--check", action="store_true"); a = ap.parse_args()
 tex, _ = move_caption_below(tex)
+# caption convention (PIPELINE.md, 29 Aug 2026)
+tex = caption_to_title(tex,
+                       'Each text source against the gold-standard measures',
+                       keep_first=True)
 cur = open(OUT, encoding="utf-8").read() if os.path.exists(OUT) else ""
 if cur == tex:
     print("unchanged tab_source_criterion.tex"); raise SystemExit(0)

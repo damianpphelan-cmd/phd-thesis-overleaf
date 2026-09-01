@@ -55,8 +55,8 @@ for (xq, yq, lab, ha, va) in [
         (0.02, 0.02, "neither", "left", "bottom")]:
     ax.text(xq, yq, f"{lab}\n(n = {counts[lab]})", transform=ax.transAxes,
             ha=ha, va=va, fontsize=8, color="0.35", style="italic")
-ax.set_xlabel("Enacted strictness (visit score, 0–10)")
-ax.set_ylabel("Enacted warmth (visit score, 0–10)")
+ax.set_xlabel("Enacted strictness (visit score, 1–5)")
+ax.set_ylabel("Enacted warmth (visit score, 1–5)")
 fig.tight_layout()
 FIGS.mkdir(exist_ok=True)
 fig.savefig(FIGS / "fig_quadrants_ch2.pdf")

@@ -18,7 +18,7 @@ import sys
 
 import pandas as pd
 
-from fix_tables import move_caption_below
+from fix_tables import caption_to_title, move_caption_below
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CSV = os.path.join(HERE, "tables", "ch3_estimates.csv")
@@ -100,8 +100,7 @@ E-value converts the coefficient to an approximate risk ratio using the outcome
 standard deviation on the estimation sample ({sd_y:.2f}) and reports the minimum
 association a confounder would need with both the score and the outcome to
 explain the estimate away; the CI-bound column applies the same conversion to
-the boundary of the 95 per cent confidence interval nearer zero. Both measures
-address omitted variables only, not reverse causality or measurement error.
+the boundary of the 95 per cent confidence interval nearer zero.
 \end{{minipage}}
 \end{{table}}
 """
@@ -127,6 +126,8 @@ address omitted variables only, not reverse causality or measurement error.
     ]) + "\n"
 
     table, _ = move_caption_below(table)
+    # caption convention (PIPELINE.md, 29 Aug 2026)
+    table = caption_to_title(table, 'Sensitivity to unmeasured confounding')
     targets = [
         (os.path.join(HERE, "tables", "tab_sensitivity_bounds.tex"), table),
         (os.path.join(HERE, "snippets", "sensitivity_numbers.tex"), snippet),
