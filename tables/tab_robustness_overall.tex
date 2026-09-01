@@ -3,6 +3,7 @@
 \small
 \caption{Robustness of the visited estimates}
 \label{tab:robustness_overall}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{lcccc}
 \toprule
 Check                             &  $N$ &             Warmth ($W$) &         Strictness ($S$) & $R^2$ \\
@@ -19,7 +20,8 @@ London controlled                 &   99 &   0.152\sym{***} (0.042) &    0.096\s
 Single-rater share controlled     &   99 &   0.150\sym{***} (0.042) &    0.105\sym{**} (0.041) & 0.625 \\
 Double-rated schools only         &   64 &   0.189\sym{***} (0.054) &            0.071 (0.048) & 0.706 \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \begin{minipage}{\linewidth}\vspace{4pt}\scriptsize
 \textit{Notes}: Each row is one check, and reports the warmth and strictness coefficients from a single regression. The outcome is the two-year average of overall Progress~8 unless the row says otherwise, and every row uses the primary specification: full controls, predecessor-filled 2019 grade, late-entry schools excluded. The two Attainment~8 rows use the 2024/25 cohort, which has no Progress~8; the first takes the sum of the four Attainment~8 buckets and the second the English bucket alone, so their coefficients are in points rather than grades. HC3 standard errors in parentheses. \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\). The warmth $\times$ strictness row adds the interaction of the two standardised scores; the two coefficients shown are then main effects, which are not interpretable on their own. The single-rater row adds the share of a school's observed lessons that were rated by one researcher rather than two; the double-rated row keeps only schools in which every lesson was rated by at least two.
 \end{minipage}

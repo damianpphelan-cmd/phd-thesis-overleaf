@@ -92,6 +92,9 @@ def patch(text: str, stem: str, resize: bool) -> str:
     # esttab inherits the "EBaC" header from the do-file coeflabels; the
     # thesis spells it EBacc. Width-preserving so the column geometry holds.
     text = text.replace(" EBaC ", "EBacc ").replace("{EBaC}", "{EBacc}")
+    # Stata emits the fit row as a bare "r2"; every hand-built table in
+    # Chapter 3 writes $R^2$.
+    text = re.sub(r"(?m)^r2(\s)", r"$R^2$\1", text)
     lines = unescape_math(text).splitlines()
 
     if not any(r"\label{" in ln for ln in lines):

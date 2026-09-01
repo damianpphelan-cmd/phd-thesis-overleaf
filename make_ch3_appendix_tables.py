@@ -314,26 +314,13 @@ whether an absolute-gap effect is genuine dissonance or just curvature in the co
 \multicolumn{{4}}{{l}}{{\textit{{Visited sample (visit vs interview, $n={ngold}$)}}}} \\
 \addlinespace[2pt]
 {chr(10).join(lines(blocks))}
-\midrule
-\multicolumn{{4}}{{l}}{{\textit{{National (document vs Ofsted, $n={nat_n}$)}}}} \\
-\addlinespace[2pt]
-{chr(10).join(lines(nat))}
 \bottomrule
 \end{{tabular}}
 \begin{{minipage}}{{\linewidth}}
 \smallskip
-\footnotesize\textit{{Notes:}} Standard errors in parentheses (HC3; behaviour-policy rows
-clustered on the shared document digest).
+\footnotesize\textit{{Notes:}} Standard errors in parentheses (HC3).
 {NOTES_STARS}
-Scores are z-standardised within instrument and estimation sample before the gap is
-formed; late-entry schools excluded. In the visited sample neither gap adds anything beyond
-the enacted level. Nationally, the absolute strictness gap is {'positive' if a_bp.b > 0 else 'negative'} for the
-behaviour-policy source ($p={a_bp.pval:.2f}$) and {'same' if np.sign(a_web.b) == np.sign(a_bp.b) else 'opposite'}-signed for the website
-source ($p={a_web.pval:.2f}$); once component quadratics enter, the squared enacted (Ofsted)
-score carries $\beta = {ze_bp.b:+.3f}$ ($p={ze_bp.pval:.3f}$) for the behaviour-policy pair and
-${ze_web.b:+.3f}$ ($p={ze_web.pval:.3f}$) for the website pair, while the squared document score is
-${zd_bp.b:+.3f}$ ($p={zd_bp.pval:.2f}$) and ${zd_web.b:+.3f}$ ($p={zd_web.pval:.2f}$). Effects are tiny
-(0.01--0.02 of a grade per SD) and should be read in that light.
+Scores are z-standardised before the gap is formed; late-entry schools excluded.
 \end{{minipage}}
 \end{{table}}
 """
