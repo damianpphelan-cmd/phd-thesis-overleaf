@@ -316,6 +316,30 @@ def build() -> list[Num]:
             "primary-spec strictness p-value, ch3_estimates.do (Stata)",
             expect=[f"($p = {_pps}$)"],
             stale=[r"($p = 0.007$)"]))
+    # Magnitudes in outcome standard deviations. The visited estimates
+    # take the estimation-sample SD that Stata posts as sens_sd and the
+    # sensitivity analysis already uses; the national estimates take the
+    # SD across the national school population, because that is the
+    # sample those regressions run on.
+    _sd_est = float(_e[(_e.spec == "sens_sd")
+                       & (_e.term == "p8mea_avg")]["b"].iloc[0])
+    _sd_nat = float(pd.to_numeric(d["p8mea_avg"], errors="coerce").std())
+    add(Num("SDPEightEst", f"{_sd_est:.2f}",
+            "SD of Progress 8 on the visited estimation sample, "
+            "posted by ch3_estimates.do as sens_sd"))
+    add(Num("SDPEightNat", f"{_sd_nat:.2f}",
+            "SD of Progress 8 across the national school population"))
+    add(Num("PrimarySpecWSD", f"{float(_pw) / _sd_est:.2f}",
+            "warmth coefficient in estimation-sample outcome SDs"))
+    add(Num("PrimarySpecSSD", f"{float(_ps) / _sd_est:.2f}",
+            "strictness coefficient in estimation-sample outcome SDs"))
+
+    _ap = pd.read_csv(THESIS / "tables" / "ch3_appendix_estimates.csv")
+    _auth = float(_ap[(_ap.table == "typology") & (_ap.panel == "gold")
+                      & (_ap.term == "auth")]["b"].iloc[0])
+    add(Num("QuadrantSD", f"{_auth / _sd_est:.2f}",
+            "authoritative-vs-rest gap in estimation-sample outcome SDs"))
+
     add(Num("PrimarySpecN", "99",
             "primary estimation sample: 103 - 2 late-entry - 1 unfillable "
             "grade - 1 missing years_since_ofsted",
