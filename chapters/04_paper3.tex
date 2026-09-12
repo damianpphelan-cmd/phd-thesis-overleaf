@@ -234,7 +234,14 @@ The magnitude is well below the 46\% return that \citet{bleemer2022college} esti
 
 The age-28 estimates capture only the early-career return to A-level economics. To assess lifetime effects we calculate the lifetime returns implied by our estimates in combination with published estimates of the lifetime returns to undergraduate degrees \citep{britton2026lifetime}, which measure, for each degree subject, the gain relative to not attending university: gross, net of income tax, National Insurance and Plan~5 student loan repayments, and for the exchequer, in 2025/26 prices and discounted to age 18 at Green Book rates.
 
-Taking A-level economics operates on two margins: it raises university attendance by 14.0 percentage points (Appendix Table~\ref{tab:other_outcomes}) and economics degree take-up by 15.2 percentage points (Table~\ref{tab:degree_channel}). Valuing the attendance margin at the average net lifetime return of \pounds 99,000 and the switching margin at the gap between the economics return (\redbf{\pounds 570,000} when the published returns for men and women are weighted by the composition of economics students) and the returns to the subjects compliers would otherwise study \redbf{(around \pounds 75,000)} implies a net individual return of approximately \redbf{\pounds 90,000} per induced student. The same components applied to the gross and exchequer schedules imply a gross return of roughly \redbf{\pounds 190,000} and an exchequer return of roughly \redbf{\pounds 100,000} (Table~\ref{tab:main} Panel~C). As a check on the order of magnitude, assuming instead that the 14\% age-28 earnings premium persists over the lifecycle gives a net gain of around \redbf{\pounds 65,000}.
+Taking A-level economics operates on two margins: it raises university attendance by 14.0 percentage points (Appendix Table~\ref{tab:other_outcomes}) and economics degree take-up by 15.2 percentage points (Table~\ref{tab:degree_channel}). The implied net individual return per induced student is
+%
+\begin{equation}
+\label{eq:implied}
+0.140 \times \bar{R} \;+\; 0.152 \times \left(R_{\text{econ}} - R_{\text{mix}}\right) \;\approx\; \text{\redbf{\pounds 90,000}},
+\end{equation}
+%
+where $\bar{R} = \text{\pounds 99,000}$ is the average net lifetime return to an undergraduate degree; $R_{\text{econ}}$ is the return to an economics degree, \redbf{\pounds 570,000} when the published returns of \redbf{\pounds 650,000} for men and \redbf{\pounds 335,000} for women are weighted by the male share of economics students in our sample; and $R_{\text{mix}}$ is the return to the subjects compliers would otherwise study, \redbf{around \pounds 75,000} when the counterfactual bundle in Table~\ref{tab:subject_triples} Panel~B --- principally business, English literature, history and psychology --- is weighted by the published returns to those subjects. The first term captures compliers drawn into university altogether; the second captures compliers who switch into economics from another subject. The same margins applied to the published exchequer schedule imply an exchequer return of roughly \redbf{\pounds 100,000}, and the gross return, roughly \redbf{\pounds 190,000}, follows from the accounting identity that the gross return approximately equals the sum of the net individual and exchequer returns (Table~\ref{tab:main} Panel~C). As a check on the order of magnitude, assuming instead that the 14\% age-28 earnings premium persists over the lifecycle gives a net gain of around \redbf{\pounds 65,000}.
 
 The exchequer figure, along with analogues constructed for different subgroups (Section~\ref{sec:heterogeneity} below), is the key input to the MVPF calculation in Section~\ref{sec:Policy}.
 
@@ -325,7 +332,7 @@ We note that our estimates are partial equilibrium. Although in principle genera
 
 Whether a school employs an economics teacher determines whether its students can study A-level economics, and this in turn has large consequences for degree choice and lifetime earnings. Between 6\% and 75\% of the gaps in A-level economics take-up across demographic groups are explained by differences in school-level availability alone. Students induced to take A-level economics by within-school changes in availability earn around 14\% more at age 28, corresponding to an implied net lifetime gain of approximately \redbf{\pounds 90,000}. The fiscal return to hiring an additional economics teacher exceeds the cost: the MVPF is infinite, with a fiscal surplus of \redbf{\pounds 1,230,000} per teacher.
 
-Expanding economics teacher supply would generate fiscal returns that more than cover the cost, even with a training bursary comparable to those offered for science and mathematics. Because schools that do not currently offer economics disproportionately serve disadvantaged students, the same policy also broadens the pipeline: the share of femlae economics undergraduates would rise from 28\% to \redbf{30\%}, and the share from poorer socioeconomic backgrounds (FSM) would rise from \redbf{4\%} to \redbf{5\%}. Supply-side expansion is a necessary precondition for the demand-side interventions that have dominated the diversity discussion: exposing students to role models or redesigning introductory courses cannot help students who cannot access the subject. A future version of this analysis will replace the published subject-level returns with individual-level lifetime returns predicted from the model underlying \citet{britton2026lifetime}, so that the lifetime outcomes can be estimated within the IV design itself.
+Expanding economics teacher supply would generate fiscal returns that more than cover the cost, even with a training bursary comparable to those offered for science and mathematics. Because schools that do not currently offer economics disproportionately serve disadvantaged students, the same policy also broadens the pipeline: the share of female economics undergraduates would rise from 28\% to \redbf{30\%}, and the share from poorer socioeconomic backgrounds (FSM) would rise from \redbf{4\%} to \redbf{5\%}. Supply-side expansion is a necessary precondition for the demand-side interventions that have dominated the diversity discussion: exposing students to role models or redesigning introductory courses cannot help students who cannot access the subject. A future version of this analysis will replace the published subject-level returns with individual-level lifetime returns predicted from the model underlying \citet{britton2026lifetime}, so that the lifetime outcomes can be estimated within the IV design itself.
 
 % ===============================================================
 %  APPENDIX 4A
@@ -388,11 +395,3 @@ Expanding economics teacher supply would generate fiscal returns that more than 
 \input{tables/ch4/table_A11_subject_triples.tex}
 
 \input{tables/ch4/table_A12_propensity.tex}
-
-
-\clearpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Simulation Details}
-\label{sec:Appendix_Simulation}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\redbf{TO COMPLETE}
