@@ -24,16 +24,15 @@ Takes A-level economics               & 0.175\sym{***}&            & 0.135\sym{*
 A-level economics available           &            & 0.009\sym{***}&            &              \\
                                       &            & (0.004)       &            &              \\
 \midrule
-\multicolumn{5}{c}{\textbf{Panel C: Lifetime returns (gain vs.\ no university, PV at age 18, \pounds)}} \\
+\multicolumn{5}{c}{\textbf{Panel C: Implied lifetime returns (gain vs.\ no university, PV at age 18, \pounds)}} \\
 \midrule
-Gross lifetime return                 &            &            & XX\sym{***}& XX\sym{***}  \\
-                                      &            &            & (XX)       & (XX)         \\
+                                      &            &            & Implied value &            \\
+\midrule
+Gross lifetime return                 &            &            & \redbf{190,000} &          \\
 \addlinespace
-Net individual return                 &            &            & XX\sym{***}& XX\sym{***}  \\
-                                      &            &            & (XX)       & (XX)         \\
+Net individual return                 &            &            & \redbf{90,000} &           \\
 \addlinespace
-Exchequer return                      &            &            & XX\sym{***}& XX\sym{***}  \\
-                                      &            &            & (XX)       & (XX)         \\
+Exchequer return                      &            &            & \redbf{100,000} &          \\
 \midrule
 School FE                             & Yes        & Yes        & Yes        & Yes          \\
 Cohort FE                             & Yes        & Yes        & Yes        & Yes          \\
@@ -45,6 +44,6 @@ Observations                          & 368,257         & 368,257         & 368,
 \begin{minipage}{\textwidth}
 \smallskip
 \footnotesize
-\textit{Notes:} Panel~A reports the first-stage relationship between A-level economics availability and take-up. Panel~B reports the effect of taking A-level economics on log real earnings at age~28 (OLS in column~1; instrumented by availability in columns~3--4); column~2 reports the reduced-form effect of availability on earnings. Panel~C reports IV estimates of the effect of taking A-level economics on predicted lifetime returns, in present value at age~18 and 2025/26 prices, discounted at UK Treasury Green Book rates. Each outcome is a gain relative to not attending university, computed by combining the estimated attendance and subject-switching margins with published lifetime returns by degree subject \citep{britton2026lifetime}; non-graduates are assigned zero by construction. The net individual return deducts income tax, National Insurance, and Plan~5 student loan repayments; the exchequer return nets the additional tax and loan repayments against fee loans, maintenance loans and teaching grants. Column~4 uses a saturated specification that interacts the instrument with 120 coarse cells defined by sex, ethnicity, FSM status, and GCSE attainment tercile, following \citet{blandhol2022tsls}. Standard errors clustered at the school level in parentheses. Sample: 2002--2009 GCSE cohorts with non-zero earnings at age~28. \sym{*} $p<0.10$, \sym{**} $p<0.05$, \sym{***} $p<0.01$.
+\textit{Notes:} Panel~A reports the first-stage relationship between A-level economics availability and take-up. Panel~B reports the effect of taking A-level economics on log real earnings at age~28 (OLS in column~1; instrumented by availability in columns~3--4); column~2 reports the reduced-form effect of availability on earnings. Panel~C reports implied lifetime returns: the effect of taking A-level economics on lifetime returns, calculated by combining the estimated attendance and subject-switching margins with published lifetime returns by degree subject \citep{britton2026lifetime}. They are calculations rather than regression estimates, so no standard errors are shown. Each outcome is a gain relative to not attending university, in present value at age~18 and 2025/26 prices, discounted at UK Treasury Green Book rates. The net individual return deducts income tax, National Insurance, and Plan~5 student loan repayments; the exchequer return nets the additional tax and loan repayments against fee loans, maintenance loans and teaching grants. Column~4 uses a saturated specification that interacts the instrument with 120 coarse cells defined by sex, ethnicity, FSM status, and GCSE attainment tercile, following \citet{blandhol2022tsls}. Standard errors clustered at the school level in parentheses. Sample: 2002--2009 GCSE cohorts with non-zero earnings at age~28. \sym{*} $p<0.10$, \sym{**} $p<0.05$, \sym{***} $p<0.01$.
 \end{minipage}
 \end{table}
