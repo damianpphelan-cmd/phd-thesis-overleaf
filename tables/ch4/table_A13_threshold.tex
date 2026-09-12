@@ -1,0 +1,31 @@
+% Table: Sensitivity to the availability threshold (Chapter 4 appendix)
+\begin{table}[htbp]
+\centering
+\caption{Sensitivity of the main results to the availability threshold}
+\label{tab:threshold_robustness}
+\begin{tabular}{l ccc}
+\toprule
+Threshold (students sitting exam)  & First stage & First-stage $F$ & IV estimate \\
+\midrule
+$\geq 1$                           & 0.049       & 785             & 0.162       \\
+                                   & (0.0018)    &                 & (0.077)     \\
+\addlinespace
+$\geq 2$ (baseline)                & 0.057       & 843             & 0.135       \\
+                                   & (0.0020)    &                 & (0.070)     \\
+\addlinespace
+$\geq 3$                           & 0.060       & 806             & 0.172       \\
+                                   & (0.0021)    &                 & (0.069)     \\
+\addlinespace
+$\geq 4$                           & 0.060       & 740             & 0.216       \\
+                                   & (0.0022)    &                 & (0.064)     \\
+\addlinespace
+$\geq 5$                           & 0.061       & 737             & 0.256       \\
+                                   & (0.0022)    &                 & (0.064)     \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{\textwidth}
+\smallskip
+\footnotesize
+\textit{Notes:} Each row re-estimates the first-stage and IV specifications of Table~\ref{tab:main} under an alternative definition of availability: a school-cohort is coded as offering A-level economics if at least the stated number of students sit the A-level economics exam. The baseline definition in the main text requires two students, and that row reproduces Table~\ref{tab:main}. Standard errors in parentheses. For thresholds other than two, the first-stage $F$ is implied by the ratio of the coefficient to its standard error. The IV estimate is smallest at the baseline threshold, so the baseline definition is conservative.
+\end{minipage}
+\end{table}
