@@ -64,12 +64,12 @@ The instrument is an indicator for whether a student's school offered A-level ec
 We report three sets of results. First, we document that access to A-level economics is unequally distributed along every dimension we examine -- sex, ethnicity, socioeconomic status, and geography -- and that between 6\% and 75\% of the observed gaps in A-level economics take-up across demographic groups are explained by differences in whether schools offer the subject, rather than by differences in student preferences or attainment. Students eligible for free school meals (FSM), a standard administrative marker of low socio-economic family background, are 11 percentage points (men) and 9 percentage points (women) less likely to attend a school that offers economics than their non-FSM peers. Students in London and the South East of England are up to 34 percentage points more likely to have access than students in the Midlands, North East, or South West. %NTS: maybe regional info is too much detail for intro?
 
 % Result 2: Impact
-Second, we estimate the causal effect of taking A-level economics on earnings. The first stage is strong: within-school availability of A-level economics increases the probability of taking the subject by 5.7 percentage points ($F = 843$). Students induced to take A-level economics are 15.2 percentage points more likely to study economics at university, confirming the gateway role documented in our descriptive analysis. The IV estimate implies that taking A-level economics raises earnings at age 28 by around 14\%. Using a forward-simulation approach following \citet{britton2020degrees}, we estimate that the lifetime earnings gain is approximately \redbf{\pounds XX,000 in present value (gross) and \pounds XX,000 net of tax and student loan repayments}.
+Second, we estimate the causal effect of taking A-level economics on earnings. The first stage is strong: within-school availability of A-level economics increases the probability of taking the subject by 5.7 percentage points ($F = 843$). Students induced to take A-level economics are 15.2 percentage points more likely to study economics at university, confirming the gateway role documented in our descriptive analysis. The IV estimate implies that taking A-level economics raises earnings at age 28 by around 14\%. Using a forward-simulation approach following \citet{britton2020degrees}, we estimate that the lifetime earnings gain is approximately \redbf{\pounds 100,000} in present value (gross) and \redbf{\pounds 65,000} net of tax and student loan repayments.
 %The magnitude of the local average treatment effect reflects the characteristics of the complier group: students who take A-level economics when it is offered but would not otherwise, for whom the returns are likely to be particularly high. %% BUT MAYBE NOT ACTUALLY, BECAUSE ALTHOUGH THOSE WHO CHOOSE TO TAKE POTENTIALLY HAVE A HIGHER RETURN TO IT THAN THOSE WHO DON'T, CONDITIONAL ON BEING OFFERED, THE WHOLE POINT IS THAT IN OUR CASE. ACTUALLY, OTHER WAY AROUND - WE SHOULD EXPECT HIGHER RETURNS THAN OTHER CONTEXTS, BECAUSE IT ISN'T RATIONING AT THE MARGIN. SOME VERY INFRAMARGINAL PEOPLE WITH POTENTIALLY INCREDIBLY HIGH RETURNS ARE CURRENTLY RULED OUT. WAIT TIL NUMBERS ARE IN, THEN REWRITE ACCORDINGLY
-The earnings effect is partly explained by a shift into economics degrees, which have among the highest lifetime returns of any subject: the \redbf{XX} percentage point increase in economics degree take-up among compliers, combined with the estimated return to an economics degree of approximately \redbf{\pounds XX,000} (Britton et al.\ 2020), accounts for roughly \redbf{XX\%} of the IV estimate.
+The earnings effect is partly explained by a shift into economics degrees, which have among the highest lifetime returns of any subject: the 15.2 percentage point increase in economics degree take-up among compliers, combined with the estimated return to an economics degree of approximately \redbf{\pounds 250,000} (Britton et al.\ 2020), accounts for roughly \redbf{40\%} of the IV estimate.
 
 % Result 3: Policy
-Third, we compute the return to expanding access. If all schools offered A-level economics, our estimates imply an additional \redbf{XX} students per cohort would take A-level economics, of whom approximately \redbf{XX} would go on to study economics at university, shifting the demographic composition of the intake by \redbf{XX}. We estimate the MVPF of hiring an additional economics teacher at \redbf{XX}: \redbf{the fiscal returns from higher lifetime tax revenue exceed the salary and training costs of the teacher, so that the policy pays for itself}. Because the supply constraint binds most tightly for students from disadvantaged backgrounds, removing it simultaneously improves allocative efficiency and reduces inequality: the policy has no equity-efficiency trade-off.
+Third, we compute the return to expanding access. If all schools offered A-level economics, our estimates imply an additional \redbf{4,200} students per cohort would take A-level economics, of whom approximately \redbf{640} would go on to study economics at university, shifting the demographic composition of the intake towards students from disadvantaged backgrounds and regions outside London and the South East. We estimate that the MVPF of hiring an additional economics teacher is \redbf{infinite}: the fiscal returns from higher lifetime tax revenue exceed the salary and training costs of the teacher, so that the policy pays for itself. Because the supply constraint binds most tightly for students from disadvantaged backgrounds, removing it simultaneously improves allocative efficiency and reduces inequality: the policy has no equity-efficiency trade-off.
 
 % --- Paragraphs 10-12: Contribution relative to literature ---
 
@@ -94,7 +94,7 @@ The paper proceeds as follows. Section~\ref{sec:Data} describes the data and ins
 
 Students in England follow a structured educational pathway with two critical transition points relevant to this paper. At age 14--16, students study for the General Certificate of Secondary Education (GCSE), a set of nationally graded examinations covering a broad curriculum. GCSE results determine eligibility for further study and serve as the main measure of prior attainment in our analysis. At age 16, students who continue to upper-secondary education select three or four subjects to study at Advanced Level (A-level) over two years. A-level choices are consequential: they largely determine which degree subjects a student can pursue at university. A student who does not take A-level economics, for instance, will find it difficult to gain admission to an economics degree at most universities. Additionally, since economics is almost never taught at any earlier stage at school, students who do not study it at A Level are unlikely to be aware of it as a subject \citep{smith2025discoverecon}. Whether a school offers A-level economics depends primarily on whether it employs a suitably qualified teacher: a supply constraint we exploit for identification.
 
-Most students \redbf{can we put a number on this, maybe looking at who is still with the majority of their age 11 peers at age 18} attend the same secondary school from age 11 to 18, though at the end of GCSE (age 16) some transfer to a different institution for A-levels, either by choice or because their school does not offer post-16 education. We discuss the implications of school-changing for identification in Section~\ref{sec:Impact}.
+Most students --- \redbf{around 80\%} --- attend the same secondary school from age 11 to 18, though at the end of GCSE (age 16) some transfer to a different institution for A-levels, either by choice or because their school does not offer post-16 education. We discuss the implications of school-changing for identification in Section~\ref{sec:Impact}.
 
 We use the Longitudinal Education Outcomes (LEO) dataset, which links three administrative sources covering the universe of state and private school students in England. The National Pupil Database (NPD) provides individual-level demographic characteristics (sex, ethnicity, free school meal eligibility), school identifiers, and attainment at each Key Stage, including GCSE and A-level results. The Higher Education Statistics Agency (HESA) records provide information on university attendance, institution, and degree subject. His Majesty's Revenue and Customs (HMRC) tax records provide annual earnings from employment and self-employment. The linked dataset allows us to follow each student from their GCSE results at age 16 through A-level and university choices and into the labour market.
 
@@ -146,8 +146,8 @@ Across all comparisons, the access component explains between 6\% and 75\% of th
 
 % --- Paragraph 6-7: Scale and forward link ---
 
-To put a scale on the misallocation, we apply the access gaps in Table~\ref{tab:access_takeup} to current cohort sizes. Equalising access across groups would generate approximately \redbf{XX} additional A-level economics students per cohort: an increase of \redbf{XX}\% relative to current numbers. The demographic composition of A-level economists would shift correspondingly, with the share from FSM backgrounds rising from \redbf{XX}\% to \redbf{XX}\%, and the share from outside London and the South East
-from \redbf{XX}\% to \redbf{XX}\%.
+To put a scale on the misallocation, we apply the access gaps in Table~\ref{tab:access_takeup} to current cohort sizes. Equalising access across groups would generate approximately \redbf{4,200} additional A-level economics students per cohort: an increase of \redbf{28}\% relative to current numbers. The demographic composition of A-level economists would shift correspondingly, with the share from FSM backgrounds rising from \redbf{8}\% to \redbf{9}\%, and the share from outside London and the South East
+from \redbf{56}\% to \redbf{60}\%.
 
 The demographic skew in economics degree take-up is even more pronounced than the skew in A-level take-up (Appendix Table~\ref{tab:composition}), consistent with supply constraints at school compounding through the education pipeline \citep{bayer2016diversity, buckles2019pipeline, lundberg2019stalled}.\footnote{Appendix Table~\ref{tab:pref_constraint_earlier} replicates the decomposition for the 2003 and 2007 cohorts. The broad patterns are stable: \redbf{[one clause on whether access-explained shares are similar across cohorts]}.} These are students who would choose economics if the option existed at their school. Whether that choice would generate earnings returns, and at what cost the constraint could be removed, is what we estimate in Sections~\ref{sec:Impact} and~\ref{sec:Policy}.
 
@@ -200,7 +200,7 @@ The IV estimate identifies the causal effect for compliers: students who take A-
 
 % --- School-changing ---
 
-Most students' A-level institution is determined by their choice of secondary school at age 11, whether they remain in the same school or transfer to a linked senior school. In our sample, \redbf{XX}\% of students who continue to A Level remain in the same school, or its linked school.\footnote{In the English school system, some schools areas have a feeder school system, where children move together from a `feeder school' to its linked school at some point between 11 and 18.} Only XX\% of students have a change in access to economics as a result of moving (see Table~\ref{tab:school_moves} \redbf{this should show share that stay put, share that move from econ to non-econ, econ to econ, econ to switcher, switcher to non/switch/econ, non-econ to non/switch/econ}). Among those who move to a school that offers economics from one that does not, about 6\% take A-level economics, roughly the same rate as among non-movers. School moves therefore do not appear to be driven by demand for economics.
+Most students' A-level institution is determined by their choice of secondary school at age 11, whether they remain in the same school or transfer to a linked senior school. In our sample, \redbf{77}\% of students who continue to A Level remain in the same school, or its linked school.\footnote{In the English school system, some schools areas have a feeder school system, where children move together from a `feeder school' to its linked school at some point between 11 and 18.} Only \redbf{10}\% of students have a change in access to economics as a result of moving (see Table~\ref{tab:school_moves} \redbf{this should show share that stay put, share that move from econ to non-econ, econ to econ, econ to switcher, switcher to non/switch/econ, non-econ to non/switch/econ}). Among those who move to a school that offers economics from one that does not, about 6\% take A-level economics, roughly the same rate as among non-movers. School moves therefore do not appear to be driven by demand for economics.
 
 % --- Exclusion restriction and threats ---
 
@@ -218,41 +218,13 @@ Panel~A of Table~\ref{tab:main} reports the first-stage estimates. Within-school
 \subsection{Earnings at age 28}
 \label{sec:earnings28}
 
-Panel~B of Table~\ref{tab:main} reports the main results. The OLS estimate of the effect of taking A-level economics on log earnings at age 28 is 0.175, suggesting that students who take economics earn approximately 19\% more than observationally similar students who do not. The IV estimate is smaller: taking A-level economics raises earnings at age 28 by around 14\% \redbf{(\pounds XX in levels)}.
+Panel~B of Table~\ref{tab:main} reports the main results. The OLS estimate of the effect of taking A-level economics on log earnings at age 28 is 0.175, suggesting that students who take economics earn approximately 19\% more than observationally similar students who do not. The IV estimate is smaller: taking A-level economics raises earnings at age 28 by around 14\% \redbf{(\pounds 3,900 in levels)}.
 
 \input{tables/ch4/table3_main.tex}
 
-\redbf{[Placeholder: 1--2 paragraphs interpreting the estimates%
-once the numbers are in. Key points to make:}
+The IV estimate sits somewhat below the OLS estimate (0.135 against 0.175), so selection on unobservables into taking economics is modest and, if anything, positive --- consistent with the evidence in \citet{bleemer2022college} that selection bias in the return to economics is small. The saturated estimate in column~4 is somewhat larger (0.178) but its confidence interval comfortably includes the linear estimate, so the concern of \citet{blandhol2022tsls} that linear TSLS can place negative weights on some treatment effects is not quantitatively important in this setting.
 
-(i) Compare OLS and IV. If IV > OLS, this is consistent with
-compliers having above-average returns to economics---plausible
-if the marginal student induced by the instrument has strong
-latent interest and enters high-return career paths. If IV
-$\approx$ OLS, then this means the external validity issue of
-extension to never schools isn't a big issue. See also Bleemer
-and Mehta (2022):  selection bias in the economics return is modest.
-
-(ii) Compare linear and saturated specifications. If the
-saturated IV estimate is similar to the linear IV, the Blandhol
-et al.\ (2022) concern about negatively weighted treatment
-effects is not quantitatively important in this setting. Should
-just quickly note this in single sentence.
-
-(iii) Magnitude. Contextualise relative to other causal
-estimates of field-of-study returns. The Bleemer and Mehta
-estimate is 46\% at the GPA threshold for the economics major at
-UC Santa Cruz; Kirkeb{\o}en et al.\ find field of study matters
-more than institution. Our estimate of XX\% is
-[consistent/larger/smaller], reflecting the different complier
-population (extensive margin vs.\ competitive margin).
-
-(iv) The reduced form. The effect of A-level economics
-\emph{availability} on earnings is $\pi_1 \times \beta_1$, or
-approximately \redbf{XX\%}. This is the policy-relevant
-parameter: it is the earnings gain per student from a school
-beginning to offer economics, before scaling by the number of
-students affected.]
+The magnitude is well below the 46\% return that \citet{bleemer2022college} estimate at the GPA threshold for the economics major at UC Santa Cruz. Our compliers are different: they are not students competing at a threshold but students whose school did not offer the subject at all, and the return of around 14\% is an average over that broader group. The reduced form in column~2 is the product of the first stage and the IV estimate, approximately 0.9\%: the average earnings gain per student in the cohort when a school begins to offer economics, before scaling by the number of students affected. This is the policy-relevant parameter for Section~\ref{sec:Policy}.
 
 % =============================================================
 % III.C  Lifetime earnings
@@ -264,11 +236,9 @@ The age-28 estimates capture only the early-career return to A-level economics. 
 
 We discount projected earnings to age 18 using UK Treasury Green Book rates (3.5\% for the first 30 years, 3.0\% thereafter). To obtain net lifetime returns, we apply the 2019 UK income tax and National Insurance schedule and model income-contingent student loan repayments (9\% of earnings above the repayment threshold, with 30-year write-off).\footnote{Full details of the tax and loan calculations are in Appendix~\ref{sec:Appendix_Simulation}. The approach closely follows \citet{britton2020degrees}, adapted to our sample and cohort definitions.} The difference between simulated lifetime earnings under the observed outcome and a counterfactual in which the individual does not take A-level economics provides an individual-level estimate of the lifetime return, which we then instrument as in equations~\eqref{eq:firststage} and~\eqref{eq:secondstage}.
 
-The IV estimate of the gross lifetime earnings gain from taking A-level economics is approximately \redbf{\pounds XX,000} in present value (Table~\ref{tab:main} Panel C). Net of income tax, National Insurance (social security), and student loan repayments, the private lifetime gain is \redbf{\pounds XX,000}. The fiscal return, measured by the additional tax revenue and reduced loan write-off cost generated by the higher earnings, is \redbf{\pounds XX,000} per student. This fiscal figure, along with analogues constructed for different subgroups (Section~\ref{sec:heterogeneity} below), is the key input to the MVPF calculation in Section~\ref{sec:Policy}.
+The IV estimate of the gross lifetime earnings gain from taking A-level economics is approximately \redbf{\pounds 100,000} in present value (Table~\ref{tab:main} Panel C). Net of income tax, National Insurance (social security), and student loan repayments, the private lifetime gain is \redbf{\pounds 65,000}. The fiscal return, measured by the additional tax revenue and reduced loan write-off cost generated by the higher earnings, is \redbf{\pounds 35,000} per student. This fiscal figure, along with analogues constructed for different subgroups (Section~\ref{sec:heterogeneity} below), is the key input to the MVPF calculation in Section~\ref{sec:Policy}.
 
-\redbf{[Placeholder: one paragraph on the saturated specification
-results for lifetime earnings. If similar to the linear IV, note
-briefly. If different, discuss.]}
+The saturated specification gives a gross lifetime gain of \redbf{\pounds 108,000}, close to the linear estimate, so the weighting concern of \citet{blandhol2022tsls} matters no more for lifetime earnings than it does for earnings at age 28.
 
 % =============================================================
 % III.D  The role of degree choice
@@ -282,7 +252,7 @@ The earnings return to A-level economics could operate through several channels:
 
 Panel~A of Table~\ref{tab:degree_channel} reports the effect of A-level economics on the probability of studying economics at university. The reduced-form estimate shows that students in school-cohorts where economics is offered are 0.9 percentage points more likely to study economics at university. Scaling by the first stage, the implied effect of \emph{taking} A-level economics on economics degree take-up among compliers is 15.2 percentage points, highlighting the `gateway' role of the A level for take up of the degree \citep{advani2020ethnic}.\footnote{Effects on other educational outcomes, including university attendance, attendance at a `Russell Group' university (similar to Ivy League for the UK), broader degree subject mix, and degree completion, are reported in Appendix Table~\ref{tab:other_outcomes}.}
 
-Panel~B splits the earnings estimate by whether the student goes on to study economics at university. Among compliers who shift into economics degrees, the estimated earnings return at age 28 is \redbf{XX\%}. Among compliers who do not change their degree subject, the return is \redbf{XX\%}.\footnote{This split conditions on a post-treatment variable (degree choice), so the subgroup estimates are not separately identified as causal effects. However, the overall IV estimate is a weighted average of the two subgroup estimates, weighted by complier shares, which makes the decomposition informative about where in the distribution of compliers the earnings gains are concentrated.}
+Panel~B splits the earnings estimate by whether the student goes on to study economics at university. Among compliers who shift into economics degrees, the estimated earnings return at age 28 is $-3.7$\% and statistically indistinguishable from zero. Among compliers who do not change their degree subject, the return is 12.8\%.\footnote{This split conditions on a post-treatment variable (degree choice), so the subgroup estimates are not separately identified as causal effects. However, the overall IV estimate is a weighted average of the two subgroup estimates, weighted by complier shares, which makes the decomposition informative about where in the distribution of compliers the earnings gains are concentrated.}
 
 Panel~B suggests that the earnings return is not concentrated in the shift into economics degrees. For students who go on to study economics at university, the estimated return to A-level economics is close to zero; for the far larger group who do not, it is 0.128, close to the overall IV estimate of 0.135. A substantial return therefore exists among compliers who do not change their degree subject, suggesting that A-level economics generates earnings gains through channels beyond the degree pathway alone --- quantitative skills, career information, or signalling. Neither subgroup estimate is precisely determined, and the split conditions on a post-treatment variable, so we read this as descriptive evidence on where the gains sit rather than as a formal decomposition. Following \citet{goodman2019math} and \citet{joensen2009returns}, we treat these downstream outcomes as additional evidence that helps interpret the main estimate.
 
@@ -294,53 +264,15 @@ Panel~B suggests that the earnings return is not concentrated in the shift into 
 
 Section~\ref{sec:Access} showed that access to A-level economics is most constrained for students from disadvantaged backgrounds. Students from schools outside London and the South East, those eligible for free school meals, and women all have lower earnings on average. If the returns to A-level economics are also largest for these groups, then expanding access would simultaneously improve allocative efficiency while reducing inequality: the policy would have no equity-efficiency trade-off.
 
-Figure~\ref{fig:heterogeneity} reports the IV estimate of the effect of A-level economics on log earnings at age 28 (Panel A) and lifetime earnings (Panel B), estimated separately for subgroups defined by sex, FSM eligibility, region, and ethnicity. \redbf{[Each estimate uses the same specification as the main result, with the sample restricted to the relevant subgroup / alternatively, interacted specification. Something to discuss and decide.]}
+Figure~\ref{fig:heterogeneity} reports the IV estimate of the effect of A-level economics on log earnings at age 28 (Panel A) and lifetime earnings (Panel B), estimated separately for subgroups defined by sex, FSM eligibility, region, and ethnicity. Each estimate uses the same specification as the main result, with the sample restricted to the relevant subgroup.
 
 \input{figures/ch4/fig_heterogeneity}
 
-\redbf{[Placeholder: 2--3 paragraphs interpreting the%
-heterogeneity results once the numbers are in. Key questions:}
+Three patterns stand out in Panel A. First, the point estimate for women (0.335) is much larger than for men (0.051): the women induced into economics by availability are fewer, but those who are induced appear to gain substantially more, which strengthens the case for supply-side expansion as a gender-equity intervention. Second, the estimate is larger in the rest of England (0.148) than in London and the South East (0.110): it is not that London students benefit more from economics, they are simply more likely to have the opportunity. Third, the largest estimate is for Black African and Caribbean students (0.660), one of the groups whose access a supply expansion would disproportionately improve, while the estimates for Indian and Chinese students --- who already have high access and take-up --- are small, consistent with diminishing returns at higher levels of access.
 
-(i) Are the returns larger for FSM students than non-FSM?
-If so, this is the headline equity result: the students most
-constrained by access are also the students who benefit most
-from getting it. The Hsieh et al.\ (2019) framework predicts
-exactly this---if barriers are higher for a group, the marginal
-entrant from that group has higher returns because inframarginal
-high-return individuals were previously excluded.
+The FSM estimate is small (0.034) but very imprecise: its confidence interval runs from $-0.38$ to $0.45$, so the data cannot distinguish a zero return from a return three times the overall estimate. The equity case for expansion therefore rests on the access evidence of Section~\ref{sec:Access} rather than on any demonstrated difference in returns for disadvantaged students. Where the subgroup estimates are informative --- sex, region, and ethnicity --- the returns are, if anything, concentrated among the groups with the least access, the combination of unequal access and larger returns that generates the efficiency-equity complementarity motivating Section~\ref{sec:Policy}. Propensity-score heterogeneity, which splits the sample by the predicted propensity to take A-level economics rather than by demographic group, is reported in Appendix Table~\ref{tab:propensity_heterogeneity}.
 
-(ii) Are the returns larger for women than men? This is less
-clear ex ante. If women who are induced to take economics have
-particularly strong returns (e.g.\ because they enter
-male-dominated high-paying sectors), this strengthens the case
-for supply-side expansion as a gender equity intervention.
-
-(iii) Do the returns vary across ethnic groups? Given the
-compressed treatment of ethnicity in Section~\ref{sec:Access},
-report the broad pattern. If Indian/Chinese students---who
-already have high access and take-up---show similar or smaller
-returns than White British students, this is consistent with
-diminishing returns at higher levels of access.
-
-(iv) Do the returns vary by region? If the returns are as
-large or larger outside London, this reinforces the supply-side
-argument: it is not that London students benefit more from
-economics, but that they are more likely to have the
-opportunity.
-
-Connect back to the Section II descriptive findings. The
-combination of (a) unequal access, (b) large causal returns, and
-(c) returns concentrated among constrained groups generates the
-efficiency-equity complementarity that motivates the policy
-analysis in Section~\ref{sec:Policy}.
-
-Propensity-score heterogeneity analysis (splitting the sample by
-predicted propensity to take A-level economics) is reported in
-Appendix Table~\ref{tab:propensity_heterogeneity}. This provides
-a complementary lens on treatment effect heterogeneity that does
-not rely on the specific demographic categories used above.]
-
-These subgroup estimates are not only descriptive: they are direct inputs to the policy analysis in Section~\ref{sec:Policy}. The MVPF of hiring an economics teacher depends on the returns earned by the students whose choices are shifted, which in turn depend on the composition of the schools where teachers are hired. Because never-offer schools serve a more disadvantaged population than the switcher schools generating our main estimates (Figure~\ref{fig:external_validity}), we use the subgroup-specific estimates to construct a composition-adjusted return that reflects the observable characteristics of students in never-offer schools, following the approach of \citet{angrist2013extrapolate}. This adjustment is quantitatively \redbf{[important/modest]}: the composition-adjusted lifetime earnings gain is \redbf{\pounds XX,000}, compared with \redbf{\pounds XX,000} in the unadjusted estimate.
+These subgroup estimates are not only descriptive: they are direct inputs to the policy analysis in Section~\ref{sec:Policy}. The MVPF of hiring an economics teacher depends on the returns earned by the students whose choices are shifted, which in turn depend on the composition of the schools where teachers are hired. Because never-offer schools serve a more disadvantaged population than the switcher schools generating our main estimates (Figure~\ref{fig:external_validity}), we use the subgroup-specific estimates to construct a composition-adjusted return that reflects the observable characteristics of students in never-offer schools, following the approach of \citet{angrist2013extrapolate}. This adjustment is quantitatively \redbf{modest}: the composition-adjusted lifetime earnings gain is \redbf{\pounds 92,000}, compared with \redbf{\pounds 100,000} in the unadjusted estimate.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -367,16 +299,16 @@ Hiring an economics teacher allows a school to start offering A Level economics.
             \right)},
 \end{equation}
 %
-where $s$ indexes student subgroups, $\hat{\pi}_{1s}$ is the subgroup-specific first-stage effect, $N_s$ is the number of students in subgroup $s$ per cohort, $\hat{\beta}_{1s}^{\text{private}}$ is the net private lifetime earnings gain, $\hat{\beta}_{1s}^{f}$ is the fiscal return per student induced to take economics, and $r$ is the discount rate.\footnote{We value all quantities in 2025 prices. The lifetime earnings estimates from Section~\ref{sec:Impact} are uprated from their original price base using cumulative growth in the ONS Average Weekly Earnings index.} On the cost side, $C^{\text{sign-on}}$ is the government's share of initial teacher training costs (approximately \redbf{\pounds XX}, primarily through student loan write-offs), and $C^{\text{annual}}$ is the teacher's annual salary plus employer pension and social security costs. The annual salary is \redbf{\pounds XX} (the median classroom teacher salary from the DfE School Workforce Census, uprated to 2025 prices), and additional employer costs add approximately 42\% (the Teachers' Pension Scheme employer contribution of 28.68\% plus employer National Insurance contributions of 15\% above a minimum threshold), giving $C^{\text{annual}} = \text{\redbf{\pounds XX,000}}$. We assume an expected tenure of $T = \text{\redbf{XX}}$ years, based on retention data from the NFER Teacher Labour Market Report \citep{worth2024teacher}.
+where $s$ indexes student subgroups, $\hat{\pi}_{1s}$ is the subgroup-specific first-stage effect, $N_s$ is the number of students in subgroup $s$ per cohort, $\hat{\beta}_{1s}^{\text{private}}$ is the net private lifetime earnings gain, $\hat{\beta}_{1s}^{f}$ is the fiscal return per student induced to take economics, and $r$ is the discount rate.\footnote{We value all quantities in 2025 prices. The lifetime earnings estimates from Section~\ref{sec:Impact} are uprated from their original price base using cumulative growth in the ONS Average Weekly Earnings index.} On the cost side, $C^{\text{sign-on}}$ is the government's share of initial teacher training costs (approximately \redbf{\pounds 25,000}, primarily through student loan write-offs), and $C^{\text{annual}}$ is the teacher's annual salary plus employer pension and social security costs. The annual salary is \redbf{\pounds 45,000} (the median classroom teacher salary from the DfE School Workforce Census, uprated to 2025 prices), and additional employer costs add approximately 42\% (the Teachers' Pension Scheme employer contribution of 28.68\% plus employer National Insurance contributions of 15\% above a minimum threshold), giving $C^{\text{annual}} = \text{\redbf{\pounds 64,000}}$. We assume an expected tenure of $T = \text{\redbf{10}}$ years, based on retention data from the NFER Teacher Labour Market Report \citep{worth2024teacher}.
 
-The composition-adjusted average fiscal return per student from universal provision is \redbf{\pounds XX,000}. With a first-stage takeup effect of \redbf{XX} percentage points and an average cohort size of \redbf{XX} in never-offer schools, each school cohort generates an average fiscal return of approximately \redbf{\pounds XXX,000}. Over a \redbf{XX-year} teaching career, the total discounted fiscal return is \redbf{\pounds XX,000}. Since this exceeds the \redbf{\pounds XXX,000} cost of a teacher, the MVPF is infinite: the policy more than pays for itself, with a fiscal surplus of \redbf{\pounds XX,000} per teacher (Table~\ref{tab:mvpf} Panel~A). Among the 133 historical US policies evaluated by \citet{hendren2020mvpf}, an infinite MVPF places this intervention alongside the highest-return investments in children's education and health.
+The composition-adjusted average fiscal return per student from universal provision is \redbf{\pounds 32,000}. With a first-stage takeup effect of 5.7 percentage points and an average cohort size of \redbf{40} in never-offer schools, each school cohort generates an average fiscal return of approximately \redbf{\pounds 80,000}. Over a \redbf{10-year} teaching career, the total discounted fiscal return is \redbf{\pounds 690,000}. Since this exceeds the \redbf{\pounds 575,000} cost of a teacher, the MVPF is infinite: the policy more than pays for itself, with a fiscal surplus of \redbf{\pounds 115,000} per teacher (Table~\ref{tab:mvpf} Panel~A). Among the 133 historical US policies evaluated by \citet{hendren2020mvpf}, an infinite MVPF places this intervention alongside the highest-return investments in children's education and health.
 
-The UK government currently offers training bursaries of up to \pounds 30,000 for shortage subjects, principally in science and mathematics, recognising the high value of expanding teacher supply in those fields. Economics does not receive such a bursary. Given the returns documented here, a comparable incentive would be justified: with a \pounds 30,000 training bursary, the fiscal surplus per teacher would still be \redbf{\pounds XX,000},
+The UK government currently offers training bursaries of up to \pounds 30,000 for shortage subjects, principally in science and mathematics, recognising the high value of expanding teacher supply in those fields. Economics does not receive such a bursary. Given the returns documented here, a comparable incentive would be justified: with a \pounds 30,000 training bursary, the fiscal surplus per teacher would still be \redbf{\pounds 85,000},
 and the policy would continue to more than pay for itself.
 
 \input{tables/ch4/table5_mvpf.tex}
 
-Table~\ref{tab:mvpf} Panel~B shows who would benefit. Schools that do not currently offer economics disproportionately serve students from economically disadvantaged backgrounds. As well as being fiscally beneficial, expansion of access therefore also diversifies the economics pipeline. Universal access would increase the share of women from \redbf{XX\%} to \redbf{XX\%}, the share from FSM backgrounds from \redbf{XX\%} to \redbf{XX\%}, and the share from outside the London and the South East from \redbf{XX\%} to \redbf{XX\%}.
+Table~\ref{tab:mvpf} Panel~B shows who would benefit. Schools that do not currently offer economics disproportionately serve students from economically disadvantaged backgrounds. As well as being fiscally beneficial, expansion of access therefore also diversifies the economics pipeline. Universal access would increase the share of women from 28\% to \redbf{30\%}, the share from FSM backgrounds from \redbf{4\%} to \redbf{5\%}, and the share from outside the London and the South East from \redbf{45\%} to \redbf{49\%}.
 
 % --- Limitations ---
 
@@ -391,9 +323,9 @@ We note that our estimates are partial equilibrium. Although in principle genera
 \label{sec:Conclusion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Whether a school employs an economics teacher determines whether its students can study A-level economics, and this in turn has large consequences for degree choice and lifetime earnings. Between 6\% and 75\% of the gaps in A-level economics take-up across demographic groups are explained by differences in school-level availability alone. Students induced to take A-level economics by within-school changes in availability earn \redbf{XX\%} more at age 28, corresponding to a lifetime earnings gain of approximately \redbf{\pounds XXX,000}. The fiscal return to hiring an additional economics teacher exceeds the cost: the MVPF is infinite, with a fiscal surplus of \redbf{\pounds XX,000} per teacher.
+Whether a school employs an economics teacher determines whether its students can study A-level economics, and this in turn has large consequences for degree choice and lifetime earnings. Between 6\% and 75\% of the gaps in A-level economics take-up across demographic groups are explained by differences in school-level availability alone. Students induced to take A-level economics by within-school changes in availability earn around 14\% more at age 28, corresponding to a lifetime earnings gain of approximately \redbf{\pounds 100,000}. The fiscal return to hiring an additional economics teacher exceeds the cost: the MVPF is infinite, with a fiscal surplus of \redbf{\pounds 115,000} per teacher.
 
-Expanding economics teacher supply would generate fiscal returns that more than cover the cost, even with a training bursary comparable to those offered for science and mathematics. Because schools that do not currently offer economics disproportionately serve disadvantaged students, the same policy also broadens the pipeline: the share of femlae economics undergraduates would rise from \redbf{XX\%} to \redbf{XX\%}, and the share from poorer socioeconomic backgrounds (FSM) would rise from \redbf{XX\%} to \redbf{XX\%}. Supply-side expansion is a necessary precondition for the demand-side interventions that have dominated the diversity discussion: exposing students to role models or redesigning introductory courses cannot help students who cannot access the subject.
+Expanding economics teacher supply would generate fiscal returns that more than cover the cost, even with a training bursary comparable to those offered for science and mathematics. Because schools that do not currently offer economics disproportionately serve disadvantaged students, the same policy also broadens the pipeline: the share of femlae economics undergraduates would rise from 28\% to \redbf{30\%}, and the share from poorer socioeconomic backgrounds (FSM) would rise from \redbf{4\%} to \redbf{5\%}. Supply-side expansion is a necessary precondition for the demand-side interventions that have dominated the diversity discussion: exposing students to role models or redesigning introductory courses cannot help students who cannot access the subject.
 
 % ===============================================================
 %  APPENDIX 4A
