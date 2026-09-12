@@ -1,6 +1,11 @@
 % Encoding
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+% U+F06E is a private-use codepoint (a Wingdings bullet that survived a
+% Word copy-paste) embedded in quoted Ofsted text in snippets/app_examples.tex.
+% The snippet is generated, so the character would come back on regeneration;
+% render it as nothing rather than letting pdfLaTeX stop with an error.
+\DeclareUnicodeCharacter{F06E}{}
 \usepackage{microtype}
 
 % Page layout — 4cm left margin for binding, 2.5cm elsewhere (UCL requirement)
