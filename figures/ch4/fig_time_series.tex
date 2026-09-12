@@ -1,0 +1,68 @@
+% =====================================================================
+% Figure: share of schools offering A-level economics over time
+% Self-contained apart from: pgfplots, pgfplotstable, compat=1.18
+% Numbers pasted from ts_offer.txt
+% =====================================================================
+\begin{figure}[p]
+\caption{Share of schools offering A-level economics over time}
+\setlength{\parskip}{0pt}
+
+% ---- styling, local to this figure ----
+\definecolor{cLine}{HTML}{2C5F8A}
+
+% ---- paste from ts_offer.txt ----
+% year   = GCSE cohort year
+% share  = share of schools offering A-level economics
+% nsch   = number of schools observed that year
+\pgfplotstableread[col sep=space]{
+year   share   nsch
+2002   0.375   2135
+2003   0.372   2135
+2004   0.377   2120
+2005   0.381   2130
+2006   0.396   2135
+2007   0.409   2175
+2008   0.422   2200
+2009   0.448   2665
+2010   0.449   2545
+2011   0.460   2395
+}\tsdata
+% ----------------------------------------
+
+\centerline{%
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.72\textwidth,
+    height=7.2cm,
+    xlabel={GCSE cohort},
+    ylabel={Share of schools offering A-level economics},
+    xlabel style={font=\small},
+    ylabel style={font=\small},
+    xtick=data,
+    xticklabel style={/pgf/number format/1000 sep={},
+                      font=\footnotesize, rotate=45, anchor=north east},
+    ymin=0, ymax=0.55,
+    ytick={0,0.1,0.2,0.3,0.4,0.5},
+    yticklabel style={/pgf/number format/fixed,
+                      /pgf/number format/precision=2,
+                      font=\footnotesize},
+    grid=major,
+    grid style={dotted, gray!45},
+    enlarge x limits=0.06,
+]
+
+\addplot[cLine, thick, mark=*, mark size=2pt]
+    table[x=year, y=share] {\tsdata};
+
+\end{axis}
+\end{tikzpicture}}
+
+\label{fig:time_series}
+\begin{singlespace}
+\fignote{Notes: A school is counted as offering A-level economics to a
+cohort if at least two students in that school-year group sat the A-level
+economics examination. The sample comprises all schools with post-16
+provision observed in the given year; the number of schools varies across
+years and is reported in Appendix Table~\redbf{X}.}
+\end{singlespace}
+\end{figure}

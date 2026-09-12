@@ -1,0 +1,134 @@
+% =====================================================================
+% Figure: effect of A-level economics on earnings, by subgroup
+% Self-contained apart from: pgfplots, pgfplotstable, compat=1.18
+% Numbers pasted from het_for_latex.txt
+% Columns: point estimate and 95% CI bounds for each outcome
+% =====================================================================
+\begin{figure}[p]
+\caption{Effect of A-level economics on earnings, by subgroup}
+\setlength{\parskip}{0pt}
+
+% ---- styling, local to this figure ----
+\definecolor{cEst}{HTML}{2C5F8A}
+
+\pgfplotsset{
+  hetstyle/.style={
+    scale only axis,
+    width=5.9cm,
+    height=10.2cm,
+    xticklabel style={/pgf/number format/fixed, font=\footnotesize},
+    y dir=reverse,
+    ytick style={draw=none},
+    yticklabel style={font=\small},
+    enlarge y limits=0.05,
+    grid=major,
+    grid style={dotted, gray!45},
+    title style={at={(0.5,1)}, anchor=south, yshift=3pt,
+                 font=\bfseries\small},
+    xlabel style={font=\small},
+    % solid reference line at zero
+    extra x ticks={0},
+    extra x tick style={grid=major, grid style={solid, black!55},
+                        tick label style={opacity=0}},
+    symbolic y coords={Overall,
+                       hdrSex, Male, Female,
+                       hdrFSM, NotFSM, FSM,
+                       hdrReg, LondonSE, RestEngland,
+                       hdrEth, WhiteBritish, BlackAfrCarib, Indian,
+                       PakBang, Chinese, OtherEth},
+    ytick={Overall,
+           hdrSex, Male, Female,
+           hdrFSM, NotFSM, FSM,
+           hdrReg, LondonSE, RestEngland,
+           hdrEth, WhiteBritish, BlackAfrCarib, Indian,
+           PakBang, Chinese, OtherEth},
+  },
+  ciplot/.style={
+    cEst, only marks, mark=*, mark size=1.9pt,
+    error bars/.cd, x dir=both, x explicit,
+    error bar style={line width=0.6pt, cEst},
+    error mark options={mark size=1.3pt, line width=0.6pt},
+  },
+}
+
+% ---- paste from het_for_latex.txt ----
+% b28/lo28/hi28 = log earnings at 28
+% blt/lolt/hilt = lifetime earnings, GBP000 -- nan until available
+\pgfplotstableread[col sep=space]{
+key            b28     lo28    hi28    blt  lolt  hilt
+Overall         0.142   0.081   0.203  nan  nan   nan
+Male            0.051  -0.058   0.161  nan  nan   nan
+Female          0.335   0.036   0.634  nan  nan   nan
+NotFSM          0.138   0.001   0.276  nan  nan   nan
+FSM             0.034  -0.383   0.450  nan  nan   nan
+LondonSE        0.110  -0.094   0.315  nan  nan   nan
+RestEngland     0.148  -0.025   0.321  nan  nan   nan
+WhiteBritish    0.134  -0.025   0.292  nan  nan   nan
+BlackAfrCarib   0.660   0.233   1.087  nan  nan   nan
+Indian          0.021  -0.208   0.250  nan  nan   nan
+PakBang         0.032  -0.342   0.406  nan  nan   nan
+Chinese        -0.352  -0.939   0.236  nan  nan   nan
+OtherEth        0.184  -0.102   0.469  nan  nan   nan
+}\hetdata
+% ----------------------------------------
+
+\centerline{%
+\begin{tikzpicture}
+
+% ============ A. Log earnings at age 28 ============
+\begin{axis}[
+    hetstyle,
+    name=panelA,
+    title={A. Log earnings at age 28},
+    xlabel={Effect on log earnings},
+    xmin=-1.05, xmax=1.20,
+    xtick={-1,-0.5,0,0.5,1},
+    yticklabels={{Overall},
+                 {\textbf{Sex}},{Male},{Female},
+                 {\textbf{Free school meals}},{Not FSM},{FSM},
+                 {\textbf{Region}},{London / South East},{Rest of England},
+                 {\textbf{Ethnicity}},{White British},
+                 {Black African/Caribbean},{Indian},
+                 {Pakistani/Bangladeshi},{Chinese},{Other ethnic group}},
+]
+\addplot[ciplot] table[x=b28, y=key,
+    x error plus expr=\thisrow{hi28}-\thisrow{b28},
+    x error minus expr=\thisrow{b28}-\thisrow{lo28}] {\hetdata};
+\end{axis}
+
+% ============ B. Lifetime earnings ============
+% Empty until lifetime_earnings exists: the blt/lolt/hilt columns are
+% nan. The invisible anchor plot below holds the axis limits, which
+% pgfplots would otherwise ignore when every value is nan. Delete it
+% once real numbers are pasted in.
+\begin{axis}[
+    hetstyle,
+    name=panelB,
+    at={(panelA.south east)}, anchor=south west, xshift=1.05cm,
+    title={B. Lifetime earnings},
+    xlabel={Effect on lifetime earnings (\pounds000, PV)},
+    xmin=-200, xmax=320,
+    xtick={-100,0,100,200,300},
+    yticklabels={},
+]
+\addplot[draw=none, forget plot] coordinates {(-200,Overall) (320,Overall)};
+\addplot[ciplot] table[x=blt, y=key,
+    x error plus expr=\thisrow{hilt}-\thisrow{blt},
+    x error minus expr=\thisrow{blt}-\thisrow{lolt}] {\hetdata};
+\end{axis}
+
+\end{tikzpicture}}
+
+\label{fig:heterogeneity}
+\begin{singlespace}
+\fignote{Notes: Each row reports a separate two-stage least squares estimate of
+the effect of taking A-level economics, instrumented by within-school
+availability, estimated on the indicated subgroup. All specifications include
+school and cohort fixed effects and the full set of individual controls. Bars
+are 95\% confidence intervals from standard errors clustered at the school
+level. Panel A reports the effect on log earnings at age 28; Panel B reports the
+effect on discounted gross lifetime earnings from the forward simulation
+described in Section~\ref{sec:lifetime}, and is \redbf{to be completed}. Note
+that the horizontal scales differ across panels.}
+\end{singlespace}
+\end{figure}

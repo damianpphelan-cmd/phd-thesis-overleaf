@@ -1,0 +1,44 @@
+% Table: Effect of A-level economics availability on other educational outcomes (Chapter 4 appendix)
+\begin{table}[htbp]
+\centering
+\caption{Effect of A-level economics availability on other educational outcomes}
+\label{tab:other_outcomes}
+\begin{tabular}{l cc}
+\toprule
+                                      & Reduced form   & IV             \\
+                                      & (availability) & (A-level econ) \\
+\midrule
+Attends university                    & 0.008\sym{***}             & 0.140\sym{***}             \\
+                                      & (0.002)           & (0.040)           \\
+\addlinespace
+Attends Russell Group university      & 0.003             & 0.061             \\
+                                      & (0.002)           & (0.043)           \\
+\addlinespace
+Studies economics at UG               & 0.009\sym{***}    & 0.152\sym{***}    \\
+                                      & (0.001)           & (0.010)           \\
+\addlinespace
+Studies business/finance/management   & 0.002             & 0.040             \\
+                                      & (0.0014)           & (0.025)           \\
+\addlinespace
+Studies other STEM                    & -0.003             & -0.044             \\
+                                      & (0.002)           & (0.040)           \\
+\addlinespace
+Studies humanities/social science     & 0.002             & 0.034             \\
+                                      & (0.002)           & (0.028)           \\
+\addlinespace
+Completes degree                      & 0.006\sym{**}             & 0.110\sym{**}             \\
+                                      & (0.003)           & (0.050)           \\
+\addlinespace
+School FE                             & \checkmark     & \checkmark     \\
+Cohort FE                             & \checkmark     & \checkmark     \\
+Individual controls                   & \checkmark     & \checkmark     \\
+\addlinespace
+Observations                          & 417,845             & 417,849             \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{\textwidth}
+\smallskip
+\footnotesize
+\textit{Notes:} Each row reports the coefficient from a separate regression. Column~(1) is the reduced form: effect of school-cohort A-level economics availability on the indicated outcome. Column~(2) instruments A-level economics take-up with availability (linear controls specification). The economics UG row repeats the main-text estimate for comparison. Standard errors clustered at the school level in parentheses. Sample: GCSE cohorts 2002--2009. \sym{*} $p<0.10$, \sym{**} $p<0.05$, \sym{***} $p<0.01$.
+\end{minipage}
+\end{table}

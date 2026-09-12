@@ -1,0 +1,119 @@
+% =====================================================================
+% Figure: event study of cohort KS4 attainment around provision changes
+% Self-contained apart from: pgfplots, pgfplotstable, compat=1.18
+% Numbers pasted from the KS4 block of es_eventstudy.do (es_ks4.dta)
+% Estimated with W = 3
+% =====================================================================
+\begin{figure}[p]
+\caption{Event study: cohort attainment around changes in A-level
+economics provision}
+\setlength{\parskip}{0pt}
+
+% ---- styling, local to this figure ----
+\definecolor{cEvent}{HTML}{2C5F8A}
+
+\pgfplotsset{
+  ks4style/.style={
+    scale only axis,
+    width=6.0cm,
+    height=5.4cm,
+    xlabel={Cohorts relative to change in provision},
+    xlabel style={font=\small},
+    xmin=-3.6, xmax=3.6,
+    xtick={-3,-2,-1,0,1,2,3},
+    xticklabel style={font=\footnotesize},
+    ymin=-0.22, ymax=0.22,
+    ytick={-0.2,-0.1,0,0.1,0.2},
+    yticklabel style={/pgf/number format/fixed,
+                      /pgf/number format/precision=1,
+                      font=\footnotesize},
+    grid=major,
+    grid style={dotted, gray!45},
+    title style={at={(0.5,1)}, anchor=south, yshift=3pt,
+                 font=\bfseries\small},
+    ylabel style={font=\small},
+    % solid reference line at zero on the y axis
+    extra y ticks={0},
+    extra y tick style={grid=major, grid style={solid, black!55},
+                        tick label style={opacity=0}},
+    % dashed line marking the last pre-change cohort
+    extra x ticks={-0.5},
+    extra x tick style={grid=major,
+                        grid style={dashed, black!45},
+                        tick label style={opacity=0}},
+  },
+  ks4plot/.style={
+    cEvent, only marks, mark=*, mark size=1.7pt,
+    error bars/.cd, y dir=both, y explicit,
+    error bar style={line width=0.6pt, cEvent},
+    error mark options={mark size=1.2pt, line width=0.6pt},
+  },
+}
+
+% ---- paste from es_ks4.dta ----
+% t             = cohorts relative to the change (-1 is omitted)
+% b_on/lo/hi    = schools that begin offering economics
+% b_off/lo/hi   = schools that stop offering economics
+% Units are standard deviations of the KS4 point score.
+\pgfplotstableread[col sep=space]{
+t    b_on   lo_on   hi_on   b_off   lo_off  hi_off
+-3  -0.003  -0.068   0.062  -0.043  -0.139   0.053
+-2  -0.009  -0.033   0.052  -0.017  -0.078   0.044
+-1   0.000   0.000   0.000   0.000   0.000   0.000
+ 0   0.017  -0.024   0.057   0.032  -0.026   0.091
+ 1   0.029  -0.023   0.082   0.026  -0.051   0.104
+ 2   0.031  -0.039   0.102   0.052  -0.051   0.154
+ 3   0.000  -0.098   0.097   0.068  -0.074   0.211
+}\ksdata
+% ----------------------------------------
+
+\centerline{%
+\begin{tikzpicture}
+
+% ============ A. Schools that begin offering ============
+\begin{axis}[
+    ks4style,
+    name=panelA,
+    title={A. Schools that begin offering},
+    ylabel={Effect on mean KS4 point score (SD)},
+]
+\addplot[ks4plot] table[x=t, y=b_on,
+    y error plus expr=\thisrow{hi_on}-\thisrow{b_on},
+    y error minus expr=\thisrow{b_on}-\thisrow{lo_on}] {\ksdata};
+\end{axis}
+
+% ============ B. Schools that stop offering ============
+\begin{axis}[
+    ks4style,
+    name=panelB,
+    at={(panelA.south east)}, anchor=south west, xshift=1.35cm,
+    title={B. Schools that stop offering},
+    yticklabels={},
+    ylabel={},
+]
+\addplot[ks4plot] table[x=t, y=b_off,
+    y error plus expr=\thisrow{hi_off}-\thisrow{b_off},
+    y error minus expr=\thisrow{b_off}-\thisrow{lo_off}] {\ksdata};
+\end{axis}
+
+\end{tikzpicture}}
+
+\label{fig:eventstudy_ks4}
+\begin{singlespace}
+\fignote{Notes: Coefficients on leads and lags of A-level economics
+provision, estimated on switcher schools only. The outcome is the mean
+standardised KS4 point score of the school-cohort, a characteristic of
+the intake determined before any exposure to A-level provision. Each
+specification includes school and cohort fixed effects; the cohort
+immediately before the change ($t=-1$) is the omitted category, and the
+dashed line marks the last pre-change cohort. Bars are 95\% confidence
+intervals; both panels share a common vertical scale. Panel A covers
+schools that begin offering economics, Panel B those that stop; schools
+whose provision changes more than once are excluded. Endpoints are
+binned, so $t=-3$ and $t=3$ include all earlier and later cohorts
+respectively. The number of schools contributing at each event time is
+reported in Appendix Table~\redbf{X}. A joint test of the pre-change
+coefficients gives $p = \redbf{XX}$ for Panel A and $p = \redbf{XX}$
+for Panel B.}
+\end{singlespace}
+\end{figure}

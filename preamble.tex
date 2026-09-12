@@ -66,6 +66,24 @@
 \renewcommand*\l@subsection{\@dottedtocline{2}{4.9em}{3.6em}}
 \makeatother
 
+% --- Chapter 4 support (paper imported from the subject-choice Overleaf) ---
+% The chapter's figures are drawn programmatically with pgfplots/TikZ rather
+% than included as PDFs, and its body uses \FloatBarrier before the appendix.
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows.meta}
+\usepackage{placeins}
+% Macros the imported tables and figure notes use.
+% \sym wraps significance stars; \redbf marks the paper's outstanding
+% placeholders in red so they cannot be missed in the built PDF.
+\newcommand{\sym}[1]{#1}
+\newcommand{\redbf}[1]{\textbf{\color{red}#1}}
+\newcommand{\fignote}[1]{\par\smallskip\footnotesize\noindent\textit{#1}}
+\newcommand{\tabnote}[1]{\par\smallskip\footnotesize\noindent\textit{#1}}
+% ---------------------------------------------------------------------------
+
 % Bibliography
 \usepackage{natbib}
 

@@ -1,0 +1,42 @@
+% Table: The role of degree choice (Chapter 4)
+% NOTE: the source file referenced \ref{tab:earnings}, a label that does not
+% exist in the paper; the linear IV estimate it points to is in tab:main.
+\begin{table}[htbp]
+\centering
+\caption{The role of degree choice}
+\label{tab:degree_channel}
+\begin{tabular}{l ccc}
+\toprule
+                                      & Reduced      & IV           & IV             \\
+                                      & form         & (linear)     & (saturated)    \\
+                                      & (1)          & (2)          & (3)            \\
+\midrule
+\multicolumn{4}{c}{\textbf{Panel A: Effect on studying economics at university}} \\
+\midrule
+Takes A-level economics               &              & 0.152\sym{***}  & 0.158\sym{***}    \\
+                                      &              & (0.010)         & (0.010)           \\
+\addlinespace
+A-level economics available            & 0.009\sym{***} &              &                \\
+                                      & (0.0006)         &              &                \\
+\addlinespace
+Observations                          & 417,845           & 417,851           & 419,207             \\
+\midrule
+\multicolumn{4}{c}{\textbf{Panel B: Effect on log earnings at age 28, by degree pathway}} \\
+\midrule
+                                      & All          & Econ         & No econ        \\
+                                      &              & degree       & degree         \\
+                                      & (1)          & (2)          & (3)            \\
+\midrule
+Takes A-level economics               & 0.135\sym{***}  & -0.037  & 0.128             \\
+                                      & (0.069)         & (0.056)         & (0.090)           \\
+\addlinespace
+Observations                          & 368,262           & 5,813           & 362,449             \\
+Share of compliers                    &              & 1.6           & 98.4             \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{\textwidth}
+\smallskip
+\footnotesize
+\textit{Notes:} Panel~A reports the effect of A-level economics take-up on the probability of studying economics at university. Column~1 is the reduced-form effect of availability; columns~2--3 instrument take-up with availability using the linear and saturated specifications. Panel~B reports the IV estimate of the effect of taking A-level economics on log real earnings at age~28, for the full sample (column~1, reproducing the linear IV estimate from Table~\ref{tab:main}) and separately for students who do and do not go on to study economics at university (columns~2--3). The split in Panel~B conditions on a post-treatment variable; the subgroup estimates are descriptive of where complier earnings gains are concentrated, not separately identified causal effects. The overall IV estimate is a weighted average of the two subgroup estimates. All specifications include school and cohort fixed effects and individual controls. Standard errors clustered at the school level in parentheses. Sample: 2002--2009 GCSE cohorts. \sym{*} $p<0.10$, \sym{**} $p<0.05$, \sym{***} $p<0.01$.
+\end{minipage}
+\end{table}

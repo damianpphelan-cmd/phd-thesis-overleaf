@@ -1,0 +1,36 @@
+% Table: IV estimates by predicted propensity to take A-level economics (Chapter 4 appendix)
+\begin{table}[htbp]
+\centering
+\caption{IV estimates by predicted propensity to take A-level economics}
+\label{tab:propensity_heterogeneity}
+\begin{tabular}{l cccc}
+\toprule
+                              & (1)        & (2)        & (3)        & (4)        \\
+                              & Bottom     & Second     & Third      & Top        \\
+                              & quartile   & quartile   & quartile   & quartile   \\
+\midrule
+\multicolumn{5}{c}{\textbf{Panel A: First stage (availability $\rightarrow$ A-level econ)}} \\
+\midrule
+A-level econ available        & XX\sym{***}& XX\sym{***}& XX\sym{***}& XX\sym{***}\\
+                              & (XX)       & (XX)       & (XX)       & (XX)       \\
+\addlinespace
+$F$                           & XX         & XX         & XX         & XX         \\
+\midrule
+\multicolumn{5}{c}{\textbf{Panel B: IV estimate (A-level econ $\rightarrow$ log earnings)}} \\
+\midrule
+Takes A-level economics       & XX         & XX         & XX         & XX         \\
+                              & (XX)       & (XX)       & (XX)       & (XX)       \\
+\addlinespace
+School FE                     & \checkmark & \checkmark & \checkmark & \checkmark \\
+Cohort FE                     & \checkmark & \checkmark & \checkmark & \checkmark \\
+Individual controls           & \checkmark & \checkmark & \checkmark & \checkmark \\
+\addlinespace
+Observations                  & XX         & XX         & XX         & XX         \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{\textwidth}
+\smallskip
+\footnotesize
+\textit{Notes:} The sample is divided into quartiles of the predicted propensity to take A-level economics, estimated from pre-treatment characteristics (GCSE attainment, sex, ethnicity, FSM status, region, and school-level covariates) using a probit model. Propensity scores are constructed exclusively from variables determined before the availability shock. The IV specification instruments A-level economics take-up with school-cohort availability (linear controls). Standard errors clustered at the school level in parentheses. Sample: GCSE cohorts 2002--2009. \sym{*} $p<0.10$, \sym{**} $p<0.05$, \sym{***} $p<0.01$.
+\end{minipage}
+\end{table}

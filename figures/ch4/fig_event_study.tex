@@ -1,0 +1,110 @@
+% =====================================================================
+% Figure: event study of A-level economics take-up around provision changes
+% Self-contained apart from: pgfplots, pgfplotstable, compat=1.18
+% Numbers pasted from es_for_latex.txt
+% =====================================================================
+\begin{figure}[p]
+\caption{Event study: A-level economics take-up around provision changes}
+\setlength{\parskip}{0pt}
+
+% ---- styling, local to this figure ----
+\definecolor{cEvent}{HTML}{2C5F8A}
+
+\pgfplotsset{
+  esstyle/.style={
+    scale only axis,
+    width=6.0cm,
+    height=5.2cm,
+    xlabel={Cohorts relative to change in provision},
+    xlabel style={font=\small},
+    xmin=-4.6, xmax=4.6,
+    xtick={-4,-3,-2,-1,0,1,2,3,4},
+    xticklabel style={font=\footnotesize},
+    yticklabel style={/pgf/number format/fixed,
+                      /pgf/number format/precision=2,
+                      font=\footnotesize},
+    grid=major,
+    grid style={dotted, gray!45},
+    title style={at={(0.5,1)}, anchor=south, yshift=3pt,
+                 font=\bfseries\small},
+    ylabel style={font=\small},
+    % solid reference line at zero on the y axis
+    extra y ticks={0},
+    extra y tick style={grid=major, grid style={solid, black!55},
+                        tick label style={opacity=0}},
+    % dashed line marking the last pre-period
+    extra x ticks={-0.5},
+    extra x tick style={grid=major,
+                        grid style={dashed, black!45},
+                        tick label style={opacity=0}},
+  },
+  esplot/.style={
+    cEvent, only marks, mark=*, mark size=1.7pt,
+    error bars/.cd, y dir=both, y explicit,
+    error bar style={line width=0.6pt, cEvent},
+    error mark options={mark size=1.2pt, line width=0.6pt},
+  },
+}
+
+% ---- paste from es_for_latex.txt ----
+% t             = cohorts relative to the change (-1 is the omitted period)
+% b_on/lo/hi    = schools that begin offering economics
+% b_off/lo/hi   = schools that stop offering economics
+\pgfplotstableread[col sep=space]{
+t    b_on   lo_on   hi_on   b_off   lo_off  hi_off
+-3   0.004  -0.008   0.015   0.012  -0.013   0.037
+-2   0.002  -0.005   0.009   0.009  -0.007   0.024
+-1   0.000   0.000   0.000   0.000   0.000   0.000
+ 0   0.014   0.007   0.021  -0.028  -0.044  -0.013
+ 1   0.071   0.063   0.080  -0.029  -0.049  -0.009
+ 2   0.072   0.060   0.084  -0.014  -0.040   0.013
+ 3   0.076   0.060   0.093  -0.005  -0.042   0.032
+}\esdata
+% ----------------------------------------
+
+\centerline{%
+\begin{tikzpicture}
+
+% ============ A. Schools that begin offering ============
+\begin{axis}[
+    esstyle,
+    name=panelA,
+    title={A. Schools that begin offering},
+    ylabel={Effect on share of cohort taking economics},
+    ymin=-0.03, ymax=0.12,
+    ytick={-0.02,0,0.02,0.04,0.06,0.08,0.10},
+]
+\addplot[esplot] table[x=t, y=b_on,
+    y error plus expr=\thisrow{hi_on}-\thisrow{b_on},
+    y error minus expr=\thisrow{b_on}-\thisrow{lo_on}] {\esdata};
+\end{axis}
+
+% ============ B. Schools that stop offering ============
+\begin{axis}[
+    esstyle,
+    name=panelB,
+    at={(panelA.south east)}, anchor=south west, xshift=1.35cm,
+    title={B. Schools that stop offering},
+    ymin=-0.12, ymax=0.03,
+    ytick={-0.10,-0.08,-0.06,-0.04,-0.02,0,0.02},
+]
+\addplot[esplot] table[x=t, y=b_off,
+    y error plus expr=\thisrow{hi_off}-\thisrow{b_off},
+    y error minus expr=\thisrow{b_off}-\thisrow{lo_off}] {\esdata};
+\end{axis}
+
+\end{tikzpicture}}
+
+\label{fig:eventstudy}
+\begin{singlespace}
+\fignote{Notes: Coefficients on leads and lags of A-level economics
+provision, estimated on switcher schools only. The outcome is the share of
+the school-cohort taking A-level economics. Each specification includes
+school and cohort fixed effects; the cohort immediately before the change
+($t=-1$) is the omitted category, and the dashed line marks the last
+pre-change cohort. Bars are 95\% confidence intervals. Panel A covers
+schools that begin offering economics, Panel B those that stop; schools
+whose provision changes more than once are excluded. Endpoints are binned,
+so $t=-4$ and $t=4$ include all earlier and later cohorts respectively.}
+\end{singlespace}
+\end{figure}

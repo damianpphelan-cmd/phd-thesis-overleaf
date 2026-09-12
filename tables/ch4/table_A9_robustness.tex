@@ -1,0 +1,54 @@
+% Table: Robustness of earnings estimates (Chapter 4 appendix)
+\begin{table}[htbp]
+\centering
+\caption{Robustness of IV earnings estimates to alternative specifications}
+\label{tab:robustness}
+\begin{tabular}{l ccc}
+\toprule
+                                          & First stage  & IV: log      & First-stage \\
+                                          & ($\pi_1$)    & earnings     & $F$         \\
+\midrule
+1. Baseline (linear controls)             & 0.057\sym{***}  & 0.135\sym{*}   & 843 \\
+                                          & (0.002)         & (0.070)         &     \\
+\addlinespace
+2. Saturated (141 cells)                  & 0.058\sym{***}  & 0.152\sym{**}  & 891 \\
+                                          & (0.002)         & (0.072)         &     \\
+\addlinespace
+3. School-specific linear trends          & 0.049\sym{***}  & 0.125           & 804 \\
+                                          & (0.002)         & (0.097)         &     \\
+\addlinespace
+4. Region $\times$ year FE                & 0.058\sym{***}  & 0.120\sym{*}   & 760 \\
+                                          & (0.002)         & (0.071)         &     \\
+\addlinespace
+5. Saturated with KS2 attainment          & 0.057\sym{***}  & 0.145\sym{**}  & 823 \\
+                                          & (0.002)         & (0.068)         &     \\
+\addlinespace
+6. Fine saturated (745 cells)             & 0.058\sym{***}  & 0.159\sym{**}  & 890 \\
+                                          & (0.002)         & (0.074)         &     \\
+\addlinespace
+7. DDML                                   & ---             & 0.128\sym{*}   & --- \\
+                                          &                 & (0.068)         &     \\
+\addlinespace
+School FE                                 & \multicolumn{3}{c}{All specifications} \\
+Cohort FE                                 & \multicolumn{3}{c}{All specifications} \\
+Observations                              & \multicolumn{3}{c}{368,262} \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{\textwidth}
+\smallskip
+\footnotesize
+\textit{Notes:} Each row reports the first-stage coefficient, the IV estimate of the effect of A-level economics on log earnings at age 28, and the first-stage $F$-statistic. Row~1 is the baseline with linear individual controls. Row~2 uses the saturated covariate specification (sex $\times$ ethnicity group $\times$ FSM $\times$ GCSE tercile $\times$ London-SE indicator). Row~3 adds school-specific linear time trends. Row~4 replaces cohort FE with region $\times$ year FE. Row~5 replaces GCSE attainment with KS2 (age 11) attainment in the saturated cells. Row~6 uses the fine saturated specification, with GCSE vigintiles in place of terciles. Row~7 uses double/debiased machine learning. Standard errors clustered at the school level in parentheses. Sample: GCSE cohorts 2002--2008.
+
+\smallskip
+\noindent
+All first-stage $F$-statistics exceed 104.7, the threshold above which the conventional critical value of 1.96 remains valid under the $tF$ procedure of \citet{lee2022valid}. No adjustment is therefore required in any specification, and we report the unadjusted $F$-statistics alone. This conclusion is unchanged if the $F$-statistics are computed with standard errors clustered at the school level.
+
+\smallskip
+\noindent
+Row~7 reports no first-stage coefficient or $F$-statistic because DDML does not estimate a first stage in the two-stage least squares sense. Following \citet{chernozhukov2018dml}, the conditional expectations of the treatment and the instrument given the covariates are estimated by lasso with cross-fitting, and the treatment effect is recovered from the resulting orthogonalised moment condition. There is accordingly no single coefficient on availability to report, and conventional weak-instrument diagnostics do not apply. For reference, the linear first stage estimated on the same sample is reported in row~1.
+
+\smallskip
+\noindent
+\sym{*} $p<0.10$, \sym{**} $p<0.05$, \sym{***} $p<0.01$.
+\end{minipage}
+\end{table}

@@ -1,0 +1,174 @@
+% =====================================================================
+% Figure: pupil characteristics by school A-level economics provision
+% Self-contained apart from: pgfplots, pgfplotstable, compat=1.18
+% Numbers pasted from props_for_latex.txt and means_for_latex.txt
+% =====================================================================
+\begin{figure}[p]
+\caption{Pupil characteristics by school A-level economics provision}
+\setlength{\parskip}{0pt}
+
+% ---- styling, local to this figure ----
+\definecolor{cNever}{HTML}{4C72B0}
+\definecolor{cSwitch}{HTML}{DD8452}
+\definecolor{cAlways}{HTML}{55A868}
+
+\pgfplotsset{
+  charstyle/.style={
+    width=0.66\textwidth,
+    xticklabel style={/pgf/number format/fixed, font=\footnotesize},
+    y dir=reverse,
+    ytick style={draw=none},
+    yticklabel style={font=\small},
+    grid=major,
+    grid style={dotted, gray!45},
+    unbounded coords=discard,
+    legend cell align=left,
+    every axis plot/.append style={only marks},
+    title style={at={(0,1)}, anchor=south west, yshift=2pt,
+                 font=\bfseries\small},
+    xlabel style={font=\small},
+  },
+  % master row order: panel B, panel C, panel D, then unplotted complements
+  propcoords/.style={
+    symbolic y coords={MixedSch,WhiteBritish,
+                       LondonSE,Male,
+                       FSM,BoysSch,GirlsSch,BlackAfrCarib,
+                       Indian,PakBang,Chinese,OtherEth,
+                       RestEngland,NotFSM,Female},
+  },
+  neverstyle/.style={cNever,  mark=*,         mark size=1.9pt},
+  switchstyle/.style={cSwitch, mark=square,   mark size=2.3pt, thick},
+  alwaysstyle/.style={cAlways, mark=triangle*, mark size=2.7pt},
+}
+
+% ---- paste from props_for_latex.txt ----
+\pgfplotstableread[col sep=space]{
+key            p_never p_switch p_always
+LondonSE       0.213   0.303    0.389
+RestEngland    0.787   0.697    0.612
+NotFSM         0.936   0.937    0.945
+FSM            0.064   0.063    0.054
+Male           0.426   0.432    0.483
+Female         0.574   0.568    0.517
+MixedSch       0.894   0.853    0.868
+BoysSch        0.022   0.036    0.086
+GirlsSch       0.084   0.111    0.046
+WhiteBritish   0.849   0.794    0.753
+BlackAfrCarib  0.020   0.038    0.040
+Indian         0.023   0.032    0.052
+PakBang        0.040   0.037    0.042
+Chinese        0.005   0.007    0.010
+OtherEth       0.063   0.093    0.103
+}\propdata
+% ----------------------------------------
+
+% ---- paste from means_for_latex.txt ----
+\pgfplotstableread[col sep=space]{
+key         m_never m_switch m_always
+KS4points   0.722   0.718    0.776
+ALevBest3   0.310   0.447    0.587
+}\meandata
+% ----------------------------------------
+
+\centerline{%
+\begin{tikzpicture}
+
+% ============ A. Attainment ============
+\begin{axis}[
+    charstyle,
+    name=panelA,
+    height=3.0cm,
+    enlarge y limits=0.6,
+    title={A. Attainment, SD from KS4 cohort mean},
+    xmin=0.25, xmax=0.85,
+    xtick={0.3,0.4,0.5,0.6,0.7,0.8},
+    symbolic y coords={KS4points,ALevBest3},
+    ytick={KS4points,ALevBest3},
+    yticklabels={{KS4 point score},{Best 3 A-levels}},
+]
+\addplot[neverstyle]  table[x=m_never,  y=key] {\meandata};
+\addplot[switchstyle] table[x=m_switch, y=key] {\meandata};
+\addplot[alwaysstyle] table[x=m_always, y=key] {\meandata};
+\end{axis}
+
+% ============ B. Predominant groups ============
+\begin{axis}[
+    charstyle, propcoords,
+    name=panelB,
+    at={(panelA.south west)}, anchor=north west, yshift=-1.55cm,
+    height=3.0cm,
+    enlarge y limits=0.6,
+    title={B. Predominant groups},
+    xmin=0.72, xmax=0.92,
+    xtick={0.75,0.80,0.85,0.90},
+    ymin=MixedSch, ymax=WhiteBritish,
+    ytick={MixedSch,WhiteBritish},
+    yticklabels={{Mixed school},{White British}},
+]
+\addplot[neverstyle]  table[x=p_never,  y=key] {\propdata};
+\addplot[switchstyle] table[x=p_switch, y=key] {\propdata};
+\addplot[alwaysstyle] table[x=p_always, y=key] {\propdata};
+\end{axis}
+
+% ============ C. Region and sex ============
+\begin{axis}[
+    charstyle, propcoords,
+    name=panelC,
+    at={(panelB.south west)}, anchor=north west, yshift=-1.55cm,
+    height=3.0cm,
+    enlarge y limits=0.6,
+    title={C. Region and sex},
+    xmin=0.16, xmax=0.54,
+    xtick={0.2,0.25,0.3,0.35,0.4,0.45,0.5},
+    ymin=LondonSE, ymax=Male,
+    ytick={LondonSE,Male},
+    yticklabels={{London / South East},{Male}},
+]
+\addplot[neverstyle]  table[x=p_never,  y=key] {\propdata};
+\addplot[switchstyle] table[x=p_switch, y=key] {\propdata};
+\addplot[alwaysstyle] table[x=p_always, y=key] {\propdata};
+\end{axis}
+
+% ============ D. Smaller groups ============
+\begin{axis}[
+    charstyle, propcoords,
+    name=panelD,
+    at={(panelC.south west)}, anchor=north west, yshift=-1.55cm,
+    height=6.6cm,
+    enlarge y limits=0.09,
+    title={D. Smaller groups},
+    xlabel={Share of pupils within school type},
+    xmin=0, xmax=0.125,
+    xtick={0,0.02,0.04,0.06,0.08,0.10,0.12},
+    ymin=FSM, ymax=OtherEth,
+    ytick={FSM,BoysSch,GirlsSch,BlackAfrCarib,
+           Indian,PakBang,Chinese,OtherEth},
+    yticklabels={{FSM},{Boys-only school},{Girls-only school},
+                 {Black African/Caribbean},{Indian},
+                 {Pakistani/Bangladeshi},{Chinese},{Other ethnic group}},
+    legend style={at={(0.5,-0.30)}, anchor=north, legend columns=-1,
+                  draw=none, font=\small,
+                  /tikz/every even column/.append style={column sep=26pt},
+                  column sep=6pt},
+]
+\addplot[neverstyle]  table[x=p_never,  y=key] {\propdata};
+\addplot[switchstyle] table[x=p_switch, y=key] {\propdata};
+\addplot[alwaysstyle] table[x=p_always, y=key] {\propdata};
+\legend{Never offers, Switches, Always offers}
+\end{axis}
+
+\end{tikzpicture}}
+
+\label{fig:external_validity}
+\begin{singlespace}
+\fignote{Notes: KS4 cohorts 2002--2013. School types are defined by A-level
+economics provision across the cohorts in which a school appears in the data:
+never-offer, always-offer, and switcher schools. Panels B--D report the share of
+pupils within each school type; note that the horizontal scale differs across
+panels. Complementary categories (rest of England, not FSM, female) are omitted,
+as each is one minus the category shown. Panel A reports mean point scores in
+standard deviations from the KS4 cohort mean, standardised within GCSE cohort
+year; best 3 A-level points are measured among A-level entrants only and are
+realised after the school choice being instrumented.}
+\end{singlespace}
+\end{figure}
