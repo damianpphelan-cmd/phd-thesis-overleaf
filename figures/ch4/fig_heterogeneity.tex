@@ -4,8 +4,8 @@
 % Numbers pasted from het_for_latex.txt
 % Columns: point estimate and 95% CI bounds for each outcome
 % =====================================================================
-\begin{figure}[p]
-\caption{Effect of A-level economics on earnings, by subgroup}
+\begin{figure}[htbp]
+\caption{Effect of A-level economics on earnings at age 28, by subgroup}
 \setlength{\parskip}{0pt}
 
 % ---- styling, local to this figure ----
@@ -14,7 +14,7 @@
 \pgfplotsset{
   hetstyle/.style={
     scale only axis,
-    width=5.9cm,
+    width=8.2cm,
     height=10.2cm,
     xticklabel style={/pgf/number format/fixed, font=\footnotesize},
     y dir=reverse,
@@ -75,12 +75,9 @@ OtherEth        0.184  -0.102   0.469  nan  nan   nan
 \centerline{%
 \begin{tikzpicture}
 
-% ============ A. Log earnings at age 28 ============
 \begin{axis}[
     hetstyle,
-    name=panelA,
-    title={A. Log earnings at age 28},
-    xlabel={Effect on log earnings},
+    xlabel={Effect on log earnings at age 28},
     xmin=-1.05, xmax=1.20,
     xtick={-1,-0.5,0,0.5,1},
     yticklabels={{Overall},
@@ -96,27 +93,6 @@ OtherEth        0.184  -0.102   0.469  nan  nan   nan
     x error minus expr=\thisrow{b28}-\thisrow{lo28}] {\hetdata};
 \end{axis}
 
-% ============ B. Lifetime earnings ============
-% Empty until lifetime_earnings exists: the blt/lolt/hilt columns are
-% nan. The invisible anchor plot below holds the axis limits, which
-% pgfplots would otherwise ignore when every value is nan. Delete it
-% once real numbers are pasted in.
-\begin{axis}[
-    hetstyle,
-    name=panelB,
-    at={(panelA.south east)}, anchor=south west, xshift=1.05cm,
-    title={B. Lifetime earnings},
-    xlabel={Effect on lifetime earnings (\pounds000, PV)},
-    xmin=-200, xmax=320,
-    xtick={-100,0,100,200,300},
-    yticklabels={},
-]
-\addplot[draw=none, forget plot] coordinates {(-200,Overall) (320,Overall)};
-\addplot[ciplot] table[x=blt, y=key,
-    x error plus expr=\thisrow{hilt}-\thisrow{blt},
-    x error minus expr=\thisrow{blt}-\thisrow{lolt}] {\hetdata};
-\end{axis}
-
 \end{tikzpicture}}
 
 \label{fig:heterogeneity}
@@ -126,9 +102,6 @@ the effect of taking A-level economics, instrumented by within-school
 availability, estimated on the indicated subgroup. All specifications include
 school and cohort fixed effects and the full set of individual controls. Bars
 are 95\% confidence intervals from standard errors clustered at the school
-level. Panel A reports the effect on log earnings at age 28; Panel B reports the
-effect on discounted gross lifetime earnings from the forward simulation
-described in Section~\ref{sec:lifetime}, and is \redbf{to be completed}. Note
-that the horizontal scales differ across panels.}
+level. The outcome is log real earnings at age 28.}
 \end{singlespace}
 \end{figure}
