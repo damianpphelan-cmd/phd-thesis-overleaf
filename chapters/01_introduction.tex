@@ -44,9 +44,9 @@ inspection report written about it, a behaviour policy written by it, a
 website written for its parents --- and modern language models can read all
 of it. The first paper asks how much of what an observer sees in a school
 survives into the text that exists for every school, and the second asks
-what the observed scores predict. The answers discipline each other: the
-text is only useful where it tracks what schools actually do, and the
-visits reveal where it does and does not.
+what the observed scores predict. The two questions depend on each other:
+the text-based scores are only worth using where they match what an
+observer records, and the visits show where that is the case.
 
 The subject a school offers comes second because it is a sharper object: a
 constraint rather than a climate. Whether a pupil can take A-level
@@ -54,15 +54,16 @@ economics --- the principal gateway to one of the highest-earning degrees
 --- depends on whether their school employs a teacher qualified to teach
 it, and fewer than half of English schools do. A pupil at the wrong school
 cannot choose what is not offered, whatever their ability or ambition. The
-third paper measures what that constraint costs, in earnings foregone and
-in who the constraint falls on, and what removing it would return to the
-public purse.
+third paper measures what this constraint costs in lifetime earnings,
+establishes who it falls on, and asks whether the tax revenue from removing
+it would cover the cost of doing so.
 
 The three papers share a method as well as a subject. Each measures
 something about schools that was previously observed only in small samples
-or not at all --- enacted culture, the legibility of culture in public
-text, the availability of a subject --- and each does so at or near the
-population of English schools, by combining direct measurement with
+or not at all --- the culture a school enacts, how much of that culture
+appears in the documents written by and about the school, whether a subject
+is offered --- and each does so at or near the population of English
+schools, by combining direct measurement with
 administrative data and, in the first two papers, with language models
 validated against a gold standard. The thesis is, in that sense, an
 argument that features of schools long thought unmeasurable at scale can
@@ -79,11 +80,11 @@ through surveys of pupils, parents or staff, which record perceptions
 rather than practice. The paper's first contribution is a gold standard
 built instead from direct observation, with an explicit distinction between
 what a school enacts and what its headteacher espouses --- a distinction
-the survey literature cannot draw, and which turns out to be large: heads
-describe their schools as warmer than observers find them, and the gap is
-wider for warmth than for strictness. The second contribution is to the
-text-as-data literature: the paper treats the country's stock of school
-documents as measurement material, scores it with a prediction model and
+the survey literature cannot draw, and which turns out to be large:
+headteachers' accounts of their schools differ from what observers record,
+and the difference is larger for warmth than for strictness. The second contribution is to the
+text-as-data literature: the paper uses the documents that exist for every
+school as a source of measurement, scores them with a prediction model and
 with a language model working to a mark scheme, and validates both against
 the gold standard. The result is a map of which parts of school culture
 are, and are not, written down --- warmth lives in an inspection report's
@@ -98,13 +99,13 @@ intensive tutoring. The paper's contribution is to unbundle the two
 cultural dimensions and estimate each one's association with progress in
 the population of ordinary English state schools, where both dimensions
 vary freely. Both matter, with near-equal strength; they add rather than
-interact; and observed teaching quality accounts for neither. The paper is
-explicit that these are associations, not causal effects --- schools are
-not randomly warm --- and its contribution is correspondingly one of
-measurement and description: it shows that the dimension policy debates
-neglect, warmth, predicts progress as strongly as the dimension they
-emphasise, and that this is only visible when warmth is measured by
-observation rather than self-report.
+interact; and observed teaching quality accounts for neither. These
+estimates are associations, not causal effects: schools choose their
+cultures and pupils choose their schools. The contribution is therefore one
+of measurement and description. Warmth receives less attention in policy
+debate than strictness, but it predicts progress just as strongly, and this
+is only visible when warmth is measured by observation rather than
+self-report.
 
 The third paper, joint with Arun Advani and Elaine Drayton, contributes to
 the literature on field-of-study returns. That literature identifies the
@@ -124,10 +125,7 @@ return exceeds the cost several times over.
 Together the papers make one argument in two settings. What a school does
 --- the culture it enacts day to day, the subjects it puts on its timetable
 --- is measurable, varies widely between otherwise similar schools, and
-predicts what its pupils go on to achieve. The tools that make the
-measurement possible at scale, language models reading the public record
-and population administrative data, are new; the questions are old ones
-that could not previously be answered at this scale.
+predicts what its pupils go on to achieve.
 
 \section{Overview of the Thesis}
 \label{sec:intro_overview}
@@ -147,12 +145,13 @@ look for. Schools' own documents track what headteachers say about their
 schools rather than what observers record there.
 
 \Cref{ch:paper2} uses the observed scores as explanatory variables. It
-estimates the association between school culture and pupil progress between
-Key Stage~2 and Key Stage~4, and shows that warmth and strictness predict
-Progress~8 with near-equal magnitude, that observed teaching quality does
-not account for either association, and that warmth predicts progress only
-when it is measured by observation: replacing the observers' scores with
-the headteachers' own ratings removes the warmth association, while
+estimates the association between school culture and the progress pupils
+make over secondary school, measured by Progress~8, the Department for
+Education's official progress measure. Warmth and strictness predict
+progress with near-equal strength, and the quality of the teaching observed
+does not account for either association. Warmth predicts progress only when
+it is measured by observation: replacing the observers' scores with the
+headteachers' own ratings removes the warmth association, whereas
 strictness is associated with progress under either measure. Culture scores
 read from inspection reports extend both associations to effectively all
 English state secondary schools.
