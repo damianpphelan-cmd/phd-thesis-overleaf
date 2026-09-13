@@ -30,18 +30,77 @@
 \end{titlepage}
 
 %% ============================================================
-%%  FRONT MATTER  (roman page numbers)
+%%  FRONT MATTER
+%%  UCL requires one continuous Arabic page sequence from the
+%%  title page onwards (no roman front matter). Changed 13 Sep 2026.
 %% ============================================================
-\pagenumbering{roman}
+\pagenumbering{arabic}
 
 \chapter*{Declaration}
 \addcontentsline{toc}{chapter}{Declaration}
 
-I, Damian Phelan, confirm that the work presented in this thesis is my own.
-Where information has been derived from other sources, I confirm that this has
-been indicated in the thesis.
+%% UCL Doctoral Candidate Thesis Declaration Form (placed after the
+%% title page per UCL regulations). Part B content is a DRAFT for
+%% Damian's word-by-word review before signing.
 
-\vspace{2.5cm}
+\subsection*{Part A: General Declaration}
+
+I, Damian Phelan, confirm that:
+\begin{itemize}
+  \item This thesis is a presentation of original work.
+  \item This work has not previously been presented for a degree or
+        other qualification at this University or elsewhere.
+  \item All input or assistance in the creation of the academic work
+        other than from the supervisory team (including AI) has been
+        acknowledged in Part~B below.
+  \item Any text or data in the thesis that has been presented for
+        publication (including in review) elsewhere is declared in
+        Part~B below.
+\end{itemize}
+
+\subsection*{Part B: Declaration of contribution from other sources}
+
+\paragraph{Data sources, if not collected yourself.}
+Chapters~2 and~3 use published Ofsted inspection reports, school
+behaviour policy documents and school websites (all publicly
+available), the Department for Education's Get Information About
+Schools register, and published school performance data. The
+gold-standard school visit and headteacher interview data were
+collected by the candidate. Chapter~4 uses the Longitudinal Education
+Outcomes dataset, accessed through the ONS Secure Research Service,
+and published lifetime-returns estimates from Britton, Ogden, Ornadel
+and Waltmann (2026).
+
+\paragraph{Software code, instrumentation development, etc.}
+Analysis code in Python and Stata was written with substantial
+assistance from a generative AI coding assistant (Claude, Anthropic),
+directed and verified by the candidate. In Chapters~2 and~3, large
+language models are additionally used as measurement instruments to
+score school documents; this methodological use, including the exact
+prompts and validation against the gold standard, is documented in
+full in those chapters.
+
+\paragraph{AI.}
+Generative AI (Claude, Anthropic) was used throughout the preparation
+of this thesis as a functional tool: drafting and revising prose under
+the candidate's direction, with all analytical decisions,
+interpretations and final wording reviewed and approved by the
+candidate; preparing tables and figures; checking the internal
+consistency of reported numbers; and simulating peer review to
+identify weaknesses for the candidate to address. For Chapter~4, the
+underlying analysis was conducted jointly with co-authors; AI
+assistance relates to the preparation of the thesis version of that
+chapter.
+
+\paragraph{Other.}
+Not applicable beyond the contributions declared above.
+
+\paragraph{Publications.}
+[To complete: publication or submission status of the three papers,
+with full citations, the related thesis chapters, and the candidate's
+contribution to the co-authored Chapter~4.]
+
+\vspace{1.5cm}
 \noindent Signed:\enspace\hrulefill\par
 \vspace{0.6cm}
 \noindent Date:\enspace\hrulefill
@@ -49,47 +108,45 @@ been indicated in the thesis.
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
 
-This thesis asks whether the organisational culture of a school---the relational
-and behavioural environment its pupils experience day to day---can be measured
-credibly at scale, and whether it predicts how much pupils learn.
+This thesis measures two features of English secondary schools that matter
+for pupils but are hard to observe: the culture of the school, and whether it
+offers a high-return subject.
 
-The first paper constructs the measures. For \NTierOne{} English secondary
-schools a research visit and a headteacher interview yield a gold standard in
-two parts, an enacted score from what an observer recorded and an espoused
-score from what the head reported, for each of two dimensions: warmth, the
-relational quality of the school, and strictness, its behavioural structure.
-Inspection reports, behaviour policies and school websites are scored for the
-national population of around 3,330 schools by language-model instruments, and
-prediction models estimated where both exist extend the gold standard to the rest.
-Strictness is legible in public text and warmth is not: inspection-report
-strictness is correlated with observed strictness at $r = \CorrOfstedStrictness$
-and a text-only model predicts it out of sample at $\RidgeBStrictness$, while
-no text source is correlated with observed warmth. Espoused and enacted
-culture diverge, and more for warmth: headteachers rate their schools
-\GapWarmth{} points warmer on the five-point scale than observers record and
-\GapStrictness{} points stricter, and every public source tracks the espoused
-warmth measure rather than the enacted one.
+The first paper measures culture. In \NTierOne{} schools, a day of structured
+observation recorded what each school does, and an interview recorded what
+its headteacher says it does, on two dimensions: warmth, the relational
+quality of the school, and strictness, its behavioural structure. Every
+school's inspection report, behaviour policy and website is then analysed in
+two ways: a prediction model learns which words and phrases are linked with
+warmer or stricter schools, and a large language model scores each document
+against a one-page mark scheme. Inspection reports carry a modest signal of
+both dimensions, through different routes: warmth shows in a report's
+everyday wording, strictness in specific claims a reader must be told to look
+for. What a headteacher says about their school is not what observers find
+there, the gap is widest for warmth, and schools' own documents match what
+heads say rather than what observers record.
 
-The second paper estimates the association between observed culture and pupil
-progress. Across the visited schools, a standard deviation of observed warmth
-is associated with $\hat{\beta}_W = \PrimarySpecW$ of a grade higher
-Progress~8 and a standard deviation of observed strictness with
-$\hat{\beta}_S = \PrimarySpecS$ ($n = \PrimarySpecN$), conditioning on prior
-attainment, intake composition, school type and the pre-pandemic inspection
-grade; both are significant at the one per cent level, and the schools that
-combine high warmth with high strictness outperform the rest by a third of a
-grade. Observed teaching quality does not account for the association.
-Substituting the headteacher's own account for the observed scores removes
-the warmth association, and the strictness score read from inspection reports
-reproduces the strictness result across \NNationalStrictness{} schools with
-the inspection grade held constant.
+The second paper relates the observed scores to Progress~8, holding intake,
+school characteristics and the pre-pandemic inspection grade constant. A
+standard deviation of observed warmth is associated with \PrimarySpecWSD{} of
+a standard deviation of Progress~8, and a standard deviation of observed
+strictness with \PrimarySpecSSD{}; the quality of the teaching observed
+accounts for neither. Warmth predicts progress only when it is measured by
+observation: using the headteacher's own rating of the school in place of the
+observer's score removes the warmth association, whereas strictness is
+associated with progress whether it is measured by the observer or by the
+headteacher. Culture scores read from inspection reports extend both
+associations to effectively all English state secondary schools.
 
 The third paper, joint with Arun Advani and Elaine Drayton, shows that
-whether an English school offers A-level economics depends on whether it
-employs a suitably qualified teacher, and uses within-school changes in
-provision to estimate the effect of taking the subject on university choice
-and earnings. Expanding teacher supply more than pays for itself in fiscal
-terms.
+whether a school offers A-level economics depends on whether it employs a
+suitably qualified teacher, and fewer than half of schools do. Within-school
+changes in provision raise take-up by 5.7 percentage points, and taking the
+subject raises earnings at age 28 by around 14 per cent, an implied net
+lifetime gain of \pounds 65,000--\pounds 90,000 per induced student. Hiring
+an economics teacher more than pays for itself fiscally, and universal
+provision would shift the subject's intake towards regions outside London and
+the South East.
 
 \chapter*{Impact Statement}
 \addcontentsline{toc}{chapter}{Impact Statement}
@@ -116,13 +173,13 @@ Economic and Social Research Council (ESRC) studentship [grant number].'']
 %% ============================================================
 %%  MAIN MATTER  (arabic page numbers)
 %% ============================================================
-\pagenumbering{arabic}
-
 \input{chapters/01_introduction}
 \input{chapters/02_paper1}
 \input{chapters/03_paper2}
 \input{chapters/04_paper3}
-\input{chapters/05_conclusion}
+% Retired 13 Sep 2026: no overall conclusion chapter, following the
+% standard UCL three-paper structure. File kept in chapters/.
+% \input{chapters/05_conclusion}
 
 %% ============================================================
 %%  BIBLIOGRAPHY
