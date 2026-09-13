@@ -11,7 +11,7 @@
 1. Baseline (linear controls)             & 0.057\sym{***}  & 0.135\sym{*}   & 843 \\
                                           & (0.002)         & (0.069)         &     \\
 \addlinespace
-2. Saturated with London--SE indicator (141 cells) & 0.058\sym{***}  & 0.152\sym{**}  & 891 \\
+2. Saturated, region as London--SE indicator (141 cells) & 0.058\sym{***}  & 0.152\sym{**}  & 891 \\
                                           & (0.002)         & (0.072)         &     \\
 \addlinespace
 3. School-specific linear trends          & 0.049\sym{***}  & 0.125           & 804 \\
@@ -37,7 +37,7 @@ Observations                              & \multicolumn{3}{c}{368,260} \\
 \begin{minipage}{\textwidth}
 \smallskip
 \footnotesize
-\textit{Notes:} Each row reports the first-stage coefficient, the IV estimate of the effect of A-level economics on log earnings at age 28, and the first-stage $F$-statistic. Row~1 is the baseline with linear individual controls. Row~2 uses the saturated covariate specification (sex $\times$ ethnicity group $\times$ FSM $\times$ GCSE tercile $\times$ London-SE indicator). Row~3 adds school-specific linear time trends. Row~4 replaces cohort FE with region $\times$ year FE. Row~5 replaces GCSE attainment with KS2 (age 11) attainment in the saturated cells. Row~6 uses the fine saturated specification, with GCSE vigintiles in place of terciles. Row~7 uses double/debiased machine learning. Standard errors clustered at the school level in parentheses. Sample: students in switcher schools, GCSE cohorts 2002--2008. The observation count refers to the baseline; the saturated specifications use slightly fewer observations because small cells drop (cf.\ Table~\ref{tab:main} column~4).
+\textit{Notes:} Each row reports the first-stage coefficient, the IV estimate of the effect of A-level economics on log earnings at age 28, and the first-stage $F$-statistic. Row~1 is the baseline with linear individual controls. Row~2 uses the saturated covariate specification with region entered as a binary London--SE indicator (sex $\times$ ethnicity group $\times$ FSM $\times$ GCSE tercile $\times$ London-SE); the main-text saturated specification instead uses the three-category region (London/South East, rest of England, missing). Row~3 adds school-specific linear time trends. Row~4 replaces cohort FE with region $\times$ year FE. Row~5 replaces GCSE attainment with KS2 (age 11) attainment in the saturated cells. Row~6 uses the fine saturated specification, with GCSE vigintiles in place of terciles. Row~7 uses double/debiased machine learning. Standard errors clustered at the school level in parentheses. Sample: students in switcher schools, GCSE cohorts 2002--2008. The observation count refers to the baseline; the saturated specifications use slightly fewer observations because small cells drop (cf.\ Table~\ref{tab:main} column~4).
 
 \smallskip
 \noindent
