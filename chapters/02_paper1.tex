@@ -12,7 +12,7 @@
 \begin{chapterabstract}
 How warm a school is towards its pupils, and how strictly it runs, are
 widely thought to affect how much progress pupils make. This paper measures both, and asks
-how much of each can be extracted from the documents that every school
+how much of each can be inferred from the documents that every school
 produces. In \NTierOne{} schools I collected a gold-standard measure: a day
 of structured observation recorded what each school does, and an interview
 with its headteacher recorded what the head says it does. I then carried out textual analysis of
@@ -21,12 +21,10 @@ Firstly, a prediction model learns, from the visited schools, which words and ph
 are linked with warmer or stricter schools.  Secondly, a large language model (LLM) is asked to
 use a one-page mark scheme to evaluate the document on each dimension on a 1 to 5 scale.
 There are four findings. First, inspection reports carry a modest signal of how warm a
-school actually is: the prediction model gives a correlation of $\PredWOfsted$, even after
-removing what a school's intake statistics explain. Second, we see a similar modest correlation
-of $\RubricSOfstedDec$ after adjusting for pupil intake for strictness measured by the LLM using the mark scheme. Different approaches are required because the two dimensions are written down
-differently: warmth shows in a report's everyday wording, strictness in specific claims that a reader has to be told to look for.
+school actually is: the prediction model gives a correlation of $\PredWOfsted$. Second, we see a similar modest correlation
+of $\RubricSOfstedDec$ for strictness measured by the LLM using the mark scheme.
 Third, what a headteacher says about their school is not what observers find there, and the gap
-is widest for warmth. The heads' ratings and the observers' scores correlate at $\GoldWarmthSplit$ for warmth and $\GoldStrictnessSplit$ for strictness. Correcting both for measurement error raises them to $\DisSplitW$ and $\DisSplitS$, still far below what two measurements of the same quantity would give. Fourth, schools' own documents match what their heads say about strictness and carry no signal about warmth.
+is widest for warmth. The heads' ratings and the observers' scores correlate at $\GoldWarmthSplit$ for warmth and $\GoldStrictnessSplit$ for strictness. Correcting both for measurement error raises them to $\DisSplitW$ and $\DisSplitS$. Fourth, schools' own documents match what their heads say about strictness and carry no signal about warmth.
 \end{chapterabstract}
 
 % ---------------------------------------------------------------
@@ -104,8 +102,7 @@ what the headteacher reported.
 I then ask whether these scores could be recovered from a school's public text alone using
 two different methods.
 The first is a prediction model: using the visited schools, a
-statistical model learns which words and phrases of a document go with
-higher or lower enacted scores, and it is tested only on schools that were not used to estimate it. Two things are done before estimation. First, identifying details are removed from the text. Second, the scores are residualised with respect to observable baseline characteristics of the students and the age of the inspection report. Without this step a model could score well by recognising a school's intake from its report rather than by reading anything about its culture.
+statistical model learns which words and phrases of a document predict enacted scores, and it is validated only on schools that were not used to estimate it. Two things are done before estimation. First, identifying details are removed from the text. Second, the scores are residualised with respect to observable baseline characteristics of the students and the age of the inspection report. Without this step a model could score well by recognising a school's intake from its report rather than by reading anything about its culture.
 
 The second method uses a mark scheme approach. A large language model is provided with a one-page written mark scheme for each dimension --- warmth, strictness, and teaching --- and asked to score each document on a 1 to 5 scale. The first method assumes nothing about where
 culture shows up in text; the second assumes it is there and scores it.
