@@ -131,7 +131,10 @@ def build() -> list[Num]:
     # are parsed from visit_decomposition_report.txt; rerun that script first if
     # the visit data change. (The +0.290 previously noted here was a stale
     # pre-item-extension figure.)
-    add(Num("CorrWarmthStrictnessEnacted", f"{r_ws_en:.3f}",
+    # Correlations are quoted at 2 dp throughout Chapter 2 (Tincani, 14 Sep
+    # 2026): at n~100 the third decimal is spurious precision, and the
+    # companion figures these sit beside (CorrWSTrue etc.) are 2 dp.
+    add(Num("CorrWarmthStrictnessEnacted", f"{r_ws_en:.2f}",
             f"observed W-S correlation, Tier 1, n={n_ws_en}; contains halo and "
             f"shared-occasion variance — see CorrWSTrue",
             stale=["0.494"]))
@@ -147,11 +150,11 @@ def build() -> list[Num]:
             "visit_decomposition_report.txt: cross-observer lesson-level W-S correlation"))
     add(Num("CorrWSTrue", f"{float(_m2.group(2)):.2f}",
             "visit_decomposition_report.txt: disattenuated cross-observer W-S trait correlation"))
-    add(Num("CorrWarmthStrictnessEspoused", f"{r_ws_es:.3f}",
+    add(Num("CorrWarmthStrictnessEspoused", f"{r_ws_es:.2f}",
             f"interview W-S correlation, Tier 1 (visited) schools, n={n_ws_es}"))
-    add(Num("CorrLeadershipNational", f"{r_lead:.3f}",
+    add(Num("CorrLeadershipNational", f"{r_lead:.2f}",
             "LLM leadership vs ofsted_grade (inverse coding)",
-            expect=[f"{abs(r_lead):.3f}"]))
+            expect=[f"{abs(r_lead):.2f}"]))
     add(Num("NLeadershipNational", comma(len(lead)),
             "schools with leadership score and Ofsted grade"))
     # CorrOfstedStrictness is derived below, with the other ridge_diagnostics
