@@ -425,10 +425,12 @@ def build() -> list[Num]:
         d = full[[f"gs_{dim.lower()}_espoused", f"gs_{dim.lower()}_enacted"]].apply(
             pd.to_numeric, errors="coerce").dropna()
         r_ee, p_ee = stats.pearsonr(d.iloc[:, 0], d.iloc[:, 1])
-        add(Num(f"Gold{dim}Split", f"{r_ee:.3f}",
+        # 2 dp, not 3: Tincani (14 Sep 2026) -- the companion macros these sit
+        # beside in the abstract (\DisSplitW, \PredWOfsted, ...) are all 2 dp.
+        add(Num(f"Gold{dim}Split", f"{r_ee:.2f}",
                 f"gold {dim.lower()}: espoused vs enacted, "
                 f"n={len(d)}, p={p_ee:.3f}",
-                expect=[f"$r = {r_ee:.3f}$"]))
+                expect=[f"$r = {r_ee:.2f}$"]))
         # The chapters used to hard-code these p-values; they drifted when the
         # espoused rebuild moved the correlations (a quoted p of 0.054 next to
         # an r of 0.410 at n=103 is arithmetically impossible). Emitted as
