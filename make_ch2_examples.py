@@ -177,9 +177,9 @@ def main() -> None:
             leader_staff = [pool[i] for i in staff_idx]
             app_parts.append("\\paragraph{Leader-to-staff warmth.}")
             app_parts.append(
-                "The model also credits warmth towards staff; these "
-                "sentences score highly but describe the staff room "
-                "rather than the classroom.")
+                "Sentences about leaders treating staff well also raise "
+                "the warmth score. These sentences describe relations "
+                "between leaders and staff, not between staff and pupils.")
             app_parts.append("\\begin{itemize}")
             app_parts += ["  \\item ``%s''" % esc(s) for s in leader_staff]
             app_parts.append("\\end{itemize}")
