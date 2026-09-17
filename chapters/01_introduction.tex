@@ -43,13 +43,13 @@ can visit 3,332 schools. Every school, however, produces text --- an
 inspection report written about it, a behaviour policy written by it, a
 website written for its parents --- and modern language models can read all
 of it. The first paper asks how much of what an observer sees in a school
-survives into the text that exists for every school, and the second asks
+can be recovered from the text that exists for every school, and the second asks
 what the observed scores predict. The two questions depend on each other:
 the text-based scores are only worth using where they match what an
 observer records, and the visits show where that is the case.
 
-The subject a school offers comes second because it is a sharper object: a
-constraint rather than a climate. Whether a pupil can take A-level
+The subject a school offers comes second. It is simpler to measure than
+culture. A school either offers the subject or it does not. Whether a pupil can take A-level
 economics --- the principal gateway to one of the highest-earning degrees
 --- depends on whether their school employs a teacher qualified to teach
 it, and during the period we study fewer than half of English state
@@ -88,9 +88,11 @@ text-as-data literature: the paper uses the documents that exist for every
 school as a source of measurement, scores them with a prediction model and
 with a language model working to a mark scheme, and validates both against
 the gold standard. The result is a map of which parts of school culture
-are, and are not, written down --- warmth lives in an inspection report's
-everyday wording, strictness in specific claims --- which is itself a
-finding about what the public record of schooling contains.
+are, and are not, written down. Warmth can be read from an inspection
+report's ordinary vocabulary. Strictness can be read only from specific
+statements, such as that conduct standards are consistently enforced,
+which the model must be told to look for. That map is itself a finding
+about what the public record of schooling contains.
 
 The second paper contributes to the literature on school effectiveness. The
 best-identified evidence on school culture comes from studies of
@@ -99,8 +101,10 @@ effect of a bundle: strict discipline, high expectations, extended time,
 intensive tutoring. The paper's contribution is to unbundle the two
 cultural dimensions and estimate each one's association with progress in
 the population of ordinary English state schools, where both dimensions
-vary freely. Both matter, with near-equal strength; they add rather than
-interact; and observed teaching quality accounts for neither. These
+vary freely. Both matter, with near-equal strength. Having both is worth the sum of
+the two, with no extra gain from the combination. Controlling for the
+quality of the teaching observed on the visit does not reduce either
+association. These
 estimates are associations, not causal effects: schools choose their
 cultures and pupils choose their schools. The contribution is therefore one
 of measurement and description. Warmth receives less attention in policy
@@ -109,18 +113,17 @@ is only visible when warmth is measured by observation rather than
 self-report.
 
 The third paper, joint with Arun Advani and Elaine Drayton, contributes to
-the literature on field-of-study returns. That literature identifies the
-value of a subject from the margin of competitive admission --- pupils just
-above and below an entry cut-off. Our contribution is the extensive margin
-that precedes any application: whether the subject is available at the
-pupil's school at all. Using within-school changes in availability in
+the literature on field-of-study returns. That literature measures the
+value of a subject by comparing pupils just above and below an entry
+cut-off. Our contribution is to measure it where the question is not who
+wins a place but whether the subject exists at the pupil's school at all. Using within-school changes in availability in
 linked administrative data covering the population of English pupils, we
 show that availability constrains take-up, that the constrained choice has
-large earnings consequences, and that the constraint binds hardest outside
-London and the South East. The paper then prices the policy lever directly:
-because one teacher converts a school from non-offering to offering, the
-fiscal return to hiring an economics teacher can be computed and compared
-with its cost, in the framework of the marginal value of public funds.
+large earnings consequences, and that the schools without the subject are concentrated outside
+London and the South East. The paper then costs the policy. One teacher is enough to let a school
+offer the subject, so the tax revenue from hiring an economics teacher can
+be compared with the cost of employing one, in the framework of the
+marginal value of public funds.
 Under our central calculation the return exceeds the cost several times
 over.
 
@@ -140,10 +143,11 @@ far those scores can be recovered from text that exists for every school
 --- Ofsted inspection reports, behaviour policies and school websites ---
 using a prediction model that learns which words and phrases go with warmer
 or stricter schools, and a large language model that scores each document
-against a mark scheme. Inspection reports carry a modest signal of both
-dimensions, but through different routes: warmth shows in a report's
-everyday wording, strictness in specific claims a reader must be told to
-look for. Schools' own documents track what headteachers say about their
+against a mark scheme. Inspection reports predict both dimensions, though only modestly, and in
+different ways. Warmth can be read from the report's ordinary vocabulary.
+Strictness can be read only from specific statements, such as that conduct
+standards are consistently enforced, which the model must be told to look
+for. Schools' own documents track what headteachers say about their
 schools rather than what observers record there.
 
 \Cref{ch:paper2} uses the observed scores as explanatory variables. It
