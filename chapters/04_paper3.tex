@@ -324,7 +324,7 @@ Three patterns stand out. First, the point estimate for women (0.335) is much la
 
 The FSM estimate is small (0.034) but very imprecise: its confidence interval runs from $-0.38$ to $0.45$, so the data cannot distinguish a zero return from a return three times the overall estimate.
 
-The equity case for expansion therefore rests on the access evidence of Section~\ref{sec:Access} rather than on any evidence that returns are higher for disadvantaged students. Where the estimates are informative, for sex and region, the groups with less access also show the larger returns. Women gain more than men, and students outside London and the South East gain more than students inside. If the groups with the least access also gain the most, then expanding access raises total earnings and narrows gaps between groups at the same time. This is the case for expansion that Section~\ref{sec:Policy} quantifies.
+The equity case for expansion therefore rests on the access evidence of Section~\ref{sec:Access} rather than on any evidence that returns are higher for disadvantaged students. Where the estimates are informative, for sex and region, the groups with less access also show the larger returns. Women gain more than men, and students outside London and the South East gain more than students inside. If that pattern holds, expanding access would raise total earnings and narrow gaps between groups at the same time. Section~\ref{sec:Policy} quantifies the fiscal return; the equity gain comes through who gains access.
 
 Splitting by demographic group is not the only way to look for differences in returns. Appendix Table~\ref{tab:propensity_heterogeneity} instead splits students by how likely they were to take A-level economics, predicted from their characteristics. The estimates are positive in every quartile but precise only in the top quartile, where the first stage is strongest. The top-quartile estimate of 0.152 is close to the pooled estimate, and there is no evidence that returns vary with the propensity to take the subject.
 
@@ -346,13 +346,13 @@ Hiring an economics teacher allows a school to start offering A-level economics.
 \label{eq:mvpf}
 \text{MVPF}
     = \frac{\sum_{t=1}^{T} \frac{1}{(1+r)^{t-1}}
-            \sum_{s} \hat{\pi}_{1g} \, N_g \,
+            \sum_{g} \hat{\pi}_{1g} \, N_g \,
             \hat{\beta}_{1g}^{\text{private}}}
            {C^{\text{sign-on}}
             + \sum_{t=1}^{T} \frac{1}{(1+r)^{t-1}}
             \left(
             C^{\text{annual}}
-            - \sum_{s} \hat{\pi}_{1g} \, N_g \,
+            - \sum_{g} \hat{\pi}_{1g} \, N_g \,
             \hat{\beta}_{1g}^{f}
             \right)},
 \end{equation}

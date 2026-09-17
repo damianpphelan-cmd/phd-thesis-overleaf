@@ -23,10 +23,12 @@ subject.
 Culture comes first because it is the feature schools are most confident
 they have and least able to evidence. Nearly every school describes itself
 as warm, supportive and well ordered. The measures available to researchers
-and to policy do not settle whether that is true: inspection judgements
-bundle culture with attainment, exclusion rates conflate strictness with
-disorder, and surveys record what people say rather than what a visitor
-would see. The first two papers take a different route. I visited
+and to policy do not settle whether that is true. An inspection grade
+reflects exam results as well as culture, so culture cannot be read from it
+alone. A high exclusion rate could mean a school that enforces its rules
+firmly or one that has lost control, and the rate cannot tell the two
+apart. Surveys record what people say rather than what a visitor would
+see. The first two papers take a different route. I visited
 \NTierOne{} schools, spent a structured day observing each one, and scored
 two dimensions of its culture: warmth, the relational quality of the school,
 and strictness, its behavioural structure. The two dimensions come from the
@@ -38,8 +40,8 @@ ones. Whether warmth and strictness are substitutes, complements or simply
 independent is an empirical question, and answering it requires measuring
 each on its own.
 
-Direct observation produces credible scores but cannot scale: no researcher
-can visit 3,332 schools. Every school, however, produces text --- an
+Direct observation produces credible scores, but it cannot be done for
+every school. No researcher can visit 3,332 of them. Every school, however, produces text --- an
 inspection report written about it, a behaviour policy written by it, a
 website written for its parents --- and modern language models can read all
 of it. The first paper asks how much of what an observer sees in a school
@@ -50,7 +52,7 @@ observer records, and the visits show where that is the case.
 
 The subject a school offers comes second. It is simpler to measure than
 culture. A school either offers the subject or it does not. Whether a pupil can take A-level
-economics --- the principal gateway to one of the highest-earning degrees
+economics --- the usual route into one of the highest-earning degrees
 --- depends on whether their school employs a teacher qualified to teach
 it, and during the period we study fewer than half of English state
 schools did. A pupil at the wrong school
@@ -63,7 +65,7 @@ The three papers share a method as well as a subject. Each measures
 something about schools that was previously observed only in small samples
 or not at all --- the culture a school enacts, how much of that culture
 appears in the documents written by and about the school, whether a subject
-is offered --- and each does so at or near the population of English
+is offered --- and each does so for all, or nearly all, English secondary
 schools, by combining direct measurement with
 administrative data and, in the first two papers, with language models
 validated against a gold standard. The thesis is, in that sense, an
@@ -87,22 +89,26 @@ and the difference is larger for warmth than for strictness. The second contribu
 text-as-data literature: the paper uses the documents that exist for every
 school as a source of measurement, scores them with a prediction model and
 with a language model working to a mark scheme, and validates both against
-the gold standard. The result is a map of which parts of school culture
-are, and are not, written down. Warmth can be read from an inspection
+the gold standard. The result is an account of which parts of school culture
+are written down and which are not. Warmth can be read from an inspection
 report's ordinary vocabulary. Strictness can be read only from specific
 statements, such as that conduct standards are consistently enforced,
-which the model must be told to look for. That map is itself a finding
-about what the public record of schooling contains.
+which the model must be told to look for. Which parts can be recovered,
+and from which documents, is itself a finding about what the public record
+of schooling contains.
 
 The second paper contributes to the literature on school effectiveness. The
-best-identified evidence on school culture comes from studies of
-high-expectation charter schools in the United States, which estimate the
-effect of a bundle: strict discipline, high expectations, extended time,
-intensive tutoring. The paper's contribution is to unbundle the two
-cultural dimensions and estimate each one's association with progress in
-the population of ordinary English state schools, where both dimensions
-vary freely. Both matter, with near-equal strength. Having both is worth the sum of
-the two, with no extra gain from the combination. Controlling for the
+most credible causal evidence on school culture comes from studies of
+high-expectation charter schools in the United States. Those schools
+combine several practices at once, such as strict discipline, high
+expectations, extended time and intensive tutoring, so the studies
+estimate the effect of the whole package. This paper separates warmth from
+strictness and estimates each one's association with progress. It does so
+in ordinary English state schools, where warm schools are not always
+strict and strict schools are not always warm, so the two can be told
+apart. Both matter, with near-equal strength. A school that is both warm
+and strict makes about the progress the two separate associations would
+predict when added together. There is no extra gain from having both. Controlling for the
 quality of the teaching observed on the visit does not reduce either
 association. These
 estimates are associations, not causal effects: schools choose their
@@ -116,13 +122,17 @@ The third paper, joint with Arun Advani and Elaine Drayton, contributes to
 the literature on field-of-study returns. That literature measures the
 value of a subject by comparing pupils just above and below an entry
 cut-off. Our contribution is to measure it where the question is not who
-wins a place but whether the subject exists at the pupil's school at all. Using within-school changes in availability in
-linked administrative data covering the population of English pupils, we
-show that availability constrains take-up, that the constrained choice has
-large earnings consequences, and that the schools without the subject are concentrated outside
-London and the South East. The paper then costs the policy. One teacher is enough to let a school
-offer the subject, so the tax revenue from hiring an economics teacher can
-be compared with the cost of employing one, in the framework of the
+wins a place but whether the subject exists at the pupil's school at all.
+We use linked administrative data covering every pupil in England. Schools
+gain and lose the subject when a qualified teacher arrives or leaves, and
+we compare pupils at the same school in the years before and after such a
+change. We show that pupils at schools without the subject do not take it,
+that those who miss it go on to lower-paying degrees and jobs, and that
+the schools without the subject are concentrated outside London and the
+South East. The paper then costs the policy. One teacher is enough to let a
+school offer the subject. Pupils who take the subject go on to earn more,
+and so pay more tax over their careers. We compare that extra tax with the
+cost of employing the teacher. This is the comparison economists call the
 marginal value of public funds.
 Under our central calculation the return exceeds the cost several times
 over.
@@ -147,25 +157,28 @@ against a mark scheme. Inspection reports predict both dimensions, though only m
 different ways. Warmth can be read from the report's ordinary vocabulary.
 Strictness can be read only from specific statements, such as that conduct
 standards are consistently enforced, which the model must be told to look
-for. Schools' own documents track what headteachers say about their
-schools rather than what observers record there.
+for. Scores read from behaviour policies and websites match what headteachers
+say about their schools. They do not match what observers record on the
+visit.
 
 \Cref{ch:paper2} uses the observed scores as explanatory variables. It
 estimates the association between school culture and the progress pupils
 make over secondary school, measured by Progress~8, the Department for
 Education's official progress measure. Warmth and strictness predict
-progress with near-equal strength, and the quality of the teaching observed
-does not account for either association. Warmth predicts progress only when
+progress with near-equal strength, and adding the quality of the teaching
+observed on the visit as a control leaves both associations unchanged. Warmth predicts progress only when
 it is measured by observation: replacing the observers' scores with the
 headteachers' own ratings removes the warmth association, whereas
-strictness is associated with progress under either measure. Culture scores
-read from inspection reports extend both associations to effectively all
-English state secondary schools.
+strictness is associated with progress under either measure. The text-based
+scores from inspection reports exist for nearly every English state
+secondary school. Re-estimating the same models with those scores gives the
+same pattern in the full population.
 
 \Cref{ch:paper3}, joint work with Arun Advani and Elaine Drayton, turns
 from culture to curriculum. It shows that whether an English school offers
 A-level economics depends on whether it employs a suitably qualified
-teacher, uses within-school changes in provision to estimate the effect of
-taking the subject on degree choice and earnings, and computes the fiscal
+teacher, compares pupils at the same school before and after the subject
+arrives or disappears to estimate the effect of taking the subject on
+degree choice and earnings, and computes the fiscal
 return to expanding the supply of economics teachers, which under our
 central calculation exceeds the cost of a teacher several times over.

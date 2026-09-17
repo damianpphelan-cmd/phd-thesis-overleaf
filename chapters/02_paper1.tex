@@ -462,7 +462,7 @@ Two corrections give a sense of how much the error lowers the correlations. The 
 
 The two enacted scores are correlated at $r = \CorrWarmthStrictnessEnacted$ across the \NTierOne{} visited schools, and the two espoused scores at $\CorrWarmthStrictnessEspoused$. Taken at face value, the enacted figure says that warm schools are usually strict ones. Part of that figure, though, comes from how the scores were made rather than from the schools. The same observers scored both dimensions at the same school on the same day, and an overall impression of a school formed on the day can move both ratings in the same direction.
 
-The lessons that both researchers rated independently show where the correlation comes from. Suppose it arose within each observer, with the same person's judgement of warmth affecting their judgement of strictness. Then an observer's warmth rating would predict their own strictness rating much better than their colleague's. The two correlations are nearly the same: \CorrWSSameObs{} and \CorrWSCrossObs{}. So the correlation reflects what both observers saw rather than the judgement of either one. The cross-observer figure still contains ordinary measurement error. Dividing it by the square root of the product of the two enacted reliabilities gives about \CorrWSTrue{}. That is the best estimate of how strongly warmth and strictness go together in schools. That, rather than $\CorrWarmthStrictnessEnacted$, is the better estimate of how strongly warmth and strictness go together in schools: the two are related but clearly distinct.
+The lessons that both researchers rated independently show where the correlation comes from. Suppose it arose within each observer, with the same person's judgement of warmth affecting their judgement of strictness. Then an observer's warmth rating would predict their own strictness rating much better than their colleague's. The two correlations are nearly the same: \CorrWSSameObs{} and \CorrWSCrossObs{}. So the correlation reflects what both observers saw rather than the judgement of either one. The cross-observer figure still contains ordinary measurement error. Dividing it by the square root of the product of the two enacted reliabilities gives about \CorrWSTrue{}. That, rather than $\CorrWarmthStrictnessEnacted$, is the better estimate of how strongly warmth and strictness go together in schools. The two are related but clearly distinct.
 
 The gold standard is two measures rather than one because the interview and the visit disagree about
 the same school. If the two were noisy readings of one quantity, the right thing to do would be
@@ -723,9 +723,8 @@ contrast.
 For teaching, the strongest sentences are about pedagogy: choosing core knowledge, embedding
 learning in long-term memory, pupils focusing in lessons. Some of the strongest, though, are
 criticisms. A sentence saying that pupils are not remembering knowledge deeply raises the score
-as surely as one saying that they are. That happens for two reasons, one a flaw in the model and
-one a fact about reports. The flaw is that the model counts words and cannot tell praise from
-criticism. The appendix discusses this issue in greater detail.
+as surely as one saying that they are. That happens for two reasons. The first is a flaw in the model. It counts words and cannot tell praise from
+criticism. The second is a fact about reports. Inspectors write about long-term memory, whether in praise or criticism, only when a school teaches in that way, so the vocabulary is informative either way. The appendix discusses both in more detail.
 
 For warmth the pattern is different, and at first sight stranger. The sentences that most lower
 a school's warmth score sound kind. ``Many pupils feel confident they have a `trusted adult' they
@@ -758,8 +757,7 @@ The bands from the website mark schemes do not correlate with any enacted or esp
 
 One caveat qualifies that last result. The espoused warmth score is built from just three interview
 statements, and heads bunch their answers near the top of the scale, so the score varies little
-from school to school. When the target score varies little between schools, any correlation with it is lower than it would be if the scores were spread out. Finding no correlation against such a target therefore rules out a strong link but not a modest one. Finding
-nothing against such a target therefore rules out a strong link between public warmth language
+from school to school. When the target score varies little between schools, any correlation with it is lower than it would be if the scores were spread out. Finding no correlation against such a target therefore rules out a strong link between public warmth language
 and the head's account, but not a modest one.
 
 The inspection report seems to show the opposite result. Its text correlates with the head's account of strictness at $\CrossWireRaw$, as if the inspector somehow knew what the head thinks. There is a simpler explanation. The report describes what the school does, and what the school does is itself related to what the head says. If that is the route, the report is linked to the head only through the school, and the inspector never needed to know the head's views at all. The test removes from both measures the part that enacted strictness predicts and correlates what remains. The correlation falls from $\CrossWireRaw$ to $\CrossWireNet$. So much of the link between the report and the head's account is explained by the school's actual behaviour, which both describe. The report follows the school, and through the school it follows the head. So the two kinds of document divide the same way as the two measures. What a school writes about itself matches what its head says, the espoused side. What the inspectorate writes about the school matches what the school does, the enacted side.
@@ -792,7 +790,7 @@ is tested on the data it was trained on. Neither is the case here. The model nev
 \end{minipage}
 \end{figure}
 
-The second result concerns the inspection grade. The model reads inspection reports, and a report reflects the grade the school received. If the model's warmth score were the grade in different words, the parents' agreement with the model would add nothing beyond the parents' agreement with the grade. The test is to compare schools that share the same grade. Within such a group the grade is the same for every school, so it cannot explain why the model scores one school warmer than another. On the visited schools, 99 of which have a pre-COVID grade, the model's correlation with enacted warmth is $+0.32$, essentially its full-sample value of $+0.33$. Comparing only schools with the same grade leaves it at $+0.29$. The teaching model gives the same result. Its correlation with enacted teaching is essentially unchanged when only schools with the same grade are compared. The model's warmth scores are not the grade in different words. \Cref{sec:p1_app_parents} adds a stricter version of this check, together with what the visited schools show and a check on one possible route: some reports quote the Parent View survey, so the model could in principle be reading the parents' answers
+The second result concerns the inspection grade. The model reads inspection reports, and a report reflects the grade the school received. If the model's warmth score were the grade in different words, the parents' agreement with the model would add nothing beyond the parents' agreement with the grade. The test is to compare schools that share the same grade. Within such a group the grade is the same for every school, so it cannot explain why the model scores one school warmer than another. On the visited schools, 99 of which have a grade from an inspection before the pandemic, the 2019 grade used in the next chapter, the model's correlation with enacted warmth is $+0.32$, essentially its full-sample value of $+0.33$. Comparing only schools with the same grade leaves it at $+0.29$. The teaching model gives the same result. Its correlation with enacted teaching is essentially unchanged when only schools with the same grade are compared. The model's warmth scores are not the grade in different words. \Cref{sec:p1_app_parents} adds a stricter version of this check, together with what the visited schools show and a check on one possible route: some reports quote the Parent View survey, so the model could in principle be reading the parents' answers
 rather than independently agreeing with them.
 
 The wider point is that the two measures, the parents' survey answers and the model's warmth scores, share nothing that could make them agree for any reason other than the school.
@@ -819,7 +817,7 @@ observers or against what headteachers say when interviewed.
 
 The parent surveys provide a useful check. At the national level their reports of happy, safe children
 agree with the model, which supports the claim that inspection reports carry a real warmth signal.
-On the visited schools they agree with the head more than with the observers.
+In the visited schools, as the appendix shows, parents' answers are closer to the head's account than to the observers' scores.
 
 There are four limitations that should be noted. The first is that the visit scores measure
 warmth and strictness with error. Two observers watching the same school agree well but not
@@ -1045,8 +1043,7 @@ The first is that parents and heads get a picture of the school across an entire
 while the observers saw just one day. On that basis the parents' views provide evidence for the head's account. The second possibility is that the parents and the head, both invested in the school, may report similar things, whatever the school is actually like in practice. The survey therefore cannot
 judge between what schools say and what observers see.
 
-The check in the main text uses the grade from an earlier inspection. A stricter version uses the grade awarded by the same inspection whose report the model reads. Comparing schools with the same such grade halves the warmth correlation, to $+0.16$. The grade and the prose come from one visit, so the grade already reflects some of the warmth the prose describes. Removing it therefore removes some warmth as well as a rival explanation. The prose and the grade are two outputs of the same inspection, so this comparison
-throws away part of what the inspection itself concluded, not just a rival explanation. The
+The check in the main text uses the grade from an earlier inspection. A stricter version uses the grade awarded by the same inspection whose report the model reads. Comparing schools with the same such grade halves the warmth correlation, to $+0.16$. The grade and the prose come from one visit, so the grade already reflects some of the warmth the prose describes. Removing it therefore removes some warmth as well as a rival explanation. The
 national parent correlation also falls by about half when the grade is held constant,
 from $+0.29$ to $+0.14$. For scale, the grade alone says little about warmth: on the
 visited schools it correlates with enacted warmth at only $-0.20$ (grades run from 1,
