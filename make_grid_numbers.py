@@ -44,6 +44,8 @@ VISIT_COL = {"warmth": "gs_warmth_enacted",
 
 
 def f3(x):
+    if abs(x) < 0.005:
+        x = 0.0  # avoid printing "-0.00"
     return ("+" if x >= 0 else "") + f"{x:.2f}"
 
 
