@@ -38,7 +38,7 @@ is widest for warmth. The heads' ratings and the observers' scores correlate at 
 How warm a school is towards its pupils, and how strictly it runs, are two of
 the things most often said to affect how much progress its pupils make. In this paper I construct
 measures of these two dimensions of school culture based on a structured day of observations at a school. I refer to these
-two dimensions as warmth and strictness. I then ask how well each dimension can be recovered from publicly available texts that exist for all 3,332 schools in the country.
+two dimensions as warmth and strictness. I then ask how well each dimension can be predicted from publicly available texts that exist for all 3,332 schools in the country.
 
 The two dimensions have precise meanings here. Warmth is
 the relational quality of a school: whether pupils are known, cared for and
@@ -103,7 +103,7 @@ the gold standard is in fact two measures rather than one: an \emph{enacted}
 score, from what the observers recorded, and an \emph{espoused} score, from
 what the headteacher reported.
 
-I then ask whether these scores could be recovered from a school's public text alone using
+I then ask whether these scores could be predicted from a school's public text alone using
 two different methods.
 The first is a prediction model: using the visited schools, a
 statistical model learns which words and phrases of a document predict enacted scores, and it is validated only on schools that were not used to estimate it. Two things are done before estimation. First, identifying details are removed from the text. Second, each enacted score is regressed on three intake measures and the age of the inspection report, and the model predicts only the part of the score those variables do not explain. Without this step a model could predict the scores accurately just by recognising a school's intake from its report rather than by reading anything about its culture.
@@ -118,7 +118,7 @@ Each method gives every school a score. Those scores are judged on whether they 
 There are four main findings. The first is that inspection reports
 carry a modest but real signal of enacted warmth. A prediction model reading only the report's wording predicts the enacted warmth of schools it was not estimated on. Its predictions correlate with what the observers recorded at $\PredWOfsted$. When the model predicts the raw enacted warmth score, the correlation is $\PredWOfstedRaw$. When it predicts only the part of the score that intake and report age do not explain, the correlation rises to $\PredWOfsted$. If the model were recognising intake from the report, removing intake from the target would lower the correlation. It does not, so the model's predictions rest on something other than intake. The phrases that lower a school's predicted warmth differ in kind from those that raise it. The reports of schools with low enacted warmth use stock assurances such as ``pastoral support is in place'' and ``pupils feel confident they have a trusted adult''. The reports of warmer schools instead describe pupils and adults
 dealing with one another, spread across many small choices of phrase
-rather than concentrated in quotable lines. The same is true of observed teaching. Predicting each school from a model estimated without it, the model's predictions correlate with the observers' teaching scores at $\PredTOfsted$. The mark scheme applied to the same reports does not recover warmth: its bands correlate with enacted warmth at $\RubricWOfstedDec$.
+rather than concentrated in quotable lines. The same is true of observed teaching. Predicting each school from a model estimated without it, the model's predictions correlate with the observers' teaching scores at $\PredTOfsted$. The mark scheme applied to the same reports does not predict warmth: its bands correlate with enacted warmth at $\RubricWOfstedDec$.
 
 The second finding is that each method works for a different dimension: the prediction model for warmth, the mark scheme for strictness. The prediction model predicts enacted strictness poorly, at $\PredSOfsted$, where the mark scheme's bands correlate with it at $\RubricSOfstedDec$. On warmth the order is reversed. The reason is that the two dimensions appear in the text differently. Warmth is associated with a report's general vocabulary, which a model can learn from the visited schools without being told in advance what warmth looks like. Strictness is associated with specific factual claims, such as ``low-level disruption is rare''. The mark scheme states in advance what a strict school's report should say, so the language model applying it is told which sentences to look for. The prediction model is given only the reports and the observers' scores, and must find the association from the reports alone. For strictness it fails to.
 
@@ -754,7 +754,7 @@ where leaders listen to staff is also one where teachers listen to the concerns 
 
 \subsection{What schools write about themselves}
 
-A school's own documents, its behaviour policy and website, tell a reader what the head says about the school, not what the school does. The test is a rerun of the prediction models: they read the policy and website text as before, but this time they are trained to predict the head's interview answers rather than the enacted scores. This was done across the roughly 300 interviewed schools. On strictness the documents match what the head says: the models recover the head's account at $\PredEspS$ (demographics removed), which survives the correction for the number of tests. On staff morale the relation is weaker, at $\PredEspClim$: significant on its own, but not after that correction. On warmth there is no relation at all, at $\PredEspW$. What a school writes about warmth is unrelated even to what its own head says in the interview.
+A school's own documents, its behaviour policy and website, tell a reader what the head says about the school, not what the school does. The test is a rerun of the prediction models: they read the policy and website text as before, but this time they are trained to predict the head's interview answers rather than the enacted scores. This was done across the roughly 300 interviewed schools. On strictness the documents match what the head says: the models predict the head's account at $\PredEspS$ (demographics removed), which survives the correction for the number of tests. On staff morale the relation is weaker, at $\PredEspClim$: significant on its own, but not after that correction. On warmth there is no relation at all, at $\PredEspW$. What a school writes about warmth is unrelated even to what its own head says in the interview.
 
 The bands from the website mark schemes do not correlate with any enacted or espoused score, on any dimension. That is weak evidence rather than contrary evidence: two language models applying the same website mark scheme agree on the band only \AgreeWebW{} and \AgreeWebS{} of the time, against \AgreeOfstedW{} to \AgreeOfstedT{} on inspection reports, so the scheme is barely reliable on the documents schools write about themselves.
 
