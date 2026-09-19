@@ -46,6 +46,13 @@
 \setcounter{topnumber}{3}
 \setcounter{bottomnumber}{2}
 \setcounter{totalnumber}{4}
+% A float page holds its content at the top rather than centring it
+% vertically, so a table or figure that needs a page of its own does not
+% sit in the middle of white space.
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpbot}{0pt plus 1fil}
+\makeatother
 
 % Colour (for tables etc.)
 \usepackage[table]{xcolor}
