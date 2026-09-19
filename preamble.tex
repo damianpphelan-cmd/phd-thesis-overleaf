@@ -120,6 +120,21 @@
 % lines per page, which keeps the abstract and the acknowledgements from
 % spilling a line or two onto an otherwise empty page.
 \makeatletter
+% Numbered chapter headings likewise start nearer the top of the page
+% (10pt rather than 50pt above "Chapter N"), so that each paper's author
+% footnote and abstract fit on its opening page.
+\def\@makechapterhead#1{%
+  \vspace*{10\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+        \huge\bfseries \@chapapp\space \thechapter
+        \par\nobreak
+        \vskip 20\p@
+    \fi
+    \interlinepenalty\@M
+    \Huge \bfseries #1\par\nobreak
+    \vskip 25\p@
+  }}
 \def\@makeschapterhead#1{%
   \vspace*{10\p@}%
   {\parindent \z@ \raggedright \normalfont
