@@ -136,7 +136,10 @@ for k, start in enumerate((4, 17, 30), start=1):
     W2 = blk[["Students", "Interactions", "Relationships", "Reward"]].mean(axis=1)
     S2 = blk[["Sanction", "Corridors", "Arrival", "Canteen", "Recreational"]].mean(axis=1)
     orows.append(pd.DataFrame({"school": ou["school"], "rater": k, "W2": W2, "S2": S2}))
-O = pd.concat(orows, ignore_index=True)
+O = pd.concat(orows, ignore_index=True).dropna(subset=["W2", "S2"], how="all")
+# (19 Sep 2026) Rows for absent second/third observers are all-NaN and must be
+# dropped, as L does above; otherwise every school counts three raters and
+# DaysOneRater is wrongly 0. The decompositions already drop NaN rows.
 
 def oneway_decomp(df, y):
     d = df.dropna(subset=[y]); g = d.groupby("school")[y]
