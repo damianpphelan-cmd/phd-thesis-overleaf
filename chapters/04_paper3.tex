@@ -266,7 +266,7 @@ The OLS estimate compares students who take economics with students who do not. 
 
 The saturated estimate in column~4 is somewhat larger (0.178), but its confidence interval comfortably includes the linear estimate. \citet{blandhol2022tsls} show that when the controls enter linearly, the two-stage least squares (TSLS) estimate is a weighted average of the effects for different groups of students in which some weights can be negative, so the estimate need not lie between the effects it averages. The agreement between the linear and saturated specifications is reassuring on this point. Their result strictly calls for the controls to enter fully flexibly, with an indicator for every combination of student characteristics and school. That is not possible here, because interacting the cells with an indicator for every school would leave too few students in each group. Column~4 therefore makes the student characteristics fully flexible but leaves the school fixed effects unchanged, so it is a partial check on their concern rather than a complete answer.
 
-The return of around 14\% is well below the 46\% that \citet{bleemer2022college} estimate at the GPA threshold for the economics major at UC Santa Cruz. The two populations differ. Their estimate is for students competing at an admissions threshold; ours is an average over the compliers, whose schools did not offer the subject at all. Column~2 reports the effect of availability itself on earnings, without dividing by take-up. We call this the reduced form. It is approximately 0.8\%, and it equals the take-up effect multiplied by the IV estimate. It is the average earnings gain per student in the cohort when a school begins to offer economics. This is the policy-relevant parameter for Section~\ref{sec:Policy}. It is also less affected than the IV estimate by the measurement problem described in Section~\ref{sec:Data}. The IV estimate is the reduced form divided by the take-up effect, and Section~\ref{sec:Data} showed that part of the take-up effect is automatic. No part of the reduced form is automatic, because the way we measure availability cannot create a link with earnings.
+The return of around 14\% is well below the 46\% that \citet{bleemer2022college} estimate at the GPA threshold for the economics major at UC Santa Cruz. The two populations differ. Their estimate is for students competing at an admissions threshold; ours is an average over the compliers, whose schools did not offer the subject at all. Column~2 reports the reduced form: the effect of availability itself on earnings, without dividing by take-up. It is approximately 0.8\%, and it equals the take-up effect multiplied by the IV estimate. It is the average earnings gain per student in the cohort when a school begins to offer economics. This is the policy-relevant parameter for Section~\ref{sec:Policy}. It is also less affected than the IV estimate by the measurement problem described in Section~\ref{sec:Data}. The IV estimate is the reduced form divided by the take-up effect, and Section~\ref{sec:Data} showed that part of the take-up effect is automatic. No part of the reduced form is automatic, because the way we measure availability cannot create a link with earnings.
 
 % =============================================================
 % III.C  Lifetime earnings
@@ -276,7 +276,7 @@ The return of around 14\% is well below the 46\% that \citet{bleemer2022college}
 
 The age-28 estimates capture only the early-career return to A-level economics. To assess lifetime effects we calculate the lifetime returns implied by our estimates in combination with published estimates of the lifetime returns to undergraduate degrees \citep{britton2026lifetime}. For each degree subject, the published estimates measure the gain relative to not attending university. They come in three versions. The gross return is the extra earnings before tax. The net return is what the graduate keeps after income tax, National Insurance and Plan~5 student loan repayments. The exchequer return is what the government receives in those deductions. All three are in 2025/26 prices and discounted to age 18 at the rate HM Treasury's Green Book sets for public appraisal.
 
-Taking A-level economics changes two things. It raises the probability of going to university by 14.0 percentage points (Appendix Table~\ref{tab:other_outcomes}). It raises the probability of studying economics at university by 15.2 percentage points (Table~\ref{tab:degree_channel}). The implied net individual return per complier is
+Taking A-level economics changes two things. It raises the probability of going to university by 14.0 percentage points (Appendix Table~\ref{tab:other_outcomes}), and it raises the probability of studying economics at university by 15.2 percentage points (Table~\ref{tab:degree_channel}). The implied net individual return per complier is
 %
 \begin{equation}
 \label{eq:implied}
@@ -414,10 +414,22 @@ Expanding economics teacher supply would generate fiscal returns that more than 
 %  APPENDIX 4A
 % ===============================================================
 \FloatBarrier
-\bigskip
-\noindent\rule{\linewidth}{0.4pt}
 
 \startchapterappendix{4}
+\begin{center}
+  {\LARGE\bfseries Appendix to Chapter 4}\\[6pt]
+  \rule{0.5\linewidth}{0.4pt}
+\end{center}
+\medskip
+\noindent This appendix collects the supporting figures and tables for the
+chapter. It reports the event studies and the time series of provision
+discussed in the text, and the tables referenced from each section: the
+subgroup regressions and the decomposition for earlier cohorts, the
+composition of economics students, the school-type and
+school-characteristics comparisons, the evidence on school moves, the
+balance and placebo tests, the robustness checks including the
+availability threshold, and the estimates for other outcomes.
+\medskip
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Additional Figures and Tables}

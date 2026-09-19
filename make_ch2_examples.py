@@ -160,7 +160,13 @@ def main() -> None:
             hi_idx = [i for i in on_order if PUPIL_RE.search(pool[i])]
         else:
             hi_idx = [i for i in on_order if dirs[i] == "positive"]
-        panels[name] = ([pool[i] for i in hi_idx[:3]], lo_on[:3])
+        lo_main = lo_on[:3]
+        if name == "Teaching":
+            # Damian, 19 Sep 2026: the three lowest teaching sentences
+            # include two near-identical PSHE sentences; show the
+            # tenth-lowest in the third row instead (stated in the note).
+            lo_main = lo_on[:2] + [pool[on_order[::-1][9]]]
+        panels[name] = ([pool[i] for i in hi_idx[:3]], lo_main)
 
         # unfiltered rankings (regardless of topic)
         hi_all = [pool[i] for i in order[:8]]
@@ -229,7 +235,10 @@ def main() -> None:
         "highest-scoring sentences tagged as being about staff--pupil "
         "relationships and mentioning pupils (warmth) or tagged as "
         "positive teaching content (teaching); the lowest-scoring "
-        "sentences tagged on-topic with no further restriction. "
+        "sentences tagged on-topic with no further restriction, except "
+        "that the third teaching example is the tenth-lowest, shown in "
+        "place of a second sentence about the personal, social and "
+        "health education curriculum. "
         "Unfiltered listings appear in the appendix "
         "(\\cref{sec:p1_app_examples}).}\n"
         "\\label{tab:p1_examples}\n"
