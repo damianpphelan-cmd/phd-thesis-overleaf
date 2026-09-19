@@ -114,6 +114,21 @@
 \numberwithin{table}{chapter}
 \numberwithin{equation}{chapter}
 
+% Unnumbered (front-matter) chapter headings sit closer to the top of the
+% page and to the text below them than numbered chapter headings do. The
+% report class puts 50pt above and 40pt below; 10pt and 20pt gain about two
+% lines per page, which keeps the abstract and the acknowledgements from
+% spilling a line or two onto an otherwise empty page.
+\makeatletter
+\def\@makeschapterhead#1{%
+  \vspace*{10\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \interlinepenalty\@M
+    \Huge \bfseries  #1\par\nobreak
+    \vskip 20\p@
+  }}
+\makeatother
+
 % Running headers — chapter title on right, page number at bottom centre
 \usepackage{fancyhdr}
 \pagestyle{fancy}
