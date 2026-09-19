@@ -176,7 +176,7 @@ survey belongs to neither group. Parents report their own family's experience
 of the school, and whether that experience follows what observers see or
 what the school says about itself is one of the questions the paper answers.
 
-The study therefore has two samples. In \NTierOne{} schools there is a visit, an interview and the public text. In a further \NTierTwo{} schools there is an interview and the public text but no visit, so 303 schools carry an interview score in all. Headteachers gave verbal consent to the interview and the visit, and schools are not named. For the rest of the schools in the country there is the public text alone. \Cref{tab:tier_summary} compares the three groups on intake, size and inspection grade.
+Schools fall into three groups by the data they carry. In \NTierOne{} schools there is a visit, an interview and the public text. In a further \NTierTwo{} schools there is an interview and the public text but no visit, so 303 schools carry an interview score in all. Headteachers gave verbal consent to the interview and the visit, and schools are not named. For the rest of the schools in the country there is the public text alone. \Cref{tab:tier_summary} compares the three groups on intake, size and inspection grade.
 
 \input{tables/tab_tier_summary}
 
@@ -766,7 +766,7 @@ A school's own documents, its behaviour policy and website, tell a reader what t
 
 The bands from the website mark schemes do not correlate with any enacted or espoused score, on any dimension. That is weak evidence rather than contrary evidence: two language models applying the same website mark scheme agree on the band only \AgreeWebW{} and \AgreeWebS{} of the time, against \AgreeOfstedW{} to \AgreeOfstedT{} on inspection reports, so the scheme is barely reliable on the documents schools write about themselves.
 
-One caveat qualifies that last result. The espoused warmth score is built from just three interview
+One caveat qualifies the warmth result from the prediction models. The espoused warmth score is built from just three interview
 statements, and heads bunch their answers near the top of the scale, so the score varies little
 from school to school. When the target score varies little between schools, any correlation with it is lower than it would be if the scores were spread out. Finding no correlation against such a target therefore rules out a strong link between public warmth language
 and the head's account, but not a modest one.
@@ -1004,7 +1004,7 @@ digits, inspection-report page furniture, letter salutations, and
 framework boilerplate. The demographic adjustment regresses each outcome on the school's free-school-meals share, share of pupils with English as an additional language, prior attainment and report age, and takes the residual as the target. The mark-scheme bands are not changed. The adjustment is applied to the outcome only. The adjusted figure for a mark scheme is the correlation between the band as awarded and this residual.
 
 Alternative representations were evaluated in the identical harness and none improved on the specification above. In brief, adding three- and four-word phrases moved each correlation by less than its sampling variation. Topic-model features predicted every dimension worse than word and phrase counts did. Models estimated on passage embeddings from two pretrained encoders correlate with enacted warmth and teaching at essentially zero. They do reproduce the espoused-strictness result. So the warmth and teaching signals lie in the particular words used, not in meaning that survives paraphrase. One result disagrees between the two encoders. The larger encoder predicts enacted strictness at $+0.33$ with mean pooling. The smaller encoder's correlation is near zero, and so is that of every word-based model. Because it appears under one encoder and not the other, it is recorded here as unresolved rather than used.
-Models built on sentence tags alone (topic and polarity) predicted every score worse than models built on the words. A second variant multiplied each word count by plus one in a positive sentence and minus one in a negative sentence. This raised the correlation for warmth, strictness and teaching alike. The words responsible were clerical ones from the report format. A feature that helps all three dimensions at once, and does so through format words, is picking up how the report was written rather than what the school is like. The chapter's rule discards such features, and it was discarded.
+Models built on sentence tags alone (topic and polarity) predicted every score worse than models built on the words. A second variant multiplied each word count by plus one in a positive sentence and minus one in a negative sentence. This raised the correlation for warmth, strictness and teaching alike. The words responsible were clerical ones from the report format. A feature that helps all three dimensions at once, and does so through format words, is picking up how the report was written rather than what the school is like. The chapter's rule discards such features, so the variant was dropped.
 
 \section{What the Models Use: Examples}
 \label{sec:p1_app_examples}
