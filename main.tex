@@ -103,8 +103,12 @@ with Arun Advani and Elaine Drayton; the candidate's contribution is
 stated in the Research Paper Declaration Form.
 
 \vspace{1.5cm}
+% UCL e-thesis deposit: the signature must not appear in the open copy.
+% deposit.tex defines \DepositVersion and drops the signed line.
+\ifdefined\DepositVersion\else
 \noindent Signed:\enspace D. Phelan\par
 \vspace{0.6cm}
+\fi
 \noindent Date:\enspace 18 September 2026
 
 \chapter*{Abstract}
