@@ -149,7 +149,30 @@ def build() -> list[Num]:
     add(Num("CorrWSCrossObs", f"{float(_m.group(2)):.2f}",
             "visit_decomposition_report.txt: cross-observer lesson-level W-S correlation"))
     add(Num("CorrWSTrue", f"{float(_m2.group(2)):.2f}",
-            "visit_decomposition_report.txt: disattenuated cross-observer W-S trait correlation"))
+            "visit_decomposition_report.txt: disattenuated cross-observer W-S trait correlation, "
+            "SINGLE-LESSON level (not school level; see CorrWSTrueSchool)"))
+    _rw = _re.search(r"W1\s+observer 1 x observer 2\s+\+(0\.\d+)", _rep)
+    _rs = _re.search(r"S1\s+observer 1 x observer 2\s+\+(0\.\d+)", _rep)
+    if not (_rw and _rs):
+        raise SystemExit("make_numbers: single-lesson reliabilities not found in visit_decomposition_report.txt")
+    add(Num("RelLessonW", f"{float(_rw.group(1)):.2f}",
+            "visit_decomposition_report.txt: single-lesson inter-observer r, in-lesson warmth"))
+    add(Num("RelLessonS", f"{float(_rs.group(1)):.2f}",
+            "visit_decomposition_report.txt: single-lesson inter-observer r, in-lesson strictness"))
+    # School-level analogue of CorrWSTrue (school_level_ws.py, added 26 Oct
+    # 2026 after the viva): the same correction on whole-school scores.
+    _sl = open(ROOT / "school_level_ws_report.txt", encoding="utf-8").read()
+    _sn = _re.search(r"full forms: n=(\d+)", _sl)
+    _sc = _re.search(r"cross-observer W-S: (0\.\d+)", _sl)
+    _st = _re.search(r"corrected W-S: (0\.\d+)", _sl)
+    if not (_sn and _sc and _st):
+        raise SystemExit("make_numbers: figures not found in school_level_ws_report.txt; run school_level_ws.py")
+    add(Num("NWSSchool", _sn.group(1),
+            "school_level_ws_report.txt: schools with two observers' full forms"))
+    add(Num("CorrWSCrossObsSchool", f"{float(_sc.group(1)):.2f}",
+            "school_level_ws_report.txt: cross-observer school-level W-S correlation"))
+    add(Num("CorrWSTrueSchool", f"{float(_st.group(1)):.2f}",
+            "school_level_ws_report.txt: school-level W-S correlation, observer error removed"))
     add(Num("CorrWarmthStrictnessEspoused", f"{r_ws_es:.2f}",
             f"interview W-S correlation, Tier 1 (visited) schools, n={n_ws_es}"))
     add(Num("CorrLeadershipNational", f"{r_lead:.2f}",
@@ -457,7 +480,7 @@ def build() -> list[Num]:
         gap = float((g.iloc[:, 0] - g.iloc[:, 1]).mean())
         add(Num(f"Gap{dim}", f"{gap:.1f}",
                 f"mean espoused minus enacted {dim.lower()}, Tier 1, n={len(g)}, "
-                f"0-10 scale, {gap:+.2f} unrounded",
+                f"1-5 scale, {gap:+.2f} unrounded",
                 expect=[f"${gap:.1f}$"], stale=stale))
 
     # Named for what it is. NOT a \GoldTeachingSplit: the two sides are different
