@@ -142,7 +142,7 @@ for sheet, n_meta in SHEETS.items():
             nm2 = it.lower()
             if any(k2 in nm2 for k2 in ["sanction", "corridor", "arrival", "canteen", "recreational"]):
                 sub = "S2"
-            elif any(k2 in nm2 for k2 in ["students", "interactions", "relationships"]):
+            elif any(k2 in nm2 for k2 in ["students", "interactions", "relationships", "reward"]):
                 sub = "W2"
             else:
                 sub = "unused"

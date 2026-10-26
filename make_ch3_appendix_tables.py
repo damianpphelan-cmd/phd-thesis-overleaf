@@ -184,7 +184,7 @@ def t_items():
 {SYM}
 \footnotesize
 \caption{{Each visit-sheet item as a predictor of Progress 8, one small model per item.
-Every row regresses average Progress 8 on that item alone (standardised) plus the primary
+Every row regresses average Progress~8 on that item alone (standardised) plus the primary
 control set with the predecessor-filled grade; late-entry schools excluded. $N={n}$ for the
 in-lesson items and as low as {nmin} for the outside items, which were recorded at fewer
 schools. Rows are
